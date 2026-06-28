@@ -11,20 +11,29 @@ chord boxes, and a per-tune column of discography references on the right.
 The scans are 1-bit (bilevel), ~235 ppi, with no higher-quality source.
 
 WHAT IS RELIABLE (done automatically)
-  * Locating each tune and its crop rectangle. This uses page STRUCTURE
-    (box-grid geometry), not text recognition, so it is robust to the poor
-    scan quality.
-  * TITLES, when you supply the book's alphabetical index (--index). The index
-    lists the exact title and printed page of every tune. The script OCRs each
-    hand-lettered title only well enough to pick the right one out of the few
-    the index lists for that page, then uses the index's exact spelling. Each
-    title gets a confidence; only low-confidence ones are flagged for review.
+  * Splitting a page into tunes and naming them, GIVEN the book index (--index).
+    The script is "index-driven": the index lists exactly which titles are on
+    each printed page, so the image is only used to LOCATE each known title.
+    It detects candidate title bands, then aligns the page's known titles to
+    them in order. Benefits:
+      - a title whose hand-lettering won't OCR is still placed by its position
+        in the known sequence (e.g. between its neighbours);
+      - chord rows misread as titles align to nothing and are ignored;
+      - tunes with several grid blocks are not over-split;
+      - the exact spelling comes from the index.
+    Detection is resolution-independent (every page is normalised to a working
+    width internally; crops are still saved at native resolution).
 
-WHAT IS NOT RELIABLE FROM THIS SCAN
-  * Reading a title from scratch without the index (OCR gives CHAIR->"LHATR").
-    Without --index the raw OCR guess is written to the manifest for you to fix.
-  * The tiny printed PAGE NUMBER. Give the first printed page with --start-page
-    (it is then incremented per page); the index is keyed on that number.
+  * Without --index the script falls back to pure geometry + fuzzy OCR, which is
+    much less reliable on this hand-lettering. Supplying the index is strongly
+    recommended.
+
+WHAT STILL NEEDS A GLANCE
+  * Each placed title carries a confidence; low ones are flagged review=yes in
+    the manifest. Titles placed purely by sequence position (OCR unreadable)
+    show low confidence even when correct, so a quick scan of flagged rows is
+    worthwhile. The printed PAGE NUMBER is supplied via --start-page (the index
+    is keyed on it), not read from the scan.
 
 USAGE
   Step 1  detect + crop + match titles to the index:
@@ -265,18 +274,45 @@ def detect_tunes(gray, keep_crossref=False):
     leftw = int(cw * 0.46)
 
     def title_in(gs, ge, hmin=46):
+        """Tallest single title-like band in a gap (used for the trailing
+        cross-reference test)."""
+        bands = title_bands_in(gs, ge, hmin)
+        return max(bands, key=lambda r: r[1]) if bands else None
+
+    def title_bands_in(gs, ge, hmin=46):
+        """ALL title-like text bands in a gap, top to bottom.
+
+        A gap can hold more than one title when a tune has no grid of its own
+        (its title sits directly above the next tune's title). Returns a list of
+        (abs_top, height). Bands that fill their whole gap (chord lettering
+        bleeding from an adjacent grid block) are rejected.
+        """
         a, b = max(0, gs - 6), min(H, ge + 8)
-        if b - a < 40:
-            return None
+        band_h = b - a
+        if band_h < 40:
+            return []
         left = txt[a:b, x0:x0 + leftw]
-        rs, rl = _tallest_run((left > 0).sum(1) > 4)
-        if rl < hmin:
-            return None
-        region = left[rs:rs + rl]
-        width = int(((region > 0).sum(0) > 0).sum())
-        if width < 120:                 # a title spans many columns
-            return None
-        return a + rs, rl
+        rowink = (left > 0).sum(1) > 4
+        # bridge tiny vertical gaps inside one title's lettering
+        rr = cv2.morphologyEx(rowink.astype(np.uint8).reshape(-1, 1),
+                              cv2.MORPH_CLOSE,
+                              cv2.getStructuringElement(cv2.MORPH_RECT, (1, 14))).ravel() > 0
+        out, i, nrows = [], 0, len(rr)
+        while i < nrows:
+            if not rr[i]:
+                i += 1
+                continue
+            j = i
+            while j < nrows and rr[j]:
+                j += 1
+            h = j - i
+            if h >= hmin and h <= 0.9 * band_h:
+                region = left[i:j]
+                width = int(((region > 0).sum(0) > 0).sum())
+                if width >= 120:
+                    out.append((a + i, h))
+            i = j
+        return out
 
     gaps = [(0, blocks[0][0])] + \
            [(blocks[i][1], blocks[i + 1][0]) for i in range(len(blocks) - 1)]
@@ -390,6 +426,8 @@ def load_index(path):
         m = _LEAD.match(cand) or _GLUE.match(cand)
         if m:
             title = re.sub(r'\s+', ' ', m.group(1)).strip(" .")
+            # Drop the book-title running header if it got glued to an entry.
+            title = re.sub(r'^ANTHOLOGIE DES GRILLES DE JAZZ\s+', '', title).strip()
             if title:
                 by_page.setdefault(int(m.group(2)), []).append(title)
             buf = ""
@@ -444,6 +482,153 @@ def match_titles(ocr_list, candidates):
 def main_title(full):
     """The part used for the filename: drop a trailing parenthetical alt-title."""
     return re.split(r'\s*\(', full, 1)[0].strip() or full
+
+
+# ----------------------------------------------------------------------------
+# INDEX-DRIVEN detection
+# ----------------------------------------------------------------------------
+# The index lists exactly which titles are on a page, in order. We detect
+# candidate title bands generously, then align the known titles to those bands
+# (order-preserving). Extra bands (chord rows) align to nothing; a title whose
+# OCR failed is still placed by its position in the known sequence. This is far
+# more robust than letting page geometry decide how many tunes exist.
+# ----------------------------------------------------------------------------
+def _grid_blocks(ink, x0, x1, H):
+    cw = x1 - x0
+    hl = _open(ink, 150, 1)
+    vl = _open(ink, 1, 85)
+    Hd = cv2.dilate(hl, cv2.getStructuringElement(cv2.MORPH_RECT, (1, 70)))
+    Vd = cv2.dilate(vl, cv2.getStructuringElement(cv2.MORPH_RECT, (70, 1)))
+    grid = cv2.bitwise_and(Hd, Vd)
+    prof = (grid[:, x0:x1] > 0).sum(1).astype(float) / max(cw, 1)
+    isg = (prof > 0.10).astype(np.uint8).reshape(-1, 1)
+    isg = cv2.morphologyEx(isg, cv2.MORPH_CLOSE,
+                           cv2.getStructuringElement(cv2.MORPH_RECT, (1, 55))).ravel() > 0
+    runs, cur, s = [], isg[0], 0
+    for y in range(1, H):
+        if isg[y] != cur:
+            runs.append((cur, s, y)); cur, s = isg[y], y
+    runs.append((cur, s, H))
+    return [(s, e) for v, s, e in runs if v and e - s > 60], hl
+
+
+def _title_bands(txt, x0, leftw, a, b, hmin=40):
+    """All title-like text bands within rows [a,b], top to bottom.
+
+    Detect generously: in the index-driven pipeline, false bands (chord rows)
+    are discarded by the title alignment, so geometry need not be strict. We
+    only require a band to be tall enough and wide enough to be lettering.
+    """
+    if b - a < 30:
+        return []
+    left = txt[a:b, x0:x0 + leftw]
+    rowink = (left > 0).sum(1) > 4
+    rr = cv2.morphologyEx(rowink.astype(np.uint8).reshape(-1, 1), cv2.MORPH_CLOSE,
+                          cv2.getStructuringElement(cv2.MORPH_RECT, (1, 16))).ravel() > 0
+    out, i, nrows = [], 0, len(rr)
+    while i < nrows:
+        if not rr[i]:
+            i += 1; continue
+        j = i
+        while j < nrows and rr[j]:
+            j += 1
+        h = j - i
+        if h >= hmin:
+            region = left[i:j]
+            width = int(((region > 0).sum(0) > 0).sum())
+            if width >= 100:
+                out.append((a + i, h))
+        i = j
+    return out
+
+
+def candidate_bands(gray):
+    """Return (g, (x0,x1), H, blocks, bands). `bands` = candidate title bands
+    (top, height) over every non-grid region, top to bottom."""
+    g, ink = to_ink(gray)
+    H, W = ink.shape
+    x0, x1 = content_x_bounds(ink)
+    cw = x1 - x0
+    blocks, hl = _grid_blocks(ink, x0, x1, H)
+    vlT = _open(ink, 1, 80)
+    txt = cv2.subtract(ink, cv2.bitwise_or(hl, vlT))
+    txt = _open(txt, 2, 2)
+    leftw = int(cw * 0.46)
+    if blocks:
+        regions = [(0, blocks[0][0])]
+        regions += [(blocks[i][1], blocks[i + 1][0]) for i in range(len(blocks) - 1)]
+        regions.append((blocks[-1][1], H))          # trailing region (cross-refs)
+    else:
+        regions = [(0, H)]
+    bands = []
+    for a, b in regions:
+        bands.extend(_title_bands(txt, x0, leftw, a, b))
+    bands.sort()
+    # top-of-page tune whose title is clipped off by the scan
+    if blocks and (not bands or bands[0][0] > blocks[0][0] + 5):
+        bands.insert(0, (0, 0))
+    return g, (x0, x1), H, blocks, bands
+
+
+def align_titles_to_bands(titles, band_texts, match_bias=0.05):
+    """Order-preserving (Needleman-Wunsch) alignment of known `titles` to the
+    OCR of detected `band_texts`. Returns list of (title_idx, band_idx, score).
+    Every matched pair adds its similarity plus a small bias, so as many known
+    titles as possible are placed (in order) even when OCR is weak; spurious
+    bands and truly-absent titles are skipped."""
+    m, n = len(titles), len(band_texts)
+    if m == 0 or n == 0:
+        return []
+    dp = [[0.0] * (n + 1) for _ in range(m + 1)]
+    bk = [[None] * (n + 1) for _ in range(m + 1)]
+    for i in range(1, m + 1):
+        bk[i][0] = ('T',)
+    for j in range(1, n + 1):
+        bk[0][j] = ('B',)
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            s = _title_score(band_texts[j - 1], titles[i - 1])
+            mscore = dp[i - 1][j - 1] + s + match_bias
+            sT = dp[i - 1][j]            # skip title i (absent / gridless)
+            sB = dp[i][j - 1]            # skip band j (chord row / noise)
+            best = max(mscore, sT, sB)
+            dp[i][j] = best
+            bk[i][j] = ('M', i - 1, j - 1, s) if best == mscore else \
+                       (('T',) if best == sT else ('B',))
+    i, j, pairs = m, n, []
+    while i > 0 and j > 0:
+        t = bk[i][j]
+        if t[0] == 'M':
+            pairs.append((t[1], t[2], t[3])); i -= 1; j -= 1
+        elif t[0] == 'T':
+            i -= 1
+        else:
+            j -= 1
+    pairs.reverse()
+    return pairs
+
+
+def detect_indexed(gray, page_titles, keep_crossref=False):
+    """Index-driven tune detection. `page_titles` = the index's titles for this
+    printed page, in order. Returns (g, (x0,x1), H, tunes) where each tune is
+    (top, bot, title, conf)."""
+    g, (x0, x1), H, blocks, bands = candidate_bands(gray)
+    if not bands:
+        return g, (x0, x1), H, []
+    band_texts = [ocr_title(gray, top, h, x0, x1) for (top, h) in bands]
+    pairs = align_titles_to_bands(page_titles, band_texts)
+    # matched (band_top, title, score) sorted top->bottom
+    placed = sorted((bands[bj][0], page_titles[ti], sc) for ti, bj, sc in pairs)
+    last_bottom = min(H, blocks[-1][1] + 35) if blocks else H
+    tunes = []
+    for idx, (top, title, sc) in enumerate(placed):
+        bot = placed[idx + 1][0] - 10 if idx + 1 < len(placed) else last_bottom
+        top2 = max(0, top - 10)
+        has_grid = any(not (be <= top2 or bs >= bot) for (bs, be) in blocks)
+        if not has_grid and not keep_crossref:
+            continue                       # titled region with no grid = cross-ref
+        tunes.append((top2, bot, title, round(float(sc), 3)))
+    return g, (x0, x1), H, tunes
 
 
 def slugify(title):
@@ -572,37 +757,69 @@ def cmd_detect(args):
                 continue
 
             log(f"{head}  -- extracting image...")
-            gray = extract_page(pdf, pidx)
-            if gray is None:
+            native = extract_page(pdf, pidx)
+            if native is None:
                 log(f"        !! could not read page image -- left for a later run")
                 continue
-            log(f"        image {gray.shape[1]}x{gray.shape[0]}; detecting tunes...")
-            g, (x0, x1), H, tunes = detect_tunes(gray, args.keep_crossref)
-            log(f"        found {len(tunes)} tune(s); reading + matching titles...")
-            right = x1 if not args.no_sidebar else grid_right_edge(to_ink(gray)[1], x0, x1) + 8
-            if args.debug:
-                vis = cv2.cvtColor(g, cv2.COLOR_GRAY2BGR)
+            Hn, Wn = native.shape[:2]
 
-            ocr_list = [ocr_title(gray, top, rl, x0, x1) for (top, bot, rl) in tunes]
-            cands = []
-            if isinstance(page_no, int):
-                for dp in range(0, args.page_window + 1):
-                    for p in ({page_no} if dp == 0 else {page_no - dp, page_no + dp}):
-                        cands.extend(index.get(p, []))
-            matched = match_titles(ocr_list, cands) if cands else [(t, 0.0) for t in ocr_list]
+            # --- resolution normalization -------------------------------------
+            # All detection thresholds are calibrated for a canonical width.
+            # Resample the page to that width for detection + OCR, then map the
+            # resulting boundaries back to native pixels so the saved crops keep
+            # full resolution. This makes the script work at ANY input scale.
+            cw_target = args.work_width
+            sf = cw_target / Wn
+            if abs(sf - 1.0) < 0.02:
+                work = native
+            else:
+                interp = cv2.INTER_AREA if sf < 1 else cv2.INTER_CUBIC
+                work = cv2.resize(native, (cw_target, max(1, round(Hn * sf))),
+                                  interpolation=interp)
+            log(f"        native {Wn}x{Hn} -> work {work.shape[1]}x{work.shape[0]} "
+                f"(scale {sf:.3f}); detecting tunes...")
+
+            g_native, _ = to_ink(native)          # crop from full-res, correct polarity
+            page_titles = index.get(page_no, []) if isinstance(page_no, int) else []
+
+            if page_titles:
+                # INDEX-DRIVEN: place the page's known titles onto the image.
+                gw, (x0w, x1w), Hw, idx_tunes = detect_indexed(
+                    work, page_titles, args.keep_crossref)
+                tunes_final = [(top, bot, full, conf,
+                                ocr_title(work, top, max(0, min(bot - top, 90)), x0w, x1w))
+                               for (top, bot, full, conf) in idx_tunes]
+                log(f"        index lists {len(page_titles)} title(s); "
+                    f"placed {len(tunes_final)} tune(s) on the page")
+            else:
+                # FALLBACK (page not in index): geometry + fuzzy match.
+                gw, (x0w, x1w), Hw, geo = detect_tunes(work, args.keep_crossref)
+                ocrs = [ocr_title(work, top, rl, x0w, x1w) for (top, bot, rl) in geo]
+                tunes_final = [(top, bot, oc, 0.0, oc)
+                               for (top, bot, rl), oc in zip(geo, ocrs)]
+                log(f"        no index for this page; geometry found "
+                    f"{len(tunes_final)} tune(s)")
+
+            sx = Wn / gw.shape[1]                 # work -> native scale factors
+            sy = Hn / gw.shape[0]
+            right_w = x1w if not args.no_sidebar else grid_right_edge(to_ink(work)[1], x0w, x1w) + 8
+            if args.debug:
+                vis = cv2.cvtColor(gw, cv2.COLOR_GRAY2BGR)
 
             page_rows = []
-            for ti, ((top, bot, rl), ocr_raw, (full, conf)) in enumerate(
-                    zip(tunes, ocr_list, matched), 1):
-                title = main_title(full) if cands else ocr_raw
+            for ti, (top, bot, full, conf, ocr_raw) in enumerate(tunes_final, 1):
+                title = main_title(full) if page_titles else full
                 review = "yes" if (conf < args.review_below or not _squash(title)) else ""
                 pad = args.pad
-                y0c, y1c = max(0, top - pad), min(H, bot + pad)
+                # map work-space boundaries to native pixels
+                top_n, bot_n = int(top * sy), int(bot * sy)
+                y0c, y1c = max(0, top_n - pad), min(Hn, bot_n + pad)
                 if args.full_width:
-                    x0c, x1c = 0, g.shape[1]          # no horizontal cropping
+                    x0c, x1c = 0, Wn                  # no horizontal cropping
                 else:
-                    x0c, x1c = max(0, x0 - pad), min(g.shape[1], right + pad)
-                crop = g[y0c:y1c, x0c:x1c]
+                    x0c = max(0, int(x0w * sx) - pad)
+                    x1c = min(Wn, int(right_w * sx) + pad)
+                crop = g_native[y0c:y1c, x0c:x1c]
                 if args.scale != 1.0:
                     crop = cv2.resize(crop, None, fx=args.scale, fy=args.scale,
                                       interpolation=cv2.INTER_CUBIC)
@@ -618,16 +835,20 @@ def cmd_detect(args):
                                  ocr_raw=ocr_raw, alt_title=full, y0=y0c, y1=y1c,
                                  x0=x0c, x1=x1c, current_file=fn))
                 if args.debug:
-                    cv2.rectangle(vis, (x0c, y0c), (x1c, y1c), (0, 0, 255), 5)
-                    cv2.putText(vis, (title or "?")[:24], (x0c + 8, y0c + 40),
-                                cv2.FONT_HERSHEY_SIMPLEX, 1.1, (0, 120, 255), 3)
+                    # overlay drawn in WORK space
+                    xx0 = 0 if args.full_width else max(0, int(x0w) - pad)
+                    xx1 = gw.shape[1] if args.full_width else min(gw.shape[1], int(right_w) + pad)
+                    cv2.rectangle(vis, (xx0, max(0, top - pad)),
+                                  (xx1, min(Hw, bot + pad)), (0, 0, 255), 4)
+                    cv2.putText(vis, (title or "?")[:24], (xx0 + 8, max(0, top - pad) + 34),
+                                cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 120, 255), 3)
                 flag = "  <-- REVIEW" if review else ""
                 log(f"        tune {ti}: conf {conf:.2f}  ocr={ocr_raw[:24]!r} "
                     f"-> {title!r}  [{x1c-x0c}x{y1c-y0c}px] saved {fn}{flag}")
             if args.debug:
                 dp = os.path.join(args.out, f"{page_no}_debug.png")
-                s = 800 / g.shape[1]
-                cv2.imwrite(dp, cv2.resize(vis, (800, int(g.shape[0] * s))))
+                s = 800 / gw.shape[1]
+                cv2.imwrite(dp, cv2.resize(vis, (800, int(gw.shape[0] * s))))
                 log(f"        wrote debug overlay {os.path.basename(dp)}")
 
             # Checkpoint: drop any stale rows for this page, add fresh, flush.
@@ -710,12 +931,23 @@ def main():
     ap.add_argument("--review-below", type=float, default=0.55,
                     help="flag a title 'review' in the manifest when match "
                     "confidence is below this (default 0.55)")
+    ap.add_argument("--work-width", type=int, default=1654,
+                    help="internal detection width in px; every page is resampled "
+                    "to this for detection so results are resolution-independent "
+                    "(crops are still saved at native resolution). Default 1654.")
+    ap.add_argument("--merge-below", type=float, default=0.18,
+                    help="a non-first detection whose best index-title match is "
+                    "below this confidence is treated as a misread chord row and "
+                    "merged into the previous tune (false-band repair). Default 0.18.")
     ap.add_argument("--format", choices=["png", "pdf"], default="png")
     ap.add_argument("--no-sidebar", action="store_true")
     ap.add_argument("--full-width", action="store_true",
                     help="do not crop horizontally: keep the entire page width "
                     "(includes the discography column and both margins)")
-    ap.add_argument("--keep-crossref", action="store_true")
+    ap.add_argument("--keep-crossref", action="store_true",
+                    help="also output titled regions that have NO chord grid "
+                    "(cross-references like 'X -> SEE Y', and grid-less tunes). "
+                    "Default: skip them.")
     ap.add_argument("--pad", type=int, default=12)
     ap.add_argument("--scale", type=float, default=1.0)
     ap.add_argument("--debug", action="store_true")
