@@ -55,13 +55,14 @@ A `manifest.csv` with one row per crop. Relevant columns (others may be present 
 |---|---|
 | `current_file` | The PNG filename inside `crops/`. **This is the work-unit key.** |
 | `page` | Printed page number (integer). Used for the JSON `page` field and naming. |
-| `title` | Canonical title (from the book index). Seeds the JSON `title` field. |
-| `review` | `yes` if the upstream step was unsure about the title. |
-| `conf` | Upstream title-match confidence (0–1). Low = treat title as tentative. |
+| `title` | Canonical title (already cleaned). **This is the authoritative title** (see below). |
 
-**Title handling.** The manifest `title` is authoritative for spelling. The VLM must still read the
-image and set `title_uncertain` (see §6.2): if `review == yes` **or** `conf < 0.5`, default
-`title_uncertain` to `true` unless the crop clearly shows the title.
+Other columns (e.g. `review`, `conf`) are **ignored** — the title set has been cleaned up front, so
+no upstream uncertainty flags are consulted.
+
+**Title handling.** The JSON `title` is taken **verbatim from the manifest `title`** and is written
+by the runner, not produced or altered by the model. The model never re-reads or "corrects" the
+title from the image. (There is no title-uncertainty field; see §6.)
 
 The agent must **not** re-crop, re-locate, or modify the PNGs. If a crop is obviously wrong (e.g.
 two titles visible, or no tune), do not fix it — record it in the run report (§4.7) for the human.
@@ -150,24 +151,27 @@ On completion write `run_report.json` summarizing the run and listing everything
 at, **without re-reading every file**:
 ```json
 {
-  "total": 1600, "succeeded": 1588, "failed": 12,
+  "total": 1800, "succeeded": 1788, "failed": 12,
   "elapsed_s": 5123, "model": "<model-id>",
   "flagged": {
-    "title_uncertain": ["page9_...png", "..."],
-    "no_chord_grid":   ["page7_after-hours.png", "..."],
-    "low_conf_title":  ["..."],
-    "errors":          ["page123_....png", "..."]
+    "missing_required_field": ["123_SOME_TUNE.png", "..."],
+    "no_chord_grid":          ["7_AFTER_HOURS.png", "..."],
+    "errors":                 ["456_OTHER.png", "..."]
   }
 }
 ```
-Flag a tune for human review when any of: `title_uncertain == true`; a `notation_notes.no_chord_grid`
-is present; the manifest `review == yes` or `conf < 0.5`; or any chord carries a `?`.
+**Flag a tune for human review when any non-optional (always-present) output field is missing**
+(§6.2 / §17 check 2) — i.e. any of `title`, `style`, `form`, `time_signature`, `page`, `source`,
+`sections` absent. A unit that never produced valid JSON after retries (§4.5) is an `error`. The
+informational `no_chord_grid` list is included for convenience but is a valid state, not a defect.
 
 ### 4.10 Laptop throughput & resource notes
 Expect a **long sequential run**: at, say, 10–30 s per tune on a local model, 1600 tunes is roughly
 **5–13 hours**. Plan to run it in sittings — resume (§4.2) makes that free. Practical guidance:
 * **Memory:** stream one image at a time (open the crop, send it, release it). Never load all
   ~1600 PNGs at once.
+* **Heat/throttling:** offer an optional `--delay S` pause between units (default 0) if the laptop
+  runs hot during long sessions.
 * **Interruptions:** lid-close/sleep/Ctrl-C are safe — at most the in-flight tune is redone on
   resume. There is nothing to clean up.
 * **Scaling:** the only knob that increases throughput here is a faster model or `--workers` >1
@@ -177,21 +181,24 @@ Expect a **long sequential run**: at, say, 10–30 s per tune on a local model, 
 
 ## 5. Transcription task (given to the VLM, once per crop)
 
-Send the (optionally ink-thickened) crop plus this instruction. Provide the manifest `title` and
-`page` as context so the model anchors on the correct spelling/number, but instruct it to transcribe
-only what the image shows.
+Send the (optionally ink-thickened) crop plus this instruction. The `title` is **not** asked of the
+model — the runner fills it from the manifest. Provide `page` as context.
 
 > You are transcribing **one** handwritten jazz chord grid (one tune) from a scanned French jazz
-> "grilles" book. The image shows a large hand-lettered **title**, smaller style/tempo/form labels,
-> and a grid of **chord boxes** organized into rows (sections). Recording credits may run vertically
-> in the margins — **ignore them**.
+> "grilles" book. The image shows a large hand-lettered title, smaller style/tempo/form labels, and
+> a grid of **chord boxes** organized into rows (sections). Recording credits may run vertically in
+> the margins — **ignore them**.
 >
 > Produce **one bare JSON object** (no array, no prose, no markdown fence) following the schema and
-> rules you have been given. Expand every repeat/shorthand into explicit chords. Use the canonical
-> chord vocabulary. Read each chord and its alterations only from within its own box region. If a
-> mark is ambiguous due to scan quality, make your best reading, append `?` to that chord, and add a
-> `notation_notes` entry. The provided title is `"<manifest.title>"` and printed page is
-> `<manifest.page>`; use them unless the image clearly contradicts them.
+> rules you have been given. **Do not output a `title` field** — it is supplied separately. Expand
+> every repeat/shorthand into explicit chords. Use the canonical chord vocabulary. Read each chord
+> and its alterations only from within its own box region. If a mark is ambiguous due to scan
+> quality, make your best reading, append `?` to that chord, and add a `notation_notes` entry. The
+> printed page is `<manifest.page>`.
+
+The runner then sets `title` (from the manifest), `page` (from the manifest), and `source` (the
+constant) on the returned object before validating and writing it. This guarantees those three
+always-present fields can never be missing.
 
 ---
 
@@ -203,7 +210,6 @@ Each unit emits **one JSON file** containing a **single bare object** (not wrapp
 ```json
 {
   "title": "River Stay Way from My Door",
-  "title_uncertain": false,
   "composer": "Harry Woods – Mort Dixon",
   "year": "1931",
   "style": "STANDARD",
@@ -217,19 +223,20 @@ Each unit emits **one JSON file** containing a **single bare object** (not wrapp
 }
 ```
 
+`title`, `page`, and `source` are written by the runner (§5); the model supplies the rest.
+
 ### 6.2 Field rules
 | Field | Rule |
 |---|---|
-| `title` | As printed (seed from manifest `title`; correct only if the image clearly differs). |
-| `title_uncertain` | `true` if the title is partly cut off/unreadable, **or** manifest `review == yes` / `conf < 0.5` and the crop does not clearly show it; else `false`. Always present. |
+| `title` | **Written by the runner, verbatim from the manifest `title`.** The model does not output or alter it. Always present. |
 | `composer` | Names joined with `" – "` (space–en dash–space). **Omit the field entirely if absent.** |
 | `year` | Composition year as a string. **Omit if absent.** |
 | `style` | The upper-left genre label exactly as printed (`DIXIELAND`, `NEW ORLEANS`, `SWING`, `STANDARD`, `ELLINGTONIA`, …). Always present. |
 | `tempo` | The tempo label (`MEDIUM`, `MEDIUM FAST`, `MEDIUM SLOW`, `FAST`, …). **Omit if absent.** |
 | `form` | The form string exactly as printed, **preserving primes** (e.g. `32 A B C A'`). Always present. |
 | `time_signature` | Default `"4/4"`; override only if the score indicates otherwise. Always present. |
-| `page` | Printed page number (integer; from manifest `page`). Always present. |
-| `source` | Constant `"Anthologie des grilles de jazz"`. Always present. |
+| `page` | Printed page number (integer). **Written by the runner from the manifest `page`.** Always present. |
+| `source` | Constant `"Anthologie des grilles de jazz"`. **Written by the runner.** Always present. |
 | `sections` | See §7. Always present (may be `{}` only for the missing-grid case, §14). |
 | `notation_notes` | See §13. **Omit if none.** |
 
@@ -439,7 +446,6 @@ Crop `341_RIVER_STAY_WAY_FROM_MY_DOOR.png` shows **River Stay Way from My Door**
 ```json
 {
   "title": "River Stay Way from My Door",
-  "title_uncertain": false,
   "composer": "Harry Woods – Mort Dixon",
   "year": "1931",
   "style": "STANDARD",
@@ -476,8 +482,8 @@ A unit is **accepted** only if it parses as JSON and passes every check below; o
 (§4.5).
 
 1. Output is a **single bare object** (not an array), valid JSON, no surrounding prose/markdown.
-2. All always-present fields are there: `title`, `title_uncertain`, `style`, `form`,
-   `time_signature`, `page`, `source`, `sections`.
+2. All always-present fields are there: `title`, `style`, `form`, `time_signature`, `page`,
+   `source`, `sections`. **If any is missing, the tune is flagged for human review** (§4.9).
 3. Absent optional fields are **omitted** (not `null`/`""`).
 4. `source` equals `"Anthologie des grilles de jazz"`; `page` is an integer matching the manifest.
 5. Every bar is an object with a `bar` index and a `beats` map (no bare strings); beat keys are
@@ -519,8 +525,8 @@ API, or compute-time/energy on a local model; most levers help both. Apply these
    request **minified** JSON (no pretty-printing). Do **not** enable the fingerprints module
    (Appendix A) — it adds output tokens and reduces reproducibility.
 6. **Cheap-first escalation (optional).** Run the whole book on the cheap model; then re-run **only**
-   the tunes flagged for review (`title_uncertain`, `?` chords, `no_chord_grid`, errors, or low
-   manifest `conf`) on a stronger/pricier model. Most tunes never touch the expensive model. Resume
+   the tunes flagged for review (a missing required field, an `error` stub, a `no_chord_grid`, or any
+   `?` chord) on a stronger/pricier model. Most tunes never touch the expensive model. Resume
    makes the second pass touch only the flagged subset.
 7. **Never re-pay for finished work.** Resume (§4.2) guarantees a restart re-processes nothing
    already done — important when running a long job in sittings.
@@ -568,3 +574,31 @@ transcribe.py  --crops crops/  --manifest manifest.csv  --out tunes/
 * Cost: `--max-long-edge` downscales the image before the call (§18.2); `--batch` uses the async
   API when available (§18.4); `--page-range` optionally limits a session.
 * Writes `tunes/*.json`, `run_state.jsonl`, and `run_report.json`.
+
+---
+
+## Appendix C — Cost estimate for ~1800 tunes (illustrative)
+
+**Local model on the laptop:** no API fees. Energy only — a laptop drawing ~30–60 W for the several
+hours of the run is on the order of **$0.05–0.30** total. Treat as effectively free; optimize for
+time, not money.
+
+**Hosted vision API:** estimate per tune ≈ **2,000** instruction-text tokens in, **~1,200** image
+tokens in (right-sized to ~1100 px), **~600** JSON tokens out. For 1800 tunes that is ≈ **5.8M input
++ 1.1M output tokens**. At a few representative (illustrative — **verify current rates**) tiers:
+
+| Model tier | $/Mtok (in / out) | ≈ total, 1800 tunes |
+|---|---|---|
+| Small / cheap VLM | 0.10 / 0.40 | ~$1 |
+| Mid (Haiku-class) | 0.30 / 1.20 | ~$3 |
+| Upper-mid (Sonnet-class) | 1.00 / 5.00 | ~$11 |
+| Premium | 3.00 / 15.00 | ~$33 |
+
+**With the §18 levers:** prompt caching removes most of the 3.6M instruction-token cost, and a batch
+API roughly halves the remainder. Cheap model + caching + batch lands **well under $2** for the whole
+book; a premium model without those is the ~$33 end. Cheap-first escalation (§18.6) keeps you near
+the cheap tier while sending only the few flagged tunes to a premium model.
+
+Numbers scale linearly with tune count and with image size, so `--max-long-edge` is the dial with the
+most leverage on the input side.
+
