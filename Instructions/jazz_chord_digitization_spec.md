@@ -2,8 +2,8 @@
 
 **Source book:** *Anthologie des grilles de jazz* (handwritten chord grids)
 **Goal:** Convert each **already-cropped per-tune image** into one structured JSON file.
-**Scale:** ~**1600 tunes**, each exported as a PNG. The run must be batchable, resumable, and
-parallelizable.
+**Scale:** ~**1600 tunes**, each exported as a PNG. The run targets a **single laptop**: it must be
+batchable and **resumable** (sequential by default; stop and continue across sittings).
 **Audience:** An implementing agent that can run image code and call a vision-language model (VLM).
 
 This document is the single source of truth. Where it conflicts with any earlier prompt or the
@@ -32,8 +32,10 @@ VALIDATE     schema + self-check      ->   accept | retry | flag for review
 OUTPUT   tunes/*.json  +  run_report.json
 ```
 
-One **work unit = one cropped PNG → one JSON file.** Units are fully independent, which is what
-makes the run trivially parallelizable and resumable.
+One **work unit = one cropped PNG → one JSON file.** Units are fully independent, which keeps the
+run simple and resumable: it processes them one at a time on a single machine and can be stopped and
+resumed at any point. (Independence would also allow parallelism, but that is unnecessary here —
+see §4.3.)
 
 ---
 
@@ -93,25 +95,32 @@ the following.
 Read `manifest.csv`; the work list is its rows (one per `current_file`). Process in a stable order
 (manifest order). Support selecting a subset (§4.4).
 
-### 4.2 Idempotency / resume (required)
+### 4.2 Idempotency / resume (required — this is the laptop's safety net)
 For each unit, the output path is deterministic (§7). **Skip a unit if its JSON already exists and
-passes validation (§9).** This makes the run safely re-entrant: re-running the same command
-continues from where it stopped after a crash, cancellation, or partial run. Never depend on
-in-memory state to know what is done — the presence of a valid output file is the only source of
-truth.
+passes validation (§9).** This makes the run safely re-entrant: closing the lid, sleeping, losing
+power, Ctrl-C, or simply quitting and resuming later all cost at most the **one** tune in flight.
+Never depend on in-memory state to know what is done — the presence of a valid output file is the
+only source of truth. Write each JSON atomically (temp file + rename) so a kill mid-write cannot
+leave a half-written, "present but invalid" file.
 
-### 4.3 Concurrency (required)
-Process units through a bounded worker pool (default **8** concurrent VLM calls; configurable, e.g.
-`--workers N`). Units are independent, so this is embarrassingly parallel. Respect the model
-provider's rate limits: on HTTP 429 / 5xx, retry with **exponential backoff + jitter** (e.g.
-1s, 2s, 4s, 8s, capped), and cap total in-flight requests.
+### 4.3 Sequential by default (single machine / local model)
+This runs on **one laptop**, so process units **sequentially (one at a time)** by default
+(`--workers 1`). If the transcription model runs **locally** (e.g. via a local server / GPU / CPU),
+there is a single model instance and parallel calls would only contend for the same memory/compute
+and can trigger out-of-memory or thrashing — keep it sequential. Raise `--workers` above 1 **only**
+if you are calling a **remote API** from the laptop (then a small pool, e.g. 2–4, hides network
+latency). Default = 1.
 
-### 4.4 Sharding (required for multi-machine runs)
-Support splitting the work so several processes/machines can run disjoint subsets:
-* `--page-range A:B` — only tunes whose `page` is in `[A, B]`.
-* `--shard k/N` — process unit *i* iff `i mod N == k`.
-Because units are idempotent and write distinct files, shards can run fully independently and even
-overlap without corruption (last writer wins on an identical result).
+**Robust calls.** On a transient failure (local OOM/timeout, or — for a remote API — HTTP 429/5xx),
+retry the unit with a short backoff (e.g. 1s, 2s, 4s). There are no provider rate limits to respect
+for a local model; backoff there just rides out a momentary resource spike.
+
+### 4.4 Running in chunks (no sharding needed)
+**Sharding is not needed on a single machine** — it only exists to divide work across multiple
+machines. To run the ~1600 tunes over several sittings, just **stop and re-run the same command**:
+the resume rule (§4.2) skips everything already done. Optionally limit a session with
+`--page-range A:B` (only tunes whose `page` is in `[A, B]`) if you want to deliberately do the book
+in slices; it is a convenience, not a requirement.
 
 ### 4.5 Per-unit retries (required)
 The VLM may return invalid JSON or fail validation. For each unit, retry up to **R** times
@@ -154,9 +163,15 @@ at, **without re-reading every file**:
 Flag a tune for human review when any of: `title_uncertain == true`; a `notation_notes.no_chord_grid`
 is present; the manifest `review == yes` or `conf < 0.5`; or any chord carries a `?`.
 
-### 4.10 Throughput note
-1600 independent calls at 8 workers is routine. Plan for retries and rate limits, not raw call
-count. Cost/time scale linearly with tunes; sharding (§4.4) scales horizontally.
+### 4.10 Laptop throughput & resource notes
+Expect a **long sequential run**: at, say, 10–30 s per tune on a local model, 1600 tunes is roughly
+**5–13 hours**. Plan to run it in sittings — resume (§4.2) makes that free. Practical guidance:
+* **Memory:** stream one image at a time (open the crop, send it, release it). Never load all
+  ~1600 PNGs at once.
+* **Interruptions:** lid-close/sleep/Ctrl-C are safe — at most the in-flight tune is redone on
+  resume. There is nothing to clean up.
+* **Scaling:** the only knob that increases throughput here is a faster model or `--workers` >1
+  **when calling a remote API** (§4.3). On a local model, throughput is fixed by the hardware.
 
 ---
 
@@ -481,6 +496,40 @@ A unit that fails validation after all retries is written as an `.error.json` st
 
 ---
 
+## 18. Cost optimization (trade duration for cost)
+
+The run is allowed to take longer in exchange for spending less. "Cost" means tokens/$ on a hosted
+API, or compute-time/energy on a local model; most levers help both. Apply these:
+
+1. **Pick the cheapest model that passes the accuracy bar.** Validate candidate models on a small
+   labeled sample (≈20–30 tunes spanning easy and busy grids). Use the smallest/cheapest model whose
+   transcriptions are acceptable. Locally, that means a smaller or more-quantized model.
+2. **Right-size the image (biggest single lever).** Before sending, downscale the crop so its long
+   edge is the **minimum still legible** — start at **~1100 px** and only raise it if small marks
+   (`b5`, `7M`, inset squares) become unreadable; convert to grayscale. Vision tokens scale with
+   pixels, so this directly cuts input cost (and local compute). **Never upscale**, and never use
+   super-resolution (§3). Expose as `--max-long-edge` (default 1100).
+3. **Cache the static instructions (API).** The instruction/schema block is identical across all
+   ~1800 calls. Use the provider's **prompt caching** so it is billed roughly once instead of per
+   tune — this removes most input-text cost. Keep the per-call variable part (title, page) tiny.
+4. **Use the batch/async API (API).** If the provider offers asynchronous batch processing
+   (commonly **~50% cheaper**, results within hours), use it — accepting longer turnaround is
+   exactly the trade we want. Submit in chunks; resume (§4.2) still applies to results as they land.
+5. **Cap and compact the output.** Set a sane `--max-output-tokens` (≈1200 covers a busy tune) and
+   request **minified** JSON (no pretty-printing). Do **not** enable the fingerprints module
+   (Appendix A) — it adds output tokens and reduces reproducibility.
+6. **Cheap-first escalation (optional).** Run the whole book on the cheap model; then re-run **only**
+   the tunes flagged for review (`title_uncertain`, `?` chords, `no_chord_grid`, errors, or low
+   manifest `conf`) on a stronger/pricier model. Most tunes never touch the expensive model. Resume
+   makes the second pass touch only the flagged subset.
+7. **Never re-pay for finished work.** Resume (§4.2) guarantees a restart re-processes nothing
+   already done — important when running a long job in sittings.
+
+These do not change the schema or notation rules; they only change which model, image size, and
+billing mode are used.
+
+---
+
 ## Appendix A — Optional fingerprints module (off by default)
 
 If harmonic analysis is explicitly enabled for a run, an optional `fingerprints` array may be added.
@@ -509,9 +558,13 @@ default schema.** Do not emit `fingerprints` unless the run is explicitly config
 
 ```
 transcribe.py  --crops crops/  --manifest manifest.csv  --out tunes/
-               --model <vlm-id> --workers 8 --retries 3 --dilate 1
-               [--page-range 7:120] [--shard 0/4] [--debug]
+               --model <vlm-id> --workers 1 --retries 3 --dilate 1
+               --max-long-edge 1100 --max-output-tokens 1200
+               [--page-range 7:120] [--delay 0] [--batch] [--debug]
 ```
-* Resumable: re-running the same command skips tunes whose valid JSON already exists (§4.2).
-* Parallel across machines: give each a different `--shard k/N` (§4.4).
+* **Single laptop:** keep `--workers 1` for a local model; raise it only when calling a remote API.
+* Resumable: re-running the same command skips tunes whose valid JSON already exists (§4.2), so you
+  can stop and continue across sittings — no sharding needed.
+* Cost: `--max-long-edge` downscales the image before the call (§18.2); `--batch` uses the async
+  API when available (§18.4); `--page-range` optionally limits a session.
 * Writes `tunes/*.json`, `run_state.jsonl`, and `run_report.json`.
