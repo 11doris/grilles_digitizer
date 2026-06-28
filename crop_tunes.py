@@ -39,6 +39,13 @@ USAGE
   Process the whole book by giving each PDF its correct --start-page into the
   same --out folder; the manifest accumulates across runs.
 
+RESUMABLE / RE-ENTRANT
+  Progress is checkpointed to manifest.csv after every page (atomic write), and
+  pages are extracted one at a time. If the run is cancelled or killed, just run
+  the SAME command again: pages whose crops already exist are skipped and it
+  continues from where it stopped. Delete a crop (or the manifest) to force the
+  affected page(s) to be redone.
+
 OPTIONS
   --index PATH       book index PDF/.txt; titles are matched to it (recommended)
   --page-window N    also match against +/-N neighbouring index pages (use 1 if
@@ -82,7 +89,7 @@ try:
     HAVE_TESS = True
 except Exception:
     HAVE_TESS = False
-print(f"HAVE_TESS: {HAVE_TESS}")
+
 
 # ----------------------------------------------------------------------------
 # Image loading: prefer the embedded bilevel stencil (no resampling); fall back
@@ -96,6 +103,42 @@ def count_pages(pdf_path):
         return int(re.search(r"Pages:\s+(\d+)", info).group(1))
     except Exception:
         return None
+
+
+def extract_page(pdf_path, pidx, dpi=300):
+    """Extract ONE page (0-based pidx) as a grayscale image.
+
+    Extracts just that page (not the whole PDF) so progress is visible and a
+    cancelled run can resume without redoing pages. Prefers the embedded 1-bit
+    scan; falls back to rasterizing the single page.
+    """
+    p1 = pidx + 1  # poppler is 1-based
+    with tempfile.TemporaryDirectory() as td:
+        base = os.path.join(td, "img")
+        try:
+            subprocess.run(["pdfimages", "-f", str(p1), "-l", str(p1), "-png",
+                            pdf_path, base], check=True, capture_output=True)
+            files = sorted(f for f in os.listdir(td) if f.endswith(".png"))
+        except Exception:
+            files = []
+        if files:
+            # If a page has several embedded images, the scan is the largest.
+            f = max(files, key=lambda f: os.path.getsize(os.path.join(td, f)))
+            img = cv2.imread(os.path.join(td, f), cv2.IMREAD_GRAYSCALE)
+            if img is not None:
+                return img
+        # Fallback: rasterize just this page.
+        base2 = os.path.join(td, "pg")
+        try:
+            subprocess.run(["pdftoppm", "-f", str(p1), "-l", str(p1), "-r",
+                            str(dpi), "-png", pdf_path, base2],
+                           check=True, capture_output=True)
+            pg = sorted(f for f in os.listdir(td) if f.startswith("pg"))
+            if pg:
+                return cv2.imread(os.path.join(td, pg[0]), cv2.IMREAD_GRAYSCALE)
+        except Exception:
+            pass
+    return None
 
 
 def pdf_page_images(pdf_path, dpi=300):
@@ -451,47 +494,104 @@ def cmd_detect(args):
     log(f"  total pages to process: {grand_total or 'unknown'}")
     log("=" * 60)
 
-    rows = []
-    done_pages = 0
+    fieldnames = ["source", "page", "index", "title", "conf", "review",
+                  "ocr_raw", "alt_title", "y0", "y1", "x0", "x1", "current_file"]
+    sources_now = {os.path.basename(p) for p in args.inputs}
+
+    # --- resume support -----------------------------------------------------
+    # The manifest is the checkpoint. Rows from OTHER output runs (different
+    # source PDFs) are preserved untouched. For the PDFs in THIS run, a page is
+    # considered already done if it has rows in the manifest AND every one of
+    # its crop files still exists on disk; such pages are skipped (no
+    # re-extraction, no re-OCR). Everything is flushed after each page, so a
+    # cancelled run resumes from the next unfinished page.
+    kept_other, existing_by_key = [], {}
+    if os.path.exists(manifest_path):
+        with open(manifest_path, newline="") as f:
+            for r in csv.DictReader(f):
+                if r.get("source") in sources_now:
+                    existing_by_key.setdefault((r["source"], str(r["page"])), []).append(r)
+                else:
+                    kept_other.append(r)
+    done_keys = set()
+    for key, rs in existing_by_key.items():
+        if all(os.path.exists(os.path.join(args.out, r["current_file"])) for r in rs):
+            done_keys.add(key)
+    if done_keys:
+        log(f"  resume     : {len(done_keys)} page(s) already done in "
+            f"{os.path.basename(manifest_path)} will be skipped")
+
+    def page_sort_key(r):
+        try:
+            pg = int(r["page"])
+        except (ValueError, TypeError):
+            pg = 10**9
+        try:
+            ix = int(r["index"])
+        except (ValueError, TypeError):
+            ix = 0
+        return (r["source"], pg, str(r["page"]), ix)
+
+    # Seed the in-memory manifest with everything we are keeping (other
+    # sources + already-done pages of this run), then flush incrementally.
+    merged = list(kept_other)
+    for key in done_keys:
+        merged.extend(existing_by_key[key])
+
+    def flush_manifest():
+        merged.sort(key=page_sort_key)
+        tmp = manifest_path + ".tmp"
+        with open(tmp, "w", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=fieldnames)
+            w.writeheader(); w.writerows(merged)
+        os.replace(tmp, manifest_path)            # atomic; survives a cancel
+
+    flush_manifest()
+
+    crops_new = 0
+    pages_done = pages_skipped = 0
+    seen = 0
     for fi, pdf in enumerate(args.inputs, 1):
+        base = os.path.basename(pdf)
         base_page = parse_start_page(args.start_page, pdf)
-        npages = page_counts.get(pdf)
+        npages = page_counts.get(pdf) or 0
         log("")
-        log(f"FILE {fi}/{len(args.inputs)}: {os.path.basename(pdf)}  "
-            f"({npages if npages is not None else '?'} pages, "
+        log(f"FILE {fi}/{len(args.inputs)}: {base}  "
+            f"({npages or '?'} pages, "
             f"printed start page = {base_page if base_page is not None else 'auto'})")
-        for pidx, gray in pdf_page_images(pdf):
-            done_pages += 1
-            if gray is None:
-                log(f"  !! page {pidx + 1}: could not read image -- skipped")
+        for pidx in range(npages):
+            seen += 1
+            page_no = (base_page + pidx) if base_page is not None \
+                else f"{os.path.splitext(base)[0]}-p{pidx+1}"
+            pct = f"{100*seen/grand_total:4.0f}%" if grand_total else "  ? "
+            head = f"  [{pct} | {seen}/{grand_total or '?'}] {base} page {pidx+1}/{npages}  printed# {page_no}"
+
+            if (base, str(page_no)) in done_keys:
+                pages_skipped += 1
+                log(f"{head}  -- already done, skipping")
                 continue
-            page_no = (base_page + pidx) if base_page is not None else f"{os.path.splitext(os.path.basename(pdf))[0]}-p{pidx+1}"
-            pct = f"{100*done_pages/grand_total:4.0f}%" if grand_total else "  ? "
-            log(f"  [{pct} | page {done_pages}/{grand_total or '?'}] "
-                f"file page {pidx+1}/{npages or '?'}  printed# {page_no}  "
-                f"(image {gray.shape[1]}x{gray.shape[0]}) -- detecting tunes...")
+
+            log(f"{head}  -- extracting image...")
+            gray = extract_page(pdf, pidx)
+            if gray is None:
+                log(f"        !! could not read page image -- left for a later run")
+                continue
+            log(f"        image {gray.shape[1]}x{gray.shape[0]}; detecting tunes...")
             g, (x0, x1), H, tunes = detect_tunes(gray, args.keep_crossref)
             log(f"        found {len(tunes)} tune(s); reading + matching titles...")
             right = x1 if not args.no_sidebar else grid_right_edge(to_ink(gray)[1], x0, x1) + 8
             if args.debug:
                 vis = cv2.cvtColor(g, cv2.COLOR_GRAY2BGR)
 
-            # Pass 1: read every (noisy) title on the page.
             ocr_list = [ocr_title(gray, top, rl, x0, x1) for (top, bot, rl) in tunes]
-
-            # Pass 2: snap titles to the book index for this printed page. The
-            # index gives the exact spellings; OCR only has to disambiguate
-            # among the few titles the index lists for the page.
             cands = []
             if isinstance(page_no, int):
                 for dp in range(0, args.page_window + 1):
                     for p in ({page_no} if dp == 0 else {page_no - dp, page_no + dp}):
                         cands.extend(index.get(p, []))
-            if cands:
-                matched = match_titles(ocr_list, cands)
-            else:
-                matched = [(t, 0.0) for t in ocr_list]
+            matched = match_titles(ocr_list, cands) if cands else [(t, 0.0) for t in ocr_list]
 
+            page_rows = []
             for ti, ((top, bot, rl), ocr_raw, (full, conf)) in enumerate(
                     zip(tunes, ocr_list, matched), 1):
                 title = main_title(full) if cands else ocr_raw
@@ -506,17 +606,17 @@ def cmd_detect(args):
                 if args.scale != 1.0:
                     crop = cv2.resize(crop, None, fx=args.scale, fy=args.scale,
                                       interpolation=cv2.INTER_CUBIC)
-                prov = f"{page_no}_{ti:02d}_{slugify(title) or 'UNTITLED'}"
-                fn = prov + ("." + args.format)
+                fn = f"{page_no}_{ti:02d}_{slugify(title) or 'UNTITLED'}." + args.format
                 outp = os.path.join(args.out, fn)
                 if args.format == "pdf":
                     _save_pdf(crop, outp)
                 else:
                     cv2.imwrite(outp, crop)
-                rows.append(dict(source=os.path.basename(pdf), page=page_no,
-                                 index=ti, title=title, conf=f"{conf:.2f}",
-                                 review=review, ocr_raw=ocr_raw, alt_title=full,
-                                 y0=y0c, y1=y1c, x0=x0c, x1=x1c, current_file=fn))
+                crops_new += 1
+                page_rows.append(dict(source=base, page=page_no, index=ti,
+                                 title=title, conf=f"{conf:.2f}", review=review,
+                                 ocr_raw=ocr_raw, alt_title=full, y0=y0c, y1=y1c,
+                                 x0=x0c, x1=x1c, current_file=fn))
                 if args.debug:
                     cv2.rectangle(vis, (x0c, y0c), (x1c, y1c), (0, 0, 255), 5)
                     cv2.putText(vis, (title or "?")[:24], (x0c + 8, y0c + 40),
@@ -529,34 +629,26 @@ def cmd_detect(args):
                 s = 800 / g.shape[1]
                 cv2.imwrite(dp, cv2.resize(vis, (800, int(g.shape[0] * s))))
                 log(f"        wrote debug overlay {os.path.basename(dp)}")
-    # Merge with any existing manifest in this folder so that running several
-    # PDFs into one --out dir (e.g. with different --start-page values) builds a
-    # single complete manifest. Rows from PDFs processed in THIS run replace
-    # their old entries; rows from other PDFs are preserved.
-    fieldnames = ["source", "page", "index", "title", "conf", "review",
-                  "ocr_raw", "alt_title", "y0", "y1", "x0", "x1", "current_file"]
-    sources_now = {os.path.basename(p) for p in args.inputs}
-    merged = []
-    if os.path.exists(manifest_path):
-        with open(manifest_path, newline="") as f:
-            for r in csv.DictReader(f):
-                if r.get("source") not in sources_now:
-                    merged.append(r)
-    merged.extend(rows)
-    with open(manifest_path, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=fieldnames)
-        w.writeheader(); w.writerows(merged)
-    nrev = sum(1 for r in rows if r.get("review") == "yes")
+
+            # Checkpoint: drop any stale rows for this page, add fresh, flush.
+            merged[:] = [r for r in merged
+                         if (r["source"], str(r["page"])) != (base, str(page_no))]
+            merged.extend(page_rows)
+            done_keys.add((base, str(page_no)))
+            pages_done += 1
+            flush_manifest()
+
+    nrev = sum(1 for r in merged if r.get("source") in sources_now and r.get("review") == "yes")
     log("")
     log("=" * 60)
     log(f"DONE in {time.time() - _START:.1f}s")
-    log(f"  pages processed   : {done_pages}")
-    log(f"  crops written     : {len(rows)}")
-    log(f"  manifest total    : {len(merged)} -> {manifest_path}")
+    log(f"  pages this run    : {pages_done} processed, {pages_skipped} skipped (already done)")
+    log(f"  new crops written : {crops_new}")
+    log(f"  manifest total    : {len(merged)} rows -> {manifest_path}")
     if args.index:
-        log(f"  titles confident  : {len(rows) - nrev}")
-        log(f"  titles to review  : {nrev} (review=yes, conf < {args.review_below})")
+        log(f"  titles to review  : {nrev} (review=yes) across this run's sources")
     log("=" * 60)
+    log("Safe to cancel/resume: re-running the same command skips finished pages.")
     log("Next: check rows where review=yes (fix 'title' only if wrong), then run:")
     log(f"    python {os.path.basename(__file__)} --apply {manifest_path}")
 
