@@ -65,11 +65,15 @@ MANIFEST COLUMNS
   review     'yes' when conf is low and the title is worth a human glance
   ocr_raw    what the title OCR actually read (for debugging)
   alt_title  full index entry incl. any (parenthetical) alternate title
-
-EXAMPLE 
-  python 01_crop_tunes.py AGJ.pdf --out ./tunes --start-page 7 --full-width --index AGJ_index.pdf
 """
-import argparse, csv, os, re, sys, subprocess, tempfile
+import argparse, csv, os, re, sys, subprocess, tempfile, time, shutil
+
+_START = time.time()
+
+
+def log(msg=""):
+    """Print a timestamped status line immediately (unbuffered)."""
+    print(f"[{time.time() - _START:6.1f}s] {msg}", flush=True)
 import numpy as np
 import cv2
 
@@ -78,18 +82,29 @@ try:
     HAVE_TESS = True
 except Exception:
     HAVE_TESS = False
-
+print(f"HAVE_TESS: {HAVE_TESS}")
 
 # ----------------------------------------------------------------------------
 # Image loading: prefer the embedded bilevel stencil (no resampling); fall back
 # to rendering the PDF page at high DPI.
 # ----------------------------------------------------------------------------
+def count_pages(pdf_path):
+    """Return the number of pages in a PDF, or None if it can't be determined."""
+    try:
+        info = subprocess.run(["pdfinfo", pdf_path], check=True,
+                              capture_output=True, text=True).stdout
+        return int(re.search(r"Pages:\s+(\d+)", info).group(1))
+    except Exception:
+        return None
+
+
 def pdf_page_images(pdf_path, dpi=300):
     """Yield (page_index_0based, gray_uint8_image) for each page of a PDF."""
     # Try to pull embedded images first (best fidelity for 1-bit scans).
     with tempfile.TemporaryDirectory() as td:
         base = os.path.join(td, "img")
         try:
+            log(f"    extracting embedded images (pdfimages)...")
             subprocess.run(["pdfimages", "-png", pdf_path, base],
                            check=True, capture_output=True)
             files = sorted(f for f in os.listdir(td) if f.endswith(".png"))
@@ -105,10 +120,14 @@ def pdf_page_images(pdf_path, dpi=300):
             npages = len(files)
 
         if len(files) == npages and npages > 0:
+            log(f"    using {len(files)} embedded page image(s) at native resolution")
             for i, f in enumerate(files):
                 img = cv2.imread(os.path.join(td, f), cv2.IMREAD_GRAYSCALE)
                 yield i, img
             return
+        else:
+            log(f"    embedded-image count ({len(files)}) != pages ({npages}); "
+                f"rasterizing at {dpi} dpi instead")
 
     # Fallback: rasterize each page.
     with tempfile.TemporaryDirectory() as td:
@@ -404,19 +423,55 @@ def parse_start_page(spec, pdf_path):
 def cmd_detect(args):
     os.makedirs(args.out, exist_ok=True)
     manifest_path = os.path.join(args.out, "manifest.csv")
+
+    # --- startup banner / environment check ---------------------------------
+    log("=" * 60)
+    log("crop_tunes: starting")
+    log(f"  output dir : {os.path.abspath(args.out)}")
+    log(f"  inputs     : {len(args.inputs)} PDF(s)")
+    log(f"  options    : format={args.format} "
+        f"{'full-width' if args.full_width else ('grid-only' if args.no_sidebar else 'with-sidebar')} "
+        f"pad={args.pad} scale={args.scale} page_window={args.page_window}")
+    log("  checking required tools:")
+    for tool in ("pdfimages", "pdfinfo", "pdftoppm", "pdftotext"):
+        log(f"    {tool:<10} {'found' if shutil.which(tool) else 'MISSING (install poppler-utils)'}")
+    log(f"    {'tesseract':<10} "
+        f"{'found' if (HAVE_TESS and shutil.which('tesseract')) else 'MISSING (titles will be blank)'}")
+
     index = load_index(args.index) if args.index else {}
     if args.index:
-        print(f"index: {sum(len(v) for v in index.values())} titles "
-              f"across {len(index)} pages")
+        log(f"  index      : {sum(len(v) for v in index.values())} titles "
+            f"across {len(index)} pages loaded")
+    else:
+        log("  index      : none (titles will be raw OCR guesses)")
+
+    # Pre-count pages so progress can show page X of total.
+    page_counts = {pdf: count_pages(pdf) for pdf in args.inputs}
+    grand_total = sum(c or 0 for c in page_counts.values())
+    log(f"  total pages to process: {grand_total or 'unknown'}")
+    log("=" * 60)
+
     rows = []
-    for pdf in args.inputs:
+    done_pages = 0
+    for fi, pdf in enumerate(args.inputs, 1):
         base_page = parse_start_page(args.start_page, pdf)
+        npages = page_counts.get(pdf)
+        log("")
+        log(f"FILE {fi}/{len(args.inputs)}: {os.path.basename(pdf)}  "
+            f"({npages if npages is not None else '?'} pages, "
+            f"printed start page = {base_page if base_page is not None else 'auto'})")
         for pidx, gray in pdf_page_images(pdf):
+            done_pages += 1
             if gray is None:
-                print(f"!! could not read page {pidx} of {pdf}", file=sys.stderr)
+                log(f"  !! page {pidx + 1}: could not read image -- skipped")
                 continue
             page_no = (base_page + pidx) if base_page is not None else f"{os.path.splitext(os.path.basename(pdf))[0]}-p{pidx+1}"
+            pct = f"{100*done_pages/grand_total:4.0f}%" if grand_total else "  ? "
+            log(f"  [{pct} | page {done_pages}/{grand_total or '?'}] "
+                f"file page {pidx+1}/{npages or '?'}  printed# {page_no}  "
+                f"(image {gray.shape[1]}x{gray.shape[0]}) -- detecting tunes...")
             g, (x0, x1), H, tunes = detect_tunes(gray, args.keep_crossref)
+            log(f"        found {len(tunes)} tune(s); reading + matching titles...")
             right = x1 if not args.no_sidebar else grid_right_edge(to_ink(gray)[1], x0, x1) + 8
             if args.debug:
                 vis = cv2.cvtColor(g, cv2.COLOR_GRAY2BGR)
@@ -467,12 +522,13 @@ def cmd_detect(args):
                     cv2.putText(vis, (title or "?")[:24], (x0c + 8, y0c + 40),
                                 cv2.FONT_HERSHEY_SIMPLEX, 1.1, (0, 120, 255), 3)
                 flag = "  <-- REVIEW" if review else ""
-                print(f"  page {page_no} tune {ti}: conf {conf:.2f}  "
-                      f"'{ocr_raw}' -> {title!r}{flag}")
+                log(f"        tune {ti}: conf {conf:.2f}  ocr={ocr_raw[:24]!r} "
+                    f"-> {title!r}  [{x1c-x0c}x{y1c-y0c}px] saved {fn}{flag}")
             if args.debug:
                 dp = os.path.join(args.out, f"{page_no}_debug.png")
                 s = 800 / g.shape[1]
                 cv2.imwrite(dp, cv2.resize(vis, (800, int(g.shape[0] * s))))
+                log(f"        wrote debug overlay {os.path.basename(dp)}")
     # Merge with any existing manifest in this folder so that running several
     # PDFs into one --out dir (e.g. with different --start-page values) builds a
     # single complete manifest. Rows from PDFs processed in THIS run replace
@@ -490,13 +546,19 @@ def cmd_detect(args):
     with open(manifest_path, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fieldnames)
         w.writeheader(); w.writerows(merged)
-    print(f"\nWrote {len(rows)} crops; manifest now lists {len(merged)} -> {manifest_path}")
     nrev = sum(1 for r in rows if r.get("review") == "yes")
+    log("")
+    log("=" * 60)
+    log(f"DONE in {time.time() - _START:.1f}s")
+    log(f"  pages processed   : {done_pages}")
+    log(f"  crops written     : {len(rows)}")
+    log(f"  manifest total    : {len(merged)} -> {manifest_path}")
     if args.index:
-        print(f"{len(rows) - nrev} matched confidently; {nrev} flagged 'review' "
-              f"(conf < {args.review_below}).")
-    print("Check the rows where review=yes (fix 'title' if wrong), then run:")
-    print(f"    python {os.path.basename(__file__)} --apply {manifest_path}")
+        log(f"  titles confident  : {len(rows) - nrev}")
+        log(f"  titles to review  : {nrev} (review=yes, conf < {args.review_below})")
+    log("=" * 60)
+    log("Next: check rows where review=yes (fix 'title' only if wrong), then run:")
+    log(f"    python {os.path.basename(__file__)} --apply {manifest_path}")
 
 
 def _save_pdf(gray, path):
@@ -514,10 +576,14 @@ def cmd_apply(args):
     outdir = os.path.dirname(os.path.abspath(mpath))
     with open(mpath, newline="") as f:
         rows = list(csv.DictReader(f))
+    log(f"applying titles from {mpath}  ({len(rows)} rows)")
+    renamed = missing = unchanged = 0
     for r in rows:
         cur = os.path.join(outdir, r["current_file"])
         if not os.path.exists(cur):
-            print(f"!! missing {cur}", file=sys.stderr); continue
+            log(f"  !! missing file, skipped: {r['current_file']}")
+            missing += 1
+            continue
         ext = os.path.splitext(r["current_file"])[1]
         title = slugify(r["title"]) or "UNTITLED"
         new = f"{r['page']}_{title}{ext}"
@@ -526,13 +592,17 @@ def cmd_apply(args):
         k = 2
         while os.path.exists(dst) and os.path.abspath(dst) != os.path.abspath(cur):
             dst = os.path.join(outdir, f"{r['page']}_{title}_{k}{ext}"); k += 1
-        os.rename(cur, dst)
+        if os.path.abspath(dst) == os.path.abspath(cur):
+            unchanged += 1
+        else:
+            os.rename(cur, dst)
+            renamed += 1
+            log(f"  {os.path.basename(cur)} -> {os.path.basename(dst)}")
         r["current_file"] = os.path.basename(dst)
-        print(f"  {os.path.basename(cur)} -> {os.path.basename(dst)}")
     with open(mpath, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=rows[0].keys())
         w.writeheader(); w.writerows(rows)
-    print("Renamed using corrected titles.")
+    log(f"done: {renamed} renamed, {unchanged} already correct, {missing} missing.")
 
 
 def main():
