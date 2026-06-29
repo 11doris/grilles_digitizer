@@ -10,33 +10,24 @@ from pathlib import Path
 
 @dataclass(frozen=True)
 class WorkUnit:
-    """One cropped PNG to transcribe, plus the manifest context for it."""
+    """One cropped PNG to transcribe, plus the manifest context for it.
+
+    Only `current_file`, `page`, and `title` are used (spec §2.2); any other
+    manifest columns (e.g. `review`, `conf`) are ignored.
+    """
 
     current_file: str
     page: int
     title: str
-    review: bool
-    conf: float
 
     @property
     def stem(self) -> str:
         return Path(self.current_file).stem
 
-    @property
-    def low_conf_title(self) -> bool:
-        return self.review or self.conf < 0.5
-
 
 def _to_int(value: str, default: int = 0) -> int:
     try:
         return int(float(value))
-    except (TypeError, ValueError):
-        return default
-
-
-def _to_float(value: str, default: float = 1.0) -> float:
-    try:
-        return float(value)
     except (TypeError, ValueError):
         return default
 
@@ -61,14 +52,11 @@ def load_manifest(path: Path) -> list[WorkUnit]:
         current_file = (row.get("current_file") or "").strip()
         if not current_file:
             continue
-        review_raw = (row.get("review") or "").strip().lower()
         units.append(
             WorkUnit(
                 current_file=current_file,
                 page=_to_int(row.get("page", "")),
                 title=(row.get("title") or "").strip(),
-                review=review_raw in {"yes", "true", "1", "y"},
-                conf=_to_float(row.get("conf", "")),
             )
         )
     return units

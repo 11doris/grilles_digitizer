@@ -65,9 +65,10 @@ tunes/run_state.jsonl      append-one-line-per-unit progress log (resumable, aud
 tunes/run_report.json      final summary + everything a human should review
 ```
 
-`run_report.json` flags each tune that trips any of: `title_uncertain`, a
-`no_chord_grid` note, low manifest confidence (`review == yes` or `conf < 0.5`),
-a `?`-marked chord, or an error.
+`run_report.json` lists, for human review, each tune that trips any of:
+`missing_required_field` (an always-present output field absent — accepted but flagged),
+a `no_chord_grid` note (informational), or `errors` (never produced valid JSON after
+retries).
 
 ## How it works
 
@@ -76,18 +77,26 @@ a `?`-marked chord, or an error.
   super-resolution (it hallucinates strokes on thin handwriting).
 - **Prompt** ([`prompt.py`](grilles_digitizer/prompt.py)) — a large static system
   block carrying the full schema and notation rules (canonical chord vocabulary,
-  bar-subdivision layouts, repeat expansion). It is byte-identical across calls and
-  sent with **prompt caching**, so it is billed roughly once. Only the tiny
-  title/page anchor varies per call.
+  bar-subdivision layouts, repeat expansion, multi-strain convention). It is
+  byte-identical across calls and sent with **prompt caching**, so it is billed
+  roughly once. The model does **not** output `title`/`page`/`source` — the runner
+  injects those (the title verbatim from the manifest) before validating. Only the
+  tiny page anchor varies per call.
 - **Call** ([`vlm.py`](grilles_digitizer/vlm.py)) — one `messages.create` per crop,
   temperature 0 where the model allows it, with short exponential backoff on
   transient failures (429/5xx/connection).
 - **Validate** ([`validation.py`](grilles_digitizer/validation.py)) — the per-tune
-  self-check from spec §17 (single bare object, required fields present, optional
-  fields omitted not null, `source`/`page` correct, every bar an object with `1`–`4`
-  beat keys, no unexpanded shorthand, no prime section keys, no `fingerprints`,
-  `sections == {}` iff a `no_chord_grid` note). Failure triggers a retry; exhausting
-  retries writes an `.error.json` stub and the batch continues.
+  self-check from spec §17 (single bare object, optional fields omitted not null,
+  `source`/`page` correct, every bar an object with `1`–`4` beat keys, no unexpanded
+  shorthand, no prime section keys, no `fingerprints`, `sections == {}` iff a
+  `no_chord_grid` note, and well-formed multi-strain keys — §8.5). Structural failures
+  trigger a retry; exhausting retries writes an `.error.json` stub and the batch
+  continues. A *missing always-present field* is non-fatal: the tune is accepted and
+  flagged (`missing_required_field`).
+- **Multi-strain pieces** (spec §8.5) — rags/stride with several printed strains use
+  strain-prefixed section keys (`s1_A`, `s2_B`, …) in the one flat `sections` map, a
+  bare `modulation`/`interlude` connector between strains, and a `form` that joins the
+  per-strain labels with `" | "`. Single-strain tunes are unchanged.
 - **Resume & isolation** ([`runner.py`](grilles_digitizer/runner.py)) — the presence
   of a valid output file is the only source of truth; writes are atomic (temp +
   rename); one failing unit never stops the run.

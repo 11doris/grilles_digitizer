@@ -11,7 +11,7 @@ from .manifest import WorkUnit
 SYSTEM_PROMPT = f"""\
 You are transcribing ONE handwritten jazz chord grid (one tune) from a scanned
 French jazz "grilles" book ("{SOURCE_CONSTANT}"). The image shows a large
-hand-lettered TITLE, smaller style/tempo/form labels, and a grid of chord boxes
+hand-lettered title, smaller style/tempo/form labels, and a grid of chord boxes
 organized into rows (sections). Recording credits may run vertically in the left
 and/or right margins — IGNORE them entirely.
 
@@ -20,28 +20,21 @@ only what the image shows. Expand every repeat/shorthand into explicit chords.
 
 === OUTPUT SCHEMA ===
 {{
-  "title": str,                 // always present
-  "title_uncertain": bool,      // always present
   "composer": str,              // OMIT if absent; names joined " – " (space en-dash space)
   "year": str,                  // OMIT if absent; e.g. "1931"
   "style": str,                 // always present; upper-left genre label, as printed
   "tempo": str,                 // OMIT if absent
   "form": str,                  // always present; exactly as printed, KEEP primes
   "time_signature": str,        // always present; default "4/4"
-  "page": int,                  // always present; the printed page number
-  "source": "{SOURCE_CONSTANT}",  // always present, constant
   "sections": {{ ... }},          // always present; see SECTIONS
   "notation_notes": {{ ... }}     // OMIT if empty
 }}
+DO NOT output a "title" field — the title is supplied separately and added by the
+runner. Likewise do NOT output "page" or "source"; the runner sets those.
 OPTIONAL-FIELD POLICY: when an optional field has no content, OMIT THE KEY ENTIRELY.
-Never emit null or "" for it. The only constant-but-present field is "source".
-Do NOT emit a "fingerprints" field.
+Never emit null or "" for it. Do NOT emit a "fingerprints" field.
 
 === FIELD RULES ===
-- title: as printed. You will be given the canonical title; use it unless the image
-  clearly contradicts it.
-- title_uncertain: true if the title is partly cut off/unreadable, OR you are told
-  the manifest is unsure AND the crop does not clearly show the title; else false.
 - style: the upper-left genre label exactly as printed (DIXIELAND, NEW ORLEANS,
   SWING, STANDARD, ELLINGTONIA, ...).
 - tempo: the tempo label (MEDIUM, MEDIUM FAST, MEDIUM SLOW, FAST, ...). Omit if absent.
@@ -64,6 +57,22 @@ FORM EXPANSION: the printed grid often shows fewer rows than "form" implies. Exp
 the form by COPYING the printed rows into the full set of sections. Example: a printed
 A-row + B-row with form "32 A A B A" becomes sections A, A1 (copy of A), B, A2 (copy
 of A). Any explicitly written bar in a repeated row overrides the copied value.
+
+MULTI-STRAIN PIECES (rare — multi-strain rags/stride/marches): when the page shows
+TWO OR MORE separate grids ("strains") stacked vertically, EACH with its own form
+label (e.g. "16 A A'", then "24 A B A", then "16 A A"):
+- Number the printed strains s1, s2, s3, ... top to bottom (or use a lowercase word
+  if the score names a strain, e.g. "trio").
+- Prefix EVERY section key of a strain with its id + underscore: s1_A, s1_A1, s2_A,
+  s2_B, s2_A1, s3_A, s3_A1. Letter/counter rules apply independently within each strain
+  (counters restart at A in each strain; never use primes in keys).
+- A connecting passage between strains that is not a lettered strain (modulation,
+  interlude, intro, coda) is a BARE named section (no strain prefix), in playing order.
+- Set "form" to the per-strain printed labels joined with " | " in printed order,
+  e.g. "16 A A' | 24 A B A | 16 A A".
+- Keep everything in the ONE flat "sections" map; do not nest.
+ONLY use this when there really are multiple labelled strains. A normal AABA tune is
+single-strain: plain keys (A, A1, B, ...) and one form string — never wrap it in s1_.
 
 === BARS AND BEATS ===
 Every bar is an object: {{ "bar": 3, "beats": {{ "1": "Ab", "3": "A°" }} }}
@@ -150,16 +159,11 @@ Return ONE bare JSON object only. No prose, no markdown fence, valid JSON, minif
 
 
 def build_user_content(unit: WorkUnit, image_b64: str, media_type: str) -> list[dict]:
-    """The per-tune message: the cleaned crop image plus its title/page anchor."""
-    title_hint = (
-        f'The provided canonical title is "{unit.title}" and the printed page is '
-        f"{unit.page}. Use them unless the image clearly contradicts them."
-    )
-    if unit.low_conf_title:
-        title_hint += (
-            " The upstream title match is uncertain: default title_uncertain to true "
-            "unless the crop clearly shows the title."
-        )
+    """The per-tune message: the cleaned crop image plus the page anchor.
+
+    The title is NOT given to the model (spec §5) — the runner fills it from the
+    manifest. Only `page` is provided as context.
+    """
     return [
         {
             "type": "image",
@@ -169,7 +173,7 @@ def build_user_content(unit: WorkUnit, image_b64: str, media_type: str) -> list[
                 "data": image_b64,
             },
         },
-        {"type": "text", "text": title_hint},
+        {"type": "text", "text": f"The printed page is {unit.page}."},
     ]
 
 

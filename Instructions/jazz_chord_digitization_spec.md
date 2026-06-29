@@ -275,7 +275,8 @@ run_report.json                                                    (final summar
   **Do not use primes in section keys** (primes live only in the `form` string).
 * **Named sections** are lowercase words: `intro`, `interlude`, `coda`.
 * **Prefixed/compound sections** use a lowercase prefix + uppercase letter:
-  `verse_A`, `verse_B`, `clarinet_A`, `clarinet_A1`.
+  `verse_A`, `verse_B`, `clarinet_A`, `clarinet_A1`. **Multi-strain pieces** use this with a strain
+  prefix — see §8.5.
 * **One section ID = one printed row.** Sections are **not** forced to 8 bars — an intro,
   interlude, or coda may have fewer (or more). Use whatever the row actually contains.
 
@@ -301,6 +302,47 @@ onto later beats. **Exception (important):** if a bar visibly **re-writes** a ch
 region — even the same chord again — preserve that repeat. For example a 2×2 box showing `C`
 top-left and `C` top-right is encoded `{ "1": "C", "3": "C" }` (or with beat `"2"`/`"4"` per the
 layout), because the score restruck it. Transcribe what is written, not what theory would collapse.
+
+### 8.5 Multi-strain pieces
+
+A few pieces — multi-strain rags, stride numbers, marches — print **two or more separate grids
+("strains") stacked on the page, each with its own form label** (e.g. `16 A A'`, then `24 A B A`,
+then `16 A A`), sometimes with a short connecting passage (a modulation or interlude) between them.
+A single letter map cannot capture this, so use the convention below — still inside the **one flat
+`sections` map** (no new nesting, the object shape of §6.1 is unchanged):
+
+* **Number the printed strains `s1`, `s2`, `s3`, …** top to bottom. If the score *names* a strain
+  (e.g. a "TRIO"), a lowercase word may be used as the prefix instead (`trio`).
+* **Prefix every section key of a strain** with its strain id and an underscore:
+  `s1_A`, `s1_A1`, `s2_A`, `s2_B`, `s2_A1`, `s3_A`, `s3_A1`. The letter / counter / named-section
+  rules of §8.1 apply **independently within each strain** — counters restart at `A` in every
+  strain, and primes are still never used in keys (primes live only in `form`).
+* **A connecting passage between strains** that is not itself a lettered strain (a modulation,
+  interlude, intro, or coda) is a **bare named section** with no strain prefix
+  (`modulation`, `interlude`, `intro`, `coda`), placed in the map in playing order.
+* **`form`** is the per-strain printed labels joined with `" | "`, in printed order
+  (e.g. `"16 A A' | 24 A B A | 16 A A"`). The *i*-th `" | "`-separated segment is the label of
+  strain `s`*i*. This keeps the always-present `form` field a faithful summary of the whole piece.
+* Bars, beats, subdivision layouts (§9), the boundary rule (§10), and repeat/shorthand expansion
+  (§11) work exactly as for single-strain tunes, applied within each strain's rows.
+
+**Single-strain tunes — the overwhelming majority — are unchanged:** a flat `sections` map with
+plain letter keys (`A`, `A1`, `B`, …) and one `form` string. **Only** use the `s<N>_` convention when
+the page actually shows more than one labelled strain; never wrap an ordinary AABA tune in a single
+`s1_` strain.
+
+Abbreviated example (a 3-strain stride piece):
+```json
+{
+  "form": "16 A A' | 24 A B A | 16 A A",
+  "sections": {
+    "s1_A":  [ /* 8 bars */ ], "s1_A1": [ /* 8 bars */ ],
+    "s2_A":  [ /* 8 bars */ ], "s2_B": [ /* 8 bars */ ], "s2_A1": [ /* 8 bars */ ],
+    "modulation": [ /* 4 bars */ ],
+    "s3_A":  [ /* 8 bars */ ], "s3_A1": [ /* 8 bars */ ]
+  }
+}
+```
 
 ---
 
@@ -496,6 +538,9 @@ A unit is **accepted** only if it parses as JSON and passes every check below; o
 10. Case-3 inset (beat 4) vs diagonal (beat 3) calls are made, with ambiguities noted.
 11. `fingerprints` is absent (production runs).
 12. `sections == {}` **iff** a `notation_notes.no_chord_grid` entry is present (§15).
+13. Multi-strain pieces (§8.5) are well-formed: every strain-prefixed key is `<prefix>_<section-id>`
+    with a non-empty section id and no prime; numbered strains run `s1, s2, …` contiguously from `s1`;
+    and the `form` string joins the per-strain labels with `" | "`.
 
 A unit that fails validation after all retries is written as an `.error.json` stub and listed in
 `run_report.json` — it does not stop the batch.

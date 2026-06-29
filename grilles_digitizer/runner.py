@@ -13,11 +13,11 @@ from datetime import datetime, timezone
 import anthropic
 
 from . import output
-from .config import Config
+from .config import Config, SOURCE_CONSTANT
 from .images import prepare_crop
 from .manifest import WorkUnit, load_manifest
 from .prompt import STRICTER_REMINDER, build_user_content
-from .validation import ValidationError, needs_review, parse_json, validate
+from .validation import ValidationError, parse_json, review_flags, validate
 from .vlm import VLMClient, VLMRefusal
 
 
@@ -72,12 +72,17 @@ def _transcribe_unit(config: Config, client: VLMClient, unit: WorkUnit) -> UnitR
             raw = client.transcribe(user_content, extra_reminder=reminder)
             last_raw = raw
             obj = parse_json(raw)
+            # The runner owns title/page/source (spec §5) — inject before validating
+            # so those always-present fields can never be missing.
+            obj["title"] = unit.title
+            obj["page"] = unit.page
+            obj["source"] = SOURCE_CONSTANT
             validate(obj, unit)
         except (ValidationError, VLMRefusal) as exc:
             last_error = f"{type(exc).__name__}: {exc}"
             continue
         output.write_tune(config, unit, obj)
-        return UnitResult(unit, "ok", attempt, needs_review(obj, unit))
+        return UnitResult(unit, "ok", attempt, review_flags(obj, unit))
 
     output.write_error_stub(
         config, unit, attempts=config.retries, last_error=last_error, raw_excerpt=last_raw
@@ -95,10 +100,8 @@ class _Report:
         self.failed = 0
         self.skipped = 0
         self.flagged = {
-            "title_uncertain": [],
+            "missing_required_field": [],
             "no_chord_grid": [],
-            "low_conf_title": [],
-            "question_chord": [],
             "errors": [],
         }
         self._lock = threading.Lock()
@@ -110,14 +113,12 @@ class _Report:
             if result.status == "ok":
                 self.succeeded += 1
                 f = result.review_flags
-                if f.get("title_uncertain"):
-                    self.flagged["title_uncertain"].append(result.unit.current_file)
+                if f.get("missing_required_field"):
+                    self.flagged["missing_required_field"].append(
+                        result.unit.current_file
+                    )
                 if f.get("no_chord_grid"):
                     self.flagged["no_chord_grid"].append(result.unit.current_file)
-                if f.get("low_conf_title"):
-                    self.flagged["low_conf_title"].append(result.unit.current_file)
-                if f.get("question_chord"):
-                    self.flagged["question_chord"].append(result.unit.current_file)
             elif result.status == "skipped":
                 self.skipped += 1
             else:

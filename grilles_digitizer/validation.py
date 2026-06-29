@@ -1,4 +1,14 @@
-"""Parse the model's text into JSON and run the per-tune self-check (spec §17)."""
+"""Parse the model's text into JSON and run the per-tune self-check (spec §17).
+
+`title`, `page`, and `source` are injected by the runner before validation (spec §5),
+so they are always present here. Validation has two tiers:
+
+* `validate()` raises `ValidationError` on **structural** problems (checks 1, 4-13) —
+  the runner retries those.
+* `review_flags()` reports non-fatal conditions a human should look at (spec §4.9):
+  a missing always-present field (§17 check 2) and a `no_chord_grid` note. A tune with
+  a missing required field is still accepted and written, just flagged.
+"""
 
 from __future__ import annotations
 
@@ -10,7 +20,6 @@ from .manifest import WorkUnit
 
 ALWAYS_PRESENT = (
     "title",
-    "title_uncertain",
     "style",
     "form",
     "time_signature",
@@ -25,6 +34,12 @@ VALID_BEAT_KEYS = {"1", "2", "3", "4"}
 # model was told to convert. Presence of any of these in a chord string fails.
 _SHORTHAND_CHARS = ("%", "→", "•", "ø", "Δ")
 _FORBIDDEN_RE = re.compile(r"7M|/14")
+
+# A multi-strain section key: <prefix>_<section-id> (spec §8.5). The prefix is a
+# numbered strain (s1, s2, …) or a lowercase named strain (trio, clarinet). `sid` is
+# matched as `.*` so an empty suffix (e.g. "s1_") still matches and is rejected below.
+_STRAIN_KEY_RE = re.compile(r"^(?P<prefix>s\d+|[a-z][a-z0-9]*)_(?P<sid>.*)$")
+_NUMBERED_STRAIN_RE = re.compile(r"^s(\d+)$")
 
 
 class ValidationError(Exception):
@@ -70,63 +85,78 @@ def _check_chord(chord: str) -> None:
             raise ValidationError(f"unexpanded/non-canonical mark in chord {chord!r}")
     if _FORBIDDEN_RE.search(chord):
         raise ValidationError(f"non-canonical notation in chord {chord!r}")
-    # A bare dash (bar-repeat shorthand) — but '-' is legal inside nothing canonical.
     if chord.strip() == "-":
         raise ValidationError("unexpanded dash in chord")
 
 
-def validate(obj: dict, unit: WorkUnit) -> dict:
-    """Validate against spec §17. Returns the object on success; raises otherwise."""
-    for key in ALWAYS_PRESENT:
-        if key not in obj:
-            raise ValidationError(f"missing required field {key!r}")
+def _check_section_keys(sections: dict) -> None:
+    """No primes, and well-formed multi-strain keys (spec §8.5 / §17 check 13)."""
+    numbered = set()
+    for key in sections:
+        if "'" in key or "’" in key:
+            raise ValidationError(f"section key {key!r} uses a prime")
+        match = _STRAIN_KEY_RE.match(key)
+        if not match:
+            continue  # plain key (A, B1, intro, …) — fine
+        if not match.group("sid"):
+            raise ValidationError(f"strain key {key!r} has an empty section id")
+        num = _NUMBERED_STRAIN_RE.match(match.group("prefix"))
+        if num:
+            numbered.add(int(num.group(1)))
+    if numbered and sorted(numbered) != list(range(1, max(numbered) + 1)):
+        raise ValidationError(
+            f"numbered strains must run s1..sN contiguously; got {sorted(numbered)}"
+        )
 
+
+def validate(obj: dict, unit: WorkUnit) -> dict:
+    """Structural self-check (spec §17). Returns the object; raises on failure.
+
+    Does NOT raise on a missing always-present field — that is an accept-and-flag
+    condition handled by `review_flags()` (spec §17 check 2 / §4.9).
+    """
     for key in OPTIONAL_KEYS:
         if key in obj and obj[key] in (None, ""):
             raise ValidationError(f"optional field {key!r} present but empty")
 
-    if obj["source"] != SOURCE_CONSTANT:
+    if "source" in obj and obj["source"] != SOURCE_CONSTANT:
         raise ValidationError("source constant mismatch")
 
-    if not isinstance(obj["page"], int):
-        raise ValidationError("page is not an integer")
-    if obj["page"] != unit.page:
-        raise ValidationError(f"page {obj['page']} != manifest page {unit.page}")
-
-    if not isinstance(obj["title_uncertain"], bool):
-        raise ValidationError("title_uncertain is not a boolean")
+    if "page" in obj:
+        if not isinstance(obj["page"], int):
+            raise ValidationError("page is not an integer")
+        if obj["page"] != unit.page:
+            raise ValidationError(f"page {obj['page']} != manifest page {unit.page}")
 
     if "fingerprints" in obj:
         raise ValidationError("fingerprints must be absent in production runs")
 
-    sections = obj["sections"]
-    if not isinstance(sections, dict):
-        raise ValidationError("sections is not an object")
-    for sid in sections:
-        if "'" in sid or "’" in sid:
-            raise ValidationError(f"section key {sid!r} uses a prime")
+    sections = obj.get("sections")
+    if sections is not None:
+        if not isinstance(sections, dict):
+            raise ValidationError("sections is not an object")
+        _check_section_keys(sections)
 
-    notation_notes = obj.get("notation_notes") or {}
-    has_no_grid = isinstance(notation_notes, dict) and "no_chord_grid" in notation_notes
-    if (sections == {}) != has_no_grid:
-        raise ValidationError(
-            "sections == {} must hold iff notation_notes.no_chord_grid is present"
+        notation_notes = obj.get("notation_notes") or {}
+        has_no_grid = (
+            isinstance(notation_notes, dict) and "no_chord_grid" in notation_notes
         )
+        if (sections == {}) != has_no_grid:
+            raise ValidationError(
+                "sections == {} must hold iff notation_notes.no_chord_grid is present"
+            )
 
-    for chord in _iter_chords(sections):
-        _check_chord(chord)
+        for chord in _iter_chords(sections):
+            _check_chord(chord)
 
     return obj
 
 
-def needs_review(obj: dict, unit: WorkUnit) -> dict[str, bool]:
-    """Which review flags this accepted tune trips (for the run report, spec §4.9)."""
+def review_flags(obj: dict, unit: WorkUnit) -> dict[str, bool]:
+    """Non-fatal conditions for the run report (spec §4.9)."""
     notation_notes = obj.get("notation_notes") or {}
-    has_question = any("?" in chord for chord in _iter_chords(obj.get("sections", {})))
     return {
-        "title_uncertain": bool(obj.get("title_uncertain")),
+        "missing_required_field": any(k not in obj for k in ALWAYS_PRESENT),
         "no_chord_grid": isinstance(notation_notes, dict)
         and "no_chord_grid" in notation_notes,
-        "low_conf_title": unit.low_conf_title,
-        "question_chord": has_question,
     }
