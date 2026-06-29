@@ -6,6 +6,7 @@ import json
 import sys
 import threading
 import time
+import traceback
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -18,7 +19,7 @@ from .images import prepare_crop
 from .manifest import WorkUnit, load_manifest
 from .prompt import STRICTER_REMINDER, build_user_content
 from .validation import ValidationError, parse_json, review_flags, validate
-from .vlm import VLMClient, VLMRefusal
+from .vlm import MissingCredentials, VLMClient, VLMRefusal
 
 
 @dataclass
@@ -170,6 +171,14 @@ def run(config: Config) -> dict:
     )
     _log(f"crops={config.crops_dir}  out={config.out_dir}  units={total}")
 
+    if total == 0:
+        hint = ""
+        if config.only:
+            hint = f" (--only {config.only!r} matched no manifest row)"
+        elif config.page_range:
+            hint = f" (--page-range {config.page_range[0]}:{config.page_range[1]} matched no rows)"
+        _log(f"nothing to do: 0 work units{hint}")
+
     config.out_dir.mkdir(parents=True, exist_ok=True)
 
     def process(unit: WorkUnit) -> UnitResult:
@@ -177,14 +186,20 @@ def run(config: Config) -> dict:
             return UnitResult(unit, "skipped", 0)
         try:
             result = _transcribe_unit(config, client, unit)
-        except (anthropic.AuthenticationError, anthropic.PermissionDeniedError):
+        except (
+            MissingCredentials,
+            anthropic.AuthenticationError,
+            anthropic.PermissionDeniedError,
+        ):
             raise  # a bad/absent key dooms every unit — fail fast, don't churn stubs
         except Exception as exc:  # error isolation — one unit never stops the batch
+            if config.debug:
+                traceback.print_exc()
             output.write_error_stub(
                 config, unit, attempts=0, last_error=f"{type(exc).__name__}: {exc}",
                 raw_excerpt="",
             )
-            result = UnitResult(unit, "error", 0, last_error=str(exc))
+            result = UnitResult(unit, "error", 0, last_error=f"{type(exc).__name__}: {exc}")
         if config.delay and result.status != "skipped":
             time.sleep(config.delay)
         return result
@@ -192,16 +207,18 @@ def run(config: Config) -> dict:
     def emit(result: UnitResult, state_fh) -> None:
         done = report.record(result, state_fh)
         pct = int(done / total * 100) if total else 100
-        note = (
-            f"({result.attempts} attempt{'s' if result.attempts != 1 else ''})"
-            if result.status != "skipped"
-            else "(cached)"
-        )
+        if result.status == "skipped":
+            note = "(cached)"
+        else:
+            note = f"({result.attempts} attempt{'s' if result.attempts != 1 else ''})"
         title = result.unit.title[:40]
-        _log(
+        line = (
             f"[{pct:3d}% | {done}/{total}] page {result.unit.page}  {title}  "
             f"-> {result.status} {note}"
         )
+        if result.status == "error" and result.last_error:
+            line += f"  reason: {result.last_error[:160]}"
+        _log(line)
 
     with open(config.state_path, "a", encoding="utf-8") as state_fh:
         if config.workers > 1:
@@ -220,4 +237,9 @@ def run(config: Config) -> dict:
         f"done: {summary['succeeded']} ok, {summary['skipped']} skipped, "
         f"{summary['failed']} failed in {summary['elapsed_s']}s -> {config.report_path}"
     )
+    if summary["failed"]:
+        _log(
+            f"  {summary['failed']} failed - see per-tune reasons above, the "
+            f".error.json stubs in {config.out_dir}, or re-run with --debug for tracebacks."
+        )
     return summary

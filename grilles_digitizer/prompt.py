@@ -180,3 +180,40 @@ def build_user_content(unit: WorkUnit, image_b64: str, media_type: str) -> list[
 STRICTER_REMINDER = (
     " Return one bare JSON object only; no prose; no markdown fence; valid JSON."
 )
+
+# Forced tool use guarantees structured JSON with no prose preamble, on every model
+# (current Claude models reject assistant-message prefill). The model is forced to
+# call this tool exactly once; its `input` IS the tune object. title/page/source are
+# deliberately absent — the runner injects them.
+TOOL_NAME = "record_tune"
+TUNE_TOOL = {
+    "name": TOOL_NAME,
+    "description": (
+        "Record the transcribed tune as structured data. Call exactly once. Follow "
+        "all schema, notation, and section rules given in the system instructions. Do "
+        "NOT include title, page, or source — those are filled in separately."
+    ),
+    "input_schema": {
+        "type": "object",
+        "additionalProperties": False,
+        "properties": {
+            "composer": {"type": "string"},
+            "year": {"type": "string"},
+            "style": {"type": "string"},
+            "tempo": {"type": "string"},
+            "form": {"type": "string"},
+            "time_signature": {"type": "string"},
+            "sections": {
+                "type": "object",
+                "description": (
+                    "Map of section id -> list of bar objects. Each bar is "
+                    '{"bar": int, "beats": {"1".."4": "<chord>"}}. See the system '
+                    "instructions for section ids, layouts, repeat expansion, and the "
+                    "canonical chord vocabulary."
+                ),
+            },
+            "notation_notes": {"type": "object"},
+        },
+        "required": ["style", "form", "time_signature", "sections"],
+    },
+}

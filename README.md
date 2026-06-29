@@ -48,7 +48,7 @@ loss) and continue across sittings — at most the one tune in flight is redone.
 | `--retries R` | `3` | Per-unit validation retries (progressively stricter reminder) |
 | `--dilate N` | `1` | Ink-thickening iterations before the call (`0` to disable, `2` for very thin scans) |
 | `--max-long-edge PX` | `1100` | Downscale the long edge to this before the call (never upscales) |
-| `--max-output-tokens N` | `1200` | Output token cap (≈1200 covers a busy tune; minified JSON) |
+| `--max-output-tokens N` | `2500` | Output token **cap** (billed by actual use, not the cap; raise for very dense/multi-strain grids) |
 | `--page-range A:B` | — | Limit a session to tunes whose `page` is in `[A, B]` |
 | `--delay S` | `0` | Sleep between units |
 | `--only FILE` | — | Restrict to one `current_file` (debugging) |
@@ -84,7 +84,11 @@ retries).
   tiny page anchor varies per call.
 - **Call** ([`vlm.py`](grilles_digitizer/vlm.py)) — one `messages.create` per crop,
   temperature 0 where the model allows it, with short exponential backoff on
-  transient failures (429/5xx/connection).
+  transient failures (429/5xx/connection). The tune is requested via **forced tool
+  use** (a single `record_tune` tool), which guarantees structured JSON with no prose
+  preamble on every model — chattier models (Sonnet/Haiku) otherwise tend to "analyze"
+  in prose, and current models reject assistant-message prefill. A `max_tokens` cutoff
+  is surfaced as a clear "raise --max-output-tokens" error.
 - **Validate** ([`validation.py`](grilles_digitizer/validation.py)) — the per-tune
   self-check from spec §17 (single bare object, optional fields omitted not null,
   `source`/`page` correct, every bar an object with `1`–`4` beat keys, no unexpanded

@@ -47,18 +47,36 @@ class ValidationError(Exception):
 
 
 def parse_json(text: str) -> dict:
-    """Parse a bare JSON object, tolerating an accidental ```json fence."""
+    """Parse a bare JSON object, tolerating a ```json fence or a prose preamble.
+
+    The prompt and the assistant prefill ask for a bare object, but as a safety net
+    we also recover the first JSON object embedded in surrounding prose.
+    """
     stripped = text.strip()
     if stripped.startswith("```"):
         stripped = re.sub(r"^```[a-zA-Z]*\n?", "", stripped)
         stripped = re.sub(r"\n?```$", "", stripped).strip()
     try:
         obj = json.loads(stripped)
-    except json.JSONDecodeError as exc:
-        raise ValidationError(f"not valid JSON: {exc}") from exc
+    except json.JSONDecodeError:
+        obj = _extract_object(stripped)
     if not isinstance(obj, dict):
         raise ValidationError("output is not a single JSON object")
     return obj
+
+
+def _extract_object(text: str) -> dict:
+    """Recover the first complete JSON object starting at the first '{'."""
+    start = text.find("{")
+    if start != -1:
+        try:
+            obj, _ = json.JSONDecoder().raw_decode(text, start)
+            return obj
+        except json.JSONDecodeError:
+            pass
+    raise ValidationError(
+        f"not valid JSON: no parseable JSON object found (starts with {text[:30]!r})"
+    )
 
 
 def _iter_chords(sections: dict):

@@ -16,7 +16,6 @@ _NO_SAMPLING_MODELS = {
     "claude-mythos-5",
 }
 
-
 @dataclass(frozen=True)
 class Config:
     crops_dir: Path
@@ -27,7 +26,10 @@ class Config:
     retries: int = 3
     dilate: int = 1
     max_long_edge: int = 1100
-    max_output_tokens: int = 1200
+    # A cap, not a charge — billing is by tokens actually generated. The spec's
+    # ~1200 truncates dense/multi-strain grids (60+ expanded bars), so default higher;
+    # normal tunes finish well under this, so it costs nothing extra.
+    max_output_tokens: int = 2500
     page_range: tuple[int, int] | None = None
     delay: float = 0.0
     only: str | None = None  # restrict to a single current_file (debugging)
