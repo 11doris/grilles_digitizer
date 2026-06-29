@@ -200,6 +200,20 @@ The runner then sets `title` (from the manifest), `page` (from the manifest), an
 constant) on the returned object before validating and writing it. This guarantees those three
 always-present fields can never be missing.
 
+### 5.1 Prompt assembly (stable prefix vs. per-call tail)
+Split every request into two parts so the stable part can be cached (§18.3):
+
+* **Cached system prompt (identical for all ~1800 calls):** the task instruction above plus the
+  notation rulebook (§8–§15) and the worked examples (Appendix D). This block is large on purpose —
+  it must clear the platform's minimum cacheable length (≥4,096 tokens to be safe on every platform;
+  see §18.3) and this spec's rulebook + examples already exceed that. Mark the cache breakpoint at
+  the **end** of this block.
+* **Per-call message (changes every call):** the tune's image, plus the single line giving its
+  printed `page`. Keep this tail minimal — everything reusable belongs in the cached prefix.
+
+Because the prefix is byte-for-byte identical across calls, the first call pays a one-time cache
+write and the remaining ~1799 pay the reduced cache-read rate for it.
+
 ---
 
 ## 6. Output schema
@@ -430,12 +444,31 @@ if a different house style is later preferred.
 **Conversions from the book's notation → canonical**
 | In the book | Encode as | Note |
 |---|---|---|
-| `7M`, `M7`, `Δ` (major 7) | `maj7` | e.g. `Eb7M` → `Ebmaj7` |
-| `ø` (half-dim) | `m7b5` | e.g. `Aø` → `Am7b5` |
-| superscript `5+` (aug 5th) | `#5` | e.g. `Bb7` with `5+` → `Bb7#5` |
-| suffix `t` (means `+`, i.e. raise) | `#` on that degree | `Eb9t` → `Eb#9`; `F75t` → `F7#5` |
-| `…/14` (French "14th") | `#11` | `E9/14` → `E9#11` (7+7=14) |
-| alteration in parentheses `(…)` | **omit entirely** | `Bb9(b9)` → `Bb9`; `D9(b5)` → `D9` |
+| `7M`, `M7`, `Δ`, `△` (major 7) | `maj7` | e.g. `Eb7M` → `Ebmaj7`, `C△` → `Cmaj7` |
+| `mM7`, `m7M`, `m(M7)` (minor-major 7) | `m(maj7)` | e.g. `DmM7` → `Dm(maj7)` |
+| `ø`, `Ø`, `m7(b5)` (half-dim) | `m7b5` | e.g. `Aø` → `Am7b5` |
+| `o`, `°`, `dim` (diminished) | `°` | e.g. `Edim` → `E°` |
+| `+`, `aug` (augmented triad) | `+` | e.g. `Eb aug` → `Eb+` |
+| superscript `5+` on a dominant (aug 5th) | `#5` | e.g. `Bb7` with `5+` → `Bb7#5` |
+| `b5` shown as superscript/subscript | `b5` | keep, attached to its own chord only (§10) |
+| suffix `t` (book shorthand for `+`, i.e. raise a degree) | `#` on that degree | `Eb9t` → `Eb#9`; `F75t` → `F7#5` |
+| `…/14` (French "14th" = 7+7) | `#11` | `E9/14` → `E9#11` |
+| `…/13`, `…/11`, `…/9` (added French extensions) | `13` / `11` / `9` | added tone on the chord; read the degree literally |
+| alteration in parentheses `(…)` | **omit entirely** | `Bb9(b9)` → `Bb9`; `D9(b5)` → `D9`; `G7(F7)` → `G7` |
+| flat written on the 9 (e.g. score `A9b`) | `…7b9` | the flat sits on the 9th, not the root: `A9b` → `A7b9` (note the ambiguity in `notation_notes`) |
+| slash chord `C/E` (chord over bass) | `C/E` | keep as written if a bass note is clearly indicated |
+| `N.C.` / blank first bar | `N.C.` | only when a bar is genuinely empty (§11 dash exception) |
+
+**Chord-reading procedure (apply per beat region):**
+1. Identify the **root** letter (`A`–`G`) and any accidental immediately on it (`b`/`#`). Beware
+   `B` vs `Bb` — check for the flat.
+2. Read the **quality** marks attached to that root within the same region (`m`, `°`, `+`, `maj7`,
+   `7`, `6`, `9`, …).
+3. Apply the **conversions** above to alteration suffixes (`7M`→`maj7`, `t`→`#`, `/14`→`#11`).
+4. **Drop** any parenthesised alteration.
+5. Do **not** import any mark from a neighbouring region across a subdivision line (§10).
+6. If any mark is unreadable, transcribe the best reading, append `?`, and add a `notation_notes`
+   entry.
 
 **Other rules**
 * Watch `B` vs `Bb` carefully — they are different chords.
@@ -560,9 +593,20 @@ API, or compute-time/energy on a local model; most levers help both. Apply these
    (`b5`, `7M`, inset squares) become unreadable; convert to grayscale. Vision tokens scale with
    pixels, so this directly cuts input cost (and local compute). **Never upscale**, and never use
    super-resolution (§3). Expose as `--max-long-edge` (default 1100).
-3. **Cache the static instructions (API).** The instruction/schema block is identical across all
-   ~1800 calls. Use the provider's **prompt caching** so it is billed roughly once instead of per
-   tune — this removes most input-text cost. Keep the per-call variable part (title, page) tiny.
+3. **Cache the static instructions (API).** The instruction/schema block — everything in this spec
+   that is sent to the model, including the notation rulebook (§8–§15) and the worked examples
+   (Appendix D) — is **identical across all ~1800 calls**. Put it in a cached system prompt so it is
+   billed at the cache rate (a one-time write, then ~10% of input price per read) instead of full
+   price per tune. Only the per-call variable part (the image, and the `page` value) sits after the
+   cache breakpoint.
+
+   **Minimum cacheable prefix (must be met or caching silently does nothing):** on the **Claude API**
+   it is **1,024 tokens** for Claude Opus 4.8 / Sonnet 4.6 / Sonnet 4.5 (per Anthropic's prompt-caching
+   docs). On **Amazon Bedrock** several 4.x models (e.g. Opus 4.5/4.6, Sonnet 4.5, Haiku 4.5) require
+   **4,096 tokens** per cache checkpoint. **Build the cached system prompt to comfortably exceed
+   4,096 tokens** so it caches on either platform — this spec's rulebook plus the Appendix D examples
+   already does. If a prefix is below the minimum the request still succeeds but is billed at full
+   rate (check `usage.cache_read_input_tokens` / `cache_creation_input_tokens` to confirm a cache hit).
 4. **Use the batch/async API (API).** If the provider offers asynchronous batch processing
    (commonly **~50% cheaper**, results within hours), use it — accepting longer turnaround is
    exactly the trade we want. Submit in chunks; resume (§4.2) still applies to results as they land.
@@ -647,3 +691,1432 @@ the cheap tier while sending only the few flagged tunes to a premium model.
 Numbers scale linearly with tune count and with image size, so `--max-long-edge` is the dial with the
 most leverage on the input side.
 
+
+---
+
+## Appendix D — Worked examples (real transcriptions; part of the cached system prompt)
+
+These are complete, correct outputs for real pages of the book, in the current schema (no
+`title_uncertain`, no `recordings`, no `variants`; `title`/`page`/`source` shown as the runner will
+fill them). **Include all of them verbatim in the model's system prompt** — they double as few-shot
+guidance and as the bulk of the stable, cacheable prefix (§18.3). Study what each one demonstrates.
+
+### Robbins Nest
+
+Demonstrates: **AABA form expansion** — the page prints one A row and one B row with
+`form = "32 A A B A"`, expanded into sections `A`, `A1`, `B`, `A2` where `A1`/`A2` are copies of `A`
+(primes never appear in section keys, only in `form`); **Case-2 diagonal splits** (e.g. two chords
+in a bar on beats `"1"` and `"3"`); and a **`notation_notes.truncated`** entry recording that part
+of the tune ran off the crop. Whole-bar chords are still objects (`{ "1": "..." }`).
+
+```json
+{
+  "title": "Robbins Nest",
+  "composer": "Sir Charles Thompson – Illinois Jacquet – Bob Russell",
+  "year": "1947",
+  "style": "SWING",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "page": 340,
+  "source": "Anthologie des grilles de jazz",
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7",
+          "3": "E°"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7",
+          "3": "E°"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7",
+          "3": "E°"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db"
+        }
+      }
+    ]
+  },
+  "notation_notes": {
+    "truncated": "Only 16 bars (sections A and A1) printed on page 340 for the head; the B and final A sections are reconstructed from the 32 A A B A form."
+  }
+}
+```
+
+### Rock-a-Bye Your Baby with a Dixie Melody
+
+Demonstrates: **primes in `form` vs counters in section keys** (`form = "32 A B A' C"` → sections
+`A`, `B`, `A1`, `C`); **Case-3 bottom-right inset** (section A bar 2 = `Em7` on beat `"1"` + `Eb°`
+on beat **`"4"`**, the inset square); **conversions** (`7M`/`M7` → `maj7`, `mM7` → `m(maj7)`); a
+**parenthesised alteration dropped** (the score's optional `(F7)` is omitted from the grid); and a
+**flat-on-the-9 reading** (`A9b` → `A7b9`) with the ambiguity recorded in `notation_notes`. The
+score's VARIANT box is **omitted** per §13.
+
+```json
+{
+  "title": "Rock-a-Bye Your Baby with a Dixie Melody",
+  "composer": "Jean Schwartz – Sam M. Lewis – Joe Young",
+  "year": "1918",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "page": 341,
+  "source": "Anthologie des grilles de jazz",
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Em7",
+          "4": "Eb°"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "C#°"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7",
+          "3": "G7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dm",
+          "3": "Dm(maj7)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cmaj7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Em7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Em7",
+          "4": "Eb°"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "C#°"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "E7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "A7b9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7b9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D9",
+          "3": "D#°"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Em7",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  },
+  "notation_notes": {
+    "conversions": "Major 7th written '7M'/'M7' normalised to 'maj7'; minor-major 7th 'mM7' normalised to 'm(maj7)'.",
+    "C_opening": "Section C bars 1-2 read 'A9b' in the score (flat on the ninth); encoded as A7b9. The flat sits on the 9, not the root — an alternative reading is Ab9."
+  }
+}
+```
+
+### Roll On Mississippi, Roll On
+
+Demonstrates: a **verse + chorus tune** with a compound `form` string and **prefixed/compound
+section keys** — the verse rows become `verse_A`, `verse_A1`, `verse_B`, and the chorus rows become
+`A`, `B`, `A1`, `C`, `D`. Section counts are **not** forced to 8 bars; each section has whatever the
+printed row contains. Conversions and an `uncertain` note are present.
+
+```json
+{
+  "title": "Roll On Mississippi, Roll On",
+  "composer": "Eugene West – James McCaffrey – Dave Ringle",
+  "year": "1931",
+  "style": "STANDARD",
+  "tempo": "FAST",
+  "form": "24 A A B (VERSE) + 40 A B A' C D (CHORUS)",
+  "time_signature": "4/4",
+  "page": 341,
+  "source": "Anthologie des grilles de jazz",
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm",
+          "3": "Fm(maj7)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Dm7b5"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm"
+        }
+      }
+    ],
+    "verse_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm",
+          "3": "Fm(maj7)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Dm7b5"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm"
+        }
+      }
+    ],
+    "verse_B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab",
+          "3": "A°"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb",
+          "4": "B7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb°"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Db9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db9",
+          "3": "Eb7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#°",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F°",
+          "3": "Ab°"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D°",
+          "2": "Eb7",
+          "3": "D°",
+          "4": "Eb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D°",
+          "2": "Eb7",
+          "3": "D°",
+          "4": "Eb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Db9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db9",
+          "3": "Eb7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "A°"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gb°"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C°"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A°"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "B°"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab°"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D°"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "B°",
+          "3": "Eb7#5"
+        }
+      }
+    ],
+    "D": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab"
+        }
+      }
+    ]
+  },
+  "notation_notes": {
+    "conversions": "Minor-major 7th 'mM7' normalised to 'm(maj7)'. Augmented-5th dominant written with superscript '5+'/'t' (= '+') normalised to '#5' (e.g. Eb7#5).",
+    "uncertain": "Verse_A bar 2 (Dm7?) and chorus B bar 1 (Bb7?) lower chords are uncertain; see variants."
+  }
+}
+```
+
+### Rockin' in Rhythm
+
+Demonstrates the **hardest layout**: an Ellington head (`style = "ELLINGTONIA"`) with **named
+sections** (`intro`, `interlude`), **prefixed letter sections** (`clarinet_A`, `clarinet_A1`),
+**non-eight-bar sections**, and **multiple `notation_notes`** (`harmonic_note`, `form_note`,
+`performance_note`). One printed tune can therefore expand into many sections of differing lengths;
+encode exactly what each row shows and let `form`/notes carry the structure.
+
+```json
+{
+  "title": "Rockin' in Rhythm",
+  "composer": "Duke Ellington – Harry Carney – Irving Mills",
+  "year": "1930",
+  "style": "ELLINGTONIA",
+  "tempo": "MEDIUM",
+  "form": "26 A B C",
+  "time_signature": "4/4",
+  "page": 342,
+  "source": "Anthologie des grilles de jazz",
+  "sections": {
+    "intro": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "B7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F",
+          "4": "F#°"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "4": "F#°"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dm7",
+          "2": "G7",
+          "3": "C"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F",
+          "4": "F#°"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "4": "F#°"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F",
+          "4": "F#°"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "4": "F#°"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dm7",
+          "2": "G7",
+          "3": "C"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F",
+          "3": "F#°"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "3": "F#°"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dm7",
+          "2": "G7",
+          "3": "C"
+        }
+      }
+    ],
+    "interlude": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      }
+    ],
+    "clarinet_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am"
+        }
+      }
+    ],
+    "clarinet_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am"
+        }
+      }
+    ]
+  },
+  "notation_notes": {
+    "harmonic_note": "Composer annotation: 'The chord changes of ① and ② are written particularly for the bass line. The real harmony is not very different from a C Maj. chord all the time.'",
+    "form_note": "Form 26 A B C: A section = 16 bars (played as A A = two 8-bar repeats), B = 4 bars, C = 6 bars. Section ② = repeat of ①. Section ③ = clarinet solo section (16 bars, Am/E7 vamp).",
+    "performance_note": "BACK TO INTRODUCTION, THEN BACK TO ① ONCE WITH Rall... at the end. SOLOS ON ②."
+  }
+}
+```
+
+---
+
+## Appendix E — Common mistakes (anti-patterns to avoid)
+
+These are the recurring errors a transcriber (human or model) makes on this book. Each maps to a
+rule above; avoid all of them.
+
+1. **Emitting a bare string for a whole-bar chord.** Wrong: `"Db"`. Right: `{ "bar": 1, "beats": {
+   "1": "Db" } }`. Every bar is an object with a `beats` map (§8.3).
+2. **Leaving shorthand in the output.** Never emit `-`, `%`, `•/•`, `→`, or arrows — expand them to
+   explicit chords (§11). A `-` means "repeat the previous bar," not a literal value.
+3. **Padding held chords onto later beats.** Encode a beat only where a chord visibly begins there
+   (§8.4). Do not turn `{ "1": "C" }` into `{ "1": "C", "2": "C", "3": "C", "4": "C" }`.
+4. **Collapsing a re-struck chord.** If the box visibly re-writes the same chord in a later region,
+   keep it (`{ "1": "C", "3": "C" }`). Transcribe what is written, not what theory would simplify
+   (§8.4).
+5. **Reaching across a subdivision line for an alteration.** A `b5` in the lower-right region
+   belongs to the lower-right chord, never to the upper-left one (§10).
+6. **Confusing the Case-3 inset (beat 4) with a Case-2 diagonal (beat 3).** Inset square → `"4"`;
+   diagonal → `"3"`. If genuinely unsure, default to diagonal/beat 3 and add a note (§9 Case 3).
+7. **Using primes in section keys.** Keys are `A`, `A1`, `A2`; primes live only in `form` (§8.1).
+8. **Keeping parenthesised alterations.** `D9(b5)` → `D9`; `G7(F7)` → `G7` (§12). Parentheses mean
+   optional → omit.
+9. **`B` vs `Bb` slips.** Always check for the flat on the root (§12).
+10. **Transcribing the recordings or variants.** The vertical margin credits and any `*`/VARIANTE
+    footnotes are omitted (§13).
+11. **Inventing chords for a grid-less tune.** Set `sections: {}` and add `no_chord_grid`; never
+    fabricate changes (§15).
+12. **Outputting an array, prose, or a markdown fence.** Emit exactly **one bare JSON object** (§6,
+    §17). No ```json fences, no commentary.
+13. **Emitting `null`/`""` for an absent optional field.** Omit the key entirely (§6.2).
+14. **Re-reading the title from the image.** The title is supplied by the runner from the manifest;
+    do not output or alter it (§5).
+
+---
+
+## Appendix F — Glossary
+
+* **Tune / chart** — one song's chord grid; one cropped PNG = one tune = one output JSON.
+* **Grid** — the table of boxes holding the chord symbols.
+* **Section** — one printed row of the grid (e.g. an A section, a verse, an intro). One section ID =
+  one printed row (§8.1).
+* **Bar (measure)** — one box in a section's row; 1-indexed within its section, restarting each
+  section.
+* **Beat** — a position within a bar, keyed `"1"`–`"4"`; where a chord begins (§8.3–§8.4).
+* **Form** — the section map of the tune as printed (e.g. `32 A A B A`); primes (`A'`) appear here
+  only.
+* **Head** — the main statement of a tune (as opposed to solos); these grids are heads.
+* **Style** — the upper-left genre label (`DIXIELAND`, `SWING`, `STANDARD`, `ELLINGTONIA`, …).
+* **Cross-reference** — a titled line that points to another tune ("X → SEE Y") with no grid of its
+  own; skipped unless `--keep-crossref` (§15).
+* **Cacheable prefix** — the stable system-prompt content (rulebook §8–§15 + Appendix D) reused
+  unchanged across every call, billed at the cache rate once it exceeds the platform minimum (§18.3).
+* **Work unit** — one crop → one JSON; the atomic, resumable, independent task (§1, §4.2).
