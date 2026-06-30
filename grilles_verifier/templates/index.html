@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tune Verifier</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div id="app">
+
+  <!-- ═══ Sidebar ══════════════════════════════════════════════════════ -->
+  <aside id="sidebar">
+    <div id="sidebar-top">
+      <div id="app-name">🎵 Tune Verifier</div>
+      <div id="progress-wrap">
+        <div id="progress-text">Loading…</div>
+        <div id="progress-track"><div id="progress-fill"></div></div>
+      </div>
+    </div>
+    <ul id="tune-list"></ul>
+  </aside>
+
+  <!-- ═══ Main ═════════════════════════════════════════════════════════ -->
+  <div id="main">
+
+    <div id="no-tune">← Select a tune from the sidebar</div>
+
+    <div id="editor-wrap" class="hidden">
+
+      <!-- Header -->
+      <div id="editor-header">
+        <h1 id="editor-title"></h1>
+        <div id="editor-btns">
+          <span id="dirty-dot" class="hidden" title="Unsaved changes">●</span>
+          <button id="btn-save" class="btn btn-primary">Save  <kbd>Ctrl+S</kbd></button>
+          <button id="btn-verify" class="btn btn-success">✓ Mark Verified</button>
+          <button id="btn-unverify" class="btn btn-danger hidden">↩ Unverify</button>
+        </div>
+      </div>
+
+      <!-- Body: editor + optional image panel -->
+      <div id="editor-body">
+        <div id="editor-scroll">
+
+          <!-- Meta fields -->
+          <details id="meta-details" open>
+            <summary><span>Metadata</span></summary>
+            <div id="meta-grid"></div>
+            <div id="extra-fields"></div>
+            <div id="add-field-row">
+              <button id="btn-add-field" class="btn btn-sm btn-outline">+ Add field</button>
+            </div>
+          </details>
+
+          <!-- Sections -->
+          <div id="sections-area">
+            <div id="sections-container"></div>
+            <button id="btn-add-section" class="btn btn-sm btn-outline">+ Add Section</button>
+          </div>
+
+        </div><!-- /editor-scroll -->
+
+        <!-- Image panel -->
+        <div id="image-panel" class="hidden">
+          <div id="image-sticky">
+            <div class="image-label">Scan  <button id="btn-zoom" class="btn btn-xs btn-outline">⤢ Zoom</button></div>
+            <img id="crop-img" src="" alt="Crop scan" />
+          </div>
+        </div>
+
+      </div><!-- /editor-body -->
+    </div><!-- /editor-wrap -->
+
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- Zoom overlay -->
+<div id="zoom-overlay" class="hidden" role="dialog" aria-modal="true">
+  <button id="zoom-close" title="Close (Esc)">✕</button>
+  <div id="zoom-scroll">
+    <img id="zoom-img" src="" alt="Crop (full size)" />
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
