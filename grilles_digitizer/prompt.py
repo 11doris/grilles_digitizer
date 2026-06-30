@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 from .config import SOURCE_CONSTANT
+from .examples import EXAMPLES
 from .manifest import WorkUnit
 
 # The system block is byte-identical across every call so it caches once and is
-# billed ~once instead of per tune. Keep the per-call variable part (title, page)
-# out of here — it goes in the user message.
-SYSTEM_PROMPT = f"""\
+# billed ~once instead of per tune. Keep the per-call variable part (page) out of
+# here — it goes in the user message. The block is deliberately large: the rulebook
+# plus the worked examples (appended below) push it comfortably past the 4,096-token
+# cache minimum so it caches on every platform (spec §5.1 / §18.3).
+_BASE_PROMPT = f"""\
 You are transcribing ONE handwritten jazz chord grid (one tune) from a scanned
 French jazz "grilles" book ("{SOURCE_CONSTANT}"). The image shows a large
 hand-lettered title, smaller style/tempo/form labels, and a grid of chord boxes
@@ -156,6 +159,22 @@ Some tunes print no grid (they point to another tune's changes).
   target in the no_chord_grid note.
 
 Return ONE bare JSON object only. No prose, no markdown fence, valid JSON, minified."""
+
+
+def _examples_block() -> str:
+    """The Appendix D worked examples, embedded as few-shot guidance (spec §5.1)."""
+    parts = [
+        "=== WORKED EXAMPLES ===",
+        "Real pages' correct outputs, in the MODEL's shape (title/page/source are added "
+        "by the runner, so they are absent here). Match this structure and notation "
+        "exactly. The comment before each shows what it demonstrates.",
+    ]
+    for ex in EXAMPLES:
+        parts.append(f"\n# {ex['title']} — {ex['demonstrates']}\n{ex['tune_json']}")
+    return "\n".join(parts)
+
+
+SYSTEM_PROMPT = _BASE_PROMPT + "\n\n" + _examples_block()
 
 
 def build_user_content(unit: WorkUnit, image_b64: str, media_type: str) -> list[dict]:

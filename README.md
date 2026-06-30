@@ -76,12 +76,17 @@ retries).
   single binary dilation of the ink, then downscale the long edge. No
   super-resolution (it hallucinates strokes on thin handwriting).
 - **Prompt** ([`prompt.py`](grilles_digitizer/prompt.py)) — a large static system
-  block carrying the full schema and notation rules (canonical chord vocabulary,
-  bar-subdivision layouts, repeat expansion, multi-strain convention). It is
-  byte-identical across calls and sent with **prompt caching**, so it is billed
-  roughly once. The model does **not** output `title`/`page`/`source` — the runner
-  injects those (the title verbatim from the manifest) before validating. Only the
-  tiny page anchor varies per call.
+  block: the full schema and notation rules (canonical chord vocabulary,
+  bar-subdivision layouts, repeat expansion, multi-strain convention) **plus the four
+  Appendix D worked examples** ([`examples.py`](grilles_digitizer/examples.py),
+  regenerated from the spec by [`tools/build_examples.py`](tools/build_examples.py)).
+  The examples serve as few-shot guidance and push the block comfortably past the
+  **4,096-token cache minimum** so it caches on every platform (spec §5.1 / §18.3). It
+  is byte-identical across calls and sent with **prompt caching**, so it is billed
+  roughly once; run with `--debug` to see per-call `cache HIT/WRITE/MISS` stats. The
+  model does **not** output `title`/`page`/`source` — the runner injects those (the
+  title verbatim from the manifest). Only the page anchor varies per call (retry
+  reminders go in the user turn so they never break the cache).
 - **Call** ([`vlm.py`](grilles_digitizer/vlm.py)) — one `messages.create` per crop,
   temperature 0 where the model allows it, with short exponential backoff on
   transient failures (429/5xx/connection). The tune is requested via **forced tool
