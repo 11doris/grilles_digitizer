@@ -68,9 +68,12 @@ OPTIONS
                      discography column (default: include it).
   --full-width       no horizontal cropping at all: keep the full page width
                      (discography column + both margins). Vertical cuts only.
-  --keep-crossref    also crop trailing cross-reference lines that have a big
-                     title but no chord grid (e.g. "EASY TO REMEMBER -> ...").
-                     Default: skip them.
+  --keep-crossref    A gridless index entry BETWEEN two tunes (a redirect line
+                     such as "AH LEU CHA -> I GOT RHYTHM") is always cropped on
+                     its own -- it is a real index title and must not bleed into
+                     a neighbour. This flag additionally keeps a gridless entry
+                     that is the LAST on the page (e.g. "X -> SEE PAGE 26"),
+                     which otherwise runs over the footer. Default: skip those.
   --pad PX           padding added around each crop (default 12)
   --scale F          rescale output crops by factor F (default 1.0 = native).
   --debug            also write *_debug.png overlays showing detected regions.
@@ -81,6 +84,9 @@ MANIFEST COLUMNS
   review     'yes' when conf is low and the title is worth a human glance
   ocr_raw    what the title OCR actually read (for debugging)
   alt_title  full index entry incl. any (parenthetical) alternate title
+
+USAGE
+  python crop_tunes.py AGJ.pdf --out ./tunes --start-page 7 --full-width --index AGJ_index.pdf                                 
 """
 import argparse, csv, os, re, sys, subprocess, tempfile, time, shutil
 
@@ -216,7 +222,7 @@ def _open(mask, kx, ky):
 _GRID_HK = 90        # min horizontal grid-rule length (px) for block detection
 _GRID_VK = 85        # min vertical grid-rule length (px)
 _GRID_THR = 0.06     # fraction of content width showing grid structure in a row
-_GRID_CLOSE = 45     # bridge vertical gaps (px) between grid rows of one block
+_GRID_CLOSE = 54     # bridge vertical gaps (px) between grid rows of one block
 
 
 def grid_row_mask(ink, x0, x1):
@@ -678,6 +684,51 @@ def align_titles_to_bands(titles, band_texts, match_bias=0.05, band_bonus=None):
     return pairs
 
 
+def refine_title_top(gray, top, gtop, x0, x1, span_frac=0.20):
+    """Snap a band's top down to where this tune's title lettering actually
+    begins, given `gtop` = the top of the chord grid the title sits on.
+
+    Bands are detected generously and can start above the real title: a small
+    VARIANTE label/box belonging to the PREVIOUS tune (printed below its grid)
+    often shares the gap and gets swept into the next title's band. Using that
+    band top as the boundary drags the variant down into the wrong tune.
+
+    A title is WIDE hand-lettering: it spans much of the column. The clutter that
+    can precede it does not -- a centred variant chord-box is narrow, and a
+    sub-header (STANDARD / MEDIUM ...) is too short to be title-height. So we keep
+    only title-height connected components and return the FIRST row at which they
+    span a title-like width. Taking the topmost wide run (not the lowest) avoids
+    snapping onto the tune's own first chord row, whose lettering pokes above the
+    detected grid rule and is also wide. Returns `top` if nothing qualifies."""
+    g, ink = to_ink(gray)
+    txt = cv2.subtract(ink, cv2.bitwise_or(_open(ink, 150, 1), _open(ink, 1, 80)))
+    H = ink.shape[0]
+    a, b = max(0, top - 6), min(H, gtop + 6)
+    if b - a < 24:
+        return top
+    band = txt[a:b, x0:x1]
+    nlab, lab, stats, _ = cv2.connectedComponentsWithStats(
+        (band > 0).astype(np.uint8), 8)
+    if nlab <= 1:
+        return top
+    thr = max(42, int(0.55 * int(stats[1:, cv2.CC_STAT_HEIGHT].max())))
+    tall = np.zeros(band.shape[:2], np.uint8)
+    for i in range(1, nlab):
+        if (stats[i, cv2.CC_STAT_HEIGHT] >= thr
+                and stats[i, cv2.CC_STAT_WIDTH] < band.shape[1] * 0.85):
+            tall[lab == i] = 1
+    cols = np.arange(band.shape[1])
+    span = np.array([(cols[r][-1] - cols[r][0]) if r.any() else 0
+                     for r in (tall > 0)])
+    span_thr = max(200, int(span_frac * (x1 - x0)))
+    wide = (span >= span_thr).astype(np.uint8).reshape(-1, 1)
+    # bridge small vertical gaps within one line of lettering
+    wide = cv2.morphologyEx(wide, cv2.MORPH_CLOSE,
+                            cv2.getStructuringElement(cv2.MORPH_RECT, (1, 20))).ravel() > 0
+    idxs = np.where(wide)[0]
+    return a + int(idxs[0]) if len(idxs) else top
+
+
 def detect_indexed(gray, page_titles, keep_crossref=False):
     """Index-driven tune detection. `page_titles` = the index's titles for this
     printed page, in order. Returns (g, (x0,x1), H, tunes) where each tune is
@@ -692,29 +743,52 @@ def detect_indexed(gray, page_titles, keep_crossref=False):
     band_bonus = [0.08 if any(top < bs <= top + 220 for (bs, _be) in blocks)
                   else 0.0 for (top, _h) in bands]
     pairs = align_titles_to_bands(page_titles, band_texts, band_bonus=band_bonus)
-    # matched (band_top, title, score) sorted top->bottom
-    placed = sorted((bands[bj][0], page_titles[ti], sc) for ti, bj, sc in pairs)
-    n = len(placed)
+    raw = sorted((bands[bj][0], page_titles[ti], sc) for ti, bj, sc in pairs)
+    n = len(raw)
+    # A grid block belongs to title i only when no later title starts before it;
+    # that owned block (if any) lets us (a) snap the title down past a preceding
+    # variant box and (b) recognise gridless redirect lines.
+    placed = []
+    for idx, (top, title, sc) in enumerate(raw):
+        nxt = raw[idx + 1][0] if idx + 1 < n else H
+        owned = [bs for (bs, _be) in blocks if top < bs < nxt]
+        gtop = min(owned) if owned else None
+        # Snap past a preceding variant box -- but never for the first tune,
+        # whose title may be clipped at the page top and has nothing above it.
+        rtop = (refine_title_top(gray, top, gtop, x0, x1)
+                if gtop is not None and idx > 0 else top)
+        placed.append((rtop, title, sc, gtop))
+    placed.sort()
     tunes = []
-    for idx, (top, title, sc) in enumerate(placed):
+    for idx, (top, title, sc, gtop) in enumerate(placed):
         top2 = max(0, top - 10)
-        if idx + 1 < n:
+        last = idx + 1 >= len(placed)
+        if not last:
+            nxt_top = placed[idx + 1][0]
             # Cut just above the NEXT title. Everything below this tune's title
             # and above the next one stays here -- in particular a small VARIANT
             # block printed below the main grid belongs to THIS tune, not the
-            # next, so it must not be split off.
-            bot = placed[idx + 1][0] - 10
+            # next. Never slice into this tune's own last grid block: when the
+            # next title is printed tight against it, keep the block's bottom
+            # border (clamped so the next title is still left out).
+            bot = nxt_top - 10
+            own = [be for (bs, be) in blocks if top2 <= bs < nxt_top]
+            if own:
+                bot = min(max(bot, max(own) + 4), nxt_top - 2)
         else:
-            # Last tune on the page: extend to the bottom of its own grid (so the
-            # discography footer is trimmed). If it has no grid below its title
-            # -- a cross-reference, or a tune whose grid is clipped onto the next
-            # printed page (e.g. a title sitting at the very foot of the page) --
-            # run to the page bottom instead of cutting it to a sliver.
+            # Last tune on the page: extend to the bottom of its own grid (incl.
+            # any variant blocks), trimming the discography footer. With no grid
+            # below its title -- a cross-reference, or a grid clipped onto the
+            # next printed page -- run to the page bottom rather than to a sliver.
             own = [be for (bs, be) in blocks if bs >= top2]
             bot = min(H, max(own) + 35) if own else H
-        has_grid = any(not (be <= top2 or bs >= bot) for (bs, be) in blocks)
-        if not has_grid and not keep_crossref:
-            continue                       # titled region with no grid = cross-ref
+        # Every index title is a real entry, so a gridless one between two tunes
+        # is a redirect/reference line ("X -> SEE Y") and still earns its own
+        # (small) crop. Only a gridless title that is the LAST placed on the page
+        # is held back behind --keep-crossref: it has no lower neighbour to bound
+        # it and would otherwise run down over the page footer.
+        if gtop is None and last and not keep_crossref:
+            continue
         tunes.append((top2, bot, title, round(float(sc), 3)))
     return g, (x0, x1), H, tunes
 
@@ -1033,9 +1107,10 @@ def main():
                     help="do not crop horizontally: keep the entire page width "
                     "(includes the discography column and both margins)")
     ap.add_argument("--keep-crossref", action="store_true",
-                    help="also output titled regions that have NO chord grid "
-                    "(cross-references like 'X -> SEE Y', and grid-less tunes). "
-                    "Default: skip them.")
+                    help="also output a gridless index entry that is the LAST on "
+                    "its page (a trailing cross-reference like 'X -> SEE PAGE 26'). "
+                    "Gridless entries BETWEEN two tunes are always kept. "
+                    "Default: skip the trailing ones.")
     ap.add_argument("--pad", type=int, default=12)
     ap.add_argument("--scale", type=float, default=1.0)
     ap.add_argument("--debug", action="store_true")
