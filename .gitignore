@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+build/
+dist/
+
+# Run artifacts
+tunes/*.json
+tunes/run_state.jsonl
+tunes/run_report.json
