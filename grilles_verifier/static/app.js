@@ -248,6 +248,22 @@ function renderSections() {
   container.innerHTML = S.data.sections.map((sec, si) =>
     renderSectionHTML(sec, si, total, bc)
   ).join('');
+
+  refreshDuplicateFlags();
+}
+
+/** Flag section cards whose (live) name collides with another section's. */
+function refreshDuplicateFlags() {
+  const cards  = qsa('.sec-card');
+  const names  = Array.from(cards, c => qs('.sec-name', c).value.trim());
+  const counts = {};
+  names.forEach(n => { if (n) counts[n] = (counts[n] || 0) + 1; });
+
+  cards.forEach((card, i) => {
+    const dup = names[i] !== '' && counts[names[i]] > 1;
+    card.classList.toggle('has-dup', dup);
+    qs('.sec-dup-badge', card)?.classList.toggle('hidden', !dup);
+  });
 }
 
 function renderSectionHTML(sec, si, totalSections, bc) {
@@ -261,11 +277,14 @@ function renderSectionHTML(sec, si, totalSections, bc) {
         <span class="sec-label">Section</span>
         <input class="sec-name" type="text" value="${esc(sec.name)}" data-si="${si}"
                title="Section name" />
+        <span class="sec-dup-badge hidden" title="Another section has this name — they will be merged on save">⚠ duplicate name</span>
         <div class="sec-header-btns">
           <button class="btn-icon" data-action="sec-up"   data-si="${si}"
                   ${canUp   ? '' : 'disabled'} title="Move section up">↑</button>
           <button class="btn-icon" data-action="sec-down" data-si="${si}"
                   ${canDown ? '' : 'disabled'} title="Move section down">↓</button>
+          <button class="btn-icon" data-action="sec-copy" data-si="${si}"
+                  title="Duplicate section">⧉</button>
           <button class="btn-icon danger" data-action="sec-del" data-si="${si}"
                   title="Delete section">×</button>
         </div>
@@ -343,6 +362,28 @@ function moveSectionUp(si) {
 
 function moveSectionDown(si) {
   moveSectionUp(si + 1);
+}
+
+/** Derive a section name not already used, so copies don't collide on save. */
+function uniqueSectionName(base) {
+  const existing = new Set(S.data.sections.map(s => s.name));
+  if (!existing.has(base)) return base;
+  let i = 2;
+  while (existing.has(`${base} (${i})`)) i++;
+  return `${base} (${i})`;
+}
+
+function copySection(si) {
+  const src   = S.data.sections[si];
+  const clone = {
+    name: uniqueSectionName(src.name),
+    bars: src.bars.map(bar => ({
+      bar:   bar.bar,
+      beats: Object.assign({}, bar.beats),
+    })),
+  };
+  S.data.sections.splice(si + 1, 0, clone);
+  renderSections();
 }
 
 function deleteSection(si) {
@@ -618,6 +659,7 @@ function wireEvents() {
     switch (action) {
       case 'sec-up':   moveSectionUp(si);    break;
       case 'sec-down': moveSectionDown(si);  break;
+      case 'sec-copy': copySection(si);      break;
       case 'sec-del':  deleteSection(si);    break;
       case 'row-up':   moveRowUp(si, ri);    break;
       case 'row-down': moveRowDown(si, ri);  break;
@@ -628,8 +670,11 @@ function wireEvents() {
     }
   });
 
-  // ── Sections: dirty on any input
-  qs('#sections-container').addEventListener('input', () => setDirty());
+  // ── Sections: dirty on any input; re-flag duplicates when a name changes
+  qs('#sections-container').addEventListener('input', e => {
+    setDirty();
+    if (e.target.classList.contains('sec-name')) refreshDuplicateFlags();
+  });
 
   // ── Image zoom
   qs('#crop-img').addEventListener('click', openZoom);
