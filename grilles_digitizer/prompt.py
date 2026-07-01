@@ -159,22 +159,14 @@ Major triad -> root only (C). Minor -> m (Cm). Dominant 7th -> 7 (G7).
 Major 7th -> maj7 (Cmaj7). Minor 7th -> m7 (Dm7). Half-diminished -> m7b5 (Am7b5).
 Diminished -> ° (C°). Augmented triad -> + (Eb+). Augmented dominant -> 7#5 (Eb7#5).
 Minor-major 7th -> m(maj7) (Dm(maj7)). Sixth/ninth etc. -> 6, 9, m6, 9#11 (Ab6, Db9).
-EXTENSIONS/ALTERATIONS: append the degrees and their accidentals to the chord in the
-order printed — sixth-ninth is written "69" (Eb69), plus m11 (Fm11), 13 (D13), 7#11
-(B7#11), 9b5 (C9b5), and stacked alterations like 7#5#9 (Bb7#5#9). A flat sitting on
-the NINTH is transcribed as printed, "<root>9b" (D9b, F9b) — do NOT reinterpret it as
-7b9. (This is distinct from the b9 alteration suffix; write what the box shows.)
 CONVERSIONS from the book to canonical:
 - 7M, M7, Δ (major 7) -> maj7  (Eb7M -> Ebmaj7)
 - ø (half-dim) -> m7b5  (Aø -> Am7b5)
 - superscript 5+ (aug 5th) -> #5  (Bb7 with 5+ -> Bb7#5)
 - suffix t (means +, i.e. raise) -> # on that degree  (Eb9t -> Eb#9; F75t -> F7#5)
 - .../14 (French "14th") -> #11  (E9/14 -> E9#11, since 7+7=14)
-- alteration in parentheses (...): DROP a parenthesised alteration that merely restates
-  the chord's own quality (Bb9(b9) -> Bb9; D9(b5) -> D9) and encode a parenthesised
-  optional/passing whole chord without its parens ((G7) -> G7). A genuinely ADDED
-  extension printed in parentheses is instead kept in the suffix as written
-  (Ab7(13); C(#5)). Apart from those, the only parentheses in output are in m(maj7).
+- alteration in parentheses (...) -> OMIT entirely  (Bb9(b9) -> Bb9; D9(b5) -> D9)
+  (The ONLY parentheses allowed in output are in m(maj7).)
 OTHER: Watch B vs Bb carefully — different chords. If a chord is uncertain due to scan
 quality, append ? to that chord string (e.g. Bbmaj7?).
 
@@ -245,7 +237,7 @@ Return ONE bare JSON object only. No prose, no markdown fence, valid JSON, minif
 
 
 def _examples_block() -> str:
-    """The verified-tune worked examples, embedded as few-shot guidance (spec §5.1)."""
+    """The Appendix D worked examples, embedded as few-shot guidance (spec §5.1)."""
     parts = [
         "=== WORKED EXAMPLES ===",
         "Real pages' correct outputs, in the MODEL's shape (title/page/source are added "

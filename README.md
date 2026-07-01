@@ -77,10 +77,9 @@ retries).
   super-resolution (it hallucinates strokes on thin handwriting).
 - **Prompt** ([`prompt.py`](grilles_digitizer/prompt.py)) — a large static system
   block: the full schema and notation rules (canonical chord vocabulary,
-  bar-subdivision layouts, repeat expansion, multi-strain convention) **plus the
-  verified-tune worked examples** ([`examples.py`](grilles_digitizer/examples.py),
-  regenerated from the human-verified transcriptions in `tunes/` by
-  [`tools/build_examples.py`](tools/build_examples.py)).
+  bar-subdivision layouts, repeat expansion, multi-strain convention) **plus the four
+  Appendix D worked examples** ([`examples.py`](grilles_digitizer/examples.py),
+  regenerated from the spec by [`tools/build_examples.py`](tools/build_examples.py)).
   The examples serve as few-shot guidance and push the block comfortably past the
   **4,096-token cache minimum** so it caches on every platform (spec §5.1 / §18.3). It
   is byte-identical across calls and sent with **prompt caching**, so it is billed
