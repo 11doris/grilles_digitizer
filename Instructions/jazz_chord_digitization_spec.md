@@ -430,11 +430,10 @@ The score uses shorthand for repetition. **Always expand fully in the JSON — n
 
 | Score mark | Meaning | Action |
 |---|---|---|
-| Arrow + vertical line between rows (full section repeat) | Repeat the whole section | Copy all bars from the most recent section with the same letter. Any explicitly written bar in the repeated row overrides the copied value at that position. |
-| Plain `→` at the start of a row | Repeat the previous row | Copy the previous row of the same section verbatim; explicit bars override. |
+| Left-arrow row (a `→` at the far left of a row, with or without a vertical line/bracket to an earlier row) | Repeat an earlier **same-letter** row, positionally | First use `form` to label every printed grid row with its letter, top to bottom (e.g. `form "32 A A B A"` → rows A, A, B, A → sections A, A1, B, A2). The arrow row copies from the **nearest row above it with the SAME letter** — usually **not** the row physically just above it: in `A A B A` the 4th row (A2) copies the 2nd row (A1), **jumping over** the 3rd row (B). Never copy a different-letter row (e.g. B into A) just because it is adjacent. Fill each bar from the same bar number of that same-letter row (as already resolved, its own overrides carried through); any bar written explicitly in the arrow row overrides at that position. |
 | Diagonal spanning **two** adjacent boxes | Two-bar repeat | Copy the immediately preceding two bars into those two bars. (Distinct from a single-box diagonal split, which is Case 2.) |
 | `•/•` or similar within one box | Bar repeat | Copy the immediately preceding bar. |
-| `-` (dash) in a box | Bar repeat | Copy the immediately preceding bar. |
+| `-` (dash) in a box | Bar repeat | Copy the immediately preceding bar. **Exception:** inside a left-arrow row a dash is not a bar-repeat — it is an empty placeholder taking that bar from the same position of the referenced same-letter row (see the left-arrow row above). |
 
 **Dash exception:** if a `-` is the very first bar of a tune with nothing preceding it, it is a
 genuine empty bar — encode `{ "1": "N.C." }` and note it in `notation_notes`. (Rare.)

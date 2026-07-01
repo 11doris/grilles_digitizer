@@ -124,14 +124,33 @@ above (Am | 7 -> {{ "1": "Am", "3": "Am7" }}). This borrows only the missing roo
 
 === REPEAT AND SHORTHAND EXPANSION ===
 ALWAYS expand fully. NEVER output -, %, •/•, ->, or any shorthand. Write the chords.
-- Arrow + vertical line between rows (full section repeat): copy all bars from the
-  most recent section with the same letter; explicit written bars override.
-- Plain -> at the start of a row: copy the previous row of the same section verbatim;
-  explicit bars override.
+- LEFT-ARROW ROW (a -> drawn at the FAR LEFT of a row, sometimes joined by a vertical
+  line or bracket to an earlier row): this whole row is a POSITIONAL copy of an EARLIER
+  row that carries the SAME LETTER. To find which row it copies, work in this order:
+  1. USE THE "form" STRING to label every printed grid row with its letter, top to
+     bottom, in order. Example: form "32 A A B A" labels the four rows A, A, B, A;
+     so the sections are A, A1, B, A2.
+  2. A left-arrow row copies from the NEAREST ROW ABOVE IT THAT HAS THE SAME LETTER in
+     that labelling — which is usually NOT the row physically just above it. In
+     "A A B A" the 4th row (A2) copies the 2nd row (A1), JUMPING OVER the 3rd row (B).
+     NEVER copy a B row into an A row (or any letter into a different letter) just
+     because it is physically adjacent — the letters MUST match.
+  3. Fill EACH bar of the arrow row from the bar in the SAME position (same bar number)
+     of that same-letter referenced row; a bar written explicitly in the arrow row
+     OVERRIDES the copied value at that position.
+  - Inside a left-arrow row, a dash (-) or blank box is NOT a bar-repeat — it is an
+    EMPTY PLACEHOLDER meaning "take this bar, unchanged, from the same position of the
+    referenced same-letter row". Do NOT copy the preceding bar into it.
+  - The referenced row is that same-letter row AS ALREADY RESOLVED — its own copies and
+    overrides carried through — NOT necessarily the original first A. So if A1 itself
+    overrode, say, bars 7-8, then A2's empty bars 7-8 inherit A1's OVERRIDDEN bars 7-8.
+    Only the boxes A2 writes explicitly differ from A1.
 - Diagonal spanning TWO adjacent boxes (two-bar repeat): copy the immediately
   preceding two bars into those two bars.
 - •/• or similar within one box (bar repeat): copy the immediately preceding bar.
-- - (dash) in a box (bar repeat): copy the immediately preceding bar.
+- - (dash) in a box (bar repeat): copy the immediately preceding bar. THIS APPLIES
+  ONLY OUTSIDE a left-arrow row; inside a left-arrow row a dash is the positional
+  placeholder described above, never a repeat of the preceding bar.
 DASH EXCEPTION: if a - is the very first bar of a tune with nothing preceding it, it
 is a genuine empty bar — encode {{ "1": "N.C." }} and note it in notation_notes.
 
@@ -140,14 +159,22 @@ Major triad -> root only (C). Minor -> m (Cm). Dominant 7th -> 7 (G7).
 Major 7th -> maj7 (Cmaj7). Minor 7th -> m7 (Dm7). Half-diminished -> m7b5 (Am7b5).
 Diminished -> ° (C°). Augmented triad -> + (Eb+). Augmented dominant -> 7#5 (Eb7#5).
 Minor-major 7th -> m(maj7) (Dm(maj7)). Sixth/ninth etc. -> 6, 9, m6, 9#11 (Ab6, Db9).
+EXTENSIONS/ALTERATIONS: append the degrees and their accidentals to the chord in the
+order printed — sixth-ninth is written "69" (Eb69), plus m11 (Fm11), 13 (D13), 7#11
+(B7#11), 9b5 (C9b5), and stacked alterations like 7#5#9 (Bb7#5#9). A flat sitting on
+the NINTH is transcribed as printed, "<root>9b" (D9b, F9b) — do NOT reinterpret it as
+7b9. (This is distinct from the b9 alteration suffix; write what the box shows.)
 CONVERSIONS from the book to canonical:
 - 7M, M7, Δ (major 7) -> maj7  (Eb7M -> Ebmaj7)
 - ø (half-dim) -> m7b5  (Aø -> Am7b5)
 - superscript 5+ (aug 5th) -> #5  (Bb7 with 5+ -> Bb7#5)
 - suffix t (means +, i.e. raise) -> # on that degree  (Eb9t -> Eb#9; F75t -> F7#5)
 - .../14 (French "14th") -> #11  (E9/14 -> E9#11, since 7+7=14)
-- alteration in parentheses (...) -> OMIT entirely  (Bb9(b9) -> Bb9; D9(b5) -> D9)
-  (The ONLY parentheses allowed in output are in m(maj7).)
+- alteration in parentheses (...): DROP a parenthesised alteration that merely restates
+  the chord's own quality (Bb9(b9) -> Bb9; D9(b5) -> D9) and encode a parenthesised
+  optional/passing whole chord without its parens ((G7) -> G7). A genuinely ADDED
+  extension printed in parentheses is instead kept in the suffix as written
+  (Ab7(13); C(#5)). Apart from those, the only parentheses in output are in m(maj7).
 OTHER: Watch B vs Bb carefully — different chords. If a chord is uncertain due to scan
 quality, append ? to that chord string (e.g. Bbmaj7?).
 
@@ -218,7 +245,7 @@ Return ONE bare JSON object only. No prose, no markdown fence, valid JSON, minif
 
 
 def _examples_block() -> str:
-    """The Appendix D worked examples, embedded as few-shot guidance (spec §5.1)."""
+    """The verified-tune worked examples, embedded as few-shot guidance (spec §5.1)."""
     parts = [
         "=== WORKED EXAMPLES ===",
         "Real pages' correct outputs, in the MODEL's shape (title/page/source are added "
