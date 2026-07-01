@@ -27,7 +27,7 @@ ALWAYS_PRESENT = (
     "source",
     "sections",
 )
-OPTIONAL_KEYS = ("composer", "year", "tempo", "notation_notes")
+OPTIONAL_KEYS = ("composer", "year", "tempo", "recordings", "variants", "notation_notes")
 VALID_BEAT_KEYS = {"1", "2", "3", "4"}
 
 # Shorthand that must have been expanded away; and non-canonical notations the

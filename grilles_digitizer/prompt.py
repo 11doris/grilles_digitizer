@@ -15,8 +15,10 @@ _BASE_PROMPT = f"""\
 You are transcribing ONE handwritten jazz chord grid (one tune) from a scanned
 French jazz "grilles" book ("{SOURCE_CONSTANT}"). The image shows a large
 hand-lettered title, smaller style/tempo/form labels, and a grid of chord boxes
-organized into rows (sections). Recording credits may run vertically in the left
-and/or right margins — IGNORE them entirely.
+organized into rows (sections). Recording credits (performer + 2-digit year) may run
+vertically in the left and/or right margins — TRANSCRIBE them into "recordings". Below
+the grid there may be alternate "VARIANTE" bars — transcribe them into "variants".
+Both are covered in RECORDINGS & VARIANTS below.
 
 Produce ONE bare JSON object (no array, no prose, no markdown fence). Transcribe
 only what the image shows. Expand every repeat/shorthand into explicit chords.
@@ -30,6 +32,8 @@ only what the image shows. Expand every repeat/shorthand into explicit chords.
   "form": str,                  // always present; exactly as printed, KEEP primes
   "time_signature": str,        // always present; default "4/4"
   "sections": {{ ... }},          // always present; see SECTIONS
+  "recordings": [ ... ],          // OMIT if none; margin performer/year credits (list of strings)
+  "variants": [ ... ],            // OMIT if none; alternate bars; see RECORDINGS & VARIANTS
   "notation_notes": {{ ... }}     // OMIT if empty
 }}
 DO NOT output a "title" field — the title is supplied separately and added by the
@@ -94,6 +98,12 @@ Read each chord and ALL its alteration suffixes only from within its own region.
 2. Diagonal split (top-right to bottom-left) OR horizontal-half split: BOTH encode
    identically. upper/upper-left -> "1"; lower/lower-right -> "3":
    {{ "1": "Eb", "3": "Eb7" }}
+   BRIEF-EXTENSION SPLIT: sometimes only one region names a full chord and the other
+   shows just an added degree with NO root of its own (a bare 7, 6, 9, m7, ... written
+   for brevity). Carry the root over and expand: a box with Am upper and a bare 7 lower
+   means {{ "1": "Am", "3": "Am7" }} (two beats), NOT a single Am7. Never collapse it.
+   (Borrowing the missing ROOT this way is the one exception to the BOUNDARY BOX RULE;
+   a bare alteration like b5/#5 is not a chord and stays with its own region.)
 3. Bottom-right inset square only (no full horizontal divider): the large area is
    "1"; the small framed corner square is beat 4 -> "4": {{ "1": "Em7", "4": "Eb°" }}
    AMBIGUITY FALLBACK: if scan quality makes the inset corner indistinguishable from
@@ -108,6 +118,9 @@ Read each chord and ALL its alteration suffixes only from within its own region.
 BOUNDARY BOX RULE: when a bar is subdivided, a chord symbol AND all its alteration
 suffixes (b5, #5, b9, m, °, etc.) must be read only from within that beat's own
 region. Never reach across a subdivision line to attach an alteration to a neighbor.
+ONE EXCEPTION: a region showing only a bare added degree (7, 6, m7, ...) with no root
+of its own borrows the ROOT from the adjacent named chord — the brief-extension split
+above (Am | 7 -> {{ "1": "Am", "3": "Am7" }}). This borrows only the missing root.
 
 === REPEAT AND SHORTHAND EXPANSION ===
 ALWAYS expand fully. NEVER output -, %, •/•, ->, or any shorthand. Write the chords.
@@ -136,19 +149,62 @@ CONVERSIONS from the book to canonical:
 - alteration in parentheses (...) -> OMIT entirely  (Bb9(b9) -> Bb9; D9(b5) -> D9)
   (The ONLY parentheses allowed in output are in m(maj7).)
 OTHER: Watch B vs Bb carefully — different chords. If a chord is uncertain due to scan
-quality, append ? to that chord string (e.g. Bbmaj7?) and add a notation_notes entry.
+quality, append ? to that chord string (e.g. Bbmaj7?).
 
-=== RECORDINGS & VARIANTS (do not digitize) ===
-Omit margin performer/year credits. Omit any * / VARIANTE / STATEMENT markers and
-their footnotes.
+=== RECORDINGS & VARIANTS ===
+RECORDINGS: the left and/or right margins list performers, each with a 2-digit
+recording year (e.g. "L.Armstrong 29.38.44- C.Hopkins 34"). Transcribe them as best
+you can into "recordings", a list of strings — ONE string per printed margin line, in
+top-to-bottom order, exactly as read (keep the names, the years, and separators like
+"-" and "/"; a performer may carry several years, e.g. "F.Waller 29.35.38"). If a
+name or year is cut off at the crop edge, transcribe the visible part and move on — do
+NOT try to reconstruct it (the missing part appears on an adjacent overlapping crop;
+that is fine and expected). OMIT "recordings" only when there are truly no credits.
+
+VARIANTS: some tunes print one or more ALTERNATE bars below the grid, labelled VARIANTE
+(or STATEMENT) with a bar reference, e.g. "VARIANTE  Bar 1, 9, 25". Each alternate is
+tied to specific bar(s) of the main grid, usually via a marker symbol (*, ①, ②, ...)
+drawn BOTH next to the target grid bar AND next to the alternate. Transcribe these into
+"variants", a list of objects — ONE object per VARIANTE label:
+  {{
+    "marker": "*",                 // OMIT if none; the symbol tying this to the grid bar(s)
+    "applies_to": "Bar 1, 9, 25",  // the printed bar reference, verbatim
+    "bars": [ {{ "bar": 1, "beats": {{ "1": "Fm7", "3": "Gm7" }} }}, ... ]
+  }}
+- "bars" uses the SAME shape and the SAME subdivision/notation/expansion rules as a
+  section: one object per printed variant box, "bar" 1-indexed in printed left-to-right
+  order, beats read from each box's own regions. These are the replacement chords for
+  the referenced grid bar(s); downstream code maps them using "applies_to".
+- Keep the main grid UNCHANGED: the original chords stay in "sections", and the marker
+  symbol (*, ①, ...) is NEVER written into a chord string — it only links the variant.
+- A page may carry SEVERAL variants (each its own marker + reference) — emit one object
+  for each, in printed order.
+- Some variant boxes may be cut off at the crop edge: transcribe what you can, append
+  "?" to any uncertain chord, and add a notation_notes entry. Do not invent chords.
+- OMIT "variants" entirely when the page has none.
 
 === NOTATION NOTES ===
 "notation_notes" is a free-form object mapping a short key to an explanation. OMIT if
 empty. Record when applicable: the French "14"=#11 convention, the 5+ convention, the
 t=+ convention; any omitted parenthesised alterations; any chord marked ? (and why);
 any Case-3 inset/diagonal ambiguity and which bar; enharmonic/ambiguous readings;
-truncation; composer/performance annotations printed on the score; a missing grid
-(key "no_chord_grid").
+truncation; composer/performance annotations printed on the score; a "same chord
+changes" / cross-reference note (key "same_chord_changes", see below); any other
+stray printed text; a missing grid (key "no_chord_grid").
+
+=== SAME CHORD CHANGES ===
+Below (or beside) the main grid a tune may carry a free-text note relating its
+changes to ANOTHER tune. Capture it verbatim — do not drop it. Two printed forms:
+- Labelled: "SAME CHORD CHANGES :" followed by the referenced tune title and often a
+  parenthesised attribution, e.g. "SAME CHORD CHANGES : PRINCE ALBERT (K.Dorham)".
+- Unlabelled prose: the same idea written out, e.g. 'Almost the same chord changes as
+  "I can't believe that you're in love with me"'.
+Record the WHOLE line verbatim (keep the referenced title, any parentheses, and the
+quote marks) in a notation_notes entry under key "same_chord_changes". This is NOT a
+missing grid — the tune still has its own printed changes; transcribe those normally.
+GENERAL RULE: any other stray explanatory text printed on the score that is not a
+chord, a margin performer/year credit, or an omitted variant/statement marker should
+likewise be captured verbatim in a notation_notes entry (pick a short descriptive key).
 
 === MISSING CHORD GRID / CROSS-REFERENCES ===
 Some tunes print no grid (they point to another tune's changes).
@@ -230,6 +286,49 @@ TUNE_TOOL = {
                     "instructions for section ids, layouts, repeat expansion, and the "
                     "canonical chord vocabulary."
                 ),
+            },
+            "recordings": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": (
+                    "Margin performer/year recording credits, one string per printed "
+                    "line, top-to-bottom, transcribed verbatim. Omit if none."
+                ),
+            },
+            "variants": {
+                "type": "array",
+                "description": (
+                    "Alternate bars printed below the grid (VARIANTE/STATEMENT). One "
+                    "object per label. See the system instructions for the full rules."
+                ),
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "marker": {
+                            "type": "string",
+                            "description": (
+                                "Symbol (e.g. *, ①) linking this variant to the grid "
+                                "bar(s). Omit if none."
+                            ),
+                        },
+                        "applies_to": {
+                            "type": "string",
+                            "description": (
+                                "The printed bar reference, verbatim (e.g. "
+                                '"Bar 1, 9, 25").'
+                            ),
+                        },
+                        "bars": {
+                            "type": "array",
+                            "description": (
+                                "Variant bars in the same shape as a section: "
+                                '{"bar": int, "beats": {"1".."4": "<chord>"}}, in '
+                                "printed left-to-right order."
+                            ),
+                        },
+                    },
+                    "required": ["applies_to", "bars"],
+                },
             },
             "notation_notes": {"type": "object"},
         },

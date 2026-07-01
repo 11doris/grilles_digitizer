@@ -82,8 +82,9 @@ two titles visible, or no tune), do not fix it — record it in the run report (
   connects and reads better). Make it a parameter: default **1** iteration, allow **0** to disable
   or **2** for very thin scans. Nothing else — no deskew unless a crop is visibly rotated, no
   super-resolution.
-* Recording credits run vertically in the left and/or right margins of each crop. **Omit the
-  recordings** (§13).
+* Recording credits run vertically in the left and/or right margins of each crop. **Transcribe
+  them** into `recordings` (§13.1); cut-off credits reappear on overlapping neighbour crops and
+  need not be reconstructed.
 
 ---
 
@@ -187,7 +188,8 @@ model — the runner fills it from the manifest. Provide `page` as context.
 > You are transcribing **one** handwritten jazz chord grid (one tune) from a scanned French jazz
 > "grilles" book. The image shows a large hand-lettered title, smaller style/tempo/form labels, and
 > a grid of **chord boxes** organized into rows (sections). Recording credits may run vertically in
-> the margins — **ignore them**.
+> the margins — **transcribe them** into `recordings`; alternate `VARIANTE` bars below the grid go
+> into `variants` (§13).
 >
 > Produce **one bare JSON object** (no array, no prose, no markdown fence) following the schema and
 > rules you have been given. **Do not output a `title` field** — it is supplied separately. Expand
@@ -233,6 +235,8 @@ Each unit emits **one JSON file** containing a **single bare object** (not wrapp
   "page": 341,
   "source": "Anthologie des grilles de jazz",
   "sections": { "...": [ /* bar objects */ ] },
+  "recordings": [ /* optional; margin credit lines */ ],
+  "variants": [ /* optional; alternate bars, see §13.2 */ ],
   "notation_notes": { /* optional */ }
 }
 ```
@@ -252,7 +256,9 @@ Each unit emits **one JSON file** containing a **single bare object** (not wrapp
 | `page` | Printed page number (integer). **Written by the runner from the manifest `page`.** Always present. |
 | `source` | Constant `"Anthologie des grilles de jazz"`. **Written by the runner.** Always present. |
 | `sections` | See §7. Always present (may be `{}` only for the missing-grid case, §14). |
-| `notation_notes` | See §13. **Omit if none.** |
+| `recordings` | List of margin performer/year credit lines, one string per printed line (§13.1). **Omit if none.** |
+| `variants` | List of alternate-bar objects printed below the grid (§13.2). **Omit if none.** |
+| `notation_notes` | See §14. **Omit if none.** |
 
 **Optional-field policy:** when an optional field has no content, **omit the key entirely** (do not
 emit `null` or `""`). The only constant-but-present field is `source`.
@@ -373,6 +379,14 @@ upper and lower half. **Both encode identically** (upper/upper-left = beats 1+2 
 lower/lower-right = beats 3+4 → `"3"`): → `{ "1": "Eb", "3": "Eb7" }`
 *(No need to distinguish diagonal from horizontal-half — they produce the same JSON.)*
 
+**Brief-extension split (root carried over).** Sometimes only ONE region names a full chord and the
+other region shows just an added degree/extension with **no root of its own** — a bare `7`, `6`, `9`,
+`m7`, `maj7`, … written for brevity. Carry the root over from the named region and expand: a box with
+`Am` upper and a bare `7` lower means `Am` then `Am7` → `{ "1": "Am", "3": "Am7" }`. It is still a
+two-beat split — never collapse it into a single `Am7`. (Borrowing the missing **root** this way is
+the one allowed exception to the boundary rule, §10; a bare *alteration* like `b5`/`#5` is not a
+chord and does **not** borrow a root — it stays with its own region per §10.)
+
 **Case 3 — Bottom-right inset square only (no full horizontal divider).**
 One chord fills the large undivided area; a small framed square sits in the bottom-right corner.
 Large area = beats 1–3 → `"1"`; inset square = beat 4 → `"4"`: → `{ "1": "Em7", "4": "Eb°" }`
@@ -400,6 +414,12 @@ neighboring region belongs to that neighbor, even if it sits visually close to t
 **Never reach across a subdivision line** to attach an alteration to an adjacent beat's chord.
 Example: diagonal box with `Am7` upper-left and `b5` lower-right → beat 1 is `Am7`, and the `b5`
 belongs to the lower-right chord, not to `Am7`.
+
+**One exception — a borrowed root.** If a region shows only an added degree/extension and no root at
+all (a bare `7`, `6`, `m7`, …), it is a brevity shorthand: borrow the **root** from the adjacent
+named chord (§9 Case 2, "brief-extension split"). E.g. `Am` upper + bare `7` lower → `{ "1": "Am",
+"3": "Am7" }`. This borrows only the missing root; it never moves alterations off a chord that
+already has its own root.
 
 ---
 
@@ -448,7 +468,7 @@ if a different house style is later preferred.
 | `mM7`, `m7M`, `m(M7)` (minor-major 7) | `m(maj7)` | e.g. `DmM7` → `Dm(maj7)` |
 | `ø`, `Ø`, `m7(b5)` (half-dim) | `m7b5` | e.g. `Aø` → `Am7b5` |
 | `o`, `°`, `dim` (diminished) | `°` | e.g. `Edim` → `E°` |
-| `+`, `aug` (augmented triad) | `+` | e.g. `Eb aug` → `Eb+` |
+| `+`, `aug` (augmented triad) | `+` | e.g. `Eb aug` → `Eb(#5)` |
 | superscript `5+` on a dominant (aug 5th) | `#5` | e.g. `Bb7` with `5+` → `Bb7#5` |
 | `b5` shown as superscript/subscript | `b5` | keep, attached to its own chord only (§10) |
 | suffix `t` (book shorthand for `+`, i.e. raise a degree) | `#` on that degree | `Eb9t` → `Eb#9`; `F75t` → `F7#5` |
@@ -477,11 +497,61 @@ if a different house style is later preferred.
 
 ---
 
-## 13. Recordings & variants (do not digitize)
+## 13. Recordings & variants (digitize)
 
-* **Recordings.** The margins list performers and 2-digit years. **Omit them.**
-* **Variants.** Some bars are marked `*` (or labeled VARIANTE / STATEMENT) with a footnote. **Omit**
-  the marker and its footnote.
+### 13.1 Recordings
+
+The left and/or right margins list performers, each followed by a 2-digit recording year
+(e.g. `L.Armstrong 29.38.44- C.Hopkins 34`; a performer may carry several years such as
+`F.Waller 29.35.38`). **Transcribe** them into a top-level `recordings` field — a list of
+strings, **one string per printed margin line**, in top-to-bottom order, read as faithfully
+as possible (keep the names, the years, and separators like `-` and `/`).
+
+Recording lists frequently run off the edge of a crop; because adjacent crops **overlap**,
+the cut-off portion reappears on the neighbouring crop. That is expected — transcribe the
+visible part and do **not** try to reconstruct the missing text. **Omit** `recordings` only
+when a tune has no credits at all.
+
+### 13.2 Variants
+
+Some tunes print one or more **alternate** bars below the grid, labelled `VARIANTE` (or
+`STATEMENT`) with a bar reference, e.g. `VARIANTE  Bar 1, 9, 25`. Each alternate is tied to
+specific bar(s) of the main grid, usually via a **marker symbol** (`*`, `①`, `②`, …) drawn
+both next to the target grid bar **and** next to the alternate. The goal is to let a
+downstream step **replace** the referenced grid bars with these alternate chords, so both the
+chords (per bar) and the reference to which bars they replace must be captured.
+
+Transcribe them into a top-level `variants` field — a list of objects, **one object per
+`VARIANTE` label**:
+
+```json
+"variants": [
+  {
+    "marker": "*",
+    "applies_to": "Bar 1, 9, 25",
+    "bars": [
+      { "bar": 1, "beats": { "1": "Fm7", "3": "Gm7" } },
+      { "bar": 2, "beats": { "1": "Ab7M", "3": "Bb7" } }
+    ]
+  }
+]
+```
+
+* `marker` — the symbol tying this variant to its grid bar(s); **omit** if none is drawn.
+* `applies_to` — the printed bar reference, **verbatim** (e.g. `"Bar 1, 9, 25"`, `"Bar 27"`).
+* `bars` — the alternate bars in the **same shape** and under the **same** subdivision /
+  notation / expansion rules as a section (§8–§12): one object per printed variant box, `bar`
+  1-indexed in printed left-to-right order, beats read from each box's own regions.
+
+Rules:
+
+* The main grid stays **unchanged** — the original chords remain in `sections`, and the marker
+  symbol is **never** written into a chord string (it only links the variant).
+* A page may carry **several** variants, each with its own marker and reference; emit one
+  object for each, in printed order (see `20_01_ANNIE_LAURIE`, `15_04_ALL_THROUGH_THE_NIGHT`).
+* Variant boxes are sometimes **cut off** at the crop edge — transcribe what you can, append
+  `?` to any uncertain chord, and add a `notation_notes` entry. Do not invent chords.
+* **Omit** `variants` entirely when the page has none.
 
 ---
 
@@ -697,7 +767,8 @@ most leverage on the input side.
 ## Appendix D — Worked examples (real transcriptions; part of the cached system prompt)
 
 These are complete, correct outputs for real pages of the book, in the current schema (no
-`title_uncertain`, no `recordings`, no `variants`; `title`/`page`/`source` shown as the runner will
+`title_uncertain`; these particular examples happen not to exercise `recordings` or `variants`
+(§13), though the schema supports both; `title`/`page`/`source` shown as the runner will
 fill them). **Include all of them verbatim in the model's system prompt** — they double as few-shot
 guidance and as the bulk of the stable, cacheable prefix (§18.3). Study what each one demonstrates.
 
@@ -941,7 +1012,9 @@ Demonstrates: **primes in `form` vs counters in section keys** (`form = "32 A B 
 on beat **`"4"`**, the inset square); **conversions** (`7M`/`M7` → `maj7`, `mM7` → `m(maj7)`); a
 **parenthesised alteration dropped** (the score's optional `(F7)` is omitted from the grid); and a
 **flat-on-the-9 reading** (`A9b` → `A7b9`) with the ambiguity recorded in `notation_notes`. The
-score's VARIANT box is **omitted** per §13.
+score's `VARIANT Bar 1, 17, 29` box is **cut off at the bottom of this crop**, so its bars are not
+recoverable here and no `variants` entry is shown; on an un-cropped scan it would be captured under
+`variants` per §13.2.
 
 ```json
 {
@@ -2066,6 +2139,107 @@ encode exactly what each row shows and let `form`/notes carry the structure.
 }
 ```
 
+### Annie Laurie
+
+Demonstrates the **`recordings`** and **`variants`** fields (§13). The right-margin performer/year
+credits become `recordings` — one string per printed line. The page carries **two** alternates below
+the grid, each with its own marker: a `*`-marked `VARIANTE Bar 6` (three replacement bars `Am D7 G7`)
+and an `①`-marked `VARIANTE Bar 27` (two bars, each a **Case-2 diagonal split**, e.g. `C`/`E7`). Each
+`variants` entry carries its `marker`, its verbatim `applies_to` reference, and its `bars` in the same
+shape as a section, while `sections` keeps the **original** chords unchanged. Also shows a
+**brief-extension split** (`B` bar 5 is printed `Am` over a bare `7`, i.e. root carried over →
+`{ "1": "Am", "3": "Am7" }`) — two beats that must **not** be collapsed into a single `Am7` (§9
+Case 2 / §10 exception); an unusual **style label**
+(`OLD SCOTCH SONG`); an **augmented triad** (`C 5+` → `C+`); a **full-section repeat** where `A'`
+copies `A` via the leading arrow (dashes expanded); and a **parenthesised optional chord** (`(G7)`)
+recorded in `notation_notes`.
+
+```json
+{
+  "title": "Annie Laurie",
+  "composer": "Lady J.D. Scott",
+  "style": "OLD SCOTCH SONG",
+  "tempo": "MEDIUM",
+  "form": "32 A A' B C",
+  "time_signature": "4/4",
+  "page": 20,
+  "source": "Anthologie des grilles de jazz",
+  "sections": {
+    "A": [
+      { "bar": 1, "beats": { "1": "C" } },
+      { "bar": 2, "beats": { "1": "C+" } },
+      { "bar": 3, "beats": { "1": "F" } },
+      { "bar": 4, "beats": { "1": "F#°" } },
+      { "bar": 5, "beats": { "1": "C" } },
+      { "bar": 6, "beats": { "1": "D7" } },
+      { "bar": 7, "beats": { "1": "G7" } },
+      { "bar": 8, "beats": { "1": "G7" } }
+    ],
+    "A1": [
+      { "bar": 1, "beats": { "1": "C" } },
+      { "bar": 2, "beats": { "1": "C+" } },
+      { "bar": 3, "beats": { "1": "F" } },
+      { "bar": 4, "beats": { "1": "F#°" } },
+      { "bar": 5, "beats": { "1": "C" } },
+      { "bar": 6, "beats": { "1": "G7" } },
+      { "bar": 7, "beats": { "1": "C" } },
+      { "bar": 8, "beats": { "1": "C" } }
+    ],
+    "B": [
+      { "bar": 1, "beats": { "1": "C" } },
+      { "bar": 2, "beats": { "1": "G7" } },
+      { "bar": 3, "beats": { "1": "C" } },
+      { "bar": 4, "beats": { "1": "C" } },
+      { "bar": 5, "beats": { "1": "Am", "3": "Am7" } },
+      { "bar": 6, "beats": { "1": "F" } },
+      { "bar": 7, "beats": { "1": "E7" } },
+      { "bar": 8, "beats": { "1": "E7" } }
+    ],
+    "C": [
+      { "bar": 1, "beats": { "1": "F" } },
+      { "bar": 2, "beats": { "1": "F#°" } },
+      { "bar": 3, "beats": { "1": "C" } },
+      { "bar": 4, "beats": { "1": "G7" } },
+      { "bar": 5, "beats": { "1": "C" } },
+      { "bar": 6, "beats": { "1": "G7" } },
+      { "bar": 7, "beats": { "1": "C" } },
+      { "bar": 8, "beats": { "1": "C" } }
+    ]
+  },
+  "recordings": [
+    "D.Byas 45- J.Forrest 61- T.Grimes 48",
+    "B.Myers 45- J.Newman 55- T.Dorsey 38",
+    "J.Lunceford 37.42- W.Manone 36- B.May 57",
+    "M.Sullivan 37- F.Waller 39",
+    "C.Basie/F.Sinatra 62"
+  ],
+  "variants": [
+    {
+      "marker": "*",
+      "applies_to": "Bar 6",
+      "bars": [
+        { "bar": 1, "beats": { "1": "Am" } },
+        { "bar": 2, "beats": { "1": "D7" } },
+        { "bar": 3, "beats": { "1": "G7" } }
+      ]
+    },
+    {
+      "marker": "①",
+      "applies_to": "Bar 27",
+      "bars": [
+        { "bar": 1, "beats": { "1": "C", "3": "E7" } },
+        { "bar": 2, "beats": { "1": "Am", "3": "Fm6" } }
+      ]
+    }
+  ],
+  "notation_notes": {
+    "conversions": "Augmented triad written with superscript '5+' normalised to '+' (C 5+ -> C+).",
+    "C_bar4": "Section C bar 4 is printed parenthesised '(G7)', an optional/passing chord; encoded as G7.",
+    "composer_date": "Composer's dates unknown - the header prints '(Lady J.D. Scott, ?)'."
+  }
+}
+```
+
 ---
 
 ## Appendix E — Common mistakes (anti-patterns to avoid)
@@ -2079,9 +2253,11 @@ rule above; avoid all of them.
    explicit chords (§11). A `-` means "repeat the previous bar," not a literal value.
 3. **Padding held chords onto later beats.** Encode a beat only where a chord visibly begins there
    (§8.4). Do not turn `{ "1": "C" }` into `{ "1": "C", "2": "C", "3": "C", "4": "C" }`.
-4. **Collapsing a re-struck chord.** If the box visibly re-writes the same chord in a later region,
-   keep it (`{ "1": "C", "3": "C" }`). Transcribe what is written, not what theory would simplify
-   (§8.4).
+4. **Collapsing a re-struck or brief-extension split.** If the box visibly re-writes the same chord
+   in a later region, keep it (`{ "1": "C", "3": "C" }`). Likewise when a divided box names a chord in
+   one region and a bare added degree in the other (e.g. `Am` over `7`), it is a two-beat split with
+   the root carried over → `{ "1": "Am", "3": "Am7" }`, never a single `Am7`. Transcribe what is
+   written, not what theory would simplify (§8.4, §9 Case 2, §10).
 5. **Reaching across a subdivision line for an alteration.** A `b5` in the lower-right region
    belongs to the lower-right chord, never to the upper-left one (§10).
 6. **Confusing the Case-3 inset (beat 4) with a Case-2 diagonal (beat 3).** Inset square → `"4"`;
@@ -2090,8 +2266,9 @@ rule above; avoid all of them.
 8. **Keeping parenthesised alterations.** `D9(b5)` → `D9`; `G7(F7)` → `G7` (§12). Parentheses mean
    optional → omit.
 9. **`B` vs `Bb` slips.** Always check for the flat on the root (§12).
-10. **Transcribing the recordings or variants.** The vertical margin credits and any `*`/VARIANTE
-    footnotes are omitted (§13).
+10. **Dropping the recordings or variants, or folding a variant into the main grid.** Margin credits
+    go in `recordings`; `VARIANTE`/`STATEMENT` bars go in `variants` with their bar reference, while
+    `sections` keeps the original chords unchanged (§13).
 11. **Inventing chords for a grid-less tune.** Set `sections: {}` and add `no_chord_grid`; never
     fabricate changes (§15).
 12. **Outputting an array, prose, or a markdown fence.** Emit exactly **one bare JSON object** (§6,

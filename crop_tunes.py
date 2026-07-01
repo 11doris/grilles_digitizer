@@ -86,7 +86,7 @@ MANIFEST COLUMNS
   alt_title  full index entry incl. any (parenthetical) alternate title
 
 USAGE
-  python crop_tunes.py AGJ.pdf --out ./tunes --start-page 7 --full-width --index AGJ_index.pdf                                 
+  python crop_tunes.py AGJ.pdf --out ./crops --start-page 7 --full-width --index AGJ_index.pdf                                 
 """
 import argparse, csv, os, re, sys, subprocess, tempfile, time, shutil
 
