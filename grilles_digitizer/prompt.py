@@ -152,23 +152,45 @@ ALWAYS expand fully. NEVER output -, %, •/•, ->, or any shorthand. Write the
   ONLY OUTSIDE a left-arrow row; inside a left-arrow row a dash is the positional
   placeholder described above, never a repeat of the preceding bar.
 DASH EXCEPTION: if a - is the very first bar of a tune with nothing preceding it, it
-is a genuine empty bar — encode {{ "1": "N.C." }} and note it in notation_notes.
+is a genuine empty bar — encode {{ "1": "N.C." }}.
 
 === CHORD NOTATION (canonical vocabulary) ===
 Major triad -> root only (C). Minor -> m (Cm). Dominant 7th -> 7 (G7).
 Major 7th -> maj7 (Cmaj7). Minor 7th -> m7 (Dm7). Half-diminished -> m7b5 (Am7b5).
-Diminished -> ° (C°). Augmented triad -> + (Eb+). Augmented dominant -> 7#5 (Eb7#5).
-Minor-major 7th -> m(maj7) (Dm(maj7)). Sixth/ninth etc. -> 6, 9, m6, 9#11 (Ab6, Db9).
+Diminished -> ° (C°); ° covers BOTH the diminished triad and the diminished 7th — always
+write just °. Augmented triad -> (#5) (Eb(#5)). Augmented dominant -> 7#5 (Eb7#5).
+Minor-major 7th -> m(maj7) (Dm(maj7)).
+
+SYMBOL ORDER: build every chord in this fixed order, no spaces:
+  ROOT -> quality (m / maj7 / ° / m7b5 / sus4 ...) -> highest extension number
+  (6, 7, 9, 11, 13) -> alteration suffixes in ascending-degree order (b5 #5 b9 #9 #11 b13).
+  Examples: Dm7, Ebmaj7, C13, F7#5, B7#11, C9b5, Eb7#5b9, Gm11.
+
+EXTENSIONS (bare numbers, NEVER parenthesised): 6, 9, 11, 13 and their minor/major forms
+m6, m9, m11, m13, maj9. A single extension number implies the chord tones below it, so
+write the HIGHEST number only: a dominant with a 13th is C13 (NOT C7(13) or C9(13)); an
+11th is C11; a ninth is C9. 6/9 chord -> 6/9 (C6/9, Cm6/9).
+
+ALTERATIONS & PARENTHESES: an alteration is an accidental degree (b5, #5, b9, #9, #11,
+b13, ...). Attach it BARE, to the right of the chord, WHENEVER a 7th or an extension
+number is present: F7#5, Ab7b9, C9b5, C9#5, C13#5, B7#11, Eb7#5b9. Wrap it in parentheses ONLY on a
+bare triad that has NO 7th/extension: F(#5) [= augmented triad], Ab(b9), A(#5#9). Rule of
+thumb: 7th or number present -> no parens; bare triad -> parens.
+
+SUS / SLASH / NO-CHORD:
+- Suspended: sus4, sus2, 7sus4 (Gsus4, D7sus4).
+- Slash / bass note: root then "/" then bass note, as printed (C/E, Fm7/Bb).
+- An empty / no-chord bar is N.C.
+
 CONVERSIONS from the book to canonical:
 - 7M, M7, Δ (major 7) -> maj7  (Eb7M -> Ebmaj7)
 - ø (half-dim) -> m7b5  (Aø -> Am7b5)
-- superscript 5+ (aug 5th) -> #5  (Bb7 with 5+ -> Bb7#5)
-- suffix t (means +, i.e. raise) -> # on that degree  (Eb9t -> Eb#9; F75t -> F7#5)
+- superscript 5+ (aug 5th) -> #5  (Bb7 with a 5+ -> Bb7#5; a Bb triad with a 5+ -> Bb(#5))
+- suffix t (means +, i.e. raise that degree) -> # on that degree  (Eb9t -> Eb#9; an F7 with a 5t -> F7#5)
 - .../14 (French "14th") -> #11  (E9/14 -> E9#11, since 7+7=14)
-- alteration in parentheses (...) -> OMIT entirely  (Bb9(b9) -> Bb9; D9(b5) -> D9)
-  (The ONLY parentheses allowed in output are in m(maj7).)
-OTHER: Watch B vs Bb carefully — different chords. If a chord is uncertain due to scan
-quality, append ? to that chord string (e.g. Bbmaj7?).
+OTHER: Transcribe the root exactly as printed — do NOT normalise enharmonics (if the box
+says F#, write F#; if it says Gb, write Gb). Watch B vs Bb carefully — different chords.
+If a chord is uncertain due to scan quality, append ? to that chord string (e.g. Bbmaj7?).
 
 === RECORDINGS & VARIANTS ===
 RECORDINGS: the left and/or right margins list performers, each with a 2-digit
@@ -204,11 +226,9 @@ drawn BOTH next to the target grid bar AND next to the alternate. Transcribe the
 
 === NOTATION NOTES ===
 "notation_notes" is a free-form object mapping a short key to an explanation. OMIT if
-empty. Record when applicable: the French "14"=#11 convention, the 5+ convention, the
-t=+ convention; any omitted parenthesised alterations; any chord marked ? (and why);
-any Case-3 inset/diagonal ambiguity and which bar; enharmonic/ambiguous readings;
-truncation; composer/performance annotations printed on the score; a "same chord
-changes" / cross-reference note (key "same_chord_changes", see below); any other
+empty. Record when applicable: enharmonic/ambiguous readings;
+truncation; composer/performance annotations printed on the score; 
+"same_chord_changes" / cross-reference note (key "same_chord_changes", see below); any other
 stray printed text; a missing grid (key "no_chord_grid").
 
 === SAME CHORD CHANGES ===
