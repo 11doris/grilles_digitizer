@@ -30,6 +30,9 @@ VERIFIED_DIR = Path("tunes_verified").resolve()
 _IGNORED_STEMS = frozenset({"run_report", "run_state", "verification_state"})
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
+# Preserve insertion order of JSON keys (e.g. section names) instead of
+# sorting them alphabetically, which Flask's JSON provider does by default.
+app.json.sort_keys = False  # type: ignore[attr-defined]
 
 
 # ---------------------------------------------------------------------------
