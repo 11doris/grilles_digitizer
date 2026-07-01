@@ -35,6 +35,26 @@ def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+_CASE_FIELDS = ("title", "composer", "style", "tempo")
+
+
+def _title_case(value: str) -> str:
+    """Capitalize the first letter of each space-delimited word, lower-casing the
+    rest. Applied only to fully upper-case values (see `_normalize_case`), so the
+    " – " composer separator and any already-cased text are left intact."""
+    return " ".join(w[:1].upper() + w[1:].lower() for w in value.split(" "))
+
+
+def _normalize_case(obj: dict) -> None:
+    """Render the display fields in Title Case rather than the book's all-caps.
+    Only all-upper-case values are converted, so a value the model already cased
+    correctly (e.g. a composer's name with internal capitals) is preserved."""
+    for key in _CASE_FIELDS:
+        value = obj.get(key)
+        if isinstance(value, str) and value.isupper():
+            obj[key] = _title_case(value)
+
+
 def _select(units: list[WorkUnit], config: Config) -> list[WorkUnit]:
     if config.only:
         units = [u for u in units if u.current_file == config.only]
@@ -78,6 +98,7 @@ def _transcribe_unit(config: Config, client: VLMClient, unit: WorkUnit) -> UnitR
             obj["title"] = unit.title
             obj["page"] = unit.page
             obj["source"] = SOURCE_CONSTANT
+            _normalize_case(obj)
             validate(obj, unit)
         except (ValidationError, VLMRefusal) as exc:
             last_error = f"{type(exc).__name__}: {exc}"
