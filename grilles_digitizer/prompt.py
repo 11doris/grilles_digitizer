@@ -102,7 +102,11 @@ Every bar is an object: {{ "bar": 3, "beats": {{ "1": "Ab", "3": "A°" }} }}
 
 === BAR SUBDIVISION LAYOUTS (the only cases) ===
 Read each chord and ALL its alteration suffixes only from within its own region.
-1. Undivided, one chord: whole bar -> {{ "1": "Cm7" }}
+1. Undivided, one chord: whole bar -> {{ "1": "Cm7" }}. An undivided box is exactly ONE
+   whole-bar chord on beat 1 — do NOT split it into two beats. Only subdivide when a
+   visible divider line or separate framed region is actually drawn; never invent a
+   second chord (e.g. a phantom "1":"C","3":"C7" or "1":"Bbmaj7","3":"Bbm6") in a box
+   that shows a single symbol.
 2. Diagonal split (top-right to bottom-left) OR horizontal-half split: BOTH encode
    identically. upper/upper-left -> "1"; lower/lower-right -> "3":
    {{ "1": "Eb", "3": "Eb7" }}
@@ -176,13 +180,18 @@ is a genuine empty bar — encode {{ "1": "N.C." }}.
 Major triad -> root only (C). Minor -> m (Cm). Dominant 7th -> 7 (G7).
 Major 7th -> maj7 (Cmaj7). Minor 7th -> m7 (Dm7). Half-diminished -> m7b5 (Am7b5).
 Diminished -> ° (C°); ° covers BOTH the diminished triad and the diminished 7th — always
-write just °. Augmented triad -> (#5) (Eb(#5)). Augmented dominant -> 7#5 (Eb7#5).
+write just °. A small hand-drawn circle "°" (often a raised, unfilled loop after the
+root) is DIMINISHED, not a 7: read "G#" followed by a little circle as G#°, NEVER G#7.
+Augmented triad -> (#5) (Eb(#5)). Augmented dominant -> 7#5 (Eb7#5).
 Minor-major 7th -> m(maj7) (Dm(maj7)).
 
 SYMBOL ORDER: build every chord in this fixed order, no spaces:
   ROOT -> quality (m / maj7 / ° / m7b5 / sus4 ...) -> highest extension number
   (6, 7, 9, 11, 13) -> alteration suffixes in ascending-degree order (b5 #5 b9 #9 #11 b13).
   Examples: Dm7, Ebmaj7, C13, F7#5, B7#11, C9b5, Eb7#5b9, Gm11.
+  A number NEVER sits between the root and the quality: a minor 7th is Gm7, never
+  "G6m7"; if you seem to see a digit wedged there it is a misread — drop it. Every
+  chord string you emit must follow this order; malformed spellings are always wrong.
 
 EXTENSIONS (bare numbers): 6, 9, 11, 13 and their minor/major forms m6, m9, m11, m13,
 maj9. A single bare extension number implies the chord tones below it, so write the
@@ -207,21 +216,31 @@ F(#5), NOT F7#5. Transcribe the quality actually written, not the chord it sugge
 READING SUPERSCRIPT ACCIDENTALS (the (b9) traps — read these carefully):
 Alterations and extensions are hand-drawn as small SUPERSCRIPTS to the upper-right of
 the chord root (e.g. a bare "A" with a tiny "b9" above-right of it). A hand-drawn FLAT
-sign (b / ♭) in such a superscript is a tall loop that is EASILY CONFUSED with the
-digit 6 or a lowercase b. This causes three recurring mistakes — DO NOT make them:
+sign (b / ♭) in such a superscript is a tall loop EASILY CONFUSED with the digit 6, a
+lowercase b, or a lowercase g; and a hand-drawn 9 is a loop with a tail EASILY CONFUSED
+with a lowercase g. This causes recurring mistakes — DO NOT make them:
 - DO NOT drop the flat: a triad with a superscript flat-9 is (b9), NEVER a plain 9.
   ("A" with superscript ♭9 -> A(b9), not A9.)
 - DO NOT read the flat as a 6 (nor read a genuine 6 with a stray flat): a superscript
   that reads like "b9", "9b", or "96" beside a triad is almost always a FLAT-NINE ->
   (b9), NOT a 6. ("D" ♭9 -> D(b9), not Db6 / D6; "C" ♭9 -> C(b9), not C6b.)
-- DO NOT migrate a superscript flat onto the ROOT. The root's own accidental (the flat
-  in Bb, Eb; the sharp in F#) is written INLINE, at the SAME large size as the root
-  letter, immediately after it. A small RAISED flat is an ALTERATION of the chord, not
-  part of the root name. So "G" with a superscript ♭9 is G(b9), NEVER Gb9; "D" with a
-  superscript ♭9 is D(b9), NEVER Db.
+- DO NOT read a 9 (or a flat) as the letter "g": a superscript scrawl that looks like
+  "g" is a digit 9 or a flat, NEVER a literal letter g. "Eb" with a superscript loop is
+  Eb9, not "Ebg"; "C" with a ♭9 scrawl is C(b9), not "Cgb".
+- DO NOT invent a b5: a superscript flat-nine on a triad reads as "(b9)", NOT "9b5". Do
+  not add a b5 the box does not print. "Bb" ♭9 -> Bb(b9), never Bb9b5.
+- DO NOT migrate a superscript accidental onto the ROOT. The root's own accidental (the
+  flat in Bb, Eb; the sharp in F#) is written INLINE, at the SAME large size as the root
+  letter, immediately after it. A small RAISED flat OR sharp is an ALTERATION of the
+  chord, not part of the root name. So "G" with a superscript ♭9 is G(b9), NEVER Gb9;
+  "D" with a superscript ♭9 is D(b9), NEVER Db; a "G" with a superscript ♯ (e.g. 9#11)
+  is G9#11, NEVER G#9#11 — do not sharpen the root from a raised alteration.
 Net rule: a bare triad carrying a superscript flat-nine is the parenthesised form
-C(b9), D(b9), G(b9), A(b9), F#(b9). Distinguish a real 6 chord (C6, Bb6 — a plain 6 at
-normal size, NO flat stroke) from a (b9) (a 9 preceded/accompanied by a flat stroke).
+C(b9), D(b9), G(b9), A(b9), F#(b9). The ONLY correct spelling is "(b9)" — never "9b",
+"9b5", "b9" fused to the root, "gb", "cgb", "g", or "6". Distinguish a real 6 chord
+(C6, Bb6 — a plain 6 at normal size, NO flat stroke) from a (b9) (a 9 preceded/
+accompanied by a flat stroke). If such a bare-triad (b9) chord is ITSELF wholly enclosed
+in parentheses as an optional chord, keep both sets: "(A(b9))".
 Apply this same superscript-reading care inside VARIANTE boxes, not just the main grid.
 
 SUS / SLASH / NO-CHORD:
@@ -298,10 +317,16 @@ changes to ANOTHER tune. Capture it verbatim — do not drop it. Two printed for
   parenthesised attribution, e.g. "SAME CHORD CHANGES : PRINCE ALBERT (K.Dorham)".
 - Unlabelled prose: the same idea written out, e.g. 'Almost the same chord changes as
   "I can't believe that you're in love with me"'.
-Record the WHOLE line verbatim (keep the referenced title, any parentheses, and the
-quote marks) in the top-level "same_chord_changes" string field (NOT inside
-notation_notes). OMIT the field entirely when there is no such line. This is NOT a
-missing grid — the tune still has its own printed changes; transcribe those normally.
+DO NOT repeat the "SAME CHORD CHANGES :" label inside the value — the field name already
+says that. For the LABELLED form, strip the leading "SAME CHORD CHANGES :" (and any
+surrounding whitespace/colon) and record ONLY what follows: the referenced title plus
+any parenthesised attribution, e.g. value "PRINCE ALBERT (K.Dorham)" or
+"BALLADE (C.Parker, C.Hawkins )" — NOT "SAME CHORD CHANGES : PRINCE ALBERT (K.Dorham)".
+For the UNLABELLED prose form (which has no such label) record the whole sentence
+verbatim. Either way keep the referenced title, any parentheses, and the quote marks.
+Put it in the top-level "same_chord_changes" string field (NOT inside notation_notes).
+OMIT the field entirely when there is no such line. This is NOT a missing grid — the
+tune still has its own printed changes; transcribe those normally.
 GENERAL RULE: any other stray explanatory text printed on the score that is not a
 chord, a margin performer/year credit, or an omitted variant/statement marker should
 likewise be captured verbatim in a notation_notes entry (pick a short descriptive key).
@@ -426,9 +451,12 @@ TUNE_TOOL = {
             "same_chord_changes": {
                 "type": "string",
                 "description": (
-                    "Verbatim cross-reference line relating this tune's changes to "
-                    "another tune (labelled 'SAME CHORD CHANGES :' or written as prose). "
-                    "Keep the referenced title, parentheses, and quote marks. Omit if absent."
+                    "Cross-reference relating this tune's changes to another tune. Do "
+                    "NOT repeat the 'SAME CHORD CHANGES :' label in the value: strip that "
+                    "label and record only the referenced title plus any parenthesised "
+                    "attribution (e.g. 'PRINCE ALBERT (K.Dorham)'). For an unlabelled prose "
+                    "note, record the whole sentence verbatim. Keep the referenced title, "
+                    "parentheses, and quote marks. Omit if absent."
                 ),
             },
             "notation_notes": {"type": "object"},
