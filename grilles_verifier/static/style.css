@@ -632,6 +632,32 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
   font-weight: 600;
 }
 
+/* Invalid chord highlighting + hint bubble */
+.beat-inp.chord-invalid {
+  border-color: var(--danger);
+  background: #fef2f2;
+  color: var(--danger-h);
+}
+.beat-inp.chord-invalid:focus {
+  border-color: var(--danger);
+  background: #fef2f2;
+}
+
+#chord-hint {
+  position: fixed;
+  z-index: 1500;
+  max-width: 380px;
+  background: #991b1b;
+  color: #fee2e2;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  line-height: 1.45;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  pointer-events: none;
+}
+#chord-hint div + div { margin-top: 4px; }
+
 /* Section footer */
 .sec-footer {
   display: flex;
