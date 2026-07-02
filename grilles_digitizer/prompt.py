@@ -90,7 +90,7 @@ ONLY use this when there really are multiple labelled strains. A normal AABA tun
 single-strain: plain keys (A, A1, B, ...) and one form string — never wrap it in s1_.
 
 === BARS AND BEATS ===
-Every bar is an object: {{ "bar": 3, "beats": {{ "1": "Ab", "3": "A°" }} }}
+Every bar is an object: {{ "bar": 3, "beats": {{ "1": "Ab", "3": "Ao7" }} }}
 - "bar": 1-indexed within its section, restarting at 1 each section.
 - "beats": keys are beat-number strings "1".."4", values are chord strings.
 - A whole-bar chord is STILL an object: {{ "bar": 1, "beats": {{ "1": "Db" }} }}.
@@ -117,7 +117,7 @@ Read each chord and ALL its alteration suffixes only from within its own region.
    (Borrowing the missing ROOT this way is the one exception to the BOUNDARY BOX RULE;
    a bare alteration like b5/#5 is not a chord and stays with its own region.)
 3. Bottom-right inset square only (no full horizontal divider): the large area is
-   "1"; the small framed corner square is beat 4 -> "4": {{ "1": "Em7", "4": "Eb°" }}
+   "1"; the small framed corner square is beat 4 -> "4": {{ "1": "Em7", "4": "Ebo7" }}
    AMBIGUITY FALLBACK: if scan quality makes the inset corner indistinguishable from
    a plain diagonal, treat it as a diagonal (Case 2) -> beat 3, and add a
    notation_notes entry for that bar.
@@ -133,7 +133,7 @@ Read each chord and ALL its alteration suffixes only from within its own region.
 6. Four squares (2x2): top-left "1", top-right "2", bottom-left "3", bottom-right "4".
 
 BOUNDARY BOX RULE: when a bar is subdivided, a chord symbol AND all its alteration
-suffixes (b5, #5, b9, m, °, etc.) must be read only from within that beat's own
+suffixes (b5, #5, b9, m, o7, etc.) must be read only from within that beat's own
 region. Never reach across a subdivision line to attach an alteration to a neighbor.
 ONE EXCEPTION: a region showing only a bare added degree (7, 6, m7, ...) with no root
 of its own borrows the ROOT from the adjacent named chord — the brief-extension split
@@ -185,14 +185,14 @@ is a genuine empty bar — encode {{ "1": "N.C." }}.
 === CHORD NOTATION (canonical vocabulary) ===
 Major triad -> root only (C). Minor -> m (Cm). Dominant 7th -> 7 (G7).
 Major 7th -> maj7 (Cmaj7). Minor 7th -> m7 (Dm7). Half-diminished -> m7b5 (Am7b5).
-Diminished -> ° (C°); ° covers BOTH the diminished triad and the diminished 7th — always
-write just °. A small hand-drawn circle "°" (often a raised, unfilled loop after the
-root) is DIMINISHED, not a 7: read "G#" followed by a little circle as G#°, NEVER G#7.
+Diminished -> o7 (Co7); o7 covers BOTH the diminished triad and the diminished 7th — always
+write just o7. A small hand-drawn circle "°" (often a raised, unfilled loop after the
+root) is DIMINISHED, not a 7: read "G#" followed by a little circle as G#o7, NEVER G#7.
 Augmented triad -> (#5) (Eb(#5)). Augmented dominant -> 7#5 (Eb7#5).
 Minor-major 7th -> m(maj7) (Dm(maj7)).
 
 SYMBOL ORDER: build every chord in this fixed order, no spaces:
-  ROOT -> quality (m / maj7 / ° / m7b5 / sus4 ...) -> highest extension number
+  ROOT -> quality (m / maj7 / o7 / m7b5 / sus4 ...) -> highest extension number
   (6, 7, 9, 11, 13) -> alteration suffixes in ascending-degree order (b5 #5 b9 #9 #11 b13).
   Examples: Dm7, Ebmaj7, C13, Ab7(13), F7#5, B7#11, C9b5, Eb7#5b9, Gm11.
   A number NEVER sits between the root and the quality: a minor 7th is Gm7, never

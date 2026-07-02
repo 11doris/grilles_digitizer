@@ -12,7 +12,7 @@ ALTERATIONS & PARENTHESES, EXTENSIONS, SUS/SLASH/NO-CHORD):
   core       := root stem paren_ext? alts slash? "?"?
   root       := [A-G] ("#"|"b")?                    # as printed, no enharmonic change
   stem       := "" | m | 6 | 7 | 9 | 11 | 13 | 6/9 | maj7 | maj9
-              | m6 | m7 | m9 | m11 | m13 | m6/9 | m7b5 | ° | m(maj7)
+              | m6 | m7 | m9 | m11 | m13 | m6/9 | m7b5 | o7 | m(maj7)
               | sus4 | sus2 | 7sus4 | 9sus4         # bare printed "sus" -> sus4
   paren_ext  := "(13)" etc. — parenthesised superscript extension, kept literal
   alts       := (b5|#5|b9|#9|#11|b13)+ in ascending-degree order
@@ -20,7 +20,7 @@ ALTERATIONS & PARENTHESES, EXTENSIONS, SUS/SLASH/NO-CHORD):
                 - parenthesised on a bare triad: F(#5), D(b9), A(#5#9)
                 - never both, never "9b" — flat-nine is always spelled "(b9)"
   slash      := "/" root                            # slash bass, e.g. Fm7/Bb
-  °          := U+00B0 DEGREE SIGN (the only allowed diminished glyph)
+  o7         := lowercase "o" + "7" (the only allowed diminished spelling)
 
 Exit code 1 if any chord fails, 0 otherwise.
 """
@@ -45,7 +45,7 @@ STEMS = [
     r"m6", r"m7", r"m9", r"m11", r"m13",
     r"m6/9",
     r"m7b5",
-    r"°",
+    r"o7",
     r"m\(maj7\)",
     r"sus4", r"sus2", r"7sus4", r"9sus4",
 ]

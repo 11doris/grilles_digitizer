@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grilles</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <span class="appname">Grilles</span>
+    <input id="search" type="search" placeholder="Search title or composer…" autocomplete="off" spellcheck="false">
+    <button id="themeToggle" type="button" title="Toggle theme">☀</button>
+  </header>
+  <div class="layout">
+    <nav id="tuneList" aria-label="Tunes"></nav>
+    <main id="tuneView"></main>
+  </div>
+  <script src="data/tunes_data.js"></script>
+  <script src="chords.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
