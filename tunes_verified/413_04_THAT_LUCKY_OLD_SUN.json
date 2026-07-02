@@ -1,0 +1,279 @@
+{
+  "composer": "Beasley SMITH – Haven GILLESPIE",
+  "year": "1949",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "THAT LUCKY OLD SUN",
+  "page": 413,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
+  "recordings": [
+    "L.Armstrong 49.49-",
+    "R.Charles 65- A.Franklin 61",
+    "S.Davis 61- F.Sinatra 49",
+    "Gr.Green 65- S.Vaughan 49-",
+    "H.L.Page 49- Ger.Brown 61",
+    "G.Benson 66-"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 6",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Bb13"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "4": "Cmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am",
+          "4": "Fm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C",
+          "3": "F6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C",
+          "2": "G7",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F6"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Em7",
+          "3": "Am7",
+          "4": "Fm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "Dm7",
+          "4": "G(b9)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C",
+          "2": "F7",
+          "3": "C"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "4": "Cmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am",
+          "4": "Fm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C",
+          "3": "F6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C",
+          "2": "G7",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F6"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Em7",
+          "3": "Am7",
+          "4": "Fm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "Dm7",
+          "4": "G(b9)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C",
+          "2": "F7",
+          "3": "C"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Am",
+          "3": "Em"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F6",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Am",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am",
+          "3": "Em"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F6",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "2": "Cmaj7",
+          "3": "Am7",
+          "4": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "4": "Cmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am",
+          "4": "Fm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C",
+          "3": "F6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C",
+          "2": "G7",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F6"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Em7",
+          "3": "Am7",
+          "4": "Fm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "Dm7",
+          "4": "G(b9)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C",
+          "2": "F7",
+          "3": "C"
+        }
+      }
+    ]
+  }
+}
