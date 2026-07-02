@@ -564,6 +564,7 @@ function renderEditor() {
   const tune = S.tunes.find(t => t.id === S.currentId);
   if (tune?.has_image) {
     qs('#crop-img').src = `/crop/${encodeURIComponent(S.currentId)}`;
+    qs('#crop-filename').textContent = `${S.currentId}.png`;
     qs('#image-panel').classList.remove('hidden');
   } else {
     qs('#image-panel').classList.add('hidden');
