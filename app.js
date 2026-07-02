@@ -8,12 +8,23 @@
   const searchEl = document.getElementById("search");
   const listEl = document.getElementById("tuneList");
   const viewEl = document.getElementById("tuneView");
+  const paneEl = document.getElementById("tunePane");
   const themeBtn = document.getElementById("themeToggle");
+  const listToggle = document.getElementById("listToggle");
+  const listBackdrop = document.getElementById("listBackdrop");
+  const imageToggle = document.getElementById("imageToggle");
+  const imagePane = document.getElementById("imagePane");
+  const imageEl = document.getElementById("tuneImage");
+
+  /* Below 700px the list is a drawer; from 900px the scan docks beside the grid. */
+  const narrowMq = window.matchMedia("(max-width: 700px)");
+  const wideMq = window.matchMedia("(min-width: 900px)");
 
   const state = {
     filtered: TUNES,
     activeIndex: -1, // keyboard highlight within filtered list
     currentId: null, // tune displayed in the main panel
+    showImage: false, // original scan visible (side panel or overlay)
   };
 
   /* ---------------------------------------------------------------- theme */
@@ -42,6 +53,59 @@
     } catch (e) { /* ignore */ }
   });
 
+  /* ----------------------------------------------------- tune list drawer */
+
+  function setListOpen(open) {
+    document.body.classList.toggle("list-open", open);
+    listToggle.setAttribute("aria-expanded", String(open));
+  }
+
+  listToggle.addEventListener("click", () => {
+    setListOpen(!document.body.classList.contains("list-open"));
+  });
+
+  listBackdrop.addEventListener("click", () => setListOpen(false));
+
+  /* -------------------------------------------------------- original scan */
+
+  function applyImage() {
+    const tune = tuneById(state.currentId);
+    const src = tune && tune.image;
+    if (src) {
+      imageToggle.hidden = false;
+      imageToggle.classList.toggle("on", state.showImage);
+      if (imageEl.getAttribute("src") !== src) imageEl.src = src;
+      imageEl.alt = `${tune.title || tune.id} — original scan`;
+      imagePane.hidden = !state.showImage;
+    } else {
+      imageToggle.hidden = true;
+      imagePane.hidden = true;
+    }
+    document.body.classList.toggle("show-image", Boolean(src) && state.showImage);
+  }
+
+  function setShowImage(show) {
+    state.showImage = show;
+    try {
+      localStorage.setItem("grilles.image", show ? "1" : "0");
+    } catch (e) { /* ignore */ }
+    applyImage();
+    requestAnimationFrame(fitAll);
+  }
+
+  imageToggle.addEventListener("click", () => setShowImage(!state.showImage));
+
+  /* On narrow screens the pane is a fullscreen overlay: tap anywhere closes. */
+  imagePane.addEventListener("click", () => {
+    if (!wideMq.matches) setShowImage(false);
+  });
+
+  imageEl.addEventListener("error", () => {
+    imageToggle.hidden = true;
+    imagePane.hidden = true;
+    document.body.classList.remove("show-image");
+  });
+
   /* ---------------------------------------------------------------- search */
 
   function normalize(s) {
@@ -64,6 +128,7 @@
     state.filtered = filterTunes(searchEl.value);
     state.activeIndex = state.filtered.length ? 0 : -1;
     renderList();
+    if (narrowMq.matches && searchEl.value) setListOpen(true); // show results on mobile
   });
 
   /* ------------------------------------------------------------ tune list */
@@ -110,6 +175,14 @@
       const tune = state.filtered[state.activeIndex];
       if (tune) openTune(tune.id);
     } else if (e.key === "Escape") {
+      if (document.body.classList.contains("show-image") && !wideMq.matches) {
+        setShowImage(false);
+        return;
+      }
+      if (document.body.classList.contains("list-open")) {
+        setListOpen(false);
+        return;
+      }
       if (searchEl.value) {
         searchEl.value = "";
         searchEl.dispatchEvent(new Event("input"));
@@ -321,27 +394,55 @@
     document.title = `${tune.title || id} — Grilles`;
 
     const beats = beatsPerBar(tune);
-    viewEl.innerHTML = "";
-    viewEl.appendChild(renderHead(tune));
+    paneEl.innerHTML = "";
+    paneEl.appendChild(renderHead(tune));
 
     const grid = el("div", "grid");
     const sectionNames = Object.keys(tune.sections || {});
     sectionNames.forEach((name, i) => {
       grid.appendChild(renderSection(name, tune.sections[name], beats, i === 0, tune.time_signature));
     });
-    viewEl.appendChild(grid);
+    paneEl.appendChild(grid);
 
     const extras = renderExtras(tune, beats);
-    if (extras) viewEl.appendChild(extras);
+    if (extras) paneEl.appendChild(extras);
 
     viewEl.scrollTop = 0;
+    if (narrowMq.matches) setListOpen(false);
+    applyImage();
     renderList(); // refresh "current" highlight
-    requestAnimationFrame(fitChords);
+    requestAnimationFrame(fitAll);
+  }
+
+  /*
+   * Shrink the grid's base font size until head + grid fit the viewport
+   * (one screen page, no vertical scrolling). All grid dimensions are
+   * em-based, so its height scales ~linearly with font-size.
+   */
+  const MIN_GRID_FONT = 8; // px — below this, scrolling beats unreadable chords
+
+  function fitGrid() {
+    const grid = paneEl.querySelector(".grid");
+    if (!grid) return;
+    grid.style.fontSize = "";
+    viewEl.scrollTop = 0;
+    for (let i = 0; i < 3; i++) {
+      const viewRect = viewEl.getBoundingClientRect();
+      const gridRect = grid.getBoundingClientRect();
+      const bottomLimit = viewRect.top + viewEl.clientTop + viewEl.clientHeight - 10;
+      const avail = bottomLimit - gridRect.top;
+      if (gridRect.height <= avail || avail <= 0) break;
+      const cur = parseFloat(getComputedStyle(grid).fontSize);
+      const next = Math.max(MIN_GRID_FONT, cur * (avail / gridRect.height));
+      if (cur - next < 0.5) break;
+      grid.style.fontSize = next.toFixed(2) + "px";
+      if (next === MIN_GRID_FONT) break;
+    }
   }
 
   /* Shrink chords that overflow their beat slots (spec §6.4). */
   function fitChords() {
-    viewEl.querySelectorAll(".slot").forEach((slot) => {
+    paneEl.querySelectorAll(".slot").forEach((slot) => {
       const chord = slot.firstElementChild;
       if (!chord) return;
       chord.style.fontSize = "";
@@ -353,15 +454,28 @@
     });
   }
 
+  function fitAll() {
+    fitGrid();
+    fitChords();
+  }
+
   let resizeTimer = null;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(fitChords, 150);
+    resizeTimer = setTimeout(fitAll, 150);
   });
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => requestAnimationFrame(fitAll));
+  }
 
   /* ----------------------------------------------------------------- init */
 
   initTheme();
+  try {
+    /* Only restore the docked side panel; never greet mobile with an overlay. */
+    state.showImage = localStorage.getItem("grilles.image") === "1" && wideMq.matches;
+  } catch (e) { /* ignore */ }
   renderList();
   searchEl.focus();
 
@@ -372,6 +486,6 @@
     history.replaceState(null, "", "#" + encodeURIComponent(TUNES[0].id));
     renderTune(TUNES[0].id);
   } else {
-    viewEl.innerHTML = '<div class="list-empty">No tunes found. Run build_data.py first.</div>';
+    paneEl.innerHTML = '<div class="list-empty">No tunes found. Run build_data.py first.</div>';
   }
 })();

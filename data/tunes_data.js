@@ -383,7 +383,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/9_04_AIN_T_MISBEHAVIN.png"
  },
  {
   "id": "20_01_ANNIE_LAURIE",
@@ -653,7 +654,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/20_01_ANNIE_LAURIE.png"
  },
  {
   "id": "22_01_AS_LONG_AS_I_LIVE",
@@ -906,7 +908,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/22_01_AS_LONG_AS_I_LIVE.png"
  },
  {
   "id": "22_02_AS_TIME_GOES_BY",
@@ -1209,7 +1212,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/22_02_AS_TIME_GOES_BY.png"
  },
  {
   "id": "21_04_ASK_ME_NOW",
@@ -1473,7 +1477,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/21_04_ASK_ME_NOW.png"
  },
  {
   "id": "23_03_AT_LONG_LAST_LOVE",
@@ -1705,7 +1710,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/23_03_AT_LONG_LAST_LOVE.png"
  },
  {
   "id": "70_01_CHATTANOOGA_CHOO_CHOO",
@@ -2066,7 +2072,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/70_01_CHATTANOOGA_CHOO_CHOO.png"
  },
  {
   "id": "72_01_CHEROKEE",
@@ -2494,7 +2501,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/72_01_CHEROKEE.png"
  },
  {
   "id": "77_01_CLOSE_YOUR_EYES",
@@ -2736,7 +2744,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/77_01_CLOSE_YOUR_EYES.png"
  },
  {
   "id": "79_03_CON_ALMA",
@@ -3039,7 +3048,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/79_03_CON_ALMA.png"
  },
  {
   "id": "96_01_DEDICATED_TO_YOU",
@@ -3285,7 +3295,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/96_01_DEDICATED_TO_YOU.png"
  },
  {
   "id": "98_02_DETOUR_AHEAD",
@@ -3571,7 +3582,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/98_02_DETOUR_AHEAD.png"
  },
  {
   "id": "114_01_EASY_LIVING",
@@ -3832,7 +3844,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/114_01_EASY_LIVING.png"
  },
  {
   "id": "119_03_EVERYTHING_HAPPENS_TO_ME",
@@ -4113,7 +4126,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/119_03_EVERYTHING_HAPPENS_TO_ME.png"
  },
  {
   "id": "120_02_EVERYTIME_WE_SAY_GOODBYE",
@@ -4407,7 +4421,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/120_02_EVERYTIME_WE_SAY_GOODBYE.png"
  },
  {
   "id": "148_04_HAND_ACROSS_THE_TABLE",
@@ -4539,7 +4554,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/148_04_HAND_ACROSS_THE_TABLE.png"
  },
  {
   "id": "153_02_HEART_AND_SOUL",
@@ -4808,7 +4824,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/153_02_HEART_AND_SOUL.png"
  },
  {
   "id": "163_03_HOW_LONG_HAS_THIS_BEEN_GOING_ON",
@@ -5116,7 +5133,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/163_03_HOW_LONG_HAS_THIS_BEEN_GOING_ON.png"
  },
  {
   "id": "168_01_I_CAN_T_BELIEVE_THAT_YOU_RE_IN_LOVE_WITH_ME",
@@ -5347,7 +5365,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/168_01_I_CAN_T_BELIEVE_THAT_YOU_RE_IN_LOVE_WITH_ME.png"
  },
  {
   "id": "187_02_I_MAY_BE_WRONG",
@@ -5606,7 +5625,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/187_02_I_MAY_BE_WRONG.png"
  },
  {
   "id": "183_02_I_LL_NEVER_SMILE_AGAIN",
@@ -5856,7 +5876,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/183_02_I_LL_NEVER_SMILE_AGAIN.png"
  },
  {
   "id": "340_03_ROBBINS_NEST",
@@ -6089,7 +6110,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/340_03_ROBBINS_NEST.png"
  },
  {
   "id": "413_04_THAT_LUCKY_OLD_SUN",
@@ -6369,7 +6391,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/413_04_THAT_LUCKY_OLD_SUN.png"
  },
  {
   "id": "475_04_YOU_CALL_IT_MADNESS",
@@ -6637,7 +6660,8 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/475_04_YOU_CALL_IT_MADNESS.png"
  },
  {
   "id": "478_02_YOU_MADE_ME_LOVE_YOU",
@@ -6905,6 +6929,7 @@ window.TUNES = [
      }
     }
    ]
-  }
+  },
+  "image": "crops/478_02_YOU_MADE_ME_LOVE_YOU.png"
  }
 ];

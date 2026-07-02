@@ -8,13 +8,21 @@
 </head>
 <body>
   <header class="topbar">
+    <button id="listToggle" type="button" title="Show tune list" aria-label="Toggle tune list">☰</button>
     <span class="appname">Grilles</span>
     <input id="search" type="search" placeholder="Search title or composer…" autocomplete="off" spellcheck="false">
+    <button id="imageToggle" type="button" title="Show original scan" aria-label="Toggle original scan" hidden>▦</button>
     <button id="themeToggle" type="button" title="Toggle theme">☀</button>
   </header>
   <div class="layout">
     <nav id="tuneList" aria-label="Tunes"></nav>
-    <main id="tuneView"></main>
+    <div id="listBackdrop"></div>
+    <main id="tuneView">
+      <div id="tunePane"></div>
+      <aside id="imagePane" hidden>
+        <img id="tuneImage" alt="">
+      </aside>
+    </main>
   </div>
   <script src="data/tunes_data.js"></script>
   <script src="chords.js"></script>
