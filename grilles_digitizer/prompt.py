@@ -169,6 +169,12 @@ ALWAYS expand fully. NEVER output -, %, •/•, ->, or any shorthand. Write the
     Only the boxes A2 writes explicitly differ from A1.
 - Diagonal spanning TWO adjacent boxes (two-bar repeat): copy the immediately
   preceding two bars into those two bars.
+- TWO-BAR REPEAT SIGN (a bold double slash / double line with two dots — one dot above
+  and one below, or one on each side — drawn STRADDLING the barline between a PAIR of
+  bars; the multi-measure repeat mark): it fills BOTH of those bars by copying the
+  immediately preceding TWO bars — bar n-2 into the first, bar n-1 into the second, NOT
+  the same single bar twice. Typical case: bars 3-4 restate bars 1-2. The sign occupies
+  two whole bars, so never mistake it for a single-box bar-repeat.
 - •/• or similar within one box (bar repeat): copy the immediately preceding bar.
 - - (dash) in a box (bar repeat): copy the immediately preceding bar. THIS APPLIES
   ONLY OUTSIDE a left-arrow row; inside a left-arrow row a dash is the positional
@@ -188,7 +194,7 @@ Minor-major 7th -> m(maj7) (Dm(maj7)).
 SYMBOL ORDER: build every chord in this fixed order, no spaces:
   ROOT -> quality (m / maj7 / ° / m7b5 / sus4 ...) -> highest extension number
   (6, 7, 9, 11, 13) -> alteration suffixes in ascending-degree order (b5 #5 b9 #9 #11 b13).
-  Examples: Dm7, Ebmaj7, C13, F7#5, B7#11, C9b5, Eb7#5b9, Gm11.
+  Examples: Dm7, Ebmaj7, C13, Ab7(13), F7#5, B7#11, C9b5, Eb7#5b9, Gm11.
   A number NEVER sits between the root and the quality: a minor 7th is Gm7, never
   "G6m7"; if you seem to see a digit wedged there it is a misread — drop it. Every
   chord string you emit must follow this order; malformed spellings are always wrong.
@@ -196,7 +202,9 @@ SYMBOL ORDER: build every chord in this fixed order, no spaces:
 EXTENSIONS (bare numbers): 6, 9, 11, 13 and their minor/major forms m6, m9, m11, m13,
 maj9. A single bare extension number implies the chord tones below it, so write the
 HIGHEST number only: a dominant simply marked as a 13th is C13; an 11th is C11; a ninth
-is C9. 6/9 chord -> 6/9 (C6/9, Cm6/9).
+is C9. 6/9 chord -> 6/9 (C6/9, Cm6/9). This collapse applies ONLY to a plain bare number:
+a 7 or 9 printed WITH a parenthesised superscript extension is the exception below — keep
+it literal (Ab7(13), D9(13)), NEVER collapse it to Ab13 / D13.
 PARENTHESISED SUPERSCRIPT EXTENSION — preserve as printed: when the book writes an
 explicit 7 or 9 with a FURTHER extension drawn as a parenthesised superscript beside it
 (e.g. a "7" with a superscript "(13)", or a "9" with "(13)"), keep that literal form:
