@@ -78,7 +78,7 @@ const CHORD_STEMS = [
   'm6', 'm7', 'm9', 'm11', 'm13',
   'm6/9',
   'm7b5',
-  '°',
+  'o7',
   'm\\(maj7\\)',
   'sus4', 'sus2', '7sus4', '9sus4',
 ];
@@ -111,8 +111,8 @@ function chordParseHints(s) {
     hints.push('Major 7th is written maj7 (7M / M7 / Δ → maj7), e.g. Ebmaj7.');
   if (/ø|Ø/.test(s))
     hints.push('Half-diminished is written m7b5 (ø → m7b5), e.g. Am7b5.');
-  if (/[o0ºΟO˚]\)?$/.test(s))
-    hints.push('Diminished is written with the degree sign ° (Alt+0176), e.g. G#°.');
+  if (/[o0°ºΟO˚]\)?$/.test(s))
+    hints.push('Diminished is written o7 (lowercase o + 7), e.g. G#o7.');
   if (/aug|\+/.test(s))
     hints.push('Augmented: (#5) on a bare triad (Eb(#5)), #5 after a 7th/extension (Eb7#5); 5+ → #5.');
   if (/sus(?![24])/.test(s))
@@ -124,7 +124,7 @@ function chordParseHints(s) {
   if (/maj(?![79])/.test(s))
     hints.push('"maj" must be followed by 7 or 9 (maj7, maj9); a plain major triad is the bare root.');
   if (!hints.length)
-    hints.push('Not a recognised chord. Expected: ROOT(A–G, #/b) + quality (m, maj7, m7b5, °, '
+    hints.push('Not a recognised chord. Expected: ROOT(A–G, #/b) + quality (m, maj7, m7b5, o7, '
       + 'm(maj7), sus4…) + extension (6, 7, 9, 11, 13, 6/9) + alterations (b5 #5 b9 #9 #11 b13) '
       + '+ optional /bass and trailing ? — e.g. Bb7, Fm7b5, C9b5, F(#5), D(b9), Fm7/Bb.');
   return hints;

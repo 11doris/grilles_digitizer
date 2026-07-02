@@ -30,14 +30,14 @@ window.TUNES = [
       "bar": 1,
       "beats": {
        "1": "Eb",
-       "3": "E°"
+       "3": "Eo7"
       }
      },
      {
       "bar": 2,
       "beats": {
        "1": "Fm7",
-       "3": "F#°"
+       "3": "F#o7"
       }
      }
     ]
@@ -474,7 +474,7 @@ window.TUNES = [
     {
      "bar": 4,
      "beats": {
-      "1": "F#°"
+      "1": "F#o7"
      }
     },
     {
@@ -524,7 +524,7 @@ window.TUNES = [
     {
      "bar": 4,
      "beats": {
-      "1": "F#°"
+      "1": "F#o7"
      }
     },
     {
@@ -613,7 +613,7 @@ window.TUNES = [
     {
      "bar": 2,
      "beats": {
-      "1": "F#°"
+      "1": "F#o7"
      }
     },
     {
@@ -806,7 +806,7 @@ window.TUNES = [
     {
      "bar": 1,
      "beats": {
-      "1": "F#°"
+      "1": "F#o7"
      }
     },
     {
@@ -843,7 +843,7 @@ window.TUNES = [
      "bar": 7,
      "beats": {
       "1": "C7",
-      "3": "F#°"
+      "3": "F#o7"
      }
     },
     {
@@ -954,7 +954,7 @@ window.TUNES = [
       "beats": {
        "1": "Eb",
        "3": "Fm7",
-       "4": "F#°"
+       "4": "F#o7"
       }
      },
      {
@@ -968,7 +968,7 @@ window.TUNES = [
       "bar": 5,
       "beats": {
        "1": "F7",
-       "3": "F#°"
+       "3": "F#o7"
       }
      },
      {
@@ -1037,7 +1037,7 @@ window.TUNES = [
      "bar": 8,
      "beats": {
       "1": "Fm7",
-      "3": "E°"
+      "3": "Eo7"
      }
     }
    ],
@@ -1121,7 +1121,7 @@ window.TUNES = [
     {
      "bar": 4,
      "beats": {
-      "1": "F#°"
+      "1": "F#o7"
      }
     },
     {
@@ -1141,14 +1141,14 @@ window.TUNES = [
      "bar": 7,
      "beats": {
       "1": "Fm7",
-      "3": "E°"
+      "3": "Eo7"
      }
     },
     {
      "bar": 8,
      "beats": {
       "1": "Fm7",
-      "3": "E°"
+      "3": "Eo7"
      }
     }
    ],
@@ -1185,7 +1185,7 @@ window.TUNES = [
      "bar": 5,
      "beats": {
       "1": "F7",
-      "3": "F#°"
+      "3": "F#o7"
      }
     },
     {
@@ -1639,7 +1639,7 @@ window.TUNES = [
     {
      "bar": 6,
      "beats": {
-      "1": "Eb°",
+      "1": "Ebo7",
       "3": "E7"
      }
     },
@@ -1864,7 +1864,7 @@ window.TUNES = [
      "bar": 5,
      "beats": {
       "1": "Bb",
-      "3": "B°"
+      "3": "Bo7"
      }
     },
     {
@@ -1921,7 +1921,7 @@ window.TUNES = [
      "bar": 5,
      "beats": {
       "1": "Bb",
-      "3": "B°"
+      "3": "Bo7"
      }
     },
     {
@@ -2180,7 +2180,7 @@ window.TUNES = [
     {
      "bar": 14,
      "beats": {
-      "1": "B°"
+      "1": "Bo7"
      }
     },
     {
@@ -3186,7 +3186,7 @@ window.TUNES = [
      "bar": 2,
      "beats": {
       "1": "F#m7",
-      "3": "F°"
+      "3": "Fo7"
      }
     },
     {
@@ -3207,7 +3207,7 @@ window.TUNES = [
      "bar": 5,
      "beats": {
       "1": "F",
-      "3": "F#°"
+      "3": "F#o7"
      }
     },
     {
@@ -3306,10 +3306,46 @@ window.TUNES = [
    "W.Williams 64- B.Brookmeyer 61",
    "Ellis 55.63- J.Griffin 61"
   ],
-  "variants": "[\n  {\n    \"applies_to\": \"Bar 1\",\n    \"bars\": [\n      {\n        \"bar\": 1,\n        \"beats\": {\n          \"1\": \"Cmaj7\",\n          \"3\": \"Gb13\"\n        }\n      },\n      {\n        \"bar\": 2,\n        \"beats\": {\n          \"1\": \"B9#5\",\n        }\n      },\n      {\n        \"bar\": 3,\n        \"beats\": {\n          \"1\": \"Cmaj7\",\n          \"2\": \"Em7\",\n          \"3\": \"Dm7\",\n          \"4\": \"C#°\"\n        }\n      },\n      {\n        \"bar\": 4,\n        \"beats\": {\n          \"1\": \"Dm7\",\n          \"2\": \"Ab7\",\n          \"3\": \"G7\"\n        }\n      }\n    ]\n  }\n]",
+  "variants": [
+   {
+    "applies_to": "Bar 1",
+    "bars": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "Cmaj7",
+       "3": "Gb13"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "B9#5"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Cmaj7",
+       "2": "Em7",
+       "3": "Dm7",
+       "4": "C#o7"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "Dm7",
+       "2": "Ab7",
+       "3": "G7"
+      }
+     }
+    ]
+   }
+  ],
   "notation_notes": {
-   "A_bar11_correction": "Section A bar 11 printed 'Dm7 / Db° E?5 Bb'; final bars read Dm7/Db° and Cm7/Bb per grid.",
-   "A2_final": "Final row shows C7M Gb13, B9+ (aug), then Em7 Am7 / Dm7 Db° / C6 turnaround.",
+   "A_bar11_correction": "Section A bar 11 printed 'Dm7 / Dbo7 E?5 Bb'; final bars read Dm7/Dbo7 and Cm7/Bb per grid.",
+   "A2_final": "Final row shows C7M Gb13, B9+ (aug), then Em7 Am7 / Dm7 Dbo7 / C6 turnaround.",
    "arrow_rows": "The '-' rows are leading-arrow positional copies of the preceding lettered rows."
   },
   "sections": {
@@ -3860,7 +3896,7 @@ window.TUNES = [
      "bar": 2,
      "beats": {
       "1": "Dm7",
-      "3": "Db°"
+      "3": "Dbo7"
      }
     },
     {
@@ -3917,7 +3953,7 @@ window.TUNES = [
      "bar": 2,
      "beats": {
       "1": "Dm7",
-      "3": "Db°"
+      "3": "Dbo7"
      }
     },
     {
@@ -4032,7 +4068,7 @@ window.TUNES = [
      "bar": 2,
      "beats": {
       "1": "Dm7",
-      "3": "Db°"
+      "3": "Dbo7"
      }
     },
     {
@@ -4159,7 +4195,7 @@ window.TUNES = [
      "bar": 3,
      "beats": {
       "1": "Ebmaj7",
-      "3": "E°"
+      "3": "Eo7"
      }
     },
     {
@@ -4204,7 +4240,7 @@ window.TUNES = [
      "bar": 1,
      "beats": {
       "1": "Ebmaj7",
-      "3": "Gb°"
+      "3": "Gbo7"
      }
     },
     {
@@ -4274,7 +4310,7 @@ window.TUNES = [
      "bar": 3,
      "beats": {
       "1": "Ebmaj7",
-      "3": "E°"
+      "3": "Eo7"
      }
     },
     {
@@ -4319,7 +4355,7 @@ window.TUNES = [
      "bar": 1,
      "beats": {
       "1": "Ebmaj7",
-      "3": "Gb°"
+      "3": "Gbo7"
      }
     },
     {
@@ -4525,7 +4561,22 @@ window.TUNES = [
   "notation_notes": {
    "verse": "Header prints '8 VERSE'."
   },
-  "variants": "[\n  {\n    \"applies_to\": \"Bar 1\",\n    \"bars\": [\n      {\n        \"bar\": 1,\n        \"beats\": {\n          \"1\": \"B7b5\",\n          \"2\": \"B7\"\n          \"3\": \"A7#5\",\n          \"4\": \"Ab13\"\n        }\n      }\n    ]\n  }\n]",
+  "variants": [
+   {
+    "applies_to": "Bar 1",
+    "bars": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "B7b5",
+       "2": "B7",
+       "3": "A7#5",
+       "4": "Ab13"
+      }
+     }
+    ]
+   }
+  ],
   "sections": {
    "A": [
     {
@@ -4791,7 +4842,7 @@ window.TUNES = [
       "bar": 1,
       "beats": {
        "1": "D7(13)",
-       "3": "D°"
+       "3": "Do7"
       }
      },
      {
@@ -4843,7 +4894,7 @@ window.TUNES = [
     {
      "bar": 2,
      "beats": {
-      "1": "D°"
+      "1": "Do7"
      }
     },
     {
@@ -4865,14 +4916,14 @@ window.TUNES = [
      "bar": 5,
      "beats": {
       "1": "Bm7",
-      "3": "Bb°"
+      "3": "Bbo7"
      }
     },
     {
      "bar": 6,
      "beats": {
       "1": "Am7",
-      "3": "G#°"
+      "3": "G#o7"
      }
     },
     {
@@ -4900,7 +4951,7 @@ window.TUNES = [
     {
      "bar": 2,
      "beats": {
-      "1": "D°"
+      "1": "Do7"
      }
     },
     {
@@ -4922,14 +4973,14 @@ window.TUNES = [
      "bar": 5,
      "beats": {
       "1": "Bm7",
-      "3": "Bb°"
+      "3": "Bbo7"
      }
     },
     {
      "bar": 6,
      "beats": {
       "1": "Am7",
-      "3": "G#°"
+      "3": "G#o7"
      }
     },
     {
@@ -4997,7 +5048,7 @@ window.TUNES = [
      "bar": 7,
      "beats": {
       "1": "Bm7",
-      "3": "Bb°"
+      "3": "Bbo7"
      }
     },
     {
@@ -5018,7 +5069,7 @@ window.TUNES = [
     {
      "bar": 2,
      "beats": {
-      "1": "D°"
+      "1": "Do7"
      }
     },
     {
@@ -5040,14 +5091,14 @@ window.TUNES = [
      "bar": 5,
      "beats": {
       "1": "Bm7",
-      "3": "Bb°"
+      "3": "Bbo7"
      }
     },
     {
      "bar": 6,
      "beats": {
       "1": "Am7",
-      "3": "G#°"
+      "3": "G#o7"
      }
     },
     {
@@ -5610,7 +5661,7 @@ window.TUNES = [
      "bar": 4,
      "beats": {
       "1": "Eb",
-      "3": "Gb°"
+      "3": "Gbo7"
      }
     },
     {
@@ -5678,7 +5729,7 @@ window.TUNES = [
      "bar": 6,
      "beats": {
       "1": "Bm7",
-      "3": "Gb°"
+      "3": "Gbo7"
      }
     },
     {
@@ -5691,7 +5742,7 @@ window.TUNES = [
      "bar": 8,
      "beats": {
       "1": "Bb7",
-      "3": "Gb°"
+      "3": "Gbo7"
      }
     }
    ],
@@ -5720,7 +5771,7 @@ window.TUNES = [
      "bar": 4,
      "beats": {
       "1": "Eb",
-      "3": "Gb°"
+      "3": "Gbo7"
      }
     },
     {
@@ -5741,7 +5792,7 @@ window.TUNES = [
      "beats": {
       "1": "Eb7",
       "3": "Cm7",
-      "4": "B°"
+      "4": "Bo7"
      }
     },
     {
@@ -5861,7 +5912,7 @@ window.TUNES = [
      "bar": 5,
      "beats": {
       "1": "Fm7",
-      "3": "E°"
+      "3": "Eo7"
      }
     },
     {
@@ -5913,7 +5964,7 @@ window.TUNES = [
      "bar": 5,
      "beats": {
       "1": "Fm7",
-      "3": "E°"
+      "3": "Eo7"
      }
     },
     {
@@ -6015,7 +6066,7 @@ window.TUNES = [
      "bar": 5,
      "beats": {
       "1": "Fm7",
-      "3": "E°"
+      "3": "Eo7"
      }
     },
     {
@@ -6396,7 +6447,7 @@ window.TUNES = [
      "bar": 5,
      "beats": {
       "1": "Gm7",
-      "3": "F#°"
+      "3": "F#o7"
      }
     },
     {
@@ -6451,7 +6502,7 @@ window.TUNES = [
      "bar": 5,
      "beats": {
       "1": "Gm7",
-      "3": "F#°"
+      "3": "F#o7"
      }
     },
     {
@@ -6562,7 +6613,7 @@ window.TUNES = [
      "bar": 5,
      "beats": {
       "1": "Gm7",
-      "3": "F#°"
+      "3": "F#o7"
      }
     },
     {
@@ -6649,7 +6700,7 @@ window.TUNES = [
      "bar": 2,
      "beats": {
       "1": "Gm7",
-      "3": "Gb°"
+      "3": "Gbo7"
      }
     },
     {
@@ -6734,7 +6785,7 @@ window.TUNES = [
      "bar": 7,
      "beats": {
       "1": "Bb7",
-      "3": "E°"
+      "3": "Eo7"
      }
     },
     {
@@ -6757,7 +6808,7 @@ window.TUNES = [
      "bar": 2,
      "beats": {
       "1": "Gm7",
-      "3": "Gb°"
+      "3": "Gbo7"
      }
     },
     {
@@ -6823,14 +6874,14 @@ window.TUNES = [
      "bar": 4,
      "beats": {
       "1": "Ab6",
-      "3": "A°"
+      "3": "Ao7"
      }
     },
     {
      "bar": 5,
      "beats": {
       "1": "Eb6",
-      "3": "B°",
+      "3": "Bo7",
       "4": "Cm"
      }
     },

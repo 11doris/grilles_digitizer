@@ -309,7 +309,7 @@ of sections. Example: a printed A-row + B-row with form `32 A A B A` becomes sec
 ### 8.3 Bar representation
 Every bar is an object:
 ```json
-{ "bar": 3, "beats": { "1": "Ab", "3": "A°" } }
+{ "bar": 3, "beats": { "1": "Ab", "3": "Ao7" } }
 ```
 * `bar` — 1-indexed within its section, restarting at 1 each section.
 * `beats` — keys are beat-number strings (`"1"`–`"4"`), values are chord strings.
@@ -389,7 +389,7 @@ chord and does **not** borrow a root — it stays with its own region per §10.)
 
 **Case 3 — Bottom-right inset square only (no full horizontal divider).**
 One chord fills the large undivided area; a small framed square sits in the bottom-right corner.
-Large area = beats 1–3 → `"1"`; inset square = beat 4 → `"4"`: → `{ "1": "Em7", "4": "Eb°" }`
+Large area = beats 1–3 → `"1"`; inset square = beat 4 → `"4"`: → `{ "1": "Em7", "4": "Ebo7" }`
 **Ambiguity fallback:** if scan quality makes the inset-corner indistinguishable from a plain
 diagonal, treat it as a **diagonal (Case 2) → beat 3**, and add a `notation_notes` entry recording
 the ambiguity for that bar.
@@ -409,7 +409,7 @@ Top-left = `"1"`; top-right = `"2"`; bottom-left = `"3"`; bottom-right = `"4"`:
 ## 10. Boundary box rule
 
 When a bar is subdivided, a chord symbol **and all its alteration suffixes** (`b5`, `#5`, `b9`, `m`,
-`°`, etc.) must be read only from within that beat's own region. An alteration printed in a
+`o7`, etc.) must be read only from within that beat's own region. An alteration printed in a
 neighboring region belongs to that neighbor, even if it sits visually close to the boundary.
 **Never reach across a subdivision line** to attach an alteration to an adjacent beat's chord.
 Example: diagonal box with `Am7` upper-left and `b5` lower-right → beat 1 is `Am7`, and the `b5`
@@ -454,7 +454,7 @@ if a different house style is later preferred.
 | Major 7th | `maj7` | `Cmaj7` |
 | Minor 7th | `m7` | `Dm7` |
 | Half-diminished | `m7b5` | `Am7b5` |
-| Diminished | `°` | `C°` |
+| Diminished | `o7` | `Co7` |
 | Augmented triad | `+` | `Eb+` |
 | Augmented dominant | `7#5` | `Eb7#5` |
 | Minor–major 7th | `m(maj7)` | `Dm(maj7)` |
@@ -466,7 +466,7 @@ if a different house style is later preferred.
 | `7M`, `M7`, `Δ`, `△` (major 7) | `maj7` | e.g. `Eb7M` → `Ebmaj7`, `C△` → `Cmaj7` |
 | `mM7`, `m7M`, `m(M7)` (minor-major 7) | `m(maj7)` | e.g. `DmM7` → `Dm(maj7)` |
 | `ø`, `Ø`, `m7(b5)` (half-dim) | `m7b5` | e.g. `Aø` → `Am7b5` |
-| `o`, `°`, `dim` (diminished) | `°` | e.g. `Edim` → `E°` |
+| `o`, `°`, `dim` (diminished) | `o7` | e.g. `Edim` → `Eo7` |
 | `+`, `aug` (augmented triad) | `+` | e.g. `Eb aug` → `Eb(#5)` |
 | superscript `5+` on a dominant (aug 5th) | `#5` | e.g. `Bb7` with `5+` → `Bb7#5` |
 | `b5` shown as superscript/subscript | `b5` | keep, attached to its own chord only (§10) |
@@ -602,7 +602,7 @@ Crop `341_RIVER_STAY_WAY_FROM_MY_DOOR.png` shows **River Stay Way from My Door**
     "A": [
       { "bar": 1, "beats": { "1": "Eb" } },
       { "bar": 2, "beats": { "1": "Eb", "3": "Eb7" } },
-      { "bar": 3, "beats": { "1": "Ab", "3": "A°" } },
+      { "bar": 3, "beats": { "1": "Ab", "3": "Ao7" } },
       { "bar": 4, "beats": { "1": "Eb" } },
       { "bar": 5, "beats": { "1": "F7" } },
       { "bar": 6, "beats": { "1": "B7", "3": "Bb7" } },
@@ -615,7 +615,7 @@ Crop `341_RIVER_STAY_WAY_FROM_MY_DOOR.png` shows **River Stay Way from My Door**
   }
 }
 ```
-Note: bar 2 is a Case-2 diagonal (`Eb` / `Eb7`); bar 3 is a Case-2 split (`Ab` / `A°`); bar 6's
+Note: bar 2 is a Case-2 diagonal (`Eb` / `Eb7`); bar 3 is a Case-2 split (`Ab` / `Ao7`); bar 6's
 `B7`/`Bb7` must be read with care (§12 — `B` vs `Bb`).
 
 ---
@@ -705,8 +705,8 @@ Keep it small (≤3 per tune) and ensure every referenced chord actually appears
   "id": "river-stay-passing-dim",
   "label": "Chromatic passing diminished",
   "location": { "section": "A", "bars": [3] },
-  "chords": ["Ab", "A°"],
-  "description": "Ab → A° passing diminished connecting IV to the returning tonic."
+  "chords": ["Ab", "Ao7"],
+  "description": "Ab → Ao7 passing diminished connecting IV to the returning tonic."
 }
 ```
 Patterns to look for: ii–V–I, minor ii–V–i, tritone subs, chromatic passing diminished, backdoor
@@ -820,7 +820,7 @@ of the tune ran off the crop. Whole-bar chords are still objects (`{ "1": "..." 
         "bar": 5,
         "beats": {
           "1": "Fm7",
-          "3": "E°"
+          "3": "Eo7"
         }
       },
       {
@@ -872,7 +872,7 @@ of the tune ran off the crop. Whole-bar chords are still objects (`{ "1": "..." 
         "bar": 5,
         "beats": {
           "1": "Fm7",
-          "3": "E°"
+          "3": "Eo7"
         }
       },
       {
@@ -974,7 +974,7 @@ of the tune ran off the crop. Whole-bar chords are still objects (`{ "1": "..." 
         "bar": 5,
         "beats": {
           "1": "Fm7",
-          "3": "E°"
+          "3": "Eo7"
         }
       },
       {
@@ -1007,7 +1007,7 @@ of the tune ran off the crop. Whole-bar chords are still objects (`{ "1": "..." 
 ### Rock-a-Bye Your Baby with a Dixie Melody
 
 Demonstrates: **primes in `form` vs counters in section keys** (`form = "32 A B A' C"` → sections
-`A`, `B`, `A1`, `C`); **Case-3 bottom-right inset** (section A bar 2 = `Em7` on beat `"1"` + `Eb°`
+`A`, `B`, `A1`, `C`); **Case-3 bottom-right inset** (section A bar 2 = `Em7` on beat `"1"` + `Ebo7`
 on beat **`"4"`**, the inset square); **conversions** (`7M`/`M7` → `maj7`, `mM7` → `m(maj7)`); a
 **parenthesised alteration dropped** (the score's optional `(F7)` is omitted from the grid); and a
 **flat-on-the-9 reading** (`A9b` → `A7b9`) with the ambiguity recorded in `notation_notes`. The
@@ -1039,7 +1039,7 @@ recoverable here and no `variants` entry is shown; on an un-cropped scan it woul
         "bar": 2,
         "beats": {
           "1": "Em7",
-          "4": "Eb°"
+          "4": "Ebo7"
         }
       },
       {
@@ -1053,7 +1053,7 @@ recoverable here and no `variants` entry is shown; on an un-cropped scan it woul
         "bar": 4,
         "beats": {
           "1": "Dm7",
-          "3": "C#°"
+          "3": "C#o7"
         }
       },
       {
@@ -1148,7 +1148,7 @@ recoverable here and no `variants` entry is shown; on an un-cropped scan it woul
         "bar": 2,
         "beats": {
           "1": "Em7",
-          "4": "Eb°"
+          "4": "Ebo7"
         }
       },
       {
@@ -1162,7 +1162,7 @@ recoverable here and no `variants` entry is shown; on an un-cropped scan it woul
         "bar": 4,
         "beats": {
           "1": "Dm7",
-          "3": "C#°"
+          "3": "C#o7"
         }
       },
       {
@@ -1213,7 +1213,7 @@ recoverable here and no `variants` entry is shown; on an un-cropped scan it woul
         "bar": 4,
         "beats": {
           "1": "D9",
-          "3": "D#°"
+          "3": "D#o7"
         }
       },
       {
@@ -1398,7 +1398,7 @@ printed row contains. Conversions and an `uncertain` note are present.
         "bar": 4,
         "beats": {
           "1": "Ab",
-          "3": "A°"
+          "3": "Ao7"
         }
       },
       {
@@ -1420,7 +1420,7 @@ printed row contains. Conversions and an `uncertain` note are present.
         "bar": 7,
         "beats": {
           "1": "Eb",
-          "3": "Eb°"
+          "3": "Ebo7"
         }
       },
       {
@@ -1492,7 +1492,7 @@ printed row contains. Conversions and an `uncertain` note are present.
       {
         "bar": 2,
         "beats": {
-          "1": "F#°",
+          "1": "F#o7",
           "3": "Eb7"
         }
       },
@@ -1518,25 +1518,25 @@ printed row contains. Conversions and an `uncertain` note are present.
       {
         "bar": 6,
         "beats": {
-          "1": "F°",
-          "3": "Ab°"
+          "1": "Fo7",
+          "3": "Abo7"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "D°",
+          "1": "Do7",
           "2": "Eb7",
-          "3": "D°",
+          "3": "Do7",
           "4": "Eb7"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "D°",
+          "1": "Do7",
           "2": "Eb7",
-          "3": "D°",
+          "3": "Do7",
           "4": "Eb7"
         }
       }
@@ -1596,49 +1596,49 @@ printed row contains. Conversions and an `uncertain` note are present.
       {
         "bar": 1,
         "beats": {
-          "1": "A°"
+          "1": "Ao7"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "Gb°"
+          "1": "Gbo7"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "C°"
+          "1": "Co7"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "A°"
+          "1": "Ao7"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "B°"
+          "1": "Bo7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "Ab°"
+          "1": "Abo7"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "D°"
+          "1": "Do7"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "B°",
+          "1": "Bo7",
           "3": "Eb7#5"
         }
       }
@@ -1762,7 +1762,7 @@ encode exactly what each row shows and let `form`/notes carry the structure.
         "bar": 2,
         "beats": {
           "1": "F",
-          "4": "F#°"
+          "4": "F#o7"
         }
       },
       {
@@ -1790,7 +1790,7 @@ encode exactly what each row shows and let `form`/notes carry the structure.
         "bar": 6,
         "beats": {
           "1": "F",
-          "4": "F#°"
+          "4": "F#o7"
         }
       },
       {
@@ -1821,7 +1821,7 @@ encode exactly what each row shows and let `form`/notes carry the structure.
         "bar": 2,
         "beats": {
           "1": "F",
-          "4": "F#°"
+          "4": "F#o7"
         }
       },
       {
@@ -1849,7 +1849,7 @@ encode exactly what each row shows and let `form`/notes carry the structure.
         "bar": 6,
         "beats": {
           "1": "F",
-          "4": "F#°"
+          "4": "F#o7"
         }
       },
       {
@@ -1879,7 +1879,7 @@ encode exactly what each row shows and let `form`/notes carry the structure.
         "bar": 2,
         "beats": {
           "1": "F",
-          "4": "F#°"
+          "4": "F#o7"
         }
       },
       {
@@ -1907,7 +1907,7 @@ encode exactly what each row shows and let `form`/notes carry the structure.
         "bar": 6,
         "beats": {
           "1": "F",
-          "4": "F#°"
+          "4": "F#o7"
         }
       },
       {
@@ -1938,7 +1938,7 @@ encode exactly what each row shows and let `form`/notes carry the structure.
         "bar": 2,
         "beats": {
           "1": "F",
-          "3": "F#°"
+          "3": "F#o7"
         }
       },
       {
@@ -1966,7 +1966,7 @@ encode exactly what each row shows and let `form`/notes carry the structure.
         "bar": 6,
         "beats": {
           "1": "F",
-          "3": "F#°"
+          "3": "F#o7"
         }
       },
       {
@@ -2168,7 +2168,7 @@ recorded in `notation_notes`.
       { "bar": 1, "beats": { "1": "C" } },
       { "bar": 2, "beats": { "1": "C+" } },
       { "bar": 3, "beats": { "1": "F" } },
-      { "bar": 4, "beats": { "1": "F#°" } },
+      { "bar": 4, "beats": { "1": "F#o7" } },
       { "bar": 5, "beats": { "1": "C" } },
       { "bar": 6, "beats": { "1": "D7" } },
       { "bar": 7, "beats": { "1": "G7" } },
@@ -2178,7 +2178,7 @@ recorded in `notation_notes`.
       { "bar": 1, "beats": { "1": "C" } },
       { "bar": 2, "beats": { "1": "C+" } },
       { "bar": 3, "beats": { "1": "F" } },
-      { "bar": 4, "beats": { "1": "F#°" } },
+      { "bar": 4, "beats": { "1": "F#o7" } },
       { "bar": 5, "beats": { "1": "C" } },
       { "bar": 6, "beats": { "1": "G7" } },
       { "bar": 7, "beats": { "1": "C" } },
@@ -2196,7 +2196,7 @@ recorded in `notation_notes`.
     ],
     "C": [
       { "bar": 1, "beats": { "1": "F" } },
-      { "bar": 2, "beats": { "1": "F#°" } },
+      { "bar": 2, "beats": { "1": "F#o7" } },
       { "bar": 3, "beats": { "1": "C" } },
       { "bar": 4, "beats": { "1": "G7" } },
       { "bar": 5, "beats": { "1": "C" } },
