@@ -252,7 +252,8 @@ in parentheses as an optional chord, keep both sets: "(A(b9))".
 Apply this same superscript-reading care inside VARIANTE boxes, not just the main grid.
 
 SUS / SLASH / NO-CHORD:
-- Suspended: sus4, sus2, 7sus4 (Gsus4, D7sus4).
+- Suspended: sus4, sus2, 7sus4 (Gsus4, D7sus4). A printed bare "sus" with no number
+  means sus4 — keep any printed extension: C9 with "sus" -> C9sus4, never "C9sus".
 - Slash / bass note: root then "/" then bass note, as printed (C/E, Fm7/Bb).
 - An empty / no-chord bar is N.C.
 - A WHOLE chord printed in parentheses — e.g. "(G7)" — is an optional/passing chord:
