@@ -21,7 +21,6 @@ window.TUNES = [
    "D.Gillespie 52- B.Goodman 45- C.Hawkins 54- E.Hines 47.56.65",
    "S.Ellis 29- F.Johnson 44- Jim.Smith 62- A.Tatum 47.53-"
   ],
-  "same_chord_changes": "AIN'T SHE SWEET (SEE PAGE 26)",
   "variants": [
    {
     "applies_to": "BAR 1",
@@ -6395,6 +6394,406 @@ window.TUNES = [
   "image": "crops/413_04_THAT_LUCKY_OLD_SUN.png"
  },
  {
+  "id": "418_03_THERE_S_A_LULL_IN_MY_LIFE",
+  "composer": "Harry REVEL – Mack GORDON",
+  "year": "1937",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "38 A A B A'",
+  "time_signature": "4/4",
+  "title": "THERE'S A LULL IN MY LIFE",
+  "page": 418,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+   "verse": "Header prints '12 VERSE' as a verse row (2 rows) that precedes the chorus grid; transcribed as verse_A and verse_A1.",
+   "dash_expansion": "A (2nd printed row) and A' (4th printed row) are leading-arrow rows copying the nearest same-letter row above positionally; empty/dash boxes take the same-position bar, and explicitly written boxes override."
+  },
+  "recordings": [
+   "Mil.Bailey 37- Ca. Loss 37- D.Ellington 37- Ad.Hall 37- T.Wilson 37",
+   "N.K.Cole 61- E.Fitzgerald 57.75- G.Shearing 52- K.Thompson 37",
+   "A.Clare 58- J.Davis 52"
+  ],
+  "sections": {
+   "verse_A": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "F",
+      "3": "Gm7",
+      "4": "C7"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "F",
+      "2": "Bb",
+      "3": "F",
+      "4": "C9"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "F",
+      "2": "Bb",
+      "3": "F",
+      "4": "C9"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "F",
+      "3": "C7"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "F",
+      "3": "Gm7",
+      "4": "C7"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "F",
+      "2": "Bb",
+      "3": "F",
+      "4": "C9"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "F",
+      "2": "Bb",
+      "3": "F",
+      "4": "C9"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "F"
+     }
+    },
+    {
+     "bar": 9,
+     "beats": {
+      "1": "Am",
+      "2": "Am(maj7)",
+      "3": "Am",
+      "4": "Am6"
+     }
+    },
+    {
+     "bar": 10,
+     "beats": {
+      "1": "D9"
+     }
+    },
+    {
+     "bar": 11,
+     "beats": {
+      "1": "Gm",
+      "2": "Gm(maj7)",
+      "3": "Gm7",
+      "4": "Gm6"
+     }
+    },
+    {
+     "bar": 12,
+     "beats": {
+      "1": "Gm7b5",
+      "3": "C9"
+     }
+    }
+   ],
+   "A": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "Fmaj7",
+      "3": "Gm7",
+      "4": "Am7"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Bbmaj7",
+      "3": "Am7"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "Gm7",
+      "3": "Am7",
+      "4": "Bbmaj7"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Am7",
+      "3": "Gm7"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "Fmaj7",
+      "3": "Gm7",
+      "4": "Am7"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "Bbmaj7",
+      "3": "C9"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "Fmaj7",
+      "3": "F#o7"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "Gm7",
+      "3": "C7"
+     }
+    }
+   ],
+   "A1": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "Fmaj7",
+      "3": "Gm7",
+      "4": "Am7"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Bbmaj7",
+      "3": "Am7"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "Gm7",
+      "3": "Am7",
+      "4": "Bbmaj7"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Am7",
+      "3": "Gm7"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "Fmaj7",
+      "3": "Gm7",
+      "4": "Am7"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "Bbmaj7",
+      "3": "C9"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "F6",
+      "3": "Eb6"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "F6"
+     }
+    }
+   ],
+   "B": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "Ebm7",
+      "3": "Ab7"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Ebm7",
+      "3": "Ab7"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "Dbmaj7",
+      "3": "Ebm7"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Fm7",
+      "2": "Ebm7",
+      "3": "Dbmaj7",
+      "4": "Gb13"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "F6",
+      "3": "F#o7"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "C7",
+      "3": "Fm6"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "Ao7",
+      "3": "F#o7"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "C7"
+     }
+    }
+   ],
+   "A2": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "Fmaj7",
+      "3": "Gm7",
+      "4": "Am7"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Bbmaj7",
+      "3": "Am7"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "Gm7",
+      "3": "Am7",
+      "4": "Bbmaj7"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Am7",
+      "3": "Gm7"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "Fmaj7",
+      "3": "Gm7",
+      "4": "Am7"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "Bbmaj7",
+      "3": "C9"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "Am7",
+      "3": "D7"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "G9"
+     }
+    },
+    {
+     "bar": 9,
+     "beats": {
+      "1": "Abm9"
+     }
+    },
+    {
+     "bar": 10,
+     "beats": {
+      "1": "Db13"
+     }
+    },
+    {
+     "bar": 11,
+     "beats": {
+      "1": "Fmaj7",
+      "3": "D(b9)"
+     }
+    },
+    {
+     "bar": 12,
+     "beats": {
+      "1": "Gm7",
+      "3": "C9"
+     }
+    },
+    {
+     "bar": 13,
+     "beats": {
+      "1": "F6"
+     }
+    },
+    {
+     "bar": 14,
+     "beats": {
+      "1": "F6"
+     }
+    }
+   ]
+  },
+  "image": "crops/418_03_THERE_S_A_LULL_IN_MY_LIFE.png"
+ },
+ {
   "id": "475_04_YOU_CALL_IT_MADNESS",
   "composer": "Con CONRAD – Russ COLUMBO – Gladys DUBOIS – Paul GREGORY",
   "year": "1931",
@@ -6931,5 +7330,589 @@ window.TUNES = [
    ]
   },
   "image": "crops/478_02_YOU_MADE_ME_LOVE_YOU.png"
+ },
+ {
+  "id": "483_04_YOU_SHOWED_ME_THE_WAY",
+  "composer": "Ella FITZGERALD – Teddy McRAY – Chick WEBB – Bud GREEN",
+  "year": "1937",
+  "style": "SWING",
+  "tempo": "MEDIUM",
+  "form": "34 A A B A'",
+  "time_signature": "4/4",
+  "title": "YOU SHOWED ME THE WAY",
+  "page": 483,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+   "F.Waller 37- C.Webb 37- Osie Johnson 56",
+   "T.Wilson 37- E.Wilcox 51- B.Goodman 37",
+   "M.Warlop 38- V.Manone 37- D.Staton 57",
+   "G.Zardos 37"
+  ],
+  "notation_notes": {
+   "verse": "Header prints '16 VERSE'.",
+   "another_note": "Above the title prints 'Another different \"Yours And Mine\" by J. Burke - S. Nelson 1930.'",
+   "A_bar9": "Section A' (final printed row) has extra bars 9-10 printed below the grid: bar 9 F7/Bb7, bar 10 Eb."
+  },
+  "sections": {
+   "A": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "Ebmaj7"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Ebmaj7"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "Eb7",
+      "3": "Bbm7"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Eb7"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "Abmaj7"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "Abmaj7",
+      "3": "Ab6"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "B7",
+      "3": "Bb7"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "Eb",
+      "3": "Bb7"
+     }
+    }
+   ],
+   "A1": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "Ebmaj7"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Ebmaj7"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "Eb7",
+      "3": "Bbm7"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Eb7"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "Abmaj7"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "Abmaj7",
+      "3": "Ab6"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "B7",
+      "3": "Bb7"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "Eb"
+     }
+    }
+   ],
+   "B": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "Bbm7",
+      "3": "Eb7"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Bbm7",
+      "3": "Eb7"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "Abmaj7"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Ab6"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "Cm7",
+      "3": "F7"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "Cm7",
+      "3": "F7"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "Fm7"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "Bb7"
+     }
+    }
+   ],
+   "A2": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "Ebmaj7"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Ebmaj7"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "Eb7",
+      "3": "Bbm7"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Eb7"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "Abmaj7"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "Abmaj7",
+      "3": "Ab6"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "F7",
+      "3": "Bb7"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "Eb"
+     }
+    }
+   ]
+  },
+  "image": "crops/483_04_YOU_SHOWED_ME_THE_WAY.png"
+ },
+ {
+  "id": "480_03_YOU_RE_DRIVING_ME_CRAZY",
+  "composer": "Walter DONALDSON – W. D.",
+  "year": "1930",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "16 A A | 32 A A B A",
+  "time_signature": "4/4",
+  "title": "YOU'RE DRIVING ME CRAZY",
+  "page": 480,
+  "source": "Anthologie des grilles de jazz",
+  "same_chord_changes": "\"Moten Swing\" (B. Moten 1932)",
+  "notation_notes": {
+   "verse": "First strain header prints 'VERSE'."
+  },
+  "recordings": [
+   "L.Armstrong 30- Bob Crosby 37- Mc Kinney Cotton Pickers 30",
+   "Quintette HCF 37- V.Dickenson 47- E.Fitzgerald 61- D.Ewell 57",
+   "B.Carter 51- B.Golson 62- B.Goodman 46- B.Holiday 49.51",
+   "J.Hodges 54- A.Prima 53- L.Young 46- G.Auson 63- T.Wilson 56",
+   "E.Hines 70.74- S.Grappelli 75- B.J.Turner 56"
+  ],
+  "sections": {
+   "verse_A": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "D7"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Gm"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "C7"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Fm"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "Abm"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "Eb"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "F7"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "Bb7"
+     }
+    }
+   ],
+   "verse_A1": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "D7"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Gm"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "C7"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Fm"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "Abm"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "Eb"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "F7"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "Bb7",
+      "3": "Bb7#5"
+     }
+    }
+   ],
+   "A": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "Eb"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Eb",
+      "3": "Eo7"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "Fm7",
+      "3": "Bb7"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Fm7",
+      "3": "Bb7"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "F7"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "Bb7"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "Eb6",
+      "3": "Eo7"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "Fm7",
+      "3": "Bb7"
+     }
+    }
+   ],
+   "A1": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "Eb"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Eb",
+      "3": "Eo7"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "Fm7",
+      "3": "Bb7"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Fm7",
+      "3": "Bb7"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "F7"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "Bb7"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "Eb"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "Eb",
+      "3": "D7"
+     }
+    }
+   ],
+   "B": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "G"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Am7",
+      "3": "D7"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "G"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Am7",
+      "3": "D7"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "G"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "Am7",
+      "3": "D7"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "G6",
+      "3": "Eo7"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "Fm7",
+      "3": "Bb7"
+     }
+    }
+   ],
+   "A2": [
+    {
+     "bar": 1,
+     "beats": {
+      "1": "Eb"
+     }
+    },
+    {
+     "bar": 2,
+     "beats": {
+      "1": "Eb",
+      "3": "Eo7"
+     }
+    },
+    {
+     "bar": 3,
+     "beats": {
+      "1": "Fm7",
+      "3": "Bb7"
+     }
+    },
+    {
+     "bar": 4,
+     "beats": {
+      "1": "Fm7",
+      "3": "Bb7"
+     }
+    },
+    {
+     "bar": 5,
+     "beats": {
+      "1": "F7"
+     }
+    },
+    {
+     "bar": 6,
+     "beats": {
+      "1": "Bb7"
+     }
+    },
+    {
+     "bar": 7,
+     "beats": {
+      "1": "Eb"
+     }
+    },
+    {
+     "bar": 8,
+     "beats": {
+      "1": "Eb"
+     }
+    }
+   ]
+  },
+  "image": "crops/480_03_YOU_RE_DRIVING_ME_CRAZY.png"
  }
 ];
