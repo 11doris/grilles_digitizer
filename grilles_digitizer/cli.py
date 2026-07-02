@@ -41,6 +41,11 @@ def _parse_args(argv: list[str] | None) -> Config:
     p.add_argument("--page-range", type=_page_range, default=None, help="limit to pages A:B")
     p.add_argument("--delay", type=float, default=0.0, help="seconds to sleep between units")
     p.add_argument("--only", default=None, help="restrict to one current_file (debugging)")
+    p.add_argument(
+        "--sample", type=int, default=None, metavar="N",
+        help="randomly select at most N crops whose tune is not yet decoded into --out",
+    )
+    p.add_argument("--seed", type=int, default=None, help="RNG seed for --sample (reproducible selection)")
     p.add_argument("--debug", action="store_true", help="verbose errors")
     args = p.parse_args(argv)
 
@@ -58,6 +63,8 @@ def _parse_args(argv: list[str] | None) -> Config:
         page_range=args.page_range,
         delay=max(0.0, args.delay),
         only=args.only,
+        sample=None if args.sample is None else max(0, args.sample),
+        seed=args.seed,
         debug=args.debug,
     )
 

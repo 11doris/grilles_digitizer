@@ -52,6 +52,8 @@ loss) and continue across sittings — at most the one tune in flight is redone.
 | `--page-range A:B` | — | Limit a session to tunes whose `page` is in `[A, B]` |
 | `--delay S` | `0` | Sleep between units |
 | `--only FILE` | — | Restrict to one `current_file` (debugging) |
+| `--sample N` | — | Randomly pick at most `N` crops whose tune is not yet decoded into `--out` |
+| `--seed N` | — | RNG seed for `--sample` (reproducible selection) |
 
 Run the book in slices with `--page-range`, or just stop and re-run — resume makes
 that free; no sharding is needed on a single machine.

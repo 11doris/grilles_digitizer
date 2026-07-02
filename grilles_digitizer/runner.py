@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import random
 import re
 import sys
 import threading
@@ -79,6 +80,14 @@ def _select(units: list[WorkUnit], config: Config) -> list[WorkUnit]:
     if config.page_range:
         lo, hi = config.page_range
         units = [u for u in units if lo <= u.page <= hi]
+    if config.sample is not None:
+        # Keep only crops not yet decoded into out_dir, then randomly pick N.
+        todo = [
+            u for u in units
+            if not (config.out_dir / f"{u.stem}.json").exists()
+        ]
+        rng = random.Random(config.seed)
+        units = rng.sample(todo, min(config.sample, len(todo)))
     return units
 
 
