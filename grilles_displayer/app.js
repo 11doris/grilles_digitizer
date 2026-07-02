@@ -212,12 +212,26 @@
   }
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowDown") {
+    /* While a search query is being typed, ↑/↓ keep moving the result
+       highlight and ←/→ keep moving the caret; otherwise all arrow and
+       page keys flip between tunes. */
+    const searching = e.target === searchEl && searchEl.value !== "";
+    if (e.key === "ArrowDown" || e.key === "PageDown") {
       e.preventDefault();
-      moveActive(1);
-    } else if (e.key === "ArrowUp") {
+      if (searching && e.key === "ArrowDown") moveActive(1);
+      else navTune(1);
+    } else if (e.key === "ArrowUp" || e.key === "PageUp") {
       e.preventDefault();
-      moveActive(-1);
+      if (searching && e.key === "ArrowUp") moveActive(-1);
+      else navTune(-1);
+    } else if (e.key === "ArrowRight") {
+      if (searching) return;
+      e.preventDefault();
+      navTune(1);
+    } else if (e.key === "ArrowLeft") {
+      if (searching) return;
+      e.preventDefault();
+      navTune(-1);
     } else if (e.key === "Enter") {
       const tune = state.filtered[state.activeIndex];
       if (tune) openTune(tune.id);
@@ -240,6 +254,41 @@
   function tuneById(id) {
     return TUNES.find((t) => t.id === id) || null;
   }
+
+  /* Open the tune `delta` places away from the current one, following the
+     filtered list order. Stops at either end (no wrap-around). */
+  function navTune(delta) {
+    const list = state.filtered.length ? state.filtered : TUNES;
+    if (!list.length) return;
+    const idx = list.findIndex((t) => t.id === state.currentId);
+    const next = idx === -1 ? 0 : idx + delta;
+    if (next < 0 || next >= list.length) return;
+    openTune(list[next].id);
+  }
+
+  /* Swipe on the tune view (mobile): right → next tune, left → previous.
+     Disabled while the magnified scan is panned by touch-scrolling. */
+  let swipeStart = null;
+
+  viewEl.addEventListener("touchstart", (e) => {
+    swipeStart = e.touches.length === 1 && !state.imageMag
+      ? { x: e.touches[0].clientX, y: e.touches[0].clientY }
+      : null;
+  }, { passive: true });
+
+  viewEl.addEventListener("touchend", (e) => {
+    if (!swipeStart) return;
+    const dx = e.changedTouches[0].clientX - swipeStart.x;
+    const dy = e.changedTouches[0].clientY - swipeStart.y;
+    swipeStart = null;
+    /* Require a mostly-horizontal move so vertical scrolling never flips. */
+    if (Math.abs(dx) < 60 || Math.abs(dx) < 1.5 * Math.abs(dy)) return;
+    navTune(dx > 0 ? 1 : -1);
+  }, { passive: true });
+
+  viewEl.addEventListener("touchcancel", () => {
+    swipeStart = null;
+  }, { passive: true });
 
   function openTune(id) {
     if (location.hash.slice(1) !== id) {

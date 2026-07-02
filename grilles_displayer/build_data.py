@@ -10,6 +10,12 @@ Usage
 -----
     python grilles_displayer/build_data.py
     python grilles_displayer/build_data.py --tunes-dir ./tunes_verified --crops-dir ./crops
+
+    manual deployment:
+    git checkout main
+    git pull
+    git subtree push --prefix=grilles_displayer origin gh-pages
+    git checkout main
 """
 from __future__ import annotations
 
