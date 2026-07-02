@@ -26,10 +26,16 @@ from flask import Flask, abort, jsonify, render_template, request, send_file
 TUNES_DIR = Path("tunes").resolve()
 CROPS_DIR = Path("crops").resolve()
 VERIFIED_DIR = Path("tunes_verified").resolve()
+# Edits are never written back to TUNES_DIR (read-only source). They live in
+# WIP_DIR until a tune is verified, at which point it is copied to VERIFIED_DIR.
+WIP_DIR = Path("tunes_wip").resolve()
 
 _IGNORED_STEMS = frozenset({"run_report", "run_state", "verification_state"})
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
+# Preserve insertion order of JSON keys (e.g. section names) instead of
+# sorting them alphabetically, which Flask's JSON provider does by default.
+app.json.sort_keys = False  # type: ignore[attr-defined]
 
 
 # ---------------------------------------------------------------------------
@@ -37,7 +43,24 @@ app = Flask(__name__, template_folder="templates", static_folder="static")
 # ---------------------------------------------------------------------------
 
 def _state_path() -> Path:
-    return TUNES_DIR / "verification_state.json"
+    # State lives with the WIP edits so TUNES_DIR stays untouched.
+    return WIP_DIR / "verification_state.json"
+
+
+def _wip_path(tune_id: str) -> Path:
+    return WIP_DIR / f"{tune_id}.json"
+
+
+def _source_path(tune_id: str) -> Path | None:
+    """Path to read a tune from: the WIP edit if present, else the source.
+
+    Returns None if the tune does not exist in either location.
+    """
+    wp = _wip_path(tune_id)
+    if wp.exists():
+        return wp
+    sp = TUNES_DIR / f"{tune_id}.json"
+    return sp if sp.exists() else None
 
 
 def _is_tune(p: Path) -> bool:
@@ -73,6 +96,7 @@ def _load_state() -> dict:
 
 
 def _save_state(s: dict) -> None:
+    WIP_DIR.mkdir(exist_ok=True)
     _state_path().write_text(
         json.dumps(s, indent=2, ensure_ascii=False), "utf-8"
     )
@@ -118,8 +142,10 @@ def api_list():
     tunes = []
     for p in _list_tunes():
         tid = p.stem
+        # Show the WIP title if the tune has unsaved-to-source edits.
+        src = _source_path(tid) or p
         try:
-            d = json.loads(p.read_text("utf-8"))
+            d = json.loads(src.read_text("utf-8"))
         except Exception:
             d = {}
         tunes.append({
@@ -143,11 +169,11 @@ def api_list():
 def api_get(tune_id: str):
     if not _safe_id(tune_id):
         abort(400)
-    p = TUNES_DIR / f"{tune_id}.json"
-    if not p.exists():
+    src = _source_path(tune_id)
+    if src is None:
         abort(404)
     state = _load_state()
-    data = json.loads(p.read_text("utf-8"))
+    data = json.loads(src.read_text("utf-8"))
     return jsonify({
         "id": tune_id,
         "verified": tune_id in state.get("verified", []),
@@ -159,15 +185,19 @@ def api_get(tune_id: str):
 def api_save(tune_id: str):
     if not _safe_id(tune_id):
         abort(400)
-    p = TUNES_DIR / f"{tune_id}.json"
-    if not p.exists():
+    # The tune must exist as a source (or an existing WIP edit); we never
+    # create tunes out of thin air, but we also never write back to TUNES_DIR.
+    if _source_path(tune_id) is None:
         abort(404)
     body = request.get_json(silent=True)
     if body is None:
         return jsonify({"error": "Invalid JSON body"}), 400
     if "sections" in body and not isinstance(body["sections"], dict):
         return jsonify({"error": "sections must be an object"}), 400
-    p.write_text(json.dumps(body, indent=2, ensure_ascii=False), "utf-8")
+    WIP_DIR.mkdir(exist_ok=True)
+    _wip_path(tune_id).write_text(
+        json.dumps(body, indent=2, ensure_ascii=False), "utf-8"
+    )
     s = _load_state()
     if s.get("in_progress") == tune_id:
         s["in_progress"] = None
@@ -179,11 +209,11 @@ def api_save(tune_id: str):
 def api_verify(tune_id: str):
     if not _safe_id(tune_id):
         abort(400)
-    p = TUNES_DIR / f"{tune_id}.json"
-    if not p.exists():
+    src = _source_path(tune_id)
+    if src is None:
         abort(404)
     VERIFIED_DIR.mkdir(exist_ok=True)
-    shutil.copy2(p, VERIFIED_DIR / f"{tune_id}.json")
+    shutil.copy2(src, VERIFIED_DIR / f"{tune_id}.json")
     s = _load_state()
     verified = s.get("verified", [])
     if tune_id not in verified:
@@ -231,6 +261,7 @@ if __name__ == "__main__":
     TUNES_DIR = Path(args.tunes).resolve()
     CROPS_DIR = Path(args.crops).resolve()
     VERIFIED_DIR = TUNES_DIR.parent / "tunes_verified"
+    WIP_DIR = TUNES_DIR.parent / "tunes_wip"
 
     if not TUNES_DIR.exists():
         parser.error(f"Tunes directory not found: {TUNES_DIR}")

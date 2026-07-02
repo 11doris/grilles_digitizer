@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import random
+import re
 import sys
 import threading
 import time
@@ -35,24 +37,41 @@ def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-_CASE_FIELDS = ("title", "composer", "style", "tempo")
+# Deterministic book-notation -> canonical conversions (spec §12). The model is
+# asked to apply these itself, but occasionally leaves one in place (e.g. 'Db7M'),
+# which `validate()` then rejects, burning every retry. Applying the unambiguous
+# conversions here as well makes the pipeline robust to that. Order matters: the
+# minor-major forms (mM7 / m7M) must be handled before the plain major-7 rule so
+# they map to 'm(maj7)' rather than 'mmaj7'. The contextual repeat/dash shorthand
+# (%, →, •, -) is deliberately left untouched — it still forces a retry.
+_MINMAJ7_RE = re.compile(r"m(?:M7|7M)")  # mM7 / m7M      -> m(maj7)
+_MAJ7_RE = re.compile(r"7M|M7|[Δ△]")     # 7M / M7 / Δ / △ -> maj7  (also m(M7))
+_HALFDIM_RE = re.compile(r"[øØ]")        # ø / Ø          -> m7b5
 
 
-def _title_case(value: str) -> str:
-    """Capitalize the first letter of each space-delimited word, lower-casing the
-    rest. Applied only to fully upper-case values (see `_normalize_case`), so the
-    " – " composer separator and any already-cased text are left intact."""
-    return " ".join(w[:1].upper() + w[1:].lower() for w in value.split(" "))
+def _canonicalize_chord(chord: str) -> str:
+    chord = _MINMAJ7_RE.sub("m(maj7)", chord)
+    chord = _MAJ7_RE.sub("maj7", chord)
+    chord = _HALFDIM_RE.sub("m7b5", chord)
+    return chord.replace("/14", "#11")
 
 
-def _normalize_case(obj: dict) -> None:
-    """Render the display fields in Title Case rather than the book's all-caps.
-    Only all-upper-case values are converted, so a value the model already cased
-    correctly (e.g. a composer's name with internal capitals) is preserved."""
-    for key in _CASE_FIELDS:
-        value = obj.get(key)
-        if isinstance(value, str) and value.isupper():
-            obj[key] = _title_case(value)
+def _canonicalize_chords(obj: dict) -> None:
+    """Rewrite every beat's chord string into the canonical vocabulary in place.
+    Defensive about structure — `validate()` reports any malformed sections."""
+    sections = obj.get("sections")
+    if not isinstance(sections, dict):
+        return
+    for bars in sections.values():
+        if not isinstance(bars, list):
+            continue
+        for bar in bars:
+            beats = bar.get("beats") if isinstance(bar, dict) else None
+            if not isinstance(beats, dict):
+                continue
+            for key, chord in beats.items():
+                if isinstance(chord, str):
+                    beats[key] = _canonicalize_chord(chord)
 
 
 def _select(units: list[WorkUnit], config: Config) -> list[WorkUnit]:
@@ -61,6 +80,14 @@ def _select(units: list[WorkUnit], config: Config) -> list[WorkUnit]:
     if config.page_range:
         lo, hi = config.page_range
         units = [u for u in units if lo <= u.page <= hi]
+    if config.sample is not None:
+        # Keep only crops not yet decoded into out_dir, then randomly pick N.
+        todo = [
+            u for u in units
+            if not (config.out_dir / f"{u.stem}.json").exists()
+        ]
+        rng = random.Random(config.seed)
+        units = rng.sample(todo, min(config.sample, len(todo)))
     return units
 
 
@@ -98,7 +125,7 @@ def _transcribe_unit(config: Config, client: VLMClient, unit: WorkUnit) -> UnitR
             obj["title"] = unit.title
             obj["page"] = unit.page
             obj["source"] = SOURCE_CONSTANT
-            _normalize_case(obj)
+            _canonicalize_chords(obj)
             validate(obj, unit)
         except (ValidationError, VLMRefusal) as exc:
             last_error = f"{type(exc).__name__}: {exc}"

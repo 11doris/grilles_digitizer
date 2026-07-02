@@ -33,6 +33,10 @@ class Config:
     page_range: tuple[int, int] | None = None
     delay: float = 0.0
     only: str | None = None  # restrict to a single current_file (debugging)
+    # Randomly pick at most `sample` crops whose tune is not yet decoded into
+    # `out_dir` (i.e. still to do). None = no sampling (process all).
+    sample: int | None = None
+    seed: int | None = None  # RNG seed for --sample; None = nondeterministic
     debug: bool = False
 
     @property

@@ -65,6 +65,169 @@ function toast(msg, type = 'info') {
   _toastTimer = setTimeout(() => el.classList.add('hidden'), 3200);
 }
 
+// ─── Chord validation ─────────────────────────────────────────────────────────
+// Grammar mirrors grilles_digitizer/prompt.py (=== CHORD NOTATION ===) and
+// tools/check_chord_syntax.py — keep the three in sync.
+const CHORD_ROOT = '[A-G](?:#|b)?';
+const CHORD_ALT  = '(?:b5|#5|b9|#9|#11|b13)';
+const CHORD_STEMS = [
+  '', 'm',
+  '6', '7', '9', '11', '13',
+  '6/9',
+  'maj7', 'maj9',
+  'm6', 'm7', 'm9', 'm11', 'm13',
+  'm6/9',
+  'm7b5',
+  '°',
+  'm\\(maj7\\)',
+  'sus4', 'sus2', '7sus4', '9sus4',
+];
+
+const CHORD_CORE_RE = new RegExp(
+  '^(?<root>' + CHORD_ROOT + ')' +
+  '(?<stem>' + CHORD_STEMS.slice().sort((a, b) => b.length - a.length).join('|') + ')' +
+  '(?<pext>\\((?:6|7|9|11|13)\\))?' +      // parenthesised superscript ext, e.g. 7(13)
+  '(?<balts>' + CHORD_ALT + '*)' +         // bare alterations (need a 7th/extension)
+  '(?<palts>\\(' + CHORD_ALT + '+\\))?' +  // parenthesised alterations (bare triad)
+  '(?<slash>/' + CHORD_ROOT + ')?' +
+  '(?<unc>\\?)?$'
+);
+
+const CHORD_HAS_EXT = /(?:6|7|9|11|13)/;
+const CHORD_ALT_DEGREE = { b5: 5.0, '#5': 5.5, b9: 9.0, '#9': 9.5, '#11': 11.0, b13: 13.0 };
+
+/** Targeted hints for strings the grammar rejects. */
+function chordParseHints(s) {
+  const hints = [];
+  if (/^[-%•←]+$|^\.\/\.$|^\/\/$/.test(s))
+    hints.push('Repeat shorthand must be expanded — write the actual chord it stands for.');
+  if (/^[a-g]/.test(s))
+    hints.push('The root letter must be uppercase: A–G (optionally followed by # or b).');
+  if (/^H/.test(s))
+    hints.push('German "H" is written B.');
+  if (/9b(?!5)|\(9b\)/.test(s))
+    hints.push('Flat-nine is always spelled "(b9)", never "9b" — e.g. Bb(b9).');
+  if (/7M|M7|Δ|∆/.test(s))
+    hints.push('Major 7th is written maj7 (7M / M7 / Δ → maj7), e.g. Ebmaj7.');
+  if (/ø|Ø/.test(s))
+    hints.push('Half-diminished is written m7b5 (ø → m7b5), e.g. Am7b5.');
+  if (/[o0ºΟO˚]\)?$/.test(s))
+    hints.push('Diminished is written with the degree sign ° (Alt+0176), e.g. G#°.');
+  if (/aug|\+/.test(s))
+    hints.push('Augmented: (#5) on a bare triad (Eb(#5)), #5 after a 7th/extension (Eb7#5); 5+ → #5.');
+  if (/sus(?![24])/.test(s))
+    hints.push('Suspended is sus4 / sus2 / 7sus4 / 9sus4 — a printed bare "sus" means sus4.');
+  if (/min|MIN/.test(s))
+    hints.push('Minor is written m (Cm, Cm7), not "min".');
+  if (/-/.test(s) && !/^[-%•←]+$/.test(s))
+    hints.push('Do not use "-" inside a chord; minor is written m.');
+  if (/maj(?![79])/.test(s))
+    hints.push('"maj" must be followed by 7 or 9 (maj7, maj9); a plain major triad is the bare root.');
+  if (!hints.length)
+    hints.push('Not a recognised chord. Expected: ROOT(A–G, #/b) + quality (m, maj7, m7b5, °, '
+      + 'm(maj7), sus4…) + extension (6, 7, 9, 11, 13, 6/9) + alterations (b5 #5 b9 #9 #11 b13) '
+      + '+ optional /bass and trailing ? — e.g. Bb7, Fm7b5, C9b5, F(#5), D(b9), Fm7/Bb.');
+  return hints;
+}
+
+/** Check one core chord (no outer optional-parens). Returns error messages. */
+function chordCoreErrors(s) {
+  const m = CHORD_CORE_RE.exec(s);
+  if (!m) return chordParseHints(s);
+  const errs = [];
+  const { root, stem, pext, balts, palts } = m.groups;
+  const hasExt = CHORD_HAS_EXT.test(stem) || !!pext;
+  if (balts && palts)
+    errs.push('Mixes bare and parenthesised alterations — use one style.');
+  if (balts && !hasExt)
+    errs.push(`Alteration on a bare triad must be parenthesised: ${root}${stem}(${balts}).`);
+  if (palts && hasExt)
+    errs.push(`A 7th/extension is present, so write the alteration bare: ${root}${stem}${pext || ''}${palts.slice(1, -1)}.`);
+  for (const group of [balts || '', (palts || '').replace(/[()]/g, '')]) {
+    const alts = group.match(new RegExp(CHORD_ALT, 'g')) || [];
+    const degs = alts.map(a => CHORD_ALT_DEGREE[a]);
+    if (degs.some((d, i) => i > 0 && d < degs[i - 1]))
+      errs.push(`Alterations must be in ascending-degree order (b5 #5 b9 #9 #11 b13): ${alts.join(' ')}.`);
+    if (new Set(alts).size !== alts.length)
+      errs.push(`Duplicate alteration: ${alts.join(' ')}.`);
+  }
+  return errs;
+}
+
+/** Validate a chord string. Returns [] when valid (empty is valid = no chord). */
+function chordErrors(raw) {
+  const s = String(raw ?? '').trim();
+  if (!s || s === 'N.C.') return [];
+  if (/^n\.?c\.?$/i.test(s)) return ['An empty / no-chord bar is written exactly "N.C.".'];
+  if (/\s/.test(s)) return ['A chord contains no spaces.'];
+  // Whole optional chord in parens, e.g. (G7) or (A(b9)): validate the inside.
+  if (s.startsWith('(') && s.endsWith(')')) {
+    const inner = s.slice(1, -1);
+    let depth = 0, wraps = true;
+    for (const c of inner) {
+      if (c === '(') depth++;
+      else if (c === ')' && --depth < 0) { wraps = false; break; }
+    }
+    if (wraps) return chordCoreErrors(inner);
+  }
+  return chordCoreErrors(s);
+}
+
+// ── Live validation UI ──
+function chordHintEl() {
+  let el = qs('#chord-hint');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'chord-hint';
+    el.className = 'hidden';
+    document.body.appendChild(el);
+  }
+  return el;
+}
+
+function showChordHint(input, errs) {
+  const el = chordHintEl();
+  el.innerHTML = errs.map(m => `<div>${esc(m)}</div>`).join('');
+  const r = input.getBoundingClientRect();
+  el.style.left = `${Math.max(8, Math.min(r.left, window.innerWidth - 380))}px`;
+  el.style.top  = `${r.bottom + 4}px`;
+  el.classList.remove('hidden');
+}
+
+function hideChordHint() {
+  qs('#chord-hint')?.classList.add('hidden');
+}
+
+/** Flag one beat input; show the hint bubble when it has focus. */
+function validateChordInput(el, withHint = false) {
+  const errs = chordErrors(el.value);
+  el.classList.toggle('chord-invalid', errs.length > 0);
+  el.title = errs.join('\n');
+  if (withHint) {
+    if (errs.length) showChordHint(el, errs);
+    else hideChordHint();
+  }
+  return errs;
+}
+
+function validateAllChords() {
+  qsa('.beat-inp').forEach(el => validateChordInput(el));
+}
+
+/** All invalid chords in a save payload (sections + variants), as readable strings. */
+function invalidChordList(payload) {
+  const out = [];
+  const walk = (bars, where) => (bars || []).forEach(b => {
+    Object.entries((b && b.beats) || {}).forEach(([beat, ch]) => {
+      if (chordErrors(ch).length) out.push(`${where} bar ${b.bar} beat ${beat}: "${ch}"`);
+    });
+  });
+  Object.entries(payload.sections || {}).forEach(([name, bars]) => walk(bars, name));
+  (Array.isArray(payload.variants) ? payload.variants : [])
+    .forEach((v, i) => walk(v?.bars, `variant ${i + 1}`));
+  return out;
+}
+
 // ─── Dirty tracking ───────────────────────────────────────────────────────────
 function setDirty() {
   if (!S.dirty) {
@@ -248,6 +411,23 @@ function renderSections() {
   container.innerHTML = S.data.sections.map((sec, si) =>
     renderSectionHTML(sec, si, total, bc)
   ).join('');
+
+  refreshDuplicateFlags();
+  validateAllChords();
+}
+
+/** Flag section cards whose (live) name collides with another section's. */
+function refreshDuplicateFlags() {
+  const cards  = qsa('.sec-card');
+  const names  = Array.from(cards, c => qs('.sec-name', c).value.trim());
+  const counts = {};
+  names.forEach(n => { if (n) counts[n] = (counts[n] || 0) + 1; });
+
+  cards.forEach((card, i) => {
+    const dup = names[i] !== '' && counts[names[i]] > 1;
+    card.classList.toggle('has-dup', dup);
+    qs('.sec-dup-badge', card)?.classList.toggle('hidden', !dup);
+  });
 }
 
 function renderSectionHTML(sec, si, totalSections, bc) {
@@ -261,11 +441,14 @@ function renderSectionHTML(sec, si, totalSections, bc) {
         <span class="sec-label">Section</span>
         <input class="sec-name" type="text" value="${esc(sec.name)}" data-si="${si}"
                title="Section name" />
+        <span class="sec-dup-badge hidden" title="Another section has this name — they will be merged on save">⚠ duplicate name</span>
         <div class="sec-header-btns">
           <button class="btn-icon" data-action="sec-up"   data-si="${si}"
                   ${canUp   ? '' : 'disabled'} title="Move section up">↑</button>
           <button class="btn-icon" data-action="sec-down" data-si="${si}"
                   ${canDown ? '' : 'disabled'} title="Move section down">↓</button>
+          <button class="btn-icon" data-action="sec-copy" data-si="${si}"
+                  title="Duplicate section">⧉</button>
           <button class="btn-icon danger" data-action="sec-del" data-si="${si}"
                   title="Delete section">×</button>
         </div>
@@ -343,6 +526,28 @@ function moveSectionUp(si) {
 
 function moveSectionDown(si) {
   moveSectionUp(si + 1);
+}
+
+/** Derive a section name not already used, so copies don't collide on save. */
+function uniqueSectionName(base) {
+  const existing = new Set(S.data.sections.map(s => s.name));
+  if (!existing.has(base)) return base;
+  let i = 2;
+  while (existing.has(`${base} (${i})`)) i++;
+  return `${base} (${i})`;
+}
+
+function copySection(si) {
+  const src   = S.data.sections[si];
+  const clone = {
+    name: uniqueSectionName(src.name),
+    bars: src.bars.map(bar => ({
+      bar:   bar.bar,
+      beats: Object.assign({}, bar.beats),
+    })),
+  };
+  S.data.sections.splice(si + 1, 0, clone);
+  renderSections();
 }
 
 function deleteSection(si) {
@@ -426,7 +631,13 @@ async function doSave() {
       body:    JSON.stringify(payload),
     });
     clearDirty();
-    toast('Saved ✓', 'success');
+    const bad = invalidChordList(payload);
+    if (bad.length) {
+      const shown = bad.slice(0, 3).join(' · ');
+      toast(`Saved ✓ — but ${bad.length} chord${bad.length > 1 ? 's' : ''} look wrong: ${shown}${bad.length > 3 ? ' …' : ''}`, 'warn');
+    } else {
+      toast('Saved ✓', 'success');
+    }
     // Refresh title in case it was changed
     qs('#editor-title').textContent = payload.title || S.currentId;
     // Update title in sidebar list
@@ -523,6 +734,7 @@ function renderEditor() {
   const tune = S.tunes.find(t => t.id === S.currentId);
   if (tune?.has_image) {
     qs('#crop-img').src = `/crop/${encodeURIComponent(S.currentId)}`;
+    qs('#crop-filename').textContent = `${S.currentId}.png`;
     qs('#image-panel').classList.remove('hidden');
   } else {
     qs('#image-panel').classList.add('hidden');
@@ -618,6 +830,7 @@ function wireEvents() {
     switch (action) {
       case 'sec-up':   moveSectionUp(si);    break;
       case 'sec-down': moveSectionDown(si);  break;
+      case 'sec-copy': copySection(si);      break;
       case 'sec-del':  deleteSection(si);    break;
       case 'row-up':   moveRowUp(si, ri);    break;
       case 'row-down': moveRowDown(si, ri);  break;
@@ -628,8 +841,22 @@ function wireEvents() {
     }
   });
 
-  // ── Sections: dirty on any input
-  qs('#sections-container').addEventListener('input', () => setDirty());
+  // ── Sections: dirty on any input; re-flag duplicates when a name changes;
+  //    live-check chord syntax while typing
+  qs('#sections-container').addEventListener('input', e => {
+    setDirty();
+    if (e.target.classList.contains('sec-name')) refreshDuplicateFlags();
+    if (e.target.classList.contains('beat-inp')) validateChordInput(e.target, true);
+  });
+
+  // ── Chord hint bubble follows focus
+  qs('#sections-container').addEventListener('focusin', e => {
+    if (e.target.classList.contains('beat-inp')) validateChordInput(e.target, true);
+  });
+  qs('#sections-container').addEventListener('focusout', e => {
+    if (e.target.classList.contains('beat-inp')) hideChordHint();
+  });
+  qs('#editor-scroll').addEventListener('scroll', hideChordHint);
 
   // ── Image zoom
   qs('#crop-img').addEventListener('click', openZoom);
