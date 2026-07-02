@@ -34,6 +34,7 @@ only what the image shows. Expand every repeat/shorthand into explicit chords.
   "sections": {{ ... }},          // always present; see SECTIONS
   "recordings": [ ... ],          // OMIT if none; margin performer/year credits (list of strings)
   "variants": [ ... ],            // OMIT if none; alternate bars; see RECORDINGS & VARIANTS
+  "same_chord_changes": str,      // OMIT if absent; verbatim cross-reference line; see SAME CHORD CHANGES
   "notation_notes": {{ ... }}     // OMIT if empty
 }}
 DO NOT output a "title" field — the title is supplied separately and added by the
@@ -198,7 +199,30 @@ ALTERATIONS & PARENTHESES: an alteration is an accidental degree (b5, #5, b9, #9
 b13, ...). Attach it BARE, to the right of the chord, WHENEVER a 7th or an extension
 number is present: F7#5, Ab7b9, C9b5, C9#5, C13#5, B7#11, Eb7#5b9. Wrap it in parentheses ONLY on a
 bare triad that has NO 7th/extension: F(#5) [= augmented triad], Ab(b9), A(#5#9). Rule of
-thumb: 7th or number present -> no parens; bare triad -> parens.
+thumb: 7th or number present -> no parens; bare triad -> parens. NEVER add a 7th or
+extension the box does not print, even when one is theoretically implied by the
+alteration: a bare root carrying only a b9 is F(b9), NOT F7b9; a bare root with a #5 is
+F(#5), NOT F7#5. Transcribe the quality actually written, not the chord it suggests.
+
+READING SUPERSCRIPT ACCIDENTALS (the (b9) traps — read these carefully):
+Alterations and extensions are hand-drawn as small SUPERSCRIPTS to the upper-right of
+the chord root (e.g. a bare "A" with a tiny "b9" above-right of it). A hand-drawn FLAT
+sign (b / ♭) in such a superscript is a tall loop that is EASILY CONFUSED with the
+digit 6 or a lowercase b. This causes three recurring mistakes — DO NOT make them:
+- DO NOT drop the flat: a triad with a superscript flat-9 is (b9), NEVER a plain 9.
+  ("A" with superscript ♭9 -> A(b9), not A9.)
+- DO NOT read the flat as a 6 (nor read a genuine 6 with a stray flat): a superscript
+  that reads like "b9", "9b", or "96" beside a triad is almost always a FLAT-NINE ->
+  (b9), NOT a 6. ("D" ♭9 -> D(b9), not Db6 / D6; "C" ♭9 -> C(b9), not C6b.)
+- DO NOT migrate a superscript flat onto the ROOT. The root's own accidental (the flat
+  in Bb, Eb; the sharp in F#) is written INLINE, at the SAME large size as the root
+  letter, immediately after it. A small RAISED flat is an ALTERATION of the chord, not
+  part of the root name. So "G" with a superscript ♭9 is G(b9), NEVER Gb9; "D" with a
+  superscript ♭9 is D(b9), NEVER Db.
+Net rule: a bare triad carrying a superscript flat-nine is the parenthesised form
+C(b9), D(b9), G(b9), A(b9), F#(b9). Distinguish a real 6 chord (C6, Bb6 — a plain 6 at
+normal size, NO flat stroke) from a (b9) (a 9 preceded/accompanied by a flat stroke).
+Apply this same superscript-reading care inside VARIANTE boxes, not just the main grid.
 
 SUS / SLASH / NO-CHORD:
 - Suspended: sus4, sus2, 7sus4 (Gsus4, D7sus4).
@@ -215,6 +239,14 @@ CONVERSIONS from the book to canonical:
 - superscript 5+ (aug 5th) -> #5  (Bb7 with a 5+ -> Bb7#5; a Bb triad with a 5+ -> Bb(#5))
 - suffix t (means +, i.e. raise that degree) -> # on that degree  (Eb9t -> Eb#9; an F7 with a 5t -> F7#5)
 - .../14 (French "14th") -> #11  (E9/14 -> E9#11, since 7+7=14)
+- APPLY every conversion above INSIDE the chord string, even when the whole chord is
+  parenthesised (an optional/substitute chord): a parenthesised Gm7 carrying a 5+ (aug
+  5th) superscript is (Gm7#5), NOT (Gm7) with the alteration dropped into a note. A
+  superscript alteration is part of the chord — convert and attach it, never defer it.
+- These conversions apply EVERYWHERE a chord is written — the main grid, optional/
+  parenthesised chords, AND variant/statement boxes alike. In particular 7M / M7 / Δ
+  ALWAYS becomes maj7 inside a VARIANTE box too (Bb7M -> Bbmaj7, C7M -> Cmaj7); never
+  leave 7M unconverted just because it sits in a variant.
 OTHER: Transcribe the root exactly as printed — do NOT normalise enharmonics (if the box
 says F#, write F#; if it says Gb, write Gb). Watch B vs Bb carefully — different chords.
 If a chord is uncertain due to scan quality, append ? to that chord string (e.g. Bbmaj7?).
@@ -255,9 +287,9 @@ bars the alternate applies to, but do NOT output the symbol itself. Transcribe t
 === NOTATION NOTES ===
 "notation_notes" is a free-form object mapping a short key to an explanation. OMIT if
 empty. Record when applicable: enharmonic/ambiguous readings;
-truncation; composer/performance annotations printed on the score; 
-"same_chord_changes" / cross-reference note (key "same_chord_changes", see below); any other
-stray printed text; a missing grid (key "no_chord_grid").
+truncation; composer/performance annotations printed on the score; any other
+stray printed text; a missing grid (key "no_chord_grid"). Do NOT put the SAME CHORD
+CHANGES cross-reference here — it has its own top-level "same_chord_changes" field (see below).
 
 === SAME CHORD CHANGES ===
 Below (or beside) the main grid a tune may carry a free-text note relating its
@@ -267,7 +299,8 @@ changes to ANOTHER tune. Capture it verbatim — do not drop it. Two printed for
 - Unlabelled prose: the same idea written out, e.g. 'Almost the same chord changes as
   "I can't believe that you're in love with me"'.
 Record the WHOLE line verbatim (keep the referenced title, any parentheses, and the
-quote marks) in a notation_notes entry under key "same_chord_changes". This is NOT a
+quote marks) in the top-level "same_chord_changes" string field (NOT inside
+notation_notes). OMIT the field entirely when there is no such line. This is NOT a
 missing grid — the tune still has its own printed changes; transcribe those normally.
 GENERAL RULE: any other stray explanatory text printed on the score that is not a
 chord, a margin performer/year credit, or an omitted variant/statement marker should
@@ -389,6 +422,14 @@ TUNE_TOOL = {
                     },
                     "required": ["applies_to", "bars"],
                 },
+            },
+            "same_chord_changes": {
+                "type": "string",
+                "description": (
+                    "Verbatim cross-reference line relating this tune's changes to "
+                    "another tune (labelled 'SAME CHORD CHANGES :' or written as prose). "
+                    "Keep the referenced title, parentheses, and quote marks. Omit if absent."
+                ),
             },
             "notation_notes": {"type": "object"},
         },
