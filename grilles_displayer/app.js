@@ -8,12 +8,29 @@
   const searchEl = document.getElementById("search");
   const listEl = document.getElementById("tuneList");
   const viewEl = document.getElementById("tuneView");
+  const paneEl = document.getElementById("tunePane");
   const themeBtn = document.getElementById("themeToggle");
+  const listToggle = document.getElementById("listToggle");
+  const listBackdrop = document.getElementById("listBackdrop");
+  const imageToggle = document.getElementById("imageToggle");
+  const imagePane = document.getElementById("imagePane");
+  const imageEl = document.getElementById("tuneImage");
+  const imageClose = document.getElementById("imageClose");
+  const zoomInBtn = document.getElementById("zoomIn");
+  const zoomOutBtn = document.getElementById("zoomOut");
+
+  /* Below 700px the list is a drawer; from 900px the scan docks beside the grid. */
+  const narrowMq = window.matchMedia("(max-width: 700px)");
+  const wideMq = window.matchMedia("(min-width: 900px)");
 
   const state = {
     filtered: TUNES,
     activeIndex: -1, // keyboard highlight within filtered list
     currentId: null, // tune displayed in the main panel
+    showImage: false, // original scan visible (side panel or overlay)
+    imageZoom: false, // wide screens: docked scan expanded to fullscreen
+    imageMag: false, // fullscreen scan magnified (pan by scrolling)
+    gridZoom: 1, // user zoom factor applied on top of the fitted grid size
   };
 
   /* ---------------------------------------------------------------- theme */
@@ -42,6 +59,100 @@
     } catch (e) { /* ignore */ }
   });
 
+  /* ----------------------------------------------------- tune list drawer */
+
+  function setListOpen(open) {
+    document.body.classList.toggle("list-open", open);
+    listToggle.setAttribute("aria-expanded", String(open));
+  }
+
+  listToggle.addEventListener("click", () => {
+    setListOpen(!document.body.classList.contains("list-open"));
+  });
+
+  listBackdrop.addEventListener("click", () => setListOpen(false));
+
+  /* -------------------------------------------------------- original scan */
+
+  function applyImage() {
+    const tune = tuneById(state.currentId);
+    const src = tune && tune.image;
+    const show = Boolean(src) && state.showImage;
+    if (src) {
+      imageToggle.hidden = false;
+      imageToggle.classList.toggle("on", show);
+      if (imageEl.getAttribute("src") !== src) imageEl.src = src;
+      imageEl.alt = `${tune.title || tune.id} — original scan`;
+    } else {
+      imageToggle.hidden = true;
+    }
+    if (!show) {
+      state.imageZoom = false;
+      state.imageMag = false;
+    }
+    imagePane.hidden = !show;
+    /* Fullscreen: always on narrow screens; on wide only after click-to-zoom. */
+    const overlay = show && (!wideMq.matches || state.imageZoom);
+    document.body.classList.toggle("show-image", show);
+    document.body.classList.toggle("image-overlay", overlay);
+    imagePane.classList.toggle("magnified", overlay && state.imageMag);
+  }
+
+  function setShowImage(show) {
+    state.showImage = show;
+    try {
+      localStorage.setItem("grilles.image", show ? "1" : "0");
+    } catch (e) { /* ignore */ }
+    applyImage();
+    requestAnimationFrame(fitAll);
+  }
+
+  /* Closes the fullscreen scan (back to dock on wide, hidden on narrow).
+     Returns false when no overlay was open. */
+  function closeImageOverlay() {
+    if (!document.body.classList.contains("image-overlay")) return false;
+    state.imageZoom = false;
+    state.imageMag = false;
+    if (wideMq.matches) applyImage();
+    else setShowImage(false);
+    return true;
+  }
+
+  imageToggle.addEventListener("click", () => setShowImage(!state.showImage));
+
+  /* Click zooms the scan: dock → fullscreen (wide), fullscreen → magnified. */
+  imageEl.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (wideMq.matches && !state.imageZoom) {
+      state.imageZoom = true;
+      state.imageMag = false;
+    } else {
+      state.imageMag = !state.imageMag;
+    }
+    applyImage();
+    requestAnimationFrame(fitAll);
+    if (state.imageMag) {
+      /* Start panning from the middle of the scan. */
+      requestAnimationFrame(() => {
+        imagePane.scrollLeft = (imagePane.scrollWidth - imagePane.clientWidth) / 2;
+        imagePane.scrollTop = (imagePane.scrollHeight - imagePane.clientHeight) / 2;
+      });
+    }
+  });
+
+  /* Clicking the dark backdrop (or ✕) leaves the fullscreen view. */
+  imagePane.addEventListener("click", () => closeImageOverlay());
+  imageClose.addEventListener("click", (e) => {
+    e.stopPropagation();
+    closeImageOverlay();
+  });
+
+  imageEl.addEventListener("error", () => {
+    imageToggle.hidden = true;
+    imagePane.hidden = true;
+    document.body.classList.remove("show-image", "image-overlay");
+  });
+
   /* ---------------------------------------------------------------- search */
 
   function normalize(s) {
@@ -64,6 +175,7 @@
     state.filtered = filterTunes(searchEl.value);
     state.activeIndex = state.filtered.length ? 0 : -1;
     renderList();
+    if (narrowMq.matches && searchEl.value) setListOpen(true); // show results on mobile
   });
 
   /* ------------------------------------------------------------ tune list */
@@ -110,6 +222,11 @@
       const tune = state.filtered[state.activeIndex];
       if (tune) openTune(tune.id);
     } else if (e.key === "Escape") {
+      if (closeImageOverlay()) return;
+      if (document.body.classList.contains("list-open")) {
+        setListOpen(false);
+        return;
+      }
       if (searchEl.value) {
         searchEl.value = "";
         searchEl.dispatchEvent(new Event("input"));
@@ -263,6 +380,14 @@
   function renderExtras(tune, beats) {
     const extras = el("div", "extras");
 
+    if (tune.same_chord_changes) {
+      const block = detailsBlock("Same changes");
+      const p = el("p");
+      p.textContent = tune.same_chord_changes;
+      block.appendChild(p);
+      extras.appendChild(block);
+    }
+
     if (Array.isArray(tune.variants) && tune.variants.length) {
       const block = detailsBlock("Variants");
       tune.variants.forEach((variant) => {
@@ -298,7 +423,6 @@
         notes.push(`${key.replace(/_/g, " ")}: ${value}`);
       }
     }
-    if (tune.same_chord_changes) notes.push(`Same changes: ${tune.same_chord_changes}`);
     if (notes.length) {
       const block = detailsBlock("Notes");
       notes.forEach((n) => {
@@ -321,27 +445,72 @@
     document.title = `${tune.title || id} — Grilles`;
 
     const beats = beatsPerBar(tune);
-    viewEl.innerHTML = "";
-    viewEl.appendChild(renderHead(tune));
+    paneEl.innerHTML = "";
+    paneEl.appendChild(renderHead(tune));
 
     const grid = el("div", "grid");
     const sectionNames = Object.keys(tune.sections || {});
     sectionNames.forEach((name, i) => {
       grid.appendChild(renderSection(name, tune.sections[name], beats, i === 0, tune.time_signature));
     });
-    viewEl.appendChild(grid);
+    paneEl.appendChild(grid);
 
     const extras = renderExtras(tune, beats);
-    if (extras) viewEl.appendChild(extras);
+    if (extras) paneEl.appendChild(extras);
 
     viewEl.scrollTop = 0;
+    if (narrowMq.matches) setListOpen(false);
+    applyImage();
     renderList(); // refresh "current" highlight
-    requestAnimationFrame(fitChords);
+    requestAnimationFrame(fitAll);
   }
+
+  /*
+   * Shrink the grid's base font size until head + grid fit the viewport
+   * (one screen page, no vertical scrolling). All grid dimensions are
+   * em-based, so its height scales ~linearly with font-size.
+   */
+  const MIN_GRID_FONT = 8; // px — below this, scrolling beats unreadable chords
+
+  function fitGrid() {
+    const grid = paneEl.querySelector(".grid");
+    if (!grid) return;
+    grid.style.fontSize = "";
+    viewEl.scrollTop = 0;
+    /* Fit above the view's bottom padding, which clears the zoom buttons. */
+    const padBottom = Math.max(10, parseFloat(getComputedStyle(viewEl).paddingBottom) || 0);
+    for (let i = 0; i < 3; i++) {
+      const viewRect = viewEl.getBoundingClientRect();
+      const gridRect = grid.getBoundingClientRect();
+      const bottomLimit = viewRect.top + viewEl.clientTop + viewEl.clientHeight - padBottom;
+      const avail = bottomLimit - gridRect.top;
+      if (gridRect.height <= avail || avail <= 0) break;
+      const cur = parseFloat(getComputedStyle(grid).fontSize);
+      const next = Math.max(MIN_GRID_FONT, cur * (avail / gridRect.height));
+      if (cur - next < 0.5) break;
+      grid.style.fontSize = next.toFixed(2) + "px";
+      if (next === MIN_GRID_FONT) break;
+    }
+    if (state.gridZoom !== 1) {
+      const fitted = parseFloat(getComputedStyle(grid).fontSize);
+      grid.style.fontSize = Math.max(6, fitted * state.gridZoom).toFixed(2) + "px";
+    }
+  }
+
+  function setGridZoom(zoom) {
+    state.gridZoom = Math.min(2.5, Math.max(0.5, zoom));
+    try {
+      localStorage.setItem("grilles.gridzoom", String(state.gridZoom));
+    } catch (e) { /* ignore */ }
+    fitAll();
+  }
+
+  zoomInBtn.addEventListener("click", () => setGridZoom(state.gridZoom * 1.15));
+  zoomOutBtn.addEventListener("click", () => setGridZoom(state.gridZoom / 1.15));
 
   /* Shrink chords that overflow their beat slots (spec §6.4). */
   function fitChords() {
-    viewEl.querySelectorAll(".slot").forEach((slot) => {
+    paneEl.querySelectorAll(".slot").forEach((slot) => {
       const chord = slot.firstElementChild;
       if (!chord) return;
       chord.style.fontSize = "";
@@ -353,15 +522,40 @@
     });
   }
 
+  function fitAll() {
+    fitGrid();
+    fitChords();
+  }
+
   let resizeTimer = null;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(fitChords, 150);
+    resizeTimer = setTimeout(() => {
+      applyImage(); // dock ↔ overlay when crossing the 900px breakpoint
+      fitAll();
+    }, 150);
   });
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => requestAnimationFrame(fitAll));
+  }
 
   /* ----------------------------------------------------------------- init */
 
   initTheme();
+  {
+    /* Scan panel defaults to on for wide screens (docked side panel); an
+       explicit user toggle is remembered. Never greet mobile with an overlay. */
+    let saved = null;
+    try {
+      saved = localStorage.getItem("grilles.image");
+    } catch (e) { /* ignore */ }
+    state.showImage = (saved === null ? true : saved === "1") && wideMq.matches;
+  }
+  try {
+    const z = parseFloat(localStorage.getItem("grilles.gridzoom"));
+    if (Number.isFinite(z)) state.gridZoom = Math.min(2.5, Math.max(0.5, z));
+  } catch (e) { /* ignore */ }
   renderList();
   searchEl.focus();
 
@@ -372,6 +566,6 @@
     history.replaceState(null, "", "#" + encodeURIComponent(TUNES[0].id));
     renderTune(TUNES[0].id);
   } else {
-    viewEl.innerHTML = '<div class="list-empty">No tunes found. Run build_data.py first.</div>';
+    paneEl.innerHTML = '<div class="list-empty">No tunes found. Run build_data.py first.</div>';
   }
 })();
