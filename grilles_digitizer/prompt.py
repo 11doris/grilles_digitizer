@@ -45,7 +45,10 @@ Never emit null or "" for it. Do NOT emit a "fingerprints" field.
 - style: the upper-left genre label exactly as printed (DIXIELAND, NEW ORLEANS,
   SWING, STANDARD, ELLINGTONIA, ...).
 - tempo: the tempo label (MEDIUM, MEDIUM FAST, MEDIUM SLOW, FAST, ...). Omit if absent.
-- form: exactly as printed, preserving primes (e.g. "32 A B C A'").
+- form: exactly as printed, preserving primes (e.g. "32 A B C A'"). A standalone
+  verse-length label such as "12 VERSE" / "4 VERSE" / "10 VERSE" (the tune's verse,
+  usually not itself transcribed) is NOT part of the form — do NOT append it to the
+  form string; record it in a notation_notes entry (key "verse").
 - time_signature: default "4/4"; override only if the score indicates otherwise.
 
 === SECTIONS ===
@@ -61,9 +64,13 @@ Section ids:
   the row actually contains.
 
 FORM EXPANSION: the printed grid often shows fewer rows than "form" implies. Expand
-the form by COPYING the printed rows into the full set of sections. Example: a printed
-A-row + B-row with form "32 A A B A" becomes sections A, A1 (copy of A), B, A2 (copy
-of A). Any explicitly written bar in a repeated row overrides the copied value.
+the form by COPYING the printed rows into the full set of sections. Map each printed
+row to the NEXT DISTINCT letter of the form, in top-to-bottom order (1st printed row =
+1st letter; 2nd printed row = the next NEW letter; ...). Repeated letters (A1, A2, ...)
+are COPIES, never their own printed row. Example: a printed A-row + B-row with form
+"32 A A B A" is exactly TWO rows — the A-row and the B-row — and becomes sections A,
+A1 (copy of A), B, A2 (copy of A). So the SECOND printed row here is B, NOT A1. Any
+explicitly written bar in a repeated row overrides the copied value.
 
 MULTI-STRAIN PIECES (rare — multi-strain rags/stride/marches): when the page shows
 TWO OR MORE separate grids ("strains") stacked vertically, EACH with its own form
@@ -109,6 +116,11 @@ Read each chord and ALL its alteration suffixes only from within its own region.
    AMBIGUITY FALLBACK: if scan quality makes the inset corner indistinguishable from
    a plain diagonal, treat it as a diagonal (Case 2) -> beat 3, and add a
    notation_notes entry for that bar.
+   TOP-LEFT inset (mirror of case 3): a small framed square inset in the TOP-LEFT
+   corner + a large remaining area (no full divider). The corner square is beat "1";
+   the large area is the NEXT beat "2": {{ "1": "Fm7", "2": "Bb7" }}. (If the top is
+   instead split into TWO framed squares side by side above a lower area, that is
+   case 5, not this.)
 4. Upper half + lower-left + lower-right: upper -> "1"; bottom-left -> "3";
    bottom-right -> "4": {{ "1": "A", "3": "B", "4": "C" }}
 5. Upper-left + upper-right + lower half: top-left -> "1"; top-right -> "2";
@@ -141,6 +153,11 @@ ALWAYS expand fully. NEVER output -, %, •/•, ->, or any shorthand. Write the
   - Inside a left-arrow row, a dash (-) or blank box is NOT a bar-repeat — it is an
     EMPTY PLACEHOLDER meaning "take this bar, unchanged, from the same position of the
     referenced same-letter row". Do NOT copy the preceding bar into it.
+  - EXCEPTION — trailing dash: once the arrow row has started writing EXPLICIT bars, a
+    dash that sits to the RIGHT of an explicit box (i.e. the row's copied span is
+    already over) reverts to an ordinary bar-repeat: copy the immediately preceding
+    (explicit) bar, NOT the positional same-letter reference. Typical case: a final
+    dash after an explicit turnaround copies that turnaround's last bar.
   - The referenced row is that same-letter row AS ALREADY RESOLVED — its own copies and
     overrides carried through — NOT necessarily the original first A. So if A1 itself
     overrode, say, bars 7-8, then A2's empty bars 7-8 inherit A1's OVERRIDDEN bars 7-8.
@@ -166,10 +183,16 @@ SYMBOL ORDER: build every chord in this fixed order, no spaces:
   (6, 7, 9, 11, 13) -> alteration suffixes in ascending-degree order (b5 #5 b9 #9 #11 b13).
   Examples: Dm7, Ebmaj7, C13, F7#5, B7#11, C9b5, Eb7#5b9, Gm11.
 
-EXTENSIONS (bare numbers, NEVER parenthesised): 6, 9, 11, 13 and their minor/major forms
-m6, m9, m11, m13, maj9. A single extension number implies the chord tones below it, so
-write the HIGHEST number only: a dominant with a 13th is C13 (NOT C7(13) or C9(13)); an
-11th is C11; a ninth is C9. 6/9 chord -> 6/9 (C6/9, Cm6/9).
+EXTENSIONS (bare numbers): 6, 9, 11, 13 and their minor/major forms m6, m9, m11, m13,
+maj9. A single bare extension number implies the chord tones below it, so write the
+HIGHEST number only: a dominant simply marked as a 13th is C13; an 11th is C11; a ninth
+is C9. 6/9 chord -> 6/9 (C6/9, Cm6/9).
+PARENTHESISED SUPERSCRIPT EXTENSION — preserve as printed: when the book writes an
+explicit 7 or 9 with a FURTHER extension drawn as a parenthesised superscript beside it
+(e.g. a "7" with a superscript "(13)", or a "9" with "(13)"), keep that literal form:
+Ab7(13), D9(13). Do NOT collapse these to Ab13 / D13 — the parentheses are part of the
+printed symbol. (This applies only to a parenthesised superscript number; a plain bare
+13 still collapses per the rule above.)
 
 ALTERATIONS & PARENTHESES: an alteration is an accidental degree (b5, #5, b9, #9, #11,
 b13, ...). Attach it BARE, to the right of the chord, WHENEVER a 7th or an extension
@@ -181,6 +204,10 @@ SUS / SLASH / NO-CHORD:
 - Suspended: sus4, sus2, 7sus4 (Gsus4, D7sus4).
 - Slash / bass note: root then "/" then bass note, as printed (C/E, Fm7/Bb).
 - An empty / no-chord bar is N.C.
+- A WHOLE chord printed in parentheses — e.g. "(G7)" — is an optional/passing chord:
+  KEEP it exactly as printed, parentheses included ("(G7)"), as that bar's chord. You
+  may also record it in a notation_notes entry. (Bare-triad alterations also use
+  parentheses — F(#5), D(b9), Bb(#5b9) — so parentheses appear in output both ways.)
 
 CONVERSIONS from the book to canonical:
 - 7M, M7, Δ (major 7) -> maj7  (Eb7M -> Ebmaj7)
@@ -205,10 +232,10 @@ that is fine and expected). OMIT "recordings" only when there are truly no credi
 VARIANTS: some tunes print one or more ALTERNATE bars below the grid, labelled VARIANTE
 (or STATEMENT) with a bar reference, e.g. "VARIANTE  Bar 1, 9, 25". Each alternate is
 tied to specific bar(s) of the main grid, usually via a marker symbol (*, ①, ②, ...)
-drawn BOTH next to the target grid bar AND next to the alternate. Transcribe these into
+drawn BOTH next to the target grid bar AND next to the alternate — use it to read WHICH
+bars the alternate applies to, but do NOT output the symbol itself. Transcribe these into
 "variants", a list of objects — ONE object per VARIANTE label:
   {{
-    "marker": "*",                 // OMIT if none; the symbol tying this to the grid bar(s)
     "applies_to": "Bar 1, 9, 25",  // the printed bar reference, verbatim
     "bars": [ {{ "bar": 1, "beats": {{ "1": "Fm7", "3": "Gm7" }} }}, ... ]
   }}
@@ -217,8 +244,9 @@ drawn BOTH next to the target grid bar AND next to the alternate. Transcribe the
   order, beats read from each box's own regions. These are the replacement chords for
   the referenced grid bar(s); downstream code maps them using "applies_to".
 - Keep the main grid UNCHANGED: the original chords stay in "sections", and the marker
-  symbol (*, ①, ...) is NEVER written into a chord string — it only links the variant.
-- A page may carry SEVERAL variants (each its own marker + reference) — emit one object
+  symbol (*, ①, ...) is NEVER written into a chord string nor emitted as a field — it
+  only tells you which grid bar an alternate belongs to.
+- A page may carry SEVERAL variants (each its own bar reference) — emit one object
   for each, in printed order.
 - Some variant boxes may be cut off at the crop edge: transcribe what you can, append
   "?" to any uncertain chord, and add a notation_notes entry. Do not invent chords.
@@ -343,13 +371,6 @@ TUNE_TOOL = {
                 "items": {
                     "type": "object",
                     "properties": {
-                        "marker": {
-                            "type": "string",
-                            "description": (
-                                "Symbol (e.g. *, ①) linking this variant to the grid "
-                                "bar(s). Omit if none."
-                            ),
-                        },
                         "applies_to": {
                             "type": "string",
                             "description": (
