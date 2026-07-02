@@ -266,7 +266,7 @@
     openTune(list[next].id);
   }
 
-  /* Swipe on the tune view (mobile): right → next tune, left → previous.
+  /* Swipe on the tune view (mobile): left → next tune, right → previous.
      Disabled while the magnified scan is panned by touch-scrolling. */
   let swipeStart = null;
 
@@ -283,7 +283,7 @@
     swipeStart = null;
     /* Require a mostly-horizontal move so vertical scrolling never flips. */
     if (Math.abs(dx) < 60 || Math.abs(dx) < 1.5 * Math.abs(dy)) return;
-    navTune(dx > 0 ? 1 : -1);
+    navTune(dx < 0 ? 1 : -1);
   }, { passive: true });
 
   viewEl.addEventListener("touchcancel", () => {
