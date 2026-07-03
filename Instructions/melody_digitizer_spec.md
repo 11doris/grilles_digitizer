@@ -2,22 +2,37 @@
 
 Goal: extract the hand-written melodies from the AGJ melody manuscript
 (`AGJ_Melody.pdf`, one tune per page or part-page, ~1400 tunes) and produce, per
-tune, (a) a machine-readable melody JSON aligned with the already-digitized
-chord grille (`tunes/<id>.json`), and (b) a self-contained static HTML lead
-sheet (4 bars per row, title, chords above the staff).
+tune, (a) a melody file in **standard ABC notation (v2.1)** aligned with the
+already-digitized chord grille (`tunes/<id>.json`), and (b) a self-contained
+static HTML lead sheet (4 bars per row, title, chords above the staff) rendered
+with a **vendored abcjs** (MIT, single JS file, checked into the repo once).
+
+Why ABC as the canonical format (decision record):
+- Human verification/correction is the bottleneck at 1400 tunes. ABC is plain
+  text and terse — fixing a wrong pitch is a one-character edit, and diffs in
+  git review cleanly (`melodies_wip/` → `melodies_verified/` promotion).
+- abcjs renders ABC in the browser inside a self-contained HTML page AND
+  synthesizes playback — hearing the transcription is the fastest way for a
+  human to verify a jazz tune. abcjs's editor widget (textarea ⇆ score with
+  cursor-note highlighting) is the review UI nearly for free.
+- Model-API output in ABC costs ~15 tokens/bar vs hundreds for MusicXML.
+- Interop: `abc2xml` exports MusicXML for anyone who wants to edit in
+  MuseScore or archive; LilyPond/MEI were rejected (compile toolchain /
+  verbosity), VexFlow is a rendering API, not a storage format.
 
 This spec encodes everything learned from the manual pilot transcription of
 `grilles_melody/9_04_AIN_T_MISBEHAVIN.json` + `aint_misbehavin_melody.png`
-(result: `grilles_melody/aint_misbehavin_leadsheet.html`). The pilot took ~40
+(results: `grilles_melody/aint_misbehavin_leadsheet.html` and the reference
+ABC transcription `melodies_wip/9_04_AIN_T_MISBEHAVIN.abc`). The pilot took ~40
 model-vision reads per tune; the pipeline below is designed to cut that to a
 handful, doing everything deterministic in Python/OpenCV and reserving the
 model API for the few decisions vision code cannot make reliably.
 
 Repo constraints (must respect):
 - `tunes/` is **read-only** ground truth for chords. Never modify it.
-- New melody JSONs go to a new `melodies_wip/` directory; human-verified ones
-  are promoted to `melodies_verified/` (mirror of the tunes_wip/tunes_verified
-  convention).
+- New melody ABC files (`<id>.abc`) go to a new `melodies_wip/` directory;
+  human-verified ones are promoted to `melodies_verified/` (mirror of the
+  tunes_wip/tunes_verified convention).
 - Rendered lead sheets go to `leadsheets/` (generated, can be rebuilt anytime).
 - HTML verification: headless Edge
   (`msedge --headless=new --user-data-dir=<fresh tmp profile> --window-size=1300,2400 --screenshot=...`),
@@ -44,10 +59,10 @@ stems, flags/beams, rests, accidentals, ties, text zones (chords, title, labels)
 per-bar event candidates with confidence + list of UNRESOLVED bars
    │  stage 4  (model API, only for flagged bars)  annotated-crop adjudication
    ▼
-melody JSON (melodies_wip/<id>.melody.json)
+melody ABC file (melodies_wip/<id>.abc)
    │  stage 5  (python)   validation suite; failures loop back to stage 4 once
    ▼
-lead sheet HTML (leadsheets/<id>.html) via the shared SVG engraver
+lead sheet HTML (leadsheets/<id>.html) via vendored abcjs
 ```
 
 Guiding principle: **the chord grille JSON is ground truth** for form, bar
@@ -189,8 +204,10 @@ All detectors operate on the straightened strip, binarized at 128.
   of that bar (beats), the python pipeline's candidate reading(s) with the
   open question(s) ("is the glyph at x≈612 an eighth rest or a note-head on
   the D5 line?"), and the constraint that durations must sum to 8 eighths.
-- Response format: strict JSON `{"events":[{"p":"Bb4","d":2,"a":"n","tie":false},
-  {"r":true,"d":1}, ...]}` — same schema as the output file. Temperature 0.
+- Response format: one ABC bar body per flagged bar (unit note length 1/8,
+  key given in the prompt), e.g. `G B2 G =B2 B2` or `z E F E B2 B2` — exactly
+  what gets spliced into the output file. Temperature 0. Reject and re-ask
+  once if the bar does not parse or does not sum to the time signature.
 - Batch several bars per request (one image per bar, up to ~6 images) to cut
   request overhead. Only send follow-up crops (higher zoom, raw un-straightened
   variant) for bars the model marks uncertain — the raw crop matters because
@@ -198,47 +215,48 @@ All detectors operate on the straightened strip, binarized at 128.
 - Budget: at 10–30 % flagged bars ≈ 5–15 bars/tune ≈ 2–3 batched calls/tune.
   Never send whole pages or whole systems to the model.
 
-## 7. Melody JSON schema (`melodies_wip/<id>.melody.json`)
+## 7. Melody file format: ABC notation (`melodies_wip/<id>.abc`)
 
-```json
-{
-  "id": "9_04_AIN_T_MISBEHAVIN",
-  "title": "AIN'T MISBEHAVIN'",
-  "key": "Eb", "time_signature": "4/4",
-  "clef": "treble",
-  "source": {"image": "melody_crops/9_04_....png", "book": "AGJ melody ms."},
-  "sections": {
-    "verse_A": [
-      {"bar": 1,
-       "events": [
-         {"p": "G4",  "d": 1},
-         {"p": "Bb4", "d": 2},
-         {"p": "G4",  "d": 1},
-         {"p": "B4",  "d": 2, "a": "n"},
-         {"p": "B4",  "d": 2}
-       ]}
-    ],
-    "A": [], "A1": [], "B": [], "A2": []
-  },
-  "status": {"transcribed": ["verse_A","verse_A1","A","A1"],
-             "missing": ["B","A2"],
-             "flags": [{"section":"A","bar":4,"note":"final rest length inferred"}]}
-}
-```
+Standard ABC v2.1, one tune per file. Reference example (pilot):
+`melodies_wip/9_04_AIN_T_MISBEHAVIN.abc`. House conventions:
 
-Conventions: `d` in eighths (1,2,3,4,6,8); pitches spelled with explicit
-letter+octave, accidental `a` = "b"|"n"|"#" is the *written* accidental (key
-signature is implied — a `Bb4` inside Eb major is written `{"p":"B4"}` with no
-accidental; the natural is `a:"n"`); `tie: true` ties to the NEXT event;
-rests `{"r":true,"d":n}`. Section names mirror the tune JSON's `sections`
-keys exactly, and each section must contain exactly the number of bars the
-grille has. A partial transcription is valid — renderer falls back to slash
-notation for `missing` sections (as in the pilot HTML).
+- **Header**: `X:1`, `T:` title (as in the tune JSON), `C:` composers,
+  `O:` source line, `R:` style/tempo words, `M:` time signature,
+  `L:1/8` (unit note = eighth — durations then read like the solver units),
+  `K:` key from the tune JSON. `%` comment links the source crop image.
+- **Chords** are quoted strings (`"Eb"`, `"Am7b5"`, `"(G7)"`), injected by the
+  generator from the tune JSON at the note/rest nearest each beat — never
+  transcribed from the manuscript. A header comment marks them machine-owned:
+  humans edit *notes only*; the validator re-checks chords against the JSON
+  and re-injects on render.
+- **Accidentals**: `=B` natural, `_B` flat, `^F` sharp. ABC accidentals
+  persist to the end of the bar exactly like engraving, so write them exactly
+  as they must print; write explicit courtesy accidentals (`_B` on a
+  key-flatted note) where the manuscript has them or where a preceding `=`
+  in the same bar must be canceled.
+- **Ties** `-`, dotted values via lengths (`3` = dotted quarter at L:1/8).
+- **Layout**: one source line = one rendered system = 4 bars (abcjs respects
+  source line breaks). Section labels as annotations on the first note
+  (`"^VERSE A"`), which render above the staff.
+- **Repeats/endings** use standard `|:` `:|` `[1` `[2` — matches how the
+  manuscript writes chorus A/A′. A chord change mid-whole-note (e.g. ending
+  bars `|G7 C7|` under a held note) is written as tied halves
+  (`"G7"G4-"C7"G4-`) because ABC attaches chords to notes; this is the one
+  deliberate deviation from the manuscript's engraving.
+- **Untranscribed sections** (partial transcriptions are valid): whole-bar
+  invisible rests `x8` (or `x4 x4` when two chords need anchors), so chords
+  still render over empty bars; a `%` comment and a `"^...(melody n/a)"`
+  annotation mark them. Every section must still contain exactly the
+  grille's bar count.
+- File is the single source of truth for the melody; MusicXML export for
+  MuseScore users via `abc2xml` (`leadsheets/xml/<id>.musicxml`, generated,
+  never edited).
 
 ## 8. Stage 5 — Validation (python only)
 
-Run on every generated JSON; failures send the bar back to stage 4 once, then
-to a human-review queue:
+Run on every generated ABC file (parse with `music21`'s ABC reader or a small
+ABC-subset parser — the dialect above is tiny); failures send the bar back to
+stage 4 once, then to a human-review queue:
 
 1. Bar sums = time signature, every bar.
 2. Bar counts per section = grille bar counts; sections present or declared
@@ -253,25 +271,24 @@ to a human-review queue:
 7. Render the HTML, screenshot with headless Edge, and run a trivial pixel
    check (non-blank, expected row count) — catches renderer/data crashes.
 
-## 9. Renderer (shared, python-generated static HTML)
+## 9. Renderer (vendored abcjs, python-generated static HTML)
 
-Factor the pilot's inline SVG engraver
-(`grilles_melody/aint_misbehavin_leadsheet.html`) into a template:
+Vendor `abcjs-basic-min.js` once (MIT; ~1 MB) under `leadsheets/vendor/` and
+inline it into each generated page so every lead sheet stays a single
+self-contained file. (The pilot's hand-rolled SVG engraver in
+`grilles_melody/aint_misbehavin_leadsheet.html` is superseded; keep it only as
+a reference for the visual layout.)
 
-- Self-contained single file: no external fonts/scripts/CSS. Music data is a
-  JS object generated from the melody JSON; SVG built client-side.
-- Fixed **4 bars per row**; clef + key signature on every row, time signature
-  on the first; title / composer / meta / form header; section labels in red
-  above the row; bar numbers in gray; footnotes for missing sections and
-  grille variants (`variants` field of the tune JSON).
-- Engraving rules implemented and adequate: stem up below middle line, stem
-  down otherwise; flags (no beams needed); hollow half/whole; dotted values;
-  ♭/♮/♯ via Unicode text; quarter/eighth rests as drawn paths (do NOT rely on
-  U+1D13D/U+1D13E fonts); ties as quadratic arcs on the notehead side
-  opposite the stem, cross-barline ties supported within a row; slash bars
-  for untranscribed sections; final double bar.
-- Chord text from the grille JSON only, positioned at `(beat-1)/8` of the bar
-  width, `b→♭`, `#→♯` prettification.
+- Page = title / composer / meta / form header (from the tune JSON) + the ABC
+  source inlined as a JS string + `ABCJS.renderAbc` with
+  `{ staffwidth: ~1100, wrap off — line breaks come from the ABC source }`.
+- 4 bars per row is guaranteed by the ABC's source line breaks (section 7).
+- Add the abcjs synth controls (play/tempo) — playback is part of the
+  verification story, and costs nothing extra.
+- Footnotes for missing sections and grille `variants` rendered as HTML
+  below the score, generated from the tune JSON.
+- Chords: generator injects/refreshes them from the tune JSON into the ABC
+  before rendering (`b→♭`, `#→♯` prettification is abcjs-native).
 
 ## 10. Batch driver & ops
 
@@ -285,8 +302,10 @@ Factor the pilot's inline SVG engraver
 - Cost telemetry: log model calls/tune; alert if a tune exceeds ~6 calls
   (indicates a bad scan → route to manual queue instead of burning budget).
 - Human verification loop: a tiny review page (reuse the displayer approach)
-  showing manuscript strip above rendered row, per system, with
-  approve/fix buttons; approved tunes move JSON → `melodies_verified/`.
+  showing, per system, the manuscript strip above an abcjs **editor** widget
+  (textarea ⇆ score with cursor↔note highlighting) plus playback; corrections
+  are direct text edits to the ABC, saved back to `melodies_wip/`; approving
+  moves the `.abc` → `melodies_verified/`.
 
 ## 11. Known hazards checklist (all observed in the pilot)
 
