@@ -42,9 +42,13 @@ Repo constraints (must respect):
 
 ## 1. Architecture overview
 
+Implementation convention: **one python file per stage** (`melody_cropper.py` =
+stage 0, and so on), each runnable standalone and sharing helpers from
+`crop_tunes.py`.
+
 ```
 AGJ_Melody.pdf
-   │  stage 0  (python, pdf → page PNGs, reuse extract_page.py/crop_tunes.py)
+   │  stage 0  melody_cropper.py  (pdf → per-tune PNGs, reuse extract_page.py/crop_tunes.py)
    ▼
 page PNG (1-bit scan, ~2500×2600)
    │  stage 1  (python)   staff-system detection + per-system straightening
@@ -85,6 +89,17 @@ JSON chords unchanged.
   (stage 2 text zone) against tune titles with fuzzy string match, and store it
   as `melody_manifest.json` for manual review. Title OCR is one cheap model
   call per page ONLY where fuzzy match on filename/page-order fails.
+- **Lyrics blocks**: a tune may be followed by a paragraph of hand-written
+  lyrics below its last staff (e.g. the CHORUS text under
+  `939_01_WOULD_YOU_LIKE_TO_TAKE_A_WALK`). Do NOT crop the lyrics into the tune
+  image — they are not part of the lead sheet and confuse the staff/symbol
+  detectors downstream. Rule at the bottom of the last tune on a page: keep the
+  single chord-letter row that hugs the last staff, then if the text BELOW that
+  row forms a block (≥ 2 text lines / total height greater than ~one text line)
+  omit it (crop ends just under the chord row); if it is only a few words (one
+  short line — e.g. a coda/ending annotation) keep it. Record `lyrics_omitted`
+  (+ the omitted y-range) in the manifest so nothing is silently lost — a later
+  stage can still OCR the lyrics from the full page if wanted.
 
 ## 3. Stage 1 — Staff detection & straightening (python only)
 
@@ -292,9 +307,12 @@ a reference for the visual layout.)
 
 ## 10. Batch driver & ops
 
-- `melody_digitizer.py run --pages 7..706` processes tunes resumably; state
-  in `melody_state.json` (per tune: stage reached, flags, model-call count,
-  cost). Idempotent re-runs skip completed stages.
+- A thin orchestrator chains the per-stage files (`melody_cropper.py`, …)
+  `--pages 7..706` and processes tunes resumably; state in `melody_state.json`
+  (per tune: stage reached, flags, model-call count, cost). Idempotent re-runs
+  skip completed stages. Stage 0 alone is
+  `python melody_cropper.py AGJ_Melody.pdf --pages 7..972
+  --melody-index AGJ_Melody_Index.pdf --index AGJ_index.pdf`.
 - All intermediate artifacts (straightened strips, symbol overlays with the
   detected candidates drawn on them) cached under `melody_debug/<id>/` —
   these overlays are exactly what a human reviewer needs to verify a tune
