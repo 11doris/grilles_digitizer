@@ -55,6 +55,17 @@ def log(msg=""):
     print(f"[{time.time() - _START:6.1f}s] {msg}", flush=True)
 
 
+def write_png(path, img):
+    """cv2.imwrite that doesn't fail silently. On Windows a transient file lock
+    (viewer/indexer/AV) makes imwrite return False without raising, which would
+    leave a stale crop from a previous run on disk. Retry briefly, then raise."""
+    for attempt in range(4):
+        if cv2.imwrite(path, img):
+            return
+        time.sleep(0.25)
+    raise IOError(f"could not write {path} (locked?)")
+
+
 # ---------------------------------------------------------------------------
 # Deskew: the staff-line machinery (music_x_bounds, staff_bands) relies on
 # ~150px runs of long HORIZONTAL ink, so even ~1 degree of scan rotation makes a
@@ -136,6 +147,67 @@ def staff_bands(ink, x0, x1):
         y = k
     # a real system is ~100-120px tall; drop the top/bottom scan-edge slivers
     return [(a, b) for (a, b) in bands if b - a >= 70]
+
+
+# ---------------------------------------------------------------------------
+# Width crop: trim the page to the staves without clipping any music.
+# ---------------------------------------------------------------------------
+# We keep the FULL page height per tune, but narrow each crop to the music
+# column so the white side margins and the spiral binding drop away. The anchor
+# is the staff lines' own horizontal extent [sl, sr]; everything that reaches
+# past it -- title ends, chord-symbol tails, 1st/2nd-ending brackets -- sits only
+# a few dozen px beyond, while the binding sits >=~200px out behind a clear white
+# gap. So a generous fixed pad keeps every overhang yet still lands inside that
+# gap. A defensive clamp then refuses to cross a near-edge full-height binding
+# column, in case a particular page's gap is tighter than the pad.
+XPAD = 150             # px kept beyond the staff lines on each side
+BIND_HFRAC = 0.32      # ink-column height fraction that marks a binding bar
+BIND_GAP = 20          # stay this many px clear of a binding column
+
+
+def staff_x_extent(ink, bands):
+    """Robust horizontal extent of the staff lines themselves, as (left, right).
+
+    music_x_bounds thresholds one global column profile and, on pages whose
+    binding hugs the music, gets dragged out to the page edge (its H150 mask
+    catches the binding's black bar). Here we measure each staff BAND's own
+    long-horizontal run and take the median left/right across bands: the binding
+    never spans a band's rows, so its blobs cannot move the median."""
+    hl = _open(ink, 150, 1)
+    L, R = [], []
+    for a, b in bands:
+        row = (hl[a:b] > 0).sum(0)
+        if row.max() == 0:
+            continue
+        xs = np.where(row > row.max() * 0.2)[0]
+        L.append(int(xs.min()))
+        R.append(int(xs.max()))
+    if not L:
+        return music_x_bounds(ink)
+    return int(np.median(L)), int(np.median(R))
+
+
+def music_x_crop(ink, bands):
+    """Left/right crop columns focusing on the staves (pad kept, binding dropped)."""
+    H, W = ink.shape
+    sl, sr = staff_x_extent(ink, bands)
+    # Degenerate detection (e.g. a page where only a binding sliver was read as a
+    # staff): the "staff" spans a tiny fraction of the page. Don't trust it -- keep
+    # the full width so the crop stays usable for manual review.
+    if sr - sl < 0.4 * W:
+        return 0, W
+    xL, xR = sl - XPAD, sr + XPAD
+    # Never cross the spiral binding: find near-edge columns that are almost
+    # full-page-height ink (a binding bar) and stop just short of them.
+    tall = (ink > 0).sum(0) > BIND_HFRAC * H
+    lo, hi = int(W * 0.33), int(W * 0.67)
+    left = np.where(tall[:lo])[0]
+    right = np.where(tall[hi:])[0]
+    if len(left):
+        xL = max(xL, int(left.max()) + BIND_GAP)
+    if len(right):
+        xR = min(xR, hi + int(right.min()) - BIND_GAP)
+    return max(0, xL), min(W, xR)
 
 
 def deline_text(ink):
@@ -408,9 +480,9 @@ def process_page(pdf, page_no, start_page, title_target, grille_titles, args, vi
     staff_gap = int(np.median(gaps)) if gaps else 130
     # bottom of the last tune, with any lyrics paragraph dropped
     page_bottom, lyrics_yr = last_tune_bottom(ink, x0, x1, bands[-1][1], pad, staff_gap)
-    # keep the full page width (staff x-bounds are used only for detection/OCR);
-    # cropping the width clipped annotations and second-ending tails.
-    xL, xR = 0, W
+    # narrow each crop to the music column: drop the white side margins and the
+    # spiral binding while keeping every overhang (titles/chords/ending tails).
+    xL, xR = music_x_crop(ink, bands)
 
     log(f"  page {page_no}: {len(bands)} staves -> {len(starts)} tune(s)")
     if args.debug:
@@ -452,7 +524,7 @@ def process_page(pdf, page_no, start_page, title_target, grille_titles, args, vi
         slug = slugify(main_title(title_for_name)) or "UNTITLED"
         idx = k + 1
         fn = f"{page_no}_{idx:02d}_{slug}.png"
-        cv2.imwrite(os.path.join(args.out, fn), crop)
+        write_png(os.path.join(args.out, fn), crop)
 
         # review if the split is shaky OR the title match is weak/ambiguous
         review = (stt["conf"] < 0.6) or (bool(title_target) and not good_match) \
