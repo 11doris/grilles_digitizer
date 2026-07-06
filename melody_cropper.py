@@ -36,8 +36,7 @@ USAGE
   python melody_cropper.py AGJ_Melody.pdf --pages 847,935,939 \
          --melody-index AGJ_Melody_Index.pdf --index AGJ_index.pdf \
          --out melody_crops --debug
-  python melody_cropper.py AGJ_Melody.pdf --pages 7..972 \
-         --melody-index AGJ_Melody_Index.pdf --index AGJ_index.pdf
+  python melody_cropper.py AGJ_Melody.pdf --pages 7..972 --melody-index AGJ_Melody_Index.pdf --index AGJ_index.pdf
 """
 import argparse, json, os, re, subprocess, sys, tempfile, time
 
@@ -54,6 +53,42 @@ _START = time.time()
 
 def log(msg=""):
     print(f"[{time.time() - _START:6.1f}s] {msg}", flush=True)
+
+
+# ---------------------------------------------------------------------------
+# Deskew: the staff-line machinery (music_x_bounds, staff_bands) relies on
+# ~150px runs of long HORIZONTAL ink, so even ~1 degree of scan rotation makes a
+# staff line drift off its row and vanish from the H150 mask -- staves collapse
+# or merge. We straighten the page first by finding the rotation that packs the
+# ink into the sharpest horizontal rows (staff lines become tall projection
+# peaks only when they are level).
+# ---------------------------------------------------------------------------
+def estimate_skew(ink, max_deg=4.0, step=0.25):
+    """Rotation (deg, CCW positive) that best levels the staff lines.
+
+    Rotate a downscaled ink mask across +/-max_deg and keep the angle whose row
+    projection is most peaked (sum of squared row sums): aligned staff lines pile
+    all their ink into a few rows, maximising that energy."""
+    small = cv2.resize((ink > 0).astype(np.float32), None, fx=0.25, fy=0.25,
+                       interpolation=cv2.INTER_AREA)
+    h, w = small.shape
+    c = (w / 2, h / 2)
+    best_a, best_score = 0.0, -1.0
+    for a in np.arange(-max_deg, max_deg + 1e-9, step):
+        R = cv2.getRotationMatrix2D(c, float(a), 1.0)
+        rot = cv2.warpAffine(small, R, (w, h), flags=cv2.INTER_LINEAR, borderValue=0)
+        score = float((rot.sum(1) ** 2).sum())
+        if score > best_score:
+            best_score, best_a = score, float(a)
+    return best_a
+
+
+def deskew(native, angle):
+    """Rotate the scan by `angle` deg about its centre, padding with white."""
+    h, w = native.shape[:2]
+    R = cv2.getRotationMatrix2D((w / 2, h / 2), angle, 1.0)
+    return cv2.warpAffine(native, R, (w, h), flags=cv2.INTER_LINEAR,
+                          borderValue=(255, 255, 255))
 
 
 # ---------------------------------------------------------------------------
@@ -134,17 +169,16 @@ def merged_text_comps(txt, close_w=45):
 # ---------------------------------------------------------------------------
 # Tune-start detection.
 # ---------------------------------------------------------------------------
-# A staff starts a new tune when a wide title sits just above it (WFRAC) and/or a
-# large vertical gap precedes it (GAP). Both cues separate tune-starts from
-# within-tune staves cleanly on the pilot pages; requiring only one (OR) keeps a
-# start even if the other cue is weak, and their agreement drives confidence.
-# Calibrated on the pilot pages against the MUSIC width (~2000px): non-first
-# tune-starts have wfrac >= 0.31 and gap >= 171, while within-tune staves stay
-# below wfrac 0.22 and gap 147 -- so either cue firing marks a start, and both
-# firing gives high confidence (a lone cue -> review). The gap cue catches
-# short titles (which merge too narrow to trip wfrac); the wfrac cue catches
-# squeezed titles (whose gap is small).
-WFRAC_START = 0.27     # merged title width / music width to call a start
+# A staff starts a new tune when a large vertical gap precedes it (GAP): a new
+# tune needs room for its title, so within-tune staves (spaced ~110-150px, their
+# gap filled by the previous staff's chord row) never reach GAP_START, while real
+# starts clear it comfortably (>=200px observed). The title's width (WFRAC) is
+# only a CORROBORATING cue -- it cannot mark a start on its own, because a
+# full-width chord row ("F Dm Gm7 C7 ...") written below one staff drops into the
+# next staff's title zone and trips wfrac mid-tune (and can even sit nearer the
+# staff below than above). So a gap-start that also carries a wide title hugging
+# its own staff is high-confidence; a gap alone is flagged for review.
+WFRAC_START = 0.27     # merged title width / music width to corroborate a start
 GAP_START = 160        # vertical gap (px) above a staff to call a start
 TITLE_ZONE = (155, 8)  # title sits in rows [staff_top-155, staff_top-8]
 
@@ -169,11 +203,14 @@ def find_tune_starts(bands, comps, cw):
         if i == 0:
             is_start, conf = True, 1.0               # first staff always a tune
         else:
-            wide = wfrac >= WFRAC_START
-            biggap = gap >= GAP_START
-            if not (wide or biggap):
+            # Require the gap: it is the reliable start signal (see note above).
+            if gap < GAP_START:
                 continue
-            conf = 0.95 if (wide and biggap) else 0.6  # lone cue -> review
+            # wfrac only corroborates, and only when the wide component hugs THIS
+            # staff (a real title) rather than the previous one (a chord row).
+            title_hug = best is not None and (a - best[1]) < (best[0] - bands[i - 1][1])
+            wide = wfrac >= WFRAC_START and title_hug
+            conf = 0.95 if wide else 0.6             # gap alone -> review
 
         if best:
             title_top, title_bot = best[0], best[1]
@@ -214,18 +251,26 @@ def text_lines_below(ink, x0, x1, y_from):
     return lines
 
 
-def last_tune_bottom(ink, x0, x1, b_last, pad):
+def last_tune_bottom(ink, x0, x1, b_last, pad, staff_gap):
     """Bottom y for the last tune on a page: keep the chord row under the last
-    staff and any short trailing annotation, but drop a lyrics paragraph."""
+    staff and any short trailing annotation, but drop a lyrics paragraph.
+
+    The chord row hugs the last staff, within about one inter-staff gap below it.
+    Sparse chords (e.g. "F  C7  F") don't form a solid text line and would be
+    under-measured, so we never cut inside that band -- we protect [b_last,
+    b_last+staff_gap] wholesale and only classify text found BELOW it: a tall
+    block is a trailing lyrics paragraph (omit), anything short is an annotation
+    (keep)."""
     H = ink.shape[0]
-    lines = text_lines_below(ink, x0, x1, b_last)
-    if not lines:
-        return min(H, b_last + pad), None
-    chord_bot = lines[0][1]                 # first line under the staff = chords
-    extra = sum(e - s for s, e in lines[1:])
-    if extra > LYRICS_MIN_H:                # lyrics block -> omit it
-        return min(H, chord_bot + pad), (lines[1][0], lines[-1][1])
-    return min(H, lines[-1][1] + pad), None  # only a few words -> keep them
+    floor = min(H, b_last + staff_gap)           # bottom of the guaranteed chord band
+    below = text_lines_below(ink, x0, x1, floor)
+    if not below:
+        return min(H, floor + pad), None
+    extra = sum(e - s for s, e in below)
+    if extra > LYRICS_MIN_H:                      # lyrics paragraph -> omit it
+        cut = min(H, max(floor, below[0][0] - 6))  # cut between chords and lyrics
+        return cut, (below[0][0], below[-1][1])
+    return min(H, below[-1][1] + pad), None       # short annotation -> keep it
 
 
 # ---------------------------------------------------------------------------
@@ -327,6 +372,12 @@ def process_page(pdf, page_no, start_page, title_target, grille_titles, args, vi
         log(f"  page {page_no}: could not extract image")
         return []
     g, ink = to_ink(native)
+    # Straighten a rotated scan before any staff-line detection (see estimate_skew).
+    skew = estimate_skew(ink)
+    if abs(skew) >= 0.25:
+        native = deskew(native, skew)
+        g, ink = to_ink(native)
+        log(f"  page {page_no}: deskewed {skew:+.2f} deg")
     H, W = ink.shape
     x0, x1 = music_x_bounds(ink)
     cw = x1 - x0
@@ -337,10 +388,15 @@ def process_page(pdf, page_no, start_page, title_target, grille_titles, args, vi
     comps = merged_text_comps(deline_text(ink))
     starts = find_tune_starts(bands, comps, cw)
     pad = args.pad
+    # typical within-tune staff spacing (robust to the few big inter-tune gaps);
+    # the last staff's chord row lives within one such gap below it.
+    gaps = [bands[i][0] - bands[i - 1][1] for i in range(1, len(bands))]
+    staff_gap = int(np.median(gaps)) if gaps else 130
     # bottom of the last tune, with any lyrics paragraph dropped
-    page_bottom, lyrics_yr = last_tune_bottom(ink, x0, x1, bands[-1][1], pad)
-    xL = max(0, x0 - pad)
-    xR = min(W, x1 + pad)
+    page_bottom, lyrics_yr = last_tune_bottom(ink, x0, x1, bands[-1][1], pad, staff_gap)
+    # keep the full page width (staff x-bounds are used only for detection/OCR);
+    # cropping the width clipped annotations and second-ending tails.
+    xL, xR = 0, W
 
     log(f"  page {page_no}: {len(bands)} staves -> {len(starts)} tune(s)")
     if args.debug:

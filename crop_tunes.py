@@ -414,8 +414,17 @@ def ocr_title(gray, top, rl, x0, x1):
     up = cv2.resize(keep, None, fx=3, fy=3, interpolation=cv2.INTER_CUBIC)
     up = cv2.GaussianBlur(up, (0, 0), 1.0)
     up = 255 - cv2.copyMakeBorder(up, 18, 18, 18, 18, cv2.BORDER_CONSTANT, value=0)
-    cfg = "--oem 1 --psm 7 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    raw = pytesseract.image_to_string(up, config=cfg).strip()
+    wl = "-c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    raw = pytesseract.image_to_string(up, config=f"--oem 1 --psm 7 {wl}").strip()
+    if not raw:
+        # psm 7 (one text line) returns nothing when the kept glyphs are spread
+        # sparsely across the width -- e.g. a title plus a composer credit scattered
+        # to the far right. psm 11 (sparse text) recovers them, one cluster per line;
+        # the title is the longest such line (credit fragments are short), so keep
+        # that and drop the scattered credit that would otherwise spoil the match.
+        out = pytesseract.image_to_string(up, config=f"--oem 1 --psm 11 {wl}")
+        lines = [re.sub(r"[^A-Za-z ]", " ", ln).strip() for ln in out.splitlines()]
+        raw = max(lines, key=lambda s: len(s.replace(" ", "")), default="")
     return re.sub(r"\s+", " ", re.sub(r"[^A-Za-z ]", " ", raw)).strip()
 
 
