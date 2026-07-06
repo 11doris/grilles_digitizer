@@ -398,8 +398,11 @@ def ocr_title(gray, top, rl, x0, x1):
     if n <= 1:
         return ""
     heights = stats[1:, cv2.CC_STAT_HEIGHT]
-    hmax = int(heights.max())
-    thr = max(30, int(0.55 * hmax))          # title glyphs are the tallest things
+    # Reference title height from the 75th percentile, not the max: a lone tall
+    # outlier (spiral-binding fragment, a stem poking into the band) would push a
+    # max-based threshold so high that the actual title glyphs get dropped.
+    href = int(np.percentile(heights, 75))
+    thr = max(30, int(0.55 * href))          # title glyphs are the tallest things
     keep = np.zeros_like(band)
     for i in range(1, n):
         h = stats[i, cv2.CC_STAT_HEIGHT]

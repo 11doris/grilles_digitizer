@@ -170,17 +170,29 @@ def merged_text_comps(txt, close_w=45):
 # Tune-start detection.
 # ---------------------------------------------------------------------------
 # A staff starts a new tune when a large vertical gap precedes it (GAP): a new
-# tune needs room for its title, so within-tune staves (spaced ~110-150px, their
-# gap filled by the previous staff's chord row) never reach GAP_START, while real
-# starts clear it comfortably (>=200px observed). The title's width (WFRAC) is
+# tune needs room for its title, so within-tune staves (their gap filled by the
+# previous staff's chord row) sit at the page's baseline spacing, while a real
+# start clears it. That baseline spacing VARIES per page (~120-175px depending on
+# how many staves are packed on), so a fixed threshold either over-splits dense
+# pages or misses tight ones. Instead we threshold RELATIVE to the page's own
+# median inter-staff gap: within-tune gaps stay below ~1.2x the median, real
+# starts run >2x it, so GAP_RATIO*median lands safely between (with an absolute
+# floor for pages too small to estimate a median). The title's width (WFRAC) is
 # only a CORROBORATING cue -- it cannot mark a start on its own, because a
 # full-width chord row ("F Dm Gm7 C7 ...") written below one staff drops into the
 # next staff's title zone and trips wfrac mid-tune (and can even sit nearer the
 # staff below than above). So a gap-start that also carries a wide title hugging
 # its own staff is high-confidence; a gap alone is flagged for review.
 WFRAC_START = 0.27     # merged title width / music width to corroborate a start
-GAP_START = 160        # vertical gap (px) above a staff to call a start
-TITLE_ZONE = (155, 8)  # title sits in rows [staff_top-155, staff_top-8]
+GAP_RATIO = 1.4        # a start gap exceeds this multiple of the median staff gap
+GAP_FLOOR = 160        # absolute floor for the start gap (small/odd pages)
+# Title sits in rows [staff_top-220, staff_top-8]. The upper reach is generous
+# (220px, not ~one staff-gap) because a "Verse"/"Chorus"/"Bebop Intro" tempo line
+# or a section box often sits BETWEEN the title and the staff, pushing the title
+# ~160-190px up. That only risks catching the previous staff's chord row on a
+# real start, but a real start's gap is large (>=300px), so that chord row stays
+# well above 220px and out of the zone.
+TITLE_ZONE = (220, 8)
 
 
 def find_tune_starts(bands, comps, cw):
@@ -188,7 +200,9 @@ def find_tune_starts(bands, comps, cw):
     conf). bands = staff (top,bot); comps = merged text components; cw = music
     width."""
     starts = []
-    cx_lo, cx_hi = 0.06, 0.94          # ignore the outer 6% (page-edge clutter)
+    # Per-page start threshold: a multiple of the typical (median) staff spacing.
+    igaps = [bands[i][0] - bands[i - 1][1] for i in range(1, len(bands))]
+    gap_start = max(GAP_FLOOR, np.median(igaps) * GAP_RATIO) if igaps else GAP_FLOOR
     for i, (a, b) in enumerate(bands):
         # widest merged text component sitting in the title zone above this staff
         best = None
@@ -204,7 +218,7 @@ def find_tune_starts(bands, comps, cw):
             is_start, conf = True, 1.0               # first staff always a tune
         else:
             # Require the gap: it is the reliable start signal (see note above).
-            if gap < GAP_START:
+            if gap < gap_start:
                 continue
             # wfrac only corroborates, and only when the wide component hugs THIS
             # staff (a real title) rather than the previous one (a chord row).
@@ -216,8 +230,8 @@ def find_tune_starts(bands, comps, cw):
             title_top, title_bot = best[0], best[1]
         else:
             title_top, title_bot = max(0, a - TITLE_ZONE[0]), a - TITLE_ZONE[1]
-        if i == 0:
-            title_top = 0                            # clipped title may touch top
+            if i == 0:
+                title_top = 0                        # clipped title may touch top
         starts.append(dict(idx=i, title_top=title_top, title_bot=title_bot,
                            wfrac=round(wfrac, 3), gap=int(gap), conf=conf))
     return starts
