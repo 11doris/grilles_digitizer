@@ -85,7 +85,7 @@ window.TUNES = [
   "chord_image": "crops/9_04_AIN_T_MISBEHAVIN.png",
   "melody_image": "melody_crops/17_01_AINT_MISBEHAVIN.png",
   "has_chord_json": true,
-  "has_melody_abc": false,
+  "has_melody_abc": true,
   "tune": {
    "composer": "Thomas Fats WALLER – Harry BROOKS – Andy RAZAF",
    "year": "1929",
@@ -469,7 +469,8 @@ window.TUNES = [
      }
     ]
    }
-  }
+  },
+  "abc": "X:1\nT:AIN'T MISBEHAVIN'\nC:Thomas \"Fats\" Waller - Harry Brooks - Andy Razaf (1929)\nO:Chords: Anthologie des grilles de jazz, p. 9. Melody: hand-written manuscript (grilles_melody/aint_misbehavin_melody.png).\nR:standard swing, medium\nM:4/4\nL:1/8\nK:Eb\n% Chord symbols (\"...\") are injected from tunes/9_04_AIN_T_MISBEHAVIN.json (grille = ground\n% truth). Do not hand-edit chords - edit notes only.\n% Sections B and A'' not yet transcribed: invisible rests (x) hold the chords.\n% One source line = one rendered system = 4 bars.\n% Form: 16 A A' (verse) | 32 A A' B A'' (chorus).\n% Grille variant for chorus bars 1-2: Eb E-dim | Fm7 F#-dim.\n\"^VERSE A\"\"Eb\"G B2 G \"B9\"=B2 B2 |\"E\"=B8 |\"E\"G B2 G =B2 B2 |\"E\"=B8 |\n\"Eb\"G B2 G \"G7\"=B2 G2 |\"C7\"d2 z G-G4 |\"F7\"G c2 G \"Bb7\"c2 c2- |\"Eb\"c8 |\n\"^VERSE A'\"\"Eb\"G B2 G \"B9\"=B2 B2 |\"E\"=B8 |\"E\"G B2 G =B2 B2 |\"E\"=B8 |\n\"Eb\"B d2 B \"Cm\"d2 \"Cm7\"d2 |\"Am7b5\"d2 c2- \"D7\"c4 |\"G\"d _B2 G \"A7\"=E2 \"D7\"=B2 |\"G\"G4 \"Bb7\"_B4 |\n|: \"^CHORUS A\"\"Eb\"z E F E \"Cm\"B2 B2 |\"Fm7\"z G =A =B \"Bb7\"c4 |\"Eb\"z B c B \"G7#5\"z e d2 |\"Ab\"f e c G-\"Abm\"G _G z2 |\n\"Eb\"z E F E \"Gb7\"B2 B2 |\"Fm7\"z G =A =B \"Bb7\"c c _B2 |[1 \"G7\"G4-\"C7\"G4- |\"F7\"G4-\"Bb7\"G4 :|\n[2 \"Eb\"E4-\"Ab\"E4- |\"Eb\"E4-\"G7\"E4 ||\n\"^BRIDGE B (melody n/a)\"\"Cm\"x8 |\"Ab7\"x8 |\"F7\"x8 |\"C7\"x8 |\n\"Bb\"x4 \"(G7)\"x4 |\"Cm7\"x4 \"F7\"x4 |\"Bb\"x4 \"C7\"x4 |\"F7\"x4 \"Bb7\"x4 |\n\"^CHORUS A'' (melody n/a)\"\"Eb\"x4 \"Cm\"x4 |\"Fm7\"x4 \"Bb7\"x4 |\"Eb\"x4 \"G7#5\"x4 |\"Ab\"x4 \"Abm\"x4 |\n\"Eb\"x4 \"Gb7\"x4 |\"Fm7\"x4 \"Bb7\"x4 |\"G7\"x4 \"C7\"x4 |\"Eb\"x8 |]\n"
  },
  {
   "id": "10_02_AIR_MAIL_SPECIAL",
@@ -10598,9 +10599,9 @@ window.TUNES = [
   "has_melody_abc": false
  },
  {
-  "id": "198_01_I_NEVER_KNEW",
-  "title": "I Never Knew",
-  "chord_image": "crops/198_01_I_NEVER_KNEW.png",
+  "id": "198_01_I_NEVER_KNEW_I_COULD_LOVE_ANYBODY",
+  "title": "I Never Knew I Could Love Anybody",
+  "chord_image": "crops/198_01_I_NEVER_KNEW_I_COULD_LOVE_ANYBODY.png",
   "melody_image": "melody_crops/357_01_I_NEVER_KNEW_I_COULD_LOVE_ANYBODY.png",
   "has_chord_json": false,
   "has_melody_abc": false
