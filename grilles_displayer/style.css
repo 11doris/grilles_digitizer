@@ -30,6 +30,8 @@
   --line: #e8e8ec;
   --border: #2a2a30;
   --accent: #3d6ba3;
+  --ok: #4cae5a; /* digitized-asset icons */
+  --icon-off: #5c5c64; /* scan-only asset icons */
 }
 
 :root[data-theme="light"] {
@@ -40,6 +42,8 @@
   --line: #141414;
   --border: #d8d5ca;
   --accent: #9db8d6;
+  --ok: #2e8540;
+  --icon-off: #b0ada2;
 }
 
 * { box-sizing: border-box; }
@@ -87,7 +91,6 @@ body {
 #search:focus { outline: 1px solid var(--muted); }
 
 #themeToggle,
-#imageToggle,
 #listToggle {
   background: none;
   border: 1px solid var(--border);
@@ -98,12 +101,7 @@ body {
   cursor: pointer;
 }
 
-/* Right-align the button group; when the image toggle is hidden the theme
-   toggle takes over the auto margin. */
-#imageToggle { margin-left: auto; }
-#imageToggle[hidden] { display: none; }
-#imageToggle[hidden] + #themeToggle { margin-left: auto; }
-#imageToggle.on { border-color: var(--accent); color: var(--accent); }
+#themeToggle { margin-left: auto; }
 
 #listToggle { display: none; } /* mobile drawer button, shown ≤700px */
 
@@ -141,40 +139,111 @@ body {
   container-type: inline-size;
 }
 
-/* ------------------------------------------------- original scan (PNG) */
+/* --------------------------------------- content panels (chords/melody) */
 
-#imagePane { display: none; }
+/* Toolbar with the Chords / Melody switches, under the tune head (§5.4). */
+.panel-bar {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 0.2rem auto 1rem;
+}
 
-#imagePane img {
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+.switch input { position: absolute; opacity: 0; pointer-events: none; }
+
+.switch .knob {
+  width: 2.1rem;
+  height: 1.15rem;
+  border-radius: 0.6rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  position: relative;
+  transition: background 0.15s ease;
+  flex: none;
+}
+
+.switch .knob::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.switch input:checked + .knob { background: var(--accent); border-color: var(--accent); }
+.switch input:checked + .knob::after { transform: translateX(0.9rem); background: #fff; }
+.switch input:focus-visible + .knob { outline: 2px solid var(--muted); }
+
+/* Panels stack vertically (mobile portrait); on wide screens two visible
+   panels sit side by side — chords left, melody right (§5.4). */
+.panels {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.panel {
+  min-width: 0;
+  position: relative;
+  container-type: inline-size;
+}
+
+@media (min-width: 900px) {
+  .panels.dual { flex-direction: row; align-items: flex-start; gap: 2rem; }
+  .panels.dual .panel { flex: 1 1 50%; }
+}
+
+.panel img.scan {
   display: block;
   max-width: 100%;
+  margin: 0 auto;
   border-radius: 2px;
+  cursor: zoom-in;
 }
 
-#imageClose { display: none; }
-
-/* Wide screens (laptop / landscape tablet): dock the scan beside the grid;
-   clicking it (JS adds .image-overlay on body) expands it fullscreen. */
-@media (min-width: 900px) {
-  body.show-image:not(.image-overlay) #imagePane:not([hidden]) {
-    display: block;
-    flex: 0 0 min(42%, 44rem);
-    margin-left: 1.5rem;
-    position: sticky;
-    top: 0;
-    align-self: flex-start;
-  }
-
-  body.show-image:not(.image-overlay) #imagePane img {
-    max-height: calc(100vh - 7.5rem);
-    margin: 0 auto;
-    cursor: zoom-in;
-  }
+/* ▦ toggle on the chord panel: rendered grid ⇄ original scan. Both live in
+   the DOM; the .show-scan class flips which one is visible. */
+.panel.chords .scan-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  color: var(--fg);
+  font-size: 1rem;
+  padding: 0.2rem 0.55rem;
+  cursor: pointer;
+  opacity: 0.8;
 }
 
-/* Fullscreen scan: always on narrow screens, after click-to-zoom on wide.
-   Click on the image toggles .magnified; click on the backdrop / ✕ closes. */
-body.image-overlay #imagePane:not([hidden]) {
+.panel.chords .scan-toggle:hover { opacity: 1; }
+.panel.chords .scan-toggle.on { border-color: var(--accent); color: var(--accent); }
+
+/* Only when the panel holds a rendered grid does the scan start hidden. */
+.panel.chords.has-grid img.scan { display: none; }
+.panel.chords.has-grid.show-scan img.scan { display: block; }
+.panel.chords.show-scan .grid,
+.panel.chords.show-scan .extras { display: none; }
+
+/* ------------------------------------------- fullscreen scan (overlay) */
+
+/* Click on the image toggles .magnified; click on the backdrop / ✕ closes. */
+#scanOverlay {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -186,14 +255,17 @@ body.image-overlay #imagePane:not([hidden]) {
   cursor: zoom-out;
 }
 
-body.image-overlay #imagePane img {
+#scanOverlay[hidden] { display: none; }
+
+#scanOverlay img {
+  max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   cursor: zoom-in;
+  background: #fff;
 }
 
-body.image-overlay #imageClose {
-  display: block;
+#overlayClose {
   position: fixed;
   top: 0.6rem;
   right: 0.9rem;
@@ -211,14 +283,14 @@ body.image-overlay #imageClose {
 
 /* Magnified: image at up to natural size (capped at 2.5× the viewport on
    small screens), panned by scrolling. */
-body.image-overlay #imagePane.magnified {
+#scanOverlay.magnified {
   overflow: auto;
   align-items: flex-start;
   justify-content: flex-start;
   padding: 0;
 }
 
-body.image-overlay #imagePane.magnified img {
+#scanOverlay.magnified img {
   max-width: 250vw;
   max-height: none;
   object-fit: initial;
@@ -254,7 +326,10 @@ body.image-overlay #imagePane.magnified img {
 /* ----------------------------------------------------------- tune list */
 
 .tune-item {
-  padding: 0.45rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.9rem 0.45rem 0.6rem;
   cursor: pointer;
   border-left: 3px solid transparent;
 }
@@ -263,8 +338,32 @@ body.image-overlay #imagePane.magnified img {
 .tune-item.active { background: var(--panel); border-left-color: var(--muted); }
 .tune-item.current { border-left-color: var(--accent); background: var(--panel); }
 
-.tune-item .t { font-size: 0.92rem; }
-.tune-item .c { font-size: 0.78rem; color: var(--muted); }
+/* Availability icons (§5.2): two fixed slots — chord grille | melody — so
+   the columns stay aligned; gray = scan only, green = digitized. */
+.tune-item .icons {
+  display: inline-flex;
+  gap: 0.25rem;
+  flex: none;
+}
+
+.tune-item .icon {
+  width: 0.8rem;
+  height: 0.8rem;
+  display: inline-block;
+}
+
+.tune-item .icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: var(--icon-off);
+}
+
+.tune-item .icon.ok svg { fill: var(--ok); }
+
+.tune-item .txt { min-width: 0; }
+.tune-item .t { display: block; font-size: 0.92rem; }
+.tune-item .c { display: block; font-size: 0.78rem; color: var(--muted); }
 
 .list-empty {
   padding: 1rem;
@@ -323,7 +422,9 @@ body.image-overlay #imagePane.magnified img {
   max-width: 38em;
   margin: 0 auto;
   padding-left: 1.4em;
-  font-size: clamp(11px, 1.7vw, 17px);
+  /* Container-relative (the .panel is an inline-size container): the grid
+     shrinks when the chord panel shares the row with the melody panel. */
+  font-size: clamp(10px, 2.6cqw, 17px);
 }
 
 .section { margin-bottom: 0.6em; }
