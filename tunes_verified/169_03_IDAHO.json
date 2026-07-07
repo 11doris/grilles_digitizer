@@ -1,0 +1,231 @@
+{
+  "composer": "Jesse STONE",
+  "year": "1942",
+  "style": "STANDARD",
+  "tempo": "FAST",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "IDAHO",
+  "page": 169,
+  "source": "Anthologie des grilles de jazz",
+  "same_chord_changes": "Bean stalkings (C.Hawkins) / Tautology (L.Konitz, R.Byas)",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "composer_note": "Header prints '(Jesse STONE - J.S. 1942)'."
+  },
+  "recordings": [
+    "C.Winding, Bb- N.Hol-",
+    "55.- T.Powell 57",
+    "G.Osby, Jam Bb- A.Ta-",
+    "Am 75.Jarrer 46- L.Hi-",
+    "J.C.Heard 46- N.Jef-",
+    "Booker 57- G.Krupa 4",
+    "M.Adderfey 47- A.Cohn",
+    "B.Coleman/W.Byas 4"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F(#5)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F(#5)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F(#5)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ]
+  }
+}
