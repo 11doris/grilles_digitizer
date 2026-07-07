@@ -2162,7 +2162,7 @@ window.TUNES = [
  },
  {
   "id": "23_04_AU_PRIVAVE",
-  "title": "AU PRIVATE",
+  "title": "AU PRIVAVE",
   "chord_image": "crops/23_04_AU_PRIVAVE.png",
   "has_chord_json": true,
   "has_melody_abc": false,
@@ -2173,7 +2173,7 @@ window.TUNES = [
    "tempo": "MEDIUM",
    "form": "12 BLUES",
    "time_signature": "4/4",
-   "title": "AU PRIVATE",
+   "title": "AU PRIVAVE",
    "page": 23,
    "source": "Anthologie des grilles de jazz",
    "recordings": [
