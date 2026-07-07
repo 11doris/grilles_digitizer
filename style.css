@@ -103,7 +103,9 @@ body {
 
 #themeToggle { margin-left: auto; }
 
-#listToggle { display: none; } /* mobile drawer button, shown ≤700px */
+/* ☰ works everywhere: drawer on phones, sidebar collapse on desktop. */
+body.list-collapsed #tuneList { display: none; }
+body.list-collapsed #gridZoom { left: 1rem; }
 
 /* -------------------------------------------------------------- layout */
 
@@ -621,7 +623,9 @@ body {
 @media (max-width: 700px), (max-height: 500px) {
   .topbar { gap: 0.5rem; padding: 0.5rem 0.7rem; }
 
-  #listToggle { display: inline-flex; }
+  /* The drawer is driven by .list-open only; a desktop collapse choice
+     (.list-collapsed) must not keep it hidden here. */
+  body.list-collapsed #tuneList { display: block; }
 
   /* Tune list becomes a slide-in drawer over the grid. */
   #tuneList {
