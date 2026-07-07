@@ -106,6 +106,31 @@ except Exception:
     HAVE_TESS = False
 
 
+def write_png_1bit(path, img, retries=4):
+    """Save a FINAL crop as a full-resolution 1-bit optimized PNG.
+
+    Output-encoding convention (Instructions/melody_digitizer_spec.md §2): the
+    source scans are bilevel, so any gray in a crop is an interpolation
+    artifact from deskew/resize. Pipelines work in grayscale internally and
+    binarize exactly once, here, at the last write (threshold 128) — never
+    re-transform an already-binarized crop; regenerate from the PDF instead.
+    1-bit shrinks the tracked corpus ~5x. PIL is used because cv2.imwrite
+    cannot emit 1-bit PNGs. Debug/overlay images must NOT go through this.
+    Retries briefly like melody_cropper.write_png (transient Windows locks)."""
+    from PIL import Image
+    if img.ndim == 3:
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    bilevel = Image.fromarray(np.where(img > 128, 255, 0).astype(np.uint8),
+                              mode="L").convert("1")
+    for attempt in range(retries):
+        try:
+            bilevel.save(path, optimize=True)
+            return
+        except OSError:
+            time.sleep(0.25)
+    raise IOError(f"could not write {path} (locked?)")
+
+
 # ----------------------------------------------------------------------------
 # Image loading: prefer the embedded bilevel stencil (no resampling); fall back
 # to rendering the PDF page at high DPI.
@@ -1002,7 +1027,7 @@ def cmd_detect(args):
                 if args.format == "pdf":
                     _save_pdf(crop, outp)
                 else:
-                    cv2.imwrite(outp, crop)
+                    write_png_1bit(outp, crop)
                 crops_new += 1
                 page_rows.append(dict(source=base, page=page_no, index=ti,
                                  title=title, conf=f"{conf:.2f}", review=review,
@@ -1055,7 +1080,7 @@ def _save_pdf(gray, path):
         import io
         Image.open(io.BytesIO(buf.tobytes())).convert("RGB").save(path, "PDF")
     except Exception:
-        cv2.imwrite(path.replace(".pdf", ".png"), gray)
+        write_png_1bit(path.replace(".pdf", ".png"), gray)
 
 
 def cmd_apply(args):

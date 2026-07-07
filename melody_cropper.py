@@ -46,7 +46,8 @@ import cv2
 # Reuse the grille machinery: page extraction, polarity fix, morphology,
 # title OCR, and the fuzzy index matcher.
 from crop_tunes import (count_pages, extract_page, to_ink, _open, _index_columns,
-                        ocr_title, load_index, _title_score, slugify, main_title)
+                        ocr_title, load_index, _title_score, slugify, main_title,
+                        write_png_1bit)
 
 _START = time.time()
 
@@ -524,7 +525,7 @@ def process_page(pdf, page_no, start_page, title_target, grille_titles, args, vi
         slug = slugify(main_title(title_for_name)) or "UNTITLED"
         idx = k + 1
         fn = f"{page_no}_{idx:02d}_{slug}.png"
-        write_png(os.path.join(args.out, fn), crop)
+        write_png_1bit(os.path.join(args.out, fn), crop)
 
         # review if the split is shaky OR the title match is weak/ambiguous
         review = (stt["conf"] < 0.6) or (bool(title_target) and not good_match) \

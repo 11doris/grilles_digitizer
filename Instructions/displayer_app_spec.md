@@ -2,9 +2,26 @@
 
 ## 1. Overview
 
-A fully static web app that displays the verified tune JSON files from `./tunes_verified/` as nicely styled jazz chord grids ("grilles"), one tune at a time. The visual reference is `grilles_displayer/Screenshot_20260702-154639.png` (dark background, large condensed chord symbols, boxed section letters, double barlines at section boundaries).
+A fully static web app that browses the whole AGJ tune corpus — **one entry per
+row of `title_index.csv`** (~1,568 tunes) — and, for the selected tune, shows its
+**chord grille** and its **melody sheet** side by side. The visual reference for
+the rendered chord grid is `grilles_displayer/Screenshot_20260702-154639.png`
+(dark background, large condensed chord symbols, boxed section letters, double
+barlines at section boundaries).
 
-The app is read-only: it never modifies `tunes_verified/`.
+`title_index.csv` (repo root) is the **single source of truth** for what tunes
+exist and how a tune's chord scan is paired with its melody scan. Most rows have
+only scanned PNGs; a small and growing subset also have a **digitized** form:
+
+- **digitized chords** = a tune JSON in `tunes_verified/` → rendered as a styled
+  chord grid (§6–§7).
+- **digitized melody** = a verified ABC file in `melodies_verified/` → rendered
+  as an abcjs lead sheet. *This pipeline does not exist yet* (only a pilot), so
+  in-app melody rendering is deferred; for now the melody panel always shows the
+  scanned melody PNG. The data model and icons already account for it.
+
+The app is read-only: it never modifies `tunes_verified/`, `melodies_verified/`,
+`crops/`, `melody_crops/`, or `title_index.csv`.
 
 ---
 
@@ -13,8 +30,8 @@ The app is read-only: it never modifies `tunes_verified/`.
 | Layer | Choice |
 |---|---|
 | Frontend | Single-page HTML + Vanilla JS + plain CSS. No framework, no npm, no build tooling. |
-| Data | A generator script bundles all verified tunes into one JS file, so the app works when opened directly from `file://` (no server, no CORS issues). |
-| Generator | Python 3.11+ script, standard library only. |
+| Data | A generator script bundles the index + all digitized tunes into one JS file and copies every referenced scan PNG into the app folder, so the app works from `file://` and deploys as a static folder. |
+| Generator | Python 3.11+ script; standard library + Pillow (for the 1-bit scan re-encoding, §3). Already in the repo venv. |
 | Fonts | Barlow Condensed (Google Fonts), bundled locally as woff2 in `fonts/` and loaded via `@font-face`. No CDN requests at runtime — the app must work offline. System condensed sans as fallback. |
 
 ---
@@ -27,40 +44,113 @@ grilles_displayer/
 ├── style.css             # all styling, incl. dark/light themes
 ├── app.js                # search, navigation, rendering logic
 ├── chords.js             # chord token parsing + display transformation
-├── build_data.py         # generator: tunes_verified/*.json -> data/tunes_data.js
+├── build_data.py         # generator: title_index.csv + tunes_verified/*.json -> data/tunes_data.js
 ├── fonts/                # bundled Barlow Condensed woff2 (400/500/700)
-├── crops/                # GENERATED — per-tune scan PNGs copied from ../crops
+├── crops/                # GENERATED — chord scan PNGs copied from ../crops
+├── melody_crops/         # GENERATED — melody scan PNGs copied from ../melody_crops
 └── data/
     └── tunes_data.js     # GENERATED — do not edit by hand
 ```
 
 Everything the deployed app needs lives inside `grilles_displayer/` — the GitHub
-Pages workflow uploads only this directory.
+Pages workflow uploads only this directory, so **all referenced PNGs are copied
+in**. This is a deliberate trade for the app working online without a server.
+
+**Deploy weight.** Copied verbatim the scans would weigh ~570 MB (chords
+≈ 93 MB, melodies ≈ 477 MB — some melody crops are needlessly RGBA). Since the
+source material is a 1-bit scan (grays exist only as interpolation artifacts
+from deskew/resize), the canonical fix is **upstream**: the cropping pipelines
+(`crop_tunes.py` / `deskew_crops_all.py`, `melody_cropper.py` /
+`melody_straightener.py`) work in grayscale internally but save their final
+output as **full-resolution 1-bit optimized PNG**. That is visually identical
+and shrinks the corpus ~5× (melodies ≈ 79 MB, chords ≈ 40 MB, **~120 MB
+total**; measured on a 30-file sample). Downscaling was rejected — resampling
+adds gray gradients that make these files *bigger*.
+
+Rules for the 1-bit convention:
+- Binarize **exactly once, at the final write** (threshold 128). Never apply a
+  geometric transform (rotate/deskew/resize) to an already-binarized image —
+  regenerate from the PDF instead; the AGJ PDFs remain the archival source.
+- It is not a loss for the future sheet-music OCR: the melody digitizer's CV
+  stages binarize as their first step anyway, and all grays in the crops are
+  synthetic (the scans are 1-bit at the source).
+- Both `crops/` (repo root) and the copies in `grilles_displayer/` are tracked
+  in git, so the 1-bit form also caps repository growth. The conversion is
+  deterministic: unchanged sources re-encode to identical bytes → no git churn.
+
+The generator then simply **copies** the scans. As a safety net it verifies
+each copied PNG is 1-bit and re-encodes any that isn't (with a warning listing
+the offending files), so the deploy stays small even if an upstream crop
+predates the convention.
 
 ### 3.1 Generator (`build_data.py`)
 
-- Usage: `python grilles_displayer/build_data.py` (default input `./tunes_verified`, overridable with `--tunes-dir`).
-- Reads every `*.json` in the input directory, **preserving JSON key order** (section order matters — use `json.load` which keeps insertion order).
-- Skips non-tune files (`verification_state.json`, `run_report.json`, etc. — same ignore list as the verifier).
+- Usage: `python grilles_displayer/build_data.py`. Inputs, all overridable:
+  `--index ./title_index.csv`, `--tunes-dir ./tunes_verified`,
+  `--crops-dir ./crops`, `--melody-crops-dir ./melody_crops`
+  (and, once it exists, `--melodies-dir ./melodies_verified`).
+- **Drives off `title_index.csv`**, one record per data row (skips the header).
+  Relevant columns: `match_status`, `chords_title`, `chords_file`,
+  `melody_title`, `melody_file`. (`match_type`, `chords_page`, `melody_page`
+  are ignored by the app.)
+- For each row it builds a record (see §4). It **embeds the full chord JSON**
+  when a digitized tune exists for that row, **preserving JSON key order**
+  (`json.load` keeps insertion order — section order matters).
+- Copies the referenced scans into the app folder when the source file exists:
+  `crops/<chords_file>` → `grilles_displayer/crops/`, and
+  `melody_crops/<melody_file>` → `grilles_displayer/melody_crops/`. Sources are
+  expected to already be 1-bit PNGs (§3 "Deploy weight"); any that aren't are
+  re-encoded (grayscale → threshold 128 → optimized 1-bit PNG) with a warning.
+  Skip the copy when the output already exists with unchanged source
+  mtime/size (~3,000 images — keep rebuilds fast). Stale copies in both
+  folders are pruned. A referenced-but-missing PNG is a warning, not an error
+  (the record just lacks that image).
 - Writes `data/tunes_data.js` containing a single assignment:
 
 ```js
 window.TUNES = [
-  { "id": "22_02_AS_TIME_GOES_BY", ...full tune JSON... },
+  { "id": "22_02_AS_TIME_GOES_BY",
+    "title": "As Time Goes By",
+    "chord_image": "crops/22_02_AS_TIME_GOES_BY.png",
+    "melody_image": "melody_crops/34_01_AS_TIME_GOES_BY.png",
+    "has_chord_json": true,
+    "has_melody_abc": false,
+    "tune": { ...full chord JSON... } },
   ...
 ];
 ```
 
-- `id` is the file stem. Tunes are sorted alphabetically by `title`.
-- For each tune with a matching scan (`<crops-dir>/<id>.png`, default `../crops`,
-  overridable with `--crops-dir`), the PNG is copied to `grilles_displayer/crops/`
-  and the record gets `"image": "crops/<id>.png"`. Stale copies are pruned.
-- The script prints a one-line summary (`Wrote 25 tunes to data/tunes_data.js`) and exits non-zero with a clear message if a file fails to parse.
-- Rerun manually whenever tunes are verified; the app itself never reads `tunes_verified/` directly.
+- Records are sorted alphabetically by the **displayed title** (§4).
+- The script prints a one-line summary (e.g.
+  `Wrote 1568 tunes (32 chord-JSON, 0 melody-ABC; 1561 chord PNGs, 1448 melody PNGs)`)
+  and exits non-zero with a clear message if the index or a JSON file fails to
+  parse.
+- Rerun manually whenever the index changes or tunes are verified; the app
+  itself never reads the source directories directly.
 
 ---
 
-## 4. Data Model (input)
+## 4. Data Model
+
+### 4.1 Per-tune record (output of the generator)
+
+| Field | Meaning |
+|---|---|
+| `id` | Stable key & URL hash. The `chords_file` stem when present, else the `melody_file` stem. |
+| `title` | **Displayed** title. The digitized chord JSON's `title` if present; otherwise derived from the CSV title column (`chords_title`, fallback `melody_title`): `_`→space, Title-Cased. Filename-derived artifacts (e.g. `AIN_T` → "Ain T") are accepted as-is. |
+| `chord_image` | `crops/<chords_file>` when that PNG was copied in, else absent. |
+| `melody_image` | `melody_crops/<melody_file>` when that PNG was copied in, else absent. |
+| `has_chord_json` | `true` when a digitized chord tune was embedded (`tune`). Drives the left-icon green state. |
+| `has_melody_abc` | `true` when a digitized melody exists (future). Drives the right-icon green state. Always `false` for now. |
+| `tune` | The embedded chord JSON (§4.2), only when `has_chord_json`. |
+
+Icon/asset booleans the app derives from the record:
+`hasChordAsset = chord_image || has_chord_json`,
+`hasMelodyAsset = melody_image || has_melody_abc`.
+A tune with neither asset should not occur in the index; if it does, list it with
+no icons.
+
+### 4.2 Embedded chord JSON (`tune`)
 
 As produced by the digitizer / verifier (see `Instructions/jazz_chord_digitization_spec.md`). Relevant parts:
 
@@ -84,63 +174,108 @@ Currently all verified tunes are 4/4 with sections of mostly 8 or 16 bars, but t
 ## 5. UI Layout
 
 ```
-┌────────────────────────────────────────────────────────────┐
-│  Grilles   [ search…            ]                    ☾/☀  │  top bar
-├──────────────┬─────────────────────────────────────────────┤
-│ tune list    │              (Medium Swing)   Irving Berlin │
-│ (sidebar,    │                ALL BY MYSELF                │
-│  scrollable) │        Standard · 1921 · 32 A B A C · p.14  │
-│              │                                             │
-│  All By…     │  [A]                                        │
-│  All Of Me   │  4/4 ║ C∆7 │ C6 │ D7 │ Am7 D7 │             │
-│  As Time…    │      │ G7 │ Dm7 G7 │ Em7 A7 │ Dm7 G7 ║      │
-│  …           │  [B]                                        │
-│              │  ║ … chord grid …                    ║      │
-│              │                                             │
-│              │  ▸ Variants   ▸ Recordings   ▸ Notes        │
-└──────────────┴─────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────┐
+│  Grilles   [ search…            ]                              ☾/☀  │  top bar
+├────────────────────┬─────────────────────────────────────────────────┤
+│ tune list          │   (Medium Swing)                  Irving Berlin  │
+│ (sidebar,          │              AS TIME GOES BY                     │
+│  scrollable)       │        Standard · 1931 · 32 A B A C · p.14       │
+│                    │                                                  │
+│ ▦♪  All By…        │   [ Chords ●on ]        [ Melody  off○ ]         │
+│ ▦♪  All Of Me      │  ┌───────────────────┐  ┌─────────────────────┐  │
+│ ▦♪  As Time…       │  │  [A]              │  │                     │  │
+│ ▦·  Blue Skies     │  │ 4/4 ║ C∆7│C6│…║   │  │   (melody sheet     │  │
+│ ·♪  Some Melody    │  │  chord grid /     │  │    PNG, when the     │  │
+│  …                 │  │  chord scan       │  │    Melody switch     │  │
+│                    │  │  ▦ original)      │  │    is on)            │  │
+│                    │  └───────────────────┘  └─────────────────────┘  │
+│                    │   ▸ Variants   ▸ Recordings   ▸ Notes            │
+└────────────────────┴─────────────────────────────────────────────────┘
+        ▦ = chord-grid icon   ♪ = melody icon   green = digitized
 ```
 
 ### 5.1 Top bar
-- App name, a search input, a scan toggle button (▦, hidden when the current
-  tune has no image), and a theme toggle button. On narrow screens a ☰ button
-  (leftmost) opens the tune-list drawer.
-- The search input has focus on page load. `Esc` closes the scan overlay /
-  drawer if open, otherwise clears the search.
+- App name, a search input, and a theme toggle button. On narrow screens a ☰
+  button (leftmost) opens the tune-list drawer. (The old global scan toggle
+  moves into per-panel controls — see §5.4.)
+- The search input has focus on page load. `Esc` closes any fullscreen scan /
+  the drawer if open, otherwise clears the search.
 
 ### 5.2 Sidebar — tune list
-- All tunes listed alphabetically by title; each entry shows the **title** and, in smaller muted text, the **composer**.
-- The search box filters the list live (see §8). The currently displayed tune is highlighted.
+- Every row of `title_index.csv` is listed, sorted alphabetically by displayed
+  title. Each entry shows the **title** and, in smaller muted text, the
+  **composer** (only digitized tunes have one).
+- **Availability icons** — a fixed two-slot cluster at the left of each entry:
+  - **Left slot = chord grille** icon (a small 2×2 grid glyph, inline SVG).
+    Shown when the tune has a chord asset (`chord_image` or `has_chord_json`).
+    **Green** when `has_chord_json` (digitized), otherwise **gray** (scan only).
+  - **Right slot = melody** icon (a beamed-eighth-notes glyph, inline SVG).
+    Shown when the tune has a melody asset (`melody_image` or `has_melody_abc`).
+    **Green** when `has_melody_abc` (digitized), otherwise **gray** (scan only).
+  - A slot with no asset of that type is left **empty but reserved**, so the two
+    columns stay aligned down the list. `both` rows show two icons,
+    `chords_only` only the left, `melody_only` only the right.
+  - Each icon has a `title`/`aria-label` (e.g. "Chord grid (digitized)",
+    "Melody (scan)").
+- The search box filters the list live (see §8). The currently displayed tune
+  is highlighted.
 - Clicking an entry displays that tune in the main panel.
-- Keyboard: `↑`/`↓` move the highlight through the (filtered) list, `Enter` opens the highlighted tune.
+- Keyboard: `↑`/`↓` move the highlight through the (filtered) list, `Enter`
+  opens the highlighted tune.
+- The list holds ~1,568 rows: render it efficiently (e.g. a single delegated
+  click handler; virtualize or cap rendered rows only if scrolling is janky).
 - On narrow screens (≤ 700px) the sidebar is hidden and becomes a slide-in
-  drawer over the grid, opened with the ☰ button (typing in the search box also
-  opens it). Picking a tune, tapping the backdrop, or `Esc` closes it.
-
-### 5.2a Original scan (PNG)
-
-- Each tune with an `image` field gets a ▦ toggle in the top bar showing the
-  original scanned grille (`crops/<id>.png`).
-- Wide screens (≥ 900px, laptop / landscape tablet): the scan docks as a sticky
-  panel to the right of the chord grid, **on by default**. Clicking the docked
-  scan expands it to a fullscreen view.
-- Narrow screens (mobile portrait, small tablets): the scan opens as a
-  fullscreen overlay.
-- In the fullscreen view, clicking the image toggles a magnified state (up to
-  natural size, capped at 250vw on small screens) panned by scrolling, starting
-  centered. Clicking the backdrop, the ✕ button, or `Esc` closes the
-  fullscreen view (back to the dock on wide screens).
-- The on/off choice persists in `localStorage` (`grilles.image`); on load it is
-  only restored on wide screens (never greet mobile with an overlay).
+  drawer over the content, opened with the ☰ button (typing in the search box
+  also opens it). Picking a tune, tapping the backdrop, or `Esc` closes it.
 
 ### 5.3 Main panel — tune header
-Mirrors the screenshot:
+Mirrors the screenshot (populated from the embedded chord JSON; for a
+non-digitized tune only the **title** is shown):
 - **Title**: centered, large, bold.
 - **Tempo**: top-left, in parentheses, e.g. `(Slow)` — title-cased from the JSON value.
 - **Composer**: top-right.
 - **Metadata line** below the title, small and muted: `style · year · form · p. N`. The `source` field is not displayed. Fields that are absent are simply omitted.
 
-### 5.4 Deep linking
+### 5.4 Content panels — chords & melody
+
+The main panel below the header holds up to two **content panels**, each gated
+by a visible **switch** placed in a toolbar directly under the tune header:
+
+- **Chords switch** and **Melody switch** — two clearly labelled toggle
+  switches. A switch is only shown when the tune has that asset
+  (`hasChordAsset` / `hasMelodyAsset`); a tune with only one asset shows only
+  that one switch.
+- **Defaults**: Chords **on**, Melody **off**. First visit uses these; the
+  choice for each switch persists in `localStorage`
+  (`grilles.showChords`, `grilles.showMelody`) and is restored on later visits.
+  If a tune lacks the asset for a persisted "on" switch, that panel is simply
+  not shown (the switch is hidden), without altering the stored preference.
+
+Each panel's **content** follows one rule — *render if digitized, else show the
+scan*:
+
+- **Chord panel**: the styled chord grid (§6–§7) when `has_chord_json`;
+  otherwise the chord scan PNG (`chord_image`). When *both* exist, a small **▦
+  "original scan"** toggle on the panel swaps the rendered grid for the scan
+  (default: rendered).
+- **Melody panel**: the abcjs lead sheet when `has_melody_abc` (future);
+  otherwise the melody scan PNG (`melody_image`). Today this is always the PNG,
+  so no per-panel toggle is shown until melody digitization exists.
+
+**Layout of the two panels:**
+- **Wide / landscape (≥ 900px)**: when both switches are on, the panels sit
+  **side by side** (chords left, melody right), each taking half the content
+  width. When only one is on, it takes the full width.
+- **Narrow / portrait (< 900px)**: panels **stack vertically** (chords above
+  melody), full width, page scrolls.
+
+**Fullscreen a panel**: clicking a scan image (chord scan or melody scan) opens
+it fullscreen. In the fullscreen view, clicking the image toggles a magnified
+state (up to natural size, capped at 250vw on small screens) panned by
+scrolling, starting centered. Clicking the backdrop, the ✕ button, or `Esc`
+closes it. (The rendered chord grid is not a scan and has its own zoom, §6.5.)
+
+### 5.5 Deep linking
 - The displayed tune is reflected in the URL hash (`#22_02_AS_TIME_GOES_BY`). On load, a valid hash opens that tune; otherwise the first tune in the list is shown.
 
 ---
@@ -168,19 +303,26 @@ Mirrors the screenshot:
 - If a chord symbol overflows its slots, it may shrink (`font-size` step-down) rather than wrap; chords never wrap to a second line.
 
 ### 6.5 Responsive behavior
-- The grid targets a comfortable max width (~900px), centered. Below that, bars shrink fluidly; chord font size scales with bar width (CSS `clamp()`/container-relative units). No horizontal page scrolling.
-- **Fit to one page**: all grid dimensions are em-based; after rendering, a JS
-  fit pass shrinks the grid's base font size until header + grid fit the
-  viewport height without scrolling, down to a floor of 8px (below that the
-  page scrolls rather than becoming unreadable). Extras (§9) may fall below
-  the fold. The grid's width cap is em-based too (38em ≈ 646px at the default
-  17px font) so bar width stays proportional to chord size on any screen.
+- The chord panel measures the width **actually available to it** — full content
+  width when it is the only panel, roughly half when it shares a row with the
+  melody panel (§5.4). Bars shrink fluidly to that width; chord font size scales
+  with bar width (CSS `clamp()`/container-relative units). No horizontal page
+  scrolling.
+- **Fit to one page**: all grid dimensions are em-based; after rendering (and on
+  layout changes — switch toggles, resize, orientation), a JS fit pass shrinks
+  the grid's base font size until header + grid fit the viewport height without
+  scrolling, down to a floor of 8px (below that the page scrolls rather than
+  becoming unreadable). Extras (§9) may fall below the fold. The grid's width
+  cap is em-based (38em ≈ 646px at the default 17px font) so bar width stays
+  proportional to chord size — but it is also clamped to the panel's own width
+  when side by side.
 - **Grid zoom**: floating −/+ buttons (bottom right) scale the fitted grid
   size by a user factor (×1.15 steps, clamped 0.5–2.5, persisted in
   `localStorage` as `grilles.gridzoom`); zooming in past the fitted size makes
   the page scroll.
 - The tune head stacks to a single centered column when the pane is narrow
-  (small screen or docked scan) via a container query.
+  (small screen, or the chord panel sharing the row with the melody panel) via a
+  container query.
 
 ---
 
@@ -231,16 +373,21 @@ The root's own accidental also renders as `♯`/`♭`.
 
 ## 8. Search
 
-- Single search box; matches against **title** and **composer**.
+- Single search box; matches against **title** and **composer** (composer only
+  exists for digitized tunes; a non-digitized tune matches on title alone).
 - Case-insensitive, diacritic-insensitive (`normalize('NFD')` + strip combining marks), substring match on either field. Multiple whitespace-separated terms are AND-ed (every term must match title or composer).
-- Filtering is live on every keystroke (25–500 tunes: no debounce needed, no index required).
+- Filtering is live on every keystroke. With ~1,568 rows a light debounce (or a
+  precomputed lowercase/normalized search string per tune) keeps typing smooth;
+  no external index is needed.
 - Empty query shows the full list. Zero matches shows a "No tunes found" message in the sidebar.
 
 ---
 
-## 9. Extras (below the grid)
+## 9. Extras (below the chord grid)
 
-Rendered as four collapsible `<details>` blocks, collapsed by default, in small muted type:
+Only for digitized-chord tunes (they read from the embedded `tune` JSON), shown
+below the chord panel. Rendered as four collapsible `<details>` blocks,
+collapsed by default, in small muted type:
 
 1. **Same changes** — the `same_chord_changes` string, when present.
 2. **Variants** — for each entry in `variants`: its `applies_to` string as a caption, then its `bars` rendered as a mini chord grid (same renderer as §6/§7 at ~65% scale, 4 bars per row, single barlines only — variants have no sections).
@@ -263,13 +410,19 @@ Blocks whose data is absent are not rendered at all.
 
 ## 11. Acceptance Checklist
 
-- [ ] `python grilles_displayer/build_data.py` regenerates `data/tunes_data.js` from `tunes_verified/`.
-- [ ] Opening `grilles_displayer/index.html` directly from disk (file://) shows the app with all verified tunes listed.
+- [ ] `python grilles_displayer/build_data.py` regenerates `data/tunes_data.js` from `title_index.csv` + `tunes_verified/`, and populates `crops/` and `melody_crops/` with every referenced scan.
+- [ ] Bundled scans are 1-bit optimized PNGs; the two folders together stay in the ~120 MB range, and rerunning the build without source changes rewrites nothing (git status clean).
+- [ ] Opening `grilles_displayer/index.html` directly from disk (file://) lists **every** `title_index.csv` row, alphabetically by displayed title.
+- [ ] Sidebar icons: a `both` row shows two icons (chord grid + melody); a `chords_only` row shows only the left icon, a `melody_only` row only the right; icon columns stay aligned. A digitized-chord tune shows the left icon **green**; scan-only assets show **gray**.
+- [ ] A non-digitized tune shows a Title-Cased title (from the index) and its scan(s); a digitized-chord tune shows the JSON `title`, composer, and metadata line.
+- [ ] The Chords and Melody switches show only for assets the tune has; default is Chords **on**, Melody **off**; both choices survive a reload.
+- [ ] With both switches on: on a wide screen the chord and melody panels sit **side by side**; on a narrow/portrait screen they **stack**. Chord grid re-fits to its available width in both cases.
+- [ ] A digitized-chord tune with a chord scan offers the per-panel **▦ original scan** toggle (default: rendered grid); the melody panel shows the melody scan PNG.
 - [ ] `22_02_AS_TIME_GOES_BY` renders: A / A / B / A sections labeled `A A B A`, 8 bars each as 2×4 rows, double barlines at every section boundary, `4/4` before the first barline.
 - [ ] `Fm7b5` displays as `Fø7`; `Eb` shows `E♭`; `F#o7` shows `F♯o7`; `C9sus4`, `F6/9`, `N.C.` render sensibly.
 - [ ] A chord on beat 3 sits at the horizontal middle of its bar.
 - [ ] Sections with 2, 5, or 16 bars render without layout breakage (trailing empty slots).
-- [ ] Search for `hupfeld` finds "As Time Goes By"; search is accent- and case-insensitive.
-- [ ] Variants/Recordings/Notes blocks appear only when the data exists, collapsed by default.
+- [ ] Search for `hupfeld` finds "As Time Goes By"; search is accent- and case-insensitive across the full corpus.
+- [ ] Variants/Recordings/Notes blocks appear only for digitized-chord tunes when the data exists, collapsed by default.
 - [ ] Theme toggle switches dark/light and survives a reload.
-- [ ] The app never writes to `tunes_verified/`.
+- [ ] The app never writes to `tunes_verified/`, `melody_crops/`, or `title_index.csv`.

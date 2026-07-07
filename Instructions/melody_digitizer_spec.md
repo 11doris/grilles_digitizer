@@ -84,6 +84,16 @@ JSON chords unchanged.
   native resolution, `to_ink` polarity fix). Produce one PNG per tune in
   `melody_crops/`, named like the grille crops (`<page>_<idx>_<TITLE>.png`) so
   tune JSON ↔ melody image pairing is a filename join.
+- **Output encoding convention** (applies to every stage that writes to
+  `melody_crops/`, incl. `melody_straightener.py`, and equally to the grille
+  crops in `crops/`): work in **grayscale internally** (deskew/rotation
+  interpolation needs it), but save the final PNG as **full-resolution 1-bit
+  optimized PNG** (threshold 128, no alpha channel). The source scans are
+  1-bit, so grays are pure interpolation artifacts; binarizing at the last
+  write shrinks the corpus ~5× (these folders are tracked in git and bundled
+  into the displayer). Never re-transform an already-binarized crop —
+  regenerate from the PDF instead. See `displayer_app_spec.md` §3 "Deploy
+  weight" for measurements.
 - If the melody book has one tune per page, a manifest mapping printed page →
   tune id is enough; build it once by matching the hand-written title line
   (stage 2 text zone) against tune titles with fuzzy string match, and store it
