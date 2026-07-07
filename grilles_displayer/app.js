@@ -161,7 +161,11 @@
     state.filtered = filterTunes(searchEl.value);
     state.activeIndex = state.filtered.length ? 0 : -1;
     renderList();
-    if (narrowMq.matches && searchEl.value) setListOpen(true); // show results on mobile
+    /* Searching only makes sense with the list visible — reveal it. */
+    if (searchEl.value) {
+      if (narrowMq.matches) setListOpen(true);
+      else if (state.listCollapsed) setListCollapsed(false);
+    }
   });
 
   /* ------------------------------------------------------------ tune list */
@@ -791,6 +795,7 @@
     state.showMelody = m === "1";
     const z = parseFloat(localStorage.getItem("grilles.gridzoom"));
     if (Number.isFinite(z)) state.gridZoom = Math.min(2.5, Math.max(0.5, z));
+    if (localStorage.getItem("grilles.list") === "0") setListCollapsed(true);
   } catch (e) { /* ignore */ }
   renderList();
   searchEl.focus();
