@@ -1,4 +1,4 @@
-/* Grilles Displayer — search, navigation and grid rendering (spec §5, §6, §8, §9). */
+/* Grilles Displayer — search, navigation, panels and grid rendering (spec §5, §6, §8, §9). */
 "use strict";
 
 (function () {
@@ -12,26 +12,40 @@
   const themeBtn = document.getElementById("themeToggle");
   const listToggle = document.getElementById("listToggle");
   const listBackdrop = document.getElementById("listBackdrop");
-  const imageToggle = document.getElementById("imageToggle");
-  const imagePane = document.getElementById("imagePane");
-  const imageEl = document.getElementById("tuneImage");
-  const imageClose = document.getElementById("imageClose");
+  const overlayEl = document.getElementById("scanOverlay");
+  const overlayImg = document.getElementById("overlayImg");
+  const overlayClose = document.getElementById("overlayClose");
   const zoomInBtn = document.getElementById("zoomIn");
   const zoomOutBtn = document.getElementById("zoomOut");
 
-  /* Below 700px the list is a drawer; from 900px the scan docks beside the grid. */
+  /* Below 700px the list is a drawer; from 900px visible panels sit side by side. */
   const narrowMq = window.matchMedia("(max-width: 700px)");
-  const wideMq = window.matchMedia("(min-width: 900px)");
 
   const state = {
     filtered: TUNES,
     activeIndex: -1, // keyboard highlight within filtered list
     currentId: null, // tune displayed in the main panel
-    showImage: false, // original scan visible (side panel or overlay)
-    imageZoom: false, // wide screens: docked scan expanded to fullscreen
-    imageMag: false, // fullscreen scan magnified (pan by scrolling)
+    showChords: true, // Chords switch (persisted)
+    showMelody: false, // Melody switch (persisted)
+    chordScan: false, // chord panel showing the original scan instead of the grid
+    overlayMag: false, // fullscreen scan magnified (pan by scrolling)
     gridZoom: 1, // user zoom factor applied on top of the fitted grid size
   };
+
+  /* ------------------------------------------------------------- helpers */
+
+  /* Embedded chord JSON (§4.2); empty for non-digitized tunes. */
+  function meta(t) {
+    return t.tune || {};
+  }
+
+  function hasChordAsset(t) {
+    return Boolean(t.chord_image || t.has_chord_json);
+  }
+
+  function hasMelodyAsset(t) {
+    return Boolean(t.melody_image || t.has_melody_abc);
+  }
 
   /* ---------------------------------------------------------------- theme */
 
@@ -72,85 +86,42 @@
 
   listBackdrop.addEventListener("click", () => setListOpen(false));
 
-  /* -------------------------------------------------------- original scan */
+  /* --------------------------------------------- fullscreen scan overlay */
 
-  function applyImage() {
-    const tune = tuneById(state.currentId);
-    const src = tune && tune.image;
-    const show = Boolean(src) && state.showImage;
-    if (src) {
-      imageToggle.hidden = false;
-      imageToggle.classList.toggle("on", show);
-      if (imageEl.getAttribute("src") !== src) imageEl.src = src;
-      imageEl.alt = `${tune.title || tune.id} — original scan`;
-    } else {
-      imageToggle.hidden = true;
-    }
-    if (!show) {
-      state.imageZoom = false;
-      state.imageMag = false;
-    }
-    imagePane.hidden = !show;
-    /* Fullscreen: always on narrow screens; on wide only after click-to-zoom. */
-    const overlay = show && (!wideMq.matches || state.imageZoom);
-    document.body.classList.toggle("show-image", show);
-    document.body.classList.toggle("image-overlay", overlay);
-    imagePane.classList.toggle("magnified", overlay && state.imageMag);
+  function openOverlay(src, alt) {
+    state.overlayMag = false;
+    overlayImg.src = src;
+    overlayImg.alt = alt || "";
+    overlayEl.hidden = false;
+    overlayEl.classList.remove("magnified");
   }
 
-  function setShowImage(show) {
-    state.showImage = show;
-    try {
-      localStorage.setItem("grilles.image", show ? "1" : "0");
-    } catch (e) { /* ignore */ }
-    applyImage();
-    requestAnimationFrame(fitAll);
-  }
-
-  /* Closes the fullscreen scan (back to dock on wide, hidden on narrow).
-     Returns false when no overlay was open. */
-  function closeImageOverlay() {
-    if (!document.body.classList.contains("image-overlay")) return false;
-    state.imageZoom = false;
-    state.imageMag = false;
-    if (wideMq.matches) applyImage();
-    else setShowImage(false);
+  /* Returns false when the overlay wasn't open. */
+  function closeOverlay() {
+    if (overlayEl.hidden) return false;
+    overlayEl.hidden = true;
+    state.overlayMag = false;
     return true;
   }
 
-  imageToggle.addEventListener("click", () => setShowImage(!state.showImage));
-
-  /* Click zooms the scan: dock → fullscreen (wide), fullscreen → magnified. */
-  imageEl.addEventListener("click", (e) => {
+  /* Click magnifies the scan (up to natural size, panned by scrolling). */
+  overlayImg.addEventListener("click", (e) => {
     e.stopPropagation();
-    if (wideMq.matches && !state.imageZoom) {
-      state.imageZoom = true;
-      state.imageMag = false;
-    } else {
-      state.imageMag = !state.imageMag;
-    }
-    applyImage();
-    requestAnimationFrame(fitAll);
-    if (state.imageMag) {
+    state.overlayMag = !state.overlayMag;
+    overlayEl.classList.toggle("magnified", state.overlayMag);
+    if (state.overlayMag) {
       /* Start panning from the middle of the scan. */
       requestAnimationFrame(() => {
-        imagePane.scrollLeft = (imagePane.scrollWidth - imagePane.clientWidth) / 2;
-        imagePane.scrollTop = (imagePane.scrollHeight - imagePane.clientHeight) / 2;
+        overlayEl.scrollLeft = (overlayEl.scrollWidth - overlayEl.clientWidth) / 2;
+        overlayEl.scrollTop = (overlayEl.scrollHeight - overlayEl.clientHeight) / 2;
       });
     }
   });
 
-  /* Clicking the dark backdrop (or ✕) leaves the fullscreen view. */
-  imagePane.addEventListener("click", () => closeImageOverlay());
-  imageClose.addEventListener("click", (e) => {
+  overlayEl.addEventListener("click", () => closeOverlay());
+  overlayClose.addEventListener("click", (e) => {
     e.stopPropagation();
-    closeImageOverlay();
-  });
-
-  imageEl.addEventListener("error", () => {
-    imageToggle.hidden = true;
-    imagePane.hidden = true;
-    document.body.classList.remove("show-image", "image-overlay");
+    closeOverlay();
   });
 
   /* ---------------------------------------------------------------- search */
@@ -162,13 +133,15 @@
       .toLowerCase();
   }
 
+  /* Precomputed haystack — filtering ~1,600 rows stays instant (spec §8). */
+  TUNES.forEach((t) => {
+    t._hay = normalize((t.title || "") + " " + (meta(t).composer || ""));
+  });
+
   function filterTunes(query) {
     const terms = normalize(query).split(/\s+/).filter(Boolean);
     if (!terms.length) return TUNES;
-    return TUNES.filter((t) => {
-      const hay = normalize((t.title || "") + " " + (t.composer || ""));
-      return terms.every((term) => hay.includes(term));
-    });
+    return TUNES.filter((t) => terms.every((term) => t._hay.includes(term)));
   }
 
   searchEl.addEventListener("input", () => {
@@ -180,33 +153,66 @@
 
   /* ------------------------------------------------------------ tune list */
 
+  /* Availability icons (spec §5.2): left slot = chord grille, right slot =
+     melody. Green when digitized, gray when only the scan exists, empty
+     (reserved) when the tune has no asset of that type. */
+  const ICON_GRID =
+    '<svg viewBox="0 0 16 16" aria-hidden="true">' +
+    '<path d="M1.5 1.5h5.6v5.6H1.5zM8.9 1.5h5.6v5.6H8.9zM1.5 8.9h5.6v5.6H1.5zM8.9 8.9h5.6v5.6H8.9z"/></svg>';
+  const ICON_NOTES =
+    '<svg viewBox="0 0 16 16" aria-hidden="true">' +
+    '<path d="M14.6.7 5.4 2.5v8.2a2.6 2.6 0 0 0-1.2-.3C2.8 10.4 1.6 11.4 1.6 12.6S2.8 14.8 4.2 14.8s2.6-1 2.6-2.2V6.3l6.4-1.25v4.15a2.6 2.6 0 0 0-1.2-.3c-1.4 0-2.6 1-2.6 2.2s1.2 2.2 2.6 2.2 2.6-1 2.6-2.2z"/></svg>';
+
+  function iconCluster(t) {
+    const chord = hasChordAsset(t)
+      ? `<span class="icon${t.has_chord_json ? " ok" : ""}" title="Chord grid${t.has_chord_json ? " (digitized)" : " (scan)"}">${ICON_GRID}</span>`
+      : '<span class="icon none"></span>';
+    const melody = hasMelodyAsset(t)
+      ? `<span class="icon${t.has_melody_abc ? " ok" : ""}" title="Melody${t.has_melody_abc ? " (digitized)" : " (scan)"}">${ICON_NOTES}</span>`
+      : '<span class="icon none"></span>';
+    return `<span class="icons">${chord}${melody}</span>`;
+  }
+
   function renderList() {
-    listEl.innerHTML = "";
     if (!state.filtered.length) {
-      const empty = document.createElement("div");
-      empty.className = "list-empty";
-      empty.textContent = "No tunes found";
-      listEl.appendChild(empty);
+      listEl.innerHTML = '<div class="list-empty">No tunes found</div>';
       return;
     }
-    state.filtered.forEach((tune, i) => {
-      const item = document.createElement("div");
-      item.className = "tune-item";
-      if (tune.id === state.currentId) item.classList.add("current");
-      if (i === state.activeIndex) item.classList.add("active");
-      item.innerHTML =
-        `<div class="t">${escapeHtml(tune.title || tune.id)}</div>` +
-        (tune.composer ? `<div class="c">${escapeHtml(tune.composer)}</div>` : "");
-      item.addEventListener("click", () => openTune(tune.id));
-      listEl.appendChild(item);
-    });
+    /* One string + one innerHTML: ~1,600 rows render in a few ms. */
+    listEl.innerHTML = state.filtered
+      .map((t, i) => {
+        const composer = meta(t).composer;
+        const cls = "tune-item" +
+          (t.id === state.currentId ? " current" : "") +
+          (i === state.activeIndex ? " active" : "");
+        return `<div class="${cls}" data-id="${escapeHtml(t.id)}">${iconCluster(t)}` +
+          `<span class="txt"><span class="t">${escapeHtml(t.title || t.id)}</span>` +
+          (composer ? `<span class="c">${escapeHtml(composer)}</span>` : "") +
+          "</span></div>";
+      })
+      .join("");
+  }
+
+  listEl.addEventListener("click", (e) => {
+    const item = e.target.closest(".tune-item");
+    if (item) openTune(item.dataset.id);
+  });
+
+  /* Move highlight classes without rebuilding 1,600 rows. */
+  function updateListHighlight() {
+    const items = listEl.children;
+    for (let i = 0; i < items.length; i++) {
+      if (!items[i].classList) continue;
+      items[i].classList.toggle("active", i === state.activeIndex);
+      items[i].classList.toggle("current", items[i].dataset.id === state.currentId);
+    }
   }
 
   function moveActive(delta) {
     if (!state.filtered.length) return;
     const n = state.filtered.length;
     state.activeIndex = ((state.activeIndex + delta) % n + n) % n;
-    renderList();
+    updateListHighlight();
     const el = listEl.querySelector(".tune-item.active");
     if (el) el.scrollIntoView({ block: "nearest" });
   }
@@ -236,7 +242,7 @@
       const tune = state.filtered[state.activeIndex];
       if (tune) openTune(tune.id);
     } else if (e.key === "Escape") {
-      if (closeImageOverlay()) return;
+      if (closeOverlay()) return;
       if (document.body.classList.contains("list-open")) {
         setListOpen(false);
         return;
@@ -267,11 +273,11 @@
   }
 
   /* Swipe on the tune view (mobile): left → next tune, right → previous.
-     Disabled while the magnified scan is panned by touch-scrolling. */
+     Disabled while the fullscreen scan is open (panned by touch-scrolling). */
   let swipeStart = null;
 
   viewEl.addEventListener("touchstart", (e) => {
-    swipeStart = e.touches.length === 1 && !state.imageMag
+    swipeStart = e.touches.length === 1 && overlayEl.hidden
       ? { x: e.touches[0].clientX, y: e.touches[0].clientY }
       : null;
   }, { passive: true });
@@ -391,27 +397,29 @@
     return String(s).toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
   }
 
-  function renderHead(tune) {
+  /* Non-digitized tunes only have a title (spec §5.3). */
+  function renderHead(t) {
+    const info = meta(t);
     const head = el("div", "tune-head");
     const top = el("div", "head-top");
     const tempo = el("span", "tempo");
-    if (tune.tempo) tempo.textContent = `(${titleCase(tune.tempo)})`;
+    if (info.tempo) tempo.textContent = `(${titleCase(info.tempo)})`;
     const title = el("h2", "title");
-    title.textContent = tune.title || tune.id;
+    title.textContent = t.title || t.id;
     const composer = el("span", "composer");
-    composer.textContent = tune.composer || "";
+    composer.textContent = info.composer || "";
     top.append(tempo, title, composer);
     head.appendChild(top);
 
     const parts = [];
-    if (tune.style) parts.push(escapeHtml(tune.style));
-    if (tune.year) parts.push(escapeHtml(tune.year));
-    if (tune.form) parts.push(escapeHtml(tune.form));
-    if (tune.page != null) parts.push(`p. ${escapeHtml(tune.page)}`);
+    if (info.style) parts.push(escapeHtml(info.style));
+    if (info.year) parts.push(escapeHtml(info.year));
+    if (info.form) parts.push(escapeHtml(info.form));
+    if (info.page != null) parts.push(`p. ${escapeHtml(info.page)}`);
     if (parts.length) {
-      const meta = el("div", "meta");
-      meta.innerHTML = parts.join(" · ");
-      head.appendChild(meta);
+      const meta_ = el("div", "meta");
+      meta_.innerHTML = parts.join(" · ");
+      head.appendChild(meta_);
     }
     return head;
   }
@@ -485,33 +493,133 @@
     return extras.childElementCount ? extras : null;
   }
 
+  /* -------------------------------------------------- panels & switches */
+
+  function saveSwitch(key, on) {
+    try {
+      localStorage.setItem(key, on ? "1" : "0");
+    } catch (e) { /* ignore */ }
+  }
+
+  function makeSwitch(label, checked, onChange) {
+    const wrap = el("label", "switch");
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.checked = checked;
+    input.addEventListener("change", () => onChange(input.checked));
+    const knob = el("span", "knob");
+    const text = el("span", "switch-label");
+    text.textContent = label;
+    wrap.append(input, knob, text);
+    return wrap;
+  }
+
+  function scanImg(src, alt) {
+    const img = el("img", "scan");
+    img.src = src;
+    img.alt = alt;
+    img.loading = "lazy";
+    img.addEventListener("click", () => openOverlay(src, alt));
+    return img;
+  }
+
+  /* Show/hide panels per the switches; side-by-side handled by CSS (.dual). */
+  function applyPanels(t) {
+    const panels = paneEl.querySelector(".panels");
+    if (!panels) return;
+    const chordPanel = panels.querySelector(".panel.chords");
+    const melodyPanel = panels.querySelector(".panel.melody");
+    const visC = Boolean(chordPanel) && state.showChords;
+    const visM = Boolean(melodyPanel) && state.showMelody;
+    if (chordPanel) chordPanel.hidden = !visC;
+    if (melodyPanel) melodyPanel.hidden = !visM;
+    panels.classList.toggle("dual", visC && visM);
+    requestAnimationFrame(fitAll);
+  }
+
   /* ----------------------------------------------------------- main render */
 
   function renderTune(id) {
-    const tune = tuneById(id);
-    if (!tune) return;
+    const t = tuneById(id);
+    if (!t) return;
     state.currentId = id;
-    document.title = `${tune.title || id} — Grilles`;
+    state.chordScan = false; // per-tune, defaults to the rendered grid
+    document.title = `${t.title || id} — Grilles`;
 
-    const beats = beatsPerBar(tune);
     paneEl.innerHTML = "";
-    paneEl.appendChild(renderHead(tune));
+    paneEl.appendChild(renderHead(t));
 
-    const grid = el("div", "grid");
-    const sectionNames = Object.keys(tune.sections || {});
-    sectionNames.forEach((name, i) => {
-      grid.appendChild(renderSection(name, tune.sections[name], beats, i === 0, tune.time_signature));
-    });
-    paneEl.appendChild(grid);
+    /* Switch toolbar (spec §5.4) — one switch per available asset. */
+    const bar = el("div", "panel-bar");
+    if (hasChordAsset(t)) {
+      bar.appendChild(makeSwitch("Chords", state.showChords, (on) => {
+        state.showChords = on;
+        saveSwitch("grilles.showChords", on);
+        applyPanels(t);
+      }));
+    }
+    if (hasMelodyAsset(t)) {
+      bar.appendChild(makeSwitch("Melody", state.showMelody, (on) => {
+        state.showMelody = on;
+        saveSwitch("grilles.showMelody", on);
+        applyPanels(t);
+      }));
+    }
+    if (bar.childElementCount) paneEl.appendChild(bar);
 
-    const extras = renderExtras(tune, beats);
-    if (extras) paneEl.appendChild(extras);
+    const panels = el("div", "panels");
+
+    if (hasChordAsset(t)) {
+      const panel = el("section", "panel chords");
+      const tune = meta(t);
+      if (t.has_chord_json) {
+        panel.classList.add("has-grid");
+        const grid = el("div", "grid");
+        const beats = beatsPerBar(tune);
+        Object.keys(tune.sections || {}).forEach((name, i) => {
+          grid.appendChild(renderSection(name, tune.sections[name], beats, i === 0, tune.time_signature));
+        });
+        panel.appendChild(grid);
+        const extras = renderExtras(tune, beats);
+        if (extras) panel.appendChild(extras);
+        if (t.chord_image) {
+          /* ▦ toggle: rendered grid ⇄ original scan (spec §5.4). */
+          const scan = scanImg(t.chord_image, `${t.title || id} — original chord scan`);
+          panel.appendChild(scan);
+          const toggle = el("button", "scan-toggle");
+          toggle.type = "button";
+          toggle.textContent = "▦";
+          toggle.title = "Show original scan";
+          toggle.setAttribute("aria-label", "Toggle original scan");
+          toggle.addEventListener("click", () => {
+            state.chordScan = !state.chordScan;
+            panel.classList.toggle("show-scan", state.chordScan);
+            toggle.classList.toggle("on", state.chordScan);
+            requestAnimationFrame(fitAll);
+          });
+          panel.appendChild(toggle);
+        }
+      } else {
+        panel.appendChild(scanImg(t.chord_image, `${t.title || id} — chord scan`));
+      }
+      panels.appendChild(panel);
+    }
+
+    if (hasMelodyAsset(t)) {
+      const panel = el("section", "panel melody");
+      /* Digitized melody rendering (abcjs) is deferred; show the scan. */
+      if (t.melody_image) {
+        panel.appendChild(scanImg(t.melody_image, `${t.title || id} — melody scan`));
+      }
+      panels.appendChild(panel);
+    }
+
+    paneEl.appendChild(panels);
+    applyPanels(t);
 
     viewEl.scrollTop = 0;
     if (narrowMq.matches) setListOpen(false);
-    applyImage();
-    renderList(); // refresh "current" highlight
-    requestAnimationFrame(fitAll);
+    updateListHighlight();
   }
 
   /*
@@ -522,7 +630,7 @@
   const MIN_GRID_FONT = 8; // px — below this, scrolling beats unreadable chords
 
   function fitGrid() {
-    const grid = paneEl.querySelector(".grid");
+    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid");
     if (!grid) return;
     grid.style.fontSize = "";
     viewEl.scrollTop = 0;
@@ -579,10 +687,7 @@
   let resizeTimer = null;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      applyImage(); // dock ↔ overlay when crossing the 900px breakpoint
-      fitAll();
-    }, 150);
+    resizeTimer = setTimeout(fitAll, 150);
   });
 
   if (document.fonts && document.fonts.ready) {
@@ -592,16 +697,12 @@
   /* ----------------------------------------------------------------- init */
 
   initTheme();
-  {
-    /* Scan panel defaults to on for wide screens (docked side panel); an
-       explicit user toggle is remembered. Never greet mobile with an overlay. */
-    let saved = null;
-    try {
-      saved = localStorage.getItem("grilles.image");
-    } catch (e) { /* ignore */ }
-    state.showImage = (saved === null ? true : saved === "1") && wideMq.matches;
-  }
   try {
+    /* Defaults: Chords on, Melody off (spec §5.4); user choices persist. */
+    const c = localStorage.getItem("grilles.showChords");
+    const m = localStorage.getItem("grilles.showMelody");
+    state.showChords = c === null ? true : c === "1";
+    state.showMelody = m === "1";
     const z = parseFloat(localStorage.getItem("grilles.gridzoom"));
     if (Number.isFinite(z)) state.gridZoom = Math.min(2.5, Math.max(0.5, z));
   } catch (e) { /* ignore */ }
