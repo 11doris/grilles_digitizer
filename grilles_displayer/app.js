@@ -18,8 +18,9 @@
   const zoomInBtn = document.getElementById("zoomIn");
   const zoomOutBtn = document.getElementById("zoomOut");
 
-  /* Below 700px the list is a drawer; from 900px visible panels sit side by side. */
-  const narrowMq = window.matchMedia("(max-width: 700px)");
+  /* Phones (narrow, or short in landscape): the list is a drawer; from 900px
+     wide the visible panels sit side by side. Keep in sync with style.css. */
+  const narrowMq = window.matchMedia("(max-width: 700px), (max-height: 500px)");
 
   const state = {
     filtered: TUNES,

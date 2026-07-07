@@ -224,9 +224,10 @@ Currently all verified tunes are 4/4 with sections of mostly 8 or 16 bars, but t
   opens the highlighted tune.
 - The list holds ~1,568 rows: render it efficiently (e.g. a single delegated
   click handler; virtualize or cap rendered rows only if scrolling is janky).
-- On narrow screens (≤ 700px) the sidebar is hidden and becomes a slide-in
-  drawer over the content, opened with the ☰ button (typing in the search box
-  also opens it). Picking a tune, tapping the backdrop, or `Esc` closes it.
+- On phones — narrow screens (≤ 700px wide) **or** landscape-short screens
+  (≤ 500px tall) — the sidebar is hidden and becomes a slide-in drawer over
+  the content, opened with the ☰ button (typing in the search box also opens
+  it). Picking a tune, tapping the backdrop, or `Esc` closes it.
 
 ### 5.3 Main panel — tune header
 Mirrors the screenshot (populated from the embedded chord JSON; for a
