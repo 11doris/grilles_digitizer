@@ -584,7 +584,8 @@ body {
 
 /* ------------------------------------------------------------ responsive */
 
-@media (max-width: 700px) {
+/* Phones: portrait (narrow) or landscape (short) — sidebar becomes a drawer. */
+@media (max-width: 700px), (max-height: 500px) {
   .topbar { gap: 0.5rem; padding: 0.5rem 0.7rem; }
 
   #listToggle { display: inline-flex; }
