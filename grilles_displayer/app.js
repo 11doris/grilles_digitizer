@@ -28,7 +28,7 @@
     currentId: null, // tune displayed in the main panel
     showChords: true, // Chords switch (persisted)
     showMelody: false, // Melody switch (persisted)
-    chordScan: false, // chord panel showing the original scan instead of the grid
+    listCollapsed: false, // desktop: docked sidebar hidden (persisted)
     overlayMag: false, // fullscreen scan magnified (pan by scrolling)
     gridZoom: 1, // user zoom factor applied on top of the fitted grid size
   };
@@ -81,8 +81,20 @@
     listToggle.setAttribute("aria-expanded", String(open));
   }
 
+  /* Desktop: ☰ collapses the docked sidebar instead (full-width tune view). */
+  function setListCollapsed(collapsed) {
+    state.listCollapsed = collapsed;
+    document.body.classList.toggle("list-collapsed", collapsed);
+    listToggle.setAttribute("aria-expanded", String(!collapsed));
+    try {
+      localStorage.setItem("grilles.list", collapsed ? "0" : "1");
+    } catch (e) { /* ignore */ }
+    requestAnimationFrame(fitAll); // pane width changed
+  }
+
   listToggle.addEventListener("click", () => {
-    setListOpen(!document.body.classList.contains("list-open"));
+    if (narrowMq.matches) setListOpen(!document.body.classList.contains("list-open"));
+    else setListCollapsed(!state.listCollapsed);
   });
 
   listBackdrop.addEventListener("click", () => setListOpen(false));
@@ -163,6 +175,12 @@
   const ICON_NOTES =
     '<svg viewBox="0 0 16 16" aria-hidden="true">' +
     '<path d="M14.6.7 5.4 2.5v8.2a2.6 2.6 0 0 0-1.2-.3C2.8 10.4 1.6 11.4 1.6 12.6S2.8 14.8 4.2 14.8s2.6-1 2.6-2.2V6.3l6.4-1.25v4.15a2.6 2.6 0 0 0-1.2-.3c-1.4 0-2.6 1-2.6 2.2s1.2 2.2 2.6 2.2 2.6-1 2.6-2.2z"/></svg>';
+  /* Photo/picture glyph for the per-panel "show original scan" button. */
+  const ICON_IMAGE =
+    '<svg viewBox="0 0 16 16" aria-hidden="true">' +
+    '<rect x="1.7" y="2.7" width="12.6" height="10.6" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.4"/>' +
+    '<circle cx="5.6" cy="6.4" r="1.25"/>' +
+    '<path d="M3 12.2l3.4-4 2.7 3 2-2.4 2.6 3.4z"/></svg>';
 
   function iconCluster(t) {
     const chord = hasChordAsset(t)
@@ -519,9 +537,76 @@
     const img = el("img", "scan");
     img.src = src;
     img.alt = alt;
-    img.loading = "lazy";
+    /* Eager (not lazy): a scan hidden behind the ▦ toggle must already be
+       loaded when first shown, or the panel briefly collapses and the page
+       jumps. Only the current tune's images are ever in the DOM, so eager
+       loading costs one extra small PNG per digitized tune. */
     img.addEventListener("click", () => openOverlay(src, alt));
     return img;
+  }
+
+  /* Toggle on a panel that has both a rendered form and the original scan:
+     swaps rendered ⇄ scan in place (per tune, defaults to rendered — §5.4).
+     Sits in a tools row above the content so it never overlaps the scan; the
+     icon shows what the button switches TO (photo ⇄ grid/notes). */
+  function addScanToggle(panel, src, alt, renderedIcon) {
+    panel.classList.add("has-render");
+    panel.appendChild(scanImg(src, alt));
+    const tools = el("div", "panel-tools");
+    const toggle = el("button", "scan-toggle");
+    toggle.type = "button";
+    const apply = (on) => {
+      panel.classList.toggle("show-scan", on);
+      toggle.classList.toggle("on", on);
+      toggle.innerHTML = on ? renderedIcon : ICON_IMAGE;
+      toggle.title = on ? "Show digitized version" : "Show original scan";
+      toggle.setAttribute("aria-label", toggle.title);
+    };
+    toggle.addEventListener("click", () => {
+      const scroll = viewEl.scrollTop;
+      apply(!panel.classList.contains("show-scan"));
+      requestAnimationFrame(fitAll); // fitGrid preserves the scroll position
+      /* If the scan hasn't finished loading, the panel is briefly short and
+         the browser clamps the scroll — put it back once the image is in. */
+      const img = panel.querySelector("img.scan");
+      if (img && !img.complete) {
+        img.addEventListener("load", () => { viewEl.scrollTop = scroll; }, { once: true });
+      }
+    });
+    apply(false);
+    tools.appendChild(toggle);
+    panel.prepend(tools);
+    panel._setScan = apply; // lets the ABC error fallback flip to the scan
+  }
+
+  /* Melody lead sheet from the embedded ABC (spec §5.4). Never crashes the
+     page: a malformed ABC renders a warning and falls back to the scan. */
+  function renderAbcSheet(panel, t) {
+    const sheet = panel.querySelector(".abc-sheet");
+    if (!sheet) return;
+    /* abcjs styles the element it renders into inline (display:inline-block),
+       which would defeat the .show-scan display:none on .abc-sheet — so give
+       it an inner target and keep the wrapper ours. */
+    const target = el("div");
+    sheet.replaceChildren(target);
+    /* Display-only: drop title/composer/origin/rhythm header lines — the app's
+       tune head already shows them, and long O: lines overlap when engraved. */
+    const abc = String(t.abc).replace(/^[TCOR]:.*\r?\n/gm, "");
+    try {
+      if (!window.ABCJS) throw new Error("abcjs not loaded");
+      ABCJS.renderAbc(target, abc, {
+        responsive: "resize",
+        add_classes: true,
+        paddingtop: 0,
+        paddingbottom: 0,
+      });
+      if (!sheet.querySelector("svg")) throw new Error("abcjs produced no output");
+    } catch (err) {
+      const warn = el("div", "abc-error");
+      warn.textContent = `Melody rendering failed: ${err.message}`;
+      sheet.replaceChildren(warn);
+      if (t.melody_image && panel._setScan) panel._setScan(true); // fall back
+    }
   }
 
   /* Show/hide panels per the switches; side-by-side handled by CSS (.dual). */
@@ -544,7 +629,6 @@
     const t = tuneById(id);
     if (!t) return;
     state.currentId = id;
-    state.chordScan = false; // per-tune, defaults to the rendered grid
     document.title = `${t.title || id} — Grilles`;
 
     paneEl.innerHTML = "";
@@ -574,7 +658,6 @@
       const panel = el("section", "panel chords");
       const tune = meta(t);
       if (t.has_chord_json) {
-        panel.classList.add("has-grid");
         const grid = el("div", "grid");
         const beats = beatsPerBar(tune);
         Object.keys(tune.sections || {}).forEach((name, i) => {
@@ -584,21 +667,9 @@
         const extras = renderExtras(tune, beats);
         if (extras) panel.appendChild(extras);
         if (t.chord_image) {
-          /* ▦ toggle: rendered grid ⇄ original scan (spec §5.4). */
-          const scan = scanImg(t.chord_image, `${t.title || id} — original chord scan`);
-          panel.appendChild(scan);
-          const toggle = el("button", "scan-toggle");
-          toggle.type = "button";
-          toggle.textContent = "▦";
-          toggle.title = "Show original scan";
-          toggle.setAttribute("aria-label", "Toggle original scan");
-          toggle.addEventListener("click", () => {
-            state.chordScan = !state.chordScan;
-            panel.classList.toggle("show-scan", state.chordScan);
-            toggle.classList.toggle("on", state.chordScan);
-            requestAnimationFrame(fitAll);
-          });
-          panel.appendChild(toggle);
+          addScanToggle(panel, t.chord_image, `${t.title || id} — original chord scan`, ICON_GRID);
+        } else {
+          panel.classList.add("has-render");
         }
       } else {
         panel.appendChild(scanImg(t.chord_image, `${t.title || id} — chord scan`));
@@ -606,16 +677,26 @@
       panels.appendChild(panel);
     }
 
+    let melodyPanel = null;
     if (hasMelodyAsset(t)) {
       const panel = el("section", "panel melody");
-      /* Digitized melody rendering (abcjs) is deferred; show the scan. */
-      if (t.melody_image) {
+      if (t.has_melody_abc && t.abc) {
+        panel.appendChild(el("div", "abc-sheet"));
+        if (t.melody_image) {
+          addScanToggle(panel, t.melody_image, `${t.title || id} — original melody scan`, ICON_NOTES);
+        } else {
+          panel.classList.add("has-render");
+        }
+        melodyPanel = panel;
+      } else if (t.melody_image) {
         panel.appendChild(scanImg(t.melody_image, `${t.title || id} — melody scan`));
       }
       panels.appendChild(panel);
     }
 
     paneEl.appendChild(panels);
+    /* abcjs measures the container, so render after the panel is in the DOM. */
+    if (melodyPanel) renderAbcSheet(melodyPanel, t);
     applyPanels(t);
 
     viewEl.scrollTop = 0;
@@ -633,6 +714,9 @@
   function fitGrid() {
     const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid");
     if (!grid) return;
+    /* Measure from the top, but give the user their scroll position back —
+       re-fits triggered by panel toggles must not jump the page. */
+    const prevScroll = viewEl.scrollTop;
     grid.style.fontSize = "";
     viewEl.scrollTop = 0;
     /* Fit above the view's bottom padding, which clears the zoom buttons. */
@@ -653,6 +737,7 @@
       const fitted = parseFloat(getComputedStyle(grid).fontSize);
       grid.style.fontSize = Math.max(6, fitted * state.gridZoom).toFixed(2) + "px";
     }
+    viewEl.scrollTop = prevScroll;
   }
 
   function setGridZoom(zoom) {

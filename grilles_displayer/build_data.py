@@ -6,7 +6,9 @@ Driven by title_index.csv (single source of truth, one record per row):
 each row pairs a chord scan (crops/<chords_file>) with a melody scan
 (melody_crops/<melody_file>). Rows whose chord tune has been digitized
 (tunes_verified/<id>.json) get the full chord JSON embedded; rows whose
-melody has been digitized (melodies_verified/<id>.abc — future) are flagged.
+melody has been digitized get the ABC source embedded — the join is by
+melody scan stem: melodies_verified/<stem of melody_file>.abc. Any new
+.abc saved there is included automatically at the next build.
 
 Referenced scans are copied into grilles_displayer/crops/ and
 grilles_displayer/melody_crops/ so the deployed app (GitHub Pages uploads
@@ -113,6 +115,16 @@ def main() -> int:
                 print(f"ERROR: failed to read {path.name}: {exc}", file=sys.stderr)
                 return 1
 
+    # Digitized melodies (ABC), keyed by melody scan stem (= melody_file stem).
+    melodies: dict[str, str] = {}
+    if melodies_dir.is_dir():
+        for path in sorted(melodies_dir.glob("*.abc")):
+            try:
+                melodies[path.stem] = path.read_text(encoding="utf-8")
+            except OSError as exc:
+                print(f"ERROR: failed to read {path.name}: {exc}", file=sys.stderr)
+                return 1
+
     warnings: list[str] = []
     tunes: list[dict] = []
     seen_ids: set[str] = set()
@@ -146,14 +158,19 @@ def main() -> int:
                     record["melody_image"] = f"melody_crops/{name}"
                 else:
                     warnings.append(f"missing melody scan: {melody_crops_dir / melody_file}")
+            abc = melodies.pop(Path(melody_file).stem, None) if melody_file else None
             record["has_chord_json"] = tune_json is not None
-            record["has_melody_abc"] = (melodies_dir / f"{tune_id}.abc").is_file()
+            record["has_melody_abc"] = abc is not None
             if tune_json is not None:
                 record["tune"] = tune_json
+            if abc is not None:
+                record["abc"] = abc
             tunes.append(record)
 
     for stem in digitized:  # verified tunes the index doesn't know about
         warnings.append(f"digitized tune not in index (not bundled): {stem}.json")
+    for stem in melodies:  # ABC files matching no index row's melody_file
+        warnings.append(f"melody ABC not in index (not bundled): {stem}.abc")
 
     # Drop stale copies of scans no longer referenced.
     for out_dir, key in ((out_crops, "chord_image"), (out_melody, "melody_image")):

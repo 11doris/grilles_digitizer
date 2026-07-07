@@ -15,10 +15,12 @@ only scanned PNGs; a small and growing subset also have a **digitized** form:
 
 - **digitized chords** = a tune JSON in `tunes_verified/` → rendered as a styled
   chord grid (§6–§7).
-- **digitized melody** = a verified ABC file in `melodies_verified/` → rendered
-  as an abcjs lead sheet. *This pipeline does not exist yet* (only a pilot), so
-  in-app melody rendering is deferred; for now the melody panel always shows the
-  scanned melody PNG. The data model and icons already account for it.
+- **digitized melody** = a verified ABC file in `melodies_verified/`, **named
+  after its melody scan** (`<melody_crops stem>.abc`, e.g.
+  `17_01_AINT_MISBEHAVIN.abc` ↔ `melody_crops/17_01_AINT_MISBEHAVIN.png`) →
+  rendered in-app as a lead sheet with a **vendored abcjs**. Only a pilot
+  transcription exists today; any `.abc` dropped into `melodies_verified/` is
+  picked up automatically at the next `build_data.py` run.
 
 The app is read-only: it never modifies `tunes_verified/`, `melodies_verified/`,
 `crops/`, `melody_crops/`, or `title_index.csv`.
@@ -30,7 +32,8 @@ The app is read-only: it never modifies `tunes_verified/`, `melodies_verified/`,
 | Layer | Choice |
 |---|---|
 | Frontend | Single-page HTML + Vanilla JS + plain CSS. No framework, no npm, no build tooling. |
-| Data | A generator script bundles the index + all digitized tunes into one JS file and copies every referenced scan PNG into the app folder, so the app works from `file://` and deploys as a static folder. |
+| Melody rendering | **abcjs** (MIT), vendored once as a single minified file in `vendor/abcjs-basic-min.js` — no CDN requests at runtime. |
+| Data | A generator script bundles the index + all digitized tunes (chord JSON **and** melody ABC text) into one JS file and copies every referenced scan PNG into the app folder, so the app works from `file://` and deploys as a static folder. |
 | Generator | Python 3.11+ script; standard library + Pillow (for the 1-bit scan re-encoding, §3). Already in the repo venv. |
 | Fonts | Barlow Condensed (Google Fonts), bundled locally as woff2 in `fonts/` and loaded via `@font-face`. No CDN requests at runtime — the app must work offline. System condensed sans as fallback. |
 
@@ -44,8 +47,11 @@ grilles_displayer/
 ├── style.css             # all styling, incl. dark/light themes
 ├── app.js                # search, navigation, rendering logic
 ├── chords.js             # chord token parsing + display transformation
-├── build_data.py         # generator: title_index.csv + tunes_verified/*.json -> data/tunes_data.js
+├── build_data.py         # generator: title_index.csv + tunes_verified/*.json
+│                         #            + melodies_verified/*.abc -> data/tunes_data.js
 ├── fonts/                # bundled Barlow Condensed woff2 (400/500/700)
+├── vendor/
+│   └── abcjs-basic-min.js  # vendored abcjs (MIT) for melody lead sheets
 ├── crops/                # GENERATED — chord scan PNGs copied from ../crops
 ├── melody_crops/         # GENERATED — melody scan PNGs copied from ../melody_crops
 └── data/
@@ -87,8 +93,8 @@ predates the convention.
 
 - Usage: `python grilles_displayer/build_data.py`. Inputs, all overridable:
   `--index ./title_index.csv`, `--tunes-dir ./tunes_verified`,
-  `--crops-dir ./crops`, `--melody-crops-dir ./melody_crops`
-  (and, once it exists, `--melodies-dir ./melodies_verified`).
+  `--crops-dir ./crops`, `--melody-crops-dir ./melody_crops`,
+  `--melodies-dir ./melodies_verified`.
 - **Drives off `title_index.csv`**, one record per data row (skips the header).
   Relevant columns: `match_status`, `chords_title`, `chords_file`,
   `melody_title`, `melody_file`. (`match_type`, `chords_page`, `melody_page`
@@ -96,6 +102,13 @@ predates the convention.
 - For each row it builds a record (see §4). It **embeds the full chord JSON**
   when a digitized tune exists for that row, **preserving JSON key order**
   (`json.load` keeps insertion order — section order matters).
+- **Melody ABC**: a row whose melody has been digitized carries the ABC source
+  **embedded as a string** (`abc`). The join is by **melody scan stem**:
+  `melodies_verified/<stem of melody_file>.abc`. Embedding (rather than
+  fetching `.abc` at runtime) keeps the app working from `file://` (no
+  CORS/fetch). Any new `.abc` saved to `melodies_verified/` is included
+  automatically at the next build; an `.abc` whose stem matches no index row's
+  `melody_file` produces a warning.
 - Copies the referenced scans into the app folder when the source file exists:
   `crops/<chords_file>` → `grilles_displayer/crops/`, and
   `melody_crops/<melody_file>` → `grilles_displayer/melody_crops/`. Sources are
@@ -114,8 +127,9 @@ window.TUNES = [
     "chord_image": "crops/22_02_AS_TIME_GOES_BY.png",
     "melody_image": "melody_crops/34_01_AS_TIME_GOES_BY.png",
     "has_chord_json": true,
-    "has_melody_abc": false,
-    "tune": { ...full chord JSON... } },
+    "has_melody_abc": true,
+    "tune": { ...full chord JSON... },
+    "abc": "X:1\nT:AS TIME GOES BY\n..." },
   ...
 ];
 ```
@@ -141,8 +155,9 @@ window.TUNES = [
 | `chord_image` | `crops/<chords_file>` when that PNG was copied in, else absent. |
 | `melody_image` | `melody_crops/<melody_file>` when that PNG was copied in, else absent. |
 | `has_chord_json` | `true` when a digitized chord tune was embedded (`tune`). Drives the left-icon green state. |
-| `has_melody_abc` | `true` when a digitized melody exists (future). Drives the right-icon green state. Always `false` for now. |
+| `has_melody_abc` | `true` when a digitized melody was embedded (`abc`). Drives the right-icon green state. |
 | `tune` | The embedded chord JSON (§4.2), only when `has_chord_json`. |
+| `abc` | The embedded ABC source (string, ABC v2.1), only when `has_melody_abc`. Rendered by abcjs in the melody panel. |
 
 Icon/asset booleans the app derives from the record:
 `hasChordAsset = chord_image || has_chord_json`,
@@ -195,9 +210,12 @@ Currently all verified tunes are 4/4 with sections of mostly 8 or 16 bars, but t
 ```
 
 ### 5.1 Top bar
-- App name, a search input, and a theme toggle button. On narrow screens a ☰
-  button (leftmost) opens the tune-list drawer. (The old global scan toggle
-  moves into per-panel controls — see §5.4.)
+- App name, a search input, and a theme toggle button, plus a ☰ button
+  (leftmost, always present): on phones it opens the tune-list drawer; on
+  desktop it collapses/expands the docked sidebar, giving the tune view the
+  full width. The desktop choice persists in `localStorage` (`grilles.list`).
+  Typing a search query reveals the hidden list in either mode. (The old
+  global scan toggle moves into per-panel controls — see §5.4.)
 - The search input has focus on page load. `Esc` closes any fullscreen scan /
   the drawer if open, otherwise clears the search.
 
@@ -256,12 +274,22 @@ Each panel's **content** follows one rule — *render if digitized, else show th
 scan*:
 
 - **Chord panel**: the styled chord grid (§6–§7) when `has_chord_json`;
-  otherwise the chord scan PNG (`chord_image`). When *both* exist, a small **▦
-  "original scan"** toggle on the panel swaps the rendered grid for the scan
-  (default: rendered).
-- **Melody panel**: the abcjs lead sheet when `has_melody_abc` (future);
-  otherwise the melody scan PNG (`melody_image`). Today this is always the PNG,
-  so no per-panel toggle is shown until melody digitization exists.
+  otherwise the chord scan PNG (`chord_image`). When *both* exist, an
+  **"original scan" toggle** swaps the rendered grid for the scan **in place**
+  (default: rendered; no scroll jump). The button sits in a small tools row
+  above the panel content — never overlaid on the image — and shows a photo
+  icon when the rendered form is visible, swapping to the grid icon while the
+  scan is shown (i.e. the icon shows what it switches to).
+- **Melody panel**: the abcjs lead sheet (rendered from `abc` via
+  `ABCJS.renderAbc`, responsive width, theme-aware colors) when
+  `has_melody_abc`; otherwise the melody scan PNG (`melody_image`). When *both*
+  exist, the same **"original scan" toggle** appears (photo icon ⇄ notes icon,
+  default: rendered, in-place swap without scroll jump).
+  Display-only transform: the `T:`/`C:`/`O:`/`R:` header lines are stripped
+  before engraving — the tune head already shows title/composer, and long `O:`
+  lines overlap when engraved. The `.abc` file itself stays canonical.
+  A malformed ABC must never crash the page: render abcjs errors as a small
+  warning and fall back to the scan.
 
 **Layout of the two panels:**
 - **Wide / landscape (≥ 900px)**: when both switches are on, the panels sit
@@ -418,7 +446,8 @@ Blocks whose data is absent are not rendered at all.
 - [ ] A non-digitized tune shows a Title-Cased title (from the index) and its scan(s); a digitized-chord tune shows the JSON `title`, composer, and metadata line.
 - [ ] The Chords and Melody switches show only for assets the tune has; default is Chords **on**, Melody **off**; both choices survive a reload.
 - [ ] With both switches on: on a wide screen the chord and melody panels sit **side by side**; on a narrow/portrait screen they **stack**. Chord grid re-fits to its available width in both cases.
-- [ ] A digitized-chord tune with a chord scan offers the per-panel **▦ original scan** toggle (default: rendered grid); the melody panel shows the melody scan PNG.
+- [ ] A digitized-chord tune with a chord scan offers the per-panel **original-scan toggle** (photo-icon button above the content, default: rendered grid, swap happens in place without scrolling to the top); same for a digitized-melody tune with a melody scan.
+- [ ] `17_01_AINT_MISBEHAVIN` (Ain't Misbehavin') renders its melody as an abcjs lead sheet in the melody panel, in both themes; its right sidebar icon is green. Dropping a new `.abc` (named `<melody_crops stem>.abc`) into `melodies_verified/` and rebuilding is all it takes to activate another tune.
 - [ ] `22_02_AS_TIME_GOES_BY` renders: A / A / B / A sections labeled `A A B A`, 8 bars each as 2×4 rows, double barlines at every section boundary, `4/4` before the first barline.
 - [ ] `Fm7b5` displays as `Fø7`; `Eb` shows `E♭`; `F#o7` shows `F♯o7`; `C9sus4`, `F6/9`, `N.C.` render sensibly.
 - [ ] A chord on beat 3 sits at the horizontal middle of its bar.

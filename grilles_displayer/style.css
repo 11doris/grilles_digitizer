@@ -214,31 +214,64 @@ body {
   cursor: zoom-in;
 }
 
-/* ▦ toggle on the chord panel: rendered grid ⇄ original scan. Both live in
-   the DOM; the .show-scan class flips which one is visible. */
-.panel.chords .scan-toggle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 5;
-  background: none;
+/* Toggle on a panel with a rendered form (chord grid or abcjs lead sheet):
+   rendered ⇄ original scan. Both live in the DOM; .show-scan flips which one
+   is visible. The button sits in its own tools row above the content — never
+   overlapping the scan — and its icon shows what it switches TO (photo ⇄
+   grid/notes). */
+.panel-tools {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.35rem;
+}
+
+.panel .scan-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 1.7rem;
+  background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 0.4rem;
   color: var(--fg);
-  font-size: 1rem;
-  padding: 0.2rem 0.55rem;
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
-.panel.chords .scan-toggle:hover { opacity: 1; }
-.panel.chords .scan-toggle.on { border-color: var(--accent); color: var(--accent); }
+.panel .scan-toggle svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
 
-/* Only when the panel holds a rendered grid does the scan start hidden. */
-.panel.chords.has-grid img.scan { display: none; }
-.panel.chords.has-grid.show-scan img.scan { display: block; }
-.panel.chords.show-scan .grid,
-.panel.chords.show-scan .extras { display: none; }
+.panel .scan-toggle:hover { opacity: 1; }
+.panel .scan-toggle.on { border-color: var(--accent); color: var(--accent); }
+
+/* Only when the panel holds a rendered form does the scan start hidden. */
+.panel.has-render img.scan { display: none; }
+.panel.has-render.show-scan img.scan { display: block; }
+.panel.show-scan .grid,
+.panel.show-scan .extras,
+.panel.show-scan .abc-sheet { display: none; }
+
+/* ------------------------------------------ melody lead sheet (abcjs) */
+
+/* abcjs draws with fill/stroke: currentColor, so the sheet follows the
+   theme through the CSS color property. */
+.abc-sheet {
+  color: var(--fg);
+  max-width: 52em;
+  margin: 0 auto;
+}
+
+.abc-sheet svg { max-width: 100%; height: auto; }
+
+.abc-error {
+  color: #c96e6e;
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+}
 
 /* ------------------------------------------- fullscreen scan (overlay) */
 

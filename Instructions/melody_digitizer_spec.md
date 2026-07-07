@@ -30,9 +30,12 @@ model API for the few decisions vision code cannot make reliably.
 
 Repo constraints (must respect):
 - `tunes/` is **read-only** ground truth for chords. Never modify it.
-- New melody ABC files (`<id>.abc`) go to a new `melodies_wip/` directory;
-  human-verified ones are promoted to `melodies_verified/` (mirror of the
-  tunes_wip/tunes_verified convention).
+- New melody ABC files go to `melodies_wip/`; human-verified ones are promoted
+  to `melodies_verified/` (mirror of the tunes_wip/tunes_verified convention).
+  **Naming**: `<melody-crop stem>.abc`, matching the PNG in `melody_crops/`
+  (e.g. `17_01_AINT_MISBEHAVIN.abc` ↔ `melody_crops/17_01_AINT_MISBEHAVIN.png`)
+  — the displayer joins ABC ↔ tune through the melody filename in
+  `title_index.csv`.
 - Rendered lead sheets go to `leadsheets/` (generated, can be rebuilt anytime).
 - HTML verification: headless Edge
   (`msedge --headless=new --user-data-dir=<fresh tmp profile> --window-size=1300,2400 --screenshot=...`),
