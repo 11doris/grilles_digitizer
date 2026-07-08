@@ -48,6 +48,11 @@
     return Boolean(t.melody_image || t.has_melody_abc);
   }
 
+  /* All melody sheets of a tune; melody_images exists when there are several. */
+  function melodyImages(t) {
+    return t.melody_images || (t.melody_image ? [t.melody_image] : []);
+  }
+
   /* ---------------------------------------------------------------- theme */
 
   function applyTheme(theme) {
@@ -538,6 +543,7 @@
   }
 
   function scanImg(src, alt) {
+    const frag = document.createDocumentFragment();
     const img = el("img", "scan");
     img.src = src;
     img.alt = alt;
@@ -546,16 +552,20 @@
        jumps. Only the current tune's images are ever in the DOM, so eager
        loading costs one extra small PNG per digitized tune. */
     img.addEventListener("click", () => openOverlay(src, alt));
-    return img;
+    /* Debug aid: the crop's filename under the image. */
+    const name = el("div", "scan-name");
+    name.textContent = String(src).split("/").pop();
+    frag.append(img, name);
+    return frag;
   }
 
   /* Toggle on a panel that has both a rendered form and the original scan:
      swaps rendered ⇄ scan in place (per tune, defaults to rendered — §5.4).
      Sits in a tools row above the content so it never overlaps the scan; the
      icon shows what the button switches TO (photo ⇄ grid/notes). */
-  function addScanToggle(panel, src, alt, renderedIcon) {
+  function addScanToggle(panel, srcs, alt, renderedIcon) {
     panel.classList.add("has-render");
-    panel.appendChild(scanImg(src, alt));
+    [].concat(srcs).forEach((src) => panel.appendChild(scanImg(src, alt)));
     const tools = el("div", "panel-tools");
     const toggle = el("button", "scan-toggle");
     toggle.type = "button";
@@ -570,12 +580,13 @@
       const scroll = viewEl.scrollTop;
       apply(!panel.classList.contains("show-scan"));
       requestAnimationFrame(fitAll); // fitGrid preserves the scroll position
-      /* If the scan hasn't finished loading, the panel is briefly short and
-         the browser clamps the scroll — put it back once the image is in. */
-      const img = panel.querySelector("img.scan");
-      if (img && !img.complete) {
-        img.addEventListener("load", () => { viewEl.scrollTop = scroll; }, { once: true });
-      }
+      /* If a scan hasn't finished loading, the panel is briefly short and
+         the browser clamps the scroll — put it back once each image is in. */
+      panel.querySelectorAll("img.scan").forEach((img) => {
+        if (!img.complete) {
+          img.addEventListener("load", () => { viewEl.scrollTop = scroll; }, { once: true });
+        }
+      });
     });
     apply(false);
     tools.appendChild(toggle);
@@ -684,16 +695,17 @@
     let melodyPanel = null;
     if (hasMelodyAsset(t)) {
       const panel = el("section", "panel melody");
+      const scans = melodyImages(t);
       if (t.has_melody_abc && t.abc) {
         panel.appendChild(el("div", "abc-sheet"));
-        if (t.melody_image) {
-          addScanToggle(panel, t.melody_image, `${t.title || id} — original melody scan`, ICON_NOTES);
+        if (scans.length) {
+          addScanToggle(panel, scans, `${t.title || id} — original melody scan`, ICON_NOTES);
         } else {
           panel.classList.add("has-render");
         }
         melodyPanel = panel;
-      } else if (t.melody_image) {
-        panel.appendChild(scanImg(t.melody_image, `${t.title || id} — melody scan`));
+      } else {
+        scans.forEach((src) => panel.appendChild(scanImg(src, `${t.title || id} — melody scan`)));
       }
       panels.appendChild(panel);
     }

@@ -250,9 +250,21 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .panel .scan-toggle:hover { opacity: 1; }
 .panel .scan-toggle.on { border-color: var(--accent); color: var(--accent); }
 
+/* Debug aid: the crop's filename, in small print under the scan. */
+.panel .scan-name {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.62rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 0.2rem;
+  word-break: break-all;
+}
+
 /* Only when the panel holds a rendered form does the scan start hidden. */
-.panel.has-render img.scan { display: none; }
+.panel.has-render img.scan,
+.panel.has-render .scan-name { display: none; }
 .panel.has-render.show-scan img.scan { display: block; }
+.panel.has-render.show-scan .scan-name { display: block; }
 .panel.show-scan .grid,
 .panel.show-scan .extras,
 .panel.show-scan .abc-sheet { display: none; }

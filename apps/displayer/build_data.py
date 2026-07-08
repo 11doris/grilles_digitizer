@@ -4,7 +4,9 @@ Bundle the tune index + digitized tunes into data/tunes_data.js.
 
 Driven by data/title_index.csv (single source of truth, one record per row):
 each row pairs a chord scan (data/chords/crops/<chords_file>) with a melody
-scan (data/melody/crops/<melody_file>). Rows whose chord tune has been
+scan (data/melody/crops/<melody_file>). A chord matched to several melody
+sheets recurs once per sheet; those rows merge into one record whose
+melody_images lists every sheet. Rows whose chord tune has been
 digitized (data/chords/verified/<id>.json) get the full chord JSON embedded;
 rows whose melody has been digitized get the ABC source embedded — the join
 is by melody scan stem: data/melody/verified/<stem of melody_file>.abc. Any
@@ -127,7 +129,7 @@ def main() -> int:
 
     warnings: list[str] = []
     tunes: list[dict] = []
-    seen_ids: set[str] = set()
+    by_id: dict[str, dict] = {}
     with open(index_path, newline="", encoding="utf-8") as f:
         for lineno, row in enumerate(csv.DictReader(f), start=2):
             chords_file = (row.get("chords_file") or "").strip()
@@ -136,36 +138,54 @@ def main() -> int:
                 warnings.append(f"{index_path.name}:{lineno}: row with no files, skipped")
                 continue
             tune_id = Path(chords_file or melody_file).stem
-            if tune_id in seen_ids:
+
+            record = by_id.get(tune_id)
+            if record is None:
+                record = {"id": tune_id}
+                tune_json = digitized.pop(tune_id, None)
+                slug = (row.get("chords_title") or row.get("melody_title") or "").strip()
+                record["title"] = ((tune_json or {}).get("title")
+                                   or title_case(slug) or tune_id)
+                if chords_file:
+                    name = sync_scan(crops_dir / chords_file, out_crops, warnings)
+                    if name:
+                        record["chord_image"] = f"crops/{name}"
+                    else:
+                        warnings.append(f"missing chord scan: {crops_dir / chords_file}")
+                record["has_chord_json"] = tune_json is not None
+                record["has_melody_abc"] = False
+                if tune_json is not None:
+                    record["tune"] = tune_json
+                by_id[tune_id] = record
+                tunes.append(record)
+            elif not (chords_file and melody_file):
                 warnings.append(f"{index_path.name}:{lineno}: duplicate id {tune_id}, skipped")
                 continue
-            seen_ids.add(tune_id)
+            # else: a chord matched to several melody sheets recurs once per
+            # sheet — attach the extra melody to the existing record below.
 
-            record: dict = {"id": tune_id}
-            tune_json = digitized.pop(tune_id, None)
-            slug = (row.get("chords_title") or row.get("melody_title") or "").strip()
-            record["title"] = ((tune_json or {}).get("title")
-                               or title_case(slug) or tune_id)
-            if chords_file:
-                name = sync_scan(crops_dir / chords_file, out_crops, warnings)
-                if name:
-                    record["chord_image"] = f"crops/{name}"
-                else:
-                    warnings.append(f"missing chord scan: {crops_dir / chords_file}")
-            if melody_file:
-                name = sync_scan(melody_crops_dir / melody_file, out_melody, warnings)
-                if name:
-                    record["melody_image"] = f"melody_crops/{name}"
-                else:
-                    warnings.append(f"missing melody scan: {melody_crops_dir / melody_file}")
-            abc = melodies.pop(Path(melody_file).stem, None) if melody_file else None
-            record["has_chord_json"] = tune_json is not None
-            record["has_melody_abc"] = abc is not None
-            if tune_json is not None:
-                record["tune"] = tune_json
+            if not melody_file:
+                continue
+            name = sync_scan(melody_crops_dir / melody_file, out_melody, warnings)
+            if name:
+                path = f"melody_crops/{name}"
+                imgs = record.setdefault("melody_images", [])
+                if path in imgs:
+                    warnings.append(f"{index_path.name}:{lineno}: duplicate melody "
+                                    f"{name} for {tune_id}, skipped")
+                    continue
+                imgs.append(path)
+                record.setdefault("melody_image", path)  # first sheet = primary
+            else:
+                warnings.append(f"missing melody scan: {melody_crops_dir / melody_file}")
+            abc = melodies.pop(Path(melody_file).stem, None)
             if abc is not None:
-                record["abc"] = abc
-            tunes.append(record)
+                if record.get("abc") is None:
+                    record["abc"] = abc
+                    record["has_melody_abc"] = True
+                else:
+                    warnings.append(f"{tune_id}: second melody ABC not bundled: "
+                                    f"{Path(melody_file).stem}.abc")
 
     for stem in digitized:  # verified tunes the index doesn't know about
         warnings.append(f"digitized tune not in index (not bundled): {stem}.json")
@@ -173,12 +193,21 @@ def main() -> int:
         warnings.append(f"melody ABC not in index (not bundled): {stem}.abc")
 
     # Drop stale copies of scans no longer referenced.
-    for out_dir, key in ((out_crops, "chord_image"), (out_melody, "melody_image")):
+    keep_by_dir = (
+        (out_crops, {Path(t["chord_image"]).name for t in tunes if "chord_image" in t}),
+        (out_melody, {Path(p).name for t in tunes for p in t.get("melody_images", ())}),
+    )
+    for out_dir, keep in keep_by_dir:
         if out_dir.is_dir():
-            keep = {Path(t[key]).name for t in tunes if key in t}
             for stale in out_dir.glob("*.png"):
                 if stale.name not in keep:
                     stale.unlink()
+
+    # melody_images only carries information beyond melody_image when a chord
+    # has several sheets; drop the singleton lists to keep the bundle lean.
+    for t in tunes:
+        if len(t.get("melody_images", ())) < 2:
+            t.pop("melody_images", None)
 
     tunes.sort(key=lambda t: str(t["title"]).upper())
 

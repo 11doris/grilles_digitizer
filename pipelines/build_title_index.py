@@ -49,15 +49,19 @@ def score(a, b):
 THRESH = 0.86
 
 # Manual confirmed pairs (OCR variants below fuzzy threshold),
-# keyed by (chords_file, melody_file).
+# keyed by (chords_file, melody_file). A 1-tuple (chords_file,) confirms a
+# chord has NO melody counterpart, pinning it chords_only so no auto pass
+# mismatches it to a same-title sheet meant for another chord.
 MANUAL = [
     ("260_01_MARMADONE.png", "520_02_MARMADUKE.png"),
     ("337_02_RED_HOT_MAMMA.png", "670_02_RED_HOW_MAMA.png"),
     ("85_02_CRAZY.png", "164_01_CRAZY_HE_CALLS_ME.png"),
     ("136_01_GHOST_OF_A_CHANCE_WITH_YOU_I_DON_T_STAND_A.png", "267_02_I_DONT_STAND_A_GHOST_OF_A_CHANCE.png"),
     ("159_02_HOME.png", "309_01_HOME_WHEN_SHADOWS_FALL.png"),
-    ("121_01_FALLING_IN_LOVE_WITH_LOVE.png", "239_02_FALLING_IN_LOVE_WITH_LOVE"),
-    ("266_03_MILESTONES.png", "266_03_MILESTONES.png"),
+    ("121_01_FALLING_IN_LOVE_WITH_LOVE.png", "239_01_FALLING_IN_LOVE_WITH_LOVE.png"),
+    ("121_01_FALLING_IN_LOVE_WITH_LOVE.png", "239_02_FALLING_IN_LOVE_WITH_LOVE.png"),
+    ("266_02_MILESTONES.png",),  # milestones part 1 is missing in the melody sheets
+    ("266_03_MILESTONES.png", "534_01_MILESTONES.png"),
     ("466_01_WILD_CAT_BLUES_PART2.png", "929_01_WILD_CAT_BLUES.png"),
     ("185_01_I_LOVE_YOU.png", "351_01_I_LOVE_YOU.png"),
 ]
@@ -90,14 +94,24 @@ def main():
     cand_c, cand_m = {}, {}
 
     # Pass 1: manual confirmed pairs (take precedence over auto-matching)
-    for cf, mf in MANUAL:
+    manual_no_melody = []  # chords confirmed to have no melody counterpart
+    for entry in MANUAL:
+        cf, mf = (entry[0], entry[1]) if len(entry) > 1 else (entry[0], None)
         c = next((x for x in chords if x["file"] == cf), None)
+        if not c:
+            print("WARN manual pair: chords file not found:", cf)
+            continue
+        if mf is None:
+            used_chords.add(id(c))  # pinned chords_only (see manual_no_melody)
+            manual_no_melody.append(c)
+            continue
         m = next((x for x in melody if x["file"] == mf), None)
-        if c and m:
-            matched_pairs.append((c, m, "manual"))
-            used_chords.add(id(c))
-            used_melody.add(id(m))
-        # else: file not found (renamed/removed since) -> skip silently
+        if not m:
+            print("WARN manual pair: melody file not found:", mf)
+            continue
+        matched_pairs.append((c, m, "manual"))
+        used_chords.add(id(c))
+        used_melody.add(id(m))
 
     # Pass 2: exact normalized match (greedy by page order)
     melody_by_n = {}
@@ -135,7 +149,7 @@ def main():
         used_chords.add(id(c))
         used_melody.add(id(m))
 
-    only_chords = [c for c in chords if id(c) not in used_chords]
+    only_chords = [c for c in chords if id(c) not in used_chords] + manual_no_melody
     only_melody = [m for m in melody if id(m) not in used_melody]
 
     with open(OUT, "w", newline="", encoding="utf-8") as f:
