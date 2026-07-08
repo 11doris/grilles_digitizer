@@ -11,7 +11,7 @@ everything from the repo root.
 | Stage | Script | Input → Output |
 |---|---|---|
 | 0 crop | `melody_cropper.py` | `sources/AGJ_Melody.pdf` + both index PDFs → `data/melody/crops/*.png` + `melody_manifest.json` |
-| 0b deskew (one-off) | `deskew_crops_all.py` / `deskew_crop.py` | `data/melody/crops/` fixed in place (`_orig` backups kept) |
+| 0b deskew (one-off) | `../deskew_crops.py` (shared) | `data/melody/crops/` fixed in place |
 | 1 straighten | `melody_straightener.py` | crops → `data/melody/debug/<id>/` (strips, overlays, `stage1.json` geometry) |
 | 2 symbols | *not yet implemented* | per-system symbol lists (barlines, noteheads, stems, rests, …) |
 | 3 bars | *not yet implemented* | bar assembly + rhythm solving against the chord JSON |
@@ -32,10 +32,17 @@ The melody book's page numbers differ from the grille book's, so titles are
 OCR'd and fuzzy-matched against the book indexes to recover the canonical title;
 low-confidence matches are flagged `review=yes` in the manifest.
 
-`deskew_crop.py <stem>` / `deskew_crops_all.py` are one-off in-place fixes for
-crops that came out slanted. Crops are stored 1-bit — re-deskewing an already
-deskewed crop degrades staff lines; rerun `melody_cropper.py` from the PDF
-instead.
+`../deskew_crops.py` is a shared one-off, in-place fix for crops that came out
+slanted (same script serves the chords crops). It takes a file, glob, or
+directory:
+
+```sh
+python pipelines/deskew_crops.py data/melody/crops --dry-run   # report angles
+python pipelines/deskew_crops.py data/melody/crops/247_02_FLYING_HOME.png
+```
+
+Crops are stored 1-bit — re-deskewing an already deskewed crop degrades staff
+lines; rerun `melody_cropper.py` from the PDF instead.
 
 ## Stage 1 — straighten
 

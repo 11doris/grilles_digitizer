@@ -15,6 +15,10 @@ Helpers (not stages):
 
 - `extract_page.py` — save one full page PNG at crop resolution/polarity, for
   debugging crop coordinates against the manifest.
+- `../deskew_crops.py` — shared, in-place deskew for crops that came out slanted
+  (chords or melody); takes a file, glob, or directory. `--dry-run` first to see
+  the estimated angles. Crops are 1-bit, so don't re-deskew a crop twice — if one
+  pass isn't enough, re-crop from the PDF with `crop_tunes.py`.
 - `tools/build_examples.py` — regenerate `digitizer/examples.py` (the few-shot
   examples embedded in the cached system prompt) from `data/chords/verified/`.
 - `tools/check_chord_syntax.py` — validate chord syntax in
