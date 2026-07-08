@@ -13003,17 +13003,17 @@ window.TUNES = [
   "melody_image": "melody_crops/533_01_MILENBERG_JOYS.png"
  },
  {
-  "id": "266_02_MILESTONES",
+  "id": "266_03_MILESTONES",
   "title": "Milestones",
-  "chord_image": "crops/266_02_MILESTONES.png",
+  "chord_image": "crops/266_03_MILESTONES.png",
   "has_chord_json": false,
   "has_melody_abc": false,
   "melody_image": "melody_crops/534_01_MILESTONES.png"
  },
  {
-  "id": "266_03_MILESTONES",
+  "id": "266_02_MILESTONES",
   "title": "Milestones",
-  "chord_image": "crops/266_03_MILESTONES.png",
+  "chord_image": "crops/266_02_MILESTONES.png",
   "has_chord_json": false,
   "has_melody_abc": false
  },
