@@ -91,7 +91,9 @@ body {
 #search:focus { outline: 1px solid var(--muted); }
 
 #themeToggle,
-#listToggle {
+#listToggle,
+#playlistBtn,
+#playlistClear {
   background: none;
   border: 1px solid var(--border);
   border-radius: 0.4rem;
@@ -101,7 +103,18 @@ body {
   cursor: pointer;
 }
 
-#themeToggle { margin-left: auto; }
+/* The playlist button carries the push-right margin (it sits left of ☾/☀). */
+#playlistBtn {
+  margin-left: auto;
+  font-size: 0.88rem;
+  max-width: 11rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#playlistBtn.pl-active { border-color: var(--accent); color: var(--accent); }
+#playlistClear { font-size: 0.88rem; }
 
 /* ☰ works everywhere: drawer on phones, sidebar collapse on desktop. */
 body.list-collapsed #tuneList { display: none; }
@@ -628,6 +641,220 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .mini-grid .bar { min-height: 3.2em; border-left-width: 1px; }
 .mini-grid .bar.rowlast { border-right-width: 1px; }
 .mini-grid .slot { font-size: clamp(9px, 1.2vw, 12px); }
+
+/* ------------------------------------------------------------- playlists */
+
+/* Tune-head controls (§5.3): add button on every tune; Prev/Next only while
+   a playlist is active. */
+.head-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.55rem;
+}
+
+.add-pl-btn,
+.step-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  padding: 0.22rem 0.6rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.add-pl-btn:hover,
+.step-btn:hover:not(:disabled) { color: var(--fg); border-color: var(--muted); }
+.step-btn:disabled { opacity: 0.4; cursor: default; }
+
+/* Playlists menu (top bar) and add-to-playlist popover: dropdowns on desktop,
+   bottom sheets on phones (.sheet, §11.6). */
+#playlistMenu,
+#plPopover {
+  position: fixed;
+  z-index: 60;
+  min-width: 15rem;
+  max-width: 20rem;
+  max-height: 70vh;
+  overflow-y: auto;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  padding: 0.4rem;
+  font-size: 0.9rem;
+}
+
+#playlistMenu[hidden],
+#plPopover[hidden] { display: none; }
+
+#playlistMenu.sheet,
+#plPopover.sheet {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: auto;
+  max-width: none;
+  border-radius: 0.8rem 0.8rem 0 0;
+  border-bottom: none;
+}
+
+.pl-menu-title {
+  font-weight: 600;
+  padding: 0.3rem 0.5rem 0.4rem;
+}
+
+.pl-menu-empty {
+  color: var(--muted);
+  font-size: 0.82rem;
+  padding: 0.3rem 0.5rem 0.4rem;
+}
+
+/* "Show all tunes" — deactivates the current playlist. */
+.pl-all {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 0.3rem;
+  color: var(--fg);
+  font-size: 0.88rem;
+  padding: 0.4rem 0.5rem;
+  cursor: pointer;
+}
+
+.pl-all:hover { background: var(--panel); }
+
+.pl-menu-row {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  border-radius: 0.3rem;
+}
+
+.pl-menu-row:hover { background: var(--panel); }
+.pl-menu-row.active .pl-name { color: var(--accent); font-weight: 600; }
+
+.pl-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--fg);
+  font-size: 0.88rem;
+  padding: 0.4rem 0.5rem;
+  cursor: pointer;
+}
+
+.pl-count { color: var(--muted); font-size: 0.78rem; }
+
+.pl-tool {
+  flex: none;
+  background: none;
+  border: none;
+  border-radius: 0.3rem;
+  color: var(--muted);
+  padding: 0.3rem 0.35rem;
+  cursor: pointer;
+}
+
+.pl-tool:hover { color: var(--fg); background: var(--bg); }
+
+.pl-menu-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  border-top: 1px solid var(--border);
+  margin-top: 0.4rem;
+  padding-top: 0.5rem;
+}
+
+.pl-menu-footer button {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  color: var(--fg);
+  font-size: 0.82rem;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+}
+
+.pl-menu-footer button:hover { border-color: var(--muted); }
+
+.pl-status {
+  color: var(--muted);
+  font-size: 0.78rem;
+  padding: 0.35rem 0.5rem 0.1rem;
+}
+
+.pl-status:empty { display: none; }
+.pl-status.error { color: #c96e6e; }
+
+.pl-name-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.3rem;
+  color: var(--fg);
+  font-size: 0.88rem;
+  padding: 0.3rem 0.45rem;
+}
+
+/* Popover rows: checkbox = membership of the current tune (§11.2). */
+.pl-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.pl-check:hover { background: var(--panel); }
+
+.pl-check-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Sidebar rows in playlist mode: reorder/remove tools; entries whose tune id
+   left the corpus are greyed and not clickable (§11.1, §11.3). */
+.tune-item .txt { flex: 1; }
+
+.pl-row-tools {
+  display: inline-flex;
+  gap: 0.1rem;
+  flex: none;
+  margin-left: auto;
+}
+
+.pl-act {
+  background: none;
+  border: none;
+  border-radius: 0.25rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  padding: 0.1rem 0.25rem;
+  cursor: pointer;
+}
+
+.pl-act:hover { color: var(--fg); background: var(--bg); }
+
+.tune-item.missing { cursor: default; }
+.tune-item.missing .t { color: var(--muted); font-size: 0.82rem; word-break: break-all; }
+.tune-item.missing .c { font-style: italic; }
 
 /* ------------------------------------------------------------ responsive */
 

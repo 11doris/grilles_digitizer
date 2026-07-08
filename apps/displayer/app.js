@@ -1,8 +1,10 @@
-/* Grilles Displayer — search, navigation, panels and grid rendering (spec §5, §6, §8, §9). */
+/* Grilles Displayer — search, navigation, panels, grid rendering and
+   playlists (spec §5, §6, §8, §9, §11). */
 "use strict";
 
 (function () {
   const { renderChordHTML, escapeHtml } = window.GrillesChords;
+  const PL = window.GrillesPlaylists;
   const TUNES = window.TUNES || [];
 
   const searchEl = document.getElementById("search");
@@ -17,6 +19,11 @@
   const overlayClose = document.getElementById("overlayClose");
   const zoomInBtn = document.getElementById("zoomIn");
   const zoomOutBtn = document.getElementById("zoomOut");
+  const playlistBtn = document.getElementById("playlistBtn");
+  const playlistClear = document.getElementById("playlistClear");
+  const playlistMenu = document.getElementById("playlistMenu");
+  const plPopover = document.getElementById("plPopover");
+  const plImportFile = document.getElementById("plImportFile");
 
   /* Phones (narrow, or short in landscape): the list is a drawer; from 900px
      wide the visible panels sit side by side. Keep in sync with style.css. */
@@ -31,6 +38,7 @@
     listCollapsed: false, // desktop: docked sidebar hidden (persisted)
     overlayMag: false, // fullscreen scan magnified (pan by scrolling)
     gridZoom: 1, // user zoom factor applied on top of the fitted grid size
+    activePl: null, // active playlist id (persisted, §11.4)
   };
 
   /* ------------------------------------------------------------- helpers */
@@ -51,6 +59,29 @@
   /* All melody sheets of a tune; melody_images exists when there are several. */
   function melodyImages(t) {
     return t.melody_images || (t.melody_image ? [t.melody_image] : []);
+  }
+
+  function activePlaylist() {
+    return state.activePl ? PL.byId(state.activePl) : null;
+  }
+
+  /* Placeholder for a playlist tuneId that matches no corpus tune (the index
+     changed): kept, greyed, never openable (§11.1). */
+  const missingCache = Object.create(null);
+
+  function missingEntry(id) {
+    if (!missingCache[id]) {
+      missingCache[id] = { id, missing: true, title: id, _hay: normalize(id) };
+    }
+    return missingCache[id];
+  }
+
+  /* What the sidebar lists before search: the active playlist's tunes in
+     playlist order, or the whole alphabetical corpus (§11.4). */
+  function baseList() {
+    const pl = activePlaylist();
+    if (!pl) return TUNES;
+    return pl.tuneIds.map((id) => tuneById(id) || missingEntry(id));
   }
 
   /* ---------------------------------------------------------------- theme */
@@ -156,10 +187,12 @@
     t._hay = normalize((t.title || "") + " " + (meta(t).composer || ""));
   });
 
+  /* Search filters within the active playlist when one is on (§11.4). */
   function filterTunes(query) {
+    const list = baseList();
     const terms = normalize(query).split(/\s+/).filter(Boolean);
-    if (!terms.length) return TUNES;
-    return TUNES.filter((t) => terms.every((term) => t._hay.includes(term)));
+    if (!terms.length) return list;
+    return list.filter((t) => terms.every((term) => t._hay.includes(term)));
   }
 
   searchEl.addEventListener("input", () => {
@@ -206,9 +239,25 @@
       listEl.innerHTML = '<div class="list-empty">No tunes found</div>';
       return;
     }
+    /* Reorder/remove tools only in playlist mode without a search query —
+       row positions within a filtered subset would be ambiguous (§11.3). */
+    const tools = activePlaylist() && !searchEl.value
+      ? '<span class="pl-row-tools">' +
+        '<button type="button" class="pl-act" data-act="up" title="Move up">↑</button>' +
+        '<button type="button" class="pl-act" data-act="down" title="Move down">↓</button>' +
+        '<button type="button" class="pl-act" data-act="rm" title="Remove from playlist">✕</button>' +
+        "</span>"
+      : "";
     /* One string + one innerHTML: ~1,600 rows render in a few ms. */
     listEl.innerHTML = state.filtered
       .map((t, i) => {
+        if (t.missing) {
+          return `<div class="tune-item missing" data-id="${escapeHtml(t.id)}">` +
+            '<span class="icons"><span class="icon none"></span><span class="icon none"></span></span>' +
+            `<span class="txt"><span class="t">${escapeHtml(t.id)}</span>` +
+            '<span class="c">not in current corpus</span></span>' +
+            tools + "</div>";
+        }
         const composer = meta(t).composer;
         const cls = "tune-item" +
           (t.id === state.currentId ? " current" : "") +
@@ -216,14 +265,26 @@
         return `<div class="${cls}" data-id="${escapeHtml(t.id)}">${iconCluster(t)}` +
           `<span class="txt"><span class="t">${escapeHtml(t.title || t.id)}</span>` +
           (composer ? `<span class="c">${escapeHtml(composer)}</span>` : "") +
-          "</span></div>";
+          "</span>" + tools + "</div>";
       })
       .join("");
   }
 
   listEl.addEventListener("click", (e) => {
     const item = e.target.closest(".tune-item");
-    if (item) openTune(item.dataset.id);
+    if (!item) return;
+    const act = e.target.closest(".pl-act");
+    if (act) {
+      const pl = activePlaylist();
+      if (!pl) return;
+      const idx = pl.tuneIds.indexOf(item.dataset.id);
+      if (act.dataset.act === "rm") PL.removeTune(pl.id, item.dataset.id);
+      else PL.moveTune(pl.id, idx, idx + (act.dataset.act === "up" ? -1 : 1));
+      refreshList();
+      updateStepButtons();
+      return;
+    }
+    if (!item.classList.contains("missing")) openTune(item.dataset.id);
   });
 
   /* Move highlight classes without rebuilding 1,600 rows. */
@@ -246,6 +307,12 @@
   }
 
   document.addEventListener("keydown", (e) => {
+    /* Typing into a playlist name field (any input that isn't the search box)
+       must not drive tune navigation; Escape still falls through to close. */
+    if (e.target !== searchEl && e.target.matches &&
+        e.target.matches("input, textarea, select") && e.key !== "Escape") {
+      return;
+    }
     /* While a search query is being typed, ↑/↓ keep moving the result
        highlight and ←/→ keep moving the caret; otherwise all arrow and
        page keys flip between tunes. */
@@ -268,9 +335,11 @@
       navTune(-1);
     } else if (e.key === "Enter") {
       const tune = state.filtered[state.activeIndex];
-      if (tune) openTune(tune.id);
+      if (tune && !tune.missing) openTune(tune.id);
     } else if (e.key === "Escape") {
       if (closeOverlay()) return;
+      if (closePopover()) return;
+      if (closeMenu()) return;
       if (document.body.classList.contains("list-open")) {
         setListOpen(false);
         return;
@@ -290,9 +359,11 @@
   }
 
   /* Open the tune `delta` places away from the current one, following the
-     filtered list order. Stops at either end (no wrap-around). */
+     filtered list order. Stops at either end (no wrap-around); playlist
+     entries missing from the corpus are skipped (§11.1). */
   function navTune(delta) {
-    const list = state.filtered.length ? state.filtered : TUNES;
+    const source = state.filtered.length ? state.filtered : baseList();
+    const list = source.filter((t) => !t.missing);
     if (!list.length) return;
     const idx = list.findIndex((t) => t.id === state.currentId);
     const next = idx === -1 ? 0 : idx + delta;
@@ -449,6 +520,29 @@
       meta_.innerHTML = parts.join(" · ");
       head.appendChild(meta_);
     }
+
+    /* Playlist controls (§5.3, §11.2, §11.4): the add button on every tune;
+       Prev/Next only while a playlist is active (set by updateStepButtons). */
+    const actions = el("div", "head-actions");
+    const prev = el("button", "step-btn step-prev");
+    prev.type = "button";
+    prev.textContent = "‹ Prev";
+    prev.addEventListener("click", () => playlistStep(-1));
+    const add = el("button", "add-pl-btn");
+    add.type = "button";
+    add.textContent = "＋ Add to playlist";
+    add.addEventListener("click", (e) => {
+      e.stopPropagation(); // keep the outside-click closer from firing
+      if (plPopover.hidden) openPopover(add, t);
+      else closePopover();
+    });
+    const next = el("button", "step-btn step-next");
+    next.type = "button";
+    next.textContent = "Next ›";
+    next.addEventListener("click", () => playlistStep(1));
+    actions.append(prev, add, next);
+    head.appendChild(actions);
+
     return head;
   }
 
@@ -638,6 +732,306 @@
     requestAnimationFrame(fitAll);
   }
 
+  /* ------------------------------------------------------------ playlists */
+
+  function updateTopbar() {
+    const pl = activePlaylist();
+    playlistBtn.textContent = pl ? pl.name : "Playlists";
+    playlistBtn.classList.toggle("pl-active", Boolean(pl));
+    playlistBtn.title = pl ? `Active playlist: ${pl.name}` : "Playlists";
+    playlistClear.hidden = !pl;
+  }
+
+  function refreshList() {
+    state.filtered = filterTunes(searchEl.value);
+    if (state.activeIndex >= state.filtered.length) {
+      state.activeIndex = state.filtered.length - 1;
+    }
+    renderList();
+  }
+
+  /* Activate (id) / deactivate (null); the displayed tune stays (§11.4). */
+  function setActivePlaylist(id) {
+    state.activePl = id;
+    PL.setActiveId(id);
+    state.activeIndex = -1;
+    updateTopbar();
+    refreshList();
+    updateStepButtons();
+  }
+
+  playlistClear.addEventListener("click", () => setActivePlaylist(null));
+
+  /* Step through the active playlist in order, skipping missing entries; no
+     wrap-around. From a tune outside the playlist, Next opens the first. */
+  function playlistStep(delta) {
+    const pl = activePlaylist();
+    if (!pl) return;
+    const seq = pl.tuneIds.filter((id) => tuneById(id));
+    if (!seq.length) return;
+    const idx = seq.indexOf(state.currentId);
+    const target = idx === -1 ? (delta > 0 ? seq[0] : null) : seq[idx + delta];
+    if (target) openTune(target);
+  }
+
+  function updateStepButtons() {
+    const prev = paneEl.querySelector(".step-prev");
+    const next = paneEl.querySelector(".step-next");
+    if (!prev || !next) return;
+    const pl = activePlaylist();
+    prev.hidden = next.hidden = !pl;
+    if (!pl) return;
+    const seq = pl.tuneIds.filter((id) => tuneById(id));
+    const idx = seq.indexOf(state.currentId);
+    prev.disabled = idx <= 0;
+    next.disabled = idx === -1 ? !seq.length : idx >= seq.length - 1;
+  }
+
+  /* Dropdown under its anchor on desktop; a bottom sheet on phones (§11.6). */
+  function positionDropdown(elm, anchor) {
+    if (narrowMq.matches) {
+      elm.classList.add("sheet");
+      elm.style.top = elm.style.left = "";
+      return;
+    }
+    elm.classList.remove("sheet");
+    const r = anchor.getBoundingClientRect();
+    elm.style.top = r.bottom + 6 + "px";
+    const w = elm.offsetWidth;
+    elm.style.left = Math.max(8, Math.min(r.right - w, window.innerWidth - w - 8)) + "px";
+  }
+
+  /* --- Playlists menu (top bar): activate, rename, delete, export/import. */
+
+  function closeMenu() {
+    if (playlistMenu.hidden) return false;
+    playlistMenu.hidden = true;
+    return true;
+  }
+
+  function openMenu() {
+    closePopover();
+    renderMenu();
+    playlistMenu.hidden = false;
+    positionDropdown(playlistMenu, playlistBtn);
+  }
+
+  function renderMenu() {
+    const lists = PL.all();
+    let html = '<div class="pl-menu-title">Playlists</div>';
+    if (state.activePl) {
+      html += '<button type="button" class="pl-all" data-act="all">Show all tunes</button>';
+    }
+    if (!lists.length) {
+      html += '<div class="pl-menu-empty">No playlists yet — use “＋ Add to playlist” on a tune, or create one here.</div>';
+    }
+    html += lists
+      .map((p) => {
+        const active = p.id === state.activePl;
+        return `<div class="pl-menu-row${active ? " active" : ""}" data-id="${escapeHtml(p.id)}">` +
+          `<button type="button" class="pl-name" data-act="activate" title="${active ? "Deactivate" : "Activate"}">` +
+          `${escapeHtml(p.name)} <span class="pl-count">${p.tuneIds.length}</span></button>` +
+          '<button type="button" class="pl-tool" data-act="rename" title="Rename">✎</button>' +
+          '<button type="button" class="pl-tool" data-act="delete" title="Delete">🗑</button></div>';
+      })
+      .join("");
+    html += '<div class="pl-menu-footer">' +
+      '<button type="button" data-act="new">＋ New playlist</button>' +
+      '<button type="button" data-act="export">Export</button>' +
+      '<button type="button" data-act="import">Import</button></div>' +
+      '<div class="pl-status" id="plStatus"></div>';
+    playlistMenu.innerHTML = html;
+  }
+
+  /* Swap a row's name (or the "new" button) for an inline name input. */
+  function startRename(row, id) {
+    const p = PL.byId(id);
+    const nameBtn = row.querySelector(".pl-name");
+    if (!p || !nameBtn) return;
+    const input = el("input", "pl-name-input");
+    input.value = p.name;
+    row.replaceChild(input, nameBtn);
+    input.focus();
+    input.select();
+    const commit = () => {
+      const v = input.value.trim();
+      if (v && v !== p.name) {
+        PL.rename(id, v);
+        updateTopbar();
+      }
+      renderMenu();
+    };
+    input.addEventListener("keydown", (ev) => {
+      ev.stopPropagation(); // Escape cancels the edit only, not the menu
+      if (ev.key === "Enter") commit();
+      else if (ev.key === "Escape") renderMenu();
+    });
+    /* Enter/Escape re-render the menu, detaching the input — the blur that
+       follows must not commit again (or commit a canceled edit). */
+    input.addEventListener("blur", () => {
+      if (input.isConnected) commit();
+    });
+  }
+
+  function startNewPlaylist(btn, tuneId, rerender) {
+    const input = el("input", "pl-name-input");
+    input.placeholder = "New playlist name";
+    btn.replaceWith(input);
+    input.focus();
+    input.addEventListener("keydown", (ev) => {
+      ev.stopPropagation(); // Escape cancels the field only, not the panel
+      if (ev.key === "Enter") {
+        const v = input.value.trim();
+        if (!v) return;
+        /* Creation does not activate the playlist (§11.2). */
+        PL.create(v, tuneId ? [tuneId] : []);
+        rerender();
+      } else if (ev.key === "Escape") {
+        rerender();
+      }
+    });
+    input.addEventListener("blur", () => {
+      if (input.isConnected) rerender();
+    });
+  }
+
+  playlistMenu.addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+    const row = e.target.closest(".pl-menu-row");
+    const id = row ? row.dataset.id : null;
+    const act = btn.dataset.act;
+    if (act === "all") {
+      setActivePlaylist(null);
+      closeMenu();
+    } else if (act === "activate" && id) {
+      setActivePlaylist(id === state.activePl ? null : id);
+      closeMenu();
+    } else if (act === "rename" && id) {
+      startRename(row, id);
+    } else if (act === "delete" && id) {
+      const p = PL.byId(id);
+      if (p && window.confirm(`Delete playlist “${p.name}”?`)) {
+        if (id === state.activePl) setActivePlaylist(null);
+        PL.remove(id);
+        renderMenu();
+      }
+    } else if (act === "new") {
+      startNewPlaylist(btn, null, renderMenu);
+    } else if (act === "export") {
+      exportPlaylists();
+    } else if (act === "import") {
+      plImportFile.click();
+    }
+  });
+
+  playlistBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // keep the outside-click closer from firing
+    if (playlistMenu.hidden) openMenu();
+    else closeMenu();
+  });
+
+  /* --- Export / import (§11.5). */
+
+  function exportPlaylists() {
+    const blob = new Blob([PL.exportJson()], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "grilles-playlists.json";
+    /* The synthetic click must not bubble to the outside-click closer. */
+    a.addEventListener("click", (e) => e.stopPropagation());
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(a.href);
+  }
+
+  plImportFile.addEventListener("change", () => {
+    const file = plImportFile.files && plImportFile.files[0];
+    plImportFile.value = ""; // allow re-picking the same file
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const res = PL.importJson(String(reader.result));
+      renderMenu();
+      const status = document.getElementById("plStatus");
+      if (status) {
+        status.textContent = res.error
+          ? `Import failed: ${res.error} — existing playlists unchanged.`
+          : `Imported ${res.added} playlist${res.added === 1 ? "" : "s"}.`;
+        status.classList.toggle("error", Boolean(res.error));
+      }
+    };
+    reader.readAsText(file);
+  });
+
+  /* --- Add-to-playlist popover, anchored to the tune-head button (§11.2). */
+
+  let popoverTuneId = null;
+
+  function closePopover() {
+    if (plPopover.hidden) return false;
+    plPopover.hidden = true;
+    popoverTuneId = null;
+    return true;
+  }
+
+  function openPopover(anchor, t) {
+    closeMenu();
+    popoverTuneId = t.id;
+    renderPopover();
+    plPopover.hidden = false;
+    positionDropdown(plPopover, anchor);
+  }
+
+  function renderPopover() {
+    const lists = PL.all();
+    let html = '<div class="pl-menu-title">Add to playlist</div>';
+    html += lists
+      .map((p) => {
+        const checked = p.tuneIds.includes(popoverTuneId);
+        return `<label class="pl-check"><input type="checkbox" data-pl="${escapeHtml(p.id)}"${checked ? " checked" : ""}>` +
+          `<span class="pl-check-name">${escapeHtml(p.name)}</span>` +
+          `<span class="pl-count">${p.tuneIds.length}</span></label>`;
+      })
+      .join("");
+    html += '<div class="pl-menu-footer"><button type="button" data-act="new">＋ New playlist…</button></div>';
+    plPopover.innerHTML = html;
+  }
+
+  /* Checkbox = membership of the CURRENT tune; toggling persists immediately
+     and the popover stays open, so several playlists can be ticked in a row. */
+  plPopover.addEventListener("change", (e) => {
+    const cb = e.target;
+    if (cb.type !== "checkbox" || !popoverTuneId) return;
+    if (cb.checked) PL.addTune(cb.dataset.pl, popoverTuneId);
+    else PL.removeTune(cb.dataset.pl, popoverTuneId);
+    const label = cb.closest(".pl-check");
+    const count = label && label.querySelector(".pl-count");
+    const p = PL.byId(cb.dataset.pl);
+    if (count && p) count.textContent = p.tuneIds.length;
+    /* Membership changes can affect the active playlist's sidebar. */
+    refreshList();
+    updateStepButtons();
+  });
+
+  plPopover.addEventListener("click", (e) => {
+    const btn = e.target.closest('button[data-act="new"]');
+    if (btn) startNewPlaylist(btn, popoverTuneId, renderPopover);
+  });
+
+  /* Click outside closes menu and popover (Escape is handled with the keys). */
+  document.addEventListener("click", (e) => {
+    /* A click that swapped its own target out of the DOM (inline name inputs
+       replacing their button) was inside a panel — don't treat it as outside. */
+    if (!e.target.isConnected) return;
+    if (!plPopover.hidden && !plPopover.contains(e.target)) closePopover();
+    if (!playlistMenu.hidden && !playlistMenu.contains(e.target) &&
+        !playlistBtn.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
   /* ----------------------------------------------------------- main render */
 
   function renderTune(id) {
@@ -718,6 +1112,8 @@
     viewEl.scrollTop = 0;
     if (narrowMq.matches) setListOpen(false);
     updateListHighlight();
+    updateStepButtons();
+    closePopover(); // an open add-popover belongs to the previous tune
   }
 
   /*
@@ -809,6 +1205,11 @@
     if (Number.isFinite(z)) state.gridZoom = Math.min(2.5, Math.max(0.5, z));
     if (localStorage.getItem("grilles.list") === "0") setListCollapsed(true);
   } catch (e) { /* ignore */ }
+  /* Restore the active playlist (§11.4); a stale id starts deactivated. */
+  const storedPl = PL.getActiveId();
+  if (storedPl && PL.byId(storedPl)) state.activePl = storedPl;
+  updateTopbar();
+  state.filtered = filterTunes("");
   renderList();
   searchEl.focus();
 
