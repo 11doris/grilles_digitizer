@@ -49,17 +49,14 @@ def score(a, b):
 THRESH = 0.86
 
 # Manual confirmed pairs (OCR variants below fuzzy threshold),
-# keyed by (chords_page, chords_title, melody_page, melody_title).
+# keyed by (chords_file, melody_file).
 MANUAL = [
-    (38, "BILLY_BOY", 69, "BILLIE_BOY"),
-    (260, "MARMADONE", 520, "MARMADUKE"),
-    (337, "RED_HOT_MAMMA", 670, "RED_HOW_MAMA"),
-    (85, "CRAZY", 164, "CRAZY_HE_CALLS_ME"),
-    (127, "FOR_ALL_WE_KNOW", 250, "FOR_ALL_WE_KNOW"),
-    (128, "FOUR", 253, "FOUR"),
-    (136, "GHOST_OF_A_CHANCE_WITH_YOU_I_DON_T_STAND_A", 267, "I_DONT_STAND_A_GHOST_OF_A_CHANCE"),
-    (136, "GIRL_NEXT_DOOR_THE", 98, "THE_BOY_NEXT_DOOR"),
-    (159, "HOME", 309, "HOME_WHEN_SHADOWS_FALL"),
+    ("260_01_MARMADONE.png", "520_02_MARMADUKE.png"),
+    ("337_02_RED_HOT_MAMMA.png", "670_02_RED_HOW_MAMA.png"),
+    ("85_02_CRAZY.png", "164_01_CRAZY_HE_CALLS_ME.png"),
+    ("136_01_GHOST_OF_A_CHANCE_WITH_YOU_I_DON_T_STAND_A.png", "267_02_I_DONT_STAND_A_GHOST_OF_A_CHANCE.png"),
+    ("159_02_HOME.png", "309_01_HOME_WHEN_SHADOWS_FALL.png"),
+    ("121_01_FALLING_IN_LOVE_WITH_LOVE.png", "239_02_FALLING_IN_LOVE_WITH_LOVE.png"),
 ]
 
 
@@ -86,12 +83,29 @@ def main():
 
     matched_pairs = []
     used_chords, used_melody = set(), set()
+    # candidate counterparts seen per file (exact or fuzzy>=THRESH); >1 = ambiguous
+    cand_c, cand_m = {}, {}
 
-    # Pass 1: exact normalized match (greedy by page order)
+    # Pass 1: manual confirmed pairs (take precedence over auto-matching)
+    for cf, mf in MANUAL:
+        c = next((x for x in chords if x["file"] == cf), None)
+        m = next((x for x in melody if x["file"] == mf), None)
+        if c and m:
+            matched_pairs.append((c, m, "manual"))
+            used_chords.add(id(c))
+            used_melody.add(id(m))
+        # else: file not found (renamed/removed since) -> skip silently
+
+    # Pass 2: exact normalized match (greedy by page order)
     melody_by_n = {}
     for r in melody:
         melody_by_n.setdefault(r["n"], []).append(r)
     for cr in sorted(chords, key=lambda x: (x["page"], x["idx"])):
+        for mr in melody_by_n.get(cr["n"], []):
+            cand_c.setdefault(cr["file"], []).append(mr["file"])
+            cand_m.setdefault(mr["file"], []).append(cr["file"])
+        if id(cr) in used_chords:
+            continue
         for mr in melody_by_n.get(cr["n"], []):
             if id(mr) not in used_melody:
                 matched_pairs.append((cr, mr, "exact"))
@@ -99,7 +113,7 @@ def main():
                 used_melody.add(id(mr))
                 break
 
-    # Pass 2: fuzzy match remaining (best score first)
+    # Pass 3: fuzzy match remaining (best score first)
     rem_chords = [c for c in chords if id(c) not in used_chords]
     rem_melody = [m for m in melody if id(m) not in used_melody]
     fuzzy = []
@@ -108,6 +122,8 @@ def main():
             r = score(c["n"], m["n"])
             if r >= THRESH:
                 fuzzy.append((r, c, m))
+                cand_c.setdefault(c["file"], []).append(m["file"])
+                cand_m.setdefault(m["file"], []).append(c["file"])
     fuzzy.sort(key=lambda x: -x[0])
     for r, c, m in fuzzy:
         if id(c) in used_chords or id(m) in used_melody:
@@ -115,16 +131,6 @@ def main():
         matched_pairs.append((c, m, f"fuzzy:{r:.2f}"))
         used_chords.add(id(c))
         used_melody.add(id(m))
-
-    # Pass 3: manual confirmed pairs
-    for cp, ct, mp, mt in MANUAL:
-        c = next((x for x in chords if x["page"] == cp and x["title"] == ct and id(x) not in used_chords), None)
-        m = next((x for x in melody if x["page"] == mp and x["title"] == mt and id(x) not in used_melody), None)
-        if c and m:
-            matched_pairs.append((c, m, "manual"))
-            used_chords.add(id(c))
-            used_melody.add(id(m))
-        # else: already matched by an earlier pass (e.g. title since fixed) -> skip silently
 
     only_chords = [c for c in chords if id(c) not in used_chords]
     only_melody = [m for m in melody if id(m) not in used_melody]
@@ -139,6 +145,16 @@ def main():
             w.writerow(["chords_only", "", c["page"], c["title"], c["file"], "", "", ""])
         for m in sorted(only_melody, key=lambda x: (x["page"], x["idx"])):
             w.writerow(["melody_only", "", "", "", "", m["page"], m["title"], m["file"]])
+
+    def multi_report(cand, label):
+        multi = {f: v for f, v in cand.items() if len(v) > 1}
+        if multi:
+            print(f"\n== {label} with multiple match candidates ==")
+            for f, v in sorted(multi.items()):
+                print(" ", f, "->", v)
+
+    multi_report(cand_c, "chords")
+    multi_report(cand_m, "melodies")
 
     print("\n===== SUMMARY =====")
     print("chords sheets :", len(chords))
