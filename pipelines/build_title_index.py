@@ -49,15 +49,19 @@ def score(a, b):
 THRESH = 0.86
 
 # Manual confirmed pairs (OCR variants below fuzzy threshold),
-# keyed by (chords_file, melody_file).
+# keyed by (chords_file, melody_file). A 1-tuple (chords_file,) confirms a
+# chord has NO melody counterpart, pinning it chords_only so no auto pass
+# mismatches it to a same-title sheet meant for another chord.
 MANUAL = [
     ("260_01_MARMADONE.png", "520_02_MARMADUKE.png"),
     ("337_02_RED_HOT_MAMMA.png", "670_02_RED_HOW_MAMA.png"),
     ("85_02_CRAZY.png", "164_01_CRAZY_HE_CALLS_ME.png"),
     ("136_01_GHOST_OF_A_CHANCE_WITH_YOU_I_DON_T_STAND_A.png", "267_02_I_DONT_STAND_A_GHOST_OF_A_CHANCE.png"),
     ("159_02_HOME.png", "309_01_HOME_WHEN_SHADOWS_FALL.png"),
-    ("121_01_FALLING_IN_LOVE_WITH_LOVE.png", "239_02_FALLING_IN_LOVE_WITH_LOVE"),
-    ("266_03_MILESTONES.png", "266_03_MILESTONES.png"),
+    ("121_01_FALLING_IN_LOVE_WITH_LOVE.png", "239_01_FALLING_IN_LOVE_WITH_LOVE.png"),
+    ("121_01_FALLING_IN_LOVE_WITH_LOVE.png", "239_02_FALLING_IN_LOVE_WITH_LOVE.png"),
+    ("266_02_MILESTONES.png", ), # milestones part 1 is missing in the melody sheets
+    ("266_03_MILESTONES.png", "534_01_MILESTONES.png"),
     ("466_01_WILD_CAT_BLUES_PART2.png", "929_01_WILD_CAT_BLUES.png"),
     ("185_01_I_LOVE_YOU.png", "351_01_I_LOVE_YOU.png"),
 ]
@@ -97,7 +101,11 @@ def main():
             matched_pairs.append((c, m, "manual"))
             used_chords.add(id(c))
             used_melody.add(id(m))
-        # else: file not found (renamed/removed since) -> skip silently
+        else:
+            if not c:
+                print("WARN manual pair: chords file not found:", cf)
+            if not m:
+                print("WARN manual pair: melody file not found:", mf)
 
     # Pass 2: exact normalized match (greedy by page order)
     melody_by_n = {}
