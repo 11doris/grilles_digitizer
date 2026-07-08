@@ -47,6 +47,7 @@ apps/displayer/
 ├── style.css             # all styling, incl. dark/light themes
 ├── app.js                # search, navigation, rendering logic
 ├── chords.js             # chord token parsing + display transformation
+├── playlists.js          # playlist state, localStorage persistence, export/import (§11)
 ├── build_data.py         # generator: data/title_index.csv + data/chords/verified/*.json
 │                         #            + data/melody/verified/*.abc -> data/tunes_data.js
 ├── fonts/                # bundled Barlow Condensed woff2 (400/500/700)
@@ -210,12 +211,17 @@ Currently all verified tunes are 4/4 with sections of mostly 8 or 16 bars, but t
 ```
 
 ### 5.1 Top bar
-- App name, a search input, and a theme toggle button, plus a ☰ button
+- App name, a search input, a **Playlists** menu button (§11), and a theme
+  toggle button, plus a ☰ button
   (leftmost, always present): on phones it opens the tune-list drawer; on
   desktop it collapses/expands the docked sidebar, giving the tune view the
   full width. The desktop choice persists in `localStorage` (`grilles.list`).
   Typing a search query reveals the hidden list in either mode. (The old
   global scan toggle moves into per-panel controls — see §5.4.)
+- The **Playlists** menu (§11.3) opens a small panel to pick the active
+  playlist, create/rename/delete playlists, and export/import. When a playlist
+  is active the button shows its name and a small ✕ to deactivate (return to the
+  full corpus).
 - The search input has focus on page load. `Esc` closes any fullscreen scan /
   the drawer if open, otherwise clears the search.
 
@@ -254,6 +260,12 @@ non-digitized tune only the **title** is shown):
 - **Tempo**: top-left, in parentheses, e.g. `(Slow)` — title-cased from the JSON value.
 - **Composer**: top-right.
 - **Metadata line** below the title, small and muted: `style · year · form · p. N`. The `source` field is not displayed. Fields that are absent are simply omitted.
+- **Add to playlist** button (§11.2): a small `＋ Add to playlist` control in the
+  header (near the composer/right side, so it never collides with the centered
+  title). Present for **every** tune, digitized or not. Clicking opens the
+  add-to-playlist popover (§11.2). When a playlist is active, the header also
+  shows **‹ Prev / Next ›** step-through controls (§11.4) that move through the
+  active playlist in order.
 
 ### 5.4 Content panels — chords & melody
 
@@ -437,7 +449,126 @@ Blocks whose data is absent are not rendered at all.
 
 ---
 
-## 11. Acceptance Checklist
+## 11. Playlists
+
+Playlists let a user collect tunes into named, ordered lists that persist across
+visits, can be stepped through in order, and can be moved to another device or
+shared with another person. Playlists are a **pure client-side, read-only-corpus**
+feature: they live in the browser and never touch the data sources or the
+generator — `build_data.py` is unaffected, and the §1 read-only invariant holds
+(the app writes only to `localStorage` and, on export, a user-initiated file
+download).
+
+### 11.1 Storage model & "per user"
+
+The app is fully static (no server, no login, must work from `file://`), so there
+is no server-side account to key playlists to. "Per user" is therefore realized
+**per browser plus portable files**:
+
+- All playlists persist in `localStorage` under a single key
+  **`grilles.playlists`** — a JSON document `{ "version": 1, "playlists": [ … ] }`.
+  The active playlist id persists under **`grilles.activePlaylist`**.
+- A user's playlists are whatever lives in their browser. To move them to another
+  device or hand them to another person, they **export** to a JSON file and
+  **import** it elsewhere (§11.5). This is the deliberate substitute for accounts;
+  a true multi-user backend was rejected as it would break the static/offline
+  architecture.
+- Corruption safety: if `grilles.playlists` fails to parse, the app starts with
+  an empty playlist set (and does not overwrite the bad value until the user makes
+  a change), rather than crashing.
+
+**Playlist object:**
+
+```json
+{ "id": "pl_9f3a12",            // stable local id (generated, e.g. "pl_" + random)
+  "name": "Gig set — Friday",   // user-supplied, need not be unique
+  "tuneIds": [ "22_02_AS_TIME_GOES_BY", "17_01_AINT_MISBEHAVIN", … ],
+  "createdAt": "2026-07-08T10:00:00Z",
+  "updatedAt": "2026-07-08T10:12:00Z" }
+```
+
+`tuneIds` reference the per-tune `id` (§4.1). A tune appears in a playlist **at
+most once** (adding an already-member tune is a no-op). Order is the array order
+and is user-editable (§11.3). A `tuneId` that no longer matches any corpus tune
+(the index changed) is **kept in storage but skipped/greyed** in the UI with a
+small "not in current corpus" note — never a crash.
+
+### 11.2 Adding a tune — the per-tune button
+
+Each tune's header carries a `＋ Add to playlist` button (§5.3). Clicking it opens
+a small **popover** anchored to the button:
+
+- A list of existing playlists, each with a checkbox reflecting whether **the
+  current tune** is already a member. Toggling a checkbox adds/removes the tune
+  from that playlist immediately (updates `updatedAt`, persists).
+- A **`＋ New playlist…`** row: prompts for a name (inline text field) and creates
+  a playlist containing the current tune. Creation does **not** change the active
+  playlist (§11.4).
+- If no playlists exist yet, the popover shows only the `＋ New playlist…` affordance.
+- The button gives a brief confirmation (e.g. the button label flips to
+  `✓ Added` for ~1s, or the checkbox state is self-evident). Closing: click
+  outside, `Esc`, or pick an action.
+
+Adding several tunes to a playlist is done by visiting each and toggling it in —
+there is no bulk multi-select mode in the sidebar.
+
+### 11.3 Managing playlists — the Playlists menu
+
+The top-bar **Playlists** menu (§5.1) lists all playlists and offers, per playlist:
+
+- **Activate** — makes it the active playlist (§11.4). Selecting the currently
+  active one, or an explicit "Show all tunes", deactivates.
+- **Rename** — inline edit of `name`.
+- **Delete** — removes the playlist (with a confirm; deleting the active one
+  deactivates first).
+- **Reorder / remove tunes** — when a playlist is active, its tunes are the
+  sidebar list (§11.4); each row gets a remove (✕) control and up/down (or drag)
+  reordering. Reordering/removing updates `tuneIds` + `updatedAt` and persists.
+- The menu also holds **Export** and **Import** (§11.5) and a tune count per
+  playlist.
+
+### 11.4 Opening a playlist — filtered view + step-through
+
+Activating a playlist:
+
+- **Filters the sidebar** to exactly the playlist's tunes, shown **in playlist
+  order** (not the global alphabetical order). Search (§8) still applies, further
+  filtering within the active playlist. The top bar shows the active playlist name
+  with a ✕ to deactivate.
+- **Enables step-through**: `‹ Prev` / `Next ›` controls in the tune header
+  (§5.3) move to the previous/next tune in playlist order, wrapping is **not**
+  applied (Prev disabled on the first, Next on the last). Keyboard: the existing
+  `↑`/`↓` + `Enter` still drive the (now playlist-scoped) sidebar; step-through
+  buttons are an additional explicit control.
+- Deactivating (the top-bar ✕, or "Show all tunes") restores the full
+  alphabetical corpus list; the previously displayed tune stays displayed.
+- The active playlist persists (`grilles.activePlaylist`) and is restored on
+  reload; if that id no longer exists, the app starts deactivated.
+
+### 11.5 Export & import
+
+- **Export** downloads the whole `grilles.playlists` document as a JSON file
+  (e.g. `grilles-playlists.json`), `{ "version": 1, "playlists": [ … ] }`. This
+  is the user-initiated file download that is the app's only write outside
+  `localStorage`.
+- **Import** opens a file picker, reads a previously exported JSON, and **merges**
+  its playlists into the current set: imported playlists are added as **new**
+  entries (fresh `id`s) so import **never overwrites or deletes** existing
+  playlists. Malformed/unsupported files are rejected with a small error message,
+  leaving current playlists untouched. (Simple, non-destructive merge — the user
+  can delete duplicates afterward.)
+
+### 11.6 Responsive & theming
+
+- On phones the Playlists menu and the add-to-playlist popover render as
+  full-width sheets/drawers consistent with the tune-list drawer (§5.2); the
+  header step-through buttons remain reachable.
+- All playlist UI uses the §10 CSS custom properties (no hard-coded colors) and
+  works in both themes.
+
+---
+
+## 12. Acceptance Checklist
 
 - [ ] `python apps/displayer/build_data.py` regenerates `data/tunes_data.js` from `data/title_index.csv` + `data/chords/verified/`, and populates `apps/displayer/crops/` and `apps/displayer/melody_crops/` with every referenced scan.
 - [ ] Bundled scans are 1-bit optimized PNGs; the two folders together stay in the ~120 MB range, and rerunning the build without source changes rewrites nothing (git status clean).
@@ -455,4 +586,23 @@ Blocks whose data is absent are not rendered at all.
 - [ ] Search for `hupfeld` finds "As Time Goes By"; search is accent- and case-insensitive across the full corpus.
 - [ ] Variants/Recordings/Notes blocks appear only for digitized-chord tunes when the data exists, collapsed by default.
 - [ ] Theme toggle switches dark/light and survives a reload.
-- [ ] The app never writes to `data/chords/verified/`, `data/melody/crops/`, or `data/title_index.csv`.
+- [ ] Every tune header shows a `＋ Add to playlist` button; clicking it opens a
+      popover to toggle membership in existing playlists or create a new one from
+      the current tune. Adding a tune already in a playlist is a no-op.
+- [ ] Playlists persist in `localStorage` (`grilles.playlists`) and survive a
+      reload; a corrupt value starts an empty set without crashing.
+- [ ] Activating a playlist filters the sidebar to its tunes in playlist order
+      and enables `‹ Prev` / `Next ›` step-through (disabled at the ends);
+      deactivating restores the full alphabetical corpus. The active playlist
+      survives a reload.
+- [ ] A playlist can be renamed, deleted, and its tunes reordered/removed;
+      changes persist.
+- [ ] Export downloads a `{ "version": 1, "playlists": […] }` JSON; importing it
+      on another browser merges the playlists as new entries without overwriting
+      or deleting existing ones; a malformed import is rejected without touching
+      current playlists.
+- [ ] A playlist referencing a tune id no longer in the corpus greys/skips that
+      entry with a note instead of crashing.
+- [ ] The app never writes to `data/chords/verified/`, `data/melody/crops/`, or
+      `data/title_index.csv` — playlists touch only `localStorage` and a
+      user-initiated export download.
