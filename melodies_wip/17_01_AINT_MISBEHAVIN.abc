@@ -1,0 +1,25 @@
+X:1
+T:AIN'T MISBEHAVIN'
+C:Thomas "Fats" Waller - Harry Brooks - Andy Razaf (1929)
+O:Chords: Anthologie des grilles de jazz, p. 9. Melody: hand-written manuscript (grilles_melody/aint_misbehavin_melody.png).
+R:standard swing, medium
+M:4/4
+L:1/8
+K:Eb
+% Chord symbols ("...") are injected from tunes/9_04_AIN_T_MISBEHAVIN.json (grille = ground
+% truth). Do not hand-edit chords - edit notes only.
+% Sections B and A'' not yet transcribed: invisible rests (x) hold the chords.
+% One source line = one rendered system = 4 bars.
+% Form: 16 A A' (verse) | 32 A A' B A'' (chorus).
+% Grille variant for chorus bars 1-2: Eb E-dim | Fm7 F#-dim.
+"^VERSE A""Eb"G B2 G "B9"=B2 B2 |"E"=B8 |"E"G B2 G =B2 B2 |"E"=B8 |
+"Eb"G B2 G "G7"=B2 G2 |"C7"d2 z G-G4 |"F7"G c2 G "Bb7"c2 c2- |"Eb"c8 |
+"^VERSE A'""Eb"G B2 G "B9"=B2 B2 |"E"=B8 |"E"G B2 G =B2 B2 |"E"=B8 |
+"Eb"B d2 B "Cm"d2 "Cm7"d2 |"Am7b5"d2 c2- "D7"c4 |"G"d _B2 G "A7"=E2 "D7"=B2 |"G"G4 "Bb7"_B4 |
+|: "^CHORUS A""Eb"z E F E "Cm"B2 B2 |"Fm7"z G =A =B "Bb7"c4 |"Eb"z B c B "G7#5"z e d2 |"Ab"f e c G-"Abm"G _G z2 |
+"Eb"z E F E "Gb7"B2 B2 |"Fm7"z G =A =B "Bb7"c c _B2 |[1 "G7"G4-"C7"G4- |"F7"G4-"Bb7"G4 :|
+[2 "Eb"E4-"Ab"E4- |"Eb"E4-"G7"E4 ||
+"^BRIDGE B (melody n/a)""Cm"x8 |"Ab7"x8 |"F7"x8 |"C7"x8 |
+"Bb"x4 "(G7)"x4 |"Cm7"x4 "F7"x4 |"Bb"x4 "C7"x4 |"F7"x4 "Bb7"x4 |
+"^CHORUS A'' (melody n/a)""Eb"x4 "Cm"x4 |"Fm7"x4 "Bb7"x4 |"Eb"x4 "G7#5"x4 |"Ab"x4 "Abm"x4 |
+"Eb"x4 "Gb7"x4 |"Fm7"x4 "Bb7"x4 |"G7"x4 "C7"x4 |"Eb"x8 |]

@@ -1,0 +1,280 @@
+{
+  "composer": "Matt DENNIS – Tom ADAIR",
+  "year": "1941",
+  "style": "STANDARD",
+  "tempo": "SLOW",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "EVERYTHING HAPPENS TO ME",
+  "page": 119,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '4 VERSE'."
+  },
+  "recordings": [
+    "C.Fisher 75- Giants of Jazz72",
+    "B.Powell 47- A.Pepper 52.54",
+    "C.Hawkins 57- B.Holiday 55",
+    "T.Monk 59- C.Parker 49.51",
+    "G.Mulligan 55- S.Getz 63",
+    "S.Rollins 52- J.Raney 54",
+    "D.Gillespie 52- B.Evans 63",
+    "O.Byrd 55",
+    "E.Garner 44.49- S.Getz 51.55",
+    "L.Gonsalves 54- B.De Franco 54",
+    "J.Dorsey 41- B.De Franco",
+    "A.Cohn 54- T.Wilson 53"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 2, 10 and 26",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Dm7",
+            "3": "Gm7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "E9b5",
+            "3": "E(b5b9)"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm7",
+          "3": "F(b9)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7#5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7b5",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7",
+          "3": "Ebm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7",
+          "3": "B9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb6"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm7",
+          "3": "F(b9)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7#5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7b5",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7",
+          "3": "Ebm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7",
+          "3": "B9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb6"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm11",
+          "3": "Bb(#5#9)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm11",
+          "3": "Bb(#5#9)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Eb6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Em11",
+          "3": "A(#5#9)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dmaj7",
+          "3": "D6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm7",
+          "3": "F(b9)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7#5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7b5",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7",
+          "3": "Ebm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7",
+          "3": "B9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb6"
+        }
+      }
+    ]
+  }
+}
