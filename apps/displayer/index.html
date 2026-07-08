@@ -11,6 +11,8 @@
     <button id="listToggle" type="button" title="Show tune list" aria-label="Toggle tune list">☰</button>
     <span class="appname">Grilles</span>
     <input id="search" type="search" placeholder="Search title or composer…" autocomplete="off" spellcheck="false">
+    <button id="playlistBtn" type="button" title="Playlists">Playlists</button>
+    <button id="playlistClear" type="button" title="Show all tunes" aria-label="Deactivate playlist" hidden>✕</button>
     <button id="themeToggle" type="button" title="Toggle theme">☀</button>
   </header>
   <div class="layout">
@@ -28,9 +30,13 @@
     <button id="zoomOut" type="button" title="Zoom grid out" aria-label="Zoom grid out">−</button>
     <button id="zoomIn" type="button" title="Zoom grid in" aria-label="Zoom grid in">+</button>
   </div>
+  <div id="playlistMenu" hidden></div>
+  <div id="plPopover" hidden></div>
+  <input id="plImportFile" type="file" accept=".json,application/json" hidden>
   <script src="data/tunes_data.js"></script>
   <script src="vendor/abcjs-basic-min.js"></script>
   <script src="chords.js"></script>
+  <script src="playlists.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
