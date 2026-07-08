@@ -4,8 +4,11 @@ Tune verification web app.
 
 Usage
 -----
-    python verify_app.py
-    python verify_app.py --tunes ./tunes --crops ./crops --port 5000
+    python apps/verifier/verify_app.py
+    python apps/verifier/verify_app.py --tunes data/chords/raw --crops data/chords/crops --port 5000
+
+Verified tunes and WIP edits go to the siblings of --tunes: <parent>/verified
+and <parent>/wip (data/chords/verified and data/chords/wip by default).
 """
 from __future__ import annotations
 
@@ -23,12 +26,13 @@ from flask import Flask, abort, jsonify, render_template, request, send_file
 # ---------------------------------------------------------------------------
 # Mutable globals — overridden by CLI args before app.run()
 # ---------------------------------------------------------------------------
-TUNES_DIR = Path("tunes").resolve()
-CROPS_DIR = Path("crops").resolve()
-VERIFIED_DIR = Path("tunes_verified").resolve()
+_REPO = Path(__file__).resolve().parents[2]  # repo root
+TUNES_DIR = (_REPO / "data" / "chords" / "raw").resolve()
+CROPS_DIR = (_REPO / "data" / "chords" / "crops").resolve()
+VERIFIED_DIR = (_REPO / "data" / "chords" / "verified").resolve()
 # Edits are never written back to TUNES_DIR (read-only source). They live in
 # WIP_DIR until a tune is verified, at which point it is copied to VERIFIED_DIR.
-WIP_DIR = Path("tunes_wip").resolve()
+WIP_DIR = (_REPO / "data" / "chords" / "wip").resolve()
 
 _IGNORED_STEMS = frozenset({"run_report", "run_state", "verification_state"})
 
@@ -253,15 +257,17 @@ def api_state():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Tune verification web app")
-    parser.add_argument("--tunes", default="tunes", help="Path to tunes directory")
-    parser.add_argument("--crops", default="crops", help="Path to crops directory")
+    parser.add_argument("--tunes", default=str(_REPO / "data" / "chords" / "raw"),
+                        help="Path to raw tune JSON directory")
+    parser.add_argument("--crops", default=str(_REPO / "data" / "chords" / "crops"),
+                        help="Path to crops directory")
     parser.add_argument("--port", type=int, default=5000, help="Port (default 5000)")
     args = parser.parse_args()
 
     TUNES_DIR = Path(args.tunes).resolve()
     CROPS_DIR = Path(args.crops).resolve()
-    VERIFIED_DIR = TUNES_DIR.parent / "tunes_verified"
-    WIP_DIR = TUNES_DIR.parent / "tunes_wip"
+    VERIFIED_DIR = TUNES_DIR.parent / "verified"
+    WIP_DIR = TUNES_DIR.parent / "wip"
 
     if not TUNES_DIR.exists():
         parser.error(f"Tunes directory not found: {TUNES_DIR}")

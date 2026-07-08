@@ -3,27 +3,27 @@
 ## 1. Overview
 
 A fully static web app that browses the whole AGJ tune corpus — **one entry per
-row of `title_index.csv`** (~1,568 tunes) — and, for the selected tune, shows its
+row of `data/title_index.csv`** (~1,568 tunes) — and, for the selected tune, shows its
 **chord grille** and its **melody sheet** side by side. The visual reference for
-the rendered chord grid is `grilles_displayer/Screenshot_20260702-154639.png`
+the rendered chord grid is `docs/displayer_reference.png`
 (dark background, large condensed chord symbols, boxed section letters, double
 barlines at section boundaries).
 
-`title_index.csv` (repo root) is the **single source of truth** for what tunes
+`data/title_index.csv` (repo root) is the **single source of truth** for what tunes
 exist and how a tune's chord scan is paired with its melody scan. Most rows have
 only scanned PNGs; a small and growing subset also have a **digitized** form:
 
-- **digitized chords** = a tune JSON in `tunes_verified/` → rendered as a styled
+- **digitized chords** = a tune JSON in `data/chords/verified/` → rendered as a styled
   chord grid (§6–§7).
-- **digitized melody** = a verified ABC file in `melodies_verified/`, **named
-  after its melody scan** (`<melody_crops stem>.abc`, e.g.
-  `17_01_AINT_MISBEHAVIN.abc` ↔ `melody_crops/17_01_AINT_MISBEHAVIN.png`) →
+- **digitized melody** = a verified ABC file in `data/melody/verified/`, **named
+  after its melody scan** (`<data/melody/crops stem>.abc`, e.g.
+  `17_01_AINT_MISBEHAVIN.abc` ↔ `data/melody/crops/17_01_AINT_MISBEHAVIN.png`) →
   rendered in-app as a lead sheet with a **vendored abcjs**. Only a pilot
-  transcription exists today; any `.abc` dropped into `melodies_verified/` is
+  transcription exists today; any `.abc` dropped into `data/melody/verified/` is
   picked up automatically at the next `build_data.py` run.
 
-The app is read-only: it never modifies `tunes_verified/`, `melodies_verified/`,
-`crops/`, `melody_crops/`, or `title_index.csv`.
+The app is read-only: it never modifies `data/chords/verified/`, `data/melody/verified/`,
+`data/chords/crops/`, `data/melody/crops/`, or `data/title_index.csv`.
 
 ---
 
@@ -42,23 +42,23 @@ The app is read-only: it never modifies `tunes_verified/`, `melodies_verified/`,
 ## 3. File Layout
 
 ```
-grilles_displayer/
+apps/displayer/
 ├── index.html            # the app shell
 ├── style.css             # all styling, incl. dark/light themes
 ├── app.js                # search, navigation, rendering logic
 ├── chords.js             # chord token parsing + display transformation
-├── build_data.py         # generator: title_index.csv + tunes_verified/*.json
-│                         #            + melodies_verified/*.abc -> data/tunes_data.js
+├── build_data.py         # generator: data/title_index.csv + data/chords/verified/*.json
+│                         #            + data/melody/verified/*.abc -> data/tunes_data.js
 ├── fonts/                # bundled Barlow Condensed woff2 (400/500/700)
 ├── vendor/
 │   └── abcjs-basic-min.js  # vendored abcjs (MIT) for melody lead sheets
-├── crops/                # GENERATED — chord scan PNGs copied from ../crops
-├── melody_crops/         # GENERATED — melody scan PNGs copied from ../melody_crops
+├── crops/                # GENERATED — chord scan PNGs copied from data/chords/crops
+├── melody_crops/         # GENERATED — melody scan PNGs copied from data/melody/crops
 └── data/
     └── tunes_data.js     # GENERATED — do not edit by hand
 ```
 
-Everything the deployed app needs lives inside `grilles_displayer/` — the GitHub
+Everything the deployed app needs lives inside `apps/displayer/` — the GitHub
 Pages workflow uploads only this directory, so **all referenced PNGs are copied
 in**. This is a deliberate trade for the app working online without a server.
 
@@ -80,7 +80,7 @@ Rules for the 1-bit convention:
 - It is not a loss for the future sheet-music OCR: the melody digitizer's CV
   stages binarize as their first step anyway, and all grays in the crops are
   synthetic (the scans are 1-bit at the source).
-- Both `crops/` (repo root) and the copies in `grilles_displayer/` are tracked
+- Both `data/chords/crops/` (repo root) and the copies in `apps/displayer/` are tracked
   in git, so the 1-bit form also caps repository growth. The conversion is
   deterministic: unchanged sources re-encode to identical bytes → no git churn.
 
@@ -91,11 +91,11 @@ predates the convention.
 
 ### 3.1 Generator (`build_data.py`)
 
-- Usage: `python grilles_displayer/build_data.py`. Inputs, all overridable:
-  `--index ./title_index.csv`, `--tunes-dir ./tunes_verified`,
-  `--crops-dir ./crops`, `--melody-crops-dir ./melody_crops`,
-  `--melodies-dir ./melodies_verified`.
-- **Drives off `title_index.csv`**, one record per data row (skips the header).
+- Usage: `python apps/displayer/build_data.py`. Inputs, all overridable:
+  `--index data/title_index.csv`, `--tunes-dir data/chords/verified`,
+  `--crops-dir data/chords/crops`, `--melody-crops-dir data/melody/crops`,
+  `--melodies-dir data/melody/verified`.
+- **Drives off `data/title_index.csv`**, one record per data row (skips the header).
   Relevant columns: `match_status`, `chords_title`, `chords_file`,
   `melody_title`, `melody_file`. (`match_type`, `chords_page`, `melody_page`
   are ignored by the app.)
@@ -104,14 +104,14 @@ predates the convention.
   (`json.load` keeps insertion order — section order matters).
 - **Melody ABC**: a row whose melody has been digitized carries the ABC source
   **embedded as a string** (`abc`). The join is by **melody scan stem**:
-  `melodies_verified/<stem of melody_file>.abc`. Embedding (rather than
+  `data/melody/verified/<stem of melody_file>.abc`. Embedding (rather than
   fetching `.abc` at runtime) keeps the app working from `file://` (no
-  CORS/fetch). Any new `.abc` saved to `melodies_verified/` is included
+  CORS/fetch). Any new `.abc` saved to `data/melody/verified/` is included
   automatically at the next build; an `.abc` whose stem matches no index row's
   `melody_file` produces a warning.
 - Copies the referenced scans into the app folder when the source file exists:
-  `crops/<chords_file>` → `grilles_displayer/crops/`, and
-  `melody_crops/<melody_file>` → `grilles_displayer/melody_crops/`. Sources are
+  `data/chords/crops/<chords_file>` → `apps/displayer/crops/`, and
+  `data/melody/crops/<melody_file>` → `apps/displayer/melody_crops/`. Sources are
   expected to already be 1-bit PNGs (§3 "Deploy weight"); any that aren't are
   re-encoded (grayscale → threshold 128 → optimized 1-bit PNG) with a warning.
   Skip the copy when the output already exists with unchanged source
@@ -124,8 +124,8 @@ predates the convention.
 window.TUNES = [
   { "id": "22_02_AS_TIME_GOES_BY",
     "title": "As Time Goes By",
-    "chord_image": "crops/22_02_AS_TIME_GOES_BY.png",
-    "melody_image": "melody_crops/34_01_AS_TIME_GOES_BY.png",
+    "chord_image": "data/chords/crops/22_02_AS_TIME_GOES_BY.png",
+    "melody_image": "data/melody/crops/34_01_AS_TIME_GOES_BY.png",
     "has_chord_json": true,
     "has_melody_abc": true,
     "tune": { ...full chord JSON... },
@@ -152,8 +152,8 @@ window.TUNES = [
 |---|---|
 | `id` | Stable key & URL hash. The `chords_file` stem when present, else the `melody_file` stem. |
 | `title` | **Displayed** title. The digitized chord JSON's `title` if present; otherwise derived from the CSV title column (`chords_title`, fallback `melody_title`): `_`→space, Title-Cased. Filename-derived artifacts (e.g. `AIN_T` → "Ain T") are accepted as-is. |
-| `chord_image` | `crops/<chords_file>` when that PNG was copied in, else absent. |
-| `melody_image` | `melody_crops/<melody_file>` when that PNG was copied in, else absent. |
+| `chord_image` | `data/chords/crops/<chords_file>` when that PNG was copied in, else absent. |
+| `melody_image` | `data/melody/crops/<melody_file>` when that PNG was copied in, else absent. |
 | `has_chord_json` | `true` when a digitized chord tune was embedded (`tune`). Drives the left-icon green state. |
 | `has_melody_abc` | `true` when a digitized melody was embedded (`abc`). Drives the right-icon green state. |
 | `tune` | The embedded chord JSON (§4.2), only when `has_chord_json`. |
@@ -167,7 +167,7 @@ no icons.
 
 ### 4.2 Embedded chord JSON (`tune`)
 
-As produced by the digitizer / verifier (see `Instructions/jazz_chord_digitization_spec.md`). Relevant parts:
+As produced by the digitizer / verifier (see `docs/specs/jazz_chord_digitization_spec.md`). Relevant parts:
 
 - Meta: `title`*, `composer`, `year`, `style`, `tempo`, `form`, `time_signature`* (e.g. `"4/4"`), `page`, `source`, `same_chord_changes`.
 - `sections`: ordered object; keys are section names (`"A"`, `"A1"`, `"B"`, `"C"`, but also `"verse_A"`, `"interlude"`, `"Transition"`); values are arrays of bar objects:
@@ -220,7 +220,7 @@ Currently all verified tunes are 4/4 with sections of mostly 8 or 16 bars, but t
   the drawer if open, otherwise clears the search.
 
 ### 5.2 Sidebar — tune list
-- Every row of `title_index.csv` is listed, sorted alphabetically by displayed
+- Every row of `data/title_index.csv` is listed, sorted alphabetically by displayed
   title. Each entry shows the **title** and, in smaller muted text, the
   **composer** (only digitized tunes have one).
 - **Availability icons** — a fixed two-slot cluster at the left of each entry:
@@ -396,7 +396,7 @@ The root's own accidental also renders as `♯`/`♭`.
 - `N.C.`: small caps, muted.
 
 ### 7.4 Robustness
-- Any chord string that fails to parse renders verbatim (monospace, warning color in a `title` tooltip) — never crash the page. (Verified files pass `tools/check_chord_syntax.py`, so this is a safety net only.)
+- Any chord string that fails to parse renders verbatim (monospace, warning color in a `title` tooltip) — never crash the page. (Verified files pass `pipelines/chords/tools/check_chord_syntax.py`, so this is a safety net only.)
 
 ---
 
@@ -439,15 +439,15 @@ Blocks whose data is absent are not rendered at all.
 
 ## 11. Acceptance Checklist
 
-- [ ] `python grilles_displayer/build_data.py` regenerates `data/tunes_data.js` from `title_index.csv` + `tunes_verified/`, and populates `crops/` and `melody_crops/` with every referenced scan.
+- [ ] `python apps/displayer/build_data.py` regenerates `data/tunes_data.js` from `data/title_index.csv` + `data/chords/verified/`, and populates `apps/displayer/crops/` and `apps/displayer/melody_crops/` with every referenced scan.
 - [ ] Bundled scans are 1-bit optimized PNGs; the two folders together stay in the ~120 MB range, and rerunning the build without source changes rewrites nothing (git status clean).
-- [ ] Opening `grilles_displayer/index.html` directly from disk (file://) lists **every** `title_index.csv` row, alphabetically by displayed title.
+- [ ] Opening `apps/displayer/index.html` directly from disk (file://) lists **every** `data/title_index.csv` row, alphabetically by displayed title.
 - [ ] Sidebar icons: a `both` row shows two icons (chord grid + melody); a `chords_only` row shows only the left icon, a `melody_only` row only the right; icon columns stay aligned. A digitized-chord tune shows the left icon **green**; scan-only assets show **gray**.
 - [ ] A non-digitized tune shows a Title-Cased title (from the index) and its scan(s); a digitized-chord tune shows the JSON `title`, composer, and metadata line.
 - [ ] The Chords and Melody switches show only for assets the tune has; default is Chords **on**, Melody **off**; both choices survive a reload.
 - [ ] With both switches on: on a wide screen the chord and melody panels sit **side by side**; on a narrow/portrait screen they **stack**. Chord grid re-fits to its available width in both cases.
 - [ ] A digitized-chord tune with a chord scan offers the per-panel **original-scan toggle** (photo-icon button above the content, default: rendered grid, swap happens in place without scrolling to the top); same for a digitized-melody tune with a melody scan.
-- [ ] `17_01_AINT_MISBEHAVIN` (Ain't Misbehavin') renders its melody as an abcjs lead sheet in the melody panel, in both themes; its right sidebar icon is green. Dropping a new `.abc` (named `<melody_crops stem>.abc`) into `melodies_verified/` and rebuilding is all it takes to activate another tune.
+- [ ] `17_01_AINT_MISBEHAVIN` (Ain't Misbehavin') renders its melody as an abcjs lead sheet in the melody panel, in both themes; its right sidebar icon is green. Dropping a new `.abc` (named `<data/melody/crops stem>.abc`) into `data/melody/verified/` and rebuilding is all it takes to activate another tune.
 - [ ] `22_02_AS_TIME_GOES_BY` renders: A / A / B / A sections labeled `A A B A`, 8 bars each as 2×4 rows, double barlines at every section boundary, `4/4` before the first barline.
 - [ ] `Fm7b5` displays as `Fø7`; `Eb` shows `E♭`; `F#o7` shows `F♯o7`; `C9sus4`, `F6/9`, `N.C.` render sensibly.
 - [ ] A chord on beat 3 sits at the horizontal middle of its bar.
@@ -455,4 +455,4 @@ Blocks whose data is absent are not rendered at all.
 - [ ] Search for `hupfeld` finds "As Time Goes By"; search is accent- and case-insensitive across the full corpus.
 - [ ] Variants/Recordings/Notes blocks appear only for digitized-chord tunes when the data exists, collapsed by default.
 - [ ] Theme toggle switches dark/light and survives a reload.
-- [ ] The app never writes to `tunes_verified/`, `melody_crops/`, or `title_index.csv`.
+- [ ] The app never writes to `data/chords/verified/`, `data/melody/crops/`, or `data/title_index.csv`.

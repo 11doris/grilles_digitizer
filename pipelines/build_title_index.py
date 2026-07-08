@@ -1,17 +1,17 @@
-"""Match chord sheets (crops/) to melody sheets (melody_crops/) by title.
+"""Match chord sheets (data/chords/crops/) to melody sheets (data/melody/crops/) by title.
 
-Emits title_index.csv in wide format (one row per tune) flagging which sheets
+Emits data/title_index.csv in wide format (one row per tune) flagging which sheets
 have a counterpart in the other dataset. Page numbers differ between datasets,
 so matching is on normalized title, not page. Re-run any time the crop folders
-change:  python build_title_index.py
+change:  python pipelines/build_title_index.py
 """
 import os, re, csv
 from difflib import SequenceMatcher
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-CHORDS = os.path.join(ROOT, "crops")
-MELODY = os.path.join(ROOT, "melody_crops")
-OUT = os.path.join(ROOT, "title_index.csv")
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repo root
+CHORDS = os.path.join(ROOT, "data", "chords", "crops")
+MELODY = os.path.join(ROOT, "data", "melody", "crops")
+OUT = os.path.join(ROOT, "data", "title_index.csv")
 
 
 def parse(dirpath):

@@ -3,9 +3,10 @@
 
 Usage
 -----
-    python tools/check_chord_syntax.py [dir ...]      # default: tunes_verified tunes_wip
+    python pipelines/chords/tools/check_chord_syntax.py [dir ...]
+    # default dirs: data/chords/verified data/chords/wip
 
-Grammar derived from grilles_digitizer/prompt.py (=== CHORD NOTATION ===,
+Grammar derived from pipelines/chords/digitizer/prompt.py (=== CHORD NOTATION ===,
 ALTERATIONS & PARENTHESES, EXTENSIONS, SUS/SLASH/NO-CHORD):
 
   chord      := "N.C." | "(" core ")" | core        # outer parens = optional chord
@@ -125,7 +126,9 @@ def main() -> int:
         sys.stdout.reconfigure(encoding="utf-8")
     except AttributeError:
         pass
-    dirs = sys.argv[1:] or ["tunes_verified", "tunes_wip"]
+    _repo = Path(__file__).resolve().parents[3]  # repo root
+    dirs = sys.argv[1:] or [str(_repo / "data" / "chords" / "verified"),
+                            str(_repo / "data" / "chords" / "wip")]
     failed = False
     for dirname in dirs:
         print(f"===== {dirname} =====")

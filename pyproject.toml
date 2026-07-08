@@ -10,11 +10,16 @@ dependencies = [
 ]
 
 [project.scripts]
-transcribe = "grilles_digitizer.cli:main"
+transcribe = "pipelines.chords.digitizer.cli:main"
 
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["grilles_digitizer"]
+packages = [
+    "pipelines",
+    "pipelines.chords",
+    "pipelines.chords.digitizer",
+    "pipelines.melody",
+]

@@ -1,7 +1,7 @@
-"""One-off: deskew a single melody_crops PNG in place using melody_cropper's tools.
+"""One-off: deskew a single data/melody/crops PNG in place using melody_cropper's tools.
 
-Usage: python deskew_crop.py <crop_name_without_extension>
-Example: python deskew_crop.py 247_02_FLYING_HOME
+Usage: python pipelines/melody/deskew_crop.py <crop_name_without_extension>
+Example: python pipelines/melody/deskew_crop.py 247_02_FLYING_HOME
 
 Backs up the original alongside the crop as <name>.orig.png before overwriting.
 """
@@ -11,18 +11,21 @@ import sys
 
 import cv2
 
-from crop_tunes import to_ink
-from melody_cropper import deskew, estimate_skew, write_png
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))  # repo root
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+from pipelines.chords.crop_tunes import to_ink
+from pipelines.melody.melody_cropper import deskew, estimate_skew, write_png
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # repo root
+CROPS = os.path.join(ROOT, "data", "melody", "crops")
 
 
 def main(name):
-    src = os.path.join(ROOT, "melody_crops", f"{name}.png")
+    src = os.path.join(CROPS, f"{name}.png")
     if not os.path.exists(src):
         sys.exit(f"no such crop: {src}")
 
-    shutil.copy2(src, os.path.join(ROOT, "melody_crops", f"{name}.orig.png"))
+    shutil.copy2(src, os.path.join(CROPS, f"{name}.orig.png"))
 
     native = cv2.imread(src, cv2.IMREAD_GRAYSCALE)
     _, ink = to_ink(native)
@@ -38,5 +41,5 @@ def main(name):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        sys.exit("usage: python deskew_crop.py <crop_name_without_extension>")
+        sys.exit("usage: python pipelines/melody/deskew_crop.py <crop_name_without_extension>")
     main(sys.argv[1])

@@ -14,10 +14,10 @@ of the PDF's first page (same meaning as in crop_tunes.py; default 7 for
 AGJ.pdf). Use --pdf-page to pass a 1-based PDF page index instead.
 
 USAGE
-  python extract_page.py AGJ.pdf 100               # printed page 100
-  python extract_page.py AGJ.pdf 100 --out crops/  # write crops/100.png
-  python extract_page.py AGJ.pdf 1 --pdf-page      # first page of the PDF
-  python extract_page.py page341.pdf 340 --start-page 340
+  python pipelines/chords/extract_page.py sources/AGJ.pdf 100    # printed page 100
+  python pipelines/chords/extract_page.py sources/AGJ.pdf 100 --out data/chords/crops/
+  python pipelines/chords/extract_page.py sources/AGJ.pdf 1 --pdf-page   # first PDF page
+  python pipelines/chords/extract_page.py page341.pdf 340 --start-page 340
 """
 import argparse
 import os
@@ -25,7 +25,9 @@ import sys
 
 import cv2
 
-from crop_tunes import count_pages, extract_page, to_ink
+sys.path.insert(0, str(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))  # repo root
+
+from pipelines.chords.crop_tunes import count_pages, extract_page, to_ink
 
 
 def main():

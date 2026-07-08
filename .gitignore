@@ -4,8 +4,11 @@ __pycache__/
 *.egg-info/
 build/
 dist/
+.vscode/
 
-# Run artifacts
-tunes/*.json
-tunes/run_state.jsonl
-tunes/run_report.json
+# Local-only source scans (see README: supply these yourself)
+sources/
+
+# Run artifacts (regenerable)
+data/chords/raw/
+data/melody/debug/

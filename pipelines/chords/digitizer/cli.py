@@ -12,6 +12,8 @@ from .config import Config
 from .runner import run
 from .vlm import MissingCredentials
 
+_REPO = Path(__file__).resolve().parents[3]  # repo root
+
 
 def _page_range(value: str) -> tuple[int, int]:
     try:
@@ -26,12 +28,14 @@ def _parse_args(argv: list[str] | None) -> Config:
         prog="transcribe",
         description="Transcribe cropped jazz chord grids into JSON via a VLM.",
     )
-    p.add_argument("--crops", type=Path, default=Path("crops"), help="crops directory")
+    p.add_argument("--crops", type=Path, default=_REPO / "data" / "chords" / "crops",
+                   help="crops directory")
     p.add_argument(
         "--manifest", type=Path, default=None,
         help="manifest.csv (default: <crops>/manifest.csv)",
     )
-    p.add_argument("--out", type=Path, default=Path("tunes"), help="output directory")
+    p.add_argument("--out", type=Path, default=_REPO / "data" / "chords" / "raw",
+                   help="output directory")
     p.add_argument("--model", default="claude-opus-4-8", help="VLM model id")
     p.add_argument("--workers", type=int, default=1, help="parallel calls (remote API only)")
     p.add_argument("--retries", type=int, default=3, help="per-unit validation retries")

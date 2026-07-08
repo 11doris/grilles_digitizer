@@ -4,9 +4,9 @@ melody_cropper.py  -  Stage 0: page/tune extraction from the AGJ melody book
 ============================================================================
 
 Stage 0 of the melody pipeline (one python file per stage; see
-Instructions/melody_digitizer_spec.md). It
+docs/specs/melody_digitizer_spec.md). It
 turns pages of `AGJ_Melody.pdf` (hand-written lead sheets, several tunes per
-page) into one PNG per tune in `melody_crops/`, plus a `melody_manifest.json`
+page) into one PNG per tune in `data/melody/crops/`, plus a `melody_manifest.json`
 mapping each crop to a canonical tune (title + grille page) for manual review.
 
 Unlike the chord-grille pages (crop_tunes.py), melody pages have NO chord grid:
@@ -30,24 +30,27 @@ be named with its grille id directly. Titles are OCR'd (reuse ocr_title) and
 fuzzy-matched against the whole book index (AGJ_index.pdf) to recover the
 canonical title + grille page; the crop is named `<melpage>_<idx>_<TITLE>.png`
 and the manifest records the matched grille page/id for the eventual join to
-`tunes/<id>.json`. Low match confidence -> review=yes.
+`data/chords/raw/<id>.json`. Low match confidence -> review=yes.
 
 USAGE
-  python melody_cropper.py AGJ_Melody.pdf --pages 847,935,939 \
-         --melody-index AGJ_Melody_Index.pdf --index AGJ_index.pdf \
-         --out melody_crops --debug
-  python melody_cropper.py AGJ_Melody.pdf --pages 7..972 --melody-index AGJ_Melody_Index.pdf --index AGJ_index.pdf
+  python pipelines/melody/melody_cropper.py sources/AGJ_Melody.pdf --pages 847,935,939 \
+         --melody-index sources/AGJ_Melody_Index.pdf --index sources/AGJ_index.pdf \
+         --out data/melody/crops --debug
+  python pipelines/melody/melody_cropper.py sources/AGJ_Melody.pdf --pages 7..972 \
+         --melody-index sources/AGJ_Melody_Index.pdf --index sources/AGJ_index.pdf
 """
 import argparse, json, os, re, subprocess, sys, tempfile, time
 
 import numpy as np
 import cv2
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))  # repo root
+
 # Reuse the grille machinery: page extraction, polarity fix, morphology,
 # title OCR, and the fuzzy index matcher.
-from crop_tunes import (count_pages, extract_page, to_ink, _open, _index_columns,
-                        ocr_title, load_index, _title_score, slugify, main_title,
-                        write_png_1bit)
+from pipelines.chords.crop_tunes import (count_pages, extract_page, to_ink, _open, _index_columns,
+                                         ocr_title, load_index, _title_score, slugify, main_title,
+                                         write_png_1bit)
 
 _START = time.time()
 
@@ -633,7 +636,7 @@ def main():
                     "primary title source, matched against OCR'd titles")
     ap.add_argument("--index", help="grille index PDF/.txt (AGJ_index.pdf) with "
                     "page numbers, used to attach the grille page to each match")
-    ap.add_argument("--out", default="melody_crops")
+    ap.add_argument("--out", default="data/melody/crops")
     ap.add_argument("--pad", type=int, default=14)
     ap.add_argument("--match-below", type=float, default=0.72,
                     help="index-match score below which the OCR title is used for "

@@ -1,16 +1,16 @@
 # Melody Digitizer — Specification
 
 Goal: extract the hand-written melodies from the AGJ melody manuscript
-(`AGJ_Melody.pdf`, one tune per page or part-page, ~1400 tunes) and produce, per
+(`sources/AGJ_Melody.pdf`, one tune per page or part-page, ~1400 tunes) and produce, per
 tune, (a) a melody file in **standard ABC notation (v2.1)** aligned with the
-already-digitized chord grille (`tunes/<id>.json`), and (b) a self-contained
+already-digitized chord grille (`data/chords/raw/<id>.json`), and (b) a self-contained
 static HTML lead sheet (4 bars per row, title, chords above the staff) rendered
 with a **vendored abcjs** (MIT, single JS file, checked into the repo once).
 
 Why ABC as the canonical format (decision record):
 - Human verification/correction is the bottleneck at 1400 tunes. ABC is plain
   text and terse — fixing a wrong pitch is a one-character edit, and diffs in
-  git review cleanly (`melodies_wip/` → `melodies_verified/` promotion).
+  git review cleanly (`data/melody/wip/` → `data/melody/verified/` promotion).
 - abcjs renders ABC in the browser inside a self-contained HTML page AND
   synthesizes playback — hearing the transcription is the fastest way for a
   human to verify a jazz tune. abcjs's editor widget (textarea ⇆ score with
@@ -23,20 +23,20 @@ Why ABC as the canonical format (decision record):
 This spec encodes everything learned from the manual pilot transcription of
 `grilles_melody/9_04_AIN_T_MISBEHAVIN.json` + `aint_misbehavin_melody.png`
 (results: `grilles_melody/aint_misbehavin_leadsheet.html` and the reference
-ABC transcription `melodies_wip/9_04_AIN_T_MISBEHAVIN.abc`). The pilot took ~40
+ABC transcription `data/melody/wip/9_04_AIN_T_MISBEHAVIN.abc`). The pilot took ~40
 model-vision reads per tune; the pipeline below is designed to cut that to a
 handful, doing everything deterministic in Python/OpenCV and reserving the
 model API for the few decisions vision code cannot make reliably.
 
 Repo constraints (must respect):
-- `tunes/` is **read-only** ground truth for chords. Never modify it.
-- New melody ABC files go to `melodies_wip/`; human-verified ones are promoted
-  to `melodies_verified/` (mirror of the tunes_wip/tunes_verified convention).
-  **Naming**: `<melody-crop stem>.abc`, matching the PNG in `melody_crops/`
-  (e.g. `17_01_AINT_MISBEHAVIN.abc` ↔ `melody_crops/17_01_AINT_MISBEHAVIN.png`)
+- `data/chords/raw/` is **read-only** ground truth for chords. Never modify it.
+- New melody ABC files go to `data/melody/wip/`; human-verified ones are promoted
+  to `data/melody/verified/` (mirror of the chords wip/ → verified/ convention).
+  **Naming**: `<melody-crop stem>.abc`, matching the PNG in `data/melody/crops/`
+  (e.g. `17_01_AINT_MISBEHAVIN.abc` ↔ `data/melody/crops/17_01_AINT_MISBEHAVIN.png`)
   — the displayer joins ABC ↔ tune through the melody filename in
-  `title_index.csv`.
-- Rendered lead sheets go to `leadsheets/` (generated, can be rebuilt anytime).
+  `data/title_index.csv`.
+- Rendered lead sheets go to `data/melody/leadsheets/` (generated, can be rebuilt anytime).
 - HTML verification: headless Edge
   (`msedge --headless=new --user-data-dir=<fresh tmp profile> --window-size=1300,2400 --screenshot=...`),
   window width ≥ 500.
@@ -50,7 +50,7 @@ stage 0, and so on), each runnable standalone and sharing helpers from
 `crop_tunes.py`.
 
 ```
-AGJ_Melody.pdf
+sources/AGJ_Melody.pdf
    │  stage 0  melody_cropper.py  (pdf → per-tune PNGs, reuse extract_page.py/crop_tunes.py)
    ▼
 page PNG (1-bit scan, ~2500×2600)
@@ -66,10 +66,10 @@ stems, flags/beams, rests, accidentals, ties, text zones (chords, title, labels)
 per-bar event candidates with confidence + list of UNRESOLVED bars
    │  stage 4  (model API, only for flagged bars)  annotated-crop adjudication
    ▼
-melody ABC file (melodies_wip/<id>.abc)
+melody ABC file (data/melody/wip/<id>.abc)
    │  stage 5  (python)   validation suite; failures loop back to stage 4 once
    ▼
-lead sheet HTML (leadsheets/<id>.html) via vendored abcjs
+lead sheet HTML (data/melody/leadsheets/<id>.html) via vendored abcjs
 ```
 
 Guiding principle: **the chord grille JSON is ground truth** for form, bar
@@ -85,11 +85,11 @@ JSON chords unchanged.
 
 - Reuse `crop_tunes.py` / `extract_page.py` machinery (embedded 1-bit scan at
   native resolution, `to_ink` polarity fix). Produce one PNG per tune in
-  `melody_crops/`, named like the grille crops (`<page>_<idx>_<TITLE>.png`) so
+  `data/melody/crops/`, named like the grille crops (`<page>_<idx>_<TITLE>.png`) so
   tune JSON ↔ melody image pairing is a filename join.
 - **Output encoding convention** (applies to every stage that writes to
-  `melody_crops/`, incl. `melody_straightener.py`, and equally to the grille
-  crops in `crops/`): work in **grayscale internally** (deskew/rotation
+  `data/melody/crops/`, incl. `melody_straightener.py`, and equally to the grille
+  crops in `data/chords/crops/`): work in **grayscale internally** (deskew/rotation
   interpolation needs it), but save the final PNG as **full-resolution 1-bit
   optimized PNG** (threshold 128, no alpha channel). The source scans are
   1-bit, so grays are pure interpolation artifacts; binarizing at the last
@@ -243,10 +243,10 @@ All detectors operate on the straightened strip, binarized at 128.
 - Budget: at 10–30 % flagged bars ≈ 5–15 bars/tune ≈ 2–3 batched calls/tune.
   Never send whole pages or whole systems to the model.
 
-## 7. Melody file format: ABC notation (`melodies_wip/<id>.abc`)
+## 7. Melody file format: ABC notation (`data/melody/wip/<id>.abc`)
 
 Standard ABC v2.1, one tune per file. Reference example (pilot):
-`melodies_wip/9_04_AIN_T_MISBEHAVIN.abc`. House conventions:
+`data/melody/wip/9_04_AIN_T_MISBEHAVIN.abc`. House conventions:
 
 - **Header**: `X:1`, `T:` title (as in the tune JSON), `C:` composers,
   `O:` source line, `R:` style/tempo words, `M:` time signature,
@@ -277,7 +277,7 @@ Standard ABC v2.1, one tune per file. Reference example (pilot):
   annotation mark them. Every section must still contain exactly the
   grille's bar count.
 - File is the single source of truth for the melody; MusicXML export for
-  MuseScore users via `abc2xml` (`leadsheets/xml/<id>.musicxml`, generated,
+  MuseScore users via `abc2xml` (`data/melody/leadsheets/xml/<id>.musicxml`, generated,
   never edited).
 
 ## 8. Stage 5 — Validation (python only)
@@ -301,7 +301,7 @@ stage 4 once, then to a human-review queue:
 
 ## 9. Renderer (vendored abcjs, python-generated static HTML)
 
-Vendor `abcjs-basic-min.js` once (MIT; ~1 MB) under `leadsheets/vendor/` and
+Vendor `abcjs-basic-min.js` once (MIT; ~1 MB) under `data/melody/leadsheets/vendor/` and
 inline it into each generated page so every lead sheet stays a single
 self-contained file. (The pilot's hand-rolled SVG engraver in
 `grilles_melody/aint_misbehavin_leadsheet.html` is superseded; keep it only as
@@ -324,10 +324,10 @@ a reference for the visual layout.)
   `--pages 7..706` and processes tunes resumably; state in `melody_state.json`
   (per tune: stage reached, flags, model-call count, cost). Idempotent re-runs
   skip completed stages. Stage 0 alone is
-  `python melody_cropper.py AGJ_Melody.pdf --pages 7..972
-  --melody-index AGJ_Melody_Index.pdf --index AGJ_index.pdf`.
+  `python pipelines/melody/melody_cropper.py sources/AGJ_Melody.pdf --pages 7..972
+  --melody-index sources/AGJ_Melody_Index.pdf --index sources/AGJ_index.pdf`.
 - All intermediate artifacts (straightened strips, symbol overlays with the
-  detected candidates drawn on them) cached under `melody_debug/<id>/` —
+  detected candidates drawn on them) cached under `data/melody/debug/<id>/` —
   these overlays are exactly what a human reviewer needs to verify a tune
   quickly, and what stage 4 sends to the model.
 - Cost telemetry: log model calls/tune; alert if a tune exceeds ~6 calls
@@ -335,8 +335,8 @@ a reference for the visual layout.)
 - Human verification loop: a tiny review page (reuse the displayer approach)
   showing, per system, the manuscript strip above an abcjs **editor** widget
   (textarea ⇆ score with cursor↔note highlighting) plus playback; corrections
-  are direct text edits to the ABC, saved back to `melodies_wip/`; approving
-  moves the `.abc` → `melodies_verified/`.
+  are direct text edits to the ABC, saved back to `data/melody/wip/`; approving
+  moves the `.abc` → `data/melody/verified/`.
 
 ## 11. Known hazards checklist (all observed in the pilot)
 

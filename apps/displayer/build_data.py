@@ -2,31 +2,31 @@
 """
 Bundle the tune index + digitized tunes into data/tunes_data.js.
 
-Driven by title_index.csv (single source of truth, one record per row):
-each row pairs a chord scan (crops/<chords_file>) with a melody scan
-(melody_crops/<melody_file>). Rows whose chord tune has been digitized
-(tunes_verified/<id>.json) get the full chord JSON embedded; rows whose
-melody has been digitized get the ABC source embedded — the join is by
-melody scan stem: melodies_verified/<stem of melody_file>.abc. Any new
-.abc saved there is included automatically at the next build.
+Driven by data/title_index.csv (single source of truth, one record per row):
+each row pairs a chord scan (data/chords/crops/<chords_file>) with a melody
+scan (data/melody/crops/<melody_file>). Rows whose chord tune has been
+digitized (data/chords/verified/<id>.json) get the full chord JSON embedded;
+rows whose melody has been digitized get the ABC source embedded — the join
+is by melody scan stem: data/melody/verified/<stem of melody_file>.abc. Any
+new .abc saved there is included automatically at the next build.
 
-Referenced scans are copied into grilles_displayer/crops/ and
-grilles_displayer/melody_crops/ so the deployed app (GitHub Pages uploads
-only grilles_displayer/) can show them. Sources are expected to already be
-1-bit PNGs (see Instructions/melody_digitizer_spec.md, output-encoding
+Referenced scans are copied into apps/displayer/crops/ and
+apps/displayer/melody_crops/ so the deployed app (GitHub Pages uploads
+only apps/displayer/) can show them. Sources are expected to already be
+1-bit PNGs (see docs/specs/melody_digitizer_spec.md, output-encoding
 convention); any that aren't are re-encoded here with a warning.
 
 Usage
 -----
-    python grilles_displayer/build_data.py
-    python grilles_displayer/build_data.py --index ./title_index.csv \
-        --tunes-dir ./tunes_verified --crops-dir ./crops \
-        --melody-crops-dir ./melody_crops --melodies-dir ./melodies_verified
+    python apps/displayer/build_data.py
+    python apps/displayer/build_data.py --index data/title_index.csv \
+        --tunes-dir data/chords/verified --crops-dir data/chords/crops \
+        --melody-crops-dir data/melody/crops --melodies-dir data/melody/verified
 
     manual deployment:
     git checkout main
     git pull
-    git subtree push --prefix=grilles_displayer origin gh-pages
+    git subtree push --prefix=apps/displayer origin gh-pages
     git checkout main
 """
 from __future__ import annotations
@@ -78,17 +78,17 @@ def sync_scan(src: Path, out_dir: Path, warnings: list[str]) -> str | None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     here = Path(__file__).resolve().parent
-    root = here.parent
-    parser.add_argument("--index", default=str(root / "title_index.csv"),
-                        help="Title index CSV (default: ../title_index.csv)")
-    parser.add_argument("--tunes-dir", default=str(root / "tunes_verified"),
-                        help="Verified chord tune JSONs (default: ../tunes_verified)")
-    parser.add_argument("--crops-dir", default=str(root / "crops"),
-                        help="Chord scan PNGs (default: ../crops)")
-    parser.add_argument("--melody-crops-dir", default=str(root / "melody_crops"),
-                        help="Melody scan PNGs (default: ../melody_crops)")
-    parser.add_argument("--melodies-dir", default=str(root / "melodies_verified"),
-                        help="Verified melody ABC files (default: ../melodies_verified; "
+    root = here.parents[1]  # repo root
+    parser.add_argument("--index", default=str(root / "data" / "title_index.csv"),
+                        help="Title index CSV (default: data/title_index.csv)")
+    parser.add_argument("--tunes-dir", default=str(root / "data" / "chords" / "verified"),
+                        help="Verified chord tune JSONs (default: data/chords/verified)")
+    parser.add_argument("--crops-dir", default=str(root / "data" / "chords" / "crops"),
+                        help="Chord scan PNGs (default: data/chords/crops)")
+    parser.add_argument("--melody-crops-dir", default=str(root / "data" / "melody" / "crops"),
+                        help="Melody scan PNGs (default: data/melody/crops)")
+    parser.add_argument("--melodies-dir", default=str(root / "data" / "melody" / "verified"),
+                        help="Verified melody ABC files (default: data/melody/verified; "
                              "may not exist yet)")
     args = parser.parse_args()
 

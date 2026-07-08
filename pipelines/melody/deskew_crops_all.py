@@ -1,22 +1,25 @@
-"""One-off: deskew every melody_crops PNG in place using melody_cropper's tools.
+"""One-off: deskew every data/melody/crops PNG in place using melody_cropper's tools.
 
-For each `<name>.png` in melody_crops/ (skipping the `_orig` backups), copies the
-original to `<name>_orig.png` first, then estimates + corrects skew and overwrites
-the crop. Does NOT commit anything.
+For each `<name>.png` in data/melody/crops/ (skipping the `_orig` backups), copies
+the original to `<name>_orig.png` first, then estimates + corrects skew and
+overwrites the crop. Does NOT commit anything.
 
-Usage: python deskew_crops_all.py
+Usage: python pipelines/melody/deskew_crops_all.py
 """
 import glob
 import os
 import shutil
+import sys
 
 import cv2
 
-from crop_tunes import to_ink, write_png_1bit
-from melody_cropper import deskew, estimate_skew
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # repo root
+sys.path.insert(0, ROOT)
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-CROPS = os.path.join(ROOT, "melody_crops")
+from pipelines.chords.crop_tunes import to_ink, write_png_1bit
+from pipelines.melody.melody_cropper import deskew, estimate_skew
+
+CROPS = os.path.join(ROOT, "data", "melody", "crops")
 
 
 def process(src):

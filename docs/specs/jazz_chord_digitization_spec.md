@@ -20,7 +20,7 @@ internally inconsistent in its notation; this spec deliberately canonicalizes th
 ## 1. Pipeline overview
 
 ```
-INPUT   crops/*.png  +  manifest.csv         (produced upstream; not our concern)
+INPUT   data/chords/crops/*.png  +  manifest.csv         (produced upstream; not our concern)
    |
    v
 TRANSCRIBE   VLM, one call per crop   ->   one JSON file per tune
@@ -29,7 +29,7 @@ TRANSCRIBE   VLM, one call per crop   ->   one JSON file per tune
 VALIDATE     schema + self-check      ->   accept | retry | flag for review
    |
    v
-OUTPUT   tunes/*.json  +  run_report.json
+OUTPUT   data/chords/raw/*.json  +  run_report.json
 ```
 
 One **work unit = one cropped PNG → one JSON file.** Units are fully independent, which keeps the
@@ -44,7 +44,7 @@ see §4.3.)
 The upstream crop step delivers two things into a working directory:
 
 ### 2.1 The crops
-A directory `crops/` of per-tune PNGs. Each image is **one tune**, **full page width**, at the
+A directory `data/chords/crops/` of per-tune PNGs. Each image is **one tune**, **full page width**, at the
 scan's native resolution. The filename stem encodes the printed page number and the title slug,
 e.g. `341_ROCK_A_BYE_YOUR_BABY_WITH_A_DIXIE_MELODY.png`.
 
@@ -53,7 +53,7 @@ A `manifest.csv` with one row per crop. Relevant columns (others may be present 
 
 | Column | Use |
 |---|---|
-| `current_file` | The PNG filename inside `crops/`. **This is the work-unit key.** |
+| `current_file` | The PNG filename inside `data/chords/crops/`. **This is the work-unit key.** |
 | `page` | Printed page number (integer). Used for the JSON `page` field and naming. |
 | `title` | Canonical title (already cleaned). **This is the authoritative title** (see below). |
 
@@ -128,7 +128,7 @@ in slices; it is a convenience, not a requirement.
 The VLM may return invalid JSON or fail validation. For each unit, retry up to **R** times
 (default **3**) with a progressively stricter reminder appended to the prompt
 ("Return one bare JSON object only; no prose; valid JSON."). If still failing after R attempts,
-**do not abort the run** — write a stub `tunes/<stem>.error.json`
+**do not abort the run** — write a stub `data/chords/raw/<stem>.error.json`
 (`{ "current_file", "page", "title", "attempts", "last_error", "raw_excerpt" }`) and continue.
 
 ### 4.6 Error isolation & checkpointing (required)
@@ -271,15 +271,15 @@ emit `null` or `""`). The only constant-but-present field is `source`.
 ## 7. Output naming & layout
 
 * Output filename mirrors the input PNG stem with a `.json` extension:
-  `crops/341_ROCK_A_BYE_YOUR_BABY_WITH_A_DIXIE_MELODY.png` → `tunes/341_ROCK_A_BYE_YOUR_BABY_WITH_A_DIXIE_MELODY.json`.
+  `data/chords/crops/341_ROCK_A_BYE_YOUR_BABY_WITH_A_DIXIE_MELODY.png` → `data/chords/raw/341_ROCK_A_BYE_YOUR_BABY_WITH_A_DIXIE_MELODY.json`.
   This guarantees a 1:1 mapping, avoids slug recomputation, and inherits the upstream de-duplication
   (no collisions).
-* Error stubs: `tunes/<stem>.error.json` (§4.5).
+* Error stubs: `data/chords/raw/<stem>.error.json` (§4.5).
 
 ```
-crops/        341_ROCK_A_BYE_YOUR_BABY_WITH_A_DIXIE_MELODY.png …   (input)
+data/chords/crops/        341_ROCK_A_BYE_YOUR_BABY_WITH_A_DIXIE_MELODY.png …   (input)
 manifest.csv                                                       (input)
-tunes/        341_ROCK_A_BYE_YOUR_BABY_WITH_A_DIXIE_MELODY.json …  (output, one per tune)
+data/chords/raw/        341_ROCK_A_BYE_YOUR_BABY_WITH_A_DIXIE_MELODY.json …  (output, one per tune)
 run_state.jsonl                                                    (resume log)
 run_report.json                                                    (final summary)
 ```
@@ -585,7 +585,7 @@ Some tunes print no grid (e.g. they point to another tune's changes).
 
 Crop `341_RIVER_STAY_WAY_FROM_MY_DOOR.png` shows **River Stay Way from My Door**,
 `STANDARD / MEDIUM`, form `32 A A B A`. Expected output
-`tunes/341_RIVER_STAY_WAY_FROM_MY_DOOR.json` (sections abbreviated):
+`data/chords/raw/341_RIVER_STAY_WAY_FROM_MY_DOOR.json` (sections abbreviated):
 
 ```json
 {
@@ -721,7 +721,7 @@ default schema.** Do not emit `fingerprints` unless the run is explicitly config
 ## Appendix B — Suggested runner CLI (non-normative)
 
 ```
-transcribe.py  --crops crops/  --manifest manifest.csv  --out tunes/
+transcribe.py  --crops data/chords/crops/  --manifest manifest.csv  --out data/chords/raw/
                --model <vlm-id> --workers 1 --retries 3 --dilate 1
                --max-long-edge 1100 --max-output-tokens 1200
                [--page-range 7:120] [--delay 0] [--batch] [--debug]
@@ -731,7 +731,7 @@ transcribe.py  --crops crops/  --manifest manifest.csv  --out tunes/
   can stop and continue across sittings — no sharding needed.
 * Cost: `--max-long-edge` downscales the image before the call (§18.2); `--batch` uses the async
   API when available (§18.4); `--page-range` optionally limits a session.
-* Writes `tunes/*.json`, `run_state.jsonl`, and `run_report.json`.
+* Writes `data/chords/raw/*.json`, `run_state.jsonl`, and `run_report.json`.
 
 ---
 

@@ -4,9 +4,9 @@ melody_straightener.py  -  Stage 1: staff detection & per-system straightening
 ===============================================================================
 
 Stage 1 of the melody pipeline (one python file per stage; see
-Instructions/melody_digitizer_spec.md section 3). Input: per-tune crop PNGs
-from `melody_crops/` (stage 0 output). Output, per tune, under
-`melody_debug/<id>/`:
+docs/specs/melody_digitizer_spec.md section 3). Input: per-tune crop PNGs
+from `data/melody/crops/` (stage 0 output). Output, per tune, under
+`data/melody/debug/<id>/`:
 
   strip_NN.png    straightened strip of system NN (band +/- PAD source rows,
                   every pixel COLUMN shifted vertically so the staff centre
@@ -33,17 +33,19 @@ profile must sit within +/-2 px of target + k*gap (k in -2..2); systems that
 fail are flagged for model review in stage1.json.
 
 USAGE
-  python melody_straightener.py melody_crops/17_01_AINT_MISBEHAVIN.png --debug
-  python melody_straightener.py melody_crops --limit 30
-  python melody_straightener.py melody_crops/48*.png --out melody_debug
+  python pipelines/melody/melody_straightener.py data/melody/crops/17_01_AINT_MISBEHAVIN.png --debug
+  python pipelines/melody/melody_straightener.py data/melody/crops --limit 30
+  python pipelines/melody/melody_straightener.py data/melody/crops/48*.png --out data/melody/debug
 """
-import argparse, glob, json, os, time
+import argparse, glob, json, os, sys, time
 
 import numpy as np
 import cv2
 
-from crop_tunes import to_ink, _open, write_png_1bit
-from melody_cropper import write_png
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))  # repo root
+
+from pipelines.chords.crop_tunes import to_ink, _open, write_png_1bit
+from pipelines.melody.melody_cropper import write_png
 
 _START = time.time()
 
@@ -398,7 +400,7 @@ def draw_overlay(strip, target, gap, x0, x1):
 # ---------------------------------------------------------------------------
 def process_crop(path, out_root, debug=False):
     """Run stage 1 on one tune crop. Returns the stage1 record (also written
-    to melody_debug/<id>/stage1.json)."""
+    to data/melody/debug/<id>/stage1.json)."""
     tune_id = os.path.splitext(os.path.basename(path))[0]
     gray = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
     if gray is None:
@@ -449,8 +451,8 @@ def main():
     ap = argparse.ArgumentParser(
         description="Melody stage 1: staff detection & per-system straightening.")
     ap.add_argument("inputs", nargs="+",
-                    help="crop PNG(s), glob(s), or a directory (melody_crops)")
-    ap.add_argument("--out", default="melody_debug",
+                    help="crop PNG(s), glob(s), or a directory (data/melody/crops)")
+    ap.add_argument("--out", default="data/melody/debug",
                     help="output root; strips + stage1.json go to <out>/<id>/")
     ap.add_argument("--limit", type=int, default=0,
                     help="process at most N crops (0 = all)")
