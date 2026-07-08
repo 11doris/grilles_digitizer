@@ -1,0 +1,302 @@
+{
+  "composer": "Herman HUPFELD",
+  "year": "1931",
+  "style": "STANDARD",
+  "tempo": "SLOW",
+  "form": "32 A A B A'",
+  "time_signature": "4/4",
+  "title": "AS TIME GOES BY",
+  "page": 22,
+  "source": "Anthologie des grilles de jazz",
+  "same_chord_changes": "BALLADE (C.Parker, C.Hawkins)",
+  "notation_notes": {
+    "verse_note": "Header prints '12 VERSE'."
+  },
+  "recordings": [
+    "S.Grappelly 75- B.Doggett 54- F.Rich 31",
+    "B.Brookmeyer/B.Evans 59- F.Domino 57",
+    "T.Dorsey 50- B.Berigan 31- T.Glenn 59",
+    "E.Garner 54.65- B.Holiday 44- A.Ross 52",
+    "B.Taylor 55- J.Bushkin 55",
+    "T.Wilson 47.55"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 1, 9, 25",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Fm7",
+            "3": "Gm7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Abmaj7",
+            "3": "Bb7"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "Eb",
+            "3": "Fm7",
+            "4": "F#o7"
+          }
+        },
+        {
+          "bar": 4,
+          "beats": {
+            "1": "Gm7",
+            "3": "C7"
+          }
+        },
+        {
+          "bar": 5,
+          "beats": {
+            "1": "F7",
+            "3": "F#o7"
+          }
+        },
+        {
+          "bar": 6,
+          "beats": {
+            "1": "Gm7",
+            "2": "Cm7",
+            "3": "Fm7",
+            "4": "Bb7"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7b5",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7#5",
+          "3": "C9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm7",
+          "3": "Eo7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7b5",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb",
+          "3": "Abm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7b5",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F#o7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm7",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm7",
+          "3": "Eo7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7b5",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  }
+}

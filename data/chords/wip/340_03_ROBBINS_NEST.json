@@ -1,0 +1,232 @@
+{
+  "composer": "Sir Charles THOMPSON – Illinois JACQUET – Bob RUSSELL",
+  "year": "1947",
+  "style": "SWING",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "ROBBINS NEST",
+  "page": 340,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "A.Bricker 55.66",
+    "W.B.Clayton 47.59.64",
+    "H.Jacquet 47.59.66 61?",
+    "Jazz Crusaders 60?",
+    "W.Davis/W.Fitch",
+    "MC.Davis/W.F H.Jones 77",
+    "W.F.Flanagan/N.Jones 78",
+    "H.Garner 51"
+  ],
+  "notation_notes": {
+    "truncated": "Only 16 bars (sections A and A1) printed on page 340 for the head; the B and final A sections are reconstructed from the 32 A A B A form."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db"
+        }
+      }
+    ]
+  }
+}
