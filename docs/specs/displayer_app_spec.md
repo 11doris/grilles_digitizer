@@ -66,7 +66,7 @@ in**. This is a deliberate trade for the app working online without a server.
 ≈ 93 MB, melodies ≈ 477 MB — some melody crops are needlessly RGBA). Since the
 source material is a 1-bit scan (grays exist only as interpolation artifacts
 from deskew/resize), the canonical fix is **upstream**: the cropping pipelines
-(`crop_tunes.py` / `deskew_crops_all.py`, `melody_cropper.py` /
+(`crop_tunes.py` / `deskew_crops.py`, `melody_cropper.py` /
 `melody_straightener.py`) work in grayscale internally but save their final
 output as **full-resolution 1-bit optimized PNG**. That is visually identical
 and shrinks the corpus ~5× (melodies ≈ 79 MB, chords ≈ 40 MB, **~120 MB

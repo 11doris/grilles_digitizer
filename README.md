@@ -65,7 +65,7 @@ Details, options, and helper tools: [pipelines/chords/README.md](pipelines/chord
 | Stage | Command | Input → Output |
 |---|---|---|
 | 0 crop | `python pipelines/melody/melody_cropper.py sources/AGJ_Melody.pdf --pages 7..972 --melody-index sources/AGJ_Melody_Index.pdf --index sources/AGJ_index.pdf` | AGJ_Melody.pdf → `data/melody/crops/*.png` |
-| 0b deskew (one-off) | `python pipelines/melody/deskew_crops_all.py` | crops fixed in place |
+| 0b deskew (one-off) | `python pipelines/deskew_crops.py data/melody/crops` | crops fixed in place |
 | 1 straighten | `python pipelines/melody/melody_straightener.py data/melody/crops` | crops → `data/melody/debug/<id>/` |
 | 2–5 | *not yet implemented* — symbol extraction, bar assembly, VLM adjudication, validation (see [docs/specs/melody_digitizer_spec.md](docs/specs/melody_digitizer_spec.md)) | → `data/melody/wip/*.abc` → human review → `verified/` |
 | then | chords stages 4–5 pick up any `verified/*.abc` automatically | |
