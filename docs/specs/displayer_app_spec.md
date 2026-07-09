@@ -358,12 +358,17 @@ closes it. (The rendered chord grid is not a scan and has its own zoom, §6.5.)
   layout changes — switch toggles, resize, orientation), a JS fit pass shrinks
   the grid's base font size until header + grid fit the viewport height without
   scrolling, down to a floor of 8px (below that the page scrolls rather than
-  becoming unreadable). Extras (§9) may fall below the fold. The grid's width
-  cap is em-based (default 38em ≈ 646px at the default 17px font) so bar width
-  stays proportional to chord size; it is widened when a busy bar needs the room
-  (§6.4, up to 56em or the available width), and when even the full available
-  width isn't enough the font shrinks so the chords still fit (down to the 8px
-  floor).
+  becoming unreadable). Extras (§9) may fall below the fold. The chord font
+  scales with the panel width (`2.6cqw`) up to a **15px ceiling** so chords stay
+  a readable lead-sheet size and don't balloon on a wide screen (a sparse tune
+  needs no larger a font than a busy one to read, and the smaller grid fits the
+  page better). The grid fills its panel until that ceiling is hit, then stops
+  widening: its em-based width cap (38.5em, the width at which `2.6cqw` reaches
+  the ceiling, ≈ 577px) keeps bar width proportional to chord size and centers
+  the grid rather than spreading it across an ever-wider column. A busy bar may
+  still widen the grid (§6.4, up to 56em or the available width), and when even
+  the full available width isn't enough the font shrinks so the chords still fit
+  (down to the 8px floor).
 - **Grid zoom**: floating −/+ buttons (bottom right) scale the fitted grid
   size by a user factor (×1.15 steps, clamped 0.5–2.5, persisted in
   `localStorage` as `grilles.gridzoom`); zooming in past the fitted size makes

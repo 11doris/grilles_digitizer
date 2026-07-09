@@ -600,19 +600,24 @@ body.list-collapsed #gridZoom { left: 1rem; }
 /* ---------------------------------------------------------- chord grid */
 
 /* All grid dimensions are em-based so the JS fit pass can scale the whole grid
-   to the viewport height by adjusting this one font-size. By default the grid
-   fills the width available to its panel — which is itself about half the
-   container (beside the melody sheet, or on its own via the .panels:not(.dual)
-   rule) — so the chords are as large and readable as that space allows. Chords
-   never shrink to fit their slots, so fitGridWidth then shrinks the font only
-   if a busy bar's chords would still collide at the available width. */
+   to the viewport height by adjusting this one font-size. The font grows with
+   the panel width (2.6cqw) up to a 15px ceiling, so the chords stay a readable
+   lead-sheet size instead of ballooning on a wide screen — a sparse tune (one
+   chord per bar, e.g. Annie Laurie) needs no more than a busy one (Ask Me Now)
+   to read, and a smaller grid also fits the page better. The grid fills its
+   panel until the ceiling is hit, then stops widening: 38.5em is the width at
+   which 2.6cqw reaches the ceiling (1 / 0.026 ≈ 38.5em, independent of the px
+   value), so below the ceiling max-width never binds (the grid fills the panel)
+   and at/above it the grid caps there (~15px × 38.5em ≈ 577px), centered.
+   Chords never shrink to fit their slots, so fitGridWidth shrinks the font only
+   if a busy bar would still collide at the available width. */
 .grid {
-  max-width: 100%;
+  max-width: 38.5em;
   margin: 0 auto;
   padding-left: 1.4em;
   /* Container-relative (the .panel is an inline-size container): the grid
      shrinks when the chord panel shares the row with the melody panel. */
-  font-size: clamp(10px, 2.6cqw, 17px);
+  font-size: clamp(10px, 2.6cqw, 15px);
 }
 
 .section { margin-bottom: 0.0em; }
