@@ -648,7 +648,10 @@ body.list-collapsed #gridZoom { left: 1rem; }
   /* Just tall enough to enclose a chord box (2.1em) with a little air above and
      below; the barlines hug the row instead of towering over it. */
   min-height: 2.5em;
-  display: grid;
+  /* Flex row of content-width chords separated by beat-weighted spacers (see
+     fillBar): roomy bars space chords out by beat; crowded bars let the spacers
+     collapse to a minimum gap so the chords pack close and stay big. */
+  display: flex;
   align-items: center;
   border-left: 2px solid var(--line);
   padding: 0.15em 0.3em 0.15em 0.4em;
@@ -662,6 +665,18 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .slot {
   min-width: 0;
   overflow: visible;
+  /* Content width, never compressed — a crowded chord overflows into the
+     spacer beside it rather than squashing. */
+  flex: 0 0 auto;
+}
+
+/* Elastic gap between chords, one after each chord, its grow weight set to the
+   chord's held duration in beats (see fillBar). It absorbs the bar's leftover
+   room so chords sit near their beat, and collapses to this minimum gap when
+   the bar is crowded. The minimum must match MIN_BEAT_GAP_EM in app.js. */
+.beat-spacer {
+  flex: 1 0 0;
+  min-width: 0.5em;
 }
 
 /* -------------------------------------------------------- chord symbols */

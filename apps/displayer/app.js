@@ -430,8 +430,13 @@
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
+  /* A bar is a flex row: each chord (content width) is followed by an elastic
+     spacer whose grow weight is the chord's held duration in beats. When the bar
+     has room the spacers spread the chords out roughly by beat; when it's
+     crowded they collapse to the CSS minimum gap so the chords pack close and
+     the grid font can stay large (spec §6.4). fitGridWidth measures the crowding
+     per bar — the sum of the chords — not per beat-slot. */
   function fillBar(cell, barObj, beats) {
-    cell.style.gridTemplateColumns = `repeat(${beats}, 1fr)`;
     const entries = Object.entries(barObj.beats || {})
       .map(([k, v]) => [parseInt(k, 10), v])
       .filter(([k]) => Number.isFinite(k) && k >= 1 && k <= beats)
@@ -439,9 +444,11 @@
     entries.forEach(([beat, chord], idx) => {
       const next = idx + 1 < entries.length ? entries[idx + 1][0] : beats + 1;
       const slot = el("div", "slot");
-      slot.style.gridColumn = `${beat} / ${next}`;
       slot.innerHTML = renderChordHTML(chord);
       cell.appendChild(slot);
+      const spacer = el("div", "beat-spacer");
+      spacer.style.flexGrow = String(Math.max(1, next - beat));
+      cell.appendChild(spacer);
     });
   }
 
@@ -1268,7 +1275,7 @@
    * The overflow ratio is font-independent (chord and slot both scale with the
    * font), so both levers are computed from one measurement pass. */
   const MAX_GRID_WIDTH_EM = 56; // aesthetic cap: past this, shrink the font instead
-  const SLOT_FILL = 0.9; // leave ~10% of each slot as breathing room between chords
+  const MIN_BEAT_GAP_EM = 0.5; // minimum gap kept between packed chords; matches .beat-spacer
 
   function fitGridWidth() {
     const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid");
@@ -1282,14 +1289,23 @@
     grid.style.maxWidth = ""; // back to the CSS default (38em), the starting width
     const curPx = grid.getBoundingClientRect().width;
 
+    // Crowding is measured per bar, not per beat-slot: a bar overflows only when
+    // its chords together (plus a minimum gap after each) can't fit its width, so
+    // a wide chord borrows the room a narrow neighbour leaves instead of shrinking
+    // the whole grid. The ratio is font-independent (chords and gap both scale
+    // with the font), so one measurement pass drives both levers below.
+    const gapPx = MIN_BEAT_GAP_EM * parseFloat(getComputedStyle(grid).fontSize);
     let ratio = 1;
-    grid.querySelectorAll(".slot").forEach((slot) => {
-      const chord = slot.firstElementChild;
-      if (!chord) return;
-      const sw = slot.getBoundingClientRect().width * SLOT_FILL;
-      if (sw <= 0) return;
-      const cw = chord.getBoundingClientRect().width;
-      if (cw > sw) ratio = Math.max(ratio, cw / sw);
+    grid.querySelectorAll(".bar").forEach((bar) => {
+      const slots = bar.querySelectorAll(".slot");
+      if (!slots.length) return;
+      const cs = getComputedStyle(bar);
+      const inner = bar.getBoundingClientRect().width -
+        (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
+      if (inner <= 0) return;
+      let need = gapPx * slots.length; // one minimum gap after each chord
+      slots.forEach((slot) => { need += slot.getBoundingClientRect().width; });
+      if (need > inner) ratio = Math.max(ratio, need / inner);
     });
     if (ratio <= 1.001) return;
 
