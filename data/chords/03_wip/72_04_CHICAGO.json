@@ -1,0 +1,334 @@
+{
+  "composer": "Fred FISHER",
+  "year": "1922",
+  "style": "TRADITIONAL STANDARD",
+  "tempo": "MEDIUM",
+  "form": "16 A A | 32 A B A' C",
+  "time_signature": "4/4",
+  "title": "CHICAGO",
+  "page": 72,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 A A' for the verse strain.",
+    "pattern": "Below the grid: 'PATTER : 12 Bars'."
+  },
+  "recordings": [
+    "Jon.Jones 58- B.Goodman 37.47",
+    "S.Oliver 58- C.Basie/T.Bennet 58",
+    "O.Peterson 60- N.Donello 35",
+    "Mitchell's Jazz King 22- E.Hines 48",
+    "M.Spanier 42- B.Coleman 58- E.Condon 58-",
+    "D.Ellington 33- Georgians 22- C.Hawkins 35",
+    "Original Memphis Five 22- Quintette HCF 37"
+  ],
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "verse_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb",
+          "3": "Bbm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F",
+          "4": "Abo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  }
+}

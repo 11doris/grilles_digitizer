@@ -1,0 +1,129 @@
+{
+  "composer": "TRADITIONAL",
+  "style": "NEW ORLEANS REVIVAL",
+  "tempo": "MEDIUM FAST",
+  "form": "16 A B | 16 A B",
+  "time_signature": "4/4",
+  "title": "WHEN THE SAINTS GO MARCHING IN",
+  "page": 457,
+  "source": "Anthologie des grilles de jazz",
+  "same_chord_changes": "\"Mama Don't Allow\", \"You Rascal You\", \"Walk Through The Streets Of The City\".",
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'.",
+    "minor_version": "Second grid is the tune played in minor: 'Sometimes played in minor, like this :'."
+  },
+  "recordings": [
+    "L.Armstrong 39- S.Bechet 40.54.55.59- B.Coleman 52.71",
+    "H.Bucher 55- W.DePetris 53- E.Hines 73- C.Hopkins 51.54",
+    "M.Hinton 54- H.Passim 53- P.Barbarin 53- K.Ory 54",
+    "L.Armstrong 38.46.47.48.51.55.56.58.65.66.60",
+    "M.Barker 54.56.57.61- S.Becera 48- J.J.Johnson 60",
+    "The Lion Smith 53- Ch.Jackson 53- R.Stewart 53",
+    "...ork Johnson 44.45.65- H.Mann 58- St.Hampton 72",
+    "...b. Ward"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  }
+}

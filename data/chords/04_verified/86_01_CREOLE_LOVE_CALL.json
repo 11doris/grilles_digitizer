@@ -1,105 +1,102 @@
 {
-  "composer": "Charlie PARKER",
-  "year": "1951",
-  "style": "BE BOP (INSTRUMENTAL)",
-  "tempo": "MEDIUM",
+  "composer": "Duke ELLINGTON – Bubber MILEY – Rudy JACKSON",
+  "year": "1927",
+  "style": "ELLINGTONIA",
+  "tempo": "SLOW",
   "form": "12 BLUES",
   "time_signature": "4/4",
-  "title": "AU PRIVAVE",
-  "page": 23,
+  "title": "CREOLE LOVE CALL",
+  "page": 86,
   "source": "Anthologie des grilles de jazz",
   "recordings": [
-    ".Woods 57- C.Parker 51",
-    "Xpressens Ellitor-",
-    "er 57- C.Adderley 60",
-    ".H.O.P./I.Jones 76",
-    ".Besso 62- J.Smith 58",
-    ".Jordan 60- H.Mann 61",
-    ".Mobley 56"
+    "C.Hopkins 34",
+    "D.Ellington 27.28.29.31.44.46.66.67",
+    "Dry Eb- R.Kirk",
+    "L.Hardy 40",
+    "Adler 38?",
+    "Barber 61",
+    "F.Hodges 63",
+    "D.Ellington 56-",
+    "Calloway 31",
+    "Oliver 73"
   ],
   "notation_notes": {
-    "year_uncertain": "Header prints 'Charlie PARKER 1951 ?'.",
-    "form_note": "Header prints '12 BLUES'."
+    "header_note": "Second row labelled '2 BLUES in Bb (Type A) (Choruses)'. First row marked '1'."
   },
   "sections": {
     "A": [
       {
         "bar": 1,
         "beats": {
-          "1": "F",
-          "3": "D(b9)"
+          "1": "Bb"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "Gm7",
-          "3": "C7"
+          "1": "Bb"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "F"
+          "1": "Bb7"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Cm7",
-          "3": "F7#5"
+          "1": "Bb7"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "Bb7"
+          "1": "Eb"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "Bb7"
+          "1": "Eb"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "Fmaj7",
-          "3": "Gm7"
+          "1": "Eb"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "Am7",
-          "3": "D7"
+          "1": "Bb"
         }
       },
       {
         "bar": 9,
         "beats": {
-          "1": "Gm7"
+          "1": "F7"
         }
       },
       {
         "bar": 10,
         "beats": {
-          "1": "C7"
+          "1": "Cm7",
+          "3": "F7"
         }
       },
       {
         "bar": 11,
         "beats": {
-          "1": "F",
-          "3": "D(b9)"
+          "1": "Bb",
+          "3": "Eb"
         }
       },
       {
         "bar": 12,
         "beats": {
-          "1": "Gm7",
-          "3": "C7"
+          "1": "Bb"
         }
       }
     ]
