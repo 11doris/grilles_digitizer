@@ -87,6 +87,7 @@ const CHORD_CORE_RE = new RegExp(
   '^(?<root>' + CHORD_ROOT + ')' +
   '(?<stem>' + CHORD_STEMS.slice().sort((a, b) => b.length - a.length).join('|') + ')' +
   '(?<pext>\\((?:6|7|9|11|13)\\))?' +      // parenthesised superscript ext, e.g. 7(13)
+  '(?<altw>alt)?' +                        // altered dominant, e.g. F7alt (needs a 7th/extension)
   '(?<balts>' + CHORD_ALT + '*)' +         // bare alterations (need a 7th/extension)
   '(?<palts>\\(' + CHORD_ALT + '+\\))?' +  // parenthesised alterations (bare triad)
   '(?<slash>/' + CHORD_ROOT + ')?' +
@@ -126,7 +127,7 @@ function chordParseHints(s) {
   if (!hints.length)
     hints.push('Not a recognised chord. Expected: ROOT(A–G, #/b) + quality (m, maj7, m7b5, o7, '
       + 'm(maj7), sus4…) + extension (6, 7, 9, 11, 13, 6/9) + alterations (b5 #5 b9 #9 #11 b13) '
-      + '+ optional /bass and trailing ? — e.g. Bb7, Fm7b5, C9b5, F(#5), D(b9), Fm7/Bb.');
+      + 'or alt + optional /bass and trailing ? — e.g. Bb7, Fm7b5, C9b5, F7alt, F(#5), D(b9), Fm7/Bb.');
   return hints;
 }
 
@@ -135,8 +136,14 @@ function chordCoreErrors(s) {
   const m = CHORD_CORE_RE.exec(s);
   if (!m) return chordParseHints(s);
   const errs = [];
-  const { root, stem, pext, balts, palts } = m.groups;
+  const { root, stem, pext, altw, balts, palts } = m.groups;
   const hasExt = CHORD_HAS_EXT.test(stem) || !!pext;
+  if (altw) {
+    if (!hasExt)
+      errs.push(`"alt" needs a 7th/extension — e.g. ${root}7alt.`);
+    if (balts || palts)
+      errs.push('"alt" cannot be combined with explicit alterations — use one or the other.');
+  }
   if (balts && palts)
     errs.push('Mixes bare and parenthesised alterations — use one style.');
   if (balts && !hasExt)

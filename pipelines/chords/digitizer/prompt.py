@@ -221,6 +221,12 @@ extension the box does not print, even when one is theoretically implied by the
 alteration: a bare root carrying only a b9 is F(b9), NOT F7b9; a bare root with a #5 is
 F(#5), NOT F7#5. Transcribe the quality actually written, not the chord it suggests.
 
+ALTERED DOMINANT ("alt"): a small printed "alt" beside a chord that has a 7th or
+extension number means the altered chord — append the literal suffix alt, no dot, no
+parentheses: an F7 marked "alt" is F7alt. Do NOT expand it into explicit alterations
+(b9, #9, ...) and do NOT drop it into a notation_notes entry instead of the chord —
+the alt is part of the chord symbol.
+
 READING SUPERSCRIPT ACCIDENTALS (the (b9) traps — read these carefully):
 Alterations and extensions are hand-drawn as small SUPERSCRIPTS to the upper-right of
 the chord root (e.g. a bare "A" with a tiny "b9" above-right of it). A hand-drawn FLAT
