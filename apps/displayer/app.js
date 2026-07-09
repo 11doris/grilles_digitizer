@@ -630,7 +630,10 @@
         cap.textContent = variant.applies_to;
         v.appendChild(cap);
       }
-      const mini = el("div", "mini-grid");
+      // Same markup/classes as the main grid so it inherits its styling; the
+      // fit pass (syncVariantGrids) then mirrors the main grid's fitted font
+      // size and pixel width onto it so the bars line up column-for-column.
+      const mini = el("div", "grid variant-grid");
       mini.appendChild(renderGrid(variant.bars || [], beats, { double: false }));
       v.appendChild(mini);
       wrap.appendChild(v);
@@ -1225,7 +1228,7 @@
   const MIN_GRID_FONT = 8; // px — below this, scrolling beats unreadable chords
 
   function fitGrid() {
-    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid");
+    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid:not(.variant-grid)");
     if (!grid) return;
     /* Measure from the top, but give the user their scroll position back —
        re-fits triggered by panel toggles must not jump the page. */
@@ -1278,7 +1281,7 @@
   const MIN_BEAT_GAP_EM = 0.1; // minimum gap kept between packed chords; matches .beat-spacer
 
   function fitGridWidth() {
-    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid");
+    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid:not(.variant-grid)");
     if (!grid) return;
     grid.style.maxWidth = "";
 
@@ -1323,9 +1326,31 @@
     grid.style.fontSize = next.toFixed(2) + "px";
   }
 
+  /* Variant grids mirror the main grid exactly — the same fitted font size and
+     the same centred pixel width — so every variant barline lines up with the
+     main grid's columns above it (spec §6). Runs after the main grid is fitted. */
+  function syncVariantGrids() {
+    const panel = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan)");
+    if (!panel) return;
+    const main = panel.querySelector(".grid:not(.variant-grid)");
+    if (!main) return;
+    const fontPx = getComputedStyle(main).fontSize;
+    const widthPx = main.getBoundingClientRect().width.toFixed(1) + "px";
+    panel.querySelectorAll(".variant-grid").forEach((g) => {
+      g.style.fontSize = fontPx;
+      g.style.maxWidth = widthPx;
+    });
+    // Keep the "Variant(s)" heading and per-variant captions the same width and
+    // centring as the grid, so they sit flush above the aligned bars.
+    panel.querySelectorAll(".variants-title, .variant-caption").forEach((n) => {
+      n.style.maxWidth = widthPx;
+    });
+  }
+
   function fitAll() {
     fitGrid();
     fitGridWidth();
+    syncVariantGrids();
   }
 
   let resizeTimer = null;
