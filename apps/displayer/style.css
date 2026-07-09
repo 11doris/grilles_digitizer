@@ -654,7 +654,9 @@ body.list-collapsed #gridZoom { left: 1rem; }
   display: flex;
   align-items: center;
   border-left: 2px solid var(--line);
-  padding: 0.15em 0.3em 0.15em 0.4em;
+  /* Tight left/right insets so the first chord hugs the barline and the last
+     chord sits close to the next one (top/bottom keep the box's breathing air). */
+  padding: 0.15em 0.15em 0.15em 0.2em;
 }
 
 .bar.rowlast { border-right: 2px solid var(--line); }
