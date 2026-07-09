@@ -113,8 +113,22 @@
     return { main, stack: trailing.concat(stack) };
   }
 
-  /* Render a chord token as an HTML string. Unparseable tokens render
-   * verbatim (safety net — verified files pass the syntax checker). */
+  /* Escape a raw string, then enlarge every flat glyph — the ♭ character runs
+   * noticeably smaller than ♯ in the fallback music font, so it gets its own
+   * span the CSS bumps up (spec §7.2). */
+  function withFlats(text) {
+    return escapeHtml(text).split(FLAT).join(`<span class="fl">${FLAT}</span>`);
+  }
+
+  /*
+   * Render a chord token as an HTML string, laid out as a fixed box grid
+   * (Figure D.3): a large root letter on the left, a middle column stacking the
+   * root accidental (top) over the core quality (bottom), and a right column
+   * holding up to two alterations (alt-up / alt-down). Every box sits at a fixed
+   * position so the root shares one ground line across chords regardless of
+   * accidental or tensions (e.g. B7♯11 and B♭7♯11 align). Unparseable tokens
+   * render verbatim (safety net — verified files pass the syntax checker).
+   */
   function renderChordHTML(raw) {
     const c = parseChord(raw);
     if (!c) {
@@ -129,30 +143,29 @@
       return `<span class="${cls}">${open}<span class="nc">N.C.</span>${close}</span>`;
     }
 
-    // The accidental (top) and quality (bottom) share a column to the right of
-    // the letter, so the quality sits directly below the sharp/flat instead of
-    // trailing after it (E♭ø7, A♭-7) — keeping the chord a letter-width wide.
-    let html = `<span class="root">${c.letter}</span>`;
-    let tail = "";
-    if (c.acc) tail += `<span class="acc">${displayAccidental(c.acc)}</span>`;
+    let main = "";
+    let stack = [];
     if (c.quality) {
-      const { main, stack } = splitQuality(displayQuality(c.quality));
-      let q = "";
-      if (main) q += `<span class="qual-main">${escapeHtml(main)}</span>`;
-      if (stack.length) {
-        q += '<span class="qual-stack">' +
-          stack.map((s) => `<span>${escapeHtml(s)}</span>`).join("") +
-          "</span>";
-      }
-      tail += `<span class="qual">${q}</span>`;
-    } else if (c.acc) {
-      // Bare accidental triad (C♯, A♭): reserve the lower row so the
-      // accidental floats up as a superscript.
-      tail += '<span class="qual qual-empty"></span>';
+      ({ main, stack } = splitQuality(displayQuality(c.quality)));
     }
-    if (tail) html += `<span class="tail">${tail}</span>`;
+
+    // The box holds the root + its accidental/quality/alteration grid; the
+    // parentheses and bass note sit outside it as flex siblings.
+    let box = `<span class="root">${escapeHtml(c.letter)}</span>`;
+    // Middle column: root accidental (top box) over the core quality (bottom).
+    if (c.acc) {
+      const kind = c.acc === "b" ? "flat" : "sharp";
+      box += `<span class="acc ${kind}">${displayAccidental(c.acc)}</span>`;
+    }
+    if (main) box += `<span class="qual">${withFlats(main)}</span>`;
+    // Right column: alterations, lone one in the upper box, a pair straddling.
+    if (stack.length) {
+      box += `<span class="alt-up">${withFlats(stack[0])}</span>`;
+      if (stack[1]) box += `<span class="alt-down">${withFlats(stack[1])}</span>`;
+    }
+    let html = `<span class="box">${box}</span>`;
     if (c.bass) {
-      html += `<span class="bass">/${c.bass.letter}${displayAccidental(c.bass.acc)}</span>`;
+      html += `<span class="bass">${withFlats("/" + c.bass.letter + displayAccidental(c.bass.acc))}</span>`;
     }
     return `<span class="${cls}">${open}${html}${close}</span>`;
   }

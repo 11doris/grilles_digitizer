@@ -627,9 +627,9 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
 .bar {
   min-width: 0;
-  /* Just tall enough to enclose a chord (root + stacked accidental/tensions);
-     the barlines hug the row instead of towering over it. */
-  min-height: 2.9em;
+  /* Just tall enough to enclose a chord box (2.1em) with a little air above and
+     below; the barlines hug the row instead of towering over it. */
+  min-height: 2.5em;
   display: grid;
   align-items: center;
   border-left: 2px solid var(--line);
@@ -648,72 +648,93 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
 /* -------------------------------------------------------- chord symbols */
 
+/* The chord is a flex row: an optional "(", the box grid, an optional bass note,
+   an optional ")". */
 .chord {
   display: inline-flex;
-  align-items: flex-end;
+  align-items: center;
   font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
-  line-height: 0.9;
+  line-height: 1;
   white-space: nowrap;
 }
 
-.chord .root {
-  font-size: 2.1em;
-  font-weight: 400;
-}
-
-/* Root accidental (top) + quality (bottom) stack in a narrow column right of
-   the letter, so the quality sits directly below the sharp/flat (E♭ø7, A♭-7)
-   rather than after it — the whole chord stays about a letter-width wide. */
-.chord .tail {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  line-height: 0.82;
-  margin-left: 0.06em;
-}
-
-.chord .acc {
-  font-size: 1.1em;
-  line-height: 0.8;
-  margin-bottom: -0.05em;
-}
-
-.chord .qual {
-  font-size: 1.25em;
-  display: inline-flex;
+/* Fixed box grid (Figure D.3): a full-height root letter on the left, then a
+   middle column (accidental over core quality) and a right column (alt-up over
+   alt-down). The two rows are a fixed height in em, so the root always spans the
+   same box and every chord shares one ground line — B7♯11 and B♭7♯11 line up
+   whether or not there's an accidental. Anything overspilling a box (an enlarged
+   flat, a tall alteration) overflows visibly without nudging the layout. */
+.chord .box {
+  display: inline-grid;
+  grid-template-columns: auto auto auto; /* root | middle | alts */
+  grid-template-rows: 1.05em 1.05em;
   align-items: center;
 }
 
-.chord .qual-empty { min-height: 0.72em; } /* holds the lower row for bare accidentals */
-
-/* Tensions/alterations stack vertically (Figure D.3): up to two additions sit
-   above each other in a narrow column, so extended chords like B♭7♯9♯5 or
-   A♭7(13) stay as narrow as a plain triad instead of spreading across the bar.
-   The column reserves two rows (alt-up / alt-down) and is centred against the
-   core quality, so a lone alteration lands in the upper box (superscript) while
-   a pair straddles the core. */
-.chord .qual-stack {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  min-height: 2.1em;
-  font-size: 0.62em;
-  line-height: 1.04;
-  margin-left: 0.06em;
+.chord .root {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: center;
+  font-size: 2.1em;
+  line-height: 0.72;
+  font-weight: 400;
 }
 
+/* Middle column, top box: root accidental as a superscript. */
+.chord .acc {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  justify-self: start;
+  margin-left: 0.06em;
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+/* The flat glyph renders small in the fallback font — enlarge it so ♭ reads at
+   the same weight as ♯ (both as a root accidental and inside qualities). */
+.chord .acc.flat { font-size: 1.5em; line-height: 0.75; }
+.chord .fl { font-size: 1.28em; line-height: 0.7; }
+
+/* Middle column, bottom box: the core quality (7, -7, Δ7, ø7 …). */
+.chord .qual {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  justify-self: start;
+  margin-left: 0.06em;
+  font-size: 1.2em;
+  line-height: 0.85;
+}
+
+/* Right column: up to two alterations. A lone one sits in the upper box
+   (superscript); a pair straddles the core quality (Figure D.3). Extended
+   chords like B♭7♯9♯5 or A♭7(13) stay about a letter-width wide. */
+.chord .alt-up,
+.chord .alt-down {
+  grid-column: 3;
+  justify-self: start;
+  margin-left: 0.04em;
+  font-size: 0.72em;
+  line-height: 0.95;
+}
+
+.chord .alt-up { grid-row: 1; align-self: end; }
+.chord .alt-down { grid-row: 2; align-self: start; }
+
+/* Bass note sits below-right of the box, after a short slash (Aø7/E♭). */
 .chord .bass {
-  font-size: 0.95em;
   align-self: flex-end;
-  transform: translateY(0.45em);
+  transform: translateY(0.3em);
   margin-left: 0.08em;
+  font-size: 0.95em;
+  line-height: 1;
 }
 
 .chord .paren {
   font-size: 1.6em;
   font-weight: 400;
-  align-self: center;
   opacity: 0.8;
 }
 
@@ -724,7 +745,6 @@ body.list-collapsed #gridZoom { left: 1rem; }
   font-size: 1.1em;
   font-variant: small-caps;
   color: var(--muted);
-  padding-bottom: 0.2em;
 }
 
 .chord-raw {

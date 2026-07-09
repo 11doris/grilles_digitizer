@@ -341,7 +341,7 @@ closes it. (The rendered chord grid is not a scan and has its own zoom, §6.5.)
 ### 6.4 Beats within a bar
 - The numerator of `time_signature` gives the beats per bar (4 for 4/4). Each bar is internally a grid of that many equal beat slots.
 - Each chord in `beats` is placed left-aligned in its beat slot (beat `"1"` → slot 1, `"3"` → slot 3). Empty slots stay empty — a chord implicitly sustains until the next one, exactly like the printed grille (e.g. a bar with beats 1 and 3 shows two chords, at the left edge and the middle of the bar).
-- Chords never wrap to a second line and never shrink individually — every chord renders at the grid's single font size. If the busiest bar's chords would overflow their slots, the whole grid **widens** instead (a JS pass scales the em-based `max-width` by the worst overflow ratio; see §6.5).
+- Chords never wrap to a second line and never shrink individually — every chord renders at the grid's single font size. If the busiest bar's chords would overflow their slots, a JS pass first **widens** the grid to give each slot more room; when there's no width left to give (a narrow phone, or the chords panel sharing the row with melody) it pins the grid to the available width and **shrinks the font** instead, so the chords fit the now-fixed-width slots (see §6.5).
 
 ### 6.5 Responsive behavior
 - The chord panel measures the width **actually available to it** — full content
@@ -356,7 +356,9 @@ closes it. (The rendered chord grid is not a scan and has its own zoom, §6.5.)
   becoming unreadable). Extras (§9) may fall below the fold. The grid's width
   cap is em-based (default 38em ≈ 646px at the default 17px font) so bar width
   stays proportional to chord size; it is widened when a busy bar needs the room
-  (§6.4) and clamped to the panel's own width when side by side.
+  (§6.4, up to 56em or the available width), and when even the full available
+  width isn't enough the font shrinks so the chords still fit (down to the 8px
+  floor).
 - **Grid zoom**: floating −/+ buttons (bottom right) scale the fitted grid
   size by a user factor (×1.15 steps, clamped 0.5–2.5, persisted in
   `localStorage` as `grilles.gridzoom`); zooming in past the fitted size makes
@@ -400,9 +402,12 @@ The root's own accidental also renders as `♯`/`♭`.
 
 ### 7.3 Visual style (matching the screenshot)
 
-- **Root letter**: large (~2.1em relative to body), regular weight (not bold), condensed sans (`'Saira Extra Condensed', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif`).
-- **Root accidental + quality** share a narrow column to the right of the letter: the sharp/flat sits on top (superscript) and the quality directly **below** it, so the chord stays about a letter-width wide (`E♭ø7`, `A♭-7`). A bare accidental triad (`C♯`) keeps the accidental raised.
-- **Quality**: ~45% of root size. Minor renders as `-` (not `m`); `maj`→`Δ`, `m7b5`→`ø7`. Tensions/alterations stack vertically in up to two boxes (alt-up / alt-down, per Figure D.3): a lone alteration sits in the upper box, a pair straddles the core — so `B♭7♯9♯5`, `A♭7(13)`, `(♯5♯9)` stay narrow instead of spreading across the bar.
+- **Box grid** (Figure D.3): the symbol is a fixed grid — a full-height root letter on the left, then a middle column and a right column, each split into a top and bottom box of fixed em height. Because the boxes never move, the root shares one ground line across chords whether or not there's an accidental or tension (`B7♯11` and `B♭7♯11` line up).
+- **Root letter**: large (~2.1em relative to body), regular weight (not bold), condensed sans (`'Saira Extra Condensed', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif`), spanning both rows.
+- **Middle column**: the root accidental sits in the top box (superscript) directly over the core quality in the bottom box, so the chord stays about a letter-width wide (`E♭ø7`, `A♭-7`). A bare accidental triad (`C♯`) leaves the bottom box empty.
+- **Quality** (core): ~45% of root size. Minor renders as `-` (not `m`); `maj`→`Δ`, `m7b5`→`ø7`.
+- **Right column** — tensions/alterations in up to two boxes (alt-up / alt-down): a lone alteration sits in the upper box, a pair straddles the core — so `B♭7♯9♯5`, `A♭7(13)`, `(♯5♯9)` stay narrow instead of spreading across the bar.
+- **Flat glyph**: the `♭` runs small in the fallback music font, so it's enlarged (both as a root accidental and inside qualities/alterations) to read at the same weight as `♯`.
 - **Bass note** (`/Eb`): small, placed below-right of the chord after a short slash, like `Aø7/E♭` in the screenshot.
 - **Optional chords** `(…)`: whole symbol wrapped in thin parentheses at reduced size and slightly muted color.
 - `N.C.`: small caps, muted.

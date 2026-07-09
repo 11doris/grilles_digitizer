@@ -1215,6 +1215,7 @@
        re-fits triggered by panel toggles must not jump the page. */
     const prevScroll = viewEl.scrollTop;
     grid.style.fontSize = "";
+    grid.style.maxWidth = ""; // drop any width pin from a previous width-fit pass
     viewEl.scrollTop = 0;
     /* Fit above the view's bottom padding, which clears the zoom buttons. */
     const padBottom = Math.max(10, parseFloat(getComputedStyle(viewEl).paddingBottom) || 0);
@@ -1248,30 +1249,53 @@
   zoomInBtn.addEventListener("click", () => setGridZoom(state.gridZoom * 1.15));
   zoomOutBtn.addEventListener("click", () => setGridZoom(state.gridZoom / 1.15));
 
-  /* Chords never shrink to fit their slots — every chord renders at the grid's
-   * single font size. When the busiest bar's chords would collide, widen the
-   * whole grid instead (spec §6.4). The overflow ratio is font-independent
-   * (chord and slot both scale with the grid font), so scaling the em-based
-   * max-width by the worst ratio clears every slot in a single pass. */
-  const BASE_GRID_WIDTH_EM = 38; // keep in sync with .grid max-width in style.css
-  const MAX_GRID_WIDTH_EM = 90; // safety cap so a pathological bar can't run away
+  /* Chords never shrink relative to their slots by their own doing — every chord
+   * renders at the grid's single font size. When the busiest bar's chords would
+   * collide (spec §6.4) there are two levers, applied in order:
+   *   1. Widen the grid, so each slot gets more room (works on wide screens).
+   *   2. When there's no width left to give — a narrow phone or the chords panel
+   *      sharing the row with the melody — pin the grid to the available width
+   *      and shrink the font instead, so the chords fit the now-fixed-px slots.
+   * The overflow ratio is font-independent (chord and slot both scale with the
+   * font), so both levers are computed from one measurement pass. */
+  const MAX_GRID_WIDTH_EM = 56; // aesthetic cap: past this, shrink the font instead
+  const SLOT_FILL = 0.9; // leave ~10% of each slot as breathing room between chords
 
   function fitGridWidth() {
     const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid");
     if (!grid) return;
     grid.style.maxWidth = "";
+
+    // The width the grid may occupy if unconstrained = its container's content
+    // box (grid is a block that fills its parent up to max-width).
+    grid.style.maxWidth = "none";
+    const availPx = grid.getBoundingClientRect().width;
+    grid.style.maxWidth = ""; // back to the CSS default (38em), the starting width
+    const curPx = grid.getBoundingClientRect().width;
+
     let ratio = 1;
     grid.querySelectorAll(".slot").forEach((slot) => {
       const chord = slot.firstElementChild;
       if (!chord) return;
-      const sw = slot.getBoundingClientRect().width - 2;
+      const sw = slot.getBoundingClientRect().width * SLOT_FILL;
       if (sw <= 0) return;
       const cw = chord.getBoundingClientRect().width;
       if (cw > sw) ratio = Math.max(ratio, cw / sw);
     });
     if (ratio <= 1.001) return;
-    grid.style.maxWidth =
-      Math.min(MAX_GRID_WIDTH_EM, BASE_GRID_WIDTH_EM * ratio).toFixed(2) + "em";
+
+    const fontPx = parseFloat(getComputedStyle(grid).fontSize);
+    const neededPx = curPx * ratio; // grid width at which chords would just fit
+    const widenCap = Math.min(availPx, MAX_GRID_WIDTH_EM * fontPx);
+    if (neededPx <= widenCap) {
+      grid.style.maxWidth = neededPx.toFixed(1) + "px"; // lever 1: widen only
+      return;
+    }
+    // Lever 2: take all the room there is, then shrink the font by what's left.
+    grid.style.maxWidth = widenCap.toFixed(1) + "px";
+    const residual = neededPx / widenCap;
+    const next = Math.max(MIN_GRID_FONT, fontPx / residual);
+    grid.style.fontSize = next.toFixed(2) + "px";
   }
 
   function fitAll() {
