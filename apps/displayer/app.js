@@ -1006,6 +1006,16 @@
     else closeMenu();
   });
 
+  /* Top-bar "＋": add the currently displayed tune to a playlist (§11.2). The
+     popover drops from the button on desktop, becomes a bottom sheet on phones. */
+  addPlBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // keep the outside-click closer from firing
+    const t = tuneById(state.currentId);
+    if (!t) return;
+    if (plPopover.hidden) openPopover(addPlBtn, t);
+    else closePopover();
+  });
+
   /* --- Export / import (§11.5). */
 
   function exportPlaylists() {

@@ -99,6 +99,7 @@ body {
 #themeToggle,
 #listToggle,
 #playlistBtn,
+#addPlBtn,
 #playlistClear {
   background: none;
   border: 1px solid var(--border);
@@ -121,6 +122,9 @@ body {
 
 #playlistBtn.pl-active { border-color: var(--accent); color: var(--accent); }
 #playlistClear { font-size: 0.88rem; }
+
+/* Compact "＋ Add to playlist" in the top bar (icon-only, like ✕/☀). */
+#addPlBtn { font-size: 1.1rem; line-height: 1; padding: 0.2rem 0.55rem; }
 
 /* ☰ works everywhere: drawer on phones, sidebar collapse on desktop. */
 body.list-collapsed #tuneList { display: none; }
@@ -750,7 +754,6 @@ body.list-collapsed #gridZoom { left: 1rem; }
   margin-top: 0.55rem;
 }
 
-.add-pl-btn,
 .step-btn {
   background: none;
   border: 1px solid var(--border);
@@ -762,7 +765,6 @@ body.list-collapsed #gridZoom { left: 1rem; }
   white-space: nowrap;
 }
 
-.add-pl-btn:hover,
 .step-btn:hover:not(:disabled) { color: var(--fg); border-color: var(--muted); }
 .step-btn:disabled { opacity: 0.4; cursor: default; }
 

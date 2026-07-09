@@ -7,7 +7,10 @@
  */
 "use strict";
 
-const TONICS = ["C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
+const TONICS = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+
+// Prefer flat spelling for the enharmonic tritone tonic (project convention).
+function normTonic(t) { return t === "F#" ? "Gb" : t; }
 
 const state = {
   tunes: [],          // /api/tunes entries
@@ -66,7 +69,7 @@ function renderList() {
     const li = document.createElement("li");
     li.dataset.id = t.id;
     li.className = `status-${t.status}` + (t.id === state.currentId ? " current" : "");
-    const key = t.key ? `${t.key.tonic}${t.key.mode === "minor" ? "m" : ""}` : "?";
+    const key = t.key ? `${normTonic(t.key.tonic)}${t.key.mode === "minor" ? "m" : ""}` : "?";
     li.innerHTML = `<span class="dot"></span><span class="li-title"></span>
                     <span class="li-key">${key}</span>`;
     li.querySelector(".li-title").textContent = t.title;
@@ -83,9 +86,11 @@ async function selectTune(id) {
   state.doc = data.data;
   const fp = state.doc.harmonic_fingerprint || {};
   state.edit = {
-    tonic: state.doc.key.tonic,
+    tonic: normTonic(state.doc.key.tonic),
     mode: state.doc.key.mode,
-    sectionKeys: { ...(state.doc.section_keys || {}) },
+    sectionKeys: Object.fromEntries(
+      Object.entries(state.doc.section_keys || {}).map(
+        ([n, k]) => [n, { ...k, tonic: normTonic(k.tonic) }])),
     fingerprint: {
       family: fp.family || "",
       tags: [...(fp.tags || [])],
@@ -188,7 +193,7 @@ function renderSectionKeys() {
   if (!sections.length) holder.innerHTML = '<span class="muted">no sections</span>';
 }
 
-function fmtKey(k) { return k ? `${k.tonic} ${k.mode}` : "—"; }
+function fmtKey(k) { return k ? `${normTonic(k.tonic)} ${k.mode}` : "—"; }
 
 function fmtSectionKeys(sk) {
   const entries = Object.entries(sk || {});
