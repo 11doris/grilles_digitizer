@@ -10110,7 +10110,7 @@ window.TUNES = [
     ]
    },
    "key": {
-    "tonic": "C",
+    "tonic": "E",
     "mode": "major"
    },
    "opening": {
