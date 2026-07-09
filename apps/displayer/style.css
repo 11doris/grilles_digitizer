@@ -658,16 +658,44 @@ body.list-collapsed #gridZoom { left: 1rem; }
   font-weight: 400;
 }
 
+/* Root accidental (top) + quality (bottom) stack in a narrow column right of
+   the letter, so the quality sits directly below the sharp/flat (E♭ø7, A♭-7)
+   rather than after it — the whole chord stays about a letter-width wide. */
+.chord .tail {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 0.82;
+  margin-left: 0.06em;
+}
+
 .chord .acc {
-  font-size: 0.7em;
-  display: inline-block;
-  transform: translateY(-0.5em);
-  margin-left: 0.05em;
+  font-size: 1.1em;
+  line-height: 0.8;
+  margin-bottom: -0.05em;
 }
 
 .chord .qual {
   font-size: 1.25em;
-  padding-bottom: 0.08em;
+  display: inline-flex;
+  align-items: center;
+}
+
+.chord .qual-empty { min-height: 0.72em; } /* holds the lower row for bare accidentals */
+
+/* Tensions/alterations stack vertically (Figure D.3): up to two additions sit
+   above each other in a narrow column, so extended chords like B♭7♯9♯5 or
+   A♭7(13) stay as narrow as a plain triad instead of spreading across the bar.
+   The column reserves two rows (alt-up / alt-down) and is centred against the
+   core quality, so a lone alteration lands in the upper box (superscript) while
+   a pair straddles the core. */
+.chord .qual-stack {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 2.1em;
+  font-size: 0.62em;
+  line-height: 1.04;
   margin-left: 0.06em;
 }
 

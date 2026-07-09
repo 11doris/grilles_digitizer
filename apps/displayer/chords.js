@@ -69,14 +69,48 @@
     return "";
   }
 
-  /* Spec §7.2: maj→Δ, m7b5→ø7, accidentals→music glyphs. */
+  /* Spec §7.2: maj→Δ, m7b5→ø7, minor m→-, accidentals→music glyphs. */
   function displayQuality(q) {
     let s = q;
     s = s.replace(/m7b5/g, "ø7"); // ø7
-    s = s.replace(/maj/g, "Δ"); // Δ
+    s = s.replace(/maj/g, "Δ"); // Δ (consume maj's m before the minor rule)
+    s = s.replace(/m/g, "-"); // remaining m = minor, "-" saves width
     s = s.replace(/#/g, SHARP);
     s = s.replace(/b(?=\d)/g, FLAT);
     return s;
+  }
+
+  /* Split a parenthesised group's contents into individual alterations when it
+   * is a run of accidental+number tokens ("♯5♯9" → ["♯5","♯9"]); otherwise keep
+   * it whole ("13", "Δ7" stay single). */
+  function splitAlterations(inner) {
+    const toks = inner.match(/[♯♭]\d+/g);
+    if (toks && toks.join("") === inner) return toks;
+    return inner ? [inner] : [];
+  }
+
+  /*
+   * Split a display quality (glyphs already substituted) into the baseline core
+   * and a list of tensions/alterations to stack vertically (Figure D.3). Keeps
+   * the chord's primary symbol/number inline and lifts the added tensions —
+   * parenthesised groups and trailing altered fifths/ninths/…—into the stack,
+   * so wide chords like "7(13)" or "(♯5♯9)" collapse to one narrow column.
+   */
+  function splitQuality(q) {
+    const stack = [];
+    // Parenthesised additions → stacked, left to right.
+    let main = q.replace(/\(([^)]*)\)/g, (_, inner) => {
+      splitAlterations(inner).forEach((t) => stack.push(t));
+      return "";
+    });
+    // Trailing altered tones ("7♯5" → "7" + "♯5"); the primary number stays.
+    const trailing = [];
+    let m;
+    while ((m = main.match(/[♯♭](?:5|6|9|11|13)$/))) {
+      trailing.unshift(m[0]);
+      main = main.slice(0, m.index);
+    }
+    return { main, stack: trailing.concat(stack) };
   }
 
   /* Render a chord token as an HTML string. Unparseable tokens render
@@ -95,17 +129,35 @@
       return `<span class="${cls}">${open}<span class="nc">N.C.</span>${close}</span>`;
     }
 
-    let html = `<span class="root">${c.letter}`;
-    if (c.acc) html += `<span class="acc">${displayAccidental(c.acc)}</span>`;
-    html += "</span>";
-    if (c.quality) html += `<span class="qual">${escapeHtml(displayQuality(c.quality))}</span>`;
+    // The accidental (top) and quality (bottom) share a column to the right of
+    // the letter, so the quality sits directly below the sharp/flat instead of
+    // trailing after it (E♭ø7, A♭-7) — keeping the chord a letter-width wide.
+    let html = `<span class="root">${c.letter}</span>`;
+    let tail = "";
+    if (c.acc) tail += `<span class="acc">${displayAccidental(c.acc)}</span>`;
+    if (c.quality) {
+      const { main, stack } = splitQuality(displayQuality(c.quality));
+      let q = "";
+      if (main) q += `<span class="qual-main">${escapeHtml(main)}</span>`;
+      if (stack.length) {
+        q += '<span class="qual-stack">' +
+          stack.map((s) => `<span>${escapeHtml(s)}</span>`).join("") +
+          "</span>";
+      }
+      tail += `<span class="qual">${q}</span>`;
+    } else if (c.acc) {
+      // Bare accidental triad (C♯, A♭): reserve the lower row so the
+      // accidental floats up as a superscript.
+      tail += '<span class="qual qual-empty"></span>';
+    }
+    if (tail) html += `<span class="tail">${tail}</span>`;
     if (c.bass) {
       html += `<span class="bass">/${c.bass.letter}${displayAccidental(c.bass.acc)}</span>`;
     }
     return `<span class="${cls}">${open}${html}${close}</span>`;
   }
 
-  const api = { parseChord, displayQuality, renderChordHTML, escapeHtml };
+  const api = { parseChord, displayQuality, splitQuality, renderChordHTML, escapeHtml };
   global.GrillesChords = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
