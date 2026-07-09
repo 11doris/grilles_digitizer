@@ -5,8 +5,8 @@ structured JSON — one file per tune. Run everything from the repo root.
 
 | Stage | Script | Input → Output |
 |---|---|---|
-| 1 crop | `crop_tunes.py` | `sources/AGJ.pdf` + `sources/AGJ_index.pdf` → `data/chords/crops/*.png` + `manifest.csv` |
-| 2 transcribe | `transcribe.py` (→ `digitizer/` package) | crops + manifest → `data/chords/raw/*.json` (VLM, one call per crop, resumable) |
+| 1 crop | `crop_tunes.py` | `sources/AGJ.pdf` + `sources/AGJ_index.pdf` → `data/chords/01_crops/*.png` + `manifest.csv` |
+| 2 transcribe | `transcribe.py` (→ `digitizer/` package) | crops + manifest → `data/chords/02_raw/*.json` (VLM, one call per crop, resumable) |
 | 3 verify | `apps/verifier/verify_app.py` | `raw/` → `wip/` (human edits) → `verified/` (approved) |
 | 4 index | `../build_title_index.py` | chord + melody crops → `data/title_index.csv` |
 | 5 publish | `apps/displayer/build_data.py` | `verified/` + index → displayer bundle |
@@ -20,22 +20,22 @@ Helpers (not stages):
   the estimated angles. Crops are 1-bit, so don't re-deskew a crop twice — if one
   pass isn't enough, re-crop from the PDF with `crop_tunes.py`.
 - `tools/build_examples.py` — regenerate `digitizer/examples.py` (the few-shot
-  examples embedded in the cached system prompt) from `data/chords/verified/`.
+  examples embedded in the cached system prompt) from `data/chords/04_verified/`.
 - `tools/check_chord_syntax.py` — validate chord syntax in
-  `data/chords/verified/` and `data/chords/wip/` against the prompt vocabulary.
+  `data/chords/04_verified/` and `data/chords/03_wip/` against the prompt vocabulary.
 
 ## Stage 1 — crop
 
 ```sh
 python pipelines/chords/crop_tunes.py sources/AGJ.pdf \
-       --out data/chords/crops --start-page 7 --full-width --index sources/AGJ_index.pdf
+       --out data/chords/01_crops --start-page 7 --full-width --index sources/AGJ_index.pdf
 ```
 
 Index-driven: the book index lists which titles are on each printed page, so the
 image is only used to *locate* each known title. Resumable — rerun the same
 command and pages whose crops exist are skipped. Rows flagged `review=yes` in
 `manifest.csv` deserve a glance; fix the `title` column if wrong, then
-`python pipelines/chords/crop_tunes.py --apply data/chords/crops/manifest.csv`.
+`python pipelines/chords/crop_tunes.py --apply data/chords/01_crops/manifest.csv`.
 See the docstring in [crop_tunes.py](crop_tunes.py) for all options.
 
 ## Stage 2 — transcribe (VLM)
@@ -48,7 +48,7 @@ per tune, using a vision-language model (Claude). Implements
 python pipelines/chords/transcribe.py
 ```
 
-Re-running the same command **resumes**: any tune whose `data/chords/raw/<stem>.json`
+Re-running the same command **resumes**: any tune whose `data/chords/02_raw/<stem>.json`
 already exists and still validates is skipped, so you can stop (Ctrl-C, lid
 close, power loss) and continue across sittings — at most the one tune in
 flight is redone.
@@ -57,9 +57,9 @@ flight is redone.
 
 | Flag | Default | Purpose |
 |---|---|---|
-| `--crops DIR` | `data/chords/crops` | Directory of per-tune PNGs |
+| `--crops DIR` | `data/chords/01_crops` | Directory of per-tune PNGs |
 | `--manifest FILE` | `<crops>/manifest.csv` | The work list (one row per crop) |
-| `--out DIR` | `data/chords/raw` | Output directory |
+| `--out DIR` | `data/chords/02_raw` | Output directory |
 | `--model ID` | `claude-opus-4-8` | VLM model id |
 | `--workers N` | `1` | Parallel calls. Keep `1` for a local model; raise to 2–4 **only** for a remote API |
 | `--retries R` | `3` | Per-unit validation retries (progressively stricter reminder) |
@@ -78,10 +78,10 @@ makes that free; no sharding is needed on a single machine.
 ### Outputs
 
 ```
-data/chords/raw/<stem>.json          one accepted tune (minified, single bare object)
-data/chords/raw/<stem>.error.json    stub for a unit that failed after all retries
-data/chords/raw/run_state.jsonl      append-one-line-per-unit progress log (resumable, auditable)
-data/chords/raw/run_report.json      final summary + everything a human should review
+data/chords/02_raw/<stem>.json          one accepted tune (minified, single bare object)
+data/chords/02_raw/<stem>.error.json    stub for a unit that failed after all retries
+data/chords/02_raw/run_state.jsonl      append-one-line-per-unit progress log (resumable, auditable)
+data/chords/02_raw/run_report.json      final summary + everything a human should review
 ```
 
 `run_report.json` lists, for human review, each tune that trips any of:
@@ -136,6 +136,6 @@ stronger model.
 python apps/verifier/verify_app.py
 ```
 
-Browses `data/chords/raw/`, saves edits to `data/chords/wip/`, promotes approved
-tunes to `data/chords/verified/`. `raw/` itself is never modified. Spec:
+Browses `data/chords/02_raw/`, saves edits to `data/chords/03_wip/`, promotes approved
+tunes to `data/chords/04_verified/`. `raw/` itself is never modified. Spec:
 [docs/specs/verification_app_spec.md](../../docs/specs/verification_app_spec.md).

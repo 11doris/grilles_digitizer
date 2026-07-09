@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-A Flask web application for manually reviewing and editing the digitized tune JSON files in `data/chords/raw/`. The user can inspect, correct, and approve each tune one at a time. Verified tunes are copied to `data/chords/verified/`. A persistent state file tracks progress so sessions can be interrupted and resumed.
+A Flask web application for manually reviewing and editing the digitized tune JSON files in `data/chords/02_raw/`. The user can inspect, correct, and approve each tune one at a time. Verified tunes are copied to `data/chords/04_verified/`. A persistent state file tracks progress so sessions can be interrupted and resumed.
 
 ---
 
@@ -12,7 +12,7 @@ A Flask web application for manually reviewing and editing the digitized tune JS
 |---|---|
 | Backend | Python 3.11+, Flask |
 | Frontend | Single-page HTML + Vanilla JS (no build step) |
-| Persistence | `data/chords/wip/verification_state.json` (progress) + in-place JSON edits saved back to `data/chords/raw/` |
+| Persistence | `data/chords/03_wip/verification_state.json` (progress) + in-place JSON edits saved back to `data/chords/02_raw/` |
 | Styling | Plain CSS (or optionally Pico CSS CDN — minimal dependency) |
 
 No database. No npm. Runnable with `python apps/verifier/verify_app.py`.
@@ -22,17 +22,17 @@ No database. No npm. Runnable with `python apps/verifier/verify_app.py`.
 ## 3. File Conventions
 
 ### 3.1 Which files are tunes?
-All `*.json` files in `data/chords/raw/` **except**:
+All `*.json` files in `data/chords/02_raw/` **except**:
 - Files matching `*_opus.json` — ignored.
 - `run_report.json`, `run_state.jsonl`, `verification_state.json` — system files, ignored.
 
 The file stem determines the tune ID (e.g. `13_01_ALLIGATOR_CRAWL` from `13_01_ALLIGATOR_CRAWL.json`).
 
 ### 3.2 Crop images
-Each tune may have a corresponding image in `data/chords/crops/` with the same stem + `.png` extension (e.g. `data/chords/crops/13_01_ALLIGATOR_CRAWL.png`). If the file exists it is shown; otherwise the image panel is hidden.
+Each tune may have a corresponding image in `data/chords/01_crops/` with the same stem + `.png` extension (e.g. `data/chords/01_crops/13_01_ALLIGATOR_CRAWL.png`). If the file exists it is shown; otherwise the image panel is hidden.
 
 ### 3.3 Verification state file
-Path: `data/chords/wip/verification_state.json`
+Path: `data/chords/03_wip/verification_state.json`
 
 ```json
 {
@@ -43,14 +43,14 @@ Path: `data/chords/wip/verification_state.json`
 ```
 
 - `last_opened`: the tune ID that was open when the app was last closed/navigated away.
-- `verified`: list of tune IDs that have been approved and copied to `data/chords/verified/`.
+- `verified`: list of tune IDs that have been approved and copied to `data/chords/04_verified/`.
 - `in_progress`: (optional) tune ID of the last unsaved edit session.
 
 Created automatically on first run if absent.
 
 ### 3.4 Verified output
-Directory: `data/chords/verified/` (created automatically if absent).  
-When a tune is verified, its **current (possibly edited) JSON** is copied there. The original in `data/chords/raw/` remains.
+Directory: `data/chords/04_verified/` (created automatically if absent).  
+When a tune is verified, its **current (possibly edited) JSON** is copied there. The original in `data/chords/02_raw/` remains.
 
 ---
 
@@ -121,16 +121,16 @@ static/
 |---|---|---|
 | GET | `/` | Serve `index.html` |
 | GET | `/static/<path>` | Serve static assets |
-| GET | `/crop/<tune_id>` | Stream the crop PNG from `data/chords/crops/`; 404 if absent |
+| GET | `/crop/<tune_id>` | Stream the crop PNG from `data/chords/01_crops/`; 404 if absent |
 
 ### 6.2 API (all return JSON)
 | Method | Path | Description |
 |---|---|---|
 | GET | `/api/tunes` | List all tune IDs with status |
 | GET | `/api/tunes/<tune_id>` | Load a tune's JSON + state |
-| PUT | `/api/tunes/<tune_id>` | Save edits back to `data/chords/raw/<tune_id>.json` |
-| POST | `/api/tunes/<tune_id>/verify` | Mark as verified + copy to `data/chords/verified/` |
-| DELETE | `/api/tunes/<tune_id>/verify` | Unmark verified (remove from `data/chords/verified/` and state) |
+| PUT | `/api/tunes/<tune_id>` | Save edits back to `data/chords/02_raw/<tune_id>.json` |
+| POST | `/api/tunes/<tune_id>/verify` | Mark as verified + copy to `data/chords/04_verified/` |
+| DELETE | `/api/tunes/<tune_id>/verify` | Unmark verified (remove from `data/chords/04_verified/` and state) |
 | PUT | `/api/state` | Update `last_opened` / `in_progress` |
 
 #### GET `/api/tunes` response
@@ -238,9 +238,9 @@ If a crop image exists for the tune, a panel is displayed to the right of (or ab
 ## 9. Verification Workflow
 
 1. User edits the tune in the editor.
-2. User clicks **Save** — PUT request writes the JSON back to `data/chords/raw/<id>.json`. A success toast confirms. `in_progress` state is cleared.
+2. User clicks **Save** — PUT request writes the JSON back to `data/chords/02_raw/<id>.json`. A success toast confirms. `in_progress` state is cleared.
 3. User clicks **✓ Mark as Verified** — triggers POST `/api/tunes/<id>/verify`:
-   - Server copies the current `data/chords/raw/<id>.json` to `data/chords/verified/<id>.json`.
+   - Server copies the current `data/chords/02_raw/<id>.json` to `data/chords/04_verified/<id>.json`.
    - Updates `verification_state.json`: adds to `verified` list.
    - UI shows a green checkmark badge on the tune in the sidebar.
 4. If the user wants to un-verify (e.g. found a mistake later), an **Unverify** button appears on already-verified tunes; triggers DELETE `/api/tunes/<id>/verify`.
@@ -296,7 +296,7 @@ Return HTTP 400 with a JSON error message on failure.
 ```python
 # Usage:
 #   python apps/verifier/verify_app.py
-#   python apps/verifier/verify_app.py --tunes data/chords/raw --crops data/chords/crops --port 5000
+#   python apps/verifier/verify_app.py --tunes data/chords/02_raw --crops data/chords/01_crops --port 5000
 
 import argparse
 ...

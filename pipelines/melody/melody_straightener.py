@@ -5,7 +5,7 @@ melody_straightener.py  -  Stage 1: staff detection & per-system straightening
 
 Stage 1 of the melody pipeline (one python file per stage; see
 docs/specs/melody_digitizer_spec.md section 3). Input: per-tune crop PNGs
-from `data/melody/crops/` (stage 0 output). Output, per tune, under
+from `data/melody/01_crops/` (stage 0 output). Output, per tune, under
 `data/melody/debug/<id>/`:
 
   strip_NN.png    straightened strip of system NN (band +/- PAD source rows,
@@ -33,9 +33,9 @@ profile must sit within +/-2 px of target + k*gap (k in -2..2); systems that
 fail are flagged for model review in stage1.json.
 
 USAGE
-  python pipelines/melody/melody_straightener.py data/melody/crops/17_01_AINT_MISBEHAVIN.png --debug
-  python pipelines/melody/melody_straightener.py data/melody/crops --limit 30
-  python pipelines/melody/melody_straightener.py data/melody/crops/48*.png --out data/melody/debug
+  python pipelines/melody/melody_straightener.py data/melody/01_crops/17_01_AINT_MISBEHAVIN.png --debug
+  python pipelines/melody/melody_straightener.py data/melody/01_crops --limit 30
+  python pipelines/melody/melody_straightener.py data/melody/01_crops/48*.png --out data/melody/debug
 """
 import argparse, glob, json, os, sys, time
 
@@ -451,7 +451,7 @@ def main():
     ap = argparse.ArgumentParser(
         description="Melody stage 1: staff detection & per-system straightening.")
     ap.add_argument("inputs", nargs="+",
-                    help="crop PNG(s), glob(s), or a directory (data/melody/crops)")
+                    help="crop PNG(s), glob(s), or a directory (data/melody/01_crops)")
     ap.add_argument("--out", default="data/melody/debug",
                     help="output root; strips + stage1.json go to <out>/<id>/")
     ap.add_argument("--limit", type=int, default=0,

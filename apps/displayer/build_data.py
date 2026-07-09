@@ -3,13 +3,13 @@
 Bundle the tune index + digitized tunes into data/tunes_data.js.
 
 Driven by data/title_index.csv (single source of truth, one record per row):
-each row pairs a chord scan (data/chords/crops/<chords_file>) with a melody
-scan (data/melody/crops/<melody_file>). A chord matched to several melody
+each row pairs a chord scan (data/chords/01_crops/<chords_file>) with a melody
+scan (data/melody/01_crops/<melody_file>). A chord matched to several melody
 sheets recurs once per sheet; those rows merge into one record whose
 melody_images lists every sheet. Rows whose chord tune has been
-digitized (data/chords/verified/<id>.json) get the full chord JSON embedded;
+digitized (data/chords/04_verified/<id>.json) get the full chord JSON embedded;
 rows whose melody has been digitized get the ABC source embedded — the join
-is by melody scan stem: data/melody/verified/<stem of melody_file>.abc. Any
+is by melody scan stem: data/melody/04_verified/<stem of melody_file>.abc. Any
 new .abc saved there is included automatically at the next build.
 
 Referenced scans are copied into apps/displayer/crops/ and
@@ -22,8 +22,8 @@ Usage
 -----
     python apps/displayer/build_data.py
     python apps/displayer/build_data.py --index data/title_index.csv \
-        --tunes-dir data/chords/verified --crops-dir data/chords/crops \
-        --melody-crops-dir data/melody/crops --melodies-dir data/melody/verified
+        --tunes-dir data/chords/04_verified --crops-dir data/chords/01_crops \
+        --melody-crops-dir data/melody/01_crops --melodies-dir data/melody/04_verified
 
     manual deployment:
     git checkout main
@@ -83,14 +83,14 @@ def main() -> int:
     root = here.parents[1]  # repo root
     parser.add_argument("--index", default=str(root / "data" / "title_index.csv"),
                         help="Title index CSV (default: data/title_index.csv)")
-    parser.add_argument("--tunes-dir", default=str(root / "data" / "chords" / "verified"),
-                        help="Verified chord tune JSONs (default: data/chords/verified)")
-    parser.add_argument("--crops-dir", default=str(root / "data" / "chords" / "crops"),
-                        help="Chord scan PNGs (default: data/chords/crops)")
-    parser.add_argument("--melody-crops-dir", default=str(root / "data" / "melody" / "crops"),
-                        help="Melody scan PNGs (default: data/melody/crops)")
-    parser.add_argument("--melodies-dir", default=str(root / "data" / "melody" / "verified"),
-                        help="Verified melody ABC files (default: data/melody/verified; "
+    parser.add_argument("--tunes-dir", default=str(root / "data" / "chords" / "04_verified"),
+                        help="Verified chord tune JSONs (default: data/chords/04_verified)")
+    parser.add_argument("--crops-dir", default=str(root / "data" / "chords" / "01_crops"),
+                        help="Chord scan PNGs (default: data/chords/01_crops)")
+    parser.add_argument("--melody-crops-dir", default=str(root / "data" / "melody" / "01_crops"),
+                        help="Melody scan PNGs (default: data/melody/01_crops)")
+    parser.add_argument("--melodies-dir", default=str(root / "data" / "melody" / "04_verified"),
+                        help="Verified melody ABC files (default: data/melody/04_verified; "
                              "may not exist yet)")
     args = parser.parse_args()
 

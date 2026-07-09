@@ -35,7 +35,7 @@ Both pipelines share one data-flow convention under `data/<pipeline>/`:
 | `wip/` | human edits under review | yes |
 | `verified/` | approved ground truth | yes |
 
-`data/chords/raw/` is **read-only source material** for the review apps — edits
+`data/chords/02_raw/` is **read-only source material** for the review apps — edits
 live in `wip/` until a tune is promoted to `verified/`.
 
 ## Install
@@ -52,8 +52,8 @@ Run every command below from the repo root.
 
 | Stage | Command | Input → Output |
 |---|---|---|
-| 1 crop | `python pipelines/chords/crop_tunes.py sources/AGJ.pdf --out data/chords/crops --start-page 7 --full-width --index sources/AGJ_index.pdf` | AGJ.pdf → `data/chords/crops/*.png` + `manifest.csv` |
-| 2 transcribe | `python pipelines/chords/transcribe.py` | crops → `data/chords/raw/*.json` (VLM, resumable) |
+| 1 crop | `python pipelines/chords/crop_tunes.py sources/AGJ.pdf --out data/chords/01_crops --start-page 7 --full-width --index sources/AGJ_index.pdf` | AGJ.pdf → `data/chords/01_crops/*.png` + `manifest.csv` |
+| 2 transcribe | `python pipelines/chords/transcribe.py` | crops → `data/chords/02_raw/*.json` (VLM, resumable) |
 | 3 verify | `python apps/verifier/verify_app.py` | raw → `wip/` (edits) → `verified/` (approved) |
 | 4 index | `python pipelines/build_title_index.py` | both crops dirs → `data/title_index.csv` |
 | 5 publish | `python apps/displayer/build_data.py`, then push `main` | verified + index → displayer bundle → GitHub Pages |
@@ -64,10 +64,10 @@ Details, options, and helper tools: [pipelines/chords/README.md](pipelines/chord
 
 | Stage | Command | Input → Output |
 |---|---|---|
-| 0 crop | `python pipelines/melody/melody_cropper.py sources/AGJ_Melody.pdf --pages 7..972 --melody-index sources/AGJ_Melody_Index.pdf --index sources/AGJ_index.pdf` | AGJ_Melody.pdf → `data/melody/crops/*.png` |
-| 0b deskew (one-off) | `python pipelines/deskew_crops.py data/melody/crops` | crops fixed in place |
-| 1 straighten | `python pipelines/melody/melody_straightener.py data/melody/crops` | crops → `data/melody/debug/<id>/` |
-| 2–5 | *not yet implemented* — symbol extraction, bar assembly, VLM adjudication, validation (see [docs/specs/melody_digitizer_spec.md](docs/specs/melody_digitizer_spec.md)) | → `data/melody/wip/*.abc` → human review → `verified/` |
+| 0 crop | `python pipelines/melody/melody_cropper.py sources/AGJ_Melody.pdf --pages 7..972 --melody-index sources/AGJ_Melody_Index.pdf --index sources/AGJ_index.pdf` | AGJ_Melody.pdf → `data/melody/01_crops/*.png` |
+| 0b deskew (one-off) | `python pipelines/deskew_crops.py data/melody/01_crops` | crops fixed in place |
+| 1 straighten | `python pipelines/melody/melody_straightener.py data/melody/01_crops` | crops → `data/melody/debug/<id>/` |
+| 2–5 | *not yet implemented* — symbol extraction, bar assembly, VLM adjudication, validation (see [docs/specs/melody_digitizer_spec.md](docs/specs/melody_digitizer_spec.md)) | → `data/melody/03_wip/*.abc` → human review → `verified/` |
 | then | chords stages 4–5 pick up any `verified/*.abc` automatically | |
 
 Details: [pipelines/melody/README.md](pipelines/melody/README.md).

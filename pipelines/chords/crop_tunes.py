@@ -38,12 +38,12 @@ WHAT STILL NEEDS A GLANCE
 USAGE
   Step 1  detect + crop + match titles to the index:
       python pipelines/chords/crop_tunes.py page341_Riverboat.pdf \
-             --out data/chords/crops --start-page 340 --no-sidebar \
+             --out data/chords/01_crops --start-page 340 --no-sidebar \
              --index sources/AGJ_index.pdf
 
-  Step 2  open data/chords/crops/manifest.csv, check the rows with review=yes
+  Step 2  open data/chords/01_crops/manifest.csv, check the rows with review=yes
           (fix the 'title' column only if wrong), then apply the final filenames:
-      python pipelines/chords/crop_tunes.py --apply data/chords/crops/manifest.csv
+      python pipelines/chords/crop_tunes.py --apply data/chords/01_crops/manifest.csv
 
   Process the whole book by giving each PDF its correct --start-page into the
   same --out folder; the manifest accumulates across runs.
@@ -60,7 +60,7 @@ OPTIONS
   --page-window N    also match against +/-N neighbouring index pages (use 1 if
                      printed page numbers might be off by one). Default 0.
   --review-below F   flag titles with match confidence below F (default 0.55)
-  --out DIR          output directory (default data/chords/crops)
+  --out DIR          output directory (default data/chords/01_crops)
   --start-page V     printed number of the FIRST page of each PDF ('auto' =
                      digits from the filename). Incremented per page.
   --format png|pdf   output format for crops (default png)
@@ -86,7 +86,7 @@ MANIFEST COLUMNS
   alt_title  full index entry incl. any (parenthetical) alternate title
 
 USAGE
-  python pipelines/chords/crop_tunes.py sources/AGJ.pdf --out data/chords/crops \
+  python pipelines/chords/crop_tunes.py sources/AGJ.pdf --out data/chords/01_crops \
          --start-page 7 --full-width --index sources/AGJ_index.pdf
 """
 import argparse, csv, os, re, sys, subprocess, tempfile, time, shutil
@@ -1121,7 +1121,7 @@ def cmd_apply(args):
 def main():
     ap = argparse.ArgumentParser(description="Crop jazz tunes from scanned chord-grid PDFs.")
     ap.add_argument("inputs", nargs="*", help="input PDF(s)")
-    ap.add_argument("--out", default="data/chords/crops")
+    ap.add_argument("--out", default="data/chords/01_crops")
     ap.add_argument("--start-page", default="auto")
     ap.add_argument("--index", help="book index PDF (or .txt) giving the exact "
                     "title + printed page for every tune; titles are matched to it")
