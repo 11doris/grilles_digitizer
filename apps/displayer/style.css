@@ -247,6 +247,12 @@ body.list-collapsed #gridZoom { left: 1rem; }
 @media (min-width: 900px) {
   .panels.dual { flex-direction: row; align-items: flex-start; gap: 2rem; }
   .panels.dual .panel { flex: 1 1 50%; }
+
+  /* A lone chord panel (no melody sheet) still occupies about half the
+     container — the same footprint it has beside the melody — so the grid
+     fills a readable half-width column instead of stranding the chords in a
+     wide, sparse one. On phones/portrait (< 900px) panels stack full width. */
+  .panels:not(.dual) .panel.chords { width: 50%; align-self: center; }
 }
 
 .panel img.scan {
@@ -594,16 +600,24 @@ body.list-collapsed #gridZoom { left: 1rem; }
 /* ---------------------------------------------------------- chord grid */
 
 /* All grid dimensions are em-based so the JS fit pass can scale the whole grid
-   to the viewport height by adjusting this one font-size. The width is em-based
-   too — this 38em is the default; chords never shrink to fit their slots, so
-   fitGridWidth widens this cap when a busy bar's chords would collide. */
+   to the viewport height by adjusting this one font-size. The font grows with
+   the panel width (2.6cqw) up to a 15px ceiling, so the chords stay a readable
+   lead-sheet size instead of ballooning on a wide screen — a sparse tune (one
+   chord per bar, e.g. Annie Laurie) needs no more than a busy one (Ask Me Now)
+   to read, and a smaller grid also fits the page better. The grid fills its
+   panel until the ceiling is hit, then stops widening: 38.5em is the width at
+   which 2.6cqw reaches the ceiling (1 / 0.026 ≈ 38.5em, independent of the px
+   value), so below the ceiling max-width never binds (the grid fills the panel)
+   and at/above it the grid caps there (~15px × 38.5em ≈ 577px), centered.
+   Chords never shrink to fit their slots, so fitGridWidth shrinks the font only
+   if a busy bar would still collide at the available width. */
 .grid {
-  max-width: 38em;
+  max-width: 38.5em;
   margin: 0 auto;
   padding-left: 1.4em;
   /* Container-relative (the .panel is an inline-size container): the grid
      shrinks when the chord panel shares the row with the melody panel. */
-  font-size: clamp(10px, 2.6cqw, 17px);
+  font-size: clamp(10px, 2.6cqw, 15px);
 }
 
 .section { margin-bottom: 0.0em; }
@@ -637,7 +651,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
   flex-direction: column;
   align-items: center;
   font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1.3em;
   line-height: 1;
   gap: 0.08em;

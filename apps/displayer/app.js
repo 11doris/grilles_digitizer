@@ -35,10 +35,10 @@
     activeIndex: -1, // keyboard highlight within filtered list
     currentId: null, // tune displayed in the main panel
     showChords: true, // Chords switch (persisted)
-    showMelody: false, // Melody switch (persisted)
+    showMelody: true, // Melody switch (persisted); default on when a melody exists
     listCollapsed: false, // desktop: docked sidebar hidden (persisted)
     overlayMag: false, // fullscreen scan magnified (pan by scrolling)
-    gridZoom: 1, // user zoom factor applied on top of the fitted grid size
+    gridZoom: 1, // user zoom factor on top of the fitted grid size; reset per tune
     activePl: null, // active playlist id (persisted, §11.4)
   };
 
@@ -1140,6 +1140,7 @@
     const t = tuneById(id);
     if (!t) return;
     state.currentId = id;
+    state.gridZoom = 1; // grid zoom is per-tune: every tune opens at the fitted size
     document.title = `${t.title || id} — Grilles`;
 
     paneEl.innerHTML = "";
@@ -1221,47 +1222,29 @@
   }
 
   /*
-   * Shrink the grid's base font size until head + grid fit the viewport
-   * (one screen page, no vertical scrolling). All grid dimensions are
-   * em-based, so its height scales ~linearly with font-size.
+   * The grid's base font size is width-driven — the CSS clamp on .grid (up to
+   * the 15px ceiling), narrowed by fitGridWidth only when a bar's chords would
+   * collide. It is deliberately NOT shrunk to fit the viewport height: a long
+   * tune (many sections) stays at a readable size and the page scrolls, rather
+   * than collapsing the chords to an unreadable size to force one screen page.
+   * This pass only applies the user's zoom factor on top of that width-driven
+   * base size.
    */
-  const MIN_GRID_FONT = 8; // px — below this, scrolling beats unreadable chords
+  const MIN_GRID_FONT = 8; // px — floor for the width-crowding shrink in fitGridWidth
 
   function fitGrid() {
     const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid:not(.variant-grid)");
     if (!grid) return;
-    /* Measure from the top, but give the user their scroll position back —
-       re-fits triggered by panel toggles must not jump the page. */
-    const prevScroll = viewEl.scrollTop;
-    grid.style.fontSize = "";
-    grid.style.maxWidth = ""; // drop any width pin from a previous width-fit pass
-    viewEl.scrollTop = 0;
-    /* Fit above the view's bottom padding, which clears the zoom buttons. */
-    const padBottom = Math.max(10, parseFloat(getComputedStyle(viewEl).paddingBottom) || 0);
-    for (let i = 0; i < 3; i++) {
-      const viewRect = viewEl.getBoundingClientRect();
-      const gridRect = grid.getBoundingClientRect();
-      const bottomLimit = viewRect.top + viewEl.clientTop + viewEl.clientHeight - padBottom;
-      const avail = bottomLimit - gridRect.top;
-      if (gridRect.height <= avail || avail <= 0) break;
-      const cur = parseFloat(getComputedStyle(grid).fontSize);
-      const next = Math.max(MIN_GRID_FONT, cur * (avail / gridRect.height));
-      if (cur - next < 0.5) break;
-      grid.style.fontSize = next.toFixed(2) + "px";
-      if (next === MIN_GRID_FONT) break;
-    }
+    grid.style.fontSize = ""; // back to the CSS width-based size
     if (state.gridZoom !== 1) {
-      const fitted = parseFloat(getComputedStyle(grid).fontSize);
-      grid.style.fontSize = Math.max(6, fitted * state.gridZoom).toFixed(2) + "px";
+      const base = parseFloat(getComputedStyle(grid).fontSize);
+      grid.style.fontSize = Math.max(6, base * state.gridZoom).toFixed(2) + "px";
     }
-    viewEl.scrollTop = prevScroll;
   }
 
+  /* Zoom is transient per-tune (reset in renderTune), so it isn't persisted. */
   function setGridZoom(zoom) {
     state.gridZoom = Math.min(2.5, Math.max(0.5, zoom));
-    try {
-      localStorage.setItem("grilles.gridzoom", String(state.gridZoom));
-    } catch (e) { /* ignore */ }
     fitAll();
   }
 
@@ -1289,7 +1272,7 @@
     // box (grid is a block that fills its parent up to max-width).
     grid.style.maxWidth = "none";
     const availPx = grid.getBoundingClientRect().width;
-    grid.style.maxWidth = ""; // back to the CSS default (38em), the starting width
+    grid.style.maxWidth = ""; // back to the CSS default (fills the panel), the starting width
     const curPx = grid.getBoundingClientRect().width;
 
     // Crowding is measured per bar, not per beat-slot: a bar overflows only when
@@ -1367,13 +1350,12 @@
 
   initTheme();
   try {
-    /* Defaults: Chords on, Melody off (spec §5.4); user choices persist. */
+    /* Defaults: Chords on, Melody on when the tune has one (spec §5.4); a
+       persisted choice ("0"/"1") wins over the default. */
     const c = localStorage.getItem("grilles.showChords");
     const m = localStorage.getItem("grilles.showMelody");
     state.showChords = c === null ? true : c === "1";
-    state.showMelody = m === "1";
-    const z = parseFloat(localStorage.getItem("grilles.gridzoom"));
-    if (Number.isFinite(z)) state.gridZoom = Math.min(2.5, Math.max(0.5, z));
+    state.showMelody = m === null ? true : m === "1";
     if (localStorage.getItem("grilles.list") === "0") setListCollapsed(true);
   } catch (e) { /* ignore */ }
   /* Restore the active playlist (§11.4); a stale id starts deactivated. */

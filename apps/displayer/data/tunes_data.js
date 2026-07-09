@@ -3094,7 +3094,7 @@ window.TUNES = [
       }
      }
     ],
-    "s1_B": [
+    "verse_B": [
      {
       "bar": 1,
       "beats": {
@@ -4247,7 +4247,7 @@ window.TUNES = [
       }
      }
     ],
-    "s2_A1": [
+    "A1": [
      {
       "bar": 1,
       "beats": {
