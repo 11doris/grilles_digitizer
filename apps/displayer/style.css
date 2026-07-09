@@ -32,6 +32,9 @@
   --accent: #3d6ba3;
   --ok: #4cae5a; /* digitized-asset icons */
   --icon-off: #5c5c64; /* scan-only asset icons */
+  --accent-ink: #86aede; /* key chip, legible on dark panel */
+  --mod-ink: #d6a24c; /* section-key (modulation) chip */
+  --chip-bg: #1e1e24;
 }
 
 :root[data-theme="light"] {
@@ -44,6 +47,9 @@
   --accent: #9db8d6;
   --ok: #2e8540;
   --icon-off: #b0ada2;
+  --accent-ink: #3d6ba3; /* key chip, legible on light panel */
+  --mod-ink: #9a6b12; /* section-key (modulation) chip */
+  --chip-bg: #e7e4db;
 }
 
 * { box-sizing: border-box; }
@@ -463,6 +469,96 @@ body.list-collapsed #gridZoom { left: 1rem; }
   font-size: 0.82rem;
   margin-top: 0.35rem;
 }
+
+/* Harmonic summary (annotated tunes): key + section keys on the first row,
+   fingerprint family + tags on the second. Chips wrap, so the block reflows
+   from a single line on desktop to a few lines on a phone. */
+.harmony {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.harm-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.harm-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  padding: 0.16rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--chip-bg);
+  font-size: 0.78rem;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.harm-chip .harm-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.harm-chip .harm-val { color: var(--fg); }
+
+/* Main key: the headline chip — accent border + accent label. */
+.harm-chip.key {
+  border-color: var(--accent-ink);
+}
+
+.harm-chip.key .harm-label { color: var(--accent-ink); }
+.harm-chip.key .harm-val { font-weight: 600; }
+
+/* Section key = a per-section modulation; amber to set it apart. */
+.harm-chip.section {
+  border-color: var(--mod-ink);
+}
+
+.harm-chip.section .harm-label { color: var(--mod-ink); }
+
+/* Fingerprint family + tags: quieter, second row. */
+.harm-tags .harm-chip {
+  font-size: 0.72rem;
+  padding: 0.13rem 0.5rem;
+  background: transparent;
+  color: var(--muted);
+}
+
+.harm-chip.family {
+  border-style: dashed;
+  font-weight: 600;
+}
+
+.harm-chip.family .harm-val { color: var(--fg); }
+.harm-chip.tag .harm-val { color: var(--muted); }
+
+/* Per-section prose analysis inside the collapsible extras. */
+.harm-sections {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.3rem 0.7rem;
+  margin: 0.5rem 0 0.25rem;
+}
+
+.harm-sections dt {
+  font-weight: 700;
+  color: var(--fg);
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+}
+
+.harm-sections dd { margin: 0; }
+
+.harm-modnote { color: var(--fg); }
 
 /* Stack the tune head when the pane is narrow (small screen or docked scan).
    Must come after the .head-top rules above: same specificity, last wins. */
