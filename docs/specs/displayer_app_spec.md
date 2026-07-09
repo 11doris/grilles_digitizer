@@ -35,7 +35,7 @@ The app is read-only: it never modifies `data/chords/04_verified/`, `data/melody
 | Melody rendering | **abcjs** (MIT), vendored once as a single minified file in `vendor/abcjs-basic-min.js` — no CDN requests at runtime. |
 | Data | A generator script bundles the index + all digitized tunes (chord JSON **and** melody ABC text) into one JS file and copies every referenced scan PNG into the app folder, so the app works from `file://` and deploys as a static folder. |
 | Generator | Python 3.11+ script; standard library + Pillow (for the 1-bit scan re-encoding, §3). Already in the repo venv. |
-| Fonts | Barlow Condensed (Google Fonts), bundled locally as woff2 in `fonts/` and loaded via `@font-face`. No CDN requests at runtime — the app must work offline. System condensed sans as fallback. |
+| Fonts | Saira Extra Condensed (Google Fonts), bundled locally as woff2 in `fonts/` and loaded via `@font-face`. No CDN requests at runtime — the app must work offline. System condensed sans as fallback. |
 
 ---
 
@@ -50,7 +50,7 @@ apps/displayer/
 ├── playlists.js          # playlist state, localStorage persistence, export/import (§11)
 ├── build_data.py         # generator: data/title_index.csv + data/chords/04_verified/*.json
 │                         #            + data/melody/04_verified/*.abc -> data/tunes_data.js
-├── fonts/                # bundled Barlow Condensed woff2 (400/500/700)
+├── fonts/                # bundled Saira Extra Condensed woff2 (400/500/700)
 ├── vendor/
 │   └── abcjs-basic-min.js  # vendored abcjs (MIT) for melody lead sheets
 ├── crops/                # GENERATED — chord scan PNGs copied from data/chords/01_crops
@@ -341,7 +341,7 @@ closes it. (The rendered chord grid is not a scan and has its own zoom, §6.5.)
 ### 6.4 Beats within a bar
 - The numerator of `time_signature` gives the beats per bar (4 for 4/4). Each bar is internally a grid of that many equal beat slots.
 - Each chord in `beats` is placed left-aligned in its beat slot (beat `"1"` → slot 1, `"3"` → slot 3). Empty slots stay empty — a chord implicitly sustains until the next one, exactly like the printed grille (e.g. a bar with beats 1 and 3 shows two chords, at the left edge and the middle of the bar).
-- If a chord symbol overflows its slots, it may shrink (`font-size` step-down) rather than wrap; chords never wrap to a second line.
+- Chords never wrap to a second line and never shrink individually — every chord renders at the grid's single font size. If the busiest bar's chords would overflow their slots, the whole grid **widens** instead (a JS pass scales the em-based `max-width` by the worst overflow ratio; see §6.5).
 
 ### 6.5 Responsive behavior
 - The chord panel measures the width **actually available to it** — full content
@@ -354,9 +354,9 @@ closes it. (The rendered chord grid is not a scan and has its own zoom, §6.5.)
   the grid's base font size until header + grid fit the viewport height without
   scrolling, down to a floor of 8px (below that the page scrolls rather than
   becoming unreadable). Extras (§9) may fall below the fold. The grid's width
-  cap is em-based (38em ≈ 646px at the default 17px font) so bar width stays
-  proportional to chord size — but it is also clamped to the panel's own width
-  when side by side.
+  cap is em-based (default 38em ≈ 646px at the default 17px font) so bar width
+  stays proportional to chord size; it is widened when a busy bar needs the room
+  (§6.4) and clamped to the panel's own width when side by side.
 - **Grid zoom**: floating −/+ buttons (bottom right) scale the fitted grid
   size by a user factor (×1.15 steps, clamped 0.5–2.5, persisted in
   `localStorage` as `grilles.gridzoom`); zooming in past the fitted size makes
@@ -400,9 +400,9 @@ The root's own accidental also renders as `♯`/`♭`.
 
 ### 7.3 Visual style (matching the screenshot)
 
-- **Root letter**: very large (~2.4em relative to body), regular weight (not bold), condensed sans (`'Barlow Condensed', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif`).
-- **Root accidental**: ~50% of root size, raised (superscript position, tucked against the root).
-- **Quality**: ~45% of root size, **bottom-aligned with the root's baseline area** (subscript look: `C∆7`, `Am7`, `G7` as in the screenshot). Alterations in parentheses render at the same small size.
+- **Root letter**: large (~2.1em relative to body), regular weight (not bold), condensed sans (`'Saira Extra Condensed', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif`).
+- **Root accidental + quality** share a narrow column to the right of the letter: the sharp/flat sits on top (superscript) and the quality directly **below** it, so the chord stays about a letter-width wide (`E♭ø7`, `A♭-7`). A bare accidental triad (`C♯`) keeps the accidental raised.
+- **Quality**: ~45% of root size. Minor renders as `-` (not `m`); `maj`→`Δ`, `m7b5`→`ø7`. Tensions/alterations stack vertically in up to two boxes (alt-up / alt-down, per Figure D.3): a lone alteration sits in the upper box, a pair straddles the core — so `B♭7♯9♯5`, `A♭7(13)`, `(♯5♯9)` stay narrow instead of spreading across the bar.
 - **Bass note** (`/Eb`): small, placed below-right of the chord after a short slash, like `Aø7/E♭` in the screenshot.
 - **Optional chords** `(…)`: whole symbol wrapped in thin parentheses at reduced size and slightly muted color.
 - `N.C.`: small caps, muted.

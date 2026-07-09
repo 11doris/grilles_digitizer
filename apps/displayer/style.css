@@ -1,25 +1,27 @@
 /* Grilles Displayer — themes, layout, chord grid, chord symbols. */
 
-/* Barlow Condensed (Google Fonts), bundled locally so file:// works offline. */
+/* Saira Extra Condensed (Google Fonts), bundled locally so file:// works
+   offline. Latin subset only — the music glyphs ♯ ♭ Δ fall back to the system
+   font, as they did with Barlow. */
 @font-face {
-  font-family: "Barlow Condensed";
+  font-family: "Saira Extra Condensed";
   font-style: normal;
   font-weight: 400;
-  src: url("fonts/barlow-condensed-400.woff2") format("woff2");
+  src: url("fonts/saira-extra-condensed-400.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Barlow Condensed";
+  font-family: "Saira Extra Condensed";
   font-style: normal;
   font-weight: 500;
-  src: url("fonts/barlow-condensed-500.woff2") format("woff2");
+  src: url("fonts/saira-extra-condensed-500.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Barlow Condensed";
+  font-family: "Saira Extra Condensed";
   font-style: normal;
   font-weight: 700;
-  src: url("fonts/barlow-condensed-700.woff2") format("woff2");
+  src: url("fonts/saira-extra-condensed-700.woff2") format("woff2");
 }
 
 :root[data-theme="dark"] {
@@ -458,7 +460,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .head-top .title {
   margin: 0;
   text-align: center;
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0.03em;
@@ -557,7 +559,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .harm-sections dt {
   font-weight: 700;
   color: var(--fg);
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
 }
 
 .harm-sections dd { margin: 0; }
@@ -574,10 +576,10 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
 /* ---------------------------------------------------------- chord grid */
 
-/* All grid dimensions are em-based so the JS fit pass can scale the whole
-   grid to the viewport height by adjusting this one font-size. The width cap
-   is em-based too: bars stay a constant ~4 chords wide relative to the chord
-   size (~646px at the default 17px), instead of spreading out on big screens. */
+/* All grid dimensions are em-based so the JS fit pass can scale the whole grid
+   to the viewport height by adjusting this one font-size. The width is em-based
+   too — this 38em is the default; chords never shrink to fit their slots, so
+   fitGridWidth widens this cap when a busy bar's chords would collide. */
 .grid {
   max-width: 38em;
   margin: 0 auto;
@@ -593,7 +595,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
   display: inline-block;
   background: var(--fg);
   color: var(--bg);
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
   font-size: 1.1em;
   line-height: 1;
@@ -605,7 +607,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   position: relative;
-  margin-bottom: 1.0em;
+  margin-bottom: 0.7em;
 }
 
 .timesig {
@@ -616,7 +618,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   font-size: 1.3em;
   line-height: 1;
@@ -625,11 +627,13 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
 .bar {
   min-width: 0;
-  min-height: 4em;
+  /* Just tall enough to enclose a chord (root + stacked accidental/tensions);
+     the barlines hug the row instead of towering over it. */
+  min-height: 2.9em;
   display: grid;
   align-items: center;
   border-left: 2px solid var(--line);
-  padding: 0.25em 0.3em 0.25em 0.4em;
+  padding: 0.15em 0.3em 0.15em 0.4em;
 }
 
 .bar.rowlast { border-right: 2px solid var(--line); }
@@ -647,14 +651,14 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .chord {
   display: inline-flex;
   align-items: flex-end;
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
   line-height: 0.9;
   white-space: nowrap;
 }
 
 .chord .root {
-  font-size: 2.3em;
+  font-size: 2.1em;
   font-weight: 400;
 }
 
@@ -714,7 +718,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
 }
 
 .chord.optional { opacity: 0.85; }
-.chord.optional .root { font-size: 1.85em; }
+.chord.optional .root { font-size: 1.7em; }
 
 .chord .nc {
   font-size: 1.1em;

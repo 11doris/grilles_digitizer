@@ -1248,23 +1248,35 @@
   zoomInBtn.addEventListener("click", () => setGridZoom(state.gridZoom * 1.15));
   zoomOutBtn.addEventListener("click", () => setGridZoom(state.gridZoom / 1.15));
 
-  /* Shrink chords that overflow their beat slots (spec §6.4). */
-  function fitChords() {
-    paneEl.querySelectorAll(".slot").forEach((slot) => {
+  /* Chords never shrink to fit their slots — every chord renders at the grid's
+   * single font size. When the busiest bar's chords would collide, widen the
+   * whole grid instead (spec §6.4). The overflow ratio is font-independent
+   * (chord and slot both scale with the grid font), so scaling the em-based
+   * max-width by the worst ratio clears every slot in a single pass. */
+  const BASE_GRID_WIDTH_EM = 38; // keep in sync with .grid max-width in style.css
+  const MAX_GRID_WIDTH_EM = 90; // safety cap so a pathological bar can't run away
+
+  function fitGridWidth() {
+    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid");
+    if (!grid) return;
+    grid.style.maxWidth = "";
+    let ratio = 1;
+    grid.querySelectorAll(".slot").forEach((slot) => {
       const chord = slot.firstElementChild;
       if (!chord) return;
-      chord.style.fontSize = "";
-      let size = 1;
-      while (size > 0.55 && chord.getBoundingClientRect().width > slot.getBoundingClientRect().width - 2) {
-        size -= 0.1;
-        chord.style.fontSize = size.toFixed(2) + "em";
-      }
+      const sw = slot.getBoundingClientRect().width - 2;
+      if (sw <= 0) return;
+      const cw = chord.getBoundingClientRect().width;
+      if (cw > sw) ratio = Math.max(ratio, cw / sw);
     });
+    if (ratio <= 1.001) return;
+    grid.style.maxWidth =
+      Math.min(MAX_GRID_WIDTH_EM, BASE_GRID_WIDTH_EM * ratio).toFixed(2) + "em";
   }
 
   function fitAll() {
     fitGrid();
-    fitChords();
+    fitGridWidth();
   }
 
   let resizeTimer = null;
