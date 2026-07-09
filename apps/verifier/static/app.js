@@ -115,7 +115,7 @@ function chordParseHints(s) {
   if (/[o0°ºΟO˚]\)?$/.test(s))
     hints.push('Diminished is written o7 (lowercase o + 7), e.g. G#o7.');
   if (/aug|\+/.test(s))
-    hints.push('Augmented: (#5) on a bare triad (Eb(#5)), #5 after a 7th/extension (Eb7#5); 5+ → #5.');
+    hints.push('Augmented: (#5) on a bare triad (Eb(#5)), #5 after a 7th/extension (Eb7#5) or after m (Bbm#5); 5+ → #5.');
   if (/sus(?![24])/.test(s))
     hints.push('Suspended is sus4 / sus2 / 7sus4 / 9sus4 — a printed bare "sus" means sus4.');
   if (/min|MIN/.test(s))
@@ -146,12 +146,15 @@ function chordCoreErrors(s) {
     if (balts || palts)
       errs.push('"alt" cannot be combined with explicit alterations — use one or the other.');
   }
+  const minorAug = stem === 'm' && !hasExt && !altw;
   if (balts && palts)
     errs.push('Mixes bare and parenthesised alterations — use one style.');
-  if (balts && !hasExt)
+  if (balts && !hasExt && !(minorAug && balts === '#5'))
     errs.push(`Alteration on a bare triad must be parenthesised: ${root}${stem}(${balts}).`);
   if (palts && hasExt)
     errs.push(`A 7th/extension is present, so write the alteration bare: ${root}${stem}${pext || ''}${palts.slice(1, -1)}.`);
+  if (palts === '(#5)' && minorAug)
+    errs.push(`A minor triad's #5 is written bare: ${root}m#5, not ${root}m(#5).`);
   for (const group of [balts || '', (palts || '').replace(/[()]/g, '')]) {
     const alts = group.match(new RegExp(CHORD_ALT, 'g')) || [];
     const degs = alts.map(a => CHORD_ALT_DEGREE[a]);
