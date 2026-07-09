@@ -1,0 +1,233 @@
+{
+  "composer": "Vincent ROSE – Al JOLSON – Buddy DE SYLVA",
+  "year": "1920",
+  "style": "TRADITIONAL",
+  "tempo": "FAST",
+  "form": "32 A A' B C",
+  "time_signature": "4/4",
+  "title": "AVALON",
+  "page": 25,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "B_bar2": "Section B bar 2 is printed parenthesised '(Am7b5)', an optional/passing chord; kept as printed."
+  },
+  "recordings": [
+    "A.Combelle 37- W.Lewis 41",
+    "J.Venuti 34- D.Ellington 58",
+    "E.Hines 64- O.Byas 45- K.Cole 58",
+    "O.Peterson 54- A.Nichols 28",
+    "Casa Loma 34- C.Hawkins 35",
+    "Quintette HCF 35- S.Stitt 50",
+    "L.Armstrong 60- S.Bechet 51",
+    "J.Lunceford 35- H.James 39",
+    "B.Goodman 37?.38.55.58.62",
+    "C.Calloway 34"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7",
+          "3": "C7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "3": "C7#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "(Am7b5)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbm6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bbm6",
+          "3": "Bo7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  }
+}

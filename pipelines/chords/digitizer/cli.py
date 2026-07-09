@@ -32,7 +32,8 @@ def _parse_args(argv: list[str] | None) -> Config:
                    help="crops directory")
     p.add_argument(
         "--manifest", type=Path, default=None,
-        help="manifest.csv (default: <crops>/manifest.csv)",
+        help="optional manifest.csv used only to restore original title spellings "
+             "(default: <crops>/manifest.csv; missing is fine)",
     )
     p.add_argument("--out", type=Path, default=_REPO / "data" / "chords" / "02_raw",
                    help="output directory")
@@ -41,7 +42,7 @@ def _parse_args(argv: list[str] | None) -> Config:
     p.add_argument("--retries", type=int, default=3, help="per-unit validation retries")
     p.add_argument("--dilate", type=int, default=1, help="ink-thickening iterations (0=off)")
     p.add_argument("--max-long-edge", type=int, default=1100, help="downscale long edge to")
-    p.add_argument("--max-output-tokens", type=int, default=2500, help="output token cap (billed by actual use, not the cap)")
+    p.add_argument("--max-output-tokens", type=int, default=4000, help="output token cap (billed by actual use, not the cap)")
     p.add_argument("--page-range", type=_page_range, default=None, help="limit to pages A:B")
     p.add_argument("--delay", type=float, default=0.0, help="seconds to sleep between units")
     p.add_argument("--only", default=None, help="restrict to one current_file (debugging)")
@@ -77,9 +78,6 @@ def main(argv: list[str] | None = None) -> int:
     config = _parse_args(argv)
     if not config.crops_dir.is_dir():
         print(f"error: crops dir not found: {config.crops_dir}", file=sys.stderr)
-        return 2
-    if not config.manifest.is_file():
-        print(f"error: manifest not found: {config.manifest}", file=sys.stderr)
         return 2
     try:
         run(config)

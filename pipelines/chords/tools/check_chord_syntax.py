@@ -10,7 +10,7 @@ Grammar derived from pipelines/chords/digitizer/prompt.py (=== CHORD NOTATION ==
 ALTERATIONS & PARENTHESES, EXTENSIONS, SUS/SLASH/NO-CHORD):
 
   chord      := "N.C." | "(" core ")" | core        # outer parens = optional chord
-  core       := root stem paren_ext? alts slash? "?"?
+  core       := root stem paren_ext? ("alt" | alts) slash? "?"?
   root       := [A-G] ("#"|"b")?                    # as printed, no enharmonic change
   stem       := "" | m | 6 | 7 | 9 | 11 | 13 | 6/9 | maj7 | maj9
               | m6 | m7 | m9 | m11 | m13 | m6/9 | m7b5 | o7 | m(maj7)
@@ -19,9 +19,12 @@ ALTERATIONS & PARENTHESES, EXTENSIONS, SUS/SLASH/NO-CHORD):
   alts       := (b5|#5|b9|#9|#11|b13)+ in ascending-degree order
                 - bare when a 7th/extension number is present (F7#5, C9b5)
                 - parenthesised on a bare triad: F(#5), D(b9), A(#5#9)
+                - EXCEPTION: #5 on a bare minor triad is bare: Bbm#5, never Bbm(#5)
                 - never both, never "9b" — flat-nine is always spelled "(b9)"
   slash      := "/" root                            # slash bass, e.g. Fm7/Bb
   o7         := lowercase "o" + "7" (the only allowed diminished spelling)
+  alt        := printed "alt" -> literal suffix "alt" (F7alt); requires a
+                7th/extension and excludes explicit alterations
 
 Exit code 1 if any chord fails, 0 otherwise.
 """
@@ -58,6 +61,7 @@ CORE = re.compile(
     rf"^(?P<root>{ROOT})"
     rf"(?P<stem>{'|'.join(sorted(STEMS, key=len, reverse=True))})"
     rf"(?P<pext>\((?:6|7|9|11|13)\))?"
+    rf"(?P<altw>alt)?"
     rf"(?P<balts>{ALT}*)"
     rf"(?P<palts>\({ALT}+\))?"
     rf"(?P<slash>/{ROOT})?"
@@ -76,15 +80,23 @@ def check_core(s: str) -> list[str]:
     balts = m.group("balts") or ""
     palts = m.group("palts") or ""
     has_ext = bool(HAS_EXT.search(stem)) or bool(m.group("pext"))
+    if m.group("altw"):
+        if not has_ext:
+            errs.append("'alt' on a triad without 7th/extension")
+        if balts or palts:
+            errs.append("'alt' combined with explicit alterations")
+    minor_aug = stem == "m" and not has_ext and not m.group("altw")
     if balts and palts:
         errs.append("mixes bare and parenthesised alterations")
-    if balts and not has_ext:
+    if balts and not has_ext and not (minor_aug and balts == "#5"):
         errs.append(
             f"bare alteration '{balts}' on a triad without 7th/extension -> "
             f"should be parenthesised, e.g. {m.group('root')}{stem}({balts})"
         )
     if palts and has_ext:
         errs.append(f"parenthesised alteration '{palts}' but a 7th/extension is present -> should be bare")
+    if palts == "(#5)" and minor_aug:
+        errs.append(f"minor triad #5 attaches bare -> {m.group('root')}m#5, not {m.group('root')}m(#5)")
     for group in (balts, palts.strip("()")):
         alts = re.findall(ALT, group)
         degs = [DEGREE[a] for a in alts]

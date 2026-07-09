@@ -1,0 +1,280 @@
+{
+  "composer": "Richard RODGERS – Lorenz HART",
+  "year": "1939",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "36 A A B A'",
+  "time_signature": "4/4",
+  "title": "I DIDN'T KNOW WHAT TIME IT WAS",
+  "page": 172,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '14 VERSE'.",
+    "header_note": "A cut-off note at the top of the page reads 'the Ellington version of 1942 only, has a different bridge.'"
+  },
+  "recordings": [
+    "R.Stewart 47- A.Tatum 54- O.Peterson 59",
+    "B.Powell 55- L.Young 57- S.Getz 53.57.61",
+    "B.Bryant 55- E.Garner 57- S.Rollins 59.61",
+    "E.Bolton 55- C.Hawkins 47- B.Holiday 57",
+    "J.Dorsey 39- C.Profit 40- C.Parker 45.53",
+    "Jazz Messengers 63- G.Auld 55- A.Shaw",
+    "A.Persley 76- D.Wellington 51",
+    "W.Jones 78- S.Harris 51"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Em9",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em9",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm9",
+          "3": "G13"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7",
+          "3": "Em7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7",
+          "3": "G7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Em9",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em9",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm9",
+          "3": "G13"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7",
+          "3": "Em7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Em7b5",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7b5",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7",
+          "3": "G7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Em9",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em9",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm9",
+          "3": "G13"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7",
+          "3": "Em7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Am7",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  }
+}

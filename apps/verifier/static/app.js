@@ -87,6 +87,7 @@ const CHORD_CORE_RE = new RegExp(
   '^(?<root>' + CHORD_ROOT + ')' +
   '(?<stem>' + CHORD_STEMS.slice().sort((a, b) => b.length - a.length).join('|') + ')' +
   '(?<pext>\\((?:6|7|9|11|13)\\))?' +      // parenthesised superscript ext, e.g. 7(13)
+  '(?<altw>alt)?' +                        // altered dominant, e.g. F7alt (needs a 7th/extension)
   '(?<balts>' + CHORD_ALT + '*)' +         // bare alterations (need a 7th/extension)
   '(?<palts>\\(' + CHORD_ALT + '+\\))?' +  // parenthesised alterations (bare triad)
   '(?<slash>/' + CHORD_ROOT + ')?' +
@@ -114,7 +115,7 @@ function chordParseHints(s) {
   if (/[o0°ºΟO˚]\)?$/.test(s))
     hints.push('Diminished is written o7 (lowercase o + 7), e.g. G#o7.');
   if (/aug|\+/.test(s))
-    hints.push('Augmented: (#5) on a bare triad (Eb(#5)), #5 after a 7th/extension (Eb7#5); 5+ → #5.');
+    hints.push('Augmented: (#5) on a bare triad (Eb(#5)), #5 after a 7th/extension (Eb7#5) or after m (Bbm#5); 5+ → #5.');
   if (/sus(?![24])/.test(s))
     hints.push('Suspended is sus4 / sus2 / 7sus4 / 9sus4 — a printed bare "sus" means sus4.');
   if (/min|MIN/.test(s))
@@ -123,10 +124,12 @@ function chordParseHints(s) {
     hints.push('Do not use "-" inside a chord; minor is written m.');
   if (/maj(?![79])/.test(s))
     hints.push('"maj" must be followed by 7 or 9 (maj7, maj9); a plain major triad is the bare root.');
+  if (/m(?:maj|M)7|m7M/.test(s))
+    hints.push('Minor-major 7th needs parens: m(maj7), e.g. Dm(maj7) — never "Dmmaj7".');
   if (!hints.length)
     hints.push('Not a recognised chord. Expected: ROOT(A–G, #/b) + quality (m, maj7, m7b5, o7, '
       + 'm(maj7), sus4…) + extension (6, 7, 9, 11, 13, 6/9) + alterations (b5 #5 b9 #9 #11 b13) '
-      + '+ optional /bass and trailing ? — e.g. Bb7, Fm7b5, C9b5, F(#5), D(b9), Fm7/Bb.');
+      + 'or alt + optional /bass and trailing ? — e.g. Bb7, Fm7b5, C9b5, F7alt, F(#5), D(b9), Fm7/Bb.');
   return hints;
 }
 
@@ -135,14 +138,23 @@ function chordCoreErrors(s) {
   const m = CHORD_CORE_RE.exec(s);
   if (!m) return chordParseHints(s);
   const errs = [];
-  const { root, stem, pext, balts, palts } = m.groups;
+  const { root, stem, pext, altw, balts, palts } = m.groups;
   const hasExt = CHORD_HAS_EXT.test(stem) || !!pext;
+  if (altw) {
+    if (!hasExt)
+      errs.push(`"alt" needs a 7th/extension — e.g. ${root}7alt.`);
+    if (balts || palts)
+      errs.push('"alt" cannot be combined with explicit alterations — use one or the other.');
+  }
+  const minorAug = stem === 'm' && !hasExt && !altw;
   if (balts && palts)
     errs.push('Mixes bare and parenthesised alterations — use one style.');
-  if (balts && !hasExt)
+  if (balts && !hasExt && !(minorAug && balts === '#5'))
     errs.push(`Alteration on a bare triad must be parenthesised: ${root}${stem}(${balts}).`);
   if (palts && hasExt)
     errs.push(`A 7th/extension is present, so write the alteration bare: ${root}${stem}${pext || ''}${palts.slice(1, -1)}.`);
+  if (palts === '(#5)' && minorAug)
+    errs.push(`A minor triad's #5 is written bare: ${root}m#5, not ${root}m(#5).`);
   for (const group of [balts || '', (palts || '').replace(/[()]/g, '')]) {
     const alts = group.match(new RegExp(CHORD_ALT, 'g')) || [];
     const degs = alts.map(a => CHORD_ALT_DEGREE[a]);

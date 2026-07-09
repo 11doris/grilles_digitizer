@@ -189,7 +189,11 @@ Diminished -> o7 (Co7); o7 covers BOTH the diminished triad and the diminished 7
 write just o7. A small hand-drawn circle "°" (often a raised, unfilled loop after the
 root) is DIMINISHED, not a 7: read "G#" followed by a little circle as G#o7, NEVER G#7.
 Augmented triad -> (#5) (Eb(#5)). Augmented dominant -> 7#5 (Eb7#5).
-Minor-major 7th -> m(maj7) (Dm(maj7)).
+Minor triad with raised 5th -> m#5, bare (Bbm#5, Cm#5) — the m already separates the
+alteration from the root letter, so NO parentheses: never Bbm(#5).
+Minor-major 7th -> m(maj7) (Dm(maj7)). The parentheses around maj7 are REQUIRED —
+a minor chord with a major 7th (printed e.g. as "m7M", "mM7", "mΔ") is ALWAYS
+Dm(maj7), NEVER the fused "Dmmaj7" or "Dmmaj9".
 
 SYMBOL ORDER: build every chord in this fixed order, no spaces:
   ROOT -> quality (m / maj7 / o7 / m7b5 / sus4 ...) -> highest extension number
@@ -216,10 +220,18 @@ ALTERATIONS & PARENTHESES: an alteration is an accidental degree (b5, #5, b9, #9
 b13, ...). Attach it BARE, to the right of the chord, WHENEVER a 7th or an extension
 number is present: F7#5, Ab7b9, C9b5, C9#5, C13#5, B7#11, Eb7#5b9. Wrap it in parentheses ONLY on a
 bare triad that has NO 7th/extension: F(#5) [= augmented triad], Ab(b9), A(#5#9). Rule of
-thumb: 7th or number present -> no parens; bare triad -> parens. NEVER add a 7th or
+thumb: 7th or number present -> no parens; bare triad -> parens. EXCEPTION: on a bare
+MINOR triad a #5 attaches bare — Bbm#5, never Bbm(#5) — because the m already separates
+it from the root. NEVER add a 7th or
 extension the box does not print, even when one is theoretically implied by the
 alteration: a bare root carrying only a b9 is F(b9), NOT F7b9; a bare root with a #5 is
 F(#5), NOT F7#5. Transcribe the quality actually written, not the chord it suggests.
+
+ALTERED DOMINANT ("alt"): a small printed "alt" beside a chord that has a 7th or
+extension number means the altered chord — append the literal suffix alt, no dot, no
+parentheses: an F7 marked "alt" is F7alt. Do NOT expand it into explicit alterations
+(b9, #9, ...) and do NOT drop it into a notation_notes entry instead of the chord —
+the alt is part of the chord symbol.
 
 READING SUPERSCRIPT ACCIDENTALS (the (b9) traps — read these carefully):
 Alterations and extensions are hand-drawn as small SUPERSCRIPTS to the upper-right of
@@ -264,7 +276,8 @@ SUS / SLASH / NO-CHORD:
 CONVERSIONS from the book to canonical:
 - 7M, M7, Δ (major 7) -> maj7  (Eb7M -> Ebmaj7)
 - ø (half-dim) -> m7b5  (Aø -> Am7b5)
-- superscript 5+ (aug 5th) -> #5  (Bb7 with a 5+ -> Bb7#5; a Bb triad with a 5+ -> Bb(#5))
+- superscript 5+ (aug 5th) -> #5  (Bb7 with a 5+ -> Bb7#5; a Bb triad with a 5+ -> Bb(#5);
+  a Bbm with a 5+ -> Bbm#5)
 - suffix t (means +, i.e. raise that degree) -> # on that degree  (Eb9t -> Eb#9; an F7 with a 5t -> F7#5)
 - .../14 (French "14th") -> #11  (E9/14 -> E9#11, since 7+7=14)
 - APPLY every conversion above INSIDE the chord string, even when the whole chord is

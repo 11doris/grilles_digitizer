@@ -1,0 +1,242 @@
+{
+  "composer": "Rube BLOOM – Ted KOEHLER",
+  "year": "1939",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "title": "DON'T WORRY 'BOUT ME",
+  "page": 105,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '12 VERSE'."
+  },
+  "recordings": [
+    "? 50- A.? 50- T.Wilson 46, 15",
+    "? 70- ?od, J.?",
+    "Jackson 58- S.Grappelli 55- G.Gryce 60",
+    "Bradshaw 54- W.B.Davis 55- E.Garner 47",
+    "Bruback 53.54- Pol.Winters Three 58",
+    "Calloway 58.62- L.Armstrong 48",
+    "Gordon 55- J.Hitherapoon 59",
+    "Getz 46- Z.Sims 50- A.Cohn 58",
+    "Camey 60- 6.Stitt 58,60",
+    "Torme 57- P.Bailey 59"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm9b5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Bbm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab6",
+          "3": "(Db7b5)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Bo7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gb13"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7b5",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb13"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7b5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Bbm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "Dbmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab7",
+          "3": "D9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dbmaj7",
+          "3": "D9#5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gb13"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Gb9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F(b9)"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab6"
+        }
+      }
+    ]
+  }
+}
