@@ -189,7 +189,9 @@ Diminished -> o7 (Co7); o7 covers BOTH the diminished triad and the diminished 7
 write just o7. A small hand-drawn circle "°" (often a raised, unfilled loop after the
 root) is DIMINISHED, not a 7: read "G#" followed by a little circle as G#o7, NEVER G#7.
 Augmented triad -> (#5) (Eb(#5)). Augmented dominant -> 7#5 (Eb7#5).
-Minor-major 7th -> m(maj7) (Dm(maj7)).
+Minor-major 7th -> m(maj7) (Dm(maj7)). The parentheses around maj7 are REQUIRED —
+a minor chord with a major 7th (printed e.g. as "m7M", "mM7", "mΔ") is ALWAYS
+Dm(maj7), NEVER the fused "Dmmaj7" or "Dmmaj9".
 
 SYMBOL ORDER: build every chord in this fixed order, no spaces:
   ROOT -> quality (m / maj7 / o7 / m7b5 / sus4 ...) -> highest extension number

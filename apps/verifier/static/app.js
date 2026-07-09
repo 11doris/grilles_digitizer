@@ -124,6 +124,8 @@ function chordParseHints(s) {
     hints.push('Do not use "-" inside a chord; minor is written m.');
   if (/maj(?![79])/.test(s))
     hints.push('"maj" must be followed by 7 or 9 (maj7, maj9); a plain major triad is the bare root.');
+  if (/m(?:maj|M)7|m7M/.test(s))
+    hints.push('Minor-major 7th needs parens: m(maj7), e.g. Dm(maj7) — never "Dmmaj7".');
   if (!hints.length)
     hints.push('Not a recognised chord. Expected: ROOT(A–G, #/b) + quality (m, maj7, m7b5, o7, '
       + 'm(maj7), sus4…) + extension (6, 7, 9, 11, 13, 6/9) + alterations (b5 #5 b9 #9 #11 b13) '
