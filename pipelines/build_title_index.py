@@ -64,7 +64,8 @@ MANUAL = [
     ("266_03_MILESTONES.png", "534_01_MILESTONES.png"),
     ("466_01_WILD_CAT_BLUES_PART2.png", "929_01_WILD_CAT_BLUES.png"),
     ("185_01_I_LOVE_YOU.png", "351_01_I_LOVE_YOU.png"),
-]
+    ("425_01_THOU_SWELL_MODERN_VERSION.png", "847_01_THOU_SWELL.png"),
+    ]
 
 
 def main():
