@@ -1,4 +1,4 @@
-"""Match chord sheets (data/chords/crops/) to melody sheets (data/melody/crops/) by title.
+"""Match chord sheets (data/chords/01_crops/) to melody sheets (data/melody/01_crops/) by title.
 
 Emits data/title_index.csv in wide format (one row per tune) flagging which sheets
 have a counterpart in the other dataset. Page numbers differ between datasets,
@@ -9,8 +9,8 @@ import os, re, csv
 from difflib import SequenceMatcher
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repo root
-CHORDS = os.path.join(ROOT, "data", "chords", "crops")
-MELODY = os.path.join(ROOT, "data", "melody", "crops")
+CHORDS = os.path.join(ROOT, "data", "chords", "01_crops")
+MELODY = os.path.join(ROOT, "data", "melody", "01_crops")
 OUT = os.path.join(ROOT, "data", "title_index.csv")
 
 

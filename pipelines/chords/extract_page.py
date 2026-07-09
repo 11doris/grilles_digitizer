@@ -15,7 +15,7 @@ AGJ.pdf). Use --pdf-page to pass a 1-based PDF page index instead.
 
 USAGE
   python pipelines/chords/extract_page.py sources/AGJ.pdf 100    # printed page 100
-  python pipelines/chords/extract_page.py sources/AGJ.pdf 100 --out data/chords/crops/
+  python pipelines/chords/extract_page.py sources/AGJ.pdf 100 --out data/chords/01_crops/
   python pipelines/chords/extract_page.py sources/AGJ.pdf 1 --pdf-page   # first PDF page
   python pipelines/chords/extract_page.py page341.pdf 340 --start-page 340
 """

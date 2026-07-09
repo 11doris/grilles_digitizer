@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Convenience entry point (chords pipeline, stage 2). Defaults read
-data/chords/crops/ and write data/chords/raw/, both resolved from the repo root:
+data/chords/01_crops/ and write data/chords/02_raw/, both resolved from the repo root:
 `python pipelines/chords/transcribe.py`.
 `python pipelines/chords/transcribe.py --only 207_03_IT_MIGHT_AS_WELL_BE_SPRING.png --debug`
 `python pipelines/chords/transcribe.py --sample 10 --seed 42 --debug`

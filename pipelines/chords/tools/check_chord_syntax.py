@@ -4,7 +4,7 @@
 Usage
 -----
     python pipelines/chords/tools/check_chord_syntax.py [dir ...]
-    # default dirs: data/chords/verified data/chords/wip
+    # default dirs: data/chords/04_verified data/chords/03_wip
 
 Grammar derived from pipelines/chords/digitizer/prompt.py (=== CHORD NOTATION ===,
 ALTERATIONS & PARENTHESES, EXTENSIONS, SUS/SLASH/NO-CHORD):
@@ -127,8 +127,8 @@ def main() -> int:
     except AttributeError:
         pass
     _repo = Path(__file__).resolve().parents[3]  # repo root
-    dirs = sys.argv[1:] or [str(_repo / "data" / "chords" / "verified"),
-                            str(_repo / "data" / "chords" / "wip")]
+    dirs = sys.argv[1:] or [str(_repo / "data" / "chords" / "04_verified"),
+                            str(_repo / "data" / "chords" / "03_wip")]
     failed = False
     for dirname in dirs:
         print(f"===== {dirname} =====")

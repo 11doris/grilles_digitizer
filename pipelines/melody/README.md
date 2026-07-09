@@ -10,15 +10,15 @@ everything from the repo root.
 
 | Stage | Script | Input → Output |
 |---|---|---|
-| 0 crop | `melody_cropper.py` | `sources/AGJ_Melody.pdf` + both index PDFs → `data/melody/crops/*.png` + `melody_manifest.json` |
-| 0b deskew (one-off) | `../deskew_crops.py` (shared) | `data/melody/crops/` fixed in place |
+| 0 crop | `melody_cropper.py` | `sources/AGJ_Melody.pdf` + both index PDFs → `data/melody/01_crops/*.png` + `melody_manifest.json` |
+| 0b deskew (one-off) | `../deskew_crops.py` (shared) | `data/melody/01_crops/` fixed in place |
 | 1 straighten | `melody_straightener.py` | crops → `data/melody/debug/<id>/` (strips, overlays, `stage1.json` geometry) |
 | 2 symbols | *not yet implemented* | per-system symbol lists (barlines, noteheads, stems, rests, …) |
 | 3 bars | *not yet implemented* | bar assembly + rhythm solving against the chord JSON |
-| 4 adjudicate | *not yet implemented* | model API on flagged bars only → `data/melody/wip/<id>.abc` |
+| 4 adjudicate | *not yet implemented* | model API on flagged bars only → `data/melody/03_wip/<id>.abc` |
 | 5 validate | *not yet implemented* | validation suite; then human review promotes `wip/` → `verified/` |
 
-The chord grille JSON (`data/chords/raw|verified/<id>.json`) is **ground truth**
+The chord grille JSON (`data/chords/02_raw|verified/<id>.json`) is **ground truth**
 for form, bar counts, and chords — never modify it from this pipeline.
 
 ## Stage 0 — crop
@@ -37,8 +37,8 @@ slanted (same script serves the chords crops). It takes a file, glob, or
 directory:
 
 ```sh
-python pipelines/deskew_crops.py data/melody/crops --dry-run   # report angles
-python pipelines/deskew_crops.py data/melody/crops/247_02_FLYING_HOME.png
+python pipelines/deskew_crops.py data/melody/01_crops --dry-run   # report angles
+python pipelines/deskew_crops.py data/melody/01_crops/247_02_FLYING_HOME.png
 ```
 
 Crops are stored 1-bit — re-deskewing an already deskewed crop degrades staff
@@ -47,7 +47,7 @@ lines; rerun `melody_cropper.py` from the PDF instead.
 ## Stage 1 — straighten
 
 ```sh
-python pipelines/melody/melody_straightener.py data/melody/crops --debug
+python pipelines/melody/melody_straightener.py data/melody/01_crops --debug
 ```
 
 The staves are hand-drawn with local slant and curvature, so every system is
@@ -57,8 +57,8 @@ model review.
 
 ## Verified output
 
-Stage 4/5 output lands in `data/melody/wip/<crop-stem>.abc` (same stem as the
-PNG in `data/melody/crops/`). After human review — abcjs renders and plays the
+Stage 4/5 output lands in `data/melody/03_wip/<crop-stem>.abc` (same stem as the
+PNG in `data/melody/01_crops/`). After human review — abcjs renders and plays the
 ABC in the displayer, which is the fastest way to check a jazz tune — promote
-the file to `data/melody/verified/`; the displayer bundles any `.abc` there
+the file to `data/melody/04_verified/`; the displayer bundles any `.abc` there
 automatically at the next `apps/displayer/build_data.py` run.

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Regenerate pipelines/chords/digitizer/examples.py from the tunes in data/chords/verified/.
+"""Regenerate pipelines/chords/digitizer/examples.py from the tunes in data/chords/04_verified/.
 
 The worked examples are embedded verbatim in the cached system prompt (spec §5.1):
 they serve as few-shot guidance and as the bulk that pushes the cached prefix past
 the 4,096-token cache minimum (spec §18.3). Sourcing them from the hand-verified
-tunes in data/chords/verified/ keeps the few-shot in sync with the corrected ground
+tunes in data/chords/04_verified/ keeps the few-shot in sync with the corrected ground
 truth instead of a separate hand-copied spec appendix.
 
 Each example is one verified tune, stripped to the MODEL's output shape (runner
@@ -21,7 +21,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]  # repo root
-VERIFIED = ROOT / "data" / "chords" / "verified"
+VERIFIED = ROOT / "data" / "chords" / "04_verified"
 OUT = ROOT / "pipelines" / "chords" / "digitizer" / "examples.py"
 
 # Fields the runner injects (spec §5/§6) — strip them so each example mirrors the
@@ -29,7 +29,7 @@ OUT = ROOT / "pipelines" / "chords" / "digitizer" / "examples.py"
 RUNNER_FIELDS = ("title", "page", "source")
 
 # One short blurb per verified tune (keyed by file stem) describing what few-shot
-# lesson it carries. Kept in sync by hand with the chords actually in data/chords/verified/.
+# lesson it carries. Kept in sync by hand with the chords actually in data/chords/04_verified/.
 # Insertion order here is the order examples appear in the output.
 DEMONSTRATES = {
     "20_01_ANNIE_LAURIE": (
@@ -127,7 +127,7 @@ def main() -> None:
 
     header = (
         '"""Worked examples for the system prompt (few-shot + cacheable bulk).\n\n'
-        "Auto-generated from the verified tunes in data/chords/verified/ by "
+        "Auto-generated from the verified tunes in data/chords/04_verified/ by "
         "pipelines/chords/tools/build_examples.py.\n"
         "Each tune_json is the MODEL's output shape (no title/page/source). Run the "
         "tool\n"

@@ -11,7 +11,7 @@ abcjs lead sheets. Spec:
 python apps/displayer/build_data.py
 ```
 
-Reads `data/title_index.csv`, `data/chords/verified/`, `data/melody/verified/`
+Reads `data/title_index.csv`, `data/chords/04_verified/`, `data/melody/04_verified/`
 and copies every referenced scan into `crops/` and `melody_crops/` here, so the
 deployed folder is self-contained. Rerun after verifying new tunes or melodies,
 then commit the changes. Open `index.html` directly (file://) to test locally.

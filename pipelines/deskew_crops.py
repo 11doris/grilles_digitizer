@@ -8,10 +8,10 @@ result matches what `melody_cropper` produces at crop time.
 
 Accepts a single PNG, a glob, or a directory (deskews every *.png inside).
 
-  python pipelines/deskew_crops.py data/chords/crops
-  python pipelines/deskew_crops.py data/melody/crops
-  python pipelines/deskew_crops.py data/melody/crops/247_02_FLYING_HOME.png
-  python pipelines/deskew_crops.py "data/chords/crops/100_*.png" --dry-run
+  python pipelines/deskew_crops.py data/chords/01_crops
+  python pipelines/deskew_crops.py data/melody/01_crops
+  python pipelines/deskew_crops.py data/melody/01_crops/247_02_FLYING_HOME.png
+  python pipelines/deskew_crops.py "data/chords/01_crops/100_*.png" --dry-run
 
 Options:
   --max-deg  widest rotation searched, +/- deg           (default 6.0)
@@ -77,7 +77,7 @@ def main():
         description="Deskew one or all crop PNGs (chords or melody) in place.")
     ap.add_argument("inputs", nargs="+",
                     help="crop PNG(s), glob(s), or a directory "
-                         "(e.g. data/chords/crops or data/melody/crops)")
+                         "(e.g. data/chords/01_crops or data/melody/01_crops)")
     ap.add_argument("--max-deg", type=float, default=6.0,
                     help="widest rotation searched, +/- deg (default 6.0)")
     ap.add_argument("--step", type=float, default=0.1,
