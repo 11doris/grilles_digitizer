@@ -615,10 +615,11 @@ body.list-collapsed #gridZoom { left: 1rem; }
   color: var(--bg);
   font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
-  font-size: 1.1em;
+  font-size: 1.0em;
   line-height: 1;
-  padding: 0.18em 0.4em;
+  padding: 0.1em 0.2em;
   margin-bottom: 0.3em;
+  margin-left: -1.0em; /* nudge the badge left, closer to the barline gutter */
 }
 
 .row {
@@ -630,7 +631,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
 .timesig {
   position: absolute;
-  left: -1em;
+  left: -0.6em;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
