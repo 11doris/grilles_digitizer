@@ -607,7 +607,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
   font-size: clamp(10px, 2.6cqw, 17px);
 }
 
-.section { margin-bottom: 0.6em; }
+.section { margin-bottom: 0.0em; }
 
 .sec-label {
   display: inline-block;
