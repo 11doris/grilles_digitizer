@@ -1,25 +1,27 @@
 /* Grilles Displayer — themes, layout, chord grid, chord symbols. */
 
-/* Barlow Condensed (Google Fonts), bundled locally so file:// works offline. */
+/* Saira Extra Condensed (Google Fonts), bundled locally so file:// works
+   offline. Latin subset only — the music glyphs ♯ ♭ Δ fall back to the system
+   font, as they did with Barlow. */
 @font-face {
-  font-family: "Barlow Condensed";
+  font-family: "Saira Extra Condensed";
   font-style: normal;
   font-weight: 400;
-  src: url("fonts/barlow-condensed-400.woff2") format("woff2");
+  src: url("fonts/saira-extra-condensed-400.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Barlow Condensed";
+  font-family: "Saira Extra Condensed";
   font-style: normal;
   font-weight: 500;
-  src: url("fonts/barlow-condensed-500.woff2") format("woff2");
+  src: url("fonts/saira-extra-condensed-500.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Barlow Condensed";
+  font-family: "Saira Extra Condensed";
   font-style: normal;
   font-weight: 700;
-  src: url("fonts/barlow-condensed-700.woff2") format("woff2");
+  src: url("fonts/saira-extra-condensed-700.woff2") format("woff2");
 }
 
 :root[data-theme="dark"] {
@@ -458,7 +460,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .head-top .title {
   margin: 0;
   text-align: center;
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0.03em;
@@ -557,7 +559,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .harm-sections dt {
   font-weight: 700;
   color: var(--fg);
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
 }
 
 .harm-sections dd { margin: 0; }
@@ -574,10 +576,10 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
 /* ---------------------------------------------------------- chord grid */
 
-/* All grid dimensions are em-based so the JS fit pass can scale the whole
-   grid to the viewport height by adjusting this one font-size. The width cap
-   is em-based too: bars stay a constant ~4 chords wide relative to the chord
-   size (~646px at the default 17px), instead of spreading out on big screens. */
+/* All grid dimensions are em-based so the JS fit pass can scale the whole grid
+   to the viewport height by adjusting this one font-size. The width is em-based
+   too — this 38em is the default; chords never shrink to fit their slots, so
+   fitGridWidth widens this cap when a busy bar's chords would collide. */
 .grid {
   max-width: 38em;
   margin: 0 auto;
@@ -593,7 +595,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
   display: inline-block;
   background: var(--fg);
   color: var(--bg);
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
   font-size: 1.1em;
   line-height: 1;
@@ -605,7 +607,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   position: relative;
-  margin-bottom: 1.0em;
+  margin-bottom: 0.7em;
 }
 
 .timesig {
@@ -616,7 +618,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   font-size: 1.3em;
   line-height: 1;
@@ -625,11 +627,13 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
 .bar {
   min-width: 0;
-  min-height: 4em;
+  /* Just tall enough to enclose a chord box (2.1em) with a little air above and
+     below; the barlines hug the row instead of towering over it. */
+  min-height: 2.5em;
   display: grid;
   align-items: center;
   border-left: 2px solid var(--line);
-  padding: 0.25em 0.3em 0.25em 0.4em;
+  padding: 0.15em 0.3em 0.15em 0.4em;
 }
 
 .bar.rowlast { border-right: 2px solid var(--line); }
@@ -644,55 +648,103 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
 /* -------------------------------------------------------- chord symbols */
 
+/* The chord is a flex row: an optional "(", the box grid, an optional bass note,
+   an optional ")". */
 .chord {
   display: inline-flex;
-  align-items: flex-end;
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  align-items: center;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
-  line-height: 0.9;
+  line-height: 1;
   white-space: nowrap;
 }
 
+/* Fixed box grid (Figure D.3): a full-height root letter on the left, then a
+   middle column (accidental over core quality) and a right column (alt-up over
+   alt-down). The two rows are a fixed height in em, so the root always spans the
+   same box and every chord shares one ground line — B7♯11 and B♭7♯11 line up
+   whether or not there's an accidental. Anything overspilling a box (an enlarged
+   flat, a tall alteration) overflows visibly without nudging the layout. */
+.chord .box {
+  display: inline-grid;
+  grid-template-columns: auto auto auto; /* root | middle | alts */
+  grid-template-rows: 1.05em 1.05em;
+  align-items: center;
+}
+
 .chord .root {
-  font-size: 2.3em;
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: center;
+  font-size: 2.1em;
+  line-height: 0.72;
   font-weight: 400;
 }
 
+/* Middle column, top box: root accidental as a superscript. */
 .chord .acc {
-  font-size: 0.7em;
-  display: inline-block;
-  transform: translateY(-0.5em);
-  margin-left: 0.05em;
-}
-
-.chord .qual {
-  font-size: 1.25em;
-  padding-bottom: 0.08em;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  justify-self: start;
   margin-left: 0.06em;
+  font-size: 1.1em;
+  line-height: 1;
 }
 
+/* The flat glyph renders small in the fallback font — enlarge it so ♭ reads at
+   the same weight as ♯ (both as a root accidental and inside qualities). */
+.chord .acc.flat { font-size: 1.5em; line-height: 0.75; }
+.chord .fl { font-size: 1.28em; line-height: 0.7; }
+
+/* Middle column, bottom box: the core quality (7, -7, Δ7, ø7 …). */
+.chord .qual {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  justify-self: start;
+  margin-left: 0.06em;
+  font-size: 1.2em;
+  line-height: 0.85;
+}
+
+/* Right column: up to two alterations. A lone one sits in the upper box
+   (superscript); a pair straddles the core quality (Figure D.3). Extended
+   chords like B♭7♯9♯5 or A♭7(13) stay about a letter-width wide. */
+.chord .alt-up,
+.chord .alt-down {
+  grid-column: 3;
+  justify-self: start;
+  margin-left: 0.04em;
+  font-size: 0.72em;
+  line-height: 0.95;
+}
+
+.chord .alt-up { grid-row: 1; align-self: end; }
+.chord .alt-down { grid-row: 2; align-self: start; }
+
+/* Bass note sits below-right of the box, after a short slash (Aø7/E♭). */
 .chord .bass {
-  font-size: 0.95em;
   align-self: flex-end;
-  transform: translateY(0.45em);
+  transform: translateY(0.3em);
   margin-left: 0.08em;
+  font-size: 0.95em;
+  line-height: 1;
 }
 
 .chord .paren {
   font-size: 1.6em;
   font-weight: 400;
-  align-self: center;
   opacity: 0.8;
 }
 
 .chord.optional { opacity: 0.85; }
-.chord.optional .root { font-size: 1.85em; }
+.chord.optional .root { font-size: 1.7em; }
 
 .chord .nc {
   font-size: 1.1em;
   font-variant: small-caps;
   color: var(--muted);
-  padding-bottom: 0.2em;
 }
 
 .chord-raw {
