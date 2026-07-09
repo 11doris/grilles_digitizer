@@ -581,8 +581,8 @@
     if (harmony) head.appendChild(harmony);
 
     /* Playlist controls (§5.3, §11.2, §11.4): Prev/Next only while a playlist
-       is active (set by updateStepButtons). "Add to playlist" lives in the top
-       bar and acts on the current tune (see addPlBtn). */
+       is active (set by updateStepButtons). "Add to playlist" sits in the tune
+       view's top-right corner and acts on the current tune (see addPlBtn). */
     const actions = el("div", "head-actions");
     const prev = el("button", "step-btn step-prev");
     prev.type = "button";
@@ -606,6 +606,29 @@
     s.textContent = summary;
     details.appendChild(s);
     return details;
+  }
+
+  /* Variants (spec §6): alternative changes for certain bars, rendered as small
+     chord grids directly below the main grid — always visible, not collapsed. */
+  function renderVariants(tune, beats) {
+    if (!Array.isArray(tune.variants) || !tune.variants.length) return null;
+    const wrap = el("div", "variants");
+    const title = el("div", "variants-title");
+    title.textContent = tune.variants.length > 1 ? "Variants" : "Variant";
+    wrap.appendChild(title);
+    tune.variants.forEach((variant) => {
+      const v = el("div", "variant");
+      if (variant.applies_to) {
+        const cap = el("div", "variant-caption");
+        cap.textContent = variant.applies_to;
+        v.appendChild(cap);
+      }
+      const mini = el("div", "mini-grid");
+      mini.appendChild(renderGrid(variant.bars || [], beats, { double: false }));
+      v.appendChild(mini);
+      wrap.appendChild(v);
+    });
+    return wrap;
   }
 
   function renderExtras(tune, beats) {
@@ -639,23 +662,6 @@
       const p = el("p");
       p.textContent = tune.same_chord_changes;
       block.appendChild(p);
-      extras.appendChild(block);
-    }
-
-    if (Array.isArray(tune.variants) && tune.variants.length) {
-      const block = detailsBlock("Variants");
-      tune.variants.forEach((variant) => {
-        const wrap = el("div", "variant");
-        if (variant.applies_to) {
-          const cap = el("div", "variant-caption");
-          cap.textContent = variant.applies_to;
-          wrap.appendChild(cap);
-        }
-        const mini = el("div", "mini-grid");
-        mini.appendChild(renderGrid(variant.bars || [], beats, { double: false }));
-        wrap.appendChild(mini);
-        block.appendChild(wrap);
-      });
       extras.appendChild(block);
     }
 
@@ -1006,8 +1012,9 @@
     else closeMenu();
   });
 
-  /* Top-bar "＋": add the currently displayed tune to a playlist (§11.2). The
-     popover drops from the button on desktop, becomes a bottom sheet on phones. */
+  /* Tune-view "＋" (top-right corner): add the currently displayed tune to a
+     playlist (§11.2). The popover drops from the button on desktop, becomes a
+     bottom sheet on phones. */
   addPlBtn.addEventListener("click", (e) => {
     e.stopPropagation(); // keep the outside-click closer from firing
     const t = tuneById(state.currentId);
@@ -1158,6 +1165,8 @@
           grid.appendChild(renderSection(name, tune.sections[name], beats, i === 0, tune.time_signature));
         });
         panel.appendChild(grid);
+        const variants = renderVariants(tune, beats);
+        if (variants) panel.appendChild(variants);
         const extras = renderExtras(tune, beats);
         if (extras) panel.appendChild(extras);
         if (t.chord_image) {

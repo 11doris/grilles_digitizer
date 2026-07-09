@@ -670,6 +670,43 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
 #btn-add-section { margin-top: 4px; }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   Variants (reuse the section card grid; amber accent + free-text caption)
+   ══════════════════════════════════════════════════════════════════════════ */
+#variants-area { margin-top: 24px; }
+
+.area-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.variant-card { border-left-color: var(--warning); }
+
+.var-applies {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 3px 7px;
+  background: transparent;
+  color: var(--text);
+  transition: border-color 0.12s, background 0.12s;
+}
+.var-applies:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface);
+}
+.var-applies::placeholder { color: var(--border2); font-weight: 400; }
+
+#btn-add-variant { margin-top: 4px; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
    Zoom overlay
    ══════════════════════════════════════════════════════════════════════════ */
 #zoom-overlay {
