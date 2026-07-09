@@ -1,0 +1,279 @@
+{
+  "composer": "Richard A. WHITING – Haven GILLESPIE – Seymour SIMONS",
+  "year": "1928",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "HONEY",
+  "page": 159,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "recordings": [
+    "Bron/J.Reples 76",
+    "..lls Harry Hakers 28",
+    "..Barr 44- B.Auld 45",
+    "..Vaughan 54- Norman",
+    "..ne 29- T.Powell 41",
+    "..Hopkin 37- K.Win-",
+    "..a 52- P.Lewis 28",
+    "California Ramblers"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7",
+          "4": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "c18d8555788a356e8df9c9d81904231850a0126d6f782c72c50fa911e70fb3fc",
+    "scorer": {
+      "tonic": "C",
+      "mode": "major",
+      "margin": 0.6779
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "turnaround-ending",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "A": "I - V/V (G7) - V7 (C7) with C#o7 passing to ii-V, ending on V7",
+      "A1": "Repeat of A: I - V/V - V7 - ii-V turnaround on C7",
+      "B": "I - V/vi (A7) to Dm - F7 to Bb(IV) - Bo7 - I - D7 - ii-V (G7-C7) back to I",
+      "A2": "I - V/V - V7 - Dm7-G7 resolving to C"
+    },
+    "modulates": false
+  }
+}

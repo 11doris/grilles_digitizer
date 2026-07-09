@@ -1,0 +1,307 @@
+{
+  "composer": "Thelonious MONK",
+  "year": "1951",
+  "style": "MODERN JAZZ",
+  "tempo": "SLOW",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "ASK ME NOW",
+  "page": 21,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "St.Lacy 58- T.Monk 51.59"
+  ],
+  "notation_notes": {
+    "year_uncertain": "Header prints 'Thelonious MONK 1951 ?'."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm7",
+          "2": "C7",
+          "3": "F#m7",
+          "4": "B7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#m7",
+          "2": "Bb7",
+          "3": "Em7",
+          "4": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "B7#11",
+          "3": "Bb7#11"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb9",
+          "3": "D9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Db6",
+          "3": "Bbm7",
+          "4": "Eb9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7(13)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "B7#11",
+          "2": "Bb7",
+          "3": "A7",
+          "4": "Ab7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm7",
+          "2": "C7",
+          "3": "F#m7",
+          "4": "B7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#m7",
+          "2": "Bb7",
+          "3": "Em7",
+          "4": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "B7#11",
+          "3": "Bb7#11"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb9",
+          "3": "D9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Db6",
+          "3": "Bbm7",
+          "4": "Eb9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7(13)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db6"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ebm7",
+          "3": "D9(13)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gb7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm7",
+          "2": "C7",
+          "3": "F#m7",
+          "4": "B7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#m7",
+          "2": "Bb7",
+          "3": "Em7",
+          "4": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "B7#11",
+          "3": "Bb7#11"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb9",
+          "3": "D9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Db6",
+          "3": "Bbm7",
+          "4": "Eb9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7(13)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Db",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "#iv",
+    "quality": "min",
+    "chord": "Gm7"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "8a4e72410dba34bb412e5bf48f081cb95e5e198475d42969753a79611ef28b86",
+    "scorer": {
+      "tonic": "Db",
+      "mode": "major",
+      "margin": 0.8043
+    },
+    "llm": {
+      "tonic": "Db",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Db",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "chromatic-descent",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "Chain of descending ii-V cells resolving to Db (I), with #11 dominants and chromatic descent, ending on a turnaround of dominants",
+      "A1": "Same ii-V chains resolving fully to Db6 (I)",
+      "B": "iv-bVII and ii-V motion around Db, cadencing toward Gb7 (IV7)",
+      "A2": "Restated ii-V chains landing on Db6 (I)"
+    },
+    "modulates": false
+  }
+}

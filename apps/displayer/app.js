@@ -20,6 +20,7 @@
   const zoomInBtn = document.getElementById("zoomIn");
   const zoomOutBtn = document.getElementById("zoomOut");
   const playlistBtn = document.getElementById("playlistBtn");
+  const addPlBtn = document.getElementById("addPlBtn");
   const playlistClear = document.getElementById("playlistClear");
   const playlistMenu = document.getElementById("playlistMenu");
   const plPopover = document.getElementById("plPopover");
@@ -496,6 +497,60 @@
     return String(s).toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
   }
 
+  /* "C", "Db", "F#" → "C", "D♭", "F♯" (music accidental glyphs). */
+  function noteGlyph(tonic) {
+    return String(tonic).replace(/#/g, "♯").replace(/b/g, "♭");
+  }
+
+  /* {tonic, mode} → "C major" / "A♭ minor"; null when no tonic. */
+  function keyLabel(k) {
+    if (!k || !k.tonic) return null;
+    return noteGlyph(k.tonic) + (k.mode ? " " + k.mode : "");
+  }
+
+  function harmChip(kind, label, value) {
+    const chip = el("span", "harm-chip " + kind);
+    if (label) {
+      const l = el("span", "harm-label");
+      l.textContent = label;
+      chip.appendChild(l);
+    }
+    const v = el("span", "harm-val");
+    v.textContent = value;
+    chip.appendChild(v);
+    return chip;
+  }
+
+  /* Key + section keys (row 1) and harmonic-fingerprint family + tags (row 2),
+     from the annotated JSON (data/chords/05_annotated). Compact wrapping chip
+     rows so the block stays readable on phone and desktop alike; the prose
+     per-section analysis lives in the collapsible extras below the grid. */
+  function renderHarmony(tune) {
+    const keys = el("div", "harm-row harm-keys");
+    const mainKey = keyLabel(tune.key);
+    if (mainKey) keys.appendChild(harmChip("key", "Key", mainKey));
+
+    const scorer = (tune.key_annotation || {}).scorer || {};
+    const sectionKeys = scorer.section_keys || {};
+    Object.keys(sectionKeys).forEach((name) => {
+      const label = keyLabel(sectionKeys[name]);
+      if (label) keys.appendChild(harmChip("section", displaySectionName(name), label));
+    });
+
+    const tags = el("div", "harm-row harm-tags");
+    const fp = tune.harmonic_fingerprint || {};
+    if (fp.family) tags.appendChild(harmChip("family", null, fp.family));
+    (fp.tags || []).forEach((tag) => {
+      tags.appendChild(harmChip("tag", null, tag));
+    });
+
+    if (!keys.childElementCount && !tags.childElementCount) return null;
+    const wrap = el("div", "harmony");
+    if (keys.childElementCount) wrap.appendChild(keys);
+    if (tags.childElementCount) wrap.appendChild(tags);
+    return wrap;
+  }
+
   /* Non-digitized tunes only have a title (spec §5.3). */
   function renderHead(t) {
     const info = meta(t);
@@ -521,26 +576,23 @@
       head.appendChild(meta_);
     }
 
-    /* Playlist controls (§5.3, §11.2, §11.4): the add button on every tune;
-       Prev/Next only while a playlist is active (set by updateStepButtons). */
+    /* Key / section keys / harmonic fingerprint (annotated tunes only). */
+    const harmony = renderHarmony(info);
+    if (harmony) head.appendChild(harmony);
+
+    /* Playlist controls (§5.3, §11.2, §11.4): Prev/Next only while a playlist
+       is active (set by updateStepButtons). "Add to playlist" lives in the top
+       bar and acts on the current tune (see addPlBtn). */
     const actions = el("div", "head-actions");
     const prev = el("button", "step-btn step-prev");
     prev.type = "button";
     prev.textContent = "‹ Prev";
     prev.addEventListener("click", () => playlistStep(-1));
-    const add = el("button", "add-pl-btn");
-    add.type = "button";
-    add.textContent = "＋ Add to playlist";
-    add.addEventListener("click", (e) => {
-      e.stopPropagation(); // keep the outside-click closer from firing
-      if (plPopover.hidden) openPopover(add, t);
-      else closePopover();
-    });
     const next = el("button", "step-btn step-next");
     next.type = "button";
     next.textContent = "Next ›";
     next.addEventListener("click", () => playlistStep(1));
-    actions.append(prev, add, next);
+    actions.append(prev, next);
     head.appendChild(actions);
 
     return head;
@@ -558,6 +610,29 @@
 
   function renderExtras(tune, beats) {
     const extras = el("div", "extras");
+
+    const fp = tune.harmonic_fingerprint;
+    const modNote = ((tune.key_annotation || {}).llm || {}).modulation_note;
+    if (fp && (fp.sections || modNote)) {
+      const block = detailsBlock("Harmonic analysis");
+      if (fp.sections && typeof fp.sections === "object") {
+        const dl = el("dl", "harm-sections");
+        for (const [name, desc] of Object.entries(fp.sections)) {
+          const dt = el("dt");
+          dt.textContent = displaySectionName(name);
+          const dd = el("dd");
+          dd.textContent = desc;
+          dl.append(dt, dd);
+        }
+        block.appendChild(dl);
+      }
+      if (modNote) {
+        const p = el("p", "harm-modnote");
+        p.textContent = "Modulation: " + modNote;
+        block.appendChild(p);
+      }
+      extras.appendChild(block);
+    }
 
     if (tune.same_chord_changes) {
       const block = detailsBlock("Same changes");
@@ -929,6 +1004,16 @@
     e.stopPropagation(); // keep the outside-click closer from firing
     if (playlistMenu.hidden) openMenu();
     else closeMenu();
+  });
+
+  /* Top-bar "＋": add the currently displayed tune to a playlist (§11.2). The
+     popover drops from the button on desktop, becomes a bottom sheet on phones. */
+  addPlBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // keep the outside-click closer from firing
+    const t = tuneById(state.currentId);
+    if (!t) return;
+    if (plPopover.hidden) openPopover(addPlBtn, t);
+    else closePopover();
   });
 
   /* --- Export / import (§11.5). */

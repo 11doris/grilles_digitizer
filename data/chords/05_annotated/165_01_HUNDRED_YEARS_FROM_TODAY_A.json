@@ -1,0 +1,396 @@
+{
+  "composer": "Joseph YOUNG",
+  "year": "1933",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "8 A | 34 A A' B A''",
+  "time_signature": "4/4",
+  "title": "HUNDRED YEARS FROM TODAY, A",
+  "page": 165,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "L.Miley 57- Cass.Lome 34- A.Rollini 34- O.Ewell",
+    "E.Webbers 33- E.Hines/A.Bullivan 70- J.Stacy 77",
+    "J.Moody 54- J.Mundy 55- H.Perry 43-",
+    "R.Stewart 57- J.Teagarden 54.33.41.60"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 6, 14, 30",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Abmaj7",
+            "3": "Gm7",
+            "4": "C7"
+          }
+        }
+      ]
+    }
+  ],
+  "notation_notes": {
+    "verse": "First row labelled 'VERSE'."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7b5",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7",
+          "3": "Bb7#5"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F9",
+          "3": "Bb7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Abm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm9",
+          "3": "Bb7#5"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F9",
+          "3": "Bb7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Abm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F9",
+          "3": "Bb7(13)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb7",
+          "3": "B9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F9",
+          "3": "Bb7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Abm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7b5",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "F9",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "Ab",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "ii",
+    "quality": "min",
+    "chord": "Fm7"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "08b1a66797e2537763d87d8dc7144af3789449313933ce86152398c1d0b74f30",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.6245,
+      "section_keys": {
+        "B": {
+          "tonic": "Ab",
+          "mode": "major",
+          "margin": 0.9
+        }
+      }
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge tonicizes Ab (IV) via ii-V-I before returning to V of Eb",
+      "section_keys": {
+        "B": {
+          "tonic": "Ab",
+          "mode": "major"
+        }
+      }
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard with verse",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "verse_A": "ii-V into I (Fm7-Bb7-Eb), then rising ii-Vs (Am7b5-D7 to Gm, Cm7b5-F7) landing on Bb7 (V)",
+      "A": "Imaj7-vi with ii-V (Fm7-Bb7), IV to iv (Abmaj7-Abm6), ending Fm9-Bb7#5 (ii-V)",
+      "A1": "same as A ending on Eb tonic (I)",
+      "B": "Bbm7-Eb7 ii-V-I to Ab6 (IV), then Cm7-F7 to Bb7 (V of Eb)",
+      "A2": "A material extended with Gm7b5-C7 then F9-Bb7 turnaround resolving to Eb (I)"
+    },
+    "modulates": true,
+    "modulation_note": "bridge tonicizes Ab (IV) via ii-V-I before returning to V of Eb"
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "composer": "Willard ROBISON – Larry CONLEY",
+  "year": "1930",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "COTTAGE FOR SALE",
+  "page": 83,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
+  "recordings": [
+    "V.Dickenson 57- T.King 57",
+    "L.Miles 55- D.Henderson 61",
+    "E.Hines 64.65- F.Sinatra 55",
+    "J.Teagarden 62- D.Wehling",
+    "ton 55- C.Bullock 30-",
+    "B.Doggett 55- D.Byas 62",
+    "E.Bernier 48.54",
+    "B.Eckstine 45",
+    "C.Hawkins 55"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 7",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "F7",
+            "3": "Bb7"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C(b9)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7b5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C(b9)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7b5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C(b9)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7b5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Eb"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "94869b79dc3ff6bc317daa1f4d1741cd29f9e32948ae9ed8f1bfa3408751b5c4",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.7484
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "circle-of-fifths",
+      "dominant-cycle-bridge",
+      "ii-V-chains"
+    ],
+    "sections": {
+      "A": "I - V/vi - V/ii(C7b9) - iv-ish (Fm7b5) - Imaj7 with V/vi, ii with bVI7, tritone/dominant approach to I",
+      "A1": "Same as A: I with secondary dominants resolving back to I in Eb",
+      "B": "Dominant cycle G7-C7-F7-Bb7 (circle of fifths) then Fm7-Bb7 ii-V back to Eb",
+      "A2": "Same as A resolving to I in Eb"
+    },
+    "modulates": false
+  }
+}

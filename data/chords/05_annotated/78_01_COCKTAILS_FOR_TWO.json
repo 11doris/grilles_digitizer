@@ -1,0 +1,409 @@
+{
+  "composer": "Arthur JOHNSTON – Sam COSLOW",
+  "year": "1934",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "16 A B | 32 A A' B A\"",
+  "time_signature": "4/4",
+  "title": "COCKTAILS FOR TWO",
+  "page": 78,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "D.Gillespie 52- L.Armstrong 65",
+    "B.Webster/C.Hawkins 57",
+    "E.Bostic 55- D.Ellington 34.53",
+    "R.Charles 61- A.Cobb 51.59",
+    "T.Dorsey 38- A.Tatum 34.40.44.45- Johnny Breen 34",
+    "C.Hawkins 47.57",
+    "H.Buckner 61",
+    "B.Carter 52.40",
+    "E.Berner 55"
+  ],
+  "notation_notes": {
+    "verse": "Header prints 'VERSE' over the first strain (labelled '16 A B').",
+    "strains": "Page shows two labelled strains: the top verse-strain '16 A B' and the lower chorus-strain '32 A A' B A''."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "B"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C",
+          "3": "B"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "E",
+          "3": "Eb"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "E",
+          "3": "Eb"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "E",
+          "3": "B7#5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "E"
+        }
+      }
+    ],
+    "verse_B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Am9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G",
+          "3": "F#"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G",
+          "3": "F#"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G",
+          "3": "D7#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7",
+          "3": "N.C."
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C",
+          "4": "C#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7",
+          "3": "N.C."
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C",
+          "4": "C#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7",
+          "3": "C7#5"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "C6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7",
+          "3": "N.C."
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C",
+          "4": "C#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "Fm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "C",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "C"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "6ed40916329f4446e7cde2a5e6c5b5dcc60de6bc728a169ba33f64b189fe613b",
+    "scorer": {
+      "tonic": "C",
+      "mode": "major",
+      "margin": 0.8226
+    },
+    "llm": {
+      "tonic": "C",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard with 16-bar verse",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "chromatic-descent"
+    ],
+    "sections": {
+      "verse_A": "I with chromatic upper-neighbor (C/B) then III (E major) tonicized by B7#5",
+      "verse_B": "Am9-A9-Dm7 then G/G7 dominant build-up, ending on V7 into the head",
+      "A": "I with G7#5, C#o7 passing diminished, ii-V (Dm7-G7) back to I, turnaround on V7",
+      "A1": "Same A but ends C7-Gm7-C7 as V7/IV to launch the bridge",
+      "B": "IV-iv (F-Fm), Cmaj7/C6, Ebo7, ii-V-I cadence back to C, turnaround on V7",
+      "A2": "A with final plagal Fm-C resolving firmly on tonic I"
+    },
+    "modulates": false
+  }
+}

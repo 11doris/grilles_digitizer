@@ -1,0 +1,294 @@
+{
+  "composer": "Denzil BEST",
+  "style": "Be BOP",
+  "tempo": "FAST",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "WEE",
+  "page": 447,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "composer_date": "Header prints '(Denzil BEST 1946 ?)'.",
+    "solos": "Printed below grid: 'Solos on \"I Got Rhythm\" chord changes.'"
+  },
+  "recordings": [
+    "C.Hawkins 46- E.Anderson 76",
+    "Jam Session 76- R.Norvo 6-",
+    "R.Davis/F.Powell 6-",
+    "F.Fuller",
+    "(...) F.Clark, Giants",
+    "(...) of Jazz Edition 62"
+  ],
+  "same_chord_changes": "Solos on \"I Got Rhythm\" chord changes.",
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb6",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7",
+          "3": "B7",
+          "4": "Bb6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb6"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb6",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7",
+          "3": "B7",
+          "4": "Bb6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb6"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb6",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7",
+          "3": "B7",
+          "4": "Bb6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bbmaj7"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "3b39e59fd89e407ddbb1e199361463bb86cd02ef2e0821a8fe322cc79f13147a",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.8034
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "rhythm changes (32-bar AABA)",
+    "tags": [
+      "rhythm-changes-a",
+      "rhythm-changes-bridge",
+      "dominant-cycle-bridge",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I-ii-iii-ii with passing #io7 diminished, ii-V turnaround (Cm7-F7) resolving to I",
+      "A1": "Same as A: I with chromatic diminished passing chords and ii-V back to I",
+      "B": "Dominant cycle III7-VI7-II7 (D7-G7-C7) leading to ii-V (Cm7-F7)",
+      "A2": "Same as A: I-based rhythm changes A section with ii-V turnaround"
+    },
+    "modulates": false
+  }
+}

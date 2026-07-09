@@ -1,0 +1,310 @@
+{
+  "composer": "George GERSHWIN – Ira GERSHWIN",
+  "year": "1930",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "34 A A B A'",
+  "time_signature": "4/4",
+  "title": "I GOT RHYTHM",
+  "page": 178,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "O.Peterson 48- H.James 58- K.Ory 58",
+    "B.Bunter 63- E.Fitzgerald 51",
+    "Kansas City Six 44- C.Webb 37- A.Tatum 44",
+    "M.Mills 27.43- S.Bechet 49.58- E.Garner 44",
+    "M.Hampton 37- D.Byas 45- H.Henderson 40",
+    "H.Mezzrow 37- D.Redman 32- L.Russell 30",
+    "T.Waller 35- E.Hopers 30- F.Johnson 33",
+    "L.Armstrong 31.38(F.Waller-).45.58- A.Hall 31",
+    "T.Bradshaw 58- B.Evans 59- G.Grappelli 35.70",
+    "B.Goodman 29.45.58- Just Jazz 47- E.Hines 60",
+    "J.Gordon All Star 42- H.Duncan 50",
+    "T.Wilson 62.55.69- E.Condon 37- O.Profit 30"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '28 VERSE'.",
+    "also_played": "Grid notes 'ALSO PLAYED IN 32 BARS AABA'."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb",
+          "3": "Ebm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb",
+          "3": "Ebm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gb7b5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb",
+          "3": "Ebm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "C7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bb"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "8f997f55168cb16db6fa9561b01d3812735906cbf14add001fdc63e86c9a2670",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.8101
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "rhythm changes",
+    "tags": [
+      "rhythm-changes-a",
+      "rhythm-changes-bridge",
+      "dominant-cycle-bridge",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I-vi-ii-V with Dbo7 passing chord, IV/iv motion in bar 6, ii-V-I",
+      "A1": "Same as A: I-vi-ii-V, Dbo7, Eb-Ebm, ii-V-I",
+      "B": "Dominant cycle III7-VI7-II7-V7 (D7-G7-C7-F7) with tritone sub Gb7b5",
+      "A2": "A section extended with Ab7-G7-C7-F7 turnaround resolving to I"
+    },
+    "modulates": false
+  }
+}

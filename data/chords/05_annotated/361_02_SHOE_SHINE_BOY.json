@@ -1,0 +1,297 @@
+{
+  "composer": "Saul CHAPLIN – Sammy CAHN",
+  "year": "1936",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "SHOE SHINE BOY",
+  "page": 361,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
+  "recordings": [
+    "L.Armstrong 35",
+    "C.Basie 36.62",
+    "D.Ellington 38",
+    "B.Goodman 35",
+    "Billie Blue Rhyt.36",
+    "M.Manone 36",
+    "J.Jones 55",
+    "E.Hines 66",
+    "R.Sutton 49",
+    "R.Braff 55"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "E7",
+          "4": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "E7",
+          "4": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm",
+          "3": "Bb7",
+          "4": "A7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "Gm7b5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "E7",
+          "4": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "e6849066a958215c33750977101a73c6408abfe2988af017dd0d97d24600e2c5",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.7991
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "A": "I-VI7-ii-V loop, bar5 I-III7-bVII7-VI7 then ii-V back to I",
+      "A1": "Repeat of A: I-VI7-ii-V loops resolving to I",
+      "B": "V/vi (A7) to vi (Dm), G7 (V/V), then ii-V (Gm7-C7) back to I",
+      "A2": "Repeat of A ending on tonic F"
+    },
+    "modulates": false
+  }
+}

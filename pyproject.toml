@@ -21,5 +21,7 @@ packages = [
     "pipelines",
     "pipelines.chords",
     "pipelines.chords.digitizer",
+    "pipelines.chords.key_annotation",
+    "pipelines.chords.similarity",
     "pipelines.melody",
 ]

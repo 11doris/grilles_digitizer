@@ -1,0 +1,290 @@
+{
+  "composer": "Ray HENDERSON – Lew BROWN",
+  "year": "1931",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "34 A A B",
+  "time_signature": "4/4",
+  "title": "THRILL IS GONE, THE",
+  "page": 424,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Ch.Baker 53.54- L.Fitzgerald 64- Sl.Hampton 60",
+    "S.Kenton 55- R.Bryant 57- C.Mariano 53- E.Bostic 59",
+    "D.Gordon 64- S.Getz 60"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '18 VERSE'."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7",
+          "3": "C13"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gb7",
+          "3": "Fmaj7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Emaj7",
+          "3": "Em7b5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "A(b9)",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Bb7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Ab7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "Em7b5"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "Eb9"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7",
+          "3": "C13"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gb7",
+          "3": "Fmaj7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Em7b5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "A(b9)",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Bb7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Ab7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "Em7b5"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "Eb9"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dm",
+          "3": "Dm(maj7)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7",
+          "3": "Bm7b5"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7",
+          "3": "Gm(maj7)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7sus4"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "A(b9)"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Dm"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "D",
+    "mode": "minor"
+  },
+  "opening": {
+    "degree": "i",
+    "quality": "min",
+    "chord": "Dm"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "f540aa35ae0bb08c323679e0add308dbeb0bc57e31e184b54728c5914a2cdcfa",
+    "scorer": {
+      "tonic": "D",
+      "mode": "minor",
+      "margin": 0.7528
+    },
+    "llm": {
+      "tonic": "D",
+      "mode": "minor",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "D",
+      "mode": "minor",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "34-bar AAB standard",
+    "tags": [
+      "ii-V-chains",
+      "chromatic-descent",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "i to G9 (IV/V area), ii-V toward F, chromatic bVI7-Emaj7, iiø-V(b9) back to i, chromatic Bb7-A7-Ab7-G7 descent, ends iiø-Eb9 turnaround",
+      "A1": "same as A with Ebmaj7 in bar 7, ends on Eb9 turnaround",
+      "B": "i with maj7 line, iø-Bb7, ii-V, iv with maj7 line, Eb9, A7sus-A(b9) V resolving to i"
+    },
+    "modulates": false
+  }
+}

@@ -1,0 +1,255 @@
+{
+  "composer": "Django REINHARDT – Stéphane GRAPPELLY",
+  "year": "1937",
+  "style": "SWING",
+  "tempo": "MEDIUM",
+  "form": "28 A A B A",
+  "time_signature": "4/4",
+  "title": "DJANGOLOGY",
+  "page": 102,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Barclay 49",
+    "Bolling 58",
+    "Branders 42",
+    "Reinhardt 42.45.49",
+    "Qtette H.C.F. 35",
+    "Grappelli 54.72.79",
+    "Grün ..."
+  ],
+  "notation_notes": {
+    "truncation": "Only the A row (8 bars) and a 4-bar B row are printed; the repeated A sections and final A are reconstructed from the '28 A A B A' form. The A row's bar 8 is a dash (repeat of the preceding bar).",
+    "recordings_edge": "Right-margin credits are partly cut off at the crop edge; transcribed as legible."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C#m7b5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Co7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C#m7b5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Co7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C#m7b5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Co7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "G",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "#iv",
+    "quality": "m7b5",
+    "chord": "C#m7b5"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "1d521bc8109cbc89d869ab6875c15497c3c82bde4a3ab8812a0d39f707498266",
+    "scorer": {
+      "tonic": "G",
+      "mode": "major",
+      "margin": 0.8034,
+      "section_keys": {
+        "B": {
+          "tonic": "A",
+          "mode": "major",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "G",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "G",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "28-bar AABA standard",
+    "tags": [
+      "chromatic-descent",
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "Chromatic descending line iv#m7b5-dimo-iii-bIIIo-ii-V7-I resolving to G",
+      "A1": "Same chromatic descent to ii-V-I in G",
+      "B": "Two-bar shifts: Ab-Eb7-Ab then A-E7-A (bVII and I tonicizations)",
+      "A2": "Chromatic descent to ii-V-I in G"
+    },
+    "modulates": false
+  }
+}

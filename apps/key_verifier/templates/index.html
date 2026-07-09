@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Key Verifier</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <div class="sb-header">
+        <h1>Key Verifier</h1>
+        <div id="progress" class="sb-progress"></div>
+      </div>
+      <nav class="sb-tabs" id="filter-tabs">
+        <button data-filter="needs_review" class="active">needs review</button>
+        <button data-filter="unverified">unverified</button>
+        <button data-filter="all">all</button>
+      </nav>
+      <ul id="tune-list"></ul>
+    </aside>
+
+    <main id="main">
+      <header id="topbar">
+        <div>
+          <span id="tune-title">–</span>
+          <span id="tune-id" class="muted"></span>
+        </div>
+        <div id="queue-pos" class="muted"></div>
+        <div class="actions">
+          <button id="btn-prev" title="Previous (←)">←</button>
+          <button id="btn-next" title="Next (→)">→</button>
+          <button id="btn-verify" class="primary" title="Verify (V)">Verify ✓</button>
+        </div>
+      </header>
+
+      <div id="content">
+        <section id="crop-pane">
+          <img id="crop-img" alt="tune crop">
+          <div id="crop-missing" class="muted" hidden>no crop image</div>
+        </section>
+
+        <section id="panel">
+          <div class="card" id="key-card">
+            <div class="card-title">Key
+              <span id="status-badge" class="badge"></span>
+            </div>
+            <div id="key-display">
+              <span id="key-tonic">–</span>
+              <span id="key-mode">–</span>
+              <span id="opening-badge" class="badge opening" title="opening degree"></span>
+            </div>
+            <div id="tonic-picker" class="picker"></div>
+            <div class="mode-toggle" id="mode-toggle">
+              <button data-mode="major">major</button>
+              <button data-mode="minor">minor</button>
+            </div>
+          </div>
+
+          <div class="card" id="sections-card">
+            <div class="card-title">Section keys</div>
+            <div id="section-keys"></div>
+          </div>
+
+          <div class="card" id="votes-card">
+            <div class="card-title">Voter votes</div>
+            <div id="votes"></div>
+            <ul id="review-reasons"></ul>
+          </div>
+
+          <div class="card" id="fingerprint-card">
+            <div class="card-title">Harmonic fingerprint</div>
+            <label>family
+              <input id="fp-family" type="text">
+            </label>
+            <label>tags <span class="muted">(comma-separated)</span>
+              <input id="fp-tags" type="text">
+            </label>
+            <label class="row">
+              <input id="fp-modulates" type="checkbox"> modulates
+            </label>
+            <label>modulation note
+              <input id="fp-modnote" type="text">
+            </label>
+            <div id="fp-sections"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

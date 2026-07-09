@@ -1,0 +1,281 @@
+{
+  "composer": "Ella FITZGERALD – Teddy McRAY – Chick WEBB – Bud GREEN",
+  "year": "1937",
+  "style": "SWING",
+  "tempo": "MEDIUM",
+  "form": "34 A A B A'",
+  "time_signature": "4/4",
+  "title": "YOU SHOWED ME THE WAY",
+  "page": 483,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "F.Waller 37- C.Webb 37- Osie Johnson 56",
+    "T.Wilson 37- E.Wilcox 51- B.Goodman 37",
+    "M.Warlop 38- V.Manone 37- D.Staton 57",
+    "G.Zardos 37"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "another_note": "Above the title prints 'Another different \"Yours And Mine\" by J. Burke - S. Nelson 1930.'",
+    "A_bar9": "Section A' (final printed row) has extra bars 9-10 printed below the grid: bar 9 F7/Bb7, bar 10 Eb."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb7",
+          "3": "Bbm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Ab6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "B7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb",
+          "3": "Bb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb7",
+          "3": "Bbm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Ab6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "B7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb7",
+          "3": "Bbm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Ab6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Ebmaj7"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "f6035859036a6b26abac963bcb0d7cf916e8a040d1ea9c152745e0ad88a43818",
+    "scorer": {
+      "tonic": "Ab",
+      "mode": "major",
+      "margin": 0.3258
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "34-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I with V/IV (Eb7) to IV Abmaj7, chromatic B7-Bb7 approach resolving to I, ends on V (Bb7) turnaround",
+      "A1": "Same as A, resolving cleanly to I (Eb)",
+      "B": "ii-V (Bbm7-Eb7) to IV Abmaj7, then V/V (Cm7-F7) and ii-V (Fm7-Bb7) back to I",
+      "A2": "I with V/IV to IV, then ii-V (F7-Bb7) resolving to I (Eb)"
+    },
+    "modulates": false
+  }
+}

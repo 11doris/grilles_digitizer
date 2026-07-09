@@ -1,0 +1,290 @@
+{
+  "composer": "Jean SCHWARTZ – William JEROME",
+  "year": "1910",
+  "style": "TRADITIONAL",
+  "tempo": "FAST",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "title": "CHINATOWN MY CHINATOWN",
+  "page": 74,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '24 VERSE'."
+  },
+  "recordings": [
+    "W.Lewis 41- R.Nichols 29- R.Noble 35",
+    "L.Prima 35- J.Newman 55- P.Miller 41",
+    "J.Teagarden 44- T.Parenti 49- L.Am-",
+    "strong 31.38.48.49- Firehouse 5+2: 51",
+    "L.Hampton 37- F.Henderson 30- T.Dor-",
+    "sey 38- S.Bechet 54- Slim and Slam 38",
+    "Georgia Washboard Stompers 34- Cass",
+    "Loma 34- S.Grappelli 35- R.Braff 59"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 9",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Bb7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Bb7",
+            "3": "Bo7"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Abm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Eb"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "852b7a8053dff21035e90cdaa5f99e41f67c62bee18dd3ac5b913a6d64773317",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.4813
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAC standard",
+    "tags": [
+      "circle-of-fifths",
+      "dominant-cycle-bridge",
+      "ii-V-chains"
+    ],
+    "sections": {
+      "A": "Tonic I (Eb) for six bars then V7 (Bb7)",
+      "B": "Dominant cycle: III7(G7)-vi(Cm)-II7(F7)-V7(Bb7)",
+      "A1": "I-I7-IV: Eb to Eb7 leading to Ab (IV)",
+      "C": "IV-ivm-I-VI7-II7-V7-I turnaround resolving to Eb"
+    },
+    "modulates": false
+  }
+}

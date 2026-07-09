@@ -1,0 +1,311 @@
+{
+  "composer": "James V. MONACO – Joe Mc CARTHY",
+  "year": "1913",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "title": "YOU MADE ME LOVE YOU",
+  "page": 478,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "J.Dorsey 42- R.James 41.62- G.Auld 51- R.Charles",
+    "T.Buckner(Ed.Hall) 58- Ed.Hall 49- E.Condon 55",
+    "A.Franklin 61- E.Heywood 46- E.Garner 45.65",
+    "U.M.Carlisle 40- M.Sullivan 61- T.Oraberg 81",
+    "V.Dickenson 47"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 25",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "C7",
+            "2": "Db7",
+            "3": "C7",
+            "4": "Db7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "C7",
+            "2": "Db7",
+            "3": "C7"
+          }
+        }
+      ]
+    }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "variant_statement": "VARIANT Bar 25 labelled 'For statement of the melody'.",
+    "other_tune_note": "Printed note: 'Another different \"You Made Me Love You\" by Percy Venable recorded by L. Armstrong 1926.'",
+    "title_note": "Header also prints 'I DIDN'T WANT TO DO IT'."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "(A(b9))"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "Gbo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb6",
+          "3": "(Bb7)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb6"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "(A(b9))"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "Gbo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab6",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb6",
+          "3": "Bo7",
+          "4": "Cm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Ebmaj7"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "0056579dc95987cc045608f456dc7016b818cd14fab110548e3437d301f9cfce",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.8018
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAC standard",
+    "tags": [
+      "ii-V-chains",
+      "dominant-cycle-bridge",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "A": "I with V/ii, iii-#iio, ii-V repeated resolving to I (Eb6)",
+      "B": "Dominant chain V/V/V (C7)-V/V (F7)-V7 then ii-V back home",
+      "A1": "Same A opening but ends on V (G7) as turnaround into C",
+      "C": "C7-F7 dominant approach, bVI6-passing dim, I then ii-V-I cadence on Eb6"
+    },
+    "modulates": false
+  }
+}

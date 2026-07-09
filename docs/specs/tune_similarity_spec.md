@@ -175,7 +175,7 @@ answer.
 * **No `temperature` / `top_p` / `top_k`** — these are rejected with a 400 on Opus 4.7+. (Do not
   copy the conditional `temperature = 0` line from `pipelines/chords/digitizer/vlm.py`; that path
   is for older models.)
-* `max_tokens=4000` (output is small; headroom for thinking summary is unnecessary since thinking
+* `max_tokens=16000` (output is small; headroom for thinking summary is unnecessary since thinking
   tokens are separate from the schema'd text block, but headroom is cheap).
 * **Structured outputs**, not free text and not a forced tool call:
   `output_config={"format": {"type": "json_schema", "schema": KEY_SCHEMA}}` guarantees the reply

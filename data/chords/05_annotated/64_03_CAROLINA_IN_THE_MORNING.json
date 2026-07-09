@@ -1,0 +1,283 @@
+{
+  "composer": "Walter DONALDSON – Gus KAHN",
+  "year": "1922",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A B A C",
+  "time_signature": "4/4",
+  "title": "CAROLINA IN THE MORNING",
+  "page": 64,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '12 VERSE'."
+  },
+  "recordings": [
+    "D.Gerhard y/J.Bass 61- F.O'Brien 45",
+    "E.Blake 59- B.Berens 45- D.Kirw.lde 59",
+    "Mitchell Jazz Kings 23- V.B.Davison 54",
+    "W.Herman 38- B.Beckey 57- R.Nichols 30",
+    "B.Arnold 23- H.Ellis 63- P.Flowers 47",
+    "T.Dorsey 44"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "Cmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C6",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm",
+          "3": "Dm(maj7)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "Dm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D#o7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "Cmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C6",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm",
+          "3": "Dm(maj7)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "Dm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F#o7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "C",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "C"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "052b2bafab0fe59e1eee18ce43a017e440384a044a11c030e4df80178bb382b3",
+    "scorer": {
+      "tonic": "C",
+      "mode": "major",
+      "margin": 0.2673
+    },
+    "llm": {
+      "tonic": "C",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAC standard",
+    "tags": [
+      "ii-V-chains",
+      "circle-of-fifths",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I-Imaj7-I6 with C#o7 passing, ii-V, then iv-ish Dm minor line resolving to I",
+      "B": "IV-I-I7-IV, V/vi (A7) into dominant cycle D7-G-E7, ii-V into V7",
+      "A1": "same as A with F#o7 leading to V7 for the turnaround",
+      "C": "I-I7-IV then V/V-V, resolving I with vi and ii-V-I cadence"
+    },
+    "modulates": false
+  }
+}

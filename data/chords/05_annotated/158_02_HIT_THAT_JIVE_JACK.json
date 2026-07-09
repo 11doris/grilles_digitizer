@@ -1,0 +1,298 @@
+{
+  "composer": "Skeets TOLBERT – John ALSTON",
+  "year": "1940",
+  "style": "STANDARD SWING",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "HIT THAT JIVE JACK",
+  "page": 158,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "B.Palfrer 52- H.Cooper 47",
+    "L.Copeland 55- E.Lewis 46",
+    "J.Dieval 48- Nat K.Cole 41",
+    "B.Brahms 47- S.Tolbert 40",
+    "C.Bent 45- R.Mack 45",
+    "S.Galliard 48- E.Locke 77"
+  ],
+  "notation_notes": {
+    "row2_repeat": "The second printed row shows bars 1-4 as Eb7, dash, Ab, dash and bars 5-8 as F7, dash, Bb7, dash; dashes are bar-repeats of the preceding bar, giving the B section Eb7 Eb7 Ab Ab F7 F7 Bb7 Bb7.",
+    "truncated": "Only two grid rows printed (the A row and the B row); A1 and A2 reconstructed from the 32 A A B A form."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eb"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eb"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Eb"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "ca2273bec29507f81381a02803448aea9012e074b30ae98a530501625bb39c27",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.8166,
+      "section_keys": {
+        "B": {
+          "tonic": "Ab",
+          "mode": "major",
+          "margin": 0.64
+        }
+      }
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "turnaround-ending",
+      "ii-V-chains"
+    ],
+    "sections": {
+      "A": "I-vi-ii-V loop, then I-I7-IV-#IVo7-I-ii-V-I cadence",
+      "A1": "Repeat of A: I-vi-ii-V loop with IV and #IVo7 cadence",
+      "B": "I7 to IV, then V/V (F7) to V7 (Bb7) dominant prep",
+      "A2": "Repeat A ending on Bb7 turnaround back to I"
+    },
+    "modulates": false
+  }
+}

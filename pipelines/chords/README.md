@@ -10,6 +10,8 @@ structured JSON — one file per tune. Run everything from the repo root.
 | 3 verify | `apps/verifier/verify_app.py` | `raw/` → `wip/` (human edits) → `verified/` (approved) |
 | 4 index | `../build_title_index.py` | chord + melody crops → `data/title_index.csv` |
 | 5 publish | `apps/displayer/build_data.py` | `verified/` + index → displayer bundle |
+| 6 annotate keys | `annotate_keys.py` (→ `key_annotation/` package) | `verified/` → `data/chords/05_annotated/*.json` (key, section keys, opening, fingerprint; resumable) |
+| 7 verify keys | `apps/key_verifier/key_verify_app.py` | human review of `05_annotated` (needs-review queue first) |
 
 Helpers (not stages):
 
@@ -150,3 +152,36 @@ python apps/verifier/verify_app.py
 Browses `data/chords/02_raw/`, saves edits to `data/chords/03_wip/`, promotes approved
 tunes to `data/chords/04_verified/`. `raw/` itself is never modified. Spec:
 [docs/specs/verification_app_spec.md](../../docs/specs/verification_app_spec.md).
+
+## Stage 6 — annotate keys (Phase 0 of the similarity spec)
+
+```sh
+python pipelines/chords/annotate_keys.py                # annotate everything pending
+python pipelines/chords/annotate_keys.py --status       # per-status counts
+python pipelines/chords/annotate_keys.py --set-key <stem> <tonic> <major|minor>
+```
+
+Implements Phase 0 of
+[docs/specs/tune_similarity_spec.md](../../docs/specs/tune_similarity_spec.md):
+every verified tune gets `key`, `section_keys` (modulating sections only),
+`opening` (computed), `key_annotation` (both voter votes + status) and
+`harmonic_fingerprint` added on top of a verbatim copy in
+`data/chords/05_annotated/`. Two independent voters — a deterministic
+functional scorer ([key_annotation/scorer.py](key_annotation/scorer.py)) and
+one Claude call per tune ([key_annotation/llm.py](key_annotation/llm.py),
+structured outputs; Batches API at ≥50 pending) — must agree, otherwise the
+tune lands in `needs_review` for the key verifier app. Resumable: a tune is
+skipped while its annotated file matches the source's sha256; editing a
+verified source demotes it back to the machine statuses. **Never hand-edit
+`05_annotated` files** — corrections go through the app or `--set-key`, which
+recompute the derived fields.
+
+## Stage 7 — verify keys (human review)
+
+```sh
+python apps/key_verifier/key_verify_app.py
+```
+
+Shows the original crop next to the resolved key, both votes and the
+fingerprint; verify/correct writes back to `05_annotated` through the shared
+update routine. Keyboard: `V` verify, `←`/`→` navigate.

@@ -1,0 +1,284 @@
+{
+  "composer": "Leslie BRICUSSE – Anthony NEWLEY",
+  "year": "1961",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "title": "WHAT KIND OF FOOL AM I ?",
+  "page": 452,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "L.Almeida 62- Three So.nds 6.",
+    "B.Brookmeyer 63- D.Bashington 63",
+    "F.Prosch 64- A.Gre.- 77- P.Gilba 64",
+    "B.Mayes 64- C.Basie/ 62- G.Lynne 6:",
+    "Mel Davis 63- V.Jackson 62",
+    "P.Haynes 64- W.Herman 62- V.Feldman 64",
+    "S.Davis Jr 64- H.Mayes 65- B.Evans 64.77"
+  ],
+  "notation_notes": {
+    "C_bar8": "Final box printed as a dash (bar-repeat); copies preceding bar C6."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C6",
+          "4": "C#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Em7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A(b9)"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G(b9)"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "C6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gmaj7",
+          "3": "E(b9)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C6",
+          "4": "C#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Em7",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "B(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "C",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Cmaj7"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "7db2747ca41dc276caa8442cb3a5f7c34be65e201f46e0e90d0fd261a2f39fd6",
+    "scorer": {
+      "tonic": "C",
+      "mode": "major",
+      "margin": 0.7102,
+      "section_keys": {
+        "A": {
+          "tonic": "D",
+          "mode": "minor",
+          "margin": 0.5814
+        }
+      }
+    },
+    "llm": {
+      "tonic": "C",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABA'C standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "chromatic-descent"
+    ],
+    "sections": {
+      "A": "I(maj7)-I6 with #io7 passing, ii-V, iii-VI7(b9)-ii-V(b9) in C",
+      "B": "I dwelling, then V/V (D7) to Gmaj7 tonicizing V, back via E(b9)-Am7-D7 and ii-V into C",
+      "A1": "I with #io7, ii-V, then I-ii-iii-V7#5 to Gm7-C7 (ii-V into F)",
+      "C": "IV(maj7)-V7/iii-iii-bIIIo7-ii-iv6-I6 resolving home to C"
+    },
+    "modulates": false
+  }
+}

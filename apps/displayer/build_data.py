@@ -7,7 +7,8 @@ each row pairs a chord scan (data/chords/01_crops/<chords_file>) with a melody
 scan (data/melody/01_crops/<melody_file>). A chord matched to several melody
 sheets recurs once per sheet; those rows merge into one record whose
 melody_images lists every sheet. Rows whose chord tune has been
-digitized (data/chords/04_verified/<id>.json) get the full chord JSON embedded;
+digitized + annotated (data/chords/05_annotated/<id>.json) get the full chord
+JSON embedded — including its key, section_keys and harmonic_fingerprint;
 rows whose melody has been digitized get the ABC source embedded — the join
 is by melody scan stem: data/melody/04_verified/<stem of melody_file>.abc. Any
 new .abc saved there is included automatically at the next build.
@@ -22,7 +23,7 @@ Usage
 -----
     python apps/displayer/build_data.py
     python apps/displayer/build_data.py --index data/title_index.csv \
-        --tunes-dir data/chords/04_verified --crops-dir data/chords/01_crops \
+        --tunes-dir data/chords/05_annotated --crops-dir data/chords/01_crops \
         --melody-crops-dir data/melody/01_crops --melodies-dir data/melody/04_verified
 
     manual deployment:
@@ -83,8 +84,8 @@ def main() -> int:
     root = here.parents[1]  # repo root
     parser.add_argument("--index", default=str(root / "data" / "title_index.csv"),
                         help="Title index CSV (default: data/title_index.csv)")
-    parser.add_argument("--tunes-dir", default=str(root / "data" / "chords" / "04_verified"),
-                        help="Verified chord tune JSONs (default: data/chords/04_verified)")
+    parser.add_argument("--tunes-dir", default=str(root / "data" / "chords" / "05_annotated"),
+                        help="Annotated chord tune JSONs (default: data/chords/05_annotated)")
     parser.add_argument("--crops-dir", default=str(root / "data" / "chords" / "01_crops"),
                         help="Chord scan PNGs (default: data/chords/01_crops)")
     parser.add_argument("--melody-crops-dir", default=str(root / "data" / "melody" / "01_crops"),

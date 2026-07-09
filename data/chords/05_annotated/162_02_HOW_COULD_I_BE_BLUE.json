@@ -1,0 +1,349 @@
+{
+  "composer": "Dan WILSON – Andy RAZAF",
+  "year": "1926",
+  "style": "STANDARD TRADITIONAL",
+  "form": "8 A | 32 A B A B'",
+  "time_signature": "4/4",
+  "title": "HOW COULD I BE BLUE",
+  "page": 162,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Blue Grass Footwarmers 28- B.Martin 26",
+    "B.Brown 26- Elv.Johnson 28-",
+    "J.P.Johnson/C.Williams 30-",
+    "Savoy Bearcats 28"
+  ],
+  "notation_notes": {
+    "verse": "First printed row is labelled 'VERSE'.",
+    "B_arrow_row": "Section B (row 4) is a leading-arrow/dash row; empty/dash boxes copy the same-position bar from section B (row 3), trailing dash reverts to bar-repeat."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C",
+          "4": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C",
+          "4": "C#o7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G",
+          "2": "Go7",
+          "3": "G7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C",
+          "3": "Ebo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C",
+          "3": "G7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C",
+          "3": "Ebo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C",
+          "3": "G7"
+        }
+      }
+    ],
+    "B1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7b5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "C",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "C"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "16a6f831e3664691520633944e8ab389abb269edd0fd319b56dec91b9885ddc8",
+    "scorer": {
+      "tonic": "C",
+      "mode": "major",
+      "margin": 0.8166,
+      "section_keys": {
+        "B": {
+          "tonic": "F",
+          "mode": "major",
+          "margin": 0.64
+        }
+      }
+    },
+    "llm": {
+      "tonic": "C",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA-type standard with verse",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "verse_A": "I with ii-V, augmented dominant, passing diminished, and A7-D7-G7 circle back to V",
+      "A": "I-V alternation with chromatic diminished passing chords, ii-V into I",
+      "B": "C7 (V7/IV) to F (IV), then D7 (V/V) to G7 (V) dominant chain",
+      "A1": "same as A: I-V with diminished passing chords and ii-V-I",
+      "B1": "C7-F to iv-flavored Dm7b5, then ii-V and A7-D7-G7 circle resolving to I"
+    },
+    "modulates": false
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "composer": "Jimmy LUNCEFORD – Saul CHAPLIN – Sammy CAHN",
+  "year": "1935",
+  "style": "SWING STANDARD",
+  "tempo": "FAST",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "RHYTHM IN MY NURSERY RHYMES",
+  "page": 339,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Mound City Blue",
+    "C.Basie 36",
+    "J.Dorsey 35",
+    "J.Lunceford 35",
+    "T.Wilcox 35",
+    "T.Konitz",
+    "M.Manone",
+    "J.Rhymes 35",
+    "Six Swingers 36"
+  ],
+  "notation_notes": {
+    "title_prefix": "Title printed with lead-in '(IF I HAD)' before 'RHYTHM IN MY NURSERY RHYMES'.",
+    "A_bar3_4": "A bars 3-4 shown by a two-bar repeat sign restating bars 1-2.",
+    "B_dashes": "B row alternates chord boxes with dash bar-repeats; each dash copies the preceding bar."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F",
+          "3": "Abo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F",
+          "3": "Abo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb",
+          "3": "Bbm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F",
+          "3": "Abo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F",
+          "3": "Abo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb",
+          "3": "Bbm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F",
+          "3": "Abo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F",
+          "3": "Abo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb",
+          "3": "Bbm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "6575b9ab9ea30e48bed44ddd8a3dc0076e3d33bc48791b227708f043ded1101a",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.8105,
+      "section_keys": {
+        "B": {
+          "tonic": "Bb",
+          "mode": "major",
+          "margin": 0.64
+        }
+      }
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "turnaround-ending",
+      "dominant-cycle-bridge",
+      "chromatic-descent"
+    ],
+    "sections": {
+      "A": "I-#io7-ii-V loop, then I-I7-IV-iv-I with C7 turnaround",
+      "A1": "Same as A: I-#io7-ii-V, I7-IV-iv, I",
+      "B": "I7-IV-V7/vi-V7 dominant cycle bridge (F7-Bb-G7-C7)",
+      "A2": "Same as A, ending on tonic I"
+    },
+    "modulates": false
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "composer": "Charlie PARKER – Miles DAVIS",
+  "year": "1947",
+  "style": "BE BOP",
+  "tempo": "FAST",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "title": "DONNA LEE",
+  "page": 103,
+  "source": "Anthologie des grilles de jazz",
+  "same_chord_changes": "Chord Changes based on \" INDIANA\"",
+  "recordings": [
+    ":Sotam.H.b... - J.- A...pper 55",
+    "N.Brignola 77- G.Gruntz 65",
+    "R.Ayers 63- B.Harris 75",
+    "A.Braxton 74- B.Golson 82",
+    "L.Konitz 55- M.Mc Ghee 58",
+    "C.Terry 57- C.Thornhill 47",
+    "C.Parker 47- R.Kirk"
+  ],
+  "notation_notes": {
+    "A1_bar4": "Bar 4 of A' printed as a dash; copies the preceding bar (Bb7)."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ebm7",
+          "3": "D9"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dbm7",
+          "3": "Gb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Do7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Ab",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Ab"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "705b43bd085afd027a977ef888430e7585c03c207049f1d88a0ed42c3155511a",
+    "scorer": {
+      "tonic": "Ab",
+      "mode": "major",
+      "margin": 0.7994
+    },
+    "llm": {
+      "tonic": "Ab",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Ab",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar bebop head (Indiana changes)",
+    "tags": [
+      "ii-V-chains",
+      "circle-of-fifths",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I - V/V(F7) - V7(Bb7) - ii-V(Bbm7-Eb7) - I, ending Ebm7-D9",
+      "B": "IV(Dbmaj7) - iv(Dbm7)-bVII(Gb7) - I - V/V - V7 - ii-V back to Ab",
+      "A1": "I - V/V - V7 then C7 (V/vi) leading to Fm-C7 vi tonicization",
+      "C": "vi(Fm)-V/vi(C7) with dim passing, then I-V/V-ii-V-I cadence in Ab"
+    },
+    "modulates": false
+  }
+}

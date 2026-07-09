@@ -1,0 +1,351 @@
+{
+  "composer": "George GERSHWIN – Ira GERSHWIN",
+  "year": "1927",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "HOW LONG HAS THIS BEEN GOING ON ?",
+  "page": 163,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '24 VERSE'."
+  },
+  "recordings": [
+    "Jay & Kay 54- E.Fitzgerald 59",
+    "F.Ellside 28- L.Wiley 39",
+    "J.Lewis 59- E.Rosolino 58",
+    "J.Reny 55- G.Shearing 55",
+    "H.Silver 56- O.Sims 58",
+    "M.Roach 60- C.Ho Mae 58",
+    "R.Thomas 60",
+    "H.Mc Kusick 55- A.Previn 63"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 1, 5, 25",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "D7(13)",
+            "3": "Do7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Am7",
+            "3": "D7"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "Dm7",
+            "3": "G7"
+          }
+        },
+        {
+          "bar": 4,
+          "beats": {
+            "1": "C7",
+            "3": "F9"
+          }
+        },
+        {
+          "bar": 5,
+          "beats": {
+            "1": "Bm7",
+            "3": "Bbm6"
+          }
+        },
+        {
+          "bar": 6,
+          "beats": {
+            "1": "Am7",
+            "3": "Bb9"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D7(13)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Do7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7(13)",
+          "3": "D7#5",
+          "4": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bm7",
+          "3": "Bbo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "G#o7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am7",
+          "3": "Eb7",
+          "4": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D7(13)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Do7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7(13)",
+          "3": "D7#5",
+          "4": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bm7",
+          "3": "Bbo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "G#o7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am7",
+          "3": "Eb7",
+          "4": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "C#m7b5",
+          "4": "F#7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bm",
+          "3": "C#m7b5",
+          "4": "F#7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bm",
+          "3": "G9#11",
+          "4": "F#9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bm7",
+          "3": "Bbo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D7(13)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Do7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7(13)",
+          "3": "D7#5",
+          "4": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bm7",
+          "3": "Bbo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "G#o7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am7",
+          "3": "Eb7",
+          "4": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "G",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "V",
+    "quality": "dom",
+    "chord": "D7(13)"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "f18d228f205ea73fc5486eb56ed62e1ee8ad6e6c93197d942c97f2c8ef3b5ea7",
+    "scorer": {
+      "tonic": "G",
+      "mode": "major",
+      "margin": 0.6346
+    },
+    "llm": {
+      "tonic": "G",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "G",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "chromatic-descent",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "V7(13) with chromatic dim passing, descending line Bm-Bbo-Am-G#o then Am7-Eb7-D7 back to I (G)",
+      "A1": "Repeat of A: V7-based approach resolving to I (G)",
+      "B": "IV(Cmaj7)-bVII7(F7) vamp, then Bm with ii-V of B, closing on Am7-D7 (ii-V) back to G",
+      "A2": "Repeat of A resolving to I (G)"
+    },
+    "modulates": false
+  }
+}

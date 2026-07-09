@@ -1,0 +1,172 @@
+{
+  "composer": "Jean DELETTRE – Mitchell PARISH",
+  "year": "1934",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "16 A A'",
+  "time_signature": "4/4",
+  "title": "HAND ACROSS THE TABLE",
+  "page": 148,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
+  "recordings": [
+    "J.Guarnieri",
+    "H.Scott- B.Lynne 59",
+    "L.Wiley 34- T.Louise 57",
+    "A.Teteu/B.Carter 54",
+    "F.Domino 58- C.Hawkins 35",
+    "B.Vaughan 60- H.D'Amico 57"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Abm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "Gm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7#5"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Abm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "Gm7",
+          "4": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Eb"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "5723221d0967e03ba911d0c61cc5b1d47bdaab925df374a45592d2af27cc8191",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.6774
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "16-bar AA' tune",
+    "tags": [
+      "turnaround-ending",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "A": "I-Imaj7-I7 to IV-iv, then I-iii-ii-V7 ending on V7#5 turnaround",
+      "A1": "I-Imaj7-I7 to IV-iv, then I-iii-vi-ii-V and ii-V-I resolving to Eb"
+    },
+    "modulates": false
+  }
+}

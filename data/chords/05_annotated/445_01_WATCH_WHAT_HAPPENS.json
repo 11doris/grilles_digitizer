@@ -1,0 +1,376 @@
+{
+  "composer": "Michel LEGRAND – Norman GIMBEL",
+  "year": "1964",
+  "style": "BOSSA NOVA",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "WATCH WHAT HAPPENS",
+  "page": 445,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "M.Legrand 68- B.Shank 69- S.Vaughan 74- B.Henderson 75",
+    "O.Peterson 82- E.Davis 76- J.Raney 76- B.Kessel 68",
+    "J.Pass 70- U.Green 68- St.Kuhn 68- P.Lee 65- Z.Sims 75",
+    "H.Ellis 78- A.Farmer 68- K.Krog 74- E.Fitzgerald",
+    "L.A.Four- R.Crawford"
+  ],
+  "notation_notes": {
+    "verse": "Header prints 'VERSE' above the first 8-bar row.",
+    "coda": "A CODA (Bar 31) row is printed below the grid: Eb6 | E6/D6 | (two-bar repeat sign) | Eb6 | dash. Marker ties it to bar 31 (A2 bar 7, marked with the same symbol next to Eb6)."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gmaj9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Emaj7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "Emaj7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Emaj7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "Gbmaj7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb6"
+        }
+      }
+    ],
+    "coda": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "E6",
+          "3": "D6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "E6",
+          "3": "D6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb6"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "III",
+    "quality": "maj",
+    "chord": "Gmaj9"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "9aeb63753ef8083aa043adff0b4b95bcb632a1d713b3349b920c8d5dd02a7ef8",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.6157,
+      "section_keys": {
+        "verse_A": {
+          "tonic": "F",
+          "mode": "major",
+          "margin": 1.0
+        },
+        "B": {
+          "tonic": "F",
+          "mode": "major",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard with verse and coda",
+    "tags": [
+      "ii-V-chains",
+      "chromatic-descent",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "verse_A": "Descending ii-V chain: Gmaj-Gm7-C7 (ii-V into F), Fmaj-Fm7-Bb7 (ii-V into Eb)",
+      "A": "I-I6, V/V (F9), ii-V (Fm7-Bb7) back to I with chromatic maj7 passing chords",
+      "A1": "Same as A with chromatic maj7 passing chords at end",
+      "B": "Bridge: descending ii-V chain through F then Eb (Gmaj-Gm7-C7 / Fmaj-Fm7-Bb7)",
+      "A2": "I, V/V, ii-V resolving and resting on Eb6",
+      "coda": "Tonic Eb6 with chromatic upper-neighbor E6/D6 tag"
+    },
+    "modulates": false
+  }
+}

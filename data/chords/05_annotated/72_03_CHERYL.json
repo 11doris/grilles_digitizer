@@ -1,0 +1,146 @@
+{
+  "composer": "Charlie PARKER",
+  "year": "1947",
+  "style": "BE BOP (INSTRUMENTAL)",
+  "tempo": "MEDIUM FAST",
+  "form": "12 BLUES",
+  "time_signature": "4/4",
+  "title": "CHERYL",
+  "page": 72,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "P.Newborn 61",
+    "Ch.Baker 59",
+    "O.Pike 61",
+    "American Jazz",
+    "Ensemble 63",
+    "C.Parker 47.48"
+  ],
+  "notation_notes": {
+    "year_uncertain": "Header prints 'Charlie PARKER 1947 ?'.",
+    "choruses": "Below the grid: 'CHORUSES : BLUES in C (Type A')'.",
+    "form_label": "Grid marked '12 BLUES'."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Em7b5",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Dm7b5"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "G7b5"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "Em7",
+          "3": "Dm7"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "C",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "C"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "968dfcd4d0ca59d78b59017815b6d13ebeb6a57ceb698ed8f55078960aa2f5bc",
+    "scorer": {
+      "tonic": "C",
+      "mode": "major",
+      "margin": 0.4669
+    },
+    "llm": {
+      "tonic": "C",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "12-bar blues",
+    "tags": [
+      "blues-form",
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "C blues: I with ii7 embellishment, IV7 at bar 5, then ii-V's (Em7b5-A7, Dm7b5-G7b5) resolving to Imaj7 with turnaround"
+    },
+    "modulates": false
+  }
+}

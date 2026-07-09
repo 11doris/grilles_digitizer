@@ -1,0 +1,394 @@
+{
+  "composer": "James P. JOHNSON – Cecil MACK",
+  "year": "1923",
+  "style": "TRADITIONAL STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "16 A B | 32 A B A C",
+  "time_signature": "4/4",
+  "title": "CHARLESTON",
+  "page": 69,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Varsity Eight 25- J.P.Johnson (Piano Roll)",
+    "Bob Crosby 50- W.DeParis 60- S.Bechet 55- C.Cole 57",
+    "J.Guarnieri 50- W.the Lion Smith 49- P.Whiteman 25",
+    "California Ramblers 25- Quintette HCF 37-",
+    "Tennesse Tooters 25"
+  ],
+  "notation_notes": {
+    "verse": "First strain (16 A B) labelled 'VERSE' at top left of the grid."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Em7b5"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Em7b5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D",
+          "3": "F7"
+        }
+      }
+    ],
+    "verse_B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "Abo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Em7b5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "section_keys": {
+    "verse_A": {
+      "tonic": "G",
+      "mode": "minor"
+    }
+  },
+  "opening": {
+    "degree": "vi",
+    "quality": "min",
+    "chord": "Gm"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "10fd5904d571abbfaabd5444c752a3dff69463badc209fb749fa546d32cc5c34",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.7336
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "verse in G minor (relative minor) before the chorus settles in Bb major",
+      "section_keys": {
+        "verse_A": {
+          "tonic": "G",
+          "mode": "minor"
+        }
+      }
+    },
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "verse-and-chorus standard (16-bar verse AB + 32-bar chorus ABAC)",
+    "tags": [
+      "verse-present",
+      "circle-of-fifths",
+      "dominant-cycle-bridge",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "verse_A": "i-i6/7 with iio7b5, bVI and V7 (D7) resolving to i in G minor",
+      "verse_B": "V7-of-Bb (F7) to I, secondary dominants D7/A7, ii-V (Gm7-C7) cadencing on F7 (V of Bb)",
+      "A": "I then dominant cycle D7-G7-C7-F7 back to I with I-#io7-V7 turnaround",
+      "B": "I-V/vi-V/ii then iiø-vi(Dm)-V/ii(A7)-D7-F7",
+      "A1": "repeat of A: I with dominant cycle and I-#io7-V7 turnaround",
+      "C": "I-I7-IV-iv (subdominant minor) then I-#io7, ii-V, resting on I"
+    },
+    "modulates": true,
+    "modulation_note": "verse in G minor (relative minor) before the chorus settles in Bb major"
+  }
+}

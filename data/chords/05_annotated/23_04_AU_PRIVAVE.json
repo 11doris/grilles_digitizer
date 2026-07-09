@@ -1,0 +1,148 @@
+{
+  "composer": "Charlie PARKER",
+  "year": "1951",
+  "style": "BE BOP (INSTRUMENTAL)",
+  "tempo": "MEDIUM",
+  "form": "12 BLUES",
+  "time_signature": "4/4",
+  "title": "AU PRIVAVE",
+  "page": 23,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    ".Woods 57- C.Parker 51",
+    "Xpressens Ellitor-",
+    "er 57- C.Adderley 60",
+    ".H.O.P./I.Jones 76",
+    ".Besso 62- J.Smith 58",
+    ".Jordan 60- H.Mann 61",
+    ".Mobley 56"
+  ],
+  "notation_notes": {
+    "year_uncertain": "Header prints 'Charlie PARKER 1951 ?'.",
+    "form_note": "Header prints '12 BLUES'."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F",
+          "3": "D(b9)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "F",
+          "3": "D(b9)"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "bc722e229c50ba157daac2abb833e2a9f86dfe17673badf5faa07673706dd12c",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.5334
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "12-bar blues",
+    "tags": [
+      "blues-form",
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "F blues: I with V/ii, ii-V in bar 2, IV(Bb7) at bars 5-6, then ii-V turnaround (Gm7-C7) with V/ii chords"
+    },
+    "modulates": false
+  }
+}

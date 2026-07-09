@@ -1,0 +1,377 @@
+{
+  "composer": "Ray LODWIG – Howard QUICKSELL",
+  "year": "1927",
+  "style": "TRADITIONAL JAZZ",
+  "tempo": "MEDIUM FAST",
+  "form": "16 A B | 32 A B A B",
+  "time_signature": "4/4",
+  "title": "SINCE MY BEST GAL TURNED ME DOWN",
+  "page": 364,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Beiderbecke 27- G.Krupa 30- J.Luneford",
+    "Redman 29- P.W.Russell 46- J.Gerber",
+    "Dorsey 21? R.Milliger 39- N.Randall",
+    "Wagner 21? Penn. Boys 28- B.Condon 56",
+    "L.Waltom 57"
+  ],
+  "notation_notes": {
+    "verse": "Header prints 'VERSE'.",
+    "playable_16": "Note below first strain: 'can be played in 16 bars'.",
+    "H.Q.": "Header prints 'H.Q. 1927'."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "verse_B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7",
+          "3": "F7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb",
+          "3": "F7#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "B1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "(D7)"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bb"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "2a85caa098bc731b55661dead5bb8b1e7af3bf371b311d4c134f45d322635d53",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.7512
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "verse-plus-32-bar standard (ABAB)",
+    "tags": [
+      "circle-of-fifths",
+      "dominant-cycle-bridge",
+      "turnaround-ending",
+      "verse-present"
+    ],
+    "sections": {
+      "verse_A": "I with F7 (V) oscillation, moving to Bb7 (I7) as a pivot toward IV",
+      "verse_B": "IV (Eb) to I, then G7(VI7)-C7(II7)-Cm7-F7 setting up the dominant cycle back to I",
+      "A": "Extended G7 (VI7) into C7 (II7) — part of the circle-of-fifths chain toward V-I",
+      "B": "F7 (V7) with F7#5 to Bb (I), ending on D7 as turnaround (V/vi back to G7)",
+      "A1": "Repeat of A: G7 (VI7) to C7 (II7) continuing the dominant cycle",
+      "B1": "F7 (V7) to Bb (I) with Gb7 chromatic approach, ending on (D7) turnaround"
+    },
+    "modulates": false
+  }
+}

@@ -1,0 +1,443 @@
+{
+  "composer": "Thomas Fats WALLER – Harry BROOKS – Andy RAZAF",
+  "year": "1929",
+  "style": "STANDARD SWING",
+  "tempo": "MEDIUM",
+  "form": "16 A A' | 32 A A B A",
+  "time_signature": "4/4",
+  "title": "AIN'T MISBEHAVIN'",
+  "page": 9,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "D.Ellington 33.44- G.Ammons 51- R.Brown 60",
+    "L.Armstrong 29.38.44(.47) 48.51.55- Charleston Chasers 29",
+    "T.Mills/B.Robinson 29- S.Bechet 40.59- B.Heckett 39",
+    "M.Henderson 40- C.Hopkins 34- J.R.Morton 38- J.Mundy 37",
+    "Quintet H.C.F. 37- F.Waller 29.35.38.39.43- T.Wilson 37",
+    "E.Fitzgerald/C.Basie 63- T.Buckner/B.Bechet 59- J.Noone 29",
+    "B.Holiday 55- Basie 54.58- E.Bostic 52.59- Co.Williams 41",
+    "D.Gillespie 52- B.Goodman 45- C.Hawkins 54- E.Hines 47.56.65",
+    "S.Ellis 29- F.Johnson 44- Jim.Smith 62- A.Tatum 47.53-"
+  ],
+  "variants": [
+    {
+      "applies_to": "BAR 1",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Eb",
+            "3": "Eo7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Fm7",
+            "3": "F#o7"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "B9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "E"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "B9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "E"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ],
+    "verse_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "B9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "E"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "E",
+          "3": "B9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "E"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "Cm",
+          "4": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7b5",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G",
+          "3": "A7",
+          "4": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G",
+          "3": "Bb7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "Cm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab",
+          "3": "Abm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "Gb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "Cm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab",
+          "3": "Abm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "Gb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb",
+          "3": "Ab"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb",
+          "3": "G7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ab7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "(G7)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "Cm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab",
+          "3": "Abm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "Gb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "Bb",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Eb"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "c1bd68542a682c4e2519c911675023d558331a4cddcbe39019149f99a5e74675",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.7442
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge centers on Bb (the dominant) before returning to Eb",
+      "section_keys": {
+        "B": {
+          "tonic": "Bb",
+          "mode": "major"
+        }
+      }
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard with 16-bar verse",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "chromatic-descent"
+    ],
+    "sections": {
+      "verse_A": "Eb alternating with B9/E chromatic neighbor, then G7-C7-F7-Bb7 circle back to Eb",
+      "verse_A1": "Same opening, then Cm-Am7b5-D7 to G, A7-D7-G with Bb7 pivot back",
+      "A": "I-vi-ii-V, I with G7#5 to IV/IVm, then Gb7 chromatic, ii-V and G7-C7-F7-Bb7 turnaround",
+      "A1": "Same as A, ending I-IV-I-V7 (G7) turnaround",
+      "B": "Cm-Ab7-F7-C7 then cadences on Bb (V), Cm7-F7-Bb, C7-F7-Bb7 back to Eb",
+      "A2": "Same as A, resolving cleanly to Eb tonic"
+    },
+    "modulates": true,
+    "modulation_note": "bridge centers on Bb (the dominant) before returning to Eb"
+  }
+}

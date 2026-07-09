@@ -1,0 +1,382 @@
+{
+  "composer": "Thomas \"Fats\" WALLER – Raymond KLAGES",
+  "year": "1927",
+  "style": "TRADITIONAL",
+  "tempo": "MEDIUM",
+  "form": "16 A A' | 32 A A B A",
+  "time_signature": "4/4",
+  "title": "I'M MORE THAN SATISFIED",
+  "page": 192,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "L.Abbott 27- V.Price 25- J.Hamilton 25",
+    "S.Lombardo 26- Chicago Loopers 27",
+    "Original Memphis Five 26",
+    "All Stars Orchestra 26"
+  ],
+  "notation_notes": {
+    "verse": "Header prints 'VERSE' above the first strain.",
+    "two_bar_repeat": "verse_A1 bars 3-4 show a two-bar repeat sign restating bars 1-2."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F7",
+          "3": "E7#5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7",
+          "3": "E7#5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "verse_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7",
+          "3": "E7#5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "dom",
+    "chord": "F7"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "b701e669dc01d2c0c6e349b70bf472a2e644f328dc9ddcfe75165608da5bb5fd",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.3604
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard with 16-bar verse",
+    "tags": [
+      "chromatic-descent",
+      "turnaround-ending",
+      "ii-V-chains"
+    ],
+    "sections": {
+      "verse_A": "Chromatic descent F7-E7#5-Eb7-D7 to V(G7)-V7(C7)-I, ending on ii-V setup",
+      "verse_A1": "C7/Bb7 oscillation then chromatic descent to G7-C7 (V/V-V)",
+      "A": "I held, then C7 (V) with Gm7-C7 ii-V and G7-C7 back to I",
+      "A1": "Repeat of A: I with V and ii-V returning to tonic",
+      "B": "V/V/V chain A7-Dm-G7-C7 (VI7-ii-V/V-V) driving back to I",
+      "A2": "Final A: I with ii-V and V returning to tonic"
+    },
+    "modulates": false
+  }
+}

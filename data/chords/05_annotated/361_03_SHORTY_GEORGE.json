@@ -1,0 +1,288 @@
+{
+  "composer": "Andy GIBSON – Count BASIE",
+  "year": "1938",
+  "style": "SWING",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "SHORTY GEORGE",
+  "page": 361,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "A.Persiany 58- B.Rich 56",
+    "M.Wilkins 55",
+    "C.Basie 38.58.60"
+  ],
+  "notation_notes": {
+    "other_text": "Below the grid prints 'Another different \"Shorty George\" by Jerome Kern - Johnny Mercer 1942'.",
+    "A1_expansion": "Second printed row (A1) is a leading-arrow row copying section A positionally; empty/dash boxes take the same-position bar from A, explicit boxes override."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Db6",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Db6",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Db",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gb",
+          "3": "Gbm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7",
+          "3": "Ab(b9)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db6/9"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Db6",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Db6",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Db",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gb",
+          "3": "Gbm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db6"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "A13"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Db6/9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "A13"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Db",
+          "3": "A9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab9"
+        }
+      }
+    ],
+    "A3": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Db6",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Db6",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebm7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Db",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gb",
+          "3": "Gbm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Db",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Db6"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "614d9a32fe2b57131602580b67a159ef142413bbf2ff05561191d2ee5b1abc0d",
+    "scorer": {
+      "tonic": "Db",
+      "mode": "major",
+      "margin": 0.8102
+    },
+    "llm": {
+      "tonic": "Db",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Db",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "turnaround-ending",
+      "chromatic-descent",
+      "dominant-cycle-bridge"
+    ],
+    "sections": {
+      "A": "I6-#io7-ii7-V7 loop, then I-I7-IV-iv with A7/Ab7 chromatic approach to I6/9",
+      "A1": "Same as A: I6-#io7-ii7-V7 then I-I7-IV-iv-V approach to I6",
+      "B": "Bridge on dominant chords A13-D9 (bVI/II) alternating, returning to Db then A9-Ab9 (V) setup",
+      "A3": "Restatement of A: I6-#io7-ii7-V7 then IV-iv chromatic approach to I6"
+    },
+    "modulates": false
+  }
+}

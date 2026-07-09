@@ -1,0 +1,337 @@
+{
+  "composer": "Cole PORTER",
+  "year": "1944",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "32 A B A C",
+  "time_signature": "4/4",
+  "title": "EVERYTIME WE SAY GOODBYE",
+  "page": 120,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '10 VERSE'."
+  },
+  "recordings": [
+    "J.Mehegan 55- S.Rollins 55- S.Vaughan 61",
+    "J.Morello 61- T.Wilson 45- E.Fitzgerald 56",
+    "B.Evers/L.Konitz/W.Marsh 77- J.Coltrane 60",
+    "R.Charles 61- S.Hanna 61- I.Jacquet 64",
+    "S.Kenton 44.55"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 27",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Bbm7",
+            "3": "Eb7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Abmaj7",
+            "3": "Db9"
+          }
+        }
+      ]
+    },
+    {
+      "applies_to": "Bar 14",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Gbmaj7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "C9b5",
+            "3": "B7"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7",
+          "3": "B7",
+          "4": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gbmaj7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Abm7",
+          "3": "Db9"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Gbo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "2": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Abm7",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb(#5b9)",
+          "2": "Eb"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "B7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7",
+          "3": "B7",
+          "4": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gbmaj7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Abm7",
+          "3": "Db9"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Gbo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "2": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm7",
+          "2": "Eb7",
+          "3": "Ab"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Abm7",
+          "3": "Db9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Ebmaj7"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "a83e4f42da97ae7fd5977ef7b351d76215a029a5031905e0be98e9b9986b3b14",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.3423
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAC standard",
+    "tags": [
+      "ii-V-chains",
+      "circle-of-fifths",
+      "chromatic-descent"
+    ],
+    "sections": {
+      "A": "I-ii-iii-ii motion in Eb, I with #io7 passing, ii-V figures into bVImaj7/ii-V tags",
+      "B": "Imaj7 with #io7, ii-V of Ab to IVmaj7, then iv-bVII and V7-of tension resolving to Fm7-Bb7 (ii-V of Eb)",
+      "A1": "Repeat of A: I-ii-iii-ii with diminished passing and ii-V tags",
+      "C": "Imaj7 to IVmaj7, then circle-of-fifths turnaround (Gm7-C7-F7-Bb7) resolving to Eb tonic"
+    },
+    "modulates": false
+  }
+}
