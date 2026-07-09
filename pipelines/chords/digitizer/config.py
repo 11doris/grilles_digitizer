@@ -19,6 +19,8 @@ _NO_SAMPLING_MODELS = {
 @dataclass(frozen=True)
 class Config:
     crops_dir: Path
+    # Optional: only consulted to restore original title spellings (apostrophes
+    # etc.) that filename slugs cannot encode. A missing file is fine.
     manifest: Path
     out_dir: Path
     model: str = "claude-opus-4-8"

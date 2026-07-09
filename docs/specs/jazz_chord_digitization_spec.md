@@ -45,24 +45,24 @@ The upstream crop step delivers two things into a working directory:
 
 ### 2.1 The crops
 A directory `data/chords/01_crops/` of per-tune PNGs. Each image is **one tune**, **full page width**, at the
-scan's native resolution. The filename stem encodes the printed page number and the title slug,
-e.g. `341_ROCK_A_BYE_YOUR_BABY_WITH_A_DIXIE_MELODY.png`.
+scan's native resolution. **The filename is the work-unit key and the source of truth**: the stem
+encodes the printed page number, the crop index on that page, and the title slug —
+`<page>_<index>_<TITLE_SLUG>.png`, e.g. `341_02_ROCK_A_BYE_YOUR_BABY_WITH_A_DIXIE_MELODY.png`.
+The JSON `page` field and the title are derived from it. Renaming a crop (to fix a wrong title)
+is therefore sufficient by itself; no bookkeeping file needs to be kept in sync.
 
-### 2.2 The manifest
-A `manifest.csv` with one row per crop. Relevant columns (others may be present and ignored):
+### 2.2 The manifest (optional)
+The upstream `manifest.csv` (one row per crop; `title`, `alt_title`, crop coordinates, OCR
+provenance) is **not** the work list. The runner consults it only to restore the original
+spelling of a title — apostrophes, hyphens, accents — that the filename slug cannot encode: a
+slug matching a slugified manifest `title`/`alt_title` takes that spelling; otherwise the title
+falls back to underscores→spaces plus common-contraction heuristics. A missing or stale manifest
+never blocks a run.
 
-| Column | Use |
-|---|---|
-| `current_file` | The PNG filename inside `data/chords/01_crops/`. **This is the work-unit key.** |
-| `page` | Printed page number (integer). Used for the JSON `page` field and naming. |
-| `title` | Canonical title (already cleaned). **This is the authoritative title** (see below). |
-
-Other columns (e.g. `review`, `conf`) are **ignored** — the title set has been cleaned up front, so
-no upstream uncertainty flags are consulted.
-
-**Title handling.** The JSON `title` is taken **verbatim from the manifest `title`** and is written
-by the runner, not produced or altered by the model. The model never re-reads or "corrects" the
-title from the image. (There is no title-uncertainty field; see §6.)
+**Title handling.** The JSON `title` is derived **from the filename slug** (spelling restored via
+the manifest where possible) and is written by the runner, not produced or altered by the model.
+The model never re-reads or "corrects" the title from the image. (There is no title-uncertainty
+field; see §6.)
 
 The agent must **not** re-crop, re-locate, or modify the PNGs. If a crop is obviously wrong (e.g.
 two titles visible, or no tune), do not fix it — record it in the run report (§4.7) for the human.
@@ -94,8 +94,9 @@ Implement a runner (e.g. `transcribe.py`) around the per-tune VLM call. It must 
 the following.
 
 ### 4.1 Work discovery
-Read `manifest.csv`; the work list is its rows (one per `current_file`). Process in a stable order
-(manifest order). Support selecting a subset (§4.4).
+Glob `*.png` in the crops directory; the work list is one unit per file whose name matches
+`<page>_<index>_<SLUG>.png` (non-conforming names are skipped with a warning). Process in a
+stable order (page, then index). Support selecting a subset (§4.4).
 
 ### 4.2 Idempotency / resume (required — this is the laptop's safety net)
 For each unit, the output path is deterministic (§7). **Skip a unit if its JSON already exists and
@@ -246,14 +247,14 @@ Each unit emits **one JSON file** containing a **single bare object** (not wrapp
 ### 6.2 Field rules
 | Field | Rule |
 |---|---|
-| `title` | **Written by the runner, verbatim from the manifest `title`.** The model does not output or alter it. Always present. |
+| `title` | **Written by the runner, derived from the filename slug (§2.1/§2.2).** The model does not output or alter it. Always present. |
 | `composer` | Names joined with `" – "` (space–en dash–space). **Omit the field entirely if absent.** |
 | `year` | Composition year as a string. **Omit if absent.** |
 | `style` | The upper-left genre label exactly as printed (`DIXIELAND`, `NEW ORLEANS`, `SWING`, `STANDARD`, `ELLINGTONIA`, …). Always present. |
 | `tempo` | The tempo label (`MEDIUM`, `MEDIUM FAST`, `MEDIUM SLOW`, `FAST`, …). **Omit if absent.** |
 | `form` | The form string exactly as printed, **preserving primes** (e.g. `32 A B C A'`). Always present. |
 | `time_signature` | Default `"4/4"`; override only if the score indicates otherwise. Always present. |
-| `page` | Printed page number (integer). **Written by the runner from the manifest `page`.** Always present. |
+| `page` | Printed page number (integer). **Written by the runner from the filename's page prefix.** Always present. |
 | `source` | Constant `"Anthologie des grilles de jazz"`. **Written by the runner.** Always present. |
 | `sections` | See §7. Always present (may be `{}` only for the missing-grid case, §14). |
 | `recordings` | List of margin performer/year credit lines, one string per printed line (§13.1). **Omit if none.** |

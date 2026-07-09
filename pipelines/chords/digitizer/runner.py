@@ -18,7 +18,7 @@ import anthropic
 from . import output
 from .config import Config, SOURCE_CONSTANT
 from .images import prepare_crop
-from .manifest import WorkUnit, load_manifest
+from .manifest import WorkUnit, load_units
 from .prompt import STRICTER_REMINDER, build_user_content
 from .validation import ValidationError, parse_json, review_flags, validate
 from .vlm import MissingCredentials, VLMClient, VLMRefusal
@@ -206,7 +206,7 @@ def _log(msg: str) -> None:
 
 
 def run(config: Config) -> dict:
-    units = _select(load_manifest(config.manifest), config)
+    units = _select(load_units(config.crops_dir, config.manifest), config)
     total = len(units)
     report = _Report(total, config.model)
     client = VLMClient(config)
@@ -222,7 +222,7 @@ def run(config: Config) -> dict:
     if total == 0:
         hint = ""
         if config.only:
-            hint = f" (--only {config.only!r} matched no manifest row)"
+            hint = f" (--only {config.only!r} matched no crop in {config.crops_dir})"
         elif config.page_range:
             hint = f" (--page-range {config.page_range[0]}:{config.page_range[1]} matched no rows)"
         _log(f"nothing to do: 0 work units{hint}")

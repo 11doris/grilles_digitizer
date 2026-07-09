@@ -6,7 +6,7 @@ structured JSON — one file per tune. Run everything from the repo root.
 | Stage | Script | Input → Output |
 |---|---|---|
 | 1 crop | `crop_tunes.py` | `sources/AGJ.pdf` + `sources/AGJ_index.pdf` → `data/chords/01_crops/*.png` + `manifest.csv` |
-| 2 transcribe | `transcribe.py` (→ `digitizer/` package) | crops + manifest → `data/chords/02_raw/*.json` (VLM, one call per crop, resumable) |
+| 2 transcribe | `transcribe.py` (→ `digitizer/` package) | crops → `data/chords/02_raw/*.json` (VLM, one call per crop, resumable) |
 | 3 verify | `apps/verifier/verify_app.py` | `raw/` → `wip/` (human edits) → `verified/` (approved) |
 | 4 index | `../build_title_index.py` | chord + melody crops → `data/title_index.csv` |
 | 5 publish | `apps/displayer/build_data.py` | `verified/` + index → displayer bundle |
@@ -34,8 +34,12 @@ python pipelines/chords/crop_tunes.py sources/AGJ.pdf \
 Index-driven: the book index lists which titles are on each printed page, so the
 image is only used to *locate* each known title. Resumable — rerun the same
 command and pages whose crops exist are skipped. Rows flagged `review=yes` in
-`manifest.csv` deserve a glance; fix the `title` column if wrong, then
-`python pipelines/chords/crop_tunes.py --apply data/chords/01_crops/manifest.csv`.
+`manifest.csv` deserve a glance. To fix a wrong title, simply rename the PNG —
+the filename (`<page>_<index>_<TITLE_SLUG>.png`) is the source of truth for
+stage 2; the manifest does not need to be kept in sync. (Alternatively, fix the
+`title` column and run
+`python pipelines/chords/crop_tunes.py --apply data/chords/01_crops/manifest.csv`,
+which renames the files from the manifest.)
 See the docstring in [crop_tunes.py](crop_tunes.py) for all options.
 
 ## Stage 2 — transcribe (VLM)
@@ -48,6 +52,13 @@ per tune, using a vision-language model (Claude). Implements
 python pipelines/chords/transcribe.py
 ```
 
+The work list is discovered from the crop filenames themselves
+(`<page>_<index>_<TITLE_SLUG>.png`); the JSON `title` and `page` are derived
+from the name, with `manifest.csv` consulted only to restore spellings
+(apostrophes etc.) the slug cannot encode. Renaming a crop is all it takes to
+fix its title — but note the renamed file gets a new output stem, so it will be
+re-transcribed on the next run.
+
 Re-running the same command **resumes**: any tune whose `data/chords/02_raw/<stem>.json`
 already exists and still validates is skipped, so you can stop (Ctrl-C, lid
 close, power loss) and continue across sittings — at most the one tune in
@@ -58,7 +69,7 @@ flight is redone.
 | Flag | Default | Purpose |
 |---|---|---|
 | `--crops DIR` | `data/chords/01_crops` | Directory of per-tune PNGs |
-| `--manifest FILE` | `<crops>/manifest.csv` | The work list (one row per crop) |
+| `--manifest FILE` | `<crops>/manifest.csv` | Optional; only restores original title spellings (missing is fine) |
 | `--out DIR` | `data/chords/02_raw` | Output directory |
 | `--model ID` | `claude-opus-4-8` | VLM model id |
 | `--workers N` | `1` | Parallel calls. Keep `1` for a local model; raise to 2–4 **only** for a remote API |
