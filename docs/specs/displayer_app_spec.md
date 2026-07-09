@@ -276,8 +276,9 @@ by a visible **switch** placed in a toolbar directly under the tune header:
   switches. A switch is only shown when the tune has that asset
   (`hasChordAsset` / `hasMelodyAsset`); a tune with only one asset shows only
   that one switch.
-- **Defaults**: Chords **on**, Melody **off**. First visit uses these; the
-  choice for each switch persists in `localStorage`
+- **Defaults**: Chords **on**, and Melody **on whenever the tune has a melody**
+  (scan or ABC), so the melody sheet shows by default beside the chords. First
+  visit uses these; the choice for each switch persists in `localStorage`
   (`grilles.showChords`, `grilles.showMelody`) and is restored on later visits.
   If a tune lacks the asset for a persisted "on" switch, that panel is simply
   not shown (the switch is hidden), without altering the stored preference.
@@ -306,7 +307,11 @@ scan*:
 **Layout of the two panels:**
 - **Wide / landscape (≥ 900px)**: when both switches are on, the panels sit
   **side by side** (chords left, melody right), each taking half the content
-  width. When only one is on, it takes the full width.
+  width, and the chord grid fills its half so the chords stay readable beside
+  the melody. When only the **melody** is on it takes the full width; when only
+  the **chord** panel is on it still occupies about **half the content width**
+  (centered) — the same footprint it has beside the melody — rather than
+  spanning the whole pane.
 - **Narrow / portrait (< 900px)**: panels **stack vertically** (chords above
   melody), full width, page scrolls.
 
@@ -580,7 +585,7 @@ Activating a playlist:
 - [ ] Opening `apps/displayer/index.html` directly from disk (file://) lists **every** `data/title_index.csv` row, alphabetically by displayed title.
 - [ ] Sidebar icons: a `both` row shows two icons (chord grid + melody); a `chords_only` row shows only the left icon, a `melody_only` row only the right; icon columns stay aligned. A digitized-chord tune shows the left icon **green**; scan-only assets show **gray**.
 - [ ] A non-digitized tune shows a Title-Cased title (from the index) and its scan(s); a digitized-chord tune shows the JSON `title`, composer, and metadata line.
-- [ ] The Chords and Melody switches show only for assets the tune has; default is Chords **on**, Melody **off**; both choices survive a reload.
+- [ ] The Chords and Melody switches show only for assets the tune has; default is Chords **on**, Melody **on when the tune has a melody**; both choices survive a reload.
 - [ ] With both switches on: on a wide screen the chord and melody panels sit **side by side**; on a narrow/portrait screen they **stack**. Chord grid re-fits to its available width in both cases.
 - [ ] A digitized-chord tune with a chord scan offers the per-panel **original-scan toggle** (photo-icon button above the content, default: rendered grid, swap happens in place without scrolling to the top); same for a digitized-melody tune with a melody scan.
 - [ ] `17_01_AINT_MISBEHAVIN` (Ain't Misbehavin') renders its melody as an abcjs lead sheet in the melody panel, in both themes; its right sidebar icon is green. Dropping a new `.abc` (named `<data/melody/01_crops stem>.abc`) into `data/melody/04_verified/` and rebuilding is all it takes to activate another tune.

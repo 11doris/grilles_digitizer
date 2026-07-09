@@ -247,6 +247,12 @@ body.list-collapsed #gridZoom { left: 1rem; }
 @media (min-width: 900px) {
   .panels.dual { flex-direction: row; align-items: flex-start; gap: 2rem; }
   .panels.dual .panel { flex: 1 1 50%; }
+
+  /* A lone chord panel (no melody sheet) still occupies about half the
+     container — the same footprint it has beside the melody — so the grid
+     fills a readable half-width column instead of stranding the chords in a
+     wide, sparse one. On phones/portrait (< 900px) panels stack full width. */
+  .panels:not(.dual) .panel.chords { width: 50%; align-self: center; }
 }
 
 .panel img.scan {
@@ -594,11 +600,14 @@ body.list-collapsed #gridZoom { left: 1rem; }
 /* ---------------------------------------------------------- chord grid */
 
 /* All grid dimensions are em-based so the JS fit pass can scale the whole grid
-   to the viewport height by adjusting this one font-size. The width is em-based
-   too — this 38em is the default; chords never shrink to fit their slots, so
-   fitGridWidth widens this cap when a busy bar's chords would collide. */
+   to the viewport height by adjusting this one font-size. By default the grid
+   fills the width available to its panel — which is itself about half the
+   container (beside the melody sheet, or on its own via the .panels:not(.dual)
+   rule) — so the chords are as large and readable as that space allows. Chords
+   never shrink to fit their slots, so fitGridWidth then shrinks the font only
+   if a busy bar's chords would still collide at the available width. */
 .grid {
-  max-width: 38em;
+  max-width: 100%;
   margin: 0 auto;
   padding-left: 1.4em;
   /* Container-relative (the .panel is an inline-size container): the grid

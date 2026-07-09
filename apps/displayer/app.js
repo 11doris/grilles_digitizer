@@ -35,7 +35,7 @@
     activeIndex: -1, // keyboard highlight within filtered list
     currentId: null, // tune displayed in the main panel
     showChords: true, // Chords switch (persisted)
-    showMelody: false, // Melody switch (persisted)
+    showMelody: true, // Melody switch (persisted); default on when a melody exists
     listCollapsed: false, // desktop: docked sidebar hidden (persisted)
     overlayMag: false, // fullscreen scan magnified (pan by scrolling)
     gridZoom: 1, // user zoom factor applied on top of the fitted grid size
@@ -1289,7 +1289,7 @@
     // box (grid is a block that fills its parent up to max-width).
     grid.style.maxWidth = "none";
     const availPx = grid.getBoundingClientRect().width;
-    grid.style.maxWidth = ""; // back to the CSS default (38em), the starting width
+    grid.style.maxWidth = ""; // back to the CSS default (fills the panel), the starting width
     const curPx = grid.getBoundingClientRect().width;
 
     // Crowding is measured per bar, not per beat-slot: a bar overflows only when
@@ -1367,11 +1367,12 @@
 
   initTheme();
   try {
-    /* Defaults: Chords on, Melody off (spec §5.4); user choices persist. */
+    /* Defaults: Chords on, Melody on when the tune has one (spec §5.4); a
+       persisted choice ("0"/"1") wins over the default. */
     const c = localStorage.getItem("grilles.showChords");
     const m = localStorage.getItem("grilles.showMelody");
     state.showChords = c === null ? true : c === "1";
-    state.showMelody = m === "1";
+    state.showMelody = m === null ? true : m === "1";
     const z = parseFloat(localStorage.getItem("grilles.gridzoom"));
     if (Number.isFinite(z)) state.gridZoom = Math.min(2.5, Math.max(0.5, z));
     if (localStorage.getItem("grilles.list") === "0") setListCollapsed(true);
