@@ -349,30 +349,31 @@ closes it. (The rendered chord grid is not a scan and has its own zoom, §6.5.)
 - Chords never wrap to a second line and never shrink individually — every chord renders at the grid's single font size. If the busiest bar's chords would overflow their slots, a JS pass first **widens** the grid to give each slot more room; when there's no width left to give (a narrow phone, or the chords panel sharing the row with melody) it pins the grid to the available width and **shrinks the font** instead, so the chords fit the now-fixed-width slots (see §6.5).
 
 ### 6.5 Responsive behavior
-- The chord panel measures the width **actually available to it** — full content
-  width when it is the only panel, roughly half when it shares a row with the
-  melody panel (§5.4). Bars shrink fluidly to that width; chord font size scales
-  with bar width (CSS `clamp()`/container-relative units). No horizontal page
-  scrolling.
-- **Fit to one page**: all grid dimensions are em-based; after rendering (and on
-  layout changes — switch toggles, resize, orientation), a JS fit pass shrinks
-  the grid's base font size until header + grid fit the viewport height without
-  scrolling, down to a floor of 8px (below that the page scrolls rather than
-  becoming unreadable). Extras (§9) may fall below the fold. The chord font
-  scales with the panel width (`2.6cqw`) up to a **15px ceiling** so chords stay
-  a readable lead-sheet size and don't balloon on a wide screen (a sparse tune
-  needs no larger a font than a busy one to read, and the smaller grid fits the
-  page better). The grid fills its panel until that ceiling is hit, then stops
-  widening: its em-based width cap (38.5em, the width at which `2.6cqw` reaches
-  the ceiling, ≈ 577px) keeps bar width proportional to chord size and centers
-  the grid rather than spreading it across an ever-wider column. A busy bar may
-  still widen the grid (§6.4, up to 56em or the available width), and when even
-  the full available width isn't enough the font shrinks so the chords still fit
-  (down to the 8px floor).
-- **Grid zoom**: floating −/+ buttons (bottom right) scale the fitted grid
-  size by a user factor (×1.15 steps, clamped 0.5–2.5, persisted in
-  `localStorage` as `grilles.gridzoom`); zooming in past the fitted size makes
-  the page scroll.
+- The chord panel measures the width **actually available to it** — about half
+  the content width on a wide screen (whether it shares the row with the melody
+  panel or, without a melody, sits alone at half width, §5.4), and the full width
+  when stacked on a phone. Bars shrink fluidly to that width; chord font size
+  scales with bar width (CSS `clamp()`/container-relative units). No horizontal
+  page scrolling.
+- **Chord size is width-driven, not height-driven**: the chord font scales with
+  the panel width (`2.6cqw`) up to a **15px ceiling** so chords stay a readable
+  lead-sheet size and don't balloon on a wide screen (a sparse tune needs no
+  larger a font than a busy one to read). It is **not** shrunk to force the tune
+  onto one screen: a long tune (many sections) keeps that readable size and the
+  page **scrolls** instead — readability wins over one-page fit, since a grid
+  collapsed to fit a tall tune becomes unreadable. Extras (§9) may fall below the
+  fold. The grid fills its panel until the ceiling is hit, then stops widening:
+  its em-based width cap (38.5em, the width at which `2.6cqw` reaches the ceiling,
+  ≈ 577px) keeps bar width proportional to chord size and centers the grid rather
+  than spreading it across an ever-wider column. Only **width** crowding shrinks
+  the font below the clamp: a busy bar first widens the grid (§6.4, up to 56em or
+  the available width), and when even the full available width isn't enough the
+  font shrinks so the chords still fit (down to an 8px floor).
+- **Grid zoom**: floating −/+ buttons (bottom right) scale the width-driven grid
+  size by a user factor (×1.15 steps, clamped 0.5–2.5); zooming in makes the page
+  scroll. The zoom is **per-tune and transient**: it resets to 1× on every tune
+  change and on reload (not persisted), so each tune opens at its width-driven
+  size.
 - The tune head stacks to a single centered column when the pane is narrow
   (small screen, or the chord panel sharing the row with the melody panel) via a
   container query.
@@ -591,7 +592,9 @@ Activating a playlist:
 - [ ] Sidebar icons: a `both` row shows two icons (chord grid + melody); a `chords_only` row shows only the left icon, a `melody_only` row only the right; icon columns stay aligned. A digitized-chord tune shows the left icon **green**; scan-only assets show **gray**.
 - [ ] A non-digitized tune shows a Title-Cased title (from the index) and its scan(s); a digitized-chord tune shows the JSON `title`, composer, and metadata line.
 - [ ] The Chords and Melody switches show only for assets the tune has; default is Chords **on**, Melody **on when the tune has a melody**; both choices survive a reload.
-- [ ] With both switches on: on a wide screen the chord and melody panels sit **side by side**; on a narrow/portrait screen they **stack**. Chord grid re-fits to its available width in both cases.
+- [ ] With both switches on: on a wide screen the chord and melody panels sit **side by side**, the chord grid filling its half; on a narrow/portrait screen they **stack** full width. With **no** melody, the lone chord panel is about **half the content width** (centered) on a wide screen and **full width** on mobile.
+- [ ] Chord size is **width-driven**, not height-driven: the font scales with the panel width up to a **15px ceiling** and is the same for two same-width tunes regardless of length (`25_02_AUTUMN_LEAVES` and `25_01_AUTUMN_IN_NEW_YORK` render at the same size); a long tune keeps that readable size and the page **scrolls** rather than collapsing to fit one screen. On a wide screen the grid caps at ~577px (centered) instead of spreading.
+- [ ] Grid −/+ zoom scales the current tune's grid; it **resets to 1× on every tune change and on reload** (not persisted).
 - [ ] A digitized-chord tune with a chord scan offers the per-panel **original-scan toggle** (photo-icon button above the content, default: rendered grid, swap happens in place without scrolling to the top); same for a digitized-melody tune with a melody scan.
 - [ ] `17_01_AINT_MISBEHAVIN` (Ain't Misbehavin') renders its melody as an abcjs lead sheet in the melody panel, in both themes; its right sidebar icon is green. Dropping a new `.abc` (named `<data/melody/01_crops stem>.abc`) into `data/melody/04_verified/` and rebuilding is all it takes to activate another tune.
 - [ ] `22_02_AS_TIME_GOES_BY` renders: A / A / B / A sections labeled `A A B A`, 8 bars each as 2×4 rows, double barlines at every section boundary, `4/4` before the first barline.
