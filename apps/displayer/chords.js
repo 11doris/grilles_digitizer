@@ -46,7 +46,8 @@
     let rest = s.slice(rootMatch[0].length);
 
     // A "/" only introduces a bass note when followed by a note letter at the
-    // end of the token — "F6/9" is a quality, "Am7/Eb" is a bass note.
+    // end of the token — "Am7/Eb" is a bass note. (Six-nine chords are written
+    // slashless as F69, so no quality contains a "/".)
     let bass = null;
     const bassMatch = rest.match(/\/([A-G])(#|b)?$/);
     if (bassMatch) {

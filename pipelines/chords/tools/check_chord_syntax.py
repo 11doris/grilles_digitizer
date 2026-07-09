@@ -12,8 +12,8 @@ ALTERATIONS & PARENTHESES, EXTENSIONS, SUS/SLASH/NO-CHORD):
   chord      := "N.C." | "(" core ")" | core        # outer parens = optional chord
   core       := root stem paren_ext? ("alt" | alts) slash? "?"?
   root       := [A-G] ("#"|"b")?                    # as printed, no enharmonic change
-  stem       := "" | m | 6 | 7 | 9 | 11 | 13 | 6/9 | maj7 | maj9
-              | m6 | m7 | m9 | m11 | m13 | m6/9 | m7b5 | o7 | m(maj7)
+  stem       := "" | m | 6 | 7 | 9 | 11 | 13 | 69 | maj7 | maj9
+              | m6 | m7 | m9 | m11 | m13 | m69 | m7b5 | o7 | m(maj7)
               | sus4 | sus2 | 7sus4 | 9sus4         # bare printed "sus" -> sus4
   paren_ext  := "(13)" etc. — parenthesised superscript extension, kept literal
   alts       := (b5|#5|b9|#9|#11|b13)+ in ascending-degree order
@@ -44,10 +44,10 @@ STEMS = [
     r"",
     r"m",
     r"6", r"7", r"9", r"11", r"13",
-    r"6/9",
+    r"69",
     r"maj7", r"maj9",
     r"m6", r"m7", r"m9", r"m11", r"m13",
-    r"m6/9",
+    r"m69",
     r"m7b5",
     r"o7",
     r"m\(maj7\)",

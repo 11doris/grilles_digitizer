@@ -18,7 +18,7 @@ class TestParseChord(unittest.TestCase):
     def test_quality_classes(self):
         # one row per spec §4.1 class, plus the reclassification edge cases
         cases = {
-            "F": "maj", "Fmaj7": "maj", "F6": "maj", "F6/9": "maj",
+            "F": "maj", "Fmaj7": "maj", "F6": "maj", "F69": "maj",
             "Fm": "min", "Fm7": "min", "Fm6": "min", "Fm(maj7)": "min",
             "Bbm#5": "min",
             "F7": "dom", "F13": "dom", "F7b5": "dom", "F7#5": "dom",
