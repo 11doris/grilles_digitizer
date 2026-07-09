@@ -262,7 +262,7 @@
     "chord": "G7"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "eda10974a40700557b36fb18bc01ec893b2ae03d55e0c3d8a56963d2039e2747",
     "scorer": {
       "tonic": "F",
@@ -274,6 +274,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

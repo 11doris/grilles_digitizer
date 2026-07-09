@@ -309,7 +309,7 @@
     "chord": "Fm7"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "0e7af36560038cba09d36523663008a70ab00b8d36f60892109713ac5223cfd5",
     "scorer": {
       "tonic": "Eb",
@@ -329,9 +329,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "section 'B' local-key disagreement: scorer F minor vs llm no local key"
-    ]
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",

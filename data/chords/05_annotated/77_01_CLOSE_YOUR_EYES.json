@@ -254,7 +254,7 @@
     "chord": "Gm7b5"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "b09a02694726c1a8bf76e492fc0352c2f82483def903b8eb77426ffe26bfc75a",
     "scorer": {
       "tonic": "F",
@@ -273,9 +273,11 @@
         }
       }
     },
-    "review_reasons": [
-      "section 'B' local-key disagreement: scorer no local key vs llm Bb major"
-    ]
+    "human": {
+      "tonic": "F",
+      "mode": "minor",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",

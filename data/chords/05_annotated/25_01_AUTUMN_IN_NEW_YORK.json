@@ -268,7 +268,7 @@
     "chord": "Gm7"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "bc375292a3c192ccefd8ab78119aa8b340a3e22351bf2061bb0f74ecbf3335ff",
     "scorer": {
       "tonic": "G",
@@ -294,9 +294,11 @@
         }
       }
     },
-    "review_reasons": [
-      "key disagreement: scorer G minor (margin 0.40) vs llm F major (medium confidence)"
-    ]
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",

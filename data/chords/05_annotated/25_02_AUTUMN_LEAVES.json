@@ -420,7 +420,7 @@
     "chord": "Gm"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "606ba7cea00a81e480008390f04acc8fe30fc0ed67e572169f558e31dd48483d",
     "scorer": {
       "tonic": "G",
@@ -432,6 +432,11 @@
       "mode": "minor",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "G",
+      "mode": "minor",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

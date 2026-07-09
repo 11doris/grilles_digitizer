@@ -298,7 +298,7 @@
     "chord": "Cmaj7"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "29a700fe98b9d3d80bdfead37ce6701a506024e40a3fe20a1fcefc79b908b525",
     "scorer": {
       "tonic": "F",
@@ -324,10 +324,11 @@
         }
       }
     },
-    "review_reasons": [
-      "key disagreement: scorer F major (margin 0.43) vs llm C major (high confidence)",
-      "section 'B' local-key disagreement: scorer E minor vs llm E major"
-    ]
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "34-bar AABA ballad",

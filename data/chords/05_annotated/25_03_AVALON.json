@@ -240,7 +240,7 @@
     "chord": "C7"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "0e1a930c8596628ee1fefe1bda4e42eab8d07c185572834b447ad77ddf59c033",
     "scorer": {
       "tonic": "F",
@@ -260,9 +260,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "section 'B' local-key disagreement: scorer G minor vs llm no local key"
-    ]
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABC standard",

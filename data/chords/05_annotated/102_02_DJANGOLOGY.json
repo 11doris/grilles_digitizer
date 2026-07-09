@@ -211,7 +211,7 @@
     "chord": "C#m7b5"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "1d521bc8109cbc89d869ab6875c15497c3c82bde4a3ab8812a0d39f707498266",
     "scorer": {
       "tonic": "G",
@@ -231,9 +231,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "section 'B' local-key disagreement: scorer A major vs llm no local key"
-    ]
+    "human": {
+      "tonic": "G",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "28-bar AABA standard",

@@ -287,7 +287,7 @@
     "chord": "Em9"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "633f4b6a27bdff82e899a8cb1276b4e6394968355d6abf5a5f84bb3feb4e98ef",
     "scorer": {
       "tonic": "D",
@@ -300,9 +300,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "key disagreement: scorer D minor (margin 0.43) vs llm F major (high confidence)"
-    ]
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "36-bar AABA standard",

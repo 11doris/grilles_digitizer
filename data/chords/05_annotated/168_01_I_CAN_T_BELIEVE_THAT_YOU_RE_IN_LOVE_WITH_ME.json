@@ -237,7 +237,7 @@
     "chord": "F"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "8ce9cb59cc70aa388be6b6f922291c3582ad0aab94544c8e32f0c1dd2336d08d",
     "scorer": {
       "tonic": "C",
@@ -250,9 +250,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "thin scorer margin: 0.10 < 0.15"
-    ]
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",

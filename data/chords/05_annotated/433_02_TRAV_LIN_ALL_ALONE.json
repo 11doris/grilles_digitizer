@@ -250,7 +250,7 @@
     "chord": "Fm"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "00886b3e1b4c3d12fd25d9b3f13ff52559501b4deb2c4df9e8bf6ee55db31c73",
     "scorer": {
       "tonic": "Ab",
@@ -270,10 +270,11 @@
       "confidence": "medium",
       "modulation_note": null
     },
-    "review_reasons": [
-      "key disagreement: scorer Ab major (margin 0.40) vs llm F minor (medium confidence)",
-      "section 'A' local-key disagreement: scorer F minor vs llm no local key"
-    ]
+    "human": {
+      "tonic": "F",
+      "mode": "minor",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "28-bar AABC tune",

@@ -347,7 +347,7 @@
     "chord": "Gm"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "10fd5904d571abbfaabd5444c752a3dff69463badc209fb749fa546d32cc5c34",
     "scorer": {
       "tonic": "Bb",
@@ -366,9 +366,11 @@
         }
       }
     },
-    "review_reasons": [
-      "section 'verse_A' local-key disagreement: scorer no local key vs llm G minor"
-    ]
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "verse-and-chorus standard (16-bar verse AB + 32-bar chorus ABAC)",

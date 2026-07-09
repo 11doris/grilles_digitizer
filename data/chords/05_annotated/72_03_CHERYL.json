@@ -112,7 +112,7 @@
     "chord": "C"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "968dfcd4d0ca59d78b59017815b6d13ebeb6a57ceb698ed8f55078960aa2f5bc",
     "scorer": {
       "tonic": "C",
@@ -124,6 +124,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

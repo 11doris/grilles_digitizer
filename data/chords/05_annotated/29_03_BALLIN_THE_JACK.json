@@ -252,7 +252,7 @@
     "chord": "G"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "fe73a78f545b9b81e9afd033320d3d7ae33527185dbf12fa44fb0d2d4637a7e0",
     "scorer": {
       "tonic": "Bb",
@@ -275,11 +275,11 @@
         }
       }
     },
-    "review_reasons": [
-      "thin scorer margin: 0.14 < 0.15",
-      "section 'verse_A' local-key disagreement: scorer no local key vs llm G major",
-      "section 'verse_A1' local-key disagreement: scorer no local key vs llm G major"
-    ]
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "16-bar tune with verse",

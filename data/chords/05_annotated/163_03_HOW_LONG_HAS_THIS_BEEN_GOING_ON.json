@@ -314,7 +314,7 @@
     "chord": "D7(13)"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "f18d228f205ea73fc5486eb56ed62e1ee8ad6e6c93197d942c97f2c8ef3b5ea7",
     "scorer": {
       "tonic": "G",
@@ -326,6 +326,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "G",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

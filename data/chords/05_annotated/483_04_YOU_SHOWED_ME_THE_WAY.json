@@ -245,7 +245,7 @@
     "chord": "Ebmaj7"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "f6035859036a6b26abac963bcb0d7cf916e8a040d1ea9c152745e0ad88a43818",
     "scorer": {
       "tonic": "Ab",
@@ -258,9 +258,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "key disagreement: scorer Ab major (margin 0.33) vs llm Eb major (high confidence)"
-    ]
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "34-bar AABA standard",

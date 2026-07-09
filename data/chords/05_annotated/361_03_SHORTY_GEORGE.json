@@ -251,7 +251,7 @@
     "chord": "Db6"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "614d9a32fe2b57131602580b67a159ef142413bbf2ff05561191d2ee5b1abc0d",
     "scorer": {
       "tonic": "Db",
@@ -263,6 +263,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Db",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

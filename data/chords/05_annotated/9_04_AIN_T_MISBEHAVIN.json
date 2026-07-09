@@ -397,7 +397,7 @@
     "chord": "Eb"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "c1bd68542a682c4e2519c911675023d558331a4cddcbe39019149f99a5e74675",
     "scorer": {
       "tonic": "Eb",
@@ -416,9 +416,11 @@
         }
       }
     },
-    "review_reasons": [
-      "section 'B' local-key disagreement: scorer no local key vs llm Bb major"
-    ]
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard with 16-bar verse",

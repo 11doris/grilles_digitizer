@@ -300,16 +300,16 @@
     ]
   },
   "key": {
-    "tonic": "E",
+    "tonic": "C",
     "mode": "major"
   },
   "opening": {
-    "degree": "I",
+    "degree": "III",
     "quality": "maj",
     "chord": "Emaj7"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "e422b5f74d541334fe18464986417bad293dff9ed09a62d3e3d7832e1f86cc8e",
     "scorer": {
       "tonic": "E",
@@ -321,6 +321,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": true
     }
   },
   "harmonic_fingerprint": {

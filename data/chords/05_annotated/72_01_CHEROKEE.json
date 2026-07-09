@@ -440,7 +440,7 @@
     "chord": "Bb"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "9e014acb94e67296e4f8b8f17cdf49fc48670ec706b9f743b92a72b158ef5780",
     "scorer": {
       "tonic": "Bb",
@@ -459,9 +459,11 @@
         }
       }
     },
-    "review_reasons": [
-      "section 'B' local-key disagreement: scorer no local key vs llm B major"
-    ]
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "64-bar AABA standard",

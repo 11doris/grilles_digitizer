@@ -273,7 +273,7 @@
     "chord": "Fmaj7"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "dadb8d672037628473ef2568505f2e5210152264df91b7d940f2c9c56b2b4674",
     "scorer": {
       "tonic": "F",
@@ -298,6 +298,11 @@
           "mode": "major"
         }
       }
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

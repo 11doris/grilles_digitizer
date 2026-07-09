@@ -271,7 +271,7 @@
     "chord": "G9(13)"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "9c941ea11c99f3c1805cc18ba6fecada74340b9346f314468760070ba910200e",
     "scorer": {
       "tonic": "F",
@@ -291,9 +291,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "section 'B' local-key disagreement: scorer D minor vs llm no local key"
-    ]
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA-type standard (A B A B')",

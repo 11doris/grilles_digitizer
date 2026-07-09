@@ -240,7 +240,7 @@
     "chord": "Cmaj7"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "7db2747ca41dc276caa8442cb3a5f7c34be65e201f46e0e90d0fd261a2f39fd6",
     "scorer": {
       "tonic": "C",
@@ -260,9 +260,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "section 'A' local-key disagreement: scorer D minor vs llm no local key"
-    ]
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABA'C standard",

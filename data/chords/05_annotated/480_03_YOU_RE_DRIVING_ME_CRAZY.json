@@ -355,7 +355,7 @@
     "chord": "D7"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "525c1e62aa5a8f533bcee08a095f3333959ef80973646f2ee66e4d2869fc805c",
     "scorer": {
       "tonic": "Eb",
@@ -381,9 +381,11 @@
         }
       }
     },
-    "review_reasons": [
-      "thin scorer margin: 0.07 < 0.15"
-    ]
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard with 16-bar verse",

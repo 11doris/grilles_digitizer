@@ -296,7 +296,7 @@
     "chord": "Abmaj7"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "15044b136103b922e5dba185e09a6360eba3f9470f12237c644b1a9ad5145bfd",
     "scorer": {
       "tonic": "Ab",
@@ -315,9 +315,11 @@
         }
       }
     },
-    "review_reasons": [
-      "section 'B' local-key disagreement: scorer no local key vs llm C major"
-    ]
+    "human": {
+      "tonic": "Ab",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",

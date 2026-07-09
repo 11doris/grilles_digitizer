@@ -287,7 +287,7 @@
     "chord": "Cm7"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "1938657aaf0c7d2891f0a15c71c0c58722562a14810faffd5727d9003fb8b89f",
     "scorer": {
       "tonic": "C",
@@ -300,9 +300,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "key disagreement: scorer C minor (margin 0.57) vs llm Bb major (high confidence)"
-    ]
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",

@@ -304,7 +304,7 @@
     "chord": "C"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "16a6f831e3664691520633944e8ab389abb269edd0fd319b56dec91b9885ddc8",
     "scorer": {
       "tonic": "C",
@@ -324,9 +324,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "section 'B' local-key disagreement: scorer F major vs llm no local key"
-    ]
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA-type standard with verse",

@@ -425,7 +425,7 @@
     "chord": "G6"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "a2c945c10c029576154f9f205ae317ef4a7f3c87589e184668fac985b92cb950",
     "scorer": {
       "tonic": "G",
@@ -445,9 +445,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "section 'verse_A1' local-key disagreement: scorer E minor vs llm no local key"
-    ]
+    "human": {
+      "tonic": "G",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard with 16-bar verse",

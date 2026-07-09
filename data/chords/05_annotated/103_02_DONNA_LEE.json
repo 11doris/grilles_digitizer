@@ -237,7 +237,7 @@
     "chord": "Ab"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "705b43bd085afd027a977ef888430e7585c03c207049f1d88a0ed42c3155511a",
     "scorer": {
       "tonic": "Ab",
@@ -249,6 +249,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Ab",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

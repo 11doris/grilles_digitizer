@@ -249,7 +249,7 @@
     "chord": "Bbm9b5"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "59738a5ddd5ee3af942694ea9a0de90a79cd5650f99bbc4884e2886fdc0ea7a1",
     "scorer": {
       "tonic": "Ab",
@@ -261,6 +261,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Ab",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

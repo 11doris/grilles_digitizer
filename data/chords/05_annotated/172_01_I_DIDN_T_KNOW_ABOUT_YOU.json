@@ -264,7 +264,7 @@
     "chord": "Abm7"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "2f0be440cd9b77336dc0f0bd6c6af478b3c2c3f17709619a725b0258836e4067",
     "scorer": {
       "tonic": "F#",
@@ -283,9 +283,11 @@
         }
       }
     },
-    "review_reasons": [
-      "section 'B' local-key disagreement: scorer no local key vs llm B major"
-    ]
+    "human": {
+      "tonic": "Gb",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",

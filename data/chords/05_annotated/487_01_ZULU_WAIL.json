@@ -332,7 +332,7 @@
     "chord": "Cm"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "f189ff659f84c1486c43ef352c3349cec45cbaa428c1fc70203636033a7bcd77",
     "scorer": {
       "tonic": "Eb",
@@ -352,9 +352,11 @@
       "confidence": "high",
       "modulation_note": "verse opens on the relative C minor (i-V) before settling into Eb; bridge dips into iv/i minor (Abm-Ebm)"
     },
-    "review_reasons": [
-      "section 'verse_A1' local-key disagreement: scorer C minor vs llm no local key"
-    ]
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "16-bar verse + 32-bar AABA chorus",

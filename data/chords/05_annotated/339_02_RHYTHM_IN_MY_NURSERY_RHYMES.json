@@ -257,7 +257,7 @@
     "chord": "F"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "6575b9ab9ea30e48bed44ddd8a3dc0076e3d33bc48791b227708f043ded1101a",
     "scorer": {
       "tonic": "F",
@@ -277,9 +277,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "section 'B' local-key disagreement: scorer Bb major vs llm no local key"
-    ]
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",

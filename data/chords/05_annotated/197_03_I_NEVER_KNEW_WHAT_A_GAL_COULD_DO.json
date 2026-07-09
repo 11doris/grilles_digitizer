@@ -385,7 +385,7 @@
     "chord": "C"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "bcc9116e3070d618f6294856fa01da786c2f744aa5a90fd966576b8d3364f305",
     "scorer": {
       "tonic": "C",
@@ -411,9 +411,11 @@
         }
       }
     },
-    "review_reasons": [
-      "thin scorer margin: 0.09 < 0.15"
-    ]
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "verse-and-chorus standard (16-bar verse + 32-bar AA'BA chorus)",

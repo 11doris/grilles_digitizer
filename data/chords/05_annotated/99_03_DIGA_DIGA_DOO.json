@@ -404,7 +404,7 @@
     "chord": "Dm"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "085b18c38045228b44d6bdaa2733a299078e7acee3645f0fabd2a9689f4a26ae",
     "scorer": {
       "tonic": "D",
@@ -424,9 +424,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "section 'B' local-key disagreement: scorer F major vs llm no local key"
-    ]
+    "human": {
+      "tonic": "D",
+      "mode": "minor",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard (with 24-bar AAB verse)",

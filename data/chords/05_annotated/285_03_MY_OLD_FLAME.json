@@ -349,7 +349,7 @@
     "chord": "Fmaj7"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "db85b8cea5cf9f4a592d03bac5e04e187fedb867924f56a9f72466c35ae138a2",
     "scorer": {
       "tonic": "F",
@@ -374,10 +374,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "section 'A' local-key disagreement: scorer G minor vs llm no local key",
-      "section 'A1' local-key disagreement: scorer G minor vs llm no local key"
-    ]
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",

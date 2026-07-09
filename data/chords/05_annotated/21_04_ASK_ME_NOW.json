@@ -270,7 +270,7 @@
     "chord": "Gm7"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "8a4e72410dba34bb412e5bf48f081cb95e5e198475d42969753a79611ef28b86",
     "scorer": {
       "tonic": "Db",
@@ -282,6 +282,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Db",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

@@ -233,7 +233,7 @@
     "chord": "Bb"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "ed72e9c9f9451dc0473f8bd43de0331912cce00a4c878e1db865b86f10c18704",
     "scorer": {
       "tonic": "Bb",
@@ -245,6 +245,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

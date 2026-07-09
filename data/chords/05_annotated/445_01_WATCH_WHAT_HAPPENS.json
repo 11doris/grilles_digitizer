@@ -325,7 +325,7 @@
     "chord": "Gmaj9"
   },
   "key_annotation": {
-    "status": "needs_review",
+    "status": "verified",
     "source_sha256": "9aeb63753ef8083aa043adff0b4b95bcb632a1d713b3349b920c8d5dd02a7ef8",
     "scorer": {
       "tonic": "Eb",
@@ -350,10 +350,11 @@
       "confidence": "high",
       "modulation_note": null
     },
-    "review_reasons": [
-      "section 'B' local-key disagreement: scorer F major vs llm no local key",
-      "section 'verse_A' local-key disagreement: scorer F major vs llm no local key"
-    ]
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard with verse and coda",
