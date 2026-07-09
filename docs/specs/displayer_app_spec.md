@@ -382,8 +382,8 @@ core      := "N.C."              → rendered verbatim, small caps
            | root quality? bass?
 root      := [A-G] accidental?
 accidental:= "#" | "b"
-bass      := "/" [A-G] accidental?    (only when "/" is followed by a note letter —
-                                       "F6/9" is a quality, not a bass note)
+bass      := "/" [A-G] accidental?    (only when "/" is followed by a note letter;
+                                       six-nine chords are written slashless as F69)
 quality   := everything between root and bass
 ```
 
@@ -396,7 +396,7 @@ quality   := everything between root and bass
 | `o7` | `o7` (kept; e.g. `F#o7` → F♯o7) |
 | `m(maj7)` | `m(Δ7)` |
 | `#` / `b` (in quality or alterations) | `♯` / `♭` (U+266F / U+266D) |
-| everything else (`m7`, `6`, `9`, `7#5`, `9sus4`, `7(13)`, `6/9`, `m11`, …) | verbatim, with the accidental substitution above |
+| everything else (`m7`, `6`, `9`, `7#5`, `9sus4`, `7(13)`, `69`, `m11`, …) | verbatim, with the accidental substitution above |
 
 The root's own accidental also renders as `♯`/`♭`.
 
@@ -585,7 +585,7 @@ Activating a playlist:
 - [ ] A digitized-chord tune with a chord scan offers the per-panel **original-scan toggle** (photo-icon button above the content, default: rendered grid, swap happens in place without scrolling to the top); same for a digitized-melody tune with a melody scan.
 - [ ] `17_01_AINT_MISBEHAVIN` (Ain't Misbehavin') renders its melody as an abcjs lead sheet in the melody panel, in both themes; its right sidebar icon is green. Dropping a new `.abc` (named `<data/melody/01_crops stem>.abc`) into `data/melody/04_verified/` and rebuilding is all it takes to activate another tune.
 - [ ] `22_02_AS_TIME_GOES_BY` renders: A / A / B / A sections labeled `A A B A`, 8 bars each as 2×4 rows, double barlines at every section boundary, `4/4` before the first barline.
-- [ ] `Fm7b5` displays as `Fø7`; `Eb` shows `E♭`; `F#o7` shows `F♯o7`; `C9sus4`, `F6/9`, `N.C.` render sensibly.
+- [ ] `Fm7b5` displays as `Fø7`; `Eb` shows `E♭`; `F#o7` shows `F♯o7`; `C9sus4`, `F69`, `N.C.` render sensibly.
 - [ ] A chord on beat 3 sits at the horizontal middle of its bar.
 - [ ] Sections with 2, 5, or 16 bars render without layout breakage (trailing empty slots).
 - [ ] Search for `hupfeld` finds "As Time Goes By"; search is accent- and case-insensitive across the full corpus.

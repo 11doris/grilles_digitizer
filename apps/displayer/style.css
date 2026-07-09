@@ -1,27 +1,26 @@
 /* Grilles Displayer — themes, layout, chord grid, chord symbols. */
 
-/* Saira Extra Condensed (Google Fonts), bundled locally so file:// works
-   offline. Latin subset only — the music glyphs ♯ ♭ Δ fall back to the system
-   font, as they did with Barlow. */
+/* Barlow Condensed (Google Fonts), bundled locally so file:// works offline.
+   The music glyphs ♯ ♭ Δ fall back to the system font. */
 @font-face {
-  font-family: "Saira Extra Condensed";
+  font-family: "Barlow Condensed";
   font-style: normal;
   font-weight: 400;
-  src: url("fonts/saira-extra-condensed-400.woff2") format("woff2");
+  src: url("fonts/barlow-condensed-400.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Saira Extra Condensed";
+  font-family: "Barlow Condensed";
   font-style: normal;
   font-weight: 500;
-  src: url("fonts/saira-extra-condensed-500.woff2") format("woff2");
+  src: url("fonts/barlow-condensed-500.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Saira Extra Condensed";
+  font-family: "Barlow Condensed";
   font-style: normal;
   font-weight: 700;
-  src: url("fonts/saira-extra-condensed-700.woff2") format("woff2");
+  src: url("fonts/barlow-condensed-700.woff2") format("woff2");
 }
 
 :root[data-theme="dark"] {
@@ -478,7 +477,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .head-top .title {
   margin: 0;
   text-align: center;
-  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0.03em;
@@ -577,7 +576,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .harm-sections dt {
   font-weight: 700;
   color: var(--fg);
-  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
 }
 
 .harm-sections dd { margin: 0; }
@@ -607,18 +606,19 @@ body.list-collapsed #gridZoom { left: 1rem; }
   font-size: clamp(10px, 2.6cqw, 17px);
 }
 
-.section { margin-bottom: 0.6em; }
+.section { margin-bottom: 0.0em; }
 
 .sec-label {
   display: inline-block;
   background: var(--fg);
   color: var(--bg);
-  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
-  font-size: 1.1em;
+  font-size: 1.0em;
   line-height: 1;
-  padding: 0.18em 0.4em;
+  padding: 0.1em 0.2em;
   margin-bottom: 0.3em;
+  margin-left: -1.0em; /* nudge the badge left, closer to the barline gutter */
 }
 
 .row {
@@ -630,13 +630,13 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
 .timesig {
   position: absolute;
-  left: -1em;
+  left: -0.6em;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   font-size: 1.3em;
   line-height: 1;
@@ -648,10 +648,15 @@ body.list-collapsed #gridZoom { left: 1rem; }
   /* Just tall enough to enclose a chord box (2.1em) with a little air above and
      below; the barlines hug the row instead of towering over it. */
   min-height: 2.5em;
-  display: grid;
+  /* Flex row of content-width chords separated by beat-weighted spacers (see
+     fillBar): roomy bars space chords out by beat; crowded bars let the spacers
+     collapse to a minimum gap so the chords pack close and stay big. */
+  display: flex;
   align-items: center;
   border-left: 2px solid var(--line);
-  padding: 0.15em 0.3em 0.15em 0.4em;
+  /* Tight left/right insets so the first chord hugs the barline and the last
+     chord sits close to the next one (top/bottom keep the box's breathing air). */
+  padding: 0.15em 0.15em 0.15em 0.2em;
 }
 
 .bar.rowlast { border-right: 2px solid var(--line); }
@@ -662,6 +667,18 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .slot {
   min-width: 0;
   overflow: visible;
+  /* Content width, never compressed — a crowded chord overflows into the
+     spacer beside it rather than squashing. */
+  flex: 0 0 auto;
+}
+
+/* Elastic gap between chords, one after each chord, its grow weight set to the
+   chord's held duration in beats (see fillBar). It absorbs the bar's leftover
+   room so chords sit near their beat, and collapses to this minimum gap when
+   the bar is crowded. The minimum must match MIN_BEAT_GAP_EM in app.js. */
+.beat-spacer {
+  flex: 1 0 0;
+  min-width: 0.1em;
 }
 
 /* -------------------------------------------------------- chord symbols */
@@ -671,7 +688,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .chord {
   display: inline-flex;
   align-items: center;
-  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
   line-height: 1;
   white-space: nowrap;
@@ -706,13 +723,13 @@ body.list-collapsed #gridZoom { left: 1rem; }
   align-self: start;
   justify-self: start;
   margin-left: 0.06em;
-  font-size: 1.1em;
-  line-height: 1;
+  font-size: 1.3em;
+  line-height: .5;
 }
 
 /* The flat glyph renders small in the fallback font — enlarge it so ♭ reads at
    the same weight as ♯ (both as a root accidental and inside qualities). */
-.chord .acc.flat { font-size: 1.5em; line-height: 0.75; }
+.chord .acc.flat { font-size: 1.8em; line-height: 0.4; margin-left: -0.05em}
 .chord .fl { font-size: 1.28em; line-height: 0.7; }
 
 /* Middle column, bottom box: the core quality (7, -7, Δ7, ø7 …). */
@@ -734,7 +751,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
   grid-column: 3;
   justify-self: start;
   margin-left: 0.04em;
-  font-size: 0.72em;
+  font-size: 1.1em;
   line-height: 0.95;
 }
 
@@ -801,7 +818,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
 }
 
 .variants-title {
-  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   font-size: 1.15rem;
   letter-spacing: 0.04em;

@@ -44,9 +44,9 @@ class ChordParseError(ValueError):
 _ROOT = r"[A-G](?:#|b)?"
 _ALT = r"(?:b5|#5|b9|#9|#11|b13)"
 _STEMS = [
-    "", "m", "6", "7", "9", "11", "13", "6/9",
+    "", "m", "6", "7", "9", "11", "13", "69",
     "maj7", "maj9",
-    "m6", "m7", "m9", "m11", "m13", "m6/9", "m7b5",
+    "m6", "m7", "m9", "m11", "m13", "m69", "m7b5",
     "o7", "m(maj7)",
     "sus4", "sus2", "7sus4", "9sus4",
 ]
@@ -62,9 +62,9 @@ _CORE = re.compile(
 )
 
 _STEM_CLASS = {
-    "": "maj", "6": "maj", "maj7": "maj", "maj9": "maj", "6/9": "maj",
+    "": "maj", "6": "maj", "maj7": "maj", "maj9": "maj", "69": "maj",
     "m": "min", "m6": "min", "m7": "min", "m9": "min", "m11": "min",
-    "m13": "min", "m6/9": "min", "m(maj7)": "min",
+    "m13": "min", "m69": "min", "m(maj7)": "min",
     "7": "dom", "9": "dom", "11": "dom", "13": "dom",
     "m7b5": "m7b5",
     "o7": "dim",

@@ -206,7 +206,8 @@ SYMBOL ORDER: build every chord in this fixed order, no spaces:
 EXTENSIONS (bare numbers): 6, 9, 11, 13 and their minor/major forms m6, m9, m11, m13,
 maj9. A single bare extension number implies the chord tones below it, so write the
 HIGHEST number only: a dominant simply marked as a 13th is C13; an 11th is C11; a ninth
-is C9. 6/9 chord -> 6/9 (C6/9, Cm6/9). This collapse applies ONLY to a plain bare number:
+is C9. A six-nine chord is written 69 with NO slash (C69, Cm69) — never 6/9 — so the
+slash is never confused with a slash/bass chord. This collapse applies ONLY to a plain bare number:
 a 7 or 9 printed WITH a parenthesised superscript extension is the exception below — keep
 it literal (Ab7(13), D9(13)), NEVER collapse it to Ab13 / D13.
 PARENTHESISED SUPERSCRIPT EXTENSION — preserve as printed: when the book writes an

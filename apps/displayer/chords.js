@@ -46,7 +46,8 @@
     let rest = s.slice(rootMatch[0].length);
 
     // A "/" only introduces a bass note when followed by a note letter at the
-    // end of the token — "F6/9" is a quality, "Am7/Eb" is a bass note.
+    // end of the token — "Am7/Eb" is a bass note. (Six-nine chords are written
+    // slashless as F69, so no quality contains a "/".)
     let bass = null;
     const bassMatch = rest.match(/\/([A-G])(#|b)?$/);
     if (bassMatch) {
@@ -69,12 +70,12 @@
     return "";
   }
 
-  /* Spec §7.2: maj→Δ, m7b5→ø7, minor m→-, accidentals→music glyphs. */
+  /* Spec §7.2: maj→Δ, m7b5→ø7, minor m→–, accidentals→music glyphs. */
   function displayQuality(q) {
     let s = q;
     s = s.replace(/m7b5/g, "ø7"); // ø7
     s = s.replace(/maj/g, "Δ"); // Δ (consume maj's m before the minor rule)
-    s = s.replace(/m/g, "-"); // remaining m = minor, "-" saves width
+    //s = s.replace(/m/g, "–"); // remaining m = minor → en dash, saves width
     s = s.replace(/#/g, SHARP);
     s = s.replace(/b(?=\d)/g, FLAT);
     return s;
@@ -158,10 +159,12 @@
       box += `<span class="acc ${kind}">${displayAccidental(c.acc)}</span>`;
     }
     if (main) box += `<span class="qual">${withFlats(main)}</span>`;
-    // Right column: alterations, lone one in the upper box, a pair straddling.
-    if (stack.length) {
+    // Right column: alterations, lone one in the lower box, a pair straddling.
+    if (stack.length === 1) {
+      box += `<span class="alt-down">${withFlats(stack[0])}</span>`;
+    } else if (stack.length) {
       box += `<span class="alt-up">${withFlats(stack[0])}</span>`;
-      if (stack[1]) box += `<span class="alt-down">${withFlats(stack[1])}</span>`;
+      box += `<span class="alt-down">${withFlats(stack[1])}</span>`;
     }
     let html = `<span class="box">${box}</span>`;
     if (c.bass) {

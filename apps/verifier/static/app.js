@@ -73,10 +73,10 @@ const CHORD_ALT  = '(?:b5|#5|b9|#9|#11|b13)';
 const CHORD_STEMS = [
   '', 'm',
   '6', '7', '9', '11', '13',
-  '6/9',
+  '69',
   'maj7', 'maj9',
   'm6', 'm7', 'm9', 'm11', 'm13',
-  'm6/9',
+  'm69',
   'm7b5',
   'o7',
   'm\\(maj7\\)',
@@ -128,7 +128,7 @@ function chordParseHints(s) {
     hints.push('Minor-major 7th needs parens: m(maj7), e.g. Dm(maj7) — never "Dmmaj7".');
   if (!hints.length)
     hints.push('Not a recognised chord. Expected: ROOT(A–G, #/b) + quality (m, maj7, m7b5, o7, '
-      + 'm(maj7), sus4…) + extension (6, 7, 9, 11, 13, 6/9) + alterations (b5 #5 b9 #9 #11 b13) '
+      + 'm(maj7), sus4…) + extension (6, 7, 9, 11, 13, 69) + alterations (b5 #5 b9 #9 #11 b13) '
       + 'or alt + optional /bass and trailing ? — e.g. Bb7, Fm7b5, C9b5, F7alt, F(#5), D(b9), Fm7/Bb.');
   return hints;
 }
