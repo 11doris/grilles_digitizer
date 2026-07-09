@@ -724,13 +724,13 @@ body.list-collapsed #gridZoom { left: 1rem; }
   align-self: start;
   justify-self: start;
   margin-left: 0.06em;
-  font-size: 1.1em;
-  line-height: 1;
+  font-size: 1.3em;
+  line-height: .5;
 }
 
 /* The flat glyph renders small in the fallback font — enlarge it so ♭ reads at
    the same weight as ♯ (both as a root accidental and inside qualities). */
-.chord .acc.flat { font-size: 1.5em; line-height: 0.75; }
+.chord .acc.flat { font-size: 1.8em; line-height: 0.4; margin-left: -0.05em}
 .chord .fl { font-size: 1.28em; line-height: 0.7; }
 
 /* Middle column, bottom box: the core quality (7, -7, Δ7, ø7 …). */

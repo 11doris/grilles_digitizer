@@ -159,10 +159,12 @@
       box += `<span class="acc ${kind}">${displayAccidental(c.acc)}</span>`;
     }
     if (main) box += `<span class="qual">${withFlats(main)}</span>`;
-    // Right column: alterations, lone one in the upper box, a pair straddling.
-    if (stack.length) {
+    // Right column: alterations, lone one in the lower box, a pair straddling.
+    if (stack.length === 1) {
+      box += `<span class="alt-down">${withFlats(stack[0])}</span>`;
+    } else if (stack.length) {
       box += `<span class="alt-up">${withFlats(stack[0])}</span>`;
-      if (stack[1]) box += `<span class="alt-down">${withFlats(stack[1])}</span>`;
+      box += `<span class="alt-down">${withFlats(stack[1])}</span>`;
     }
     let html = `<span class="box">${box}</span>`;
     if (c.bass) {
