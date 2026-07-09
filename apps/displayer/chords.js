@@ -75,7 +75,7 @@
     let s = q;
     s = s.replace(/m7b5/g, "ø7"); // ø7
     s = s.replace(/maj/g, "Δ"); // Δ (consume maj's m before the minor rule)
-    s = s.replace(/m/g, "–"); // remaining m = minor → en dash, saves width
+    //s = s.replace(/m/g, "–"); // remaining m = minor → en dash, saves width
     s = s.replace(/#/g, SHARP);
     s = s.replace(/b(?=\d)/g, FLAT);
     return s;
