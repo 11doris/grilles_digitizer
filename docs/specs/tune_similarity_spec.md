@@ -36,7 +36,9 @@ data/chords/04_verified/*.json           (read-only for this pipeline)
         |
         v
 PHASE 0  annotate_keys      -> data/chords/05_annotated/*.json   (verbatim copy + key,
-        |                                                          key_annotation, fingerprint)
+        |                        ^                                 key_annotation, fingerprint)
+        |                        | verify / correct
+        |                  apps/key_verifier  (local Flask app: crop PNG + key + fingerprint)
         v
 PHASE 1  normalize (library) -> in-memory tonic-relative token sequences
         |
@@ -57,6 +59,11 @@ Conventions that carry over from the rest of the repo:
 * **Numbered data tiers are append-only stages.** `04_verified` is never modified by this
   pipeline; `05_annotated` and `06_similarity` are its outputs. Same philosophy as
   `02_raw` → `03_wip` → `04_verified`.
+* **Numbered = regenerable pipeline stage; un-numbered = curated data that must be preserved.**
+  `data/chords/06_similarity/` may be deleted and rebuilt from `05_annotated` at any time.
+  `data/chords/eval/` is deliberately *not* numbered: it holds human judgment (confirmations,
+  ratings, hand-labeled keys) that no pipeline can regenerate — like `data/title_index.csv`, it
+  sits beside the tiers, not in them. Never treat it as a build output.
 * **One work unit = one tune file.** Every pipeline script is idempotent and resumable: rerunning
   skips work that is already done and current, so the whole chain can be re-executed cheaply every
   time new tunes land in `04_verified`.
@@ -75,9 +82,12 @@ level (source fields are never altered):
 
 ```json
 "key": { "tonic": "F", "mode": "major" },
+"section_keys": { "B": { "tonic": "A", "mode": "major" } },
+"opening": { "degree": "ii", "quality": "min", "chord": "Gm7" },
 "key_annotation": {
   "status": "agreed",
-  "scorer": { "tonic": "F", "mode": "major", "margin": 0.42 },
+  "scorer": { "tonic": "F", "mode": "major", "margin": 0.42,
+              "section_keys": { "B": { "tonic": "A", "mode": "major", "margin": 0.31 } } },
   "llm":    { "tonic": "F", "mode": "major", "confidence": "high",
               "modulation_note": null }
 },
@@ -92,13 +102,34 @@ level (source fields are never altered):
 
 * `key.tonic`: pitch letter with accidental as printed in this book's vocabulary (`F`, `Bb`, `Eb`,
   `Db`, `F#`, …). `key.mode`: `"major"` or `"minor"`.
-* `key_annotation.status`: `"agreed"` (both voters matched, scorer margin above threshold),
-  `"needs_review"` (disagreement or thin margin — tune is **excluded from similarity output**
-  until resolved), or `"resolved_manually"` (human picked; record which voter won in a
-  `resolution` sub-field).
-* Tunes that genuinely modulate get their **predominant/opening key** as `key`, a
-  `modulation_note` (free text, e.g. `"moves E ↔ G by section"`), and `"modulates": true` in the
-  fingerprint. One key per tune; no per-section keys in v1.
+* `key_annotation.status` — three values:
+  * `"agreed"`: both voters matched and the scorer margin cleared its threshold (machine-set);
+  * `"needs_review"`: disagreement or thin margin (machine-set) — tune is **excluded from
+    similarity output** until a human resolves it;
+  * `"verified"`: a human confirmed or corrected the annotation in the key verifier app (§3.6)
+    or via `--set-key`. Terminal for a given source file. A correction keeps both voter votes
+    untouched for the record and adds a `human` sub-field
+    (`{ "tonic": ..., "mode": ..., "corrected": true|false }`).
+* **`section_keys` — local keys for modulating sections.** Present only for sections whose local
+  key clearly differs from the global `key`; a tune with no entry modulates nowhere. This is what
+  lets a modulated section be compared against tunes that simply *live* in a I-centered
+  progression (see §4.3a, §6.2): without it, Con Alma's G-major stretch — encoded relative to E —
+  could only ever match tunes that modulate by the same interval. Adjudicated like the tune key:
+  scorer (per-section pass, §3.2) and LLM (`local_key` in the fingerprint sections, §3.3) must
+  agree, otherwise the tune goes to `needs_review` with the section named.
+* **`opening` — what the tune starts on.** The first chord of the tune (beat-1 chord of bar 1 of
+  the first section of the flattened form) expressed relative to the resolved `key`: `degree` is
+  a roman numeral relative to the tune's own tonic (uppercase for `maj`/`dom`/`aug` quality
+  classes, lowercase for `min`/`m7b5`/`dim`; accidental prefix for non-diatonic roots, e.g.
+  `bIII`, and a minor tune starting on its tonic reads `i`), `quality` is the §4.1 quality class,
+  `chord` is the original printed symbol. This field is **purely computed** — derived from
+  `key` + the parsed first chord, no voter and no LLM involvement — and is recomputed whenever
+  the key changes (e.g. after a `--review` resolution). It exists as player-facing metadata: a
+  displayer filter ("show tunes that start on the V", §8), not a similarity feature.
+* Tunes that genuinely modulate get their **predominant/opening key** as `key`, the modulated
+  sections listed in `section_keys`, a `modulation_note` (free text, e.g. `"bridge in A"`), and
+  `"modulates": true` in the fingerprint. Modulations *within* a section are not keyed in v1 —
+  the delta-encoding channel (§4.3a) is the safety net for those.
 
 ### 3.2 Voter 1 — deterministic functional scorer
 
@@ -115,10 +146,17 @@ Pure Python, no external services. For each tune:
    * **mode match** of the tonic chord's quality class (minor tonic chords vote for minor keys).
 3. Winner = highest score. `margin` = (best − runner-up) / best, reported as the scorer's
    confidence. Threshold for "confident": `margin ≥ 0.15` (tune during Phase 0 testing against the
-   hand-labeled set, §3.6).
+   hand-labeled set, §3.7).
 
 Exact weights are implementation-tunable; what is fixed is the *feature list* above and that the
 scorer is deterministic and free to rerun.
+
+**Per-section pass (local keys).** After the tune key is scored, rerun the same 24-key scoring on
+each section's bars alone. Record a `section_keys` entry only when a different key beats the
+global key on that section **decisively** (its margin over the global key's section score exceeds
+a dedicated threshold, stricter than the tune-level one — 8 bars are noisy, so bias strongly
+toward "no modulation"). The final-bar/first-bar bonuses apply to the section's own boundaries in
+this pass.
 
 Known hard cases the scorer must survive (all present in the current 32 tunes): turnaround endings
 (`Au Privave`, `Idaho` end on V7; `Cheryl` ends on ii), a Picardy-third final chord in a minor
@@ -171,8 +209,12 @@ answer.
 
   Note on `fingerprint.sections`: structured-output schemas require
   `additionalProperties: false`, and section names vary per tune — so model `sections` as an
-  **array** of `{ "name": string, "summary": string }` objects instead of a keyed object, and
-  convert to a keyed object when writing the annotated file. Adjust the schema accordingly.
+  **array** of `{ "name": string, "summary": string, "local_key": {tonic, mode} | null }`
+  objects instead of a keyed object, and convert to a keyed object when writing the annotated
+  file. `local_key` is the LLM's vote on §3.1's `section_keys`: null when the section sits in the
+  global key, filled in when the section is genuinely in another key (the prompt must instruct
+  that passing ii–Vs and short tonicizations do **not** count — only a sustained local tonal
+  center). Adjust the schema accordingly.
 
 * **System prompt** (identical for every tune, with `cache_control: {"type": "ephemeral"}` on it
   so consecutive interactive calls hit the prompt cache): the task definition, the key/mode
@@ -219,30 +261,87 @@ The fingerprint is **LLM judgment, not ground truth**. Its committed uses:
    family-equality may be added to retrieval or scoring *if* they improve metrics on the Phase 2
    evaluation set. They must not silently influence scores before that.
 
-### 3.5 Adjudication workflow
+### 3.5 Adjudication, verification and correction
 
 ```
-python pipelines/chords/annotate_keys.py            # annotate everything pending
-python pipelines/chords/annotate_keys.py --review   # interactive disagreement queue
+python pipelines/chords/annotate_keys.py                      # annotate everything pending
+python pipelines/chords/annotate_keys.py --set-key <stem> <tonic> <major|minor>   # scripted override
+python apps/key_verifier/key_verify_app.py                    # human verification UI (§3.6)
 ```
 
-* **Agreement** (same tonic+mode, scorer margin ≥ threshold) → `status: "agreed"`, written
+* **Agreement** (same tonic+mode, scorer margin ≥ threshold, **and** matching `section_keys` —
+  same set of modulating sections with the same local keys) → `status: "agreed"`, written
   directly.
-* **Disagreement or thin margin** → file is still written (so the copy exists) with
-  `status: "needs_review"`. `--review` iterates these: print title, both votes with their
-  confidences, the fingerprint, and the first/last bars; accept scorer / accept LLM / type a key /
-  skip. Resolution writes `status: "resolved_manually"`.
-* Idempotence: a tune is skipped when its `05_annotated` file exists, embeds a `source_sha256` of
-  the `04_verified` file it was built from, and that hash still matches. A changed verified file
-  re-triggers annotation. Store `source_sha256` inside `key_annotation`.
+* **Disagreement or thin margin** (on the tune key *or* on any section key) → file is still
+  written (so the copy exists) with `status: "needs_review"`.
+* **Human verification** happens in the key verifier app (§3.6), which is the primary review
+  surface — it walks all tunes (the `needs_review` queue first) and writes `status: "verified"`.
+* **Corrections go through code paths, never hand-edits.** `05_annotated` files must not be
+  edited by hand: a key change ripples into derived fields (`opening`, `section_keys`
+  consistency) and hand edits silently skip that. Both correction surfaces — the app's save and
+  the `--set-key` CLI — call **one shared update routine** in the annotation module that applies
+  the new key, recomputes every derived field, preserves the original voter votes, and sets
+  `status: "verified"` with `human.corrected: true`.
+* **Idempotence:** a tune is skipped when its `05_annotated` file exists, embeds a
+  `source_sha256` of the `04_verified` file it was built from, and that hash still matches —
+  `verified` annotations therefore survive pipeline reruns. A changed source file re-triggers
+  annotation and **demotes the tune back to the machine statuses** (the chart itself changed, so
+  a previous human verification no longer applies); the app's queue picks it up again.
 
-### 3.6 Phase 0 acceptance
+### 3.6 Key verifier app (`apps/key_verifier/`)
+
+A local Flask app mirroring the existing chord verifier (`apps/verifier/verify_app.py`):
+same structure (`key_verify_app.py` + `templates/` + `static/`), launched locally, browser UI,
+keyboard-driven. Unlike the chord verifier it needs no WIP tier — `05_annotated` is this
+pipeline's own output, so saves write there directly (through the shared update routine, §3.5).
+
+```
+python apps/key_verifier/key_verify_app.py \
+    [--annotated data/chords/05_annotated] [--crops data/chords/01_crops] [--port 5001]
+```
+
+**Layout.** Left: the tune's **original crop PNG** from `data/chords/01_crops/<stem>.png` — the
+human reads the key from the actual chart, not from anyone's transcription of it. Right, a
+verification panel:
+
+* resolved `key` (tonic + mode, prominent) and the `opening` badge;
+* `section_keys`, when present;
+* both voter votes with their confidences/margins, disagreement highlighted;
+* the full fingerprint: `family`, `tags`, per-section summaries, `modulation_note`, `modulates`;
+* `status` and position in the queue ("214 verified / 12 needs review / 2274 remaining").
+
+**Actions** (all keyboard-reachable, like the chord verifier):
+
+* **Verify** — accept everything as shown → `status: "verified"`;
+* **Correct key** — tonic picker + major/minor toggle, then verify; saved via the shared update
+  routine so `opening` and `section_keys` are recomputed/revalidated;
+* **Edit section keys** — add, change, or remove a local-key entry per section;
+* **Edit fingerprint** — family (text/dropdown of seen values), tags (chip editor), modulation
+  note, `modulates` flag; section summaries editable as plain text;
+* **Skip / next / previous**; filter tabs: *needs review* / *unverified* / *all* (default order:
+  `needs_review` first, then unverified `agreed` tunes).
+
+Progress is derivable from the files themselves (`status` fields), so the app keeps no separate
+state file.
+
+**Verification of the app itself:** Playwright with the repo venv (`channel="msedge"`), like the
+other apps — flows: load a tune → correct its key → saved file contains the new key, recomputed
+`opening`, `status: "verified"`, and untouched voter votes.
+
+### 3.7 Phase 0 acceptance
 
 * Hand-label the current 32 tunes' keys once (project owner; minutes) into
   `data/chords/eval/key_groundtruth.json` → `{ "<stem>": {"tonic": ..., "mode": ...}, ... }`.
-* Acceptance: pipeline output matches ground truth on all 32 after review; **scorer alone**
+* Acceptance: all 32 tunes carry `status: "verified"` after a pass through the key verifier app
+  and match the ground truth; **scorer alone**
   achieves ≥ 80% on them (it must be a real voter, not a rubber stamp); `Con Alma` carries a
-  modulation note; unit tests cover the scorer on at least the hard cases named in §3.2.
+  modulation note and at least one `section_keys` entry; non-modulating tunes have **no**
+  `section_keys` entries (false-positive local keys are the failure mode to test against); unit
+  tests cover the scorer on at least the hard cases named in §3.2.
+* `opening` unit tests against known cases from the current corpus, e.g. Heart and Soul (F major,
+  starts `F`) → `I`; I'll Never Smile Again (Eb major, starts `Fm7`) → `ii`; How Long Has This
+  Been Going On (G major, starts `D7(13)`) → `V`; Close Your Eyes (F minor, starts `Gm7b5`) →
+  `ii`.
 * This file stays as a regression set whenever scorer weights change.
 
 ---
@@ -300,6 +399,28 @@ Using Phase 0's `key`:
 * Each tune yields: `full_seq` (flattened form) and `section_seqs` (one per section, keyed by
   section name), plus metadata: mode, meter, form string, bar count.
 
+### 4.3a Modulating sections — dual indexing and delta encoding
+
+A single global tonic cannot represent a modulated passage comparably: encoded relative to the
+global key, it matches only tunes that modulate *by the same interval*, never tunes that simply
+live in an equivalent I-centered progression. Two mechanisms fix this:
+
+* **Dual indexing (uses Phase 0 `section_keys`).** A section with a `section_keys` entry is
+  normalized **twice**: global-relative (used in `full_seq`, preserving the tune's overall shape)
+  and **local-relative** (degrees computed against its own local key). Section-level matching
+  (§6.2/§6.3) uses the local-relative variant; the variant carries a `local_key` marker so the
+  UIs can label the match ("bridge, locally in A"). Non-modulating sections have one variant;
+  their global- and local-relative forms coincide.
+* **Delta encoding (safety net, key-free).** Every sequence additionally gets a
+  transposition-invariant form: token = `(interval_from_previous_root mod 12, quality_class)`,
+  with the first token's interval fixed at 0. Identical under any transposition, so passages
+  match even when no local key was (or could be) annotated — e.g. modulations inside a section.
+  Delta sequences are a *retrieval* channel only (§6.2); they discard tonal function (a ii–V–I
+  into I and into IV look identical), so they must not drive final scores alone.
+
+`normalize.py` therefore exposes per section: `global_seq`, `local_seq` (may alias `global_seq`),
+and `delta_seq`; and per tune: `full_seq` and `full_delta_seq`.
+
 ### 4.4 Phase 1 acceptance
 
 * Parser round-trips every chord symbol in the current corpus without error (run against all
@@ -332,15 +453,50 @@ without it, engine quality claims are vibes.
 }
 ```
 
-Seeded by hand from known contrafact families present in the book (blues heads, rhythm-changes
-tunes, shared bridges); grows over time from explorer ratings (§6). A few explicit `non_matches`
-guard against degenerate everything-matches configurations.
+**The ground truth is bootstrapped, not hand-authored.** The project owner is not expected to
+compile contrafact families from musical knowledge; their manual part is reduced to yes/no
+confirmation of machine-proposed pairs. Every entry carries a status: `"candidate"` (proposed,
+unconfirmed) or `"confirmed"` (visually verified by a human).
+
+`pipelines/chords/similarity/evaluate.py --seed-eval` generates candidates from three sources:
+
+1. **Fingerprint groupings** (needs Phase 0): tunes sharing a `harmonic_fingerprint.family` or a
+   distinctive tag (`rhythm-changes-a`, `blues-form`, …) form candidate families. Free byproduct
+   of annotation.
+2. **Exact-hash groups** (needs Phase 1): tunes/sections whose normalized sequences hash
+   identically are contrafacts **by construction** — these enter as `confirmed` directly (they
+   need no judgment, though they exercise normalization and recall rather than the subtle end of
+   the scoring spectrum).
+3. **Title-index LLM call**: one Claude request (`claude-opus-4-8`, structured outputs, same
+   conventions as §3.3) over the titles in `data/title_index.csv`, asking which titles are known
+   contrafacts of each other or share a progression family, and proposing a handful of
+   obviously-unrelated pairs as `non_matches` candidates. Costs cents; runs once.
+
+Candidates from sources 1 and 3 are **LLM judgment and must not be confirmed by an LLM** — a
+human confirms them in the explorer's confirmation mode (§7), which promotes to `confirmed` or
+deletes. Until Phase 4 exists, the harness may be run against the candidate set: with statuses
+reported separately, candidate-set metrics are a legitimate *relative* signal for comparing
+engine variants, while absolute quality claims require the confirmed set. Phase 3 acceptance is
+re-checked once confirmations exist.
+
+The set grows over time from explorer ratings (§5.2/§7). A few explicit `non_matches` guard
+against degenerate everything-matches configurations. The confirmed seed **must include at least
+one modulating-section family** — a pair where one member's section is in a different local key
+than the other's (e.g. a bridge in the IV matching another tune's I-centered A section) — so the
+harness actually measures the §4.3a machinery rather than only in-key matching; if no natural one
+surfaces from the generators, the title-index LLM call is explicitly asked for modulating-bridge
+examples present in the book.
+
+Even a small confirmed set (~10 families) is sufficient to start: family-recall@k comparisons
+between engine variants are meaningful long before precision numbers are.
 
 ### 5.2 Ratings ingestion
 
 The explorer (Phase 4) exports rating files (`good` / `bad` judgments on suggested pairs) as JSON
 downloads; they are committed under `data/chords/eval/ratings/` and merged by the harness:
-`good` ratings extend families (or add pairs), `bad` ratings extend `non_matches`.
+`good` ratings extend families (or add pairs), `bad` ratings extend `non_matches`. Ratings on
+pairs that exist as `candidate` entries promote them to `confirmed` (or delete them) — rating and
+seed confirmation are the same gesture in the explorer.
 
 ### 5.3 Metrics harness
 
@@ -366,7 +522,7 @@ python -m pipelines.chords.similarity.compute            # full rebuild
 python -m pipelines.chords.similarity.compute --eval     # rebuild + run harness
 ```
 
-Input: all `05_annotated` tunes with `status` ∈ {`agreed`, `resolved_manually`}
+Input: all `05_annotated` tunes with `status` ∈ {`agreed`, `verified`}
 (`needs_review` tunes are excluded). Output: `data/chords/06_similarity/`.
 
 ### 6.1 Stage A — exact-hash contrafact groups
@@ -381,8 +537,15 @@ close).
 * TF-IDF weight over the corpus; L2-normalized sparse vectors; cosine via sparse matrix product
   (`scipy.sparse` / `sklearn` acceptable dependencies; keep it optional-import-guarded like other
   repo tooling if desired).
-* Two indexes: tunes (~2500 vectors) and sections (~10 000 vectors, any↔any so one flat index).
-* Keep **top 100 candidates** per query (tune→tunes, section→sections). Runtime target: seconds.
+* Two indexes: tunes (~2500 vectors, over `full_seq`) and sections (~10 000 vectors, any↔any so
+  one flat index, over each section's **`local_seq`** — so annotated modulating sections compete
+  in their own key).
+* **Delta channel (sections only):** a second section index over `delta_seq` n-grams. Its
+  candidate hits are merged into the section candidate set, each tagged with the root shift
+  implied by the first matched n-gram, for shift-aware alignment in §6.3. This catches modulated
+  material that dual indexing missed (no `section_keys` entry, or a modulation inside a section).
+* Keep **top 100 candidates** per query (tune→tunes, section→sections, both channels merged).
+  Runtime target: seconds.
 
 ### 6.3 Stage C — alignment scoring
 
@@ -402,8 +565,19 @@ For each (query, candidate) pair from retrieval:
 
 * Normalize the raw alignment score by the query's self-alignment → **score ∈ [0, 1]**, which is
   the user-visible spectrum value.
+* **Shift-aware section alignment:** section pairs align on their `local_seq` variants. Pairs
+  surfaced by the delta channel additionally align under the root shift the delta match implied
+  (transpose the candidate's tokens by that shift before aligning) — take the better of the
+  shifted and unshifted score, and record the shift so the UIs can say "matches when read a minor
+  third up". Do not brute-force all 12 shifts unless the implied-shift heuristic measurably
+  under-recalls on the eval set (§5); if it does, all-12 stays within budget for 16-slot section
+  sequences.
 * Apply multiplicative penalties: meter mismatch (small), mode mismatch (small — mode is already
-  implicitly penalized by the shared pitch space, this is a nudge, not a wall).
+  implicitly penalized by the shared pitch space, this is a nudge, not a wall), and a small
+  penalty on shifted (delta-channel) matches so an in-key match outranks an equal transposed one.
+* Whole-tune alignment stays **global-relative** (`full_seq`): a modulating tune scoring lower
+  against non-modulating tunes at the whole-tune level is musically correct — its modulated
+  sections find their partners through the section channel.
 * Keep the **traceback path** — the slot-to-slot mapping is what the UIs highlight. Store it as a
   compact list of `[query_bar, candidate_bar]` pairs (bar granularity is enough for display).
 * Whole-tune score for the displayer's ranked list = alignment score of full sequences; section
@@ -460,10 +634,15 @@ Features (all v1):
   fingerprint family badge; toggle between whole-tune and section-match views.
 * **Side-by-side grids** for a selected pair: normalized roman-numeral view with the aligned bars
   highlighted via the stored bar-mapping; section-match view highlights where in each tune the
-  matched section sits; fingerprint `sections` lines shown as captions.
+  matched section sits; fingerprint `sections` lines shown as captions. Section matches involving
+  a modulated section or a delta-channel shift carry a badge ("locally in A", "matches shifted
+  +3") so transposed matches are visually distinct from in-key ones.
 * **Rating buttons** (`good match` / `bad match`) per suggested pair → persisted in
   `localStorage`, exportable as a JSON download whose format matches §5.2 for committing under
   `data/chords/eval/ratings/`.
+* **Confirmation mode** for the §5.1 seed: iterate `candidate` ground-truth entries, showing each
+  proposed pair side by side; confirm/reject with one keystroke. Uses the same export mechanism —
+  confirmations are just ratings on candidate pairs.
 * Filters: min score, same-family only, exclude same tune (for section matches within one tune).
 
 Not required: melody display, original-key rendering, playlist features — this is a quality tool,
@@ -485,6 +664,13 @@ Changes to `apps/displayer/`:
 2. **"Suggest similar tunes" button** on the tune view → panel listing top-10 suggestions with
    score (rendered as a 0–100 match value), fingerprint family, and section-match chips
    ("bridge ≈ A of …").
+2a. **"Starts on" filter** in the tune list/browse view: a dropdown (or chip row) over
+   `opening.degree` — `I`, `i`, `ii`, `IV`, `V`, … plus an "other" bucket for rare degrees — so a
+   player can browse e.g. all tunes that start on the V. Populated from the degrees actually
+   present in the bundled data (don't hard-code the list); combinable with existing
+   search/filtering; tunes without annotation (no `opening`) appear under an "unknown" bucket
+   rather than vanishing. Also show the opening degree as a small badge on the tune view next to
+   the key.
 3. **Comparison view**: selecting a suggestion shows the current tune and the suggestion side by
    side (stacked on narrow screens), aligned bars highlighted from the bar-mapping, with a
    **three-way display switch**: *original keys* / *transposed* (suggestion rendered in the current
@@ -496,7 +682,8 @@ Changes to `apps/displayer/`:
 4. Playlist and existing features untouched.
 
 **Verification:** Playwright (`channel="msedge"`) flows: open a tune → suggest → pick a suggestion
-→ toggle all three display modes → highlighted bars present.
+→ toggle all three display modes → highlighted bars present; and: set the "starts on" filter to a
+degree → tune list narrows to matching tunes → clear filter restores the full list.
 
 ---
 
@@ -504,11 +691,11 @@ Changes to `apps/displayer/`:
 
 | Phase | Deliverable | Depends on | Acceptance |
 |---|---|---|---|
-| 0 | `05_annotated` + `annotate_keys.py` | — | §3.6: 32/32 keys correct after review; scorer ≥ 80% alone; regression set committed |
+| 0 | `05_annotated` + `annotate_keys.py` + `apps/key_verifier/` | — | §3.7: all 32 tunes `verified` through the app and matching ground truth; scorer ≥ 80% alone; regression set committed; app Playwright-verified |
 | 1 | `similarity/normalize.py` | 0 | §4.4: parser covers corpus; Au Privave ≈ Cheryl; forms validated |
-| 2 | eval set + `evaluate.py` | 1 (for section identities) | Harness runs end-to-end on seeded families |
-| 3 | `06_similarity` + `compute.py` | 1, 2 | Rebuild ≤ 15 min at target scale (extrapolated); harness metrics reported; Au Privave/Cheryl mutual top-3 |
-| 4 | `apps/similarity_explorer/` | 3 | Playwright-verified; rating export round-trips into the harness |
+| 2 | eval harness + `--seed-eval` candidates | 0, 1 | `--seed-eval` produces candidate families from all three §5.1 sources; harness runs end-to-end and reports candidate/confirmed separately |
+| 3 | `06_similarity` + `compute.py` | 1, 2 | Rebuild ≤ 15 min at target scale (extrapolated); harness metrics reported (candidate set acceptable at this stage); Au Privave/Cheryl mutual top-3 |
+| 4 | `apps/similarity_explorer/` | 3 | Playwright-verified; rating export round-trips into the harness; confirmation mode promotes §5.1 candidates — Phase 3 acceptance re-checked on the confirmed set afterwards |
 | 5 | Displayer integration | 3 (4 recommended first) | Playwright-verified; bundle size guard holds; JS/Python transposition fixture passes |
 
 Phases 0–2 are useful standalone (keys in the data, a clean chord parser, an eval harness) even
@@ -520,6 +707,13 @@ before any similarity ships. Build in order; do not start Phase 3 tuning before 
 
 * **Wrong keys poison everything downstream** → dual-voter design, review gate, `needs_review`
   exclusion from similarity, regression set.
+* **False-positive local keys** (a strong passing ii–V read as a modulation) would spawn spurious
+  local-relative variants → strict per-section margin threshold (§3.2), LLM prompt rule against
+  tonicizations (§3.3), section-key disagreement forces review (§3.5), and the §3.7 acceptance
+  check that non-modulating tunes carry no `section_keys`.
+* **Delta channel over-matching** (any ii–V chain matches any other in any key) → delta hits are
+  retrieval candidates only, still scored by shift-aware alignment with the shifted-match penalty
+  (§6.3), and the `non_matches` guard applies.
 * **Chord vocabulary drift** → single grammar source (`check_chord_syntax.py`); parser failure on
   any symbol is a hard error listing the offending file, never a silent skip.
 * **JS/Python normalization drift** (Phase 5 transposition) → shared generated test fixture, §8.3.
