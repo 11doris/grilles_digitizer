@@ -1275,7 +1275,7 @@
    * The overflow ratio is font-independent (chord and slot both scale with the
    * font), so both levers are computed from one measurement pass. */
   const MAX_GRID_WIDTH_EM = 56; // aesthetic cap: past this, shrink the font instead
-  const MIN_BEAT_GAP_EM = 0.5; // minimum gap kept between packed chords; matches .beat-spacer
+  const MIN_BEAT_GAP_EM = 0.1; // minimum gap kept between packed chords; matches .beat-spacer
 
   function fitGridWidth() {
     const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid");

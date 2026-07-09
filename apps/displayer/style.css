@@ -676,7 +676,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
    the bar is crowded. The minimum must match MIN_BEAT_GAP_EM in app.js. */
 .beat-spacer {
   flex: 1 0 0;
-  min-width: 0.5em;
+  min-width: 0.1em;
 }
 
 /* -------------------------------------------------------- chord symbols */
