@@ -312,8 +312,9 @@ function collectMeta() {
     }
   });
 
-  // Extra fields (preserve JSON types via JSON.parse round-trip)
-  const knownSet = new Set([...KNOWN_META, 'sections']);
+  // Extra fields (preserve JSON types via JSON.parse round-trip). `sections`
+  // and `variants` have their own editors, so they never appear here.
+  const knownSet = new Set([...KNOWN_META, 'sections', 'variants']);
   const oldExtras = Object.keys(S.data).filter(k => !knownSet.has(k));
   const newExtras = {};
   qsa('[data-extra-key]').forEach(el => {
@@ -327,15 +328,15 @@ function collectMeta() {
 }
 
 function collectSections() {
-  // Section names
-  qsa('.sec-name').forEach(el => {
+  // Section names (scoped: variant cards reuse .sec-card but not .sec-name)
+  qsa('#sections-container .sec-name').forEach(el => {
     const si = +el.dataset.si;
     if (S.data.sections[si]) S.data.sections[si].name = el.value.trim() || S.data.sections[si].name;
   });
 
   // Reset all beats then repopulate from inputs
   S.data.sections.forEach(sec => sec.bars.forEach(bar => { bar.beats = {}; }));
-  qsa('.beat-inp').forEach(el => {
+  qsa('#sections-container .beat-inp').forEach(el => {
     const si = +el.dataset.si, bi = +el.dataset.bi, beat = el.dataset.beat;
     const v  = el.value.trim();
     if (v && S.data.sections[si]?.bars[bi]) {
@@ -344,9 +345,36 @@ function collectSections() {
   });
 }
 
+function collectVariants() {
+  if (!Array.isArray(S.data.variants)) return;
+
+  // "Applies to" captions
+  qsa('#variants-container .var-applies').forEach(el => {
+    const vi = +el.dataset.vi;
+    if (!S.data.variants[vi]) return;
+    const v = el.value.trim();
+    if (v) S.data.variants[vi].applies_to = v;
+    else   delete S.data.variants[vi].applies_to;
+  });
+
+  // Reset all beats then repopulate from inputs
+  S.data.variants.forEach(vr => (vr.bars || []).forEach(bar => { bar.beats = {}; }));
+  qsa('#variants-container .beat-inp').forEach(el => {
+    const vi = +el.dataset.vi, bi = +el.dataset.bi, beat = el.dataset.beat;
+    const v  = el.value.trim();
+    if (v && S.data.variants[vi]?.bars[bi]) {
+      S.data.variants[vi].bars[bi].beats[beat] = v;
+    }
+  });
+
+  // Renumber bars sequentially within each variant
+  S.data.variants.forEach(vr => (vr.bars || []).forEach((bar, i) => { bar.bar = i + 1; }));
+}
+
 function collectFromDOM() {
   collectMeta();
   collectSections();
+  collectVariants();
 }
 
 // ─── Build save payload ───────────────────────────────────────────────────────
@@ -358,10 +386,13 @@ function buildSavePayload() {
   const dups  = names.filter((n, i) => names.indexOf(n) !== i);
   if (dups.length) toast(`Warning: duplicate section names: ${dups.join(', ')}`, 'warn');
 
-  // Rebuild object: preserve original key order, sections last
+  // Rebuild object: preserve original key order, sections last. `variants` is
+  // kept as-is (already collected/renumbered); an emptied-out list is dropped.
   const out = {};
   Object.keys(S.data).forEach(k => {
-    if (k !== 'sections' && S.data[k] !== undefined) out[k] = S.data[k];
+    if (k === 'sections' || S.data[k] === undefined) return;
+    if (k === 'variants' && (!Array.isArray(S.data[k]) || !S.data[k].length)) return;
+    out[k] = S.data[k];
   });
   out.sections = sectionsToObject(S.data.sections);
   return out;
@@ -384,8 +415,8 @@ function renderMeta() {
     `;
   }).join('');
 
-  // Extra fields
-  const knownSet  = new Set([...KNOWN_META, 'sections']);
+  // Extra fields (sections and variants have dedicated editors)
+  const knownSet  = new Set([...KNOWN_META, 'sections', 'variants']);
   const extraKeys = Object.keys(S.data).filter(k => !knownSet.has(k));
 
   if (extraKeys.length) {
@@ -430,7 +461,7 @@ function renderSections() {
 
 /** Flag section cards whose (live) name collides with another section's. */
 function refreshDuplicateFlags() {
-  const cards  = qsa('.sec-card');
+  const cards  = qsa('#sections-container .sec-card');
   const names  = Array.from(cards, c => qs('.sec-name', c).value.trim());
   const counts = {};
   names.forEach(n => { if (n) counts[n] = (counts[n] || 0) + 1; });
@@ -443,7 +474,7 @@ function refreshDuplicateFlags() {
 }
 
 function renderSectionHTML(sec, si, totalSections, bc) {
-  const rows    = buildRows(sec.bars, si, bc);
+  const rows    = buildRows(sec.bars, 'si', si, bc);
   const canUp   = si > 0;
   const canDown = si < totalSections - 1;
 
@@ -476,25 +507,29 @@ function renderSectionHTML(sec, si, totalSections, bc) {
   `;
 }
 
-function buildRows(bars, si, bc) {
+/* Rows of bars for one section OR one variant. `idxAttr` is the data-attribute
+   naming the owning card ('si' for sections, 'vi' for variants); `idx` its
+   index. Row/bar actions are shared — the owning container's click handler
+   dispatches them against the right array. */
+function buildRows(bars, idxAttr, idx, bc) {
   if (!bars.length) return '';
   const totalRows = Math.ceil(bars.length / 4);
   return Array.from({ length: totalRows }, (_, ri) => {
     const slice    = bars.slice(ri * 4, ri * 4 + 4);
     const canUp    = ri > 0;
     const canDown  = ri < totalRows - 1;
-    const barCells = slice.map((bar, i) => renderBarHTML(bar, si, ri * 4 + i, bc)).join('');
+    const barCells = slice.map((bar, i) => renderBarHTML(bar, idxAttr, idx, ri * 4 + i, bc)).join('');
     // Pad incomplete last row with empty cells for alignment
     const padding  = '<div class="bar-card bar-empty"></div>'.repeat(4 - slice.length);
     return `
       <div class="bar-row">
         <div class="row-meta">
           <span class="row-label">Row ${ri + 1}</span>
-          <button class="btn-icon" data-action="row-up"   data-si="${si}" data-ri="${ri}"
+          <button class="btn-icon" data-action="row-up"   data-${idxAttr}="${idx}" data-ri="${ri}"
                   ${canUp   ? '' : 'disabled'} title="Move row up">↑</button>
-          <button class="btn-icon" data-action="row-down" data-si="${si}" data-ri="${ri}"
+          <button class="btn-icon" data-action="row-down" data-${idxAttr}="${idx}" data-ri="${ri}"
                   ${canDown ? '' : 'disabled'} title="Move row down">↓</button>
-          <button class="btn-icon danger" data-action="row-del"  data-si="${si}" data-ri="${ri}"
+          <button class="btn-icon danger" data-action="row-del"  data-${idxAttr}="${idx}" data-ri="${ri}"
                   title="Delete row">×</button>
         </div>
         <div class="bar-grid">${barCells}${padding}</div>
@@ -503,7 +538,7 @@ function buildRows(bars, si, bc) {
   }).join('');
 }
 
-function renderBarHTML(bar, si, bi, bc) {
+function renderBarHTML(bar, idxAttr, idx, bi, bc) {
   const beatsHtml = Array.from({ length: bc }, (_, i) => {
     const beat  = String(i + 1);
     const chord = bar.beats?.[beat] || '';
@@ -511,7 +546,7 @@ function renderBarHTML(bar, si, bi, bc) {
       <div class="beat-row">
         <span class="beat-lbl">${beat}</span>
         <input class="beat-inp" type="text"
-               data-si="${si}" data-bi="${bi}" data-beat="${beat}"
+               data-${idxAttr}="${idx}" data-bi="${bi}" data-beat="${beat}"
                value="${esc(chord)}" placeholder="—" />
       </div>
     `;
@@ -522,7 +557,7 @@ function renderBarHTML(bar, si, bi, bc) {
       <div class="bar-header">
         <span class="bar-num">Bar ${bi + 1}</span>
         <button class="btn-icon danger btn-xs" data-action="bar-del"
-                data-si="${si}" data-bi="${bi}" title="Delete bar">×</button>
+                data-${idxAttr}="${idx}" data-bi="${bi}" title="Delete bar">×</button>
       </div>
       <div class="bar-beats">${beatsHtml}</div>
     </div>
@@ -628,6 +663,147 @@ function addSection() {
   // Scroll to new section
   setTimeout(() => {
     const cards = qsa('.sec-card');
+    cards[cards.length - 1]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
+}
+
+// ─── Render variants ──────────────────────────────────────────────────────────
+/* Variants are alternative changes for certain bars. They edit exactly like
+   sections — same bar/row/beat grid and chord validation — but carry a free-text
+   "applies to" caption instead of a section name. */
+function renderVariants() {
+  const bc        = getBeatCount();
+  const variants  = Array.isArray(S.data.variants) ? S.data.variants : [];
+  const container = qs('#variants-container');
+
+  container.innerHTML = variants.map((v, vi) =>
+    renderVariantHTML(v, vi, variants.length, bc)
+  ).join('');
+
+  validateAllChords();
+}
+
+function renderVariantHTML(variant, vi, totalVariants, bc) {
+  const rows    = buildRows(variant.bars || [], 'vi', vi, bc);
+  const canUp   = vi > 0;
+  const canDown = vi < totalVariants - 1;
+
+  return `
+    <div class="sec-card variant-card" data-vi="${vi}">
+      <div class="sec-header">
+        <span class="sec-label">Variant</span>
+        <input class="var-applies" type="text" value="${esc(variant.applies_to || '')}" data-vi="${vi}"
+               placeholder="applies to… (e.g. Bars 2, 10, 26)" title="Applies to" />
+        <div class="sec-header-btns">
+          <button class="btn-icon" data-action="var-up"   data-vi="${vi}"
+                  ${canUp   ? '' : 'disabled'} title="Move variant up">↑</button>
+          <button class="btn-icon" data-action="var-down" data-vi="${vi}"
+                  ${canDown ? '' : 'disabled'} title="Move variant down">↓</button>
+          <button class="btn-icon" data-action="var-copy" data-vi="${vi}"
+                  title="Duplicate variant">⧉</button>
+          <button class="btn-icon danger" data-action="var-del" data-vi="${vi}"
+                  title="Delete variant">×</button>
+        </div>
+      </div>
+      <div class="sec-body">
+        ${rows || '<div class="no-bars">No bars — use the buttons below to add some.</div>'}
+      </div>
+      <div class="sec-footer">
+        <button class="btn btn-sm btn-outline" data-action="add-row" data-vi="${vi}">+ Add Row (4 bars)</button>
+        <button class="btn btn-sm btn-outline" data-action="add-bar" data-vi="${vi}">+ Add Bar</button>
+      </div>
+    </div>
+  `;
+}
+
+// ─── Variant structural operations ─────────────────────────────────────────────
+function moveVariantUp(vi) {
+  const v = S.data.variants;
+  [v[vi - 1], v[vi]] = [v[vi], v[vi - 1]];
+  renderVariants();
+}
+
+function moveVariantDown(vi) {
+  moveVariantUp(vi + 1);
+}
+
+function copyVariant(vi) {
+  const src   = S.data.variants[vi];
+  const clone = {
+    ...(src.applies_to ? { applies_to: src.applies_to } : {}),
+    bars: (src.bars || []).map(bar => ({
+      bar:   bar.bar,
+      beats: Object.assign({}, bar.beats),
+    })),
+  };
+  S.data.variants.splice(vi + 1, 0, clone);
+  renderVariants();
+}
+
+function deleteVariant(vi) {
+  if (!confirm('Delete this variant and all its bars?')) return;
+  S.data.variants.splice(vi, 1);
+  renderVariants();
+}
+
+function moveVariantRowUp(vi, ri) {
+  const bars   = S.data.variants[vi].bars;
+  const pStart = (ri - 1) * 4;
+  const tStart = ri * 4;
+  const prev   = bars.slice(pStart, tStart);
+  const curr   = bars.slice(tStart, tStart + 4);
+  S.data.variants[vi].bars = [
+    ...bars.slice(0, pStart),
+    ...curr,
+    ...prev,
+    ...bars.slice(tStart + 4),
+  ];
+  renderVariants();
+}
+
+function moveVariantRowDown(vi, ri) {
+  moveVariantRowUp(vi, ri + 1);
+}
+
+function deleteVariantRow(vi, ri) {
+  const bars = S.data.variants[vi].bars;
+  S.data.variants[vi].bars = [
+    ...bars.slice(0, ri * 4),
+    ...bars.slice(ri * 4 + 4),
+  ];
+  renderVariants();
+}
+
+function deleteVariantBar(vi, bi) {
+  S.data.variants[vi].bars.splice(bi, 1);
+  renderVariants();
+}
+
+function addVariantRow(vi) {
+  const empty = Array.from({ length: 4 }, () => ({ bar: 0, beats: {} }));
+  S.data.variants[vi].bars.push(...empty);
+  renderVariants();
+  setDirty();
+}
+
+function addVariantBar(vi) {
+  S.data.variants[vi].bars.push({ bar: 0, beats: {} });
+  renderVariants();
+  setDirty();
+}
+
+function addVariant() {
+  collectFromDOM();
+  if (!Array.isArray(S.data.variants)) S.data.variants = [];
+  S.data.variants.push({
+    applies_to: '',
+    bars: Array.from({ length: 4 }, () => ({ bar: 0, beats: {} })),
+  });
+  renderVariants();
+  setDirty();
+  // Scroll to new variant
+  setTimeout(() => {
+    const cards = qsa('#variants-container .variant-card');
     cards[cards.length - 1]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 50);
 }
@@ -739,6 +915,7 @@ function renderEditor() {
 
   renderMeta();
   renderSections();
+  renderVariants();
   updateVerifyButtons();
   clearDirty();
 
@@ -770,6 +947,7 @@ function wireEvents() {
   qs('#btn-verify').addEventListener('click',   () => doVerify());
   qs('#btn-unverify').addEventListener('click', () => doUnverify());
   qs('#btn-add-section').addEventListener('click', () => addSection());
+  qs('#btn-add-variant').addEventListener('click', () => addVariant());
 
   // ── Ctrl+S
   document.addEventListener('keydown', e => {
@@ -822,6 +1000,7 @@ function wireEvents() {
     if (e.target.dataset.meta === 'time_signature') {
       collectFromDOM();
       renderSections();
+      renderVariants();
     }
   });
 
@@ -861,11 +1040,52 @@ function wireEvents() {
     if (e.target.classList.contains('beat-inp')) validateChordInput(e.target, true);
   });
 
+  // ── Variants: structural actions (delegated). Bar/row/add actions are shared
+  //    with sections; here they dispatch against S.data.variants.
+  qs('#variants-container').addEventListener('click', e => {
+    const btn = e.target.closest('[data-action]');
+    if (!btn) return;
+
+    const action = btn.dataset.action;
+    const vi = btn.dataset.vi != null ? +btn.dataset.vi : undefined;
+    const ri = btn.dataset.ri != null ? +btn.dataset.ri : undefined;
+    const bi = btn.dataset.bi != null ? +btn.dataset.bi : undefined;
+
+    // Persist current input values before mutating
+    collectFromDOM();
+    setDirty();
+
+    switch (action) {
+      case 'var-up':   moveVariantUp(vi);        break;
+      case 'var-down': moveVariantDown(vi);      break;
+      case 'var-copy': copyVariant(vi);          break;
+      case 'var-del':  deleteVariant(vi);        break;
+      case 'row-up':   moveVariantRowUp(vi, ri); break;
+      case 'row-down': moveVariantRowDown(vi, ri); break;
+      case 'row-del':  deleteVariantRow(vi, ri); break;
+      case 'bar-del':  deleteVariantBar(vi, bi); break;
+      case 'add-row':  addVariantRow(vi);        break;
+      case 'add-bar':  addVariantBar(vi);        break;
+    }
+  });
+
+  // ── Variants: dirty on any input; live-check chord syntax while typing
+  qs('#variants-container').addEventListener('input', e => {
+    setDirty();
+    if (e.target.classList.contains('beat-inp')) validateChordInput(e.target, true);
+  });
+
   // ── Chord hint bubble follows focus
   qs('#sections-container').addEventListener('focusin', e => {
     if (e.target.classList.contains('beat-inp')) validateChordInput(e.target, true);
   });
   qs('#sections-container').addEventListener('focusout', e => {
+    if (e.target.classList.contains('beat-inp')) hideChordHint();
+  });
+  qs('#variants-container').addEventListener('focusin', e => {
+    if (e.target.classList.contains('beat-inp')) validateChordInput(e.target, true);
+  });
+  qs('#variants-container').addEventListener('focusout', e => {
     if (e.target.classList.contains('beat-inp')) hideChordHint();
   });
   qs('#editor-scroll').addEventListener('scroll', hideChordHint);

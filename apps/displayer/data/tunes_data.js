@@ -35306,12 +35306,625 @@ window.TUNES = [
   "melody_image": "melody_crops/846_03_THIS_YEAR_S_KISSES.png"
  },
  {
-  "id": "425_01_THOU_SWELL",
-  "title": "Thou Swell",
-  "chord_image": "crops/425_01_THOU_SWELL.png",
-  "has_chord_json": false,
+  "id": "425_01_THOU_SWELL_MODERN_VERSION",
+  "title": "THOU SWELL (Modern Version)",
+  "chord_image": "crops/425_01_THOU_SWELL_MODERN_VERSION.png",
+  "has_chord_json": true,
   "has_melody_abc": false,
+  "tune": {
+   "composer": "Richard RODGERS – Lorenz HART",
+   "year": "1927",
+   "style": "STANDARD",
+   "tempo": "MEDIUM FAST",
+   "form": "32 A B A B'",
+   "time_signature": "4/4",
+   "variants": [
+    {
+     "applies_to": "Bar 5, 21",
+     "bars": [
+      {
+       "bar": 1,
+       "beats": {
+        "1": "Ebmaj7",
+        "3": "Fm7"
+       }
+      },
+      {
+       "bar": 2,
+       "beats": {
+        "1": "Gm7",
+        "3": "Abmaj7"
+       }
+      },
+      {
+       "bar": 3,
+       "beats": {
+        "1": "Bbm7",
+        "3": "Eb7"
+       }
+      },
+      {
+       "bar": 4,
+       "beats": {
+        "1": "Am7b5",
+        "3": "D7"
+       }
+      }
+     ]
+    }
+   ],
+   "title": "THOU SWELL (Modern Version)",
+   "page": 425,
+   "source": "Anthologie des grilles de jazz",
+   "notation_notes": {
+    "verse": "Header prints '24 VERSE'.",
+    "two_versions": "Page prints two grids: an 'Old Version' (strain s1) and a 'Modern Version' (strain s2), each labelled '32 A B A B''.",
+    "s2_A_bar3": "Modern Version A bar 3 shows a two-bar repeat sign straddling bars 3-4, copying bars 1-2 (Fm7, Bb7)."
+   },
+   "recordings": [
+    "R.Braff/C.Barnet 75- C.Parker 53- T.Akiyoshi 54- S.Grappelli 74",
+    "B.Beiderbecke 29- John.Johnson 27- Louisiana Sugar Babes 28- A.Shaw 39- D.Fun 55",
+    "C.Basie 56.54- R.Braff 55- B.Carter 58- B.Clayton 57.62- E.Hines 65- S.Slit 52",
+    "E.Fitzgerald 56- S.Getz 50.51 Jay and Kai 55- D.Peterson 53- T.Akiyoshi 56",
+    "H.Silver 52- A.Tatum 44- L.Young 51- B.Powell 55- Sh.Rodgers 57- E.Hallbri]",
+    "U.Green 55- J.Turner 74- H.Hawes 53- D.Ewell"
+   ],
+   "sections": {
+    "A": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "Fm7"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "Bb7"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Fm7"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "Bb7"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "Ebmaj7"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "Fm7"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "Gm7"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "Am7b5",
+       "3": "D7"
+      }
+     }
+    ],
+    "B": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "Gm7",
+       "3": "C7"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "Fm7",
+       "3": "Bb7"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Ebmaj7"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "Cm7"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "Dm7b5",
+       "3": "G7"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "Cm7",
+       "3": "F7"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "Bb7",
+       "3": "Ab7"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "Gm7",
+       "3": "C7"
+      }
+     }
+    ],
+    "A1": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "Fm7"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "Bb7"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Fm7"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "Bb7"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "Ebmaj7"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "Fm7"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "Gm7"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "Am7b5",
+       "3": "D7"
+      }
+     }
+    ],
+    "B1": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "Gm7",
+       "3": "C7"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "Fm7",
+       "3": "Bb7"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Db9"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "C7"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "Fm7"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "Bb7"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "Eb6"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "Eb6"
+      }
+     }
+    ]
+   },
+   "key": {
+    "tonic": "Eb",
+    "mode": "major"
+   },
+   "opening": {
+    "degree": "ii",
+    "quality": "min",
+    "chord": "Fm7"
+   },
+   "key_annotation": {
+    "status": "verified",
+    "source_sha256": "9ad6efd5bcdeee28de0458b0e561a51ecc7900ec67d9aebdefc77db1bb81c62f",
+    "scorer": {
+     "tonic": "Eb",
+     "mode": "major",
+     "margin": 0.4841
+    },
+    "llm": {
+     "tonic": "Eb",
+     "mode": "major",
+     "confidence": "high",
+     "modulation_note": null
+    },
+    "human": {
+     "tonic": "Eb",
+     "mode": "major",
+     "corrected": false
+    }
+   },
+   "harmonic_fingerprint": {
+    "family": "32-bar ABAB' standard",
+    "tags": [
+     "ii-V-chains",
+     "circle-of-fifths"
+    ],
+    "sections": {
+     "A": "ii-V (Fm7-Bb7) vamp resolving to I (Ebmaj7), then ii-iii-iv#°/D7 leading back",
+     "B": "cycle of ii-Vs (Gm7-C7, Fm7-Bb7) to Ebmaj7, then descending ii-V chain back to V/ii",
+     "A1": "repeat of A: ii-V vamp to I with D7 turnaround",
+     "B1": "ii-Vs with Db9-C7, Fm7-Bb7 ii-V cadencing to Eb6 tonic"
+    },
+    "modulates": false
+   }
+  },
   "melody_image": "melody_crops/847_01_THOU_SWELL.png"
+ },
+ {
+  "id": "425_01_THOU_SWELL",
+  "title": "THOU SWELL (OLD VERSION)",
+  "chord_image": "crops/425_01_THOU_SWELL.png",
+  "has_chord_json": true,
+  "has_melody_abc": false,
+  "tune": {
+   "composer": "Richard RODGERS – Lorenz HART",
+   "year": "1927",
+   "style": "STANDARD",
+   "tempo": "MEDIUM FAST",
+   "form": "32 A B A B'",
+   "time_signature": "4/4",
+   "title": "THOU SWELL (OLD VERSION)",
+   "page": 425,
+   "source": "Anthologie des grilles de jazz",
+   "notation_notes": {
+    "verse": "Header prints '24 VERSE'.",
+    "two_versions": "Page prints two grids: an 'Old Version' (strain s1) and a 'Modern Version' (strain s2), each labelled '32 A B A B''.",
+    "s2_A_bar3": "Modern Version A bar 3 shows a two-bar repeat sign straddling bars 3-4, copying bars 1-2 (Fm7, Bb7)."
+   },
+   "recordings": [
+    "R.Braff/C.Barnet 75- C.Parker 53- T.Akiyoshi 54- S.Grappelli 74",
+    "B.Beiderbecke 29- John.Johnson 27- Louisiana Sugar Babes 28- A.Shaw 39- D.Fun 55",
+    "C.Basie 56.54- R.Braff 55- B.Carter 58- B.Clayton 57.62- E.Hines 65- S.Slit 52",
+    "E.Fitzgerald 56- S.Getz 50.51 Jay and Kai 55- D.Peterson 53- T.Akiyoshi 56",
+    "H.Silver 52- A.Tatum 44- L.Young 51- B.Powell 55- Sh.Rodgers 57- E.Hallbri]",
+    "U.Green 55- J.Turner 74- H.Hawes 53- D.Ewell"
+   ],
+   "sections": {
+    "A": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "Bb7",
+       "4": "(F7)"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "Bb7",
+       "4": "(F7)"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Bb7",
+       "4": "(F7)"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "Bb7"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "Eb",
+       "4": "(Bb7)"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "Eb",
+       "4": "(Bb7)"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "Eb",
+       "4": "(Bb7)"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "Eb",
+       "3": "Gbo7"
+      }
+     }
+    ],
+    "B": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "Bb7",
+       "3": "Eo7"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "Fm7",
+       "3": "Bb7"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Eb"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "Eb7"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "Ab",
+       "3": "G7"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "Cm7",
+       "3": "F7"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "Bb7"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "Bb7",
+       "4": "(F7)"
+      }
+     }
+    ],
+    "A1": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "Bb7",
+       "4": "(F7)"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "Bb7",
+       "4": "(F7)"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Bb7",
+       "4": "(F7)"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "Bb7"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "Eb",
+       "4": "(Bb7)"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "Eb",
+       "4": "(Bb7)"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "Eb",
+       "4": "(Bb7)"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "Eb",
+       "3": "Gbo7"
+      }
+     }
+    ],
+    "B1": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "Bb7",
+       "3": "Eo7"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "Fm7",
+       "3": "Bb7"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "G7",
+       "3": "G7b5"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "C7"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "F7"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "Bb7"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "Eb"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "Eb"
+      }
+     }
+    ]
+   },
+   "key": {
+    "tonic": "Eb",
+    "mode": "major"
+   },
+   "opening": {
+    "degree": "V",
+    "quality": "dom",
+    "chord": "Bb7"
+   },
+   "key_annotation": {
+    "status": "verified",
+    "source_sha256": "1120aa68031c5700d7607231d2f075f9c6cc1d9c93090663b759ba0ce1a99933",
+    "scorer": {
+     "tonic": "Eb",
+     "mode": "major",
+     "margin": 0.6406
+    },
+    "llm": {
+     "tonic": "Eb",
+     "mode": "major",
+     "confidence": "high",
+     "modulation_note": null
+    },
+    "human": {
+     "tonic": "Eb",
+     "mode": "major",
+     "corrected": false
+    }
+   },
+   "harmonic_fingerprint": {
+    "family": "32-bar ABAB' standard",
+    "tags": [
+     "circle-of-fifths",
+     "ii-V-chains",
+     "turnaround-ending"
+    ],
+    "sections": {
+     "A": "V7 (Bb7) dominant vamp with V/V (F7) resolving to I (Eb), ending with #ii dim (Gbo7)",
+     "B": "V7-#idim-ii-V to I, then I7-IV-V/vi-ii-V circle back to V7 (Bb7) half cadence",
+     "A1": "Repeat of A: V7 vamp to I (Eb) with passing Gbo7",
+     "B1": "V7-#idim-ii-V then circle of fifths G7-C7-F7-Bb7 resolving to I (Eb)"
+    },
+    "modulates": false
+   }
+  }
  },
  {
   "id": "425_02_THREE_LITTLE_WORDS",
