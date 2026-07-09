@@ -1,0 +1,307 @@
+{
+  "composer": "Hoagy CARMICHAEL – Frank LOESSER",
+  "year": "1938",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A'",
+  "time_signature": "4/4",
+  "title": "HEART AND SOUL",
+  "page": 153,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "R.Sharon 51- M.Jackson 52- B.Powell 50",
+    "Bat.Carter 63- H.Jones 55- D.brubeck 51",
+    "L.Clinton 38- P.Whiteman 38- T.Dorsey 51",
+    "C.Fuller 57- B.Axen 61"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
+  "variants": [
+    {
+      "applies_to": "Bar 1",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "B7b5",
+            "2": "B7",
+            "3": "A7#5",
+            "4": "Ab13"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F6",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "F7#5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F6",
+          "3": "F7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "E7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7#5",
+          "3": "D9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "3bfbdda18710eb3155ed24879269482abad2d3f6c283abb2add1bd8d976e3d80",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.8147
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "turnaround-ending",
+      "circle-of-fifths",
+      "ii-V-chains"
+    ],
+    "sections": {
+      "A": "I-vi-ii-V loop (F-Dm7-Gm7-C7) with V/V (D7) in bar 3",
+      "A1": "Same I-vi-ii-V loop, ending on tonic with F7 leading to bridge (V/IV)",
+      "B": "Bb (IV) with A7-D7-G7-C7-F7-E7 circle-of-fifths dominant chain, back to ii-V",
+      "A2": "I-vi-ii-V loop resolving to F tonic"
+    },
+    "modulates": false
+  }
+}

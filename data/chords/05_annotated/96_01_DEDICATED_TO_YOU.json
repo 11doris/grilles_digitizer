@@ -1,0 +1,300 @@
+{
+  "composer": "Saul CHAPLIN – Sammy CAHN – Hy ZARET",
+  "year": "1936",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "32 A A' B A'",
+  "time_signature": "4/4",
+  "title": "DEDICATED TO YOU",
+  "page": 96,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "J.Coltrane 63- T.Gwaltney 60",
+    "S.Davis Jr 48- F.Hubbard 63",
+    "B.Doggett 54- T.Dorsey 27",
+    "S.Vaughan 49- A.Kirk 36",
+    "E.Fitzgerald 37"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb",
+          "2": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7#5"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb",
+          "2": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "Cm7",
+          "4": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb",
+          "3": "A7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D",
+          "3": "Em7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#m7",
+          "3": "Fo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D",
+          "4": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7#5"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb",
+          "2": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "Cm7",
+          "4": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "D",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bb"
+  },
+  "key_annotation": {
+    "status": "needs_review",
+    "source_sha256": "b5ce16f19d40910ba827e07e60ebf50df2c81b6dfd772a7c402763d17bec3220",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.4452
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge opens in D major before returning via ii-V to Bb",
+      "section_keys": {
+        "B": {
+          "tonic": "D",
+          "mode": "major"
+        }
+      }
+    },
+    "review_reasons": [
+      "section 'B' local-key disagreement: scorer no local key vs llm D major"
+    ]
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "chromatic-descent"
+    ],
+    "sections": {
+      "A": "I-IV9-I then ii-V, iv(m7b5), I with V/ii chromatics and ii-V, ending on iiø-V7#5",
+      "A1": "Same as A but resolves I with V/ii turnaround (A7)",
+      "B": "I-ii-iii diatonic in D then ii-V-I in D, pivots via C7 to F, chromatic F#o7, ii-V back to Bb",
+      "A2": "Restatement resolving cleanly to I (Bb)"
+    },
+    "modulates": true,
+    "modulation_note": "bridge opens in D major before returning via ii-V to Bb"
+  }
+}

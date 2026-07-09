@@ -1,0 +1,348 @@
+{
+  "composer": "Herb HELLIS – Lou CARTER – John FRIGO",
+  "year": "1948",
+  "style": "STANDARD",
+  "tempo": "SLOW",
+  "form": "34 A A' B A''",
+  "time_signature": "4/4",
+  "title": "DETOUR AHEAD",
+  "page": 98,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Alexander 58.62- A.O'Day 80- S.Rivers",
+    "stellen Jazz Quintet 58- S.Vaughan 58",
+    "Jackson/H.Laws 72- S.Getz 57- B.Evans 61",
+    "Holiday 45.51- M.A.McCall 58-",
+    "W.Williams 64- B.Brookmeyer 61",
+    "Ellis 55.63- J.Griffin 61"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 1",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Cmaj7",
+            "3": "Gb13"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "B9#5"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "Cmaj7",
+            "2": "Em7",
+            "3": "Dm7",
+            "4": "C#o7"
+          }
+        },
+        {
+          "bar": 4,
+          "beats": {
+            "1": "Dm7",
+            "2": "Ab7",
+            "3": "G7"
+          }
+        }
+      ]
+    }
+  ],
+  "notation_notes": {
+    "A_bar11_correction": "Section A bar 11 printed 'Dm7 / Dbo7 E?5 Bb'; final bars read Dm7/Dbo7 and Cm7/Bb per grid.",
+    "A2_final": "Final row shows C7M Gb13, B9+ (aug), then Em7 Am7 / Dm7 Dbo7 / C6 turnaround.",
+    "arrow_rows": "The '-' rows are leading-arrow positional copies of the preceding lettered rows."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7",
+          "3": "A(b9)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7",
+          "3": "C(b9)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Em7",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D9#11",
+          "3": "G7#5b9"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7",
+          "3": "A(b9)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7",
+          "3": "C(b9)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "Dm7",
+          "4": "Db(#9)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C",
+          "3": "Fm7b5",
+          "4": "B(b9)"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Em"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Emaj7",
+          "3": "C#m7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F#m7",
+          "3": "B7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Em"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Emaj7",
+          "3": "C#m7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7",
+          "3": "A(b9)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7",
+          "3": "C(b9)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cmaj7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F9"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "C",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "E",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Cmaj7"
+  },
+  "key_annotation": {
+    "status": "needs_review",
+    "source_sha256": "29a700fe98b9d3d80bdfead37ce6701a506024e40a3fe20a1fcefc79b908b525",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.4315,
+      "section_keys": {
+        "B": {
+          "tonic": "E",
+          "mode": "minor",
+          "margin": 0.9048
+        }
+      }
+    },
+    "llm": {
+      "tonic": "C",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge tonicizes E major before returning via ii-V to C",
+      "section_keys": {
+        "B": {
+          "tonic": "E",
+          "mode": "major"
+        }
+      }
+    },
+    "review_reasons": [
+      "key disagreement: scorer F major (margin 0.43) vs llm C major (high confidence)",
+      "section 'B' local-key disagreement: scorer E minor vs llm E major"
+    ]
+  },
+  "harmonic_fingerprint": {
+    "family": "34-bar AABA ballad",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "chromatic-descent"
+    ],
+    "sections": {
+      "A": "I-IV9, then descending ii-Vs (Em7-A7b9, Dm7-G7, Gm7-C7b9) to IV with iv borrowed, ending on V/V and V7alt",
+      "A1": "Same as A but resolves to I with Dm7-Db7 and I-iv7b5-B7b9 turnaround",
+      "B": "Em-F9 to Emaj7-C#m7-F#m7-B7 tonicizing E, repeated, ending Dm7-G7 back to C",
+      "A2": "Restatement of A resolving to Cmaj7, ending on F9"
+    },
+    "modulates": true,
+    "modulation_note": "bridge tonicizes E major before returning via ii-V to C"
+  }
+}

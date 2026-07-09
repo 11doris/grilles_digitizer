@@ -1,0 +1,276 @@
+{
+  "composer": "Duke ELLINGTON – Mack DAVID",
+  "year": "1945",
+  "style": "ELLINGTONIA",
+  "tempo": "SLOW",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "I'M JUST A LUCKY SO-AND-SO",
+  "page": 191,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": "{\n  \"verse\": \"Header prints '16 VERSE'.\",\n}",
+  "recordings": [
+    "W.Montgomery 61- C.Hamilton 59",
+    "S.Clark 58- G.Tren 61- E.Fitz-",
+    "gerald 46- K.Burrell 60.64",
+    "J.Hodges 61- L.Alexandria 60",
+    "V.Lassef 60- M.Buckner 61",
+    "D.Ellington 45(.46).61(Arm-",
+    "strong)- B.Lyman 60-",
+    "R.Bryant 59"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G",
+          "3": "G#o7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G",
+          "3": "D(b9)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G",
+          "3": "G7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gmaj7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F#m7b5",
+          "3": "B7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Em",
+          "3": "G#m7b5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D",
+          "3": "A(b9)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "G",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "G"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "77b8e4fa169aab7e3145eb90c05aa290a112e61c986d150cf048f0d7a4046d26",
+    "scorer": {
+      "tonic": "G",
+      "mode": "major",
+      "margin": 0.8066
+    },
+    "llm": {
+      "tonic": "G",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I with IV7 neighbor, I-I7-IV7-V/ii, ii-V turnaround with #Io7 passing chord",
+      "A1": "Same as A ending on I with V/... and I-I7 leading to bridge",
+      "B": "IV9 alternating with Imaj7, then vii7b5-V/vi to vi, #ii7b5, V-V/ii, ii-V back to I",
+      "A2": "I with IV7 neighbor and ii-V, resolving to I"
+    },
+    "modulates": false
+  }
+}

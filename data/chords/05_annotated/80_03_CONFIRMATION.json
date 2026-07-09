@@ -1,0 +1,303 @@
+{
+  "composer": "Charlie PARKER",
+  "year": "1946",
+  "style": "BE BOP (INSTRUMENTAL)",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A A' B A'",
+  "time_signature": "4/4",
+  "title": "CONFIRMATION",
+  "page": 80,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "...alley 56- C.Parker 46.50.53",
+    "...ell 55- H.Jones 77- B.West 57",
+    "...negan 77- B.Cooper 57- A.Bla-",
+    "...54- L.Donaldson 59- H.Mobb 57",
+    "...one 60- K.Clarke 46- D.Gill-",
+    "...ie 47- L.Hampton 59- M.Davis",
+    "...e.Jordan 54- J.McLean 56"
+  ],
+  "notation_notes": {
+    "subtitle": "Header prints '(RIFF WARMER)' beside the title.",
+    "B_bar2_alt": "Section B bar 2: the F7 carries a superscript 'alt.' in the original -> digitized as F7alt.",
+    "A1_arrow": "A' (2nd printed row) is a leading-arrow/dash row copying section A positionally; explicit bars 7-8 (Gm7/C7, F) override.",
+    "A2_arrow": "Final A' row is a leading-arrow/dash row copying the resolved A' positionally."
+  },
+  "same_chord_changes": "Daniel (M.Davis), Juicy Lucy (H.Silver), Twilight Times (different bridge)",
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Em7b5",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7b5",
+          "3": "C7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Em7b5",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm",
+          "3": "Cm(maj7)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7alt"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7b5",
+          "3": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Em7b5",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "Bb",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "15834594d40f6b09923258854991f0538041e013ea8146f40170fd9523c36e14",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.3194,
+      "section_keys": {
+        "B": {
+          "tonic": "Bb",
+          "mode": "major",
+          "margin": 0.9808
+        }
+      }
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge moves to Bb (ii-V-I) then Db before returning to the home ii-V",
+      "section_keys": {
+        "B": {
+          "tonic": "Bb",
+          "mode": "major"
+        }
+      }
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "circle-of-fifths",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I with iiø/V7 of vi, descending ii-V chain (Cm7-F7 to Bb7-Eb7), D7-G7-Gm7b5-C7 turnaround",
+      "A1": "Same as A resolving via Gm7-C7 back to I (F)",
+      "B": "ii-V-I in Bb (Cm-F7alt-Bb) then ii-V-I in Db (Ebm7-Ab7-Dbmaj7), ending Gm7b5-C7 (ii-V of F)",
+      "A2": "Restatement of A resolving to I (F)"
+    },
+    "modulates": true,
+    "modulation_note": "bridge moves to Bb (ii-V-I) then Db before returning to the home ii-V"
+  }
+}

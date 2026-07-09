@@ -1,0 +1,292 @@
+{
+  "composer": "James C. JOHNSON",
+  "year": "1930",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "28 A A B C",
+  "time_signature": "4/4",
+  "title": "TRAV'LIN' ALL ALONE",
+  "page": 433,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Boswell Sisters 35- B.Holiday 37",
+    "J.Moore 31- Er.Waters 29.47- R.Allen 65",
+    "McKinney's Cotton Pickers 30-",
+    "B.Eckstine/C.Basie 59- D.Fischberg 76",
+    "Q.Jackson 60- Mar.Moore 57- E.Hines 64"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 7, 15 and 27",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Bb7",
+            "3": "Eb7"
+          }
+        }
+      ]
+    },
+    {
+      "applies_to": "Bar 23",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Ab",
+            "3": "G(b9)"
+          }
+        }
+      ]
+    }
+  ],
+  "notation_notes": {
+    "A1_arrow": "Second printed row (A1) is a leading-arrow/dash row copying section A positionally; empty/dash boxes take the same-position bar from A, with the final box (Ab) written explicitly."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Db",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dbm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb7sus4",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab",
+          "3": "C7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Db",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dbm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb7sus4",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dbm6",
+          "3": "Bbm7b5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dbm6",
+          "3": "Bbm7b5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab",
+          "3": "Abmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm",
+          "3": "Dbm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab7",
+          "3": "Db7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dbm6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb7sus4",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "minor"
+  },
+  "opening": {
+    "degree": "i",
+    "quality": "min",
+    "chord": "Fm"
+  },
+  "key_annotation": {
+    "status": "needs_review",
+    "source_sha256": "00886b3e1b4c3d12fd25d9b3f13ff52559501b4deb2c4df9e8bf6ee55db31c73",
+    "scorer": {
+      "tonic": "Ab",
+      "mode": "major",
+      "margin": 0.3999,
+      "section_keys": {
+        "A": {
+          "tonic": "F",
+          "mode": "minor",
+          "margin": 0.5732
+        }
+      }
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "minor",
+      "confidence": "medium",
+      "modulation_note": null
+    },
+    "review_reasons": [
+      "key disagreement: scorer Ab major (margin 0.40) vs llm F minor (medium confidence)",
+      "section 'A' local-key disagreement: scorer F minor vs llm no local key"
+    ]
+  },
+  "harmonic_fingerprint": {
+    "family": "28-bar AABC tune",
+    "tags": [
+      "turnaround-ending",
+      "ii-V-chains"
+    ],
+    "sections": {
+      "A": "i-bVI-V(C7) loop in Fm, then i-bivm6-bIII7(Eb7)-bIII(Ab) with C7 turnaround back to i",
+      "A1": "Same as A but ending on bIII (Ab) without the C7 turnaround",
+      "B": "bivm6-iiø-bIII7(Eb7) vamp resolving to Ab, then Fm7-Bb7 and Ab7-Db7 motion",
+      "C": "i-bivm6-Eb7-Ab tag cadencing to the relative major"
+    },
+    "modulates": false
+  }
+}

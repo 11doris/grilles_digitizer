@@ -1,0 +1,271 @@
+{
+  "composer": "Artie SHAW – Teddy Mc RAE",
+  "year": "1938",
+  "style": "SWING ERA (INSTRUMENTAL)",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "BACK BAY SHUFFLE",
+  "page": 28,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "A.Shaw 38- D.Brubeck 54",
+    "E.Bostic 58- T.Gibbs 60",
+    "G.Williams 59",
+    "T.Thielemans 61"
+  ],
+  "notation_notes": {
+    "bar6_alteration": "A-row bar 6: the Bb over Gm7 split box shows a small superscript on the lower-right (read '6s'); transcribed as Bb / Gm7.",
+    "B_dashes": "Section B bars 2-3 and 6-7 are dashes; as bar-repeats they copy the preceding bar (Am, Am and C, C)."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "(Dm7)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb",
+          "3": "Gm7b5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F6",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F6"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "(Dm7)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb",
+          "3": "Gm7b5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F6",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F6"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Am"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Am"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "(Dm7)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb",
+          "3": "Gm7b5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F6",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "220c340082e57acc3456cc80f9471e3aecef1d8de79d94545fff7b67ac0f31aa",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.8037
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I-vi-ii-V-I then I7-IV-viø-I6 with V7 turnaround",
+      "A1": "I-vi-ii-V-I then I7-IV-viø-I6 with V7 turnaround",
+      "B": "iii(Am) held to V/vi (E7), then IV/V area C with V/V-V7 back to F",
+      "A2": "I-vi-ii-V-I then I7-IV-viø-I6 resolving on I6"
+    },
+    "modulates": false
+  }
+}

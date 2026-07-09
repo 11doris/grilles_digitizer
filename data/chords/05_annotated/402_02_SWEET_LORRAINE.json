@@ -1,0 +1,470 @@
+{
+  "composer": "Cliff BURWELL – Mitchell PARISH",
+  "year": "1928",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "16 A A' | 32 A A B A",
+  "time_signature": "4/4",
+  "title": "SWEET LORRAINE",
+  "page": 402,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "B.Goodman 35.47.75",
+    "J.Moore 28.37.42",
+    "K.A.Cole 43.5t",
+    "This is Jazz 47",
+    "E.Hines 65- J.Palmer 76",
+    "R.Eldridge 51- J.P.Johnson 45-",
+    "J.Hodges 40.56- C.Hawkins 43-",
+    "R.Allen 57- G.Shearing 43.79- H.Jones 78",
+    "Metronome All Stars 46- P.Newborn 58",
+    "7.Wilson 35.39.57.59- S.Bechet 40- L.Armstrong 57",
+    "L.Bacon 39- C.Basie 44.60.60- E.Garner 45.45.61",
+    "A.Tatum 38.40.41.44.45.49.51.54.55.56- D.Byas 53",
+    "B.Bygard 6t- b.Carter 58- b.Coleman 57- R.Eldridge 51-",
+    "D.Gillespie 52- L.Hampton 53- J.Hodges 40.56- C.Hawkins 43-",
+    "Coot. Williams 44.59- O.Peterson 46.55- R.Allen 57- G.Shearing 43.79- H.Jones 78",
+    "D.Ellington/E.Hines/D.Taylor- W.Gres 49- Metronome All Stars 46- P.Newborn 58",
+    "J.Rowles 72- T.Ory 56- J.Pass 73."
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 2, 10 and 26 :",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Am7",
+            "3": "D7",
+            "4": "D#o7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Em7",
+            "3": "G7#5"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "C9#11",
+            "3": "B(b9)"
+          }
+        },
+        {
+          "bar": 4,
+          "beats": {
+            "1": "B9#11",
+            "3": "A9"
+          }
+        },
+        {
+          "bar": 5,
+          "beats": {
+            "1": "Am7",
+            "3": "D7"
+          }
+        }
+      ]
+    }
+  ],
+  "notation_notes": {
+    "variant_row6": "Variant box 6 shows only a repeat placeholder; five explicit variant bars transcribed."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G6",
+          "3": "E(b9)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am7",
+          "3": "F#m7b5",
+          "4": "B(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em",
+          "2": "Em(maj7)",
+          "3": "Em7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7",
+          "3": "A#o7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7",
+          "3": "D7#5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Em7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      }
+    ],
+    "verse_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G6",
+          "3": "E(b9)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am7",
+          "3": "F#m7b5",
+          "4": "B(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F#m7b5",
+          "3": "B7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Em",
+          "2": "Em(maj7)",
+          "3": "Em7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D7",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7",
+          "3": "C9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "B9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "E7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bm7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7",
+          "3": "C9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "B9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "E7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C6",
+          "3": "E(b9)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Am7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F9",
+          "3": "E9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb9",
+          "3": "D9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F9",
+          "3": "E9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb9",
+          "3": "D7#5b9"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7",
+          "3": "C9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "B9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "E7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G6",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "G",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "G6"
+  },
+  "key_annotation": {
+    "status": "needs_review",
+    "source_sha256": "a2c945c10c029576154f9f205ae317ef4a7f3c87589e184668fac985b92cb950",
+    "scorer": {
+      "tonic": "G",
+      "mode": "major",
+      "margin": 0.7433,
+      "section_keys": {
+        "verse_A1": {
+          "tonic": "E",
+          "mode": "minor",
+          "margin": 0.822
+        }
+      }
+    },
+    "llm": {
+      "tonic": "G",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "review_reasons": [
+      "section 'verse_A1' local-key disagreement: scorer E minor vs llm no local key"
+    ]
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard with 16-bar verse",
+    "tags": [
+      "turnaround-ending",
+      "chromatic-descent",
+      "ii-V-chains",
+      "secondary-dominants"
+    ],
+    "sections": {
+      "verse_A": "I6 with V7/vi, ii-V motion toward vi (Em), line-cliché on Em, ending ii-V (Am7-D7) back to I",
+      "verse_A1": "Same opening, tonicizes vi (Em via F#m7b5-B7), ends on ii-V (Am7-D7)",
+      "A": "I with chain of secondary dominants E7-A7-D7, vi with C9/B9, cycle E7-A7-D7 back to ii-V turnaround",
+      "A1": "As A, resolving to I (G6) and ending Dm7-G7 (ii-V of IV)",
+      "B": "Bridge on IV area (C6), E7(b9)/Am7, Fmaj7-E7, chromatic descending dominants F9-E9-Eb9-D9 landing on V (D7)",
+      "A2": "As A, resolving to I with G6-C7-G6 tag ending"
+    },
+    "modulates": false
+  }
+}

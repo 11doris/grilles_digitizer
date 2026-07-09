@@ -1,0 +1,305 @@
+{
+  "composer": "Duke ELLINGTON – Bob RUSSELL",
+  "year": "1944",
+  "style": "ELLINGTONIA",
+  "tempo": "SLOW",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "I DIDN'T KNOW ABOUT YOU",
+  "page": 172,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "D.Ellington 40.42- A.Bragg 77",
+    "St.Getz 40/D.Ellington 60-",
+    "R.Hackett 47- J.Hamilton 60-",
+    "C.Hayman 44- E.Heywood 44",
+    "J.Hodges 60- T.Jordan 61",
+    "B.Nelson 44- B.Addeo 62",
+    "Lincoln 44- B.Clark"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'.",
+    "bridge_note": "Prose note below grid: 'the Ellington version of 1942 only, has a different bridge.'"
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abm7",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gbmaj7",
+          "3": "Gb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "B9",
+          "3": "Bb9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm7b5",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Abm7",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gbmaj7",
+          "3": "Gb6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7",
+          "3": "A7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abm7",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gbmaj7",
+          "3": "Gb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "B9",
+          "3": "Bb9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm7b5",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Abm7",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gb",
+          "3": "B9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gb"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dbm7",
+          "3": "Gb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dbm7",
+          "3": "Gb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bmaj7",
+          "3": "B6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "E9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bm7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bm7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7#11",
+          "3": "Eb7#11"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abm7",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gbmaj7",
+          "3": "Gb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "B9",
+          "3": "Bb9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm7b5",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Abm7",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gb",
+          "3": "B9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F#",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "B",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "ii",
+    "quality": "min",
+    "chord": "Abm7"
+  },
+  "key_annotation": {
+    "status": "needs_review",
+    "source_sha256": "2f0be440cd9b77336dc0f0bd6c6af478b3c2c3f17709619a725b0258836e4067",
+    "scorer": {
+      "tonic": "F#",
+      "mode": "major",
+      "margin": 0.8113
+    },
+    "llm": {
+      "tonic": "Gb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge tonicizes B major then A before returning to Gb",
+      "section_keys": {
+        "B": {
+          "tonic": "B",
+          "mode": "major"
+        }
+      }
+    },
+    "review_reasons": [
+      "section 'B' local-key disagreement: scorer no local key vs llm B major"
+    ]
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "ii-V (Abm7-Db7) to Imaj7 (Gbmaj7), chromatic B9-Bb9 into iv-half-dim/V (Bbm7b5-Eb7) and I9, ending on Bb7-A7 turnaround",
+      "A1": "same ii-V-I opening, resolving firmly to Gb with B9 approach",
+      "B": "Dbm7-Gb7 ii-V into B major, then Bm7-E7 ii-V to A6, closing with D7#11-Eb7#11 tritone approach back",
+      "A2": "restatement of A resolving to Gb"
+    },
+    "modulates": true,
+    "modulation_note": "bridge tonicizes B major then A before returning to Gb"
+  }
+}

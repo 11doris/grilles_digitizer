@@ -1,0 +1,280 @@
+{
+  "composer": "Rube BLOOM – Ted KOEHLER",
+  "year": "1939",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "title": "DON'T WORRY 'BOUT ME",
+  "page": 105,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '12 VERSE'."
+  },
+  "recordings": [
+    "? 50- A.? 50- T.Wilson 46, 15",
+    "? 70- ?od, J.?",
+    "Jackson 58- S.Grappelli 55- G.Gryce 60",
+    "Bradshaw 54- W.B.Davis 55- E.Garner 47",
+    "Bruback 53.54- Pol.Winters Three 58",
+    "Calloway 58.62- L.Armstrong 48",
+    "Gordon 55- J.Hitherapoon 59",
+    "Getz 46- Z.Sims 50- A.Cohn 58",
+    "Camey 60- 6.Stitt 58,60",
+    "Torme 57- P.Bailey 59"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm9b5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Bbm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab6",
+          "3": "(Db7b5)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Bo7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gb13"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7b5",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb13"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7b5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Bbm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "Dbmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab7",
+          "3": "D9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dbmaj7",
+          "3": "D9#5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gb13"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Gb9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F(b9)"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Ab",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "ii",
+    "quality": "min",
+    "chord": "Bbm9b5"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "59738a5ddd5ee3af942694ea9a0de90a79cd5650f99bbc4884e2886fdc0ea7a1",
+    "scorer": {
+      "tonic": "Ab",
+      "mode": "major",
+      "margin": 0.6424
+    },
+    "llm": {
+      "tonic": "Ab",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABA'C standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "ii(b5)-V(b9)-I in Ab, then Bbm7-Eb7 and Cm7-F7 loops resolving to Abmaj7 with chromatic passing dim",
+      "B": "Bbm7-Eb7, Gb13, Gm7b5-C7 to Fm, Fm7-Bb13, ii-V figures back toward Ab",
+      "A1": "ii-V-I in Ab moving to Cm7-Dbmaj7, Ebm7-Ab7 and cadence resting on Dbmaj7 (IV)",
+      "C": "Dbmaj7-Gb13 subdominant area returning through Bbm7-Eb7 ii-V to final Ab6"
+    },
+    "modulates": false
+  }
+}

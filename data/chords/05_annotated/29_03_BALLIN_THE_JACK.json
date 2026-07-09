@@ -1,0 +1,301 @@
+{
+  "composer": "Chris SMITH – Jim BURRIS",
+  "year": "1913",
+  "style": "TRADITIONAL",
+  "tempo": "MEDIUM",
+  "form": "16 A A | 16 A A'",
+  "time_signature": "4/4",
+  "title": "BALLIN' THE JACK",
+  "page": 29,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Bunk Johnson 42.44- Jon.Jones 63",
+    "K.Thomas 50- Victor Military Band 1914",
+    "T.Buckner 61- Firehouse 5+21 59",
+    "O.Celestin 50- B.Clayton 57",
+    "S.DeParis 44- J.R.Morton 39",
+    "Louisiana Rhythm Kings 29- K.Ory",
+    "E.Condon 39-R.Allen 60- S.Bechet 51"
+  ],
+  "notation_notes": {
+    "verse": "Header prints 'VERSE' over the first strain."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "verse_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb7",
+          "3": "D7"
+        }
+      }
+    ],
+    "s2_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb",
+          "2": "F#o7",
+          "3": "Gm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm",
+          "3": "Ebm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7",
+          "3": "Bb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "section_keys": {
+    "verse_A": {
+      "tonic": "G",
+      "mode": "major"
+    },
+    "verse_A1": {
+      "tonic": "G",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "VI",
+    "quality": "maj",
+    "chord": "G"
+  },
+  "key_annotation": {
+    "status": "needs_review",
+    "source_sha256": "fe73a78f545b9b81e9afd033320d3d7ae33527185dbf12fa44fb0d2d4637a7e0",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.1378
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "verse sections centered in G major (ending on D7); main chorus in Bb",
+      "section_keys": {
+        "verse_A": {
+          "tonic": "G",
+          "mode": "major"
+        },
+        "verse_A1": {
+          "tonic": "G",
+          "mode": "major"
+        }
+      }
+    },
+    "review_reasons": [
+      "thin scorer margin: 0.14 < 0.15",
+      "section 'verse_A' local-key disagreement: scorer no local key vs llm G major",
+      "section 'verse_A1' local-key disagreement: scorer no local key vs llm G major"
+    ]
+  },
+  "harmonic_fingerprint": {
+    "family": "16-bar tune with verse",
+    "tags": [
+      "circle-of-fifths",
+      "dominant-cycle-bridge",
+      "chromatic-descent",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "verse_A": "G tonic with A7-D7 (V/V-V) then chromatic dominants Eb7-C7-F7-Gb7-Eb7-D7 back to V",
+      "verse_A1": "Repeat of verse: G, chromatic dominant chain ending on D7 (V of G)",
+      "A": "Dominant circle-of-fifths G7-C7-F7 resolving to Bb (I), then Eb7-D7 turnaround",
+      "s2_A1": "G7-C7 then Gb7 to Bb with F#o7-Gm, Cm-Ebm, F7-Bb final cadence"
+    },
+    "modulates": true,
+    "modulation_note": "verse sections centered in G major (ending on D7); main chorus in Bb"
+  }
+}

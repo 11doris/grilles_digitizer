@@ -1,0 +1,267 @@
+{
+  "composer": "Wingy MANONE – Johnny MERCER",
+  "year": "1944",
+  "style": "NEW ORLEANS REVIVAL",
+  "tempo": "MEDIUM",
+  "form": "16 A A' | 16 A A",
+  "time_signature": "4/4",
+  "title": "TAILGATE RAMBLE",
+  "page": 408,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "S.Bechet 49",
+    "T.Buckner 55",
+    "G.Maxted 58",
+    "E.Ory 57",
+    "S.Pecora 54",
+    "B.Bonano 49",
+    "Dukes of Dixieland 56- T.Almerico 53",
+    "O.Celestin 56- N.O.All Stars 54",
+    "W.Manone 44.58"
+  ],
+  "notation_notes": {
+    "structure": "Two stacked strains, each labelled '16 A A' (first) and '16 A A' (second). First strain: A row plus arrow/dash A' row. Second strain: A row plus a leading-arrow A row of empty placeholders copying the same-position bars of its A row."
+  },
+  "sections": {
+    "s1_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ],
+    "s1_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ],
+    "s2_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ],
+    "s2_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "V",
+    "quality": "dom",
+    "chord": "Bb7"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "ff1ca0e63ff91912a4ae842bdc40f361b1aa7ac5980f3441b8bfe54dd40f6c67",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.7284
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "16-bar AABA-style riff tune",
+    "tags": [
+      "circle-of-fifths",
+      "dominant-cycle-bridge",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "s1_A": "V7-I alternation (Bb7 to Eb) throughout",
+      "s1_A1": "V7-I then C7 (V/ii)-Fm(ii)-F7(V/V)-Bb7(V)-Eb(I)",
+      "s2_A": "Circle-of-fifths descent C7-F7-Bb7-Eb (V/V/V to I)",
+      "s2_A1": "Circle-of-fifths descent C7-F7-Bb7-Eb resolving to tonic"
+    },
+    "modulates": false
+  }
+}

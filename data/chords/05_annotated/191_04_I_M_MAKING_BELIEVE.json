@@ -1,0 +1,218 @@
+{
+  "composer": "James V. MONACO – Mack GORDON",
+  "year": "1944",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "20 A A'",
+  "time_signature": "4/4",
+  "title": "I'M MAKING BELIEVE",
+  "page": 191,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
+  "recordings": [
+    "B.Leighton B7- R.Charles",
+    "C.Calloway 44- F.Wolf 44",
+    "T.Almerardo B7",
+    "E.Fitzgerald 44"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 3, 11",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Cm",
+            "2": "Cm#5",
+            "3": "Cm6",
+            "4": "Cm7"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb",
+          "3": "F(b9)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb",
+          "3": "G(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm",
+          "3": "Cm6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm(maj7)",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb",
+          "3": "Gm",
+          "4": "Gmaj7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb",
+          "3": "F(b9)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb",
+          "3": "G(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm",
+          "3": "Cm6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm(maj7)",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "Ebm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Eb",
+          "3": "A(b9)"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Dm7",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "C7",
+          "3": "F(b9)"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bb"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "1488598a0f8b4139d8d5b9b43a3025b2143367f7443874c284c4053439175fe3",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.6696
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "20-bar AA' standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "A": "I with V/V-type dominants, iv-ish Cm chord line (Cm-Cm6-CmMaj7-Cm7), F7 (V) to I, then ii-V (Cm7b5-F7) turnaround",
+      "A1": "Restates I and Cm line, then IV-iv, chromatic ii-V motion (Dm7-Dbo7-Cm7-F7), Fm7-Bb7 to IV(Eb), circle-of-fifths back through Dm7-Gm7-C7-F7 to final I (Bb)"
+    },
+    "modulates": false
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "composer": "Edgar SAMPSON – Benny GOODMAN – Irving MILLS",
+  "year": "1934",
+  "style": "SWING",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A B A B'",
+  "time_signature": "4/4",
+  "title": "IF DREAMS COME TRUE",
+  "page": 174,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Jazz Club Mystery Hot Band 45",
+    "A.Persley 70- H.Henderson 40",
+    "OE:Lambert 60- L.Konitz 79",
+    "OE:B.Reff 81- H.O'Malica 44",
+    "N.Powell 84- E.Sampson 88",
+    "B.Goodman 37- J.P.Johnson 39",
+    "B.Hackett 38- C.Webb 34.37",
+    "T.Wilson 38.46"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 28",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Dm",
+            "3": "F7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Bb",
+            "3": "Bbmaj7"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "G7",
+            "3": "C7"
+          }
+        }
+      ]
+    }
+  ],
+  "notation_notes": {
+    "variant_purpose": "Header prints 'VARIANT Bar 28 for statement of the melody'.",
+    "A2_bar4": "Section A2 bar 4 (Dm7) carries a '*' marker linking it to the Bar 28 statement variant."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G9(13)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "(G9)",
+          "3": "C7#5"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F",
+          "3": "D7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G9(13)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "(G9)",
+          "3": "C7#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7",
+          "3": "D7#5"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G9(13)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "(G9)",
+          "3": "C7#5"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F",
+          "3": "D7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G9(13)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "(G9)",
+          "3": "C7#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "B1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "II",
+    "quality": "dom",
+    "chord": "G9(13)"
+  },
+  "key_annotation": {
+    "status": "needs_review",
+    "source_sha256": "9c941ea11c99f3c1805cc18ba6fecada74340b9346f314468760070ba910200e",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.4205,
+      "section_keys": {
+        "B": {
+          "tonic": "D",
+          "mode": "minor",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "review_reasons": [
+      "section 'B' local-key disagreement: scorer D minor vs llm no local key"
+    ]
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA-type standard (A B A B')",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "ii-V-I in F (G9-C7#5-F) stated twice, ending on F7 leading to IV",
+      "B": "IV (Bb) to A7/Dm (vi), G7 (II7), then ii-V (Gm7-C7) with D7#5 turnaround",
+      "A1": "repeat of A: ii-V-I in F stated twice, ending F7",
+      "B1": "IV-A7-Dm, G7-C7 (V/V then V) resolving to tonic F"
+    },
+    "modulates": false
+  }
+}

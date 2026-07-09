@@ -1,0 +1,282 @@
+{
+  "composer": "Spencer WILLIAMS",
+  "year": "1928",
+  "style": "STANDARD TRADITIONAL",
+  "tempo": "MEDIUM SLOW",
+  "form": "16 A A | 16 A A",
+  "time_signature": "4/4",
+  "title": "BASIN' STREET BLUES",
+  "page": 30,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "s 59- M.Mezzrow 54- K.Ory 59",
+    "ie 29- Bing Crosby 34",
+    "trong 28.33.45.47? 48.50.54?.55.58",
+    "le 60- B.Coleman 56- M.Davis 63- M.Lewis 37",
+    "All Stars 44- Firehouse 5+2; 54-",
+    "gerald 49- Louisiana Rhythm Kings 29",
+    "gginbotham 39- S.Bechet 49.53.55- F.Waller 3",
+    "owey 31- Dorsey Bros. 34- B.Goodman 35",
+    "ston Chasers 31"
+  ],
+  "notation_notes": {
+    "theme2": "Second strain header prints 'Theme 2 based on Liebestraum by F.Liszt'."
+  },
+  "sections": {
+    "s1_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "N.C."
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb",
+          "2": "Cm7",
+          "3": "C#o7",
+          "4": "Bb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "N.C."
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb",
+          "3": "F7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb",
+          "3": "Gb7b5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "(Bb)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "(F7)",
+          "3": "(Bb)"
+        }
+      }
+    ],
+    "s1_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "N.C."
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb",
+          "2": "Cm7",
+          "3": "C#o7",
+          "4": "Bb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "N.C."
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb",
+          "3": "F7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb",
+          "3": "Gb7b5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "(Bb)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "(F7)",
+          "3": "(Bb)"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb",
+          "3": "Eb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bb"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "bac90a7f3c4f00bcb43f95140b5e89c53a22f3d8af2af8e21f60c8a8f3d84ad8",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.799
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "16-bar tune (AABB)",
+    "tags": [
+      "circle-of-fifths",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "s1_A": "I with chromatic passing dim (I-ii-#iio-I), I-V7#5, I-I7-IV-bVII7b5, implied I-V7-I",
+      "s1_A1": "Repeat of s1_A: I with passing diminished, IV motion, resolving back to I",
+      "A": "Circle-of-fifths: I-VI7(D7)-II7(G7)-V7(C7)-I7(F7)... then I-#io7-ii-V7",
+      "A1": "Same circle-of-fifths, closing I-IV-I"
+    },
+    "modulates": false
+  }
+}

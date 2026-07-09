@@ -1,0 +1,279 @@
+{
+  "composer": "Jerome KERN – Herbert REYNOLDS",
+  "year": "1914",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A B C D",
+  "time_signature": "4/4",
+  "title": "THEY DIDN'T BELIEVE ME",
+  "page": 421,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "recordings": [
+    "L.Gaillon 61- W.Jackson 51- P.Jolly 55-",
+    "B.Kessel 57- M.Miller 55- B.Shaw/R.Cooper 54",
+    "B.Peterson 60- B.Powell 55- D.Washington 55",
+    "C.Adams 62- A.Previn 60- D.Peterson/C.Terry",
+    "A.Sear 61- L.Thompson 60- J.Williams 54",
+    "B.Kearns 59- G.Ivrie 56- L.Kanmen 55",
+    "J.Hartman"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Bbm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F(b9)"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Bbm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7",
+          "3": "Bo7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb9",
+          "3": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7",
+          "3": "Dm7b5",
+          "4": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F(b9)"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Gb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "D": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Db9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "Bbm7b5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb9",
+          "3": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Ab",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "ii",
+    "quality": "min",
+    "chord": "Bbm7"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "788334cc4e402e31b833fb31092ca8d141ad44615d3a1301278848d7413f664e",
+    "scorer": {
+      "tonic": "Ab",
+      "mode": "major",
+      "margin": 0.8127
+    },
+    "llm": {
+      "tonic": "Ab",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABCD standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "A": "ii-V-I in Ab (Bbm7-Eb7-Abmaj7) then repeated ii-V motion, ending Cm7-Bo7",
+      "B": "ii-V-I in Ab then move to iii (Cm) with its own G7, ending on V/ii (F7b9)",
+      "C": "ii-V-I with Fm7, restated ii-V-I, then Gb7-F7 chromatic dominants",
+      "D": "ii-V-I with Db9 and Bbm7b5 approach, final ii-V resolving to Ab6"
+    },
+    "modulates": false
+  }
+}

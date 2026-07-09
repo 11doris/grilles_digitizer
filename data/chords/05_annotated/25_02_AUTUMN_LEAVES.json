@@ -1,0 +1,455 @@
+{
+  "composer": "Joseph KOSMA – Jacques PREVERT – Johnny MERCER",
+  "year": "1947",
+  "style": "STANDARD (FRENCH SONG)",
+  "tempo": "MEDIUM",
+  "form": "24 A A' B | 32 A A B C",
+  "time_signature": "4/4",
+  "title": "AUTUMN LEAVES",
+  "page": 25,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "welsh_song": "Prose note printed at lower right: 'An old Welsh song has the same title.'",
+    "verse": "First strain row is labelled 'VERSE'."
+  },
+  "recordings": [
+    "G.Ammons/S.Stitt 63- P.Whiteman 56- E.Garner 55.67",
+    "O.Gillespie 57- B.Golson 59.62- B.Goodman 67- C.Hawkins 57-",
+    "A.Cohn 54.59- M.B.Davis 56- M.Davis 63.64- K.Dorham 58- S.Getz 52",
+    "D.Ellington 57- J.Forrest 61- C.Adderley 58- E.Bostic 58",
+    "R.Bryant 61- B.Carter 63- B.Clayton 63- B.Evans 59"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 27",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Gm7",
+            "3": "C7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Fm7",
+            "3": "Bb7"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7",
+          "3": "Gm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G(b9)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G(b9)",
+          "3": "Cm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm6",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm6",
+          "3": "D7"
+        }
+      }
+    ],
+    "verse_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G(b9)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G(b9)",
+          "3": "Cm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm6",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm6",
+          "3": "D7"
+        }
+      }
+    ],
+    "s1_B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7b5",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Am7b5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm",
+          "3": "Gm(maj7)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7b5",
+          "3": "Em7b5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "G",
+    "mode": "minor"
+  },
+  "opening": {
+    "degree": "i",
+    "quality": "min",
+    "chord": "Gm"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "606ba7cea00a81e480008390f04acc8fe30fc0ed67e572169f558e31dd48483d",
+    "scorer": {
+      "tonic": "G",
+      "mode": "minor",
+      "margin": 0.3816
+    },
+    "llm": {
+      "tonic": "G",
+      "mode": "minor",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar with 24-bar verse (AAB verse + AABC chorus)",
+    "tags": [
+      "ii-V-chains",
+      "circle-of-fifths",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "verse_A": "i-i7, bVI7-V7/i, iv, V7-i tonic area with G7(b9) as V/iv into iv, ending on iv6-V7",
+      "verse_A1": "same as verse A with i-V7-i resolution, ending on iv6-V7",
+      "s1_B": "i, V/V-V7, i-bVII7 to bVI(Bb), iiø-V7-i, then bVI7-V7 turnaround",
+      "A": "iv7-bVII7-bIIImaj7-bVImaj7 (circle of fifths through relative Bb major), then iiø-V7-i",
+      "A1": "repeat: circle-of-fifths iv7-bVII7-III-VI then iiø-V7-i",
+      "B": "V7 pedal to i, then iv7-bVII7-III-VI circle of fifths",
+      "C": "iiø-V7-i with i(maj7), iø-viø chromatic, bVI7-V7-i final cadence"
+    },
+    "modulates": false
+  }
+}

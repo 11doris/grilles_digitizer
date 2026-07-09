@@ -1,0 +1,292 @@
+{
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "AS LONG AS I LIVE",
+  "page": 22,
+  "source": "Anthologie des grilles de jazz",
+  "same_chord_changes": "BALLADE (C.Parker, C.Hawkins )",
+  "recordings": [
+    "B.Webster 47- O.Peterson 54.59",
+    "R.McKenzie 34- This is Jazz 47",
+    "E.Fitzgerald 58.60- R.Braff 56",
+    "B.Goodman 34.40.64- T.Farlow 59",
+    "K.Drew 57- E.Hines 63- C.Barnet 46",
+    "B.Pollak 38- Cl.Williams 34",
+    "C.Basie 52.69.74"
+  ],
+  "notation_notes": {
+    "attention": "Page prints 'ATTENTION : At least 2 others different tunes have the same title : One by M.Steiner- C.Tobias 1945 the other by A.Lewis/H.Simon/G.Marks/E.Gill 1928'."
+  },
+  "variants": [
+    {
+      "applies_to": "Bar 17",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "F7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Bb"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Em7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "Dm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Em7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F#o7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Em7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "ea9e1fbaed62434cb617133024fc295f3706b09fd21f282753c514f812912a75",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.5469
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "circle-of-fifths",
+      "dominant-cycle-bridge",
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I then dominant chain A7-D7-G7-C7 (V/vi through circle of fifths) back to I, ending ii-V turnaround",
+      "A1": "Same as A with resolution to I via IV (Bb) plagal touch",
+      "B": "#io7-ii-iv-I motion then vi-II-V (Dm-G7-C7) with #io7 into ii-V turnaround",
+      "A2": "Repeat of A1 resolving firmly to I"
+    },
+    "modulates": false
+  }
+}

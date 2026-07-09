@@ -1,0 +1,185 @@
+"""Scorer hard cases (spec §3.2/§3.7) and update-routine tests.
+
+This file is the Phase 0 regression set: rerun it whenever scorer weights
+change (run: python -m unittest).
+"""
+from __future__ import annotations
+
+import json
+import unittest
+from pathlib import Path
+
+from pipelines.chords.key_annotation import core
+from pipelines.chords.key_annotation.llm import LLMVoteError
+from pipelines.chords.key_annotation.scorer import (
+    TUNE_MARGIN_THRESHOLD, score_tune,
+)
+
+_REPO = Path(__file__).resolve().parents[3]
+_VERIFIED = _REPO / "data" / "chords" / "04_verified"
+
+
+def _load(stem: str) -> dict:
+    return json.loads((_VERIFIED / f"{stem}.json").read_text("utf-8"))
+
+
+class TestScorerHardCases(unittest.TestCase):
+    """The named §3.2 hard cases, all present in the current corpus."""
+
+    def assert_key(self, stem, tonic, mode, confident=True):
+        vote = score_tune(_load(stem))
+        self.assertEqual((vote.tonic, vote.mode), (tonic, mode), stem)
+        if confident:
+            self.assertGreaterEqual(vote.margin, TUNE_MARGIN_THRESHOLD, stem)
+
+    def test_turnaround_ending_on_v7(self):
+        self.assert_key("23_04_AU_PRIVAVE", "F", "major")   # ends on C7
+        self.assert_key("169_03_IDAHO", "F", "major")       # ends on C7
+
+    def test_turnaround_ending_on_ii(self):
+        self.assert_key("72_03_CHERYL", "C", "major")       # ends Em7 Dm7
+
+    def test_picardy_third_final_chord(self):
+        # ends on "(F)" but is F minor
+        self.assert_key("77_01_CLOSE_YOUR_EYES", "F", "minor")
+
+    def test_genuinely_modulating_tune(self):
+        # Con Alma: the predominant/opening key is E major (spec §3.1); a
+        # chromatic chart like this must at least not confidently pick a
+        # wrong key.
+        vote = score_tune(_load("79_03_CON_ALMA"))
+        if vote.margin >= TUNE_MARGIN_THRESHOLD:
+            self.assertEqual((vote.tonic, vote.mode), ("E", "major"))
+
+    def test_blues_head_with_dominant_tonic(self):
+        self.assert_key("101_01_DIRTY_DOZENS", "F", "major")
+
+
+class TestSectionPass(unittest.TestCase):
+    def test_dominant_cycle_bridge_is_not_a_modulation(self):
+        # I Got Rhythm's bridge (D7 G7 C7 F7 in Bb) never arrives anywhere.
+        vote = score_tune(_load("178_01_I_GOT_RHYTHM"))
+        self.assertEqual(vote.section_keys, {})
+
+    def test_blues_has_no_section_keys(self):
+        for stem in ("23_04_AU_PRIVAVE", "72_03_CHERYL"):
+            self.assertEqual(score_tune(_load(stem)).section_keys, {}, stem)
+
+
+class TestAdjudicationAndUpdate(unittest.TestCase):
+    def _fake_llm(self, tonic="F", mode="major", sections=("A",), local=None):
+        return {
+            "tonic": tonic, "mode": mode, "confidence": "high",
+            "modulation_note": None,
+            "fingerprint": {
+                "family": "12-bar blues", "tags": ["blues-form"],
+                "sections": [{"name": n, "summary": "blues chorus",
+                              "local_key": (local or {}).get(n)}
+                             for n in sections],
+                "modulates": False,
+            },
+        }
+
+    def _annotate_au_privave(self, llm):
+        source = _load("23_04_AU_PRIVAVE")
+        scorer = score_tune(source)
+        return core.build_annotation(source, "deadbeef", scorer, llm)
+
+    def test_agreement(self):
+        ann = self._annotate_au_privave(self._fake_llm())
+        self.assertEqual(ann["key_annotation"]["status"], "agreed")
+        self.assertEqual(ann["key"], {"tonic": "F", "mode": "major"})
+        self.assertEqual(ann["opening"]["degree"], "I")
+        self.assertNotIn("section_keys", ann)
+        self.assertEqual(ann["harmonic_fingerprint"]["sections"],
+                         {"A": "blues chorus"})
+
+    def test_disagreement_goes_to_review(self):
+        ann = self._annotate_au_privave(self._fake_llm(tonic="Bb"))
+        self.assertEqual(ann["key_annotation"]["status"], "needs_review")
+        self.assertTrue(any("disagreement" in r for r in
+                            ann["key_annotation"]["review_reasons"]))
+
+    def test_section_key_disagreement_goes_to_review(self):
+        llm = self._fake_llm(local={"A": {"tonic": "Bb", "mode": "major"}})
+        ann = self._annotate_au_privave(llm)
+        self.assertEqual(ann["key_annotation"]["status"], "needs_review")
+        self.assertTrue(any("section 'A'" in r for r in
+                            ann["key_annotation"]["review_reasons"]))
+
+    def test_llm_failure_goes_to_review(self):
+        ann = self._annotate_au_privave(LLMVoteError("boom"))
+        self.assertEqual(ann["key_annotation"]["status"], "needs_review")
+        self.assertEqual(ann["key_annotation"]["llm"], {"error": "boom"})
+        self.assertNotIn("harmonic_fingerprint", ann)
+
+    def test_update_corrects_key_and_recomputes_opening(self):
+        ann = self._annotate_au_privave(self._fake_llm())
+        scorer_before = json.dumps(ann["key_annotation"]["scorer"])
+        llm_before = json.dumps(ann["key_annotation"]["llm"])
+        core.update_annotation(ann, tonic="Bb", mode="major")
+        self.assertEqual(ann["key"], {"tonic": "Bb", "mode": "major"})
+        self.assertEqual(ann["opening"]["degree"], "V")  # F over a Bb tonic
+        self.assertEqual(ann["key_annotation"]["status"], "verified")
+        self.assertEqual(ann["key_annotation"]["human"],
+                         {"tonic": "Bb", "mode": "major", "corrected": True})
+        # voter votes stay untouched for the record (spec §3.1)
+        self.assertEqual(json.dumps(ann["key_annotation"]["scorer"]), scorer_before)
+        self.assertEqual(json.dumps(ann["key_annotation"]["llm"]), llm_before)
+
+    def test_update_plain_verify_is_not_a_correction(self):
+        ann = self._annotate_au_privave(self._fake_llm())
+        core.update_annotation(ann)
+        self.assertEqual(ann["key_annotation"]["human"]["corrected"], False)
+        self.assertEqual(ann["key_annotation"]["status"], "verified")
+
+    def test_update_drops_section_key_equal_to_new_global(self):
+        ann = self._annotate_au_privave(self._fake_llm())
+        core.update_annotation(
+            ann, section_keys={"A": {"tonic": "F", "mode": "major"}})
+        self.assertNotIn("section_keys", ann)  # equal to global key -> dropped
+
+
+class TestIdempotence(unittest.TestCase):
+    def test_pending_detection(self):
+        import tempfile
+        src = _VERIFIED / "23_04_AU_PRIVAVE.json"
+        with tempfile.TemporaryDirectory() as td:
+            ann_path = Path(td) / src.name
+            self.assertTrue(core.is_pending(src, ann_path))  # missing
+
+            source = core.read_json(src)
+            scorer = score_tune(source)
+            fake_llm = {"tonic": "F", "mode": "major", "confidence": "high",
+                        "modulation_note": None,
+                        "fingerprint": {"family": "12-bar blues", "tags": [],
+                                        "sections": [{"name": "A", "summary": "",
+                                                      "local_key": None}],
+                                        "modulates": False}}
+            ann = core.build_annotation(source, core.source_sha256(src),
+                                        scorer, fake_llm)
+            core.write_annotated(ann_path, ann)
+            self.assertFalse(core.is_pending(src, ann_path))  # hash matches
+
+            ann["key_annotation"]["source_sha256"] = "stale"
+            core.write_annotated(ann_path, ann)
+            self.assertTrue(core.is_pending(src, ann_path))  # source changed
+
+    def test_llm_failure_is_retried_unless_verified(self):
+        import tempfile
+        src = _VERIFIED / "23_04_AU_PRIVAVE.json"
+        with tempfile.TemporaryDirectory() as td:
+            ann_path = Path(td) / src.name
+            source = core.read_json(src)
+            ann = core.build_annotation(source, core.source_sha256(src),
+                                        score_tune(source), LLMVoteError("boom"))
+            core.write_annotated(ann_path, ann)
+            self.assertTrue(core.is_pending(src, ann_path))  # retry the LLM
+
+            core.update_annotation(ann)  # human verifies despite LLM failure
+            core.write_annotated(ann_path, ann)
+            self.assertFalse(core.is_pending(src, ann_path))
+
+
+if __name__ == "__main__":
+    unittest.main()

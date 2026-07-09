@@ -1,0 +1,271 @@
+{
+  "composer": "Jimmy McHUGH – Cl. GASKILL",
+  "year": "1926",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "I CAN'T BELIEVE THAT YOU'RE IN LOVE WITH ME",
+  "page": 168,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "recordings": [
+    "B.Powell 26",
+    "L.Young",
+    "J.Hodges",
+    "J.McHugh 40.57",
+    "T.Gibbs 55",
+    "F.Waller 40",
+    "B.Holiday",
+    "C.Hines",
+    "E.Fitzgerald",
+    "E.Fitzgerald",
+    "E.Fitzgerald"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7#5"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "C",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "IV",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "needs_review",
+    "source_sha256": "8ce9cb59cc70aa388be6b6f922291c3582ad0aab94544c8e32f0c1dd2336d08d",
+    "scorer": {
+      "tonic": "C",
+      "mode": "major",
+      "margin": 0.1048
+    },
+    "llm": {
+      "tonic": "C",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "review_reasons": [
+      "thin scorer margin: 0.10 < 0.15"
+    ]
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "dominant-cycle-bridge",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "A": "IV-iv-I with V/V (D7) to V (G7) resolving to I",
+      "A1": "IV-iv-I with V/V-V-I, same as A",
+      "B": "Dominant cycle III7-VI7-II7-V7 (E7-A7-D7-G7) into ii-V (Gm7-C7#5)",
+      "A2": "IV-iv-I with V/V-V-I, same as A"
+    },
+    "modulates": false
+  }
+}
