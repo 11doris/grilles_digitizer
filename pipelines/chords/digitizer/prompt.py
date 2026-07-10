@@ -49,7 +49,9 @@ Never emit null or "" for it. Do NOT emit a "fingerprints" field.
 - form: exactly as printed, preserving primes (e.g. "32 A B C A'"). A standalone
   verse-length label such as "12 VERSE" / "4 VERSE" / "10 VERSE" (the tune's verse,
   usually not itself transcribed) is NOT part of the form — do NOT append it to the
-  form string; record it in a notation_notes entry (key "verse").
+  form string; record it in a notation_notes entry (key "verse"). If the verse grid IS
+  actually printed and transcribed, put its rows in verse_ sections (see SECTIONS and
+  the VERSE note under MULTI-STRAIN PIECES), still keeping the verse OUT of the form.
 - time_signature: default "4/4"; override only if the score indicates otherwise.
 
 === SECTIONS ===
@@ -88,6 +90,15 @@ label (e.g. "16 A A'", then "24 A B A", then "16 A A"):
 - Keep everything in the ONE flat "sections" map; do not nest.
 ONLY use this when there really are multiple labelled strains. A normal AABA tune is
 single-strain: plain keys (A, A1, B, ...) and one form string — never wrap it in s1_.
+
+VERSE + CHORUS IS NOT MULTI-STRAIN: a tune that prints a VERSE grid stacked above its
+main (chorus) grid is NOT a multi-strain piece — do NOT number these s1/s2/s3. Any
+strain label reading "VERSE" (or a verse-length label such as "12 VERSE", "16 VERSE")
+marks a VERSE, NEVER a strain sN. Label the verse's rows with the verse_ prefix
+(verse_A, verse_A1, verse_B, ...), or a single "verse" section when the verse is one
+unlabelled row; label the chorus with plain letter keys (A, A1, B, ...). Keep the
+chorus form in "form" as usual — do NOT append the verse to it and do NOT join the
+verse and chorus with " | ".
 
 === BARS AND BEATS ===
 Every bar is an object: {{ "bar": 3, "beats": {{ "1": "Ab", "3": "Ao7" }} }}
