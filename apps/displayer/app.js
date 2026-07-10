@@ -744,6 +744,47 @@
     return false;
   }
 
+  /* Applied variants persist per tune: a { tuneId: [variantIndex,…] } map in
+     localStorage, so reopening (or reloading) a tune restores the swaps the user
+     had applied. */
+  const VARIANTS_KEY = "grilles.variants";
+
+  function loadVariantMap() {
+    try {
+      const obj = JSON.parse(localStorage.getItem(VARIANTS_KEY) || "null");
+      return obj && typeof obj === "object" ? obj : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  /* Persist the current tune's active variant set (or drop its entry when none
+     are applied). */
+  function saveActiveVariants(tuneId) {
+    if (!tuneId) return;
+    const map = loadVariantMap();
+    const arr = [...state.activeVariants].sort((a, b) => a - b);
+    if (arr.length) map[tuneId] = arr;
+    else delete map[tuneId];
+    try {
+      localStorage.setItem(VARIANTS_KEY, JSON.stringify(map));
+    } catch (e) { /* ignore */ }
+  }
+
+  /* Load a tune's saved variant set into state, keeping only indices that still
+     point at an applicable variant (guards against a changed corpus). */
+  function restoreActiveVariants(tune, tuneId) {
+    state.activeVariants = new Set();
+    const saved = loadVariantMap()[tuneId];
+    if (!Array.isArray(saved)) return;
+    const variants = (tune && tune.variants) || [];
+    saved.forEach((vi) => {
+      if (variants[vi] && variantOverrides(tune, variants[vi]).count > 0) {
+        state.activeVariants.add(vi);
+      }
+    });
+  }
+
   /* Variants (spec §6): alternative changes for certain bars, rendered as small
      chord grids directly below the main grid — always visible, not collapsed.
      Clicking a variant swaps its bars into the main grid and back. Variants that
@@ -785,6 +826,7 @@
             });
             state.activeVariants.add(vi);
           }
+          saveActiveVariants(state.currentId); // persist per tune
           renderTune(state.currentId); // same tune → keeps zoom/scroll/transpose
         };
         v.addEventListener("click", toggle);
@@ -1355,7 +1397,7 @@
     if (isNewTune) {
       state.transpose = null; // every tune opens in its own printed key
       state.gridZoom = 1; // grid zoom is per-tune: every tune opens at the fitted size
-      state.activeVariants.clear(); // and with no variant swapped in
+      restoreActiveVariants(meta(t), id); // restore the user's saved variant swaps
     }
     document.title = `${t.title || id} — Grilles`;
 
