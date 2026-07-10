@@ -1,156 +1,69 @@
 {
-  "composer": "Willard ROBISON – Larry CONLEY",
-  "year": "1930",
+  "composer": "Irving BERLIN",
+  "year": "1924",
   "style": "STANDARD",
   "tempo": "MEDIUM",
-  "form": "32 A A B A",
+  "form": "32 A B C D",
   "time_signature": "4/4",
-  "title": "COTTAGE FOR SALE",
-  "page": 83,
-  "source": "Anthologie des grilles de jazz",
-  "variants": [
-    {
-      "applies_to": "Bar 7",
-      "targets": [
-        {
-          "section": "A",
-          "bar": 7
-        }
-      ],
-      "bars": [
-        {
-          "bar": 1,
-          "beats": {
-            "1": "F7"
-          }
-        },
-        {
-          "bar": 2,
-          "beats": {
-            "1": "Bb7"
-          }
-        }
-      ]
-    }
-  ],
   "notation_notes": {
-    "verse": "Header prints '8 VERSE'."
+    "verse": "Header prints '16 VERSE'."
   },
   "recordings": [
-    "V.Dickenson 57- T.King 57",
-    "L.Miles 55- D.Henderson 61",
-    "E.Hines 64.65- F.Sinatra 55",
-    "J.Teagarden 62- D.Wehling",
-    "ton 55- C.Bullock 30-",
-    "B.Doggett 55- D.Byas 62",
-    "E.Bernier 48.54",
-    "B.Eckstine 45",
-    "C.Hawkins 55"
+    "A.Casey 60- California Ramblers 30",
+    "B.Taylor 61- A.Shaw 37- Y.Lateef 57",
+    "D.Robertson 39- Budd Johnson 44",
+    "Se.Williams 38- T.Monk 57- O.Best 47",
+    "B.Carter 58- R.Garland 61",
+    "B.Gordon 63- M.Moore 25- R.Braff"
   ],
   "sections": {
     "A": [
       {
         "bar": 1,
         "beats": {
-          "1": "Eb"
+          "1": "F"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "G7"
+          "1": "F"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "C(b9)"
+          "1": "C7"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Fm7b5"
+          "1": "C7"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "Ebmaj7",
-          "3": "C7"
+          "1": "F"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "Fm7",
-          "3": "Db7"
+          "1": "C7#5"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "F7",
-          "3": "Bb7"
+          "1": "F"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "Eb"
-        }
-      }
-    ],
-    "A1": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Eb"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "C(b9)"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Fm7b5"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Ebmaj7",
-          "3": "C7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Fm7",
-          "3": "Db7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "F7",
-          "3": "Bb7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Eb"
+          "1": "F"
         }
       }
     ],
@@ -158,144 +71,210 @@
       {
         "bar": 1,
         "beats": {
-          "1": "G7"
+          "1": "Em7b5"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "G7"
+          "1": "A7"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "C7"
+          "1": "Dm"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "C7"
+          "1": "Dm"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "F7"
+          "1": "A"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "F7"
+          "1": "E7"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "Bb7",
-          "3": "Eo7"
+          "1": "Am"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "Fm7",
-          "3": "Bb7"
+          "1": "C7"
         }
       }
     ],
-    "A2": [
+    "C": [
       {
         "bar": 1,
         "beats": {
-          "1": "Eb"
+          "1": "F7"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "G7"
+          "1": "F7"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "C(b9)"
+          "1": "Bb"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Fm7b5"
+          "1": "Bb"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "Ebmaj7",
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7#5"
+        }
+      }
+    ],
+    "D": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "Dm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
           "3": "C7"
         }
       },
       {
-        "bar": 6,
-        "beats": {
-          "1": "Fm7",
-          "3": "Db7"
-        }
-      },
-      {
         "bar": 7,
         "beats": {
-          "1": "F7",
-          "3": "Bb7"
+          "1": "F"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "Eb"
+          "1": "F"
         }
       }
     ]
   },
+  "title": "ALL ALONE",
+  "page": 11,
+  "source": "Anthologie des grilles de jazz",
   "key": {
-    "tonic": "Eb",
+    "tonic": "F",
     "mode": "major"
   },
   "opening": {
     "degree": "I",
     "quality": "maj",
-    "chord": "Eb"
+    "chord": "F"
   },
   "key_annotation": {
-    "status": "agreed",
-    "source_sha256": "5336369abfaae31a7832488ec39731e5831c98a92789b4666cc144827c4ebb96",
+    "status": "verified",
+    "source_sha256": "b5616c6f9d733e1ac53948336d4215ed89107fb3036ffe5ea107263b45a07d06",
     "scorer": {
-      "tonic": "Eb",
+      "tonic": "F",
       "mode": "major",
-      "margin": 0.7484
+      "margin": 0.643,
+      "section_keys": {
+        "B": {
+          "tonic": "D",
+          "mode": "minor",
+          "margin": 1.0
+        },
+        "C": {
+          "tonic": "Bb",
+          "mode": "major",
+          "margin": 0.64
+        }
+      }
     },
     "llm": {
-      "tonic": "Eb",
+      "tonic": "F",
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar AABA standard",
+    "family": "32-bar ABCD standard",
     "tags": [
-      "dominant-cycle-bridge",
-      "circle-of-fifths",
-      "ii-V-chains"
+      "ii-V-chains",
+      "turnaround-ending"
     ],
     "sections": {
-      "A": "I with secondary dominants (V/vi G7, V/ii C7b9), Fm7b5, Imaj7-C7-Fm7-Db7-F7-Bb7 back to I",
-      "A1": "Repeat of A: I with secondary dominants resolving to Eb",
-      "B": "Dominant cycle G7-C7-F7-Bb7 (circle of fifths), Eo7 then ii-V (Fm7-Bb7)",
-      "A2": "Repeat of A ending on I (Eb)"
+      "A": "I with V7 motion (C7/C7#5) resolving back to I in F",
+      "B": "ii-V-i into Dm (vi), then A-E7-Am tonicizing iii, ending on C7 (V)",
+      "C": "F7 (V7/IV) to Bb (IV), then G7 (V/V) to C7/C7#5 (V)",
+      "D": "I-V7/IV-IV-iv-I with ii-V (Gm7-C7) turnaround back to I"
     },
     "modulates": false
   }

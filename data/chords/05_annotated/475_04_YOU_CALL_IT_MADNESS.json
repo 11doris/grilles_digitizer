@@ -280,8 +280,8 @@
     "chord": "Bbmaj7"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "e8e819f2f2ebee19143ad7b4bd16c20e8695f58988fcdf22a9723a298cc2343a",
+    "status": "agreed",
+    "source_sha256": "9644bd82a368c01208e0995c3614a541d8a141061ef2ac899093d8ed6410807b",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -292,24 +292,19 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "F",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "ii-V-chains",
-      "turnaround-ending"
+      "turnaround-ending",
+      "ii-V-chains"
     ],
     "sections": {
-      "A": "IV-iv-I with Bb9, iii-VI7 (Am7-D7), ii-#io7-ii-V (Gm7-F#o7-Gm7-C) resolving to I (F6)",
-      "A1": "Repeat of A: IV-iv-I, iii-VI7, ii-V into I",
-      "B": "ii-V of Bb (Cm7-F7) to Bb, D7-Gm, Eb9-D7, Gm7-Db7 into V (C9sus4)",
-      "A2": "Repeat of A: IV-iv-I, iii-VI7, ii-V resolving to I (F6)"
+      "A": "IV-iv-I motion (Bb-Bbm6-Fmaj7), ii-V (Am7-D7) into vi, then V7(b9) resolving to I6",
+      "A1": "Repeat of A: IV-iv-I with ii-V and C7(b9)-F6 cadence",
+      "B": "ii-V of Bb (Cm7-F7) to Bb, D7-Gm, Eb9-D7 vamp, then Db7-C9sus4 (bII-V) back to F",
+      "A2": "Repeat of A: IV-iv-I ending on F6"
     },
     "modulates": false
   }

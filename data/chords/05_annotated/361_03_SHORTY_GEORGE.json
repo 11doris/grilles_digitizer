@@ -251,8 +251,8 @@
     "chord": "Db6"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "614d9a32fe2b57131602580b67a159ef142413bbf2ff05561191d2ee5b1abc0d",
+    "status": "agreed",
+    "source_sha256": "8a434cf0607612b1d46e22da1f308e88a7901f9b61f70df7156b508411d61a79",
     "scorer": {
       "tonic": "Db",
       "mode": "major",
@@ -263,25 +263,19 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "Db",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
       "turnaround-ending",
-      "chromatic-descent",
-      "dominant-cycle-bridge"
+      "chromatic-descent"
     ],
     "sections": {
-      "A": "I6-#io7-ii7-V7 loop, then I-I7-IV-iv with A7/Ab7 chromatic approach to I6/9",
-      "A1": "Same as A: I6-#io7-ii7-V7 then I-I7-IV-iv-V approach to I6",
-      "B": "Bridge on dominant chords A13-D9 (bVI/II) alternating, returning to Db then A9-Ab9 (V) setup",
-      "A3": "Restatement of A: I6-#io7-ii7-V7 then IV-iv chromatic approach to I6"
+      "A": "I6 with passing dim to ii-V (Ebm7-Ab7), then I-I7 to IV-IVm and A7-Ab7 back to I",
+      "A1": "Same as A, I6 with ii-V motion, IV-IVm, dominant approach resolving to Db6",
+      "B": "Dominant chords A13-D9-Db-Db9 chromatic movement, ending on V (Ab9)",
+      "A3": "Same as A, resolves to Db6"
     },
     "modulates": false
   }

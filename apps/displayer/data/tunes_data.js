@@ -95,17 +95,6 @@ window.TUNES = [
    "title": "AIN'T MISBEHAVIN'",
    "page": 9,
    "source": "Anthologie des grilles de jazz",
-   "recordings": [
-    "D.Ellington 33.44- G.Ammons 51- R.Brown 60",
-    "L.Armstrong 29.38.44(.47) 48.51.55- Charleston Chasers 29",
-    "T.Mills/B.Robinson 29- S.Bechet 40.59- B.Heckett 39",
-    "M.Henderson 40- C.Hopkins 34- J.R.Morton 38- J.Mundy 37",
-    "Quintet H.C.F. 37- F.Waller 29.35.38.39.43- T.Wilson 37",
-    "E.Fitzgerald/C.Basie 63- T.Buckner/B.Bechet 59- J.Noone 29",
-    "B.Holiday 55- Basie 54.58- E.Bostic 52.59- Co.Williams 41",
-    "D.Gillespie 52- B.Goodman 45- C.Hawkins 54- E.Hines 47.56.65",
-    "S.Ellis 29- F.Johnson 44- Jim.Smith 62- A.Tatum 47.53-"
-   ],
    "variants": [
     {
      "applies_to": "BAR 1",
@@ -132,6 +121,17 @@ window.TUNES = [
       }
      ]
     }
+   ],
+   "recordings": [
+    "D.Ellington 33.44- G.Ammons 51- R.Brown 60",
+    "L.Armstrong 29.38.44(.47) 48.51.55- Charleston Chasers 29",
+    "T.Mills/B.Robinson 29- S.Bechet 40.59- B.Heckett 39",
+    "M.Henderson 40- C.Hopkins 34- J.R.Morton 38- J.Mundy 37",
+    "Quintet H.C.F. 37- F.Waller 29.35.38.39.43- T.Wilson 37",
+    "E.Fitzgerald/C.Basie 63- T.Buckner/B.Bechet 59- J.Noone 29",
+    "B.Holiday 55- Basie 54.58- E.Bostic 52.59- Co.Williams 41",
+    "D.Gillespie 52- B.Goodman 45- C.Hawkins 54- E.Hines 47.56.65",
+    "S.Ellis 29- F.Johnson 44- Jim.Smith 62- A.Tatum 47.53-"
    ],
    "sections": {
     "verse_A": [
@@ -478,12 +478,6 @@ window.TUNES = [
     "tonic": "Eb",
     "mode": "major"
    },
-   "section_keys": {
-    "B": {
-     "tonic": "Bb",
-     "mode": "major"
-    }
-   },
    "opening": {
     "degree": "I",
     "quality": "maj",
@@ -491,7 +485,7 @@ window.TUNES = [
    },
    "key_annotation": {
     "status": "verified",
-    "source_sha256": "c1bd68542a682c4e2519c911675023d558331a4cddcbe39019149f99a5e74675",
+    "source_sha256": "aab29bfe8c95fe3ea0ffec4f1c9fba1582faf26d4ff32239d10173fcfbc39513",
     "scorer": {
      "tonic": "Eb",
      "mode": "major",
@@ -501,7 +495,7 @@ window.TUNES = [
      "tonic": "Eb",
      "mode": "major",
      "confidence": "high",
-     "modulation_note": "bridge centers on Bb (the dominant) before returning to Eb",
+     "modulation_note": "bridge (B) centers on Bb (V of Eb) with ii-V of Bb",
      "section_keys": {
       "B": {
        "tonic": "Bb",
@@ -512,26 +506,25 @@ window.TUNES = [
     "human": {
      "tonic": "Eb",
      "mode": "major",
-     "corrected": false
+     "corrected": true
     }
    },
    "harmonic_fingerprint": {
-    "family": "32-bar AABA standard with 16-bar verse",
+    "family": "32-bar AABA standard (with 16-bar verse)",
     "tags": [
      "ii-V-chains",
      "turnaround-ending",
      "chromatic-descent"
     ],
     "sections": {
-     "verse_A": "Eb alternating with B9/E chromatic neighbor, then G7-C7-F7-Bb7 circle back to Eb",
-     "verse_A1": "Same opening, then Cm-Am7b5-D7 to G, A7-D7-G with Bb7 pivot back",
-     "A": "I-vi-ii-V, I with G7#5 to IV/IVm, then Gb7 chromatic, ii-V and G7-C7-F7-Bb7 turnaround",
-     "A1": "Same as A, ending I-IV-I-V7 (G7) turnaround",
-     "B": "Cm-Ab7-F7-C7 then cadences on Bb (V), Cm7-F7-Bb, C7-F7-Bb7 back to Eb",
-     "A2": "Same as A, resolving cleanly to Eb tonic"
+     "verse_A": "I alternating with chromatic B9/E neighbor chords, then ii-V (F7-Bb7) back to I",
+     "verse_A1": "I with chromatic neighbors, then vi-oriented ii-Vs cadencing toward G, ending Bb7 (V)",
+     "A": "I-vi-ii-V, with Ab/Abm plagal move and Gb7, chain of dominants G7-C7-F7-Bb7",
+     "A1": "Same as A but resolves I-IV-I with G7 turnaround",
+     "B": "Cm-Ab7-F7-C7 dominant motion landing on Bb, ii-V of Bb, ending F7-Bb7 back to I",
+     "A2": "Restates A ending on tonic Eb"
     },
-    "modulates": true,
-    "modulation_note": "bridge centers on Bb (the dominant) before returning to Eb"
+    "modulates": false
    }
   },
   "melody_image": "melody_crops/17_01_AINT_MISBEHAVIN.png",
@@ -587,10 +580,291 @@ window.TUNES = [
  },
  {
   "id": "11_03_ALL_ALONE",
-  "title": "All Alone",
+  "title": "ALL ALONE",
   "chord_image": "crops/11_03_ALL_ALONE.png",
-  "has_chord_json": false,
+  "has_chord_json": true,
   "has_melody_abc": false,
+  "tune": {
+   "composer": "Irving BERLIN",
+   "year": "1924",
+   "style": "STANDARD",
+   "tempo": "MEDIUM",
+   "form": "32 A B C D",
+   "time_signature": "4/4",
+   "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+   },
+   "recordings": [
+    "A.Casey 60- California Ramblers 30",
+    "B.Taylor 61- A.Shaw 37- Y.Lateef 57",
+    "D.Robertson 39- Budd Johnson 44",
+    "Se.Williams 38- T.Monk 57- O.Best 47",
+    "B.Carter 58- R.Garland 61",
+    "B.Gordon 63- M.Moore 25- R.Braff"
+   ],
+   "sections": {
+    "A": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "F"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "F"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "C7"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "C7"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "F"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "C7#5"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "F"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "F"
+      }
+     }
+    ],
+    "B": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "Em7b5"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "A7"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Dm"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "Dm"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "A"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "E7"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "Am"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "C7"
+      }
+     }
+    ],
+    "C": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "F7"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "F7"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Bb"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "Bb"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "G7"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "G7"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "C7"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "C7#5"
+      }
+     }
+    ],
+    "D": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "F"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "F7"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Bb"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "Bbm"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "F",
+       "3": "Dm"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "Gm7",
+       "3": "C7"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "F"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "F"
+      }
+     }
+    ]
+   },
+   "title": "ALL ALONE",
+   "page": 11,
+   "source": "Anthologie des grilles de jazz",
+   "key": {
+    "tonic": "F",
+    "mode": "major"
+   },
+   "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+   },
+   "key_annotation": {
+    "status": "verified",
+    "source_sha256": "b5616c6f9d733e1ac53948336d4215ed89107fb3036ffe5ea107263b45a07d06",
+    "scorer": {
+     "tonic": "F",
+     "mode": "major",
+     "margin": 0.643,
+     "section_keys": {
+      "B": {
+       "tonic": "D",
+       "mode": "minor",
+       "margin": 1.0
+      },
+      "C": {
+       "tonic": "Bb",
+       "mode": "major",
+       "margin": 0.64
+      }
+     }
+    },
+    "llm": {
+     "tonic": "F",
+     "mode": "major",
+     "confidence": "high",
+     "modulation_note": null
+    },
+    "human": {
+     "tonic": "F",
+     "mode": "major",
+     "corrected": false
+    }
+   },
+   "harmonic_fingerprint": {
+    "family": "32-bar ABCD standard",
+    "tags": [
+     "ii-V-chains",
+     "turnaround-ending"
+    ],
+    "sections": {
+     "A": "I with V7 motion (C7/C7#5) resolving back to I in F",
+     "B": "ii-V-i into Dm (vi), then A-E7-Am tonicizing iii, ending on C7 (V)",
+     "C": "F7 (V7/IV) to Bb (IV), then G7 (V/V) to C7/C7#5 (V)",
+     "D": "I-V7/IV-IV-iv-I with ii-V (Gm7-C7) turnaround back to I"
+    },
+    "modulates": false
+   }
+  },
   "melody_image": "melody_crops/23_02_ALL_ALONE.png"
  },
  {
@@ -800,39 +1074,7 @@ window.TUNES = [
    "title": "ANNIE LAURIE",
    "page": 20,
    "source": "Anthologie des grilles de jazz",
-   "recordings": [
-    "D.Byas 45- J.Forrest 61- T.Grimes 48",
-    "B.Myers 45- J.Newman 55- T.Dorsey 38",
-    "J.Lunceford 37.42- M.Manone 36- B.May 57",
-    "M.Sullivan 37- F.Waller 39",
-    "C.Basie/F.Sinatra 62"
-   ],
    "variants": [
-    {
-     "applies_to": "BAR 27",
-     "targets": [
-      {
-       "section": "C",
-       "bar": 3
-      }
-     ],
-     "bars": [
-      {
-       "bar": 1,
-       "beats": {
-        "1": "C",
-        "3": "E7"
-       }
-      },
-      {
-       "bar": 2,
-       "beats": {
-        "1": "Am",
-        "3": "Fm6"
-       }
-      }
-     ]
-    },
     {
      "applies_to": "BAR 6",
      "targets": [
@@ -861,7 +1103,39 @@ window.TUNES = [
        }
       }
      ]
+    },
+    {
+     "applies_to": "BAR 27",
+     "targets": [
+      {
+       "section": "C",
+       "bar": 3
+      }
+     ],
+     "bars": [
+      {
+       "bar": 1,
+       "beats": {
+        "1": "C",
+        "3": "E7"
+       }
+      },
+      {
+       "bar": 2,
+       "beats": {
+        "1": "Am",
+        "3": "Fm6"
+       }
+      }
+     ]
     }
+   ],
+   "recordings": [
+    "D.Byas 45- J.Forrest 61- T.Grimes 48",
+    "B.Myers 45- J.Newman 55- T.Dorsey 38",
+    "J.Lunceford 37.42- M.Manone 36- B.May 57",
+    "M.Sullivan 37- F.Waller 39",
+    "C.Basie/F.Sinatra 62"
    ],
    "notation_notes": {
     "composer_date": "Composer's dates unknown - the header prints '(Lady J.D. Scott, ?)'.",
@@ -1081,8 +1355,8 @@ window.TUNES = [
     "chord": "C"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "1c62059e6cd43eee350a18be171bc55f9923239d26c68980f930c19234f6fb70",
+    "status": "agreed",
+    "source_sha256": "e35f7091141e21b312fe45c1293a0bb7c391a6d25387e6e7e6c67d0a969d8e38",
     "scorer": {
      "tonic": "C",
      "mode": "major",
@@ -1093,24 +1367,19 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "C",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
-    "family": "32-bar AA'BC standard",
+    "family": "32-bar AABC standard",
     "tags": [
      "circle-of-fifths",
      "turnaround-ending"
     ],
     "sections": {
-     "A": "I-I+5-IV-#ivo7-I with V/V (D7) to G7 ending on V",
-     "A1": "I-I+5-IV-#ivo7-I-V7-I authentic cadence",
-     "B": "I-V7-I then vi-IV to E7 (V/vi) dwelling on E7",
-     "C": "IV-#ivo7-I-(V7)-I-V7-I cadence"
+     "A": "I-I+ to IV with #iv°7 passing, then I-V/V-V7 ending on dominant",
+     "A1": "I-I+ to IV with #iv°7, resolving I-V7-I",
+     "B": "I-V7-I, then vi-IV-V/vi (E7) as secondary dominant",
+     "C": "IV-#iv°7-I-(V7), then I-V7-I cadence"
     },
     "modulates": false
    }
@@ -1438,8 +1707,8 @@ window.TUNES = [
     "chord": "F"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "ea9e1fbaed62434cb617133024fc295f3706b09fd21f282753c514f812912a75",
+    "status": "agreed",
+    "source_sha256": "f2fc70ea45de008a928c2efedfb6e95a7a729c90cfd41969e988a2039b41e5a7",
     "scorer": {
      "tonic": "F",
      "mode": "major",
@@ -1450,11 +1719,6 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "F",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
@@ -1466,10 +1730,10 @@ window.TUNES = [
      "turnaround-ending"
     ],
     "sections": {
-     "A": "I then dominant chain A7-D7-G7-C7 (V/vi through circle of fifths) back to I, ending ii-V turnaround",
-     "A1": "Same as A with resolution to I via IV (Bb) plagal touch",
-     "B": "#io7-ii-iv-I motion then vi-II-V (Dm-G7-C7) with #io7 into ii-V turnaround",
-     "A2": "Repeat of A1 resolving firmly to I"
+     "A": "I then dominant cycle iii-VI7-II7-V7-V/IV(C7) resolving to I, ending Gm7-C7 (ii-V)",
+     "A1": "Same dominant cycle back to I with I-IV-I tag",
+     "B": "#io7-ii-iv-I then vi-V/V-V7 with io7 passing, ending ii-V",
+     "A2": "Dominant cycle resolving to I with I-IV-I ending"
     },
     "modulates": false
    }
@@ -1808,7 +2072,7 @@ window.TUNES = [
    },
    "key_annotation": {
     "status": "verified",
-    "source_sha256": "0e7af36560038cba09d36523663008a70ab00b8d36f60892109713ac5223cfd5",
+    "source_sha256": "1f7fc2972d3b822674813eebd6283727cfe307a6364246d7931c931f8db9a993",
     "scorer": {
      "tonic": "Eb",
      "mode": "major",
@@ -1840,10 +2104,10 @@ window.TUNES = [
      "turnaround-ending"
     ],
     "sections": {
-     "A": "ii-V (Fm7-Bb7) to I Eb, with V/V (C7) and F7 (V/V) motion, ending Fm7-Eo7",
-     "A1": "Same as A but ends on I Eb moving to Eb7 (V/IV) via Abm",
-     "B": "IV Ab, half-dim ii-V toward Fm/Cm region, F7 then Fm7-Eo7 returning home",
-     "A2": "ii-V to I Eb with diminished passing and final resolution to Eb"
+     "A": "ii-V (Fm7-Bb7) into I (Eb), with V/V (C7) and dominant motion, ends on iv-related Fm7-Eo7",
+     "A1": "Same ii-V-I opening resolving to Eb, closing with Eb-Abm-Eb7 setting up the bridge",
+     "B": "Starts on IV (Ab), moves through Gm7b5-C7 to Fm, diminished passing to Cm-F7, back to Fm7-Eo7",
+     "A2": "ii-V-I opening as before with added diminished passing chords, final cadence resting on Eb"
     },
     "modulates": false
    }
@@ -3405,8 +3669,8 @@ window.TUNES = [
     "chord": "Gm"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "606ba7cea00a81e480008390f04acc8fe30fc0ed67e572169f558e31dd48483d",
+    "status": "agreed",
+    "source_sha256": "72fcb819a941e5e2c5a9d25fac05f1d9f0ce68d0261efecb5b280a36eb0c907e",
     "scorer": {
      "tonic": "G",
      "mode": "minor",
@@ -3417,28 +3681,23 @@ window.TUNES = [
      "mode": "minor",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "G",
-     "mode": "minor",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
-    "family": "32-bar with 24-bar verse (AAB verse + AABC chorus)",
+    "family": "32-bar tune with verse (AAB verse + AABC chorus)",
     "tags": [
      "ii-V-chains",
      "circle-of-fifths",
      "turnaround-ending"
     ],
     "sections": {
-     "verse_A": "i-i7, bVI7-V7/i, iv, V7-i tonic area with G7(b9) as V/iv into iv, ending on iv6-V7",
-     "verse_A1": "same as verse A with i-V7-i resolution, ending on iv6-V7",
-     "s1_B": "i, V/V-V7, i-bVII7 to bVI(Bb), iiø-V7-i, then bVI7-V7 turnaround",
-     "A": "iv7-bVII7-bIIImaj7-bVImaj7 (circle of fifths through relative Bb major), then iiø-V7-i",
-     "A1": "repeat: circle-of-fifths iv7-bVII7-III-VI then iiø-V7-i",
-     "B": "V7 pedal to i, then iv7-bVII7-III-VI circle of fifths",
-     "C": "iiø-V7-i with i(maj7), iø-viø chromatic, bVI7-V7-i final cadence"
+     "verse_A": "i-i7, bVI7-V7, iv, V7-i in Gm with G(b9) as V/iv pedal into iv",
+     "verse_A1": "same as verse_A with i-V7-i and Cm6/D7 turnaround",
+     "verse_B": "i, V/V-V7, i-VI7 to bVI(Bb), iiø-V7-i then bVI7-V7",
+     "A": "iv7-bVII7-bIIImaj7-bVImaj7 then iiø-V7-i (Cm7-F7-Bbmaj7-Ebmaj7-Am7b5-D7-Gm)",
+     "A1": "repeat of A: circle-of-fifths into iiø-V7-i in Gm",
+     "B": "V7 pedal to i, then iv7-bVII7-bIIImaj7-bVImaj7",
+     "C": "iiø-V7-i with i(maj7), iø-viiø, bVI7-V7-i final cadence"
     },
     "modulates": false
    }
@@ -3446,10 +3705,347 @@ window.TUNES = [
  },
  {
   "id": "26_01_AUTUMN_NOCTURNE",
-  "title": "Autumn Nocturne",
+  "title": "AUTUMN NOCTURNE",
   "chord_image": "crops/26_01_AUTUMN_NOCTURNE.png",
-  "has_chord_json": false,
-  "has_melody_abc": false
+  "has_chord_json": true,
+  "has_melody_abc": false,
+  "tune": {
+   "composer": "Joseph MYROW – Kim GANNON",
+   "year": "1941",
+   "style": "STANDARD",
+   "tempo": "SLOW",
+   "form": "32 A A'B A''",
+   "time_signature": "4/4",
+   "title": "AUTUMN NOCTURNE",
+   "page": 26,
+   "source": "Anthologie des grilles de jazz",
+   "recordings": [
+    "C.Spivack 41- M.Mc Partland 57",
+    "S.Rollins 65- T.Gibbs 55- T.Scott 55",
+    "Lambert/Hendricks/Ross 58",
+    "A.Farmer 54- G.Gustin 56- Joh.Smith 58",
+    "G.Shearing 60- Cass Lems 41",
+    "C.Thornhill 41- Seld. Powell 55"
+   ],
+   "notation_notes": {
+    "coda_bar1": "CODA bar 1 upper reads 'C7M' (major 7) normalised to Cmaj7 over Db9; encoded as split box.",
+    "coda_repeats": "CODA bars 2 and 3 are bar-repeat signs (•/•) copying the preceding bar.",
+    "coda_bar4": "CODA bar 4 is a C six-nine chord (superscript 9 over 6) -> C69.",
+    "A2_bar4": "Section A'' bar 4 is a leading-arrow/dash row; empty boxes take the same-position bar from A', so bars 1-3 copy A' bars 1-3."
+   },
+   "sections": {
+    "A": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "C",
+       "3": "A7b9"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "Dm7",
+       "3": "G7",
+       "4": "G#o7"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Am",
+       "3": "Am7"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "F#m7b5",
+       "3": "Fm6"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "Em7",
+       "3": "Ebo7"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "Dm7",
+       "3": "G7#5"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "Bb9",
+       "3": "A7"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "D9",
+       "3": "G7#5"
+      }
+     }
+    ],
+    "A1": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "C",
+       "3": "A7b9"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "Dm7",
+       "3": "G7",
+       "4": "G#o7"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Am",
+       "3": "Am7"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "F#m7b5",
+       "3": "Fm6"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "Em7",
+       "3": "Ebo7"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "Dm9",
+       "2": "Bb7",
+       "3": "A7"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "D9",
+       "3": "G7#5"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "C",
+       "3": "F#m7b5",
+       "4": "B7"
+      }
+     }
+    ],
+    "B": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "E",
+       "3": "F"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "E",
+       "3": "F9b5"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "E",
+       "3": "F6"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "B7",
+       "3": "Am7b5",
+       "4": "D7"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "G",
+       "3": "Ab"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "G",
+       "3": "Ab9b5"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "G",
+       "3": "Eb7",
+       "4": "D7b9"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "G",
+       "3": "Dm7b5",
+       "4": "G7"
+      }
+     }
+    ],
+    "A2": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "C",
+       "3": "A7b9"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "Dm7",
+       "3": "G7",
+       "4": "G#o7"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "Am",
+       "3": "Am7"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "F#m7b5",
+       "3": "Fm6"
+      }
+     },
+     {
+      "bar": 5,
+      "beats": {
+       "1": "Em7",
+       "3": "A7b9"
+      }
+     },
+     {
+      "bar": 6,
+      "beats": {
+       "1": "D9",
+       "3": "G7#5"
+      }
+     },
+     {
+      "bar": 7,
+      "beats": {
+       "1": "C",
+       "3": "Db7"
+      }
+     },
+     {
+      "bar": 8,
+      "beats": {
+       "1": "Dm7",
+       "3": "Db9"
+      }
+     }
+    ],
+    "coda": [
+     {
+      "bar": 1,
+      "beats": {
+       "1": "Cmaj7",
+       "3": "Db9"
+      }
+     },
+     {
+      "bar": 2,
+      "beats": {
+       "1": "C7",
+       "3": "Db9"
+      }
+     },
+     {
+      "bar": 3,
+      "beats": {
+       "1": "C7",
+       "3": "Db9"
+      }
+     },
+     {
+      "bar": 4,
+      "beats": {
+       "1": "C69"
+      }
+     }
+    ]
+   },
+   "key": {
+    "tonic": "C",
+    "mode": "major"
+   },
+   "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "C"
+   },
+   "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "0a10cb41a933e620ab430c5f221c9ee8c67f29c5bacf030630469103834af17f",
+    "scorer": {
+     "tonic": "C",
+     "mode": "major",
+     "margin": 0.4298
+    },
+    "llm": {
+     "tonic": "C",
+     "mode": "major",
+     "confidence": "high",
+     "modulation_note": "Bridge (B) leaves C: first half oscillates around E major, second half around G major, before G7 leads back to C."
+    }
+   },
+   "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+     "ii-V-chains",
+     "chromatic-descent",
+     "turnaround-ending"
+    ],
+    "sections": {
+     "A": "I with V/ii, ii-V-#iio, descending line vi-#ivo7-iv, iii-biiio7-ii, chromatic dominants Bb9-A7-D9-G7#5",
+     "A1": "Same as A, resolving through Dm9-Bb7-A7-D9-G7#5 back to I, ending I with F#m7b5-B7",
+     "B": "E major oscillating with upper-neighbor F chords then B7; shifts to G major with Ab neighbors, Eb7-D7b9, ending Dm7b5-G7 (V of C)",
+     "A2": "I with V/ii, ii-V-#iio, vi motion, iii-A7b9, D9-G7#5, then I-Db7 tritone sub and ii-Db9",
+     "coda": "Imaj7 with Db9 tritone-sub tag, C7-Db9 vamp resolving to C69"
+    },
+    "modulates": true,
+    "modulation_note": "Bridge (B) leaves C: first half oscillates around E major, second half around G major, before G7 leads back to C."
+   }
+  }
  },
  {
   "id": "25_03_AVALON",
@@ -4367,7 +4963,7 @@ window.TUNES = [
    },
    "key_annotation": {
     "status": "verified",
-    "source_sha256": "fe73a78f545b9b81e9afd033320d3d7ae33527185dbf12fa44fb0d2d4637a7e0",
+    "source_sha256": "2c324315a23068c4aac2cd0d9f27716d36ca04409ac6a44a07ce81a191591fc4",
     "scorer": {
      "tonic": "Bb",
      "mode": "major",
@@ -4377,7 +4973,7 @@ window.TUNES = [
      "tonic": "Bb",
      "mode": "major",
      "confidence": "high",
-     "modulation_note": "verse sections centered in G major (ending on D7); main chorus in Bb",
+     "modulation_note": "verses centered on G (I with V/V-V and chromatic dominants); chorus in Bb",
      "section_keys": {
       "verse_A": {
        "tonic": "G",
@@ -4396,21 +4992,22 @@ window.TUNES = [
     }
    },
    "harmonic_fingerprint": {
-    "family": "16-bar tune with verse",
+    "family": "verse-chorus 16-bar tune",
     "tags": [
      "circle-of-fifths",
      "dominant-cycle-bridge",
+     "verse-present",
      "chromatic-descent",
      "turnaround-ending"
     ],
     "sections": {
-     "verse_A": "G tonic with A7-D7 (V/V-V) then chromatic dominants Eb7-C7-F7-Gb7-Eb7-D7 back to V",
-     "verse_A1": "Repeat of verse: G, chromatic dominant chain ending on D7 (V of G)",
-     "A": "Dominant circle-of-fifths G7-C7-F7 resolving to Bb (I), then Eb7-D7 turnaround",
-     "s2_A1": "G7-C7 then Gb7 to Bb with F#o7-Gm, Cm-Ebm, F7-Bb final cadence"
+     "verse_A": "I in G then V/V-V (A7-D7), chain of chromatic dominants Eb7-C7-F7-Gb7-Eb7 ending on D7 (V)",
+     "verse_A1": "Repeat: G tonic, A7-D7, chromatic dominants ending on D7 (V)",
+     "A": "Circle of dominants VI7-II7-V7 (G7-C7-F7) to I (Bb), then Eb7-D7 turnaround",
+     "A1": "VI7-II7 (G7-C7) then Gb7, back to I with F#o7-Gm-Cm-Ebm-F7-Bb (V-I) cadence"
     },
     "modulates": true,
-    "modulation_note": "verse sections centered in G major (ending on D7); main chorus in Bb"
+    "modulation_note": "verses centered on G (I with V/V-V and chromatic dominants); chorus in Bb"
    }
   },
   "melody_image": "melody_crops/51_02_BALLIN_THE_JACK.png"
@@ -9006,8 +9603,8 @@ window.TUNES = [
     "chord": "Eb"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "852b7a8053dff21035e90cdaa5f99e41f67c62bee18dd3ac5b913a6d64773317",
+    "status": "agreed",
+    "source_sha256": "3aaa16da92cef98ca6cb0518fb5e60ef0a5b21b30dfae21d67b3c8463ea9f13b",
     "scorer": {
      "tonic": "Eb",
      "mode": "major",
@@ -9018,25 +9615,19 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "Eb",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
-    "family": "32-bar ABAC standard",
+    "family": "32-bar ABA'C standard",
     "tags": [
      "circle-of-fifths",
-     "dominant-cycle-bridge",
-     "ii-V-chains"
+     "dominant-cycle-bridge"
     ],
     "sections": {
-     "A": "Tonic I (Eb) for six bars then V7 (Bb7)",
-     "B": "Dominant cycle: III7(G7)-vi(Cm)-II7(F7)-V7(Bb7)",
-     "A1": "I-I7-IV: Eb to Eb7 leading to Ab (IV)",
-     "C": "IV-ivm-I-VI7-II7-V7-I turnaround resolving to Eb"
+     "A": "I held for six bars then V7 (Bb7) for two",
+     "B": "Dominant cycle: V/vi (G7) - vi (Cm) - V/V (F7) - V (Bb7)",
+     "A1": "I - I7 (V7/IV) - IV (Ab)",
+     "C": "IV - iv (Ab-Abm) - I - V/ii (C7) - V/V (F7) - V (Bb7) - I resolution"
     },
     "modulates": false
    }
@@ -9106,17 +9697,6 @@ window.TUNES = [
    "title": "CLOSE YOUR EYES",
    "page": 77,
    "source": "Anthologie des grilles de jazz",
-   "recordings": [
-    "G.Ammons 60- K.Curtis 60- Jazz Messengers 59",
-    "E.Fitzgerald 57- B.Goodman 54- M.Jackson 59",
-    "U.Green 61- Jo Jones 59- O.Peterson 59",
-    "H.Baker 59- R.Eldridge/B.Carter 55-",
-    "E.Davis 58"
-   ],
-   "notation_notes": {
-    "verse_note": "Header prints '16 VERSE'.",
-    "bar15_variant": "Variant marker '*' at Bar 15 of the head (A' section bar 7)."
-   },
    "variants": [
     {
      "applies_to": "Bar 15",
@@ -9132,10 +9712,27 @@ window.TUNES = [
        "beats": {
         "1": "Fm"
        }
+      },
+      {
+       "bar": 2,
+       "beats": {
+        "1": "Fm"
+       }
       }
      ]
     }
    ],
+   "recordings": [
+    "G.Ammons 60- K.Curtis 60- Jazz Messengers 59",
+    "E.Fitzgerald 57- B.Goodman 54- M.Jackson 59",
+    "U.Green 61- Jo Jones 59- O.Peterson 59",
+    "H.Baker 59- R.Eldridge/B.Carter 55-",
+    "E.Davis 58"
+   ],
+   "notation_notes": {
+    "verse_note": "Header prints '16 VERSE'.",
+    "bar15_variant": "Variant marker '*' at Bar 15 of the head (A' section bar 7)."
+   },
    "sections": {
     "A": [
      {
@@ -9359,7 +9956,7 @@ window.TUNES = [
    },
    "key_annotation": {
     "status": "verified",
-    "source_sha256": "b09a02694726c1a8bf76e492fc0352c2f82483def903b8eb77426ffe26bfc75a",
+    "source_sha256": "69b99d2956fe01b5017fd7c8a4a38ef8b13f316ee9f7a993565e713478df0bb7",
     "scorer": {
      "tonic": "F",
      "mode": "minor",
@@ -9369,7 +9966,7 @@ window.TUNES = [
      "tonic": "F",
      "mode": "minor",
      "confidence": "high",
-     "modulation_note": "bridge moves to Bb (ii-V-I in Bb) before returning via C7 to F minor",
+     "modulation_note": "bridge tonicizes Bb (ii-V-I in Bb) before turning back to Fm",
      "section_keys": {
       "B": {
        "tonic": "Bb",
@@ -9387,16 +9984,17 @@ window.TUNES = [
     "family": "32-bar AABA standard",
     "tags": [
      "ii-V-chains",
-     "turnaround-ending"
+     "turnaround-ending",
+     "chromatic-descent"
     ],
     "sections": {
-     "A": "iidim7-V7 (Gm7b5-C7) repeated resolving to i (Fm), with ii-V back to i",
-     "A1": "same ii-V to i, ending with Fmaj7-Gb7-F6/9 (Picardy tonic)",
-     "B": "Cm7-F7 (ii-V of Bb) to Bb9, Db7 then C7 as V7 back to F minor",
-     "A2": "iidim7-V7 to i (Fm), ending on F tonic"
+     "A": "iidim-V7 (Gm7b5-C7) repeated resolving to i (Fm) in F minor",
+     "A1": "same ii-V opening, ending on Fmaj7-Gb7-F69 Picardy tonic",
+     "B": "Cm7-F7 ii-V into Bb9, then Db7-C7 turnaround back to F minor",
+     "A2": "ii-V (Gm7b5-C7) to i (Fm), ending on F tonic"
     },
     "modulates": true,
-    "modulation_note": "bridge moves to Bb (ii-V-I in Bb) before returning via C7 to F minor"
+    "modulation_note": "bridge tonicizes Bb (ii-V-I in Bb) before turning back to Fm"
    }
   },
   "melody_image": "melody_crops/149_01_CLOSE_YOUR_EYES.png"
@@ -9874,15 +10472,6 @@ window.TUNES = [
    "title": "CON ALMA",
    "page": 79,
    "source": "Anthologie des grilles de jazz",
-   "recordings": [
-    "R.Haynes 80- O.Peterson 59- H.McKusick 57",
-    "Mitchell/Ruff 61- R.Weston 69- S.Getz 57",
-    "R.Bryant 61- A.Farmer/B.Golson 60",
-    "D.Gillespie 54.57.63(Double six).68"
-   ],
-   "notation_notes": {
-    "year_uncertain": "Header prints 'Dizzy GILLESPIE 1954 ?'."
-   },
    "variants": [
     {
      "applies_to": "Bar 23",
@@ -9910,6 +10499,15 @@ window.TUNES = [
      ]
     }
    ],
+   "recordings": [
+    "R.Haynes 80- O.Peterson 59- H.McKusick 57",
+    "Mitchell/Ruff 61- R.Weston 69- S.Getz 57",
+    "R.Bryant 61- A.Farmer/B.Golson 60",
+    "D.Gillespie 54.57.63(Double six).68"
+   ],
+   "notation_notes": {
+    "year_uncertain": "Header prints 'Dizzy GILLESPIE 1954 ?'."
+   },
    "sections": {
     "A": [
      {
@@ -10176,13 +10774,13 @@ window.TUNES = [
     "mode": "major"
    },
    "opening": {
-    "degree": "III",
+    "degree": "I",
     "quality": "maj",
     "chord": "Emaj7"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "e422b5f74d541334fe18464986417bad293dff9ed09a62d3e3d7832e1f86cc8e",
+    "status": "agreed",
+    "source_sha256": "6bd9ee02adf69821a3d622a7911fedde134a4040927c836fa6462933702dc82e",
     "scorer": {
      "tonic": "E",
      "mode": "major",
@@ -10193,26 +10791,21 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "C",
-     "mode": "major",
-     "corrected": true
     }
    },
    "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
      "ii-V-chains",
-     "chromatic-descent",
-     "chromatic-third-relations"
+     "major-thirds-cycle",
+     "circle-of-fifths"
     ],
     "sections": {
-     "A": "Emaj7 tonic with V7/IV, then chains of ii-V's tonicizing Db, Eb, Db and C major key centers a major third apart",
-     "A1": "Same as A, resolving to Cmaj7 without turnaround",
-     "B": "ii-V into E (Cm7b5-F7, F#m7b5-B7 to Emaj9), then Fm7-Bb7 ii-V",
-     "A2": "Repeat of A resolving to Cmaj7",
-     "interlude": "C9#5 vamp moving to Gbmaj9, Fm(maj7), C7b5"
+     "A": "Imaj7 launching a major-thirds cycle (E, Db, C tonic areas) via ii-V pairs, ending Cmaj7 with a ii-V back to E",
+     "A1": "Same as A, resolving on Cmaj7",
+     "B": "ii-V in Bb (Cm7b5-F7), ii-V in E (F#m7b5-B7) to Emaj9, then ii-V in Eb (Fm7-Bb7)",
+     "A2": "Restatement of A ending on Cmaj7",
+     "interlude": "C9#5 pedal to Gbmaj9, Fm(maj7), C7b5 vamp"
     },
     "modulates": false
    }
@@ -10623,20 +11216,6 @@ window.TUNES = [
    "title": "COTTAGE FOR SALE",
    "page": 83,
    "source": "Anthologie des grilles de jazz",
-   "notation_notes": {
-    "verse": "Header prints '8 VERSE'."
-   },
-   "recordings": [
-    "V.Dickenson 57- T.King 57",
-    "L.Miles 55- D.Henderson 61",
-    "E.Hines 64.65- F.Sinatra 55",
-    "J.Teagarden 62- D.Wehling",
-    "ton 55- C.Bullock 30-",
-    "B.Doggett 55- D.Byas 62",
-    "E.Bernier 48.54",
-    "B.Eckstine 45",
-    "C.Hawkins 55"
-   ],
    "variants": [
     {
      "applies_to": "Bar 7",
@@ -10650,12 +11229,31 @@ window.TUNES = [
       {
        "bar": 1,
        "beats": {
-        "1": "F7",
-        "3": "Bb7"
+        "1": "F7"
+       }
+      },
+      {
+       "bar": 2,
+       "beats": {
+        "1": "Bb7"
        }
       }
      ]
     }
+   ],
+   "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+   },
+   "recordings": [
+    "V.Dickenson 57- T.King 57",
+    "L.Miles 55- D.Henderson 61",
+    "E.Hines 64.65- F.Sinatra 55",
+    "J.Teagarden 62- D.Wehling",
+    "ton 55- C.Bullock 30-",
+    "B.Doggett 55- D.Byas 62",
+    "E.Bernier 48.54",
+    "B.Eckstine 45",
+    "C.Hawkins 55"
    ],
    "sections": {
     "A": [
@@ -10880,8 +11478,8 @@ window.TUNES = [
     "chord": "Eb"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "94869b79dc3ff6bc317daa1f4d1741cd29f9e32948ae9ed8f1bfa3408751b5c4",
+    "status": "agreed",
+    "source_sha256": "5336369abfaae31a7832488ec39731e5831c98a92789b4666cc144827c4ebb96",
     "scorer": {
      "tonic": "Eb",
      "mode": "major",
@@ -10892,25 +11490,20 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "Eb",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-     "circle-of-fifths",
      "dominant-cycle-bridge",
+     "circle-of-fifths",
      "ii-V-chains"
     ],
     "sections": {
-     "A": "I - V/vi - V/ii(C7b9) - iv-ish (Fm7b5) - Imaj7 with V/vi, ii with bVI7, tritone/dominant approach to I",
-     "A1": "Same as A: I with secondary dominants resolving back to I in Eb",
-     "B": "Dominant cycle G7-C7-F7-Bb7 (circle of fifths) then Fm7-Bb7 ii-V back to Eb",
-     "A2": "Same as A resolving to I in Eb"
+     "A": "I with secondary dominants (V/vi G7, V/ii C7b9), Fm7b5, Imaj7-C7-Fm7-Db7-F7-Bb7 back to I",
+     "A1": "Repeat of A: I with secondary dominants resolving to Eb",
+     "B": "Dominant cycle G7-C7-F7-Bb7 (circle of fifths), Eo7 then ii-V (Fm7-Bb7)",
+     "A2": "Repeat of A ending on I (Eb)"
     },
     "modulates": false
    }
@@ -12013,12 +12606,6 @@ window.TUNES = [
     "tonic": "C",
     "mode": "major"
    },
-   "section_keys": {
-    "B": {
-     "tonic": "E",
-     "mode": "major"
-    }
-   },
    "opening": {
     "degree": "I",
     "quality": "maj",
@@ -12026,7 +12613,7 @@ window.TUNES = [
    },
    "key_annotation": {
     "status": "verified",
-    "source_sha256": "29a700fe98b9d3d80bdfead37ce6701a506024e40a3fe20a1fcefc79b908b525",
+    "source_sha256": "dfbd483bcae74b959aa90306bcafd21df587763f291ee9657f750f09c9a1cb7f",
     "scorer": {
      "tonic": "F",
      "mode": "major",
@@ -12043,7 +12630,7 @@ window.TUNES = [
      "tonic": "C",
      "mode": "major",
      "confidence": "high",
-     "modulation_note": "bridge tonicizes E major before returning via ii-V to C",
+     "modulation_note": "bridge (B) shifts toward E major before returning via ii-V to C",
      "section_keys": {
       "B": {
        "tonic": "E",
@@ -12054,7 +12641,7 @@ window.TUNES = [
     "human": {
      "tonic": "C",
      "mode": "major",
-     "corrected": false
+     "corrected": true
     }
    },
    "harmonic_fingerprint": {
@@ -12065,13 +12652,12 @@ window.TUNES = [
      "chromatic-descent"
     ],
     "sections": {
-     "A": "I-IV9, then descending ii-Vs (Em7-A7b9, Dm7-G7, Gm7-C7b9) to IV with iv borrowed, ending on V/V and V7alt",
-     "A1": "Same as A but resolves to I with Dm7-Db7 and I-iv7b5-B7b9 turnaround",
-     "B": "Em-F9 to Emaj7-C#m7-F#m7-B7 tonicizing E, repeated, ending Dm7-G7 back to C",
-     "A2": "Restatement of A resolving to Cmaj7, ending on F9"
+     "A": "I-IV9, iii-VI7b9, ii-V, then Gm7-C7 to F, Fm7, iii-vi, V/V to V7alt",
+     "A1": "Same opening; ends I with chromatic Dm7-Db, C with iv-V7/vi turnaround",
+     "B": "Em to F9 then Emaj7 with C#m7-F#m7-B7 tonicizing E, repeats, ends ii-V back to C",
+     "A2": "Restatement of A ending on Cmaj7-F9"
     },
-    "modulates": true,
-    "modulation_note": "bridge tonicizes E major before returning via ii-V to C"
+    "modulates": false
    }
   },
   "melody_image": "melody_crops/192_01_DETOUR_AHEAD.png"
@@ -14393,23 +14979,6 @@ window.TUNES = [
    "title": "EVERYTHING HAPPENS TO ME",
    "page": 119,
    "source": "Anthologie des grilles de jazz",
-   "notation_notes": {
-    "verse": "Header prints '4 VERSE'."
-   },
-   "recordings": [
-    "C.Fisher 75- Giants of Jazz72",
-    "B.Powell 47- A.Pepper 52.54",
-    "C.Hawkins 57- B.Holiday 55",
-    "T.Monk 59- C.Parker 49.51",
-    "G.Mulligan 55- S.Getz 63",
-    "S.Rollins 52- J.Raney 54",
-    "D.Gillespie 52- B.Evans 63",
-    "O.Byrd 55",
-    "E.Garner 44.49- S.Getz 51.55",
-    "L.Gonsalves 54- B.De Franco 54",
-    "J.Dorsey 41- B.De Franco",
-    "A.Cohn 54- T.Wilson 53"
-   ],
    "variants": [
     {
      "applies_to": "Bar 2, 10 and 26",
@@ -14439,11 +15008,28 @@ window.TUNES = [
        "bar": 2,
        "beats": {
         "1": "E9b5",
-        "3": "E(b5b9)"
+        "3": "Eb9b5"
        }
       }
      ]
     }
+   ],
+   "notation_notes": {
+    "verse": "Header prints '4 VERSE'."
+   },
+   "recordings": [
+    "C.Fisher 75- Giants of Jazz72",
+    "B.Powell 47- A.Pepper 52.54",
+    "C.Hawkins 57- B.Holiday 55",
+    "T.Monk 59- C.Parker 49.51",
+    "G.Mulligan 55- S.Getz 63",
+    "S.Rollins 52- J.Raney 54",
+    "D.Gillespie 52- B.Evans 63",
+    "O.Byrd 55",
+    "E.Garner 44.49- S.Getz 51.55",
+    "L.Gonsalves 54- B.De Franco 54",
+    "J.Dorsey 41- B.De Franco",
+    "A.Cohn 54- T.Wilson 53"
    ],
    "sections": {
     "A": [
@@ -14687,7 +15273,7 @@ window.TUNES = [
    },
    "key_annotation": {
     "status": "verified",
-    "source_sha256": "1938657aaf0c7d2891f0a15c71c0c58722562a14810faffd5727d9003fb8b89f",
+    "source_sha256": "b028686e6fed4e15d2e0f193e7fdcfa2548323342b80561e4545c90709c661bc",
     "scorer": {
      "tonic": "C",
      "mode": "minor",
@@ -14697,7 +15283,7 @@ window.TUNES = [
      "tonic": "Bb",
      "mode": "major",
      "confidence": "high",
-     "modulation_note": null
+     "modulation_note": "bridge tonicizes Eb then D before returning to Bb"
     },
     "human": {
      "tonic": "Bb",
@@ -14713,12 +15299,13 @@ window.TUNES = [
      "chromatic-descent"
     ],
     "sections": {
-     "A": "ii-V motion (Cm7-F7) over Bb with chromatic passing dim, cadencing to Bb6 (I)",
+     "A": "ii-V motion over Bb (Cm7-F7) with chromatic passing dim, cadencing ii-V to I (Bb6)",
      "A1": "Repeat of A: ii-V loops resolving to Bb6 (I)",
-     "B": "ii-V to Eb (IV), then up to D via Em11-A7-Dmaj7, back through Gm7-C7-Cm7-F7 to Bb",
-     "A2": "Repeat of A: ii-V motion cadencing to Bb6 (I)"
+     "B": "ii-V-I in Eb, then ii-V-I in D, then Gm7-C7 / Cm7-F7 leading back to Bb",
+     "A2": "Repeat of A: ii-V loops resolving to Bb6 (I)"
     },
-    "modulates": false
+    "modulates": true,
+    "modulation_note": "bridge tonicizes Eb then D before returning to Bb"
    }
   },
   "melody_image": "melody_crops/235_02_EVERYTHING_HAPPENS_TO_ME.png"
@@ -14755,17 +15342,31 @@ window.TUNES = [
    "title": "EVERYTIME WE SAY GOODBYE",
    "page": 120,
    "source": "Anthologie des grilles de jazz",
-   "notation_notes": {
-    "verse": "Header prints '10 VERSE'."
-   },
-   "recordings": [
-    "J.Mehegan 55- S.Rollins 55- S.Vaughan 61",
-    "J.Morello 61- T.Wilson 45- E.Fitzgerald 56",
-    "B.Evers/L.Konitz/W.Marsh 77- J.Coltrane 60",
-    "R.Charles 61- S.Hanna 61- I.Jacquet 64",
-    "S.Kenton 44.55"
-   ],
    "variants": [
+    {
+     "applies_to": "Bar 14",
+     "targets": [
+      {
+       "section": "B",
+       "bar": 6
+      }
+     ],
+     "bars": [
+      {
+       "bar": 1,
+       "beats": {
+        "1": "Gbmaj7"
+       }
+      },
+      {
+       "bar": 2,
+       "beats": {
+        "1": "C9b5",
+        "3": "B7"
+       }
+      }
+     ]
+    },
     {
      "applies_to": "Bar 27",
      "targets": [
@@ -14790,31 +15391,17 @@ window.TUNES = [
        }
       }
      ]
-    },
-    {
-     "applies_to": "Bar 14",
-     "targets": [
-      {
-       "section": "B",
-       "bar": 6
-      }
-     ],
-     "bars": [
-      {
-       "bar": 1,
-       "beats": {
-        "1": "Gbmaj7"
-       }
-      },
-      {
-       "bar": 2,
-       "beats": {
-        "1": "C9b5",
-        "3": "B7"
-       }
-      }
-     ]
     }
+   ],
+   "notation_notes": {
+    "verse": "Header prints '10 VERSE'."
+   },
+   "recordings": [
+    "J.Mehegan 55- S.Rollins 55- S.Vaughan 61",
+    "J.Morello 61- T.Wilson 45- E.Fitzgerald 56",
+    "B.Evers/L.Konitz/W.Marsh 77- J.Coltrane 60",
+    "R.Charles 61- S.Hanna 61- I.Jacquet 64",
+    "S.Kenton 44.55"
    ],
    "sections": {
     "A": [
@@ -15059,8 +15646,8 @@ window.TUNES = [
     "chord": "Ebmaj7"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "a83e4f42da97ae7fd5977ef7b351d76215a029a5031905e0be98e9b9986b3b14",
+    "status": "agreed",
+    "source_sha256": "7d7dd401dbdfd54ce39f17254fddea745c55826cae1afd85e0e4bde3f8e1d6db",
     "scorer": {
      "tonic": "Eb",
      "mode": "major",
@@ -15071,11 +15658,6 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "Eb",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
@@ -15083,13 +15665,13 @@ window.TUNES = [
     "tags": [
      "ii-V-chains",
      "circle-of-fifths",
-     "chromatic-descent"
+     "turnaround-ending"
     ],
     "sections": {
-     "A": "I-ii-iii-ii motion in Eb, I with #io7 passing, ii-V figures into bVImaj7/ii-V tags",
-     "B": "Imaj7 with #io7, ii-V of Ab to IVmaj7, then iv-bVII and V7-of tension resolving to Fm7-Bb7 (ii-V of Eb)",
-     "A1": "Repeat of A: I-ii-iii-ii with diminished passing and ii-V tags",
-     "C": "Imaj7 to IVmaj7, then circle-of-fifths turnaround (Gm7-C7-F7-Bb7) resolving to Eb tonic"
+     "A": "I with diatonic ii-iii motion, #io7 passing chord, then Gbmaj7/Bb7 and ii-V figures staying in Eb",
+     "B": "I with passing dim, ii-V, tonicizing IV (Abmaj7) via Abm7-Db7, back to ii-V of Eb",
+     "A1": "Repeat of A: I loop with passing chords and ii-Vs in Eb",
+     "C": "I with dim passing, ii-V, brief IV, then circle-of-fifths Gm7-C7-F7-Bb7 resolving to Eb"
     },
     "modulates": false
    }
@@ -16112,15 +16694,6 @@ window.TUNES = [
    "title": "HEART AND SOUL",
    "page": 153,
    "source": "Anthologie des grilles de jazz",
-   "recordings": [
-    "R.Sharon 51- M.Jackson 52- B.Powell 50",
-    "Bat.Carter 63- H.Jones 55- D.brubeck 51",
-    "L.Clinton 38- P.Whiteman 38- T.Dorsey 51",
-    "C.Fuller 57- B.Axen 61"
-   ],
-   "notation_notes": {
-    "verse": "Header prints '8 VERSE'."
-   },
    "variants": [
     {
      "applies_to": "Bar 1",
@@ -16135,7 +16708,7 @@ window.TUNES = [
        "bar": 1,
        "beats": {
         "1": "B7b5",
-        "2": "B7",
+        "2": "Bb7",
         "3": "A7#5",
         "4": "Ab13"
        }
@@ -16143,6 +16716,15 @@ window.TUNES = [
      ]
     }
    ],
+   "recordings": [
+    "R.Sharon 51- M.Jackson 52- B.Powell 50",
+    "Bat.Carter 63- H.Jones 55- D.brubeck 51",
+    "L.Clinton 38- P.Whiteman 38- T.Dorsey 51",
+    "C.Fuller 57- B.Axen 61"
+   ],
+   "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+   },
    "sections": {
     "A": [
      {
@@ -16385,8 +16967,8 @@ window.TUNES = [
     "chord": "F"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "3bfbdda18710eb3155ed24879269482abad2d3f6c283abb2add1bd8d976e3d80",
+    "status": "agreed",
+    "source_sha256": "b70730d75863c7ef7cf21439c67e72ec69cc56f26afd25a378f7d33902b69ddc",
     "scorer": {
      "tonic": "F",
      "mode": "major",
@@ -16397,11 +16979,6 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "F",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
@@ -16412,9 +16989,9 @@ window.TUNES = [
      "ii-V-chains"
     ],
     "sections": {
-     "A": "I-vi-ii-V loop (F-Dm7-Gm7-C7) with V/V (D7) in bar 3",
-     "A1": "Same I-vi-ii-V loop, ending on tonic with F7 leading to bridge (V/IV)",
-     "B": "Bb (IV) with A7-D7-G7-C7-F7-E7 circle-of-fifths dominant chain, back to ii-V",
+     "A": "I-vi-ii-V loop in F with V/V (D7) in bar 3",
+     "A1": "Same I-vi-ii-V loop, ending on F with F7 as V/IV toward bridge",
+     "B": "IV (Bb) then descending dominant cycle A7-D7-G7-C7-F7-E7-A7 back to ii-V",
      "A2": "I-vi-ii-V loop resolving to F tonic"
     },
     "modulates": false
@@ -16494,14 +17071,6 @@ window.TUNES = [
    "title": "HERE'S THAT RAINY DAY",
    "page": 156,
    "source": "Anthologie des grilles de jazz",
-   "recordings": [
-    "B.Evans 68- B.Carter 77- T.Flanagan 77",
-    "W.Montgomery 65- P.Desmond 65- C.Fisher 8",
-    "E.Fitzgerald 65- A.Gilberto 65- P.Horn 65",
-    "O.Peterson 62- Jazz Piano Quartet 74",
-    "S.Getz 64- U.Green 68- C.Basie 66- MJQ 69",
-    "J.Pass 73- K.Burrel/M.B.Davis 64"
-   ],
    "variants": [
     {
      "applies_to": "Bar 1, 17",
@@ -16541,7 +17110,7 @@ window.TUNES = [
        "bar": 4,
        "beats": {
         "1": "Cm",
-        "3": "F7"
+        "3": "Cm7"
        }
       },
       {
@@ -16552,6 +17121,14 @@ window.TUNES = [
       }
      ]
     }
+   ],
+   "recordings": [
+    "B.Evans 68- B.Carter 77- T.Flanagan 77",
+    "W.Montgomery 65- P.Desmond 65- C.Fisher 8",
+    "E.Fitzgerald 65- A.Gilberto 65- P.Horn 65",
+    "O.Peterson 62- Jazz Piano Quartet 74",
+    "S.Getz 64- U.Green 68- C.Basie 66- MJQ 69",
+    "J.Pass 73- K.Burrel/M.B.Davis 64"
    ],
    "notation_notes": {
     "maj7_notation": "The book writes major 7th as '7M' throughout (converted to maj7).",
@@ -16778,8 +17355,8 @@ window.TUNES = [
     "chord": "G"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "ed1ee318b4940fc4a8bdf9e30bd2e7d6f78285411b6ee65c2d9f1c08776e017a",
+    "status": "agreed",
+    "source_sha256": "9a1772b1cdfd12dbb797e53fffc32324bdeadd6404a049872cd9c6b3035945cc",
     "scorer": {
      "tonic": "G",
      "mode": "major",
@@ -16790,24 +17367,20 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "G",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",
     "tags": [
      "ii-V-chains",
-     "turnaround-ending"
+     "turnaround-ending",
+     "chromatic-descent"
     ],
     "sections": {
-     "A": "I-Imaj7, bIII-viiø, bVI(Eb), iv(Cm7), vi-V/? Am7-D7 back to I, ii-V turnaround",
-     "B": "ii-V-I to Bb (Cm7-F7-Bbmaj7) then Ebmaj7, Am7-D7-Gmaj7 back to I, ii-V turnaround",
-     "A1": "repeat of A: I with borrowed bVI/iv, Am7-D7 to I, ii-V turnaround",
-     "C": "IV(Cmaj7), vi-V/V (Am7-D7), iii-vi, V/ii A7, ii-V to I resolving on G"
+     "A": "I with borrowed bIII/bVI color (Bb, Eb) to iv, then vi-V/... Am7-D7 back to I, ii-V turnaround",
+     "B": "ii-V into bVI region (Cm7-F7-Bbmaj7-Ebmaj7) then Am7-D7 to Gmaj7, ii-V turnaround",
+     "A1": "repeat of A: I with bIII/bVI borrowings resolving to I, ii-V turnaround",
+     "C": "IV(Cmaj7)-ii-V, iii-vi-V/ii(A7) then ii-V-I cadence to G"
     },
     "modulates": false
    }
@@ -17951,25 +18524,16 @@ window.TUNES = [
    "title": "HOW LONG HAS THIS BEEN GOING ON ?",
    "page": 163,
    "source": "Anthologie des grilles de jazz",
-   "notation_notes": {
-    "verse": "Header prints '24 VERSE'."
-   },
-   "recordings": [
-    "Jay & Kay 54- E.Fitzgerald 59",
-    "F.Ellside 28- L.Wiley 39",
-    "J.Lewis 59- E.Rosolino 58",
-    "J.Reny 55- G.Shearing 55",
-    "H.Silver 56- O.Sims 58",
-    "M.Roach 60- C.Ho Mae 58",
-    "R.Thomas 60",
-    "H.Mc Kusick 55- A.Previn 63"
-   ],
    "variants": [
     {
      "applies_to": "Bar 1, 5, 25",
      "targets": [
       {
        "section": "A",
+       "bar": 1
+      },
+      {
+       "section": "A1",
        "bar": 1
       },
       {
@@ -18022,6 +18586,19 @@ window.TUNES = [
       }
      ]
     }
+   ],
+   "notation_notes": {
+    "verse": "Header prints '24 VERSE'."
+   },
+   "recordings": [
+    "Jay & Kay 54- E.Fitzgerald 59",
+    "F.Ellside 28- L.Wiley 39",
+    "J.Lewis 59- E.Rosolino 58",
+    "J.Reny 55- G.Shearing 55",
+    "H.Silver 56- O.Sims 58",
+    "M.Roach 60- C.Ho Mae 58",
+    "R.Thomas 60",
+    "H.Mc Kusick 55- A.Previn 63"
    ],
    "sections": {
     "A": [
@@ -18267,8 +18844,8 @@ window.TUNES = [
     "chord": "D7(13)"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "f18d228f205ea73fc5486eb56ed62e1ee8ad6e6c93197d942c97f2c8ef3b5ea7",
+    "status": "agreed",
+    "source_sha256": "abaaeb2cead3bbff3f970efc9b498fc3a039495d405f35334e0c7c9d558a3ff4",
     "scorer": {
      "tonic": "G",
      "mode": "major",
@@ -18279,25 +18856,20 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "G",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-     "ii-V-chains",
+     "turnaround-ending",
      "chromatic-descent",
-     "turnaround-ending"
+     "ii-V-chains"
     ],
     "sections": {
-     "A": "V7(13) with chromatic dim passing, descending line Bm-Bbo-Am-G#o then Am7-Eb7-D7 back to I (G)",
-     "A1": "Repeat of A: V7-based approach resolving to I (G)",
-     "B": "IV(Cmaj7)-bVII7(F7) vamp, then Bm with ii-V of B, closing on Am7-D7 (ii-V) back to G",
-     "A2": "Repeat of A resolving to I (G)"
+     "A": "V7 vamp (D7) with diminished neighbor, descending line Bm7-Bbo7-Am7-G#o7 leading to ii-V resolving to I (G)",
+     "A1": "Repeat of A: V7 vamp with chromatic descent resolving to I (G)",
+     "B": "IV (Cmaj7) alternating with F7, then chromatic Bm/vi motion with G9#11-F#9, ending on ii-V (Am7-D7)",
+     "A2": "Repeat of A: V7 vamp with chromatic descent resolving to I (G)"
     },
     "modulates": false
    }
@@ -18710,8 +19282,8 @@ window.TUNES = [
     "chord": "Fm7"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "08b1a66797e2537763d87d8dc7144af3789449313933ce86152398c1d0b74f30",
+    "status": "agreed",
+    "source_sha256": "e57da524b2ec523a10c59032ab513c40480acdf801c90a117fa8b5e92d17ad05",
     "scorer": {
      "tonic": "Eb",
      "mode": "major",
@@ -18728,35 +19300,31 @@ window.TUNES = [
      "tonic": "Eb",
      "mode": "major",
      "confidence": "high",
-     "modulation_note": "bridge tonicizes Ab (IV) via ii-V-I before returning to V of Eb",
+     "modulation_note": "bridge tonicizes Ab (IV) before returning via V",
      "section_keys": {
       "B": {
        "tonic": "Ab",
        "mode": "major"
       }
      }
-    },
-    "human": {
-     "tonic": "Eb",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
     "family": "32-bar AABA standard with verse",
     "tags": [
      "ii-V-chains",
-     "turnaround-ending"
+     "turnaround-ending",
+     "verse-present"
     ],
     "sections": {
-     "verse_A": "ii-V into I (Fm7-Bb7-Eb), then rising ii-Vs (Am7b5-D7 to Gm, Cm7b5-F7) landing on Bb7 (V)",
-     "A": "Imaj7-vi with ii-V (Fm7-Bb7), IV to iv (Abmaj7-Abm6), ending Fm9-Bb7#5 (ii-V)",
-     "A1": "same as A ending on Eb tonic (I)",
-     "B": "Bbm7-Eb7 ii-V-I to Ab6 (IV), then Cm7-F7 to Bb7 (V of Eb)",
-     "A2": "A material extended with Gm7b5-C7 then F9-Bb7 turnaround resolving to Eb (I)"
+     "verse_A": "ii-V to I in Eb, then ii-Vs and minor chords ending on V (Bb7) as turnaround",
+     "A": "Imaj7-vi | ii-V loop with IV/IVm color, ends on ii-V back to I",
+     "A1": "same as A, resolving to Eb tonic in bar 8",
+     "B": "ii-V of Ab to Ab6 (IV), then ii-V of Bb, ending on Bb7 (V)",
+     "A2": "A section extended with ii-V (Gm7b5-C7, F9-Bb7) resolving to Eb tonic"
     },
     "modulates": true,
-    "modulation_note": "bridge tonicizes Ab (IV) via ii-V-I before returning to V of Eb"
+    "modulation_note": "bridge tonicizes Ab (IV) before returning via V"
    }
   },
   "melody_image": "melody_crops/323_01_HUNDRED_YEARS_FROM_TODAY.png"
@@ -20939,19 +21507,6 @@ window.TUNES = [
    "title": "I MAY BE WRONG",
    "page": 187,
    "source": "Anthologie des grilles de jazz",
-   "notation_notes": {
-    "verse": "Header prints '18 VERSE'.",
-    "other_note": "Below the grid prints 'Another different \"I may be wrong\" by J.Rushing/C.Basie'."
-   },
-   "recordings": [
-    "J.Bradley 28- E.Garner 50",
-    "Prestige Blue Swingers 60",
-    "G.Kulligan 63- B.Green 55",
-    "B.Stewart 47- H.J.Webb 55",
-    "T.Dorsey 37.45- J.Kirby 39",
-    "R.Nichols 26- B.Auld 55",
-    "P.Brown 44"
-   ],
    "variants": [
     {
      "applies_to": "Bar 5, 13,28",
@@ -20966,7 +21521,7 @@ window.TUNES = [
       },
       {
        "section": "A2",
-       "bar": 4
+       "bar": 5
       }
      ],
      "bars": [
@@ -20992,6 +21547,19 @@ window.TUNES = [
       }
      ]
     }
+   ],
+   "notation_notes": {
+    "verse": "Header prints '18 VERSE'.",
+    "other_note": "Below the grid prints 'Another different \"I may be wrong\" by J.Rushing/C.Basie'."
+   },
+   "recordings": [
+    "J.Bradley 28- E.Garner 50",
+    "Prestige Blue Swingers 60",
+    "G.Kulligan 63- B.Green 55",
+    "B.Stewart 47- H.J.Webb 55",
+    "T.Dorsey 37.45- J.Kirby 39",
+    "R.Nichols 26- B.Auld 55",
+    "P.Brown 44"
    ],
    "sections": {
     "A": [
@@ -21210,8 +21778,8 @@ window.TUNES = [
     "chord": "Eb"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "2ce9a3c37aa4b7625aa6daa7c5dfdc220f9dd4c2d77cde72e9e3b177eb2c5b41",
+    "status": "agreed",
+    "source_sha256": "28af5082acbfe98ceee8cd277ca404920b146b9d9ee462169c09e8dc50540e86",
     "scorer": {
      "tonic": "Eb",
      "mode": "major",
@@ -21222,11 +21790,6 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "Eb",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
@@ -21236,10 +21799,10 @@ window.TUNES = [
      "ii-V-chains"
     ],
     "sections": {
-     "A": "I-Imaj7-I7 to IV-iv, back to I with V/V (F7)-V7-I",
-     "A1": "Identical to A: I-IV-iv, F7-Bb7-I",
-     "B": "ii-V-I in Eb, then Fm6-D7, Gm-Cm-F7-Bb7#5 back to V",
-     "A2": "Same A but ends on Bb7 (V) turnaround"
+     "A": "I-Imaj7-I7 to IV-iv, back to I with V/V (F7)-V(Bb7)-I",
+     "A1": "Repeat of A: I to IV-iv, then F7-Bb7-I cadence",
+     "B": "ii-V-I in Eb, then Fm6-D7 to Gm-Cm-F7-Bb7 dominant approach",
+     "A2": "Final A ending on Bb7 (V) as turnaround"
     },
     "modulates": false
    }
@@ -21678,7 +22241,7 @@ window.TUNES = [
    },
    "key_annotation": {
     "status": "verified",
-    "source_sha256": "bcc9116e3070d618f6294856fa01da786c2f744aa5a90fd966576b8d3364f305",
+    "source_sha256": "98338f36ef8ff48271f708d2dde9ad57178148c2d8c17d905965369e02d2a679",
     "scorer": {
      "tonic": "C",
      "mode": "major",
@@ -21695,7 +22258,7 @@ window.TUNES = [
      "tonic": "C",
      "mode": "major",
      "confidence": "high",
-     "modulation_note": "verse B section sits on G (the dominant) for 8 bars",
+     "modulation_note": "verse B section dwells on G (the dominant) as a local I-V7 center",
      "section_keys": {
       "verse_B": {
        "tonic": "G",
@@ -21713,21 +22276,21 @@ window.TUNES = [
     "family": "verse-and-chorus standard (16-bar verse + 32-bar AA'BA chorus)",
     "tags": [
      "ii-V-chains",
-     "dominant-cycle-bridge",
      "turnaround-ending",
-     "circle-of-fifths"
+     "chromatic-descent",
+     "dominant-cycle-bridge"
     ],
     "sections": {
-     "intro": "I - #i o7 - IV - V7 setup",
-     "verse_A": "I held, bVI7(Ab7)-V7, back to I, then V/V(D7)-V7",
-     "verse_B": "Sustained G major with V-I(D7-G) rocking, ends on G7 as V of C",
-     "A": "I - VI7(A7) - II7(D7) - V7(G7) - I - V7 dominant chain",
-     "A1": "I - VI7 - II7 - V7 extended dominant cycle",
-     "B": "I - I7(C7) - IV(F) - bVI7(Ab7)",
+     "intro": "I - #ivo7 - IV - V7 lead-in",
+     "verse_A": "I held, bVI7-V7 into I, then V/V(D7)-V7",
+     "verse_B": "eight bars of I-V7 oscillation centered on G",
+     "A": "I - VI7(A7) - II7(D7) - V7 - I - V7 dominant chain",
+     "A1": "I - VI7 - II7 - V7 chain ending on V7",
+     "B": "I - I7(V7/IV) - IV - bVI7(Ab7) bridge",
      "A2": "I - VI7 - II7 - V7 - I final cadence"
     },
     "modulates": true,
-    "modulation_note": "verse B section sits on G (the dominant) for 8 bars"
+    "modulation_note": "verse B section dwells on G (the dominant) as a local I-V7 center"
    }
   },
   "melody_image": "melody_crops/358_01_I_NEVER_KNEW_WHAT_A_GAL_COULD_DO.png"
@@ -22591,7 +23154,7 @@ window.TUNES = [
    },
    "key_annotation": {
     "status": "verified",
-    "source_sha256": "df4ee4fd1ff8a7e91463fef2458967c1abe1a68bacc3923a49100854092df925",
+    "source_sha256": "d351aa7f2d8136f960d91ac2139869dee1149f1233cd9aa8055b5ade42b44ef3",
     "scorer": {
      "tonic": "F",
      "mode": "major",
@@ -22617,17 +23180,16 @@ window.TUNES = [
     }
    },
    "harmonic_fingerprint": {
-    "family": "36-bar ABCA' standard",
+    "family": "36-bar ABCA' ballad",
     "tags": [
      "ii-V-chains",
-     "turnaround-ending",
-     "chromatic-descent"
+     "turnaround-ending"
     ],
     "sections": {
-     "A": "I with borrowed iv (Fm7), then Gm(maj7 line cliche) ii-V and V/ii (Am7-D7) back to ii-V",
-     "B": "I-ii-iii with Abo7 passing, Gm line cliche, I-bVII9-V/ii, ii-V and ii-V of IV (Cm7-F7)",
-     "C": "IV (Bbmaj7) with iv (Bbm7-Eb7), back to I, then vi tonicization (Em7b5-A7-Dm line cliche) and ii-V",
-     "A1": "I with borrowed iv, ii-V, V/ii (Am7b5-D7), then bVI-I, ii-V(b9) resolving to tonic F"
+     "A": "Imaj7 to iv (Fm7) with ii-V (Gm7-C7) and V/ii (Am7-D7) loop",
+     "B": "Imaj7-ii-iii with Ab dim passing, F-Eb9-D7-Gm7-C7, ending Cm7-F7 (V/IV)",
+     "C": "IV (Bbmaj7) area with Bbm7-Eb7, Em7b5-A7 to Dm(vi), Dm7-G7-Gm7-C7 back to V",
+     "A1": "Imaj7 to iv, Gm7-C7 and Am7b5-D7, resolving Bb-F to Gm7-C(b9)-F cadence"
     },
     "modulates": false
    }
@@ -23129,8 +23691,8 @@ window.TUNES = [
     "chord": "Bb"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "1488598a0f8b4139d8d5b9b43a3025b2143367f7443874c284c4053439175fe3",
+    "status": "agreed",
+    "source_sha256": "d9e2c42080d6c7899b41faf133736031c22cc712b0024bd7986932ea62d5da22",
     "scorer": {
      "tonic": "Bb",
      "mode": "major",
@@ -23141,11 +23703,6 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "Bb",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
@@ -23153,11 +23710,11 @@ window.TUNES = [
     "tags": [
      "ii-V-chains",
      "turnaround-ending",
-     "circle-of-fifths"
+     "chromatic-descent"
     ],
     "sections": {
-     "A": "I with V/V-type dominants, iv-ish Cm chord line (Cm-Cm6-CmMaj7-Cm7), F7 (V) to I, then ii-V (Cm7b5-F7) turnaround",
-     "A1": "Restates I and Cm line, then IV-iv, chromatic ii-V motion (Dm7-Dbo7-Cm7-F7), Fm7-Bb7 to IV(Eb), circle-of-fifths back through Dm7-Gm7-C7-F7 to final I (Bb)"
+     "A": "I with V(b9) and V/vi, minor-line cliché on ii (Cm-Cm6-Cm(maj7)-Cm7), V7-I then Gm/Gmaj7 to iim7-V7 turnaround",
+     "A1": "Same opening then IV-iv, iii-bIII°, ii-V, iim/V, IV with V/ii, ii-Vs resolving via C7-F7 to final I"
     },
     "modulates": false
    }
@@ -24436,7 +24993,7 @@ window.TUNES = [
    },
    "key_annotation": {
     "status": "verified",
-    "source_sha256": "9c941ea11c99f3c1805cc18ba6fecada74340b9346f314468760070ba910200e",
+    "source_sha256": "ac9d15b7feb5d67c0d85188d059b6cd946e32225d5d2685c0cb3aa945f3cacf5",
     "scorer": {
      "tonic": "F",
      "mode": "major",
@@ -24462,16 +25019,16 @@ window.TUNES = [
     }
    },
    "harmonic_fingerprint": {
-    "family": "32-bar AABA-type standard (A B A B')",
+    "family": "32-bar ABAB' standard",
     "tags": [
      "ii-V-chains",
      "turnaround-ending"
     ],
     "sections": {
-     "A": "ii-V-I in F (G9-C7#5-F) stated twice, ending on F7 leading to IV",
-     "B": "IV (Bb) to A7/Dm (vi), G7 (II7), then ii-V (Gm7-C7) with D7#5 turnaround",
-     "A1": "repeat of A: ii-V-I in F stated twice, ending F7",
-     "B1": "IV-A7-Dm, G7-C7 (V/V then V) resolving to tonic F"
+     "A": "II7(G9)-V(C7#5)-I(F) ii-V-I loop with V/V (D7) turning back to II",
+     "B": "IV(Bb)-A7-vi(Dm)-V/V(G7)-ii-V(Gm7-C7) with D7 turn",
+     "A1": "repeat of A: II7-V-I in F with D7 turnaround",
+     "B1": "IV(Bb)-A7-vi(Dm)-G7-C7-I(F) resolving home"
     },
     "modulates": false
    }
@@ -26654,19 +27211,6 @@ window.TUNES = [
    "title": "MY OLD FLAME",
    "page": 285,
    "source": "Anthologie des grilles de jazz",
-   "notation_notes": {
-    "verse": "Header prints '8 VERSE'."
-   },
-   "recordings": [
-    "Ch.Baker 59- Co.Williams 44.58- H.Edison 76",
-    "Pl.Johnson 59- O.Mulligan 55- C.Parker 47.48",
-    "D.Ellington 34.55- B.Goodman 41- E.Bunes 79",
-    "J.Pass 73- A.Reig 54- C.Basie 41- T.Lewis 34",
-    "O.Peterson 55- T.Farlow 54- E.Fitzgerald 59",
-    "K.Dorham 57- D.Gillespie 52- B.Holiday 44",
-    "S.Getz 50.51- J.J.Johnson 58- Keynoters 46",
-    "M.Davis 58- M.Davis 51"
-   ],
    "variants": [
     {
      "applies_to": "Bar 1, 9, 25",
@@ -26680,7 +27224,7 @@ window.TUNES = [
        "bar": 1
       },
       {
-       "section": "A 3",
+       "section": "A2",
        "bar": 1
       }
      ],
@@ -26778,6 +27322,19 @@ window.TUNES = [
       }
      ]
     }
+   ],
+   "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+   },
+   "recordings": [
+    "Ch.Baker 59- Co.Williams 44.58- H.Edison 76",
+    "Pl.Johnson 59- O.Mulligan 55- C.Parker 47.48",
+    "D.Ellington 34.55- B.Goodman 41- E.Bunes 79",
+    "J.Pass 73- A.Reig 54- C.Basie 41- T.Lewis 34",
+    "O.Peterson 55- T.Farlow 54- E.Fitzgerald 59",
+    "K.Dorham 57- D.Gillespie 52- B.Holiday 44",
+    "S.Getz 50.51- J.J.Johnson 58- Keynoters 46",
+    "M.Davis 58- M.Davis 51"
    ],
    "sections": {
     "A": [
@@ -26958,7 +27515,7 @@ window.TUNES = [
       }
      }
     ],
-    "A 3": [
+    "A2": [
      {
       "bar": 1,
       "beats": {
@@ -27028,7 +27585,7 @@ window.TUNES = [
    },
    "key_annotation": {
     "status": "verified",
-    "source_sha256": "db85b8cea5cf9f4a592d03bac5e04e187fedb867924f56a9f72466c35ae138a2",
+    "source_sha256": "d62de5e325a5027a7b2af89983ce772c250b088484ca7340826d7d927bb324db",
     "scorer": {
      "tonic": "F",
      "mode": "major",
@@ -27062,14 +27619,14 @@ window.TUNES = [
     "family": "32-bar AABA standard",
     "tags": [
      "ii-V-chains",
-     "chromatic-descent",
-     "turnaround-ending"
+     "turnaround-ending",
+     "chromatic-descent"
     ],
     "sections": {
-     "A": "I with bVI9#11 tension, vi-V/ii, iii, then chromatic ii-Vs (Bbm7-Eb7, C7) resolving to I; borrowed bIII/bVI and ii turnaround",
-     "A1": "Same as A, ending on iii to Bbm7-Eb7 leading into bridge",
-     "B": "Bridge on bIII (Abmaj7), descending ii-Vs and chromatic dominants back through iv, ii-V of I",
-     "A 3": "A repeated with V/ii and ii-V, resolving firmly to I (F) at bar 8"
+     "A": "Imaj7 with bVI dominant, V/ii-ii, iv-bVII borrowed motion, I then Bbm7-Eb7 into bVI, ii-V turnaround",
+     "A1": "Same as A, ending on ii with Bbm7-Eb7 setup",
+     "B": "bVI maj7 opening, descending dominants, iv-bVII, ii-V's leading back to ii-V of F",
+     "A2": "Same A opening, resolving with Gm9-C7b9 ii-V to final I"
     },
     "modulates": false
    }
@@ -30708,8 +31265,8 @@ window.TUNES = [
     "chord": "Db6"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "614d9a32fe2b57131602580b67a159ef142413bbf2ff05561191d2ee5b1abc0d",
+    "status": "agreed",
+    "source_sha256": "8a434cf0607612b1d46e22da1f308e88a7901f9b61f70df7156b508411d61a79",
     "scorer": {
      "tonic": "Db",
      "mode": "major",
@@ -30720,25 +31277,19 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "Db",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
      "turnaround-ending",
-     "chromatic-descent",
-     "dominant-cycle-bridge"
+     "chromatic-descent"
     ],
     "sections": {
-     "A": "I6-#io7-ii7-V7 loop, then I-I7-IV-iv with A7/Ab7 chromatic approach to I6/9",
-     "A1": "Same as A: I6-#io7-ii7-V7 then I-I7-IV-iv-V approach to I6",
-     "B": "Bridge on dominant chords A13-D9 (bVI/II) alternating, returning to Db then A9-Ab9 (V) setup",
-     "A3": "Restatement of A: I6-#io7-ii7-V7 then IV-iv chromatic approach to I6"
+     "A": "I6 with passing dim to ii-V (Ebm7-Ab7), then I-I7 to IV-IVm and A7-Ab7 back to I",
+     "A1": "Same as A, I6 with ii-V motion, IV-IVm, dominant approach resolving to Db6",
+     "B": "Dominant chords A13-D9-Db-Db9 chromatic movement, ending on V (Ab9)",
+     "A3": "Same as A, resolves to Db6"
     },
     "modulates": false
    }
@@ -33574,7 +34125,7 @@ window.TUNES = [
    },
    "key_annotation": {
     "status": "verified",
-    "source_sha256": "a2c945c10c029576154f9f205ae317ef4a7f3c87589e184668fac985b92cb950",
+    "source_sha256": "5f5d58968d4a8b3f3f18feb5452a644e5ccf9e28299e22167f9b75887c9fe37b",
     "scorer": {
      "tonic": "G",
      "mode": "major",
@@ -33605,15 +34156,15 @@ window.TUNES = [
      "turnaround-ending",
      "chromatic-descent",
      "ii-V-chains",
-     "secondary-dominants"
+     "circle-of-fifths"
     ],
     "sections": {
-     "verse_A": "I6 with V7/vi, ii-V motion toward vi (Em), line-cliché on Em, ending ii-V (Am7-D7) back to I",
-     "verse_A1": "Same opening, tonicizes vi (Em via F#m7b5-B7), ends on ii-V (Am7-D7)",
-     "A": "I with chain of secondary dominants E7-A7-D7, vi with C9/B9, cycle E7-A7-D7 back to ii-V turnaround",
-     "A1": "As A, resolving to I (G6) and ending Dm7-G7 (ii-V of IV)",
-     "B": "Bridge on IV area (C6), E7(b9)/Am7, Fmaj7-E7, chromatic descending dominants F9-E9-Eb9-D9 landing on V (D7)",
-     "A2": "As A, resolving to I with G6-C7-G6 tag ending"
+     "verse_A": "I6 with V/vi, ii-vii-V/iii, dwelling on iii (Em with line-cliché) then ii-V back to I",
+     "verse_A1": "Similar opening, iii tonicized via F#m7b5-B7, ends ii-V (Am7-D7) turnaround",
+     "A": "I with V/vi, V/V-V, iii to bVII9/V(C9)-V/V(B9), then dominant cycle E7-A7-D7, ii-V",
+     "A1": "Same as A but resolves to I6 then Dm7-G7 (ii-V of IV/turnaround)",
+     "B": "IV area (C6) with V/vi, Am7-C7, Fmaj7-E7, chromatic dominant descent F9-E9-Eb9-D9 to V",
+     "A2": "I with dominant-cycle A, ends firmly on I6 via C7 to G6"
     },
     "modulates": false
    }
@@ -34202,23 +34753,20 @@ window.TUNES = [
    "title": "THAT LUCKY OLD SUN",
    "page": 413,
    "source": "Anthologie des grilles de jazz",
-   "notation_notes": {
-    "verse": "Header prints '8 VERSE'."
-   },
-   "recordings": [
-    "L.Armstrong 49.49-",
-    "R.Charles 65- A.Franklin 61",
-    "S.Davis 61- F.Sinatra 49",
-    "Gr.Green 65- S.Vaughan 49-",
-    "H.L.Page 49- Ger.Brown 61",
-    "G.Benson 66-"
-   ],
    "variants": [
     {
      "applies_to": "Bar 6",
      "targets": [
       {
        "section": "A",
+       "bar": 6
+      },
+      {
+       "section": "A1",
+       "bar": 6
+      },
+      {
+       "section": "A2",
        "bar": 6
       }
      ],
@@ -34231,6 +34779,17 @@ window.TUNES = [
       }
      ]
     }
+   ],
+   "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+   },
+   "recordings": [
+    "L.Armstrong 49.49-",
+    "R.Charles 65- A.Franklin 61",
+    "S.Davis 61- F.Sinatra 49",
+    "Gr.Green 65- S.Vaughan 49-",
+    "H.L.Page 49- Ger.Brown 61",
+    "G.Benson 66-"
    ],
    "sections": {
     "A": [
@@ -34486,8 +35045,8 @@ window.TUNES = [
     "chord": "C"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "b96cf483180138de4936897f78518a9de1e8615c9721016ad67c84fc5b9e78d2",
+    "status": "agreed",
+    "source_sha256": "997aa698251d05510d25ebe5f31c5ac92364bb815b78d6df625fca7b50f75e52",
     "scorer": {
      "tonic": "C",
      "mode": "major",
@@ -34498,11 +35057,6 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "C",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
@@ -34511,10 +35065,10 @@ window.TUNES = [
      "turnaround-ending"
     ],
     "sections": {
-     "A": "I-vi-iv with IV6, V7 back to I; ends I-IV7-I plagal",
-     "A1": "Repeat of A: I-vi-iv, IV6, ii-V, plagal tag on I",
-     "B": "vi-iii-IV-I sequence, vi-V7-I, then I-vi-V/V, ii-V turnaround",
-     "A2": "Repeat of A: I-vi-iv, IV6, ii-V, ending on I"
+     "A": "I-vi with iv (Fm) borrowed color, IV6, ii-V-I cadences resolving to C",
+     "A1": "Identical to A: I-vi-iv, IV6, ii-V-I in C",
+     "B": "vi-iii-IV-I motion with V/vi (D7) and ii-V (Dm7-G7) turnaround back to C",
+     "A2": "Same as A ending on I"
     },
     "modulates": false
    }
@@ -35839,8 +36393,8 @@ window.TUNES = [
     "chord": "Fm7"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "9ad6efd5bcdeee28de0458b0e561a51ecc7900ec67d9aebdefc77db1bb81c62f",
+    "status": "agreed",
+    "source_sha256": "ee71678649ef206689dfd03dbdfea3f020ca83b9b10781ef9652b1db6989ee7b",
     "scorer": {
      "tonic": "Eb",
      "mode": "major",
@@ -35851,24 +36405,20 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "Eb",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
-    "family": "32-bar ABAB' standard",
+    "family": "32-bar ABAB standard",
     "tags": [
      "ii-V-chains",
+     "turnaround-ending",
      "circle-of-fifths"
     ],
     "sections": {
-     "A": "ii-V (Fm7-Bb7) vamp resolving to I (Ebmaj7), then ii-iii-iv#°/D7 leading back",
-     "B": "cycle of ii-Vs (Gm7-C7, Fm7-Bb7) to Ebmaj7, then descending ii-V chain back to V/ii",
-     "A1": "repeat of A: ii-V vamp to I with D7 turnaround",
-     "B1": "ii-Vs with Db9-C7, Fm7-Bb7 ii-V cadencing to Eb6 tonic"
+     "A": "ii-V (Fm7-Bb7) repeated resolving to I (Ebmaj7), then ii-iii and vii-of-vi (Am7b5-D7)",
+     "B": "Descending ii-V chain (Gm7-C7, Fm7-Bb7) to I, then Cm7, ii-V of vi (Dm7b5-G7), Cm7-F7, Bb7-Ab7, Gm7-C7",
+     "A1": "Same as A: ii-V loop to I with turnaround Am7b5-D7",
+     "B1": "Gm7-C7, Fm7-Bb7, Db9-C7 tritone lead into ii-V (Fm7-Bb7) resolving to Eb6 tonic"
     },
     "modulates": false
    }
@@ -36864,7 +37414,7 @@ window.TUNES = [
    },
    "key_annotation": {
     "status": "verified",
-    "source_sha256": "15044b136103b922e5dba185e09a6360eba3f9470f12237c644b1a9ad5145bfd",
+    "source_sha256": "298a631e1cfd8638d0af44cf72c0492e17827a03cf62702ddf1cfa93524842fc",
     "scorer": {
      "tonic": "Ab",
      "mode": "major",
@@ -36874,7 +37424,7 @@ window.TUNES = [
      "tonic": "Ab",
      "mode": "major",
      "confidence": "high",
-     "modulation_note": "bridge (B) opens in C major before turning back via ii-V to Ab",
+     "modulation_note": "bridge (B) moves to C major then Eb before a ii-V back to Ab",
      "section_keys": {
       "B": {
        "tonic": "C",
@@ -36893,16 +37443,16 @@ window.TUNES = [
     "tags": [
      "ii-V-chains",
      "turnaround-ending",
-     "diminished-passing"
+     "chromatic-passing-diminished"
     ],
     "sections": {
-     "A": "I-vi ii-V, back to I with V/V (D9#11) into IV (Db), then ii-V loop",
-     "A1": "Same as A but tag ends on I with bVI-ish and G7 turnaround",
-     "B": "Imaj7 in C with dim passing, ii-V of C, then up to Ebmaj7 and ii-V back to Ab",
-     "A2": "Restatement of A resolving to I (Ab6)"
+     "A": "I-iii, ii-V(b9) to I, with V/V (D9#11) and IV/iv motion (Dbmaj7-Dbm6), ending on ii-V (Bbm7-Eb7)",
+     "A1": "Same as A opening, ending I-IV6 then G7 leading into bridge",
+     "B": "Cmaj7 with passing diminished and ii-V in C, then shifts to Ebmaj7 area and returns via Bbm7-Eb7 ii-V to Ab",
+     "A2": "Restatement of A, resolving to Ab6 tonic"
     },
     "modulates": true,
-    "modulation_note": "bridge (B) opens in C major before turning back via ii-V to Ab"
+    "modulation_note": "bridge (B) moves to C major then Eb before a ii-V back to Ab"
    }
   },
   "melody_image": "melody_crops/853_02_TIME_WAS.png"
@@ -37320,17 +37870,17 @@ window.TUNES = [
     ]
    },
    "key": {
-    "tonic": "F",
-    "mode": "minor"
+    "tonic": "Ab",
+    "mode": "major"
    },
    "opening": {
-    "degree": "i",
+    "degree": "vi",
     "quality": "min",
     "chord": "Fm"
    },
    "key_annotation": {
     "status": "verified",
-    "source_sha256": "00886b3e1b4c3d12fd25d9b3f13ff52559501b4deb2c4df9e8bf6ee55db31c73",
+    "source_sha256": "26e39241a9bdd701ea31cd7c3d93b5eb68ec5d205622a19c1dd4d1c9820cdd72",
     "scorer": {
      "tonic": "Ab",
      "mode": "major",
@@ -37350,22 +37900,23 @@ window.TUNES = [
      "modulation_note": null
     },
     "human": {
-     "tonic": "F",
-     "mode": "minor",
-     "corrected": false
+     "tonic": "Ab",
+     "mode": "major",
+     "corrected": true
     }
    },
    "harmonic_fingerprint": {
-    "family": "28-bar AABC tune",
+    "family": "28-bar AABC form",
     "tags": [
+     "minor-key",
      "turnaround-ending",
-     "ii-V-chains"
+     "chromatic-descent"
     ],
     "sections": {
-     "A": "i-bVI-V(C7) loop in Fm, then i-bivm6-bIII7(Eb7)-bIII(Ab) with C7 turnaround back to i",
-     "A1": "Same as A but ending on bIII (Ab) without the C7 turnaround",
-     "B": "bivm6-iiø-bIII7(Eb7) vamp resolving to Ab, then Fm7-Bb7 and Ab7-Db7 motion",
-     "C": "i-bivm6-Eb7-Ab tag cadencing to the relative major"
+     "A": "i (Fm) with bVI-V7 (Db-C7) motion, iv-flavored Dbm6, then V7/relative (Eb7) to Ab (bIII), ending on C7 (V of i)",
+     "A1": "Same as A: i with Db-C7, Dbm6, Eb7 to Ab (bIII) at close",
+     "B": "Dbm6-Bbm7b5-Eb7 (ii-V into Ab) repeated, then Ab/Abmaj7, Fm7-Bb7, i-Dbm, Ab7-Db7",
+     "C": "i (Fm)-Dbm6-Eb7 resolving to Ab (bIII)"
     },
     "modulates": false
    }
@@ -39859,8 +40410,8 @@ window.TUNES = [
     "chord": "Bbmaj7"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "e8e819f2f2ebee19143ad7b4bd16c20e8695f58988fcdf22a9723a298cc2343a",
+    "status": "agreed",
+    "source_sha256": "9644bd82a368c01208e0995c3614a541d8a141061ef2ac899093d8ed6410807b",
     "scorer": {
      "tonic": "F",
      "mode": "major",
@@ -39871,24 +40422,19 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "F",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-     "ii-V-chains",
-     "turnaround-ending"
+     "turnaround-ending",
+     "ii-V-chains"
     ],
     "sections": {
-     "A": "IV-iv-I with Bb9, iii-VI7 (Am7-D7), ii-#io7-ii-V (Gm7-F#o7-Gm7-C) resolving to I (F6)",
-     "A1": "Repeat of A: IV-iv-I, iii-VI7, ii-V into I",
-     "B": "ii-V of Bb (Cm7-F7) to Bb, D7-Gm, Eb9-D7, Gm7-Db7 into V (C9sus4)",
-     "A2": "Repeat of A: IV-iv-I, iii-VI7, ii-V resolving to I (F6)"
+     "A": "IV-iv-I motion (Bb-Bbm6-Fmaj7), ii-V (Am7-D7) into vi, then V7(b9) resolving to I6",
+     "A1": "Repeat of A: IV-iv-I with ii-V and C7(b9)-F6 cadence",
+     "B": "ii-V of Bb (Cm7-F7) to Bb, D7-Gm, Eb9-D7 vamp, then Db7-C9sus4 (bII-V) back to F",
+     "A2": "Repeat of A: IV-iv-I ending on F6"
     },
     "modulates": false
    }
@@ -40235,8 +40781,8 @@ window.TUNES = [
     "chord": "Ebmaj7"
    },
    "key_annotation": {
-    "status": "verified",
-    "source_sha256": "0056579dc95987cc045608f456dc7016b818cd14fab110548e3437d301f9cfce",
+    "status": "agreed",
+    "source_sha256": "fef83a84186166cb64a68f57f1b3ee9e69b0bfe966bc8131f67a2833ddb25fc8",
     "scorer": {
      "tonic": "Eb",
      "mode": "major",
@@ -40247,25 +40793,20 @@ window.TUNES = [
      "mode": "major",
      "confidence": "high",
      "modulation_note": null
-    },
-    "human": {
-     "tonic": "Eb",
-     "mode": "major",
-     "corrected": false
     }
    },
    "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",
     "tags": [
-     "ii-V-chains",
      "dominant-cycle-bridge",
-     "circle-of-fifths"
+     "ii-V-chains",
+     "turnaround-ending"
     ],
     "sections": {
-     "A": "I with V/ii, iii-#iio, ii-V repeated resolving to I (Eb6)",
-     "B": "Dominant chain V/V/V (C7)-V/V (F7)-V7 then ii-V back home",
-     "A1": "Same A opening but ends on V (G7) as turnaround into C",
-     "C": "C7-F7 dominant approach, bVI6-passing dim, I then ii-V-I cadence on Eb6"
+     "A": "I with V/vi passing, iii-diminished, then ii-V (Fm7-Bb7) resolving to I (Eb6)",
+     "B": "Dominant cycle C7-F7-Bb7 (V/V/V - V/V - V) into ii-V back to Eb",
+     "A1": "Same as A but ends on V/V area (D7 to G7) as a turnaround",
+     "C": "C7-F7 then bVI (Ab6) diminished passing, back to I via Fm7-Bb7 to Eb6"
     },
     "modulates": false
    }

@@ -44,6 +44,7 @@ def cmd_status(verified_dir: Path, annotated_dir: Path) -> int:
     for path in _tune_paths(verified_dir):
         ann_path = annotated_dir / path.name
         if core.is_pending(path, ann_path):
+            print(ann_path)
             counts["pending"] += 1
         else:
             counts[core.read_json(ann_path)["key_annotation"]["status"]] += 1

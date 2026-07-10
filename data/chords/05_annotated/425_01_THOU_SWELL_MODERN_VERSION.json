@@ -288,8 +288,8 @@
     "chord": "Fm7"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "9ad6efd5bcdeee28de0458b0e561a51ecc7900ec67d9aebdefc77db1bb81c62f",
+    "status": "agreed",
+    "source_sha256": "ee71678649ef206689dfd03dbdfea3f020ca83b9b10781ef9652b1db6989ee7b",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -300,24 +300,20 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "Eb",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar ABAB' standard",
+    "family": "32-bar ABAB standard",
     "tags": [
       "ii-V-chains",
+      "turnaround-ending",
       "circle-of-fifths"
     ],
     "sections": {
-      "A": "ii-V (Fm7-Bb7) vamp resolving to I (Ebmaj7), then ii-iii-iv#°/D7 leading back",
-      "B": "cycle of ii-Vs (Gm7-C7, Fm7-Bb7) to Ebmaj7, then descending ii-V chain back to V/ii",
-      "A1": "repeat of A: ii-V vamp to I with D7 turnaround",
-      "B1": "ii-Vs with Db9-C7, Fm7-Bb7 ii-V cadencing to Eb6 tonic"
+      "A": "ii-V (Fm7-Bb7) repeated resolving to I (Ebmaj7), then ii-iii and vii-of-vi (Am7b5-D7)",
+      "B": "Descending ii-V chain (Gm7-C7, Fm7-Bb7) to I, then Cm7, ii-V of vi (Dm7b5-G7), Cm7-F7, Bb7-Ab7, Gm7-C7",
+      "A1": "Same as A: ii-V loop to I with turnaround Am7b5-D7",
+      "B1": "Gm7-C7, Fm7-Bb7, Db9-C7 tritone lead into ii-V (Fm7-Bb7) resolving to Eb6 tonic"
     },
     "modulates": false
   }

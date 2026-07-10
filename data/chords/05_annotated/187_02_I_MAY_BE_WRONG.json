@@ -8,19 +8,6 @@
   "title": "I MAY BE WRONG",
   "page": 187,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints '18 VERSE'.",
-    "other_note": "Below the grid prints 'Another different \"I may be wrong\" by J.Rushing/C.Basie'."
-  },
-  "recordings": [
-    "J.Bradley 28- E.Garner 50",
-    "Prestige Blue Swingers 60",
-    "G.Kulligan 63- B.Green 55",
-    "B.Stewart 47- H.J.Webb 55",
-    "T.Dorsey 37.45- J.Kirby 39",
-    "R.Nichols 26- B.Auld 55",
-    "P.Brown 44"
-  ],
   "variants": [
     {
       "applies_to": "Bar 5, 13,28",
@@ -35,7 +22,7 @@
         },
         {
           "section": "A2",
-          "bar": 4
+          "bar": 5
         }
       ],
       "bars": [
@@ -61,6 +48,19 @@
         }
       ]
     }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '18 VERSE'.",
+    "other_note": "Below the grid prints 'Another different \"I may be wrong\" by J.Rushing/C.Basie'."
+  },
+  "recordings": [
+    "J.Bradley 28- E.Garner 50",
+    "Prestige Blue Swingers 60",
+    "G.Kulligan 63- B.Green 55",
+    "B.Stewart 47- H.J.Webb 55",
+    "T.Dorsey 37.45- J.Kirby 39",
+    "R.Nichols 26- B.Auld 55",
+    "P.Brown 44"
   ],
   "sections": {
     "A": [
@@ -279,8 +279,8 @@
     "chord": "Eb"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "2ce9a3c37aa4b7625aa6daa7c5dfdc220f9dd4c2d77cde72e9e3b177eb2c5b41",
+    "status": "agreed",
+    "source_sha256": "28af5082acbfe98ceee8cd277ca404920b146b9d9ee462169c09e8dc50540e86",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -291,11 +291,6 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "Eb",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -305,10 +300,10 @@
       "ii-V-chains"
     ],
     "sections": {
-      "A": "I-Imaj7-I7 to IV-iv, back to I with V/V (F7)-V7-I",
-      "A1": "Identical to A: I-IV-iv, F7-Bb7-I",
-      "B": "ii-V-I in Eb, then Fm6-D7, Gm-Cm-F7-Bb7#5 back to V",
-      "A2": "Same A but ends on Bb7 (V) turnaround"
+      "A": "I-Imaj7-I7 to IV-iv, back to I with V/V (F7)-V(Bb7)-I",
+      "A1": "Repeat of A: I to IV-iv, then F7-Bb7-I cadence",
+      "B": "ii-V-I in Eb, then Fm6-D7 to Gm-Cm-F7-Bb7 dominant approach",
+      "A2": "Final A ending on Bb7 (V) as turnaround"
     },
     "modulates": false
   }

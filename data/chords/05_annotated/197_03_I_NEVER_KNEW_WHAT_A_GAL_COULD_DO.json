@@ -392,7 +392,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "bcc9116e3070d618f6294856fa01da786c2f744aa5a90fd966576b8d3364f305",
+    "source_sha256": "98338f36ef8ff48271f708d2dde9ad57178148c2d8c17d905965369e02d2a679",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -409,7 +409,7 @@
       "tonic": "C",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "verse B section sits on G (the dominant) for 8 bars",
+      "modulation_note": "verse B section dwells on G (the dominant) as a local I-V7 center",
       "section_keys": {
         "verse_B": {
           "tonic": "G",
@@ -427,20 +427,20 @@
     "family": "verse-and-chorus standard (16-bar verse + 32-bar AA'BA chorus)",
     "tags": [
       "ii-V-chains",
-      "dominant-cycle-bridge",
       "turnaround-ending",
-      "circle-of-fifths"
+      "chromatic-descent",
+      "dominant-cycle-bridge"
     ],
     "sections": {
-      "intro": "I - #i o7 - IV - V7 setup",
-      "verse_A": "I held, bVI7(Ab7)-V7, back to I, then V/V(D7)-V7",
-      "verse_B": "Sustained G major with V-I(D7-G) rocking, ends on G7 as V of C",
-      "A": "I - VI7(A7) - II7(D7) - V7(G7) - I - V7 dominant chain",
-      "A1": "I - VI7 - II7 - V7 extended dominant cycle",
-      "B": "I - I7(C7) - IV(F) - bVI7(Ab7)",
+      "intro": "I - #ivo7 - IV - V7 lead-in",
+      "verse_A": "I held, bVI7-V7 into I, then V/V(D7)-V7",
+      "verse_B": "eight bars of I-V7 oscillation centered on G",
+      "A": "I - VI7(A7) - II7(D7) - V7 - I - V7 dominant chain",
+      "A1": "I - VI7 - II7 - V7 chain ending on V7",
+      "B": "I - I7(V7/IV) - IV - bVI7(Ab7) bridge",
       "A2": "I - VI7 - II7 - V7 - I final cadence"
     },
     "modulates": true,
-    "modulation_note": "verse B section sits on G (the dominant) for 8 bars"
+    "modulation_note": "verse B section dwells on G (the dominant) as a local I-V7 center"
   }
 }

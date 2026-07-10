@@ -265,8 +265,8 @@
     "chord": "F"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "ea9e1fbaed62434cb617133024fc295f3706b09fd21f282753c514f812912a75",
+    "status": "agreed",
+    "source_sha256": "f2fc70ea45de008a928c2efedfb6e95a7a729c90cfd41969e988a2039b41e5a7",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -277,11 +277,6 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "F",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -293,10 +288,10 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "I then dominant chain A7-D7-G7-C7 (V/vi through circle of fifths) back to I, ending ii-V turnaround",
-      "A1": "Same as A with resolution to I via IV (Bb) plagal touch",
-      "B": "#io7-ii-iv-I motion then vi-II-V (Dm-G7-C7) with #io7 into ii-V turnaround",
-      "A2": "Repeat of A1 resolving firmly to I"
+      "A": "I then dominant cycle iii-VI7-II7-V7-V/IV(C7) resolving to I, ending Gm7-C7 (ii-V)",
+      "A1": "Same dominant cycle back to I with I-IV-I tag",
+      "B": "#io7-ii-iv-I then vi-V/V-V7 with io7 passing, ending ii-V",
+      "A2": "Dominant cycle resolving to I with I-IV-I ending"
     },
     "modulates": false
   }

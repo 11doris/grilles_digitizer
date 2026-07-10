@@ -8,17 +8,31 @@
   "title": "EVERYTIME WE SAY GOODBYE",
   "page": 120,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints '10 VERSE'."
-  },
-  "recordings": [
-    "J.Mehegan 55- S.Rollins 55- S.Vaughan 61",
-    "J.Morello 61- T.Wilson 45- E.Fitzgerald 56",
-    "B.Evers/L.Konitz/W.Marsh 77- J.Coltrane 60",
-    "R.Charles 61- S.Hanna 61- I.Jacquet 64",
-    "S.Kenton 44.55"
-  ],
   "variants": [
+    {
+      "applies_to": "Bar 14",
+      "targets": [
+        {
+          "section": "B",
+          "bar": 6
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Gbmaj7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "C9b5",
+            "3": "B7"
+          }
+        }
+      ]
+    },
     {
       "applies_to": "Bar 27",
       "targets": [
@@ -43,31 +57,17 @@
           }
         }
       ]
-    },
-    {
-      "applies_to": "Bar 14",
-      "targets": [
-        {
-          "section": "B",
-          "bar": 6
-        }
-      ],
-      "bars": [
-        {
-          "bar": 1,
-          "beats": {
-            "1": "Gbmaj7"
-          }
-        },
-        {
-          "bar": 2,
-          "beats": {
-            "1": "C9b5",
-            "3": "B7"
-          }
-        }
-      ]
     }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '10 VERSE'."
+  },
+  "recordings": [
+    "J.Mehegan 55- S.Rollins 55- S.Vaughan 61",
+    "J.Morello 61- T.Wilson 45- E.Fitzgerald 56",
+    "B.Evers/L.Konitz/W.Marsh 77- J.Coltrane 60",
+    "R.Charles 61- S.Hanna 61- I.Jacquet 64",
+    "S.Kenton 44.55"
   ],
   "sections": {
     "A": [
@@ -312,8 +312,8 @@
     "chord": "Ebmaj7"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "a83e4f42da97ae7fd5977ef7b351d76215a029a5031905e0be98e9b9986b3b14",
+    "status": "agreed",
+    "source_sha256": "7d7dd401dbdfd54ce39f17254fddea745c55826cae1afd85e0e4bde3f8e1d6db",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -324,11 +324,6 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "Eb",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -336,13 +331,13 @@
     "tags": [
       "ii-V-chains",
       "circle-of-fifths",
-      "chromatic-descent"
+      "turnaround-ending"
     ],
     "sections": {
-      "A": "I-ii-iii-ii motion in Eb, I with #io7 passing, ii-V figures into bVImaj7/ii-V tags",
-      "B": "Imaj7 with #io7, ii-V of Ab to IVmaj7, then iv-bVII and V7-of tension resolving to Fm7-Bb7 (ii-V of Eb)",
-      "A1": "Repeat of A: I-ii-iii-ii with diminished passing and ii-V tags",
-      "C": "Imaj7 to IVmaj7, then circle-of-fifths turnaround (Gm7-C7-F7-Bb7) resolving to Eb tonic"
+      "A": "I with diatonic ii-iii motion, #io7 passing chord, then Gbmaj7/Bb7 and ii-V figures staying in Eb",
+      "B": "I with passing dim, ii-V, tonicizing IV (Abmaj7) via Abm7-Db7, back to ii-V of Eb",
+      "A1": "Repeat of A: I loop with passing chords and ii-Vs in Eb",
+      "C": "I with dim passing, ii-V, brief IV, then circle-of-fifths Gm7-C7-F7-Bb7 resolving to Eb"
     },
     "modulates": false
   }

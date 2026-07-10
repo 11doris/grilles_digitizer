@@ -278,7 +278,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "9c941ea11c99f3c1805cc18ba6fecada74340b9346f314468760070ba910200e",
+    "source_sha256": "ac9d15b7feb5d67c0d85188d059b6cd946e32225d5d2685c0cb3aa945f3cacf5",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -304,16 +304,16 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar AABA-type standard (A B A B')",
+    "family": "32-bar ABAB' standard",
     "tags": [
       "ii-V-chains",
       "turnaround-ending"
     ],
     "sections": {
-      "A": "ii-V-I in F (G9-C7#5-F) stated twice, ending on F7 leading to IV",
-      "B": "IV (Bb) to A7/Dm (vi), G7 (II7), then ii-V (Gm7-C7) with D7#5 turnaround",
-      "A1": "repeat of A: ii-V-I in F stated twice, ending F7",
-      "B1": "IV-A7-Dm, G7-C7 (V/V then V) resolving to tonic F"
+      "A": "II7(G9)-V(C7#5)-I(F) ii-V-I loop with V/V (D7) turning back to II",
+      "B": "IV(Bb)-A7-vi(Dm)-V/V(G7)-ii-V(Gm7-C7) with D7 turn",
+      "A1": "repeat of A: II7-V-I in F with D7 turnaround",
+      "B1": "IV(Bb)-A7-vi(Dm)-G7-C7-I(F) resolving home"
     },
     "modulates": false
   }

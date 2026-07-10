@@ -426,8 +426,8 @@
     "chord": "Gm"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "606ba7cea00a81e480008390f04acc8fe30fc0ed67e572169f558e31dd48483d",
+    "status": "agreed",
+    "source_sha256": "72fcb819a941e5e2c5a9d25fac05f1d9f0ce68d0261efecb5b280a36eb0c907e",
     "scorer": {
       "tonic": "G",
       "mode": "minor",
@@ -438,28 +438,23 @@
       "mode": "minor",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "G",
-      "mode": "minor",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar with 24-bar verse (AAB verse + AABC chorus)",
+    "family": "32-bar tune with verse (AAB verse + AABC chorus)",
     "tags": [
       "ii-V-chains",
       "circle-of-fifths",
       "turnaround-ending"
     ],
     "sections": {
-      "verse_A": "i-i7, bVI7-V7/i, iv, V7-i tonic area with G7(b9) as V/iv into iv, ending on iv6-V7",
-      "verse_A1": "same as verse A with i-V7-i resolution, ending on iv6-V7",
-      "s1_B": "i, V/V-V7, i-bVII7 to bVI(Bb), iiø-V7-i, then bVI7-V7 turnaround",
-      "A": "iv7-bVII7-bIIImaj7-bVImaj7 (circle of fifths through relative Bb major), then iiø-V7-i",
-      "A1": "repeat: circle-of-fifths iv7-bVII7-III-VI then iiø-V7-i",
-      "B": "V7 pedal to i, then iv7-bVII7-III-VI circle of fifths",
-      "C": "iiø-V7-i with i(maj7), iø-viø chromatic, bVI7-V7-i final cadence"
+      "verse_A": "i-i7, bVI7-V7, iv, V7-i in Gm with G(b9) as V/iv pedal into iv",
+      "verse_A1": "same as verse_A with i-V7-i and Cm6/D7 turnaround",
+      "verse_B": "i, V/V-V7, i-VI7 to bVI(Bb), iiø-V7-i then bVI7-V7",
+      "A": "iv7-bVII7-bIIImaj7-bVImaj7 then iiø-V7-i (Cm7-F7-Bbmaj7-Ebmaj7-Am7b5-D7-Gm)",
+      "A1": "repeat of A: circle-of-fifths into iiø-V7-i in Gm",
+      "B": "V7 pedal to i, then iv7-bVII7-bIIImaj7-bVImaj7",
+      "C": "iiø-V7-i with i(maj7), iø-viiø, bVI7-V7-i final cadence"
     },
     "modulates": false
   }

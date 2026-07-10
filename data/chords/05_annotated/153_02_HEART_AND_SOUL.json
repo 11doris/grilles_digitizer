@@ -8,15 +8,6 @@
   "title": "HEART AND SOUL",
   "page": 153,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "R.Sharon 51- M.Jackson 52- B.Powell 50",
-    "Bat.Carter 63- H.Jones 55- D.brubeck 51",
-    "L.Clinton 38- P.Whiteman 38- T.Dorsey 51",
-    "C.Fuller 57- B.Axen 61"
-  ],
-  "notation_notes": {
-    "verse": "Header prints '8 VERSE'."
-  },
   "variants": [
     {
       "applies_to": "Bar 1",
@@ -31,7 +22,7 @@
           "bar": 1,
           "beats": {
             "1": "B7b5",
-            "2": "B7",
+            "2": "Bb7",
             "3": "A7#5",
             "4": "Ab13"
           }
@@ -39,6 +30,15 @@
       ]
     }
   ],
+  "recordings": [
+    "R.Sharon 51- M.Jackson 52- B.Powell 50",
+    "Bat.Carter 63- H.Jones 55- D.brubeck 51",
+    "L.Clinton 38- P.Whiteman 38- T.Dorsey 51",
+    "C.Fuller 57- B.Axen 61"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
   "sections": {
     "A": [
       {
@@ -281,8 +281,8 @@
     "chord": "F"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "3bfbdda18710eb3155ed24879269482abad2d3f6c283abb2add1bd8d976e3d80",
+    "status": "agreed",
+    "source_sha256": "b70730d75863c7ef7cf21439c67e72ec69cc56f26afd25a378f7d33902b69ddc",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -293,11 +293,6 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "F",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -308,9 +303,9 @@
       "ii-V-chains"
     ],
     "sections": {
-      "A": "I-vi-ii-V loop (F-Dm7-Gm7-C7) with V/V (D7) in bar 3",
-      "A1": "Same I-vi-ii-V loop, ending on tonic with F7 leading to bridge (V/IV)",
-      "B": "Bb (IV) with A7-D7-G7-C7-F7-E7 circle-of-fifths dominant chain, back to ii-V",
+      "A": "I-vi-ii-V loop in F with V/V (D7) in bar 3",
+      "A1": "Same I-vi-ii-V loop, ending on F with F7 as V/IV toward bridge",
+      "B": "IV (Bb) then descending dominant cycle A7-D7-G7-C7-F7-E7-A7 back to ii-V",
       "A2": "I-vi-ii-V loop resolving to F tonic"
     },
     "modulates": false

@@ -7,39 +7,7 @@
   "title": "ANNIE LAURIE",
   "page": 20,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "D.Byas 45- J.Forrest 61- T.Grimes 48",
-    "B.Myers 45- J.Newman 55- T.Dorsey 38",
-    "J.Lunceford 37.42- M.Manone 36- B.May 57",
-    "M.Sullivan 37- F.Waller 39",
-    "C.Basie/F.Sinatra 62"
-  ],
   "variants": [
-    {
-      "applies_to": "BAR 27",
-      "targets": [
-        {
-          "section": "C",
-          "bar": 3
-        }
-      ],
-      "bars": [
-        {
-          "bar": 1,
-          "beats": {
-            "1": "C",
-            "3": "E7"
-          }
-        },
-        {
-          "bar": 2,
-          "beats": {
-            "1": "Am",
-            "3": "Fm6"
-          }
-        }
-      ]
-    },
     {
       "applies_to": "BAR 6",
       "targets": [
@@ -68,7 +36,39 @@
           }
         }
       ]
+    },
+    {
+      "applies_to": "BAR 27",
+      "targets": [
+        {
+          "section": "C",
+          "bar": 3
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "C",
+            "3": "E7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Am",
+            "3": "Fm6"
+          }
+        }
+      ]
     }
+  ],
+  "recordings": [
+    "D.Byas 45- J.Forrest 61- T.Grimes 48",
+    "B.Myers 45- J.Newman 55- T.Dorsey 38",
+    "J.Lunceford 37.42- M.Manone 36- B.May 57",
+    "M.Sullivan 37- F.Waller 39",
+    "C.Basie/F.Sinatra 62"
   ],
   "notation_notes": {
     "composer_date": "Composer's dates unknown - the header prints '(Lady J.D. Scott, ?)'.",
@@ -288,8 +288,8 @@
     "chord": "C"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "1c62059e6cd43eee350a18be171bc55f9923239d26c68980f930c19234f6fb70",
+    "status": "agreed",
+    "source_sha256": "e35f7091141e21b312fe45c1293a0bb7c391a6d25387e6e7e6c67d0a969d8e38",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -300,24 +300,19 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "C",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar AA'BC standard",
+    "family": "32-bar AABC standard",
     "tags": [
       "circle-of-fifths",
       "turnaround-ending"
     ],
     "sections": {
-      "A": "I-I+5-IV-#ivo7-I with V/V (D7) to G7 ending on V",
-      "A1": "I-I+5-IV-#ivo7-I-V7-I authentic cadence",
-      "B": "I-V7-I then vi-IV to E7 (V/vi) dwelling on E7",
-      "C": "IV-#ivo7-I-(V7)-I-V7-I cadence"
+      "A": "I-I+ to IV with #iv°7 passing, then I-V/V-V7 ending on dominant",
+      "A1": "I-I+ to IV with #iv°7, resolving I-V7-I",
+      "B": "I-V7-I, then vi-IV-V/vi (E7) as secondary dominant",
+      "C": "IV-#iv°7-I-(V7), then I-V7-I cadence"
     },
     "modulates": false
   }

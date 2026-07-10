@@ -8,23 +8,6 @@
   "title": "EVERYTHING HAPPENS TO ME",
   "page": 119,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints '4 VERSE'."
-  },
-  "recordings": [
-    "C.Fisher 75- Giants of Jazz72",
-    "B.Powell 47- A.Pepper 52.54",
-    "C.Hawkins 57- B.Holiday 55",
-    "T.Monk 59- C.Parker 49.51",
-    "G.Mulligan 55- S.Getz 63",
-    "S.Rollins 52- J.Raney 54",
-    "D.Gillespie 52- B.Evans 63",
-    "O.Byrd 55",
-    "E.Garner 44.49- S.Getz 51.55",
-    "L.Gonsalves 54- B.De Franco 54",
-    "J.Dorsey 41- B.De Franco",
-    "A.Cohn 54- T.Wilson 53"
-  ],
   "variants": [
     {
       "applies_to": "Bar 2, 10 and 26",
@@ -54,11 +37,28 @@
           "bar": 2,
           "beats": {
             "1": "E9b5",
-            "3": "E(b5b9)"
+            "3": "Eb9b5"
           }
         }
       ]
     }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '4 VERSE'."
+  },
+  "recordings": [
+    "C.Fisher 75- Giants of Jazz72",
+    "B.Powell 47- A.Pepper 52.54",
+    "C.Hawkins 57- B.Holiday 55",
+    "T.Monk 59- C.Parker 49.51",
+    "G.Mulligan 55- S.Getz 63",
+    "S.Rollins 52- J.Raney 54",
+    "D.Gillespie 52- B.Evans 63",
+    "O.Byrd 55",
+    "E.Garner 44.49- S.Getz 51.55",
+    "L.Gonsalves 54- B.De Franco 54",
+    "J.Dorsey 41- B.De Franco",
+    "A.Cohn 54- T.Wilson 53"
   ],
   "sections": {
     "A": [
@@ -302,7 +302,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "1938657aaf0c7d2891f0a15c71c0c58722562a14810faffd5727d9003fb8b89f",
+    "source_sha256": "b028686e6fed4e15d2e0f193e7fdcfa2548323342b80561e4545c90709c661bc",
     "scorer": {
       "tonic": "C",
       "mode": "minor",
@@ -312,7 +312,7 @@
       "tonic": "Bb",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": null
+      "modulation_note": "bridge tonicizes Eb then D before returning to Bb"
     },
     "human": {
       "tonic": "Bb",
@@ -328,11 +328,12 @@
       "chromatic-descent"
     ],
     "sections": {
-      "A": "ii-V motion (Cm7-F7) over Bb with chromatic passing dim, cadencing to Bb6 (I)",
+      "A": "ii-V motion over Bb (Cm7-F7) with chromatic passing dim, cadencing ii-V to I (Bb6)",
       "A1": "Repeat of A: ii-V loops resolving to Bb6 (I)",
-      "B": "ii-V to Eb (IV), then up to D via Em11-A7-Dmaj7, back through Gm7-C7-Cm7-F7 to Bb",
-      "A2": "Repeat of A: ii-V motion cadencing to Bb6 (I)"
+      "B": "ii-V-I in Eb, then ii-V-I in D, then Gm7-C7 / Cm7-F7 leading back to Bb",
+      "A2": "Repeat of A: ii-V loops resolving to Bb6 (I)"
     },
-    "modulates": false
+    "modulates": true,
+    "modulation_note": "bridge tonicizes Eb then D before returning to Bb"
   }
 }

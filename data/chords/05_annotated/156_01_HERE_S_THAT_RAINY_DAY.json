@@ -8,14 +8,6 @@
   "title": "HERE'S THAT RAINY DAY",
   "page": 156,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "B.Evans 68- B.Carter 77- T.Flanagan 77",
-    "W.Montgomery 65- P.Desmond 65- C.Fisher 8",
-    "E.Fitzgerald 65- A.Gilberto 65- P.Horn 65",
-    "O.Peterson 62- Jazz Piano Quartet 74",
-    "S.Getz 64- U.Green 68- C.Basie 66- MJQ 69",
-    "J.Pass 73- K.Burrel/M.B.Davis 64"
-  ],
   "variants": [
     {
       "applies_to": "Bar 1, 17",
@@ -55,7 +47,7 @@
           "bar": 4,
           "beats": {
             "1": "Cm",
-            "3": "F7"
+            "3": "Cm7"
           }
         },
         {
@@ -66,6 +58,14 @@
         }
       ]
     }
+  ],
+  "recordings": [
+    "B.Evans 68- B.Carter 77- T.Flanagan 77",
+    "W.Montgomery 65- P.Desmond 65- C.Fisher 8",
+    "E.Fitzgerald 65- A.Gilberto 65- P.Horn 65",
+    "O.Peterson 62- Jazz Piano Quartet 74",
+    "S.Getz 64- U.Green 68- C.Basie 66- MJQ 69",
+    "J.Pass 73- K.Burrel/M.B.Davis 64"
   ],
   "notation_notes": {
     "maj7_notation": "The book writes major 7th as '7M' throughout (converted to maj7).",
@@ -292,8 +292,8 @@
     "chord": "G"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "ed1ee318b4940fc4a8bdf9e30bd2e7d6f78285411b6ee65c2d9f1c08776e017a",
+    "status": "agreed",
+    "source_sha256": "9a1772b1cdfd12dbb797e53fffc32324bdeadd6404a049872cd9c6b3035945cc",
     "scorer": {
       "tonic": "G",
       "mode": "major",
@@ -304,24 +304,20 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "G",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending"
+      "turnaround-ending",
+      "chromatic-descent"
     ],
     "sections": {
-      "A": "I-Imaj7, bIII-viiø, bVI(Eb), iv(Cm7), vi-V/? Am7-D7 back to I, ii-V turnaround",
-      "B": "ii-V-I to Bb (Cm7-F7-Bbmaj7) then Ebmaj7, Am7-D7-Gmaj7 back to I, ii-V turnaround",
-      "A1": "repeat of A: I with borrowed bVI/iv, Am7-D7 to I, ii-V turnaround",
-      "C": "IV(Cmaj7), vi-V/V (Am7-D7), iii-vi, V/ii A7, ii-V to I resolving on G"
+      "A": "I with borrowed bIII/bVI color (Bb, Eb) to iv, then vi-V/... Am7-D7 back to I, ii-V turnaround",
+      "B": "ii-V into bVI region (Cm7-F7-Bbmaj7-Ebmaj7) then Am7-D7 to Gmaj7, ii-V turnaround",
+      "A1": "repeat of A: I with bIII/bVI borrowings resolving to I, ii-V turnaround",
+      "C": "IV(Cmaj7)-ii-V, iii-vi-V/ii(A7) then ii-V-I cadence to G"
     },
     "modulates": false
   }

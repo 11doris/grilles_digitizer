@@ -8,19 +8,6 @@
   "title": "MY OLD FLAME",
   "page": 285,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints '8 VERSE'."
-  },
-  "recordings": [
-    "Ch.Baker 59- Co.Williams 44.58- H.Edison 76",
-    "Pl.Johnson 59- O.Mulligan 55- C.Parker 47.48",
-    "D.Ellington 34.55- B.Goodman 41- E.Bunes 79",
-    "J.Pass 73- A.Reig 54- C.Basie 41- T.Lewis 34",
-    "O.Peterson 55- T.Farlow 54- E.Fitzgerald 59",
-    "K.Dorham 57- D.Gillespie 52- B.Holiday 44",
-    "S.Getz 50.51- J.J.Johnson 58- Keynoters 46",
-    "M.Davis 58- M.Davis 51"
-  ],
   "variants": [
     {
       "applies_to": "Bar 1, 9, 25",
@@ -34,7 +21,7 @@
           "bar": 1
         },
         {
-          "section": "A 3",
+          "section": "A2",
           "bar": 1
         }
       ],
@@ -132,6 +119,19 @@
         }
       ]
     }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
+  "recordings": [
+    "Ch.Baker 59- Co.Williams 44.58- H.Edison 76",
+    "Pl.Johnson 59- O.Mulligan 55- C.Parker 47.48",
+    "D.Ellington 34.55- B.Goodman 41- E.Bunes 79",
+    "J.Pass 73- A.Reig 54- C.Basie 41- T.Lewis 34",
+    "O.Peterson 55- T.Farlow 54- E.Fitzgerald 59",
+    "K.Dorham 57- D.Gillespie 52- B.Holiday 44",
+    "S.Getz 50.51- J.J.Johnson 58- Keynoters 46",
+    "M.Davis 58- M.Davis 51"
   ],
   "sections": {
     "A": [
@@ -312,7 +312,7 @@
         }
       }
     ],
-    "A 3": [
+    "A2": [
       {
         "bar": 1,
         "beats": {
@@ -382,7 +382,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "db85b8cea5cf9f4a592d03bac5e04e187fedb867924f56a9f72466c35ae138a2",
+    "source_sha256": "d62de5e325a5027a7b2af89983ce772c250b088484ca7340826d7d927bb324db",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -416,14 +416,14 @@
     "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "chromatic-descent",
-      "turnaround-ending"
+      "turnaround-ending",
+      "chromatic-descent"
     ],
     "sections": {
-      "A": "I with bVI9#11 tension, vi-V/ii, iii, then chromatic ii-Vs (Bbm7-Eb7, C7) resolving to I; borrowed bIII/bVI and ii turnaround",
-      "A1": "Same as A, ending on iii to Bbm7-Eb7 leading into bridge",
-      "B": "Bridge on bIII (Abmaj7), descending ii-Vs and chromatic dominants back through iv, ii-V of I",
-      "A 3": "A repeated with V/ii and ii-V, resolving firmly to I (F) at bar 8"
+      "A": "Imaj7 with bVI dominant, V/ii-ii, iv-bVII borrowed motion, I then Bbm7-Eb7 into bVI, ii-V turnaround",
+      "A1": "Same as A, ending on ii with Bbm7-Eb7 setup",
+      "B": "bVI maj7 opening, descending dominants, iv-bVII, ii-V's leading back to ii-V of F",
+      "A2": "Same A opening, resolving with Gm9-C7b9 ii-V to final I"
     },
     "modulates": false
   }

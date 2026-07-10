@@ -440,7 +440,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "a2c945c10c029576154f9f205ae317ef4a7f3c87589e184668fac985b92cb950",
+    "source_sha256": "5f5d58968d4a8b3f3f18feb5452a644e5ccf9e28299e22167f9b75887c9fe37b",
     "scorer": {
       "tonic": "G",
       "mode": "major",
@@ -471,15 +471,15 @@
       "turnaround-ending",
       "chromatic-descent",
       "ii-V-chains",
-      "secondary-dominants"
+      "circle-of-fifths"
     ],
     "sections": {
-      "verse_A": "I6 with V7/vi, ii-V motion toward vi (Em), line-cliché on Em, ending ii-V (Am7-D7) back to I",
-      "verse_A1": "Same opening, tonicizes vi (Em via F#m7b5-B7), ends on ii-V (Am7-D7)",
-      "A": "I with chain of secondary dominants E7-A7-D7, vi with C9/B9, cycle E7-A7-D7 back to ii-V turnaround",
-      "A1": "As A, resolving to I (G6) and ending Dm7-G7 (ii-V of IV)",
-      "B": "Bridge on IV area (C6), E7(b9)/Am7, Fmaj7-E7, chromatic descending dominants F9-E9-Eb9-D9 landing on V (D7)",
-      "A2": "As A, resolving to I with G6-C7-G6 tag ending"
+      "verse_A": "I6 with V/vi, ii-vii-V/iii, dwelling on iii (Em with line-cliché) then ii-V back to I",
+      "verse_A1": "Similar opening, iii tonicized via F#m7b5-B7, ends ii-V (Am7-D7) turnaround",
+      "A": "I with V/vi, V/V-V, iii to bVII9/V(C9)-V/V(B9), then dominant cycle E7-A7-D7, ii-V",
+      "A1": "Same as A but resolves to I6 then Dm7-G7 (ii-V of IV/turnaround)",
+      "B": "IV area (C6) with V/vi, Am7-C7, Fmaj7-E7, chromatic dominant descent F9-E9-Eb9-D9 to V",
+      "A2": "I with dominant-cycle A, ends firmly on I6 via C7 to G6"
     },
     "modulates": false
   }

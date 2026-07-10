@@ -8,15 +8,6 @@
   "title": "CON ALMA",
   "page": 79,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "R.Haynes 80- O.Peterson 59- H.McKusick 57",
-    "Mitchell/Ruff 61- R.Weston 69- S.Getz 57",
-    "R.Bryant 61- A.Farmer/B.Golson 60",
-    "D.Gillespie 54.57.63(Double six).68"
-  ],
-  "notation_notes": {
-    "year_uncertain": "Header prints 'Dizzy GILLESPIE 1954 ?'."
-  },
   "variants": [
     {
       "applies_to": "Bar 23",
@@ -44,6 +35,15 @@
       ]
     }
   ],
+  "recordings": [
+    "R.Haynes 80- O.Peterson 59- H.McKusick 57",
+    "Mitchell/Ruff 61- R.Weston 69- S.Getz 57",
+    "R.Bryant 61- A.Farmer/B.Golson 60",
+    "D.Gillespie 54.57.63(Double six).68"
+  ],
+  "notation_notes": {
+    "year_uncertain": "Header prints 'Dizzy GILLESPIE 1954 ?'."
+  },
   "sections": {
     "A": [
       {
@@ -310,13 +310,13 @@
     "mode": "major"
   },
   "opening": {
-    "degree": "III",
+    "degree": "I",
     "quality": "maj",
     "chord": "Emaj7"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "e422b5f74d541334fe18464986417bad293dff9ed09a62d3e3d7832e1f86cc8e",
+    "status": "agreed",
+    "source_sha256": "6bd9ee02adf69821a3d622a7911fedde134a4040927c836fa6462933702dc82e",
     "scorer": {
       "tonic": "E",
       "mode": "major",
@@ -327,26 +327,21 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "C",
-      "mode": "major",
-      "corrected": true
     }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "chromatic-descent",
-      "chromatic-third-relations"
+      "major-thirds-cycle",
+      "circle-of-fifths"
     ],
     "sections": {
-      "A": "Emaj7 tonic with V7/IV, then chains of ii-V's tonicizing Db, Eb, Db and C major key centers a major third apart",
-      "A1": "Same as A, resolving to Cmaj7 without turnaround",
-      "B": "ii-V into E (Cm7b5-F7, F#m7b5-B7 to Emaj9), then Fm7-Bb7 ii-V",
-      "A2": "Repeat of A resolving to Cmaj7",
-      "interlude": "C9#5 vamp moving to Gbmaj9, Fm(maj7), C7b5"
+      "A": "Imaj7 launching a major-thirds cycle (E, Db, C tonic areas) via ii-V pairs, ending Cmaj7 with a ii-V back to E",
+      "A1": "Same as A, resolving on Cmaj7",
+      "B": "ii-V in Bb (Cm7b5-F7), ii-V in E (F#m7b5-B7) to Emaj9, then ii-V in Eb (Fm7-Bb7)",
+      "A2": "Restatement of A ending on Cmaj7",
+      "interlude": "C9#5 pedal to Gbmaj9, Fm(maj7), C7b5 vamp"
     },
     "modulates": false
   }
