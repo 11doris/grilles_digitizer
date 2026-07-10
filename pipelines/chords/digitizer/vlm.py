@@ -38,8 +38,13 @@ class VLMClient:
         # The SDK resolves ANTHROPIC_API_KEY (or an ant-login profile) from the env.
         self._client = anthropic.Anthropic()
 
-    def transcribe(self, user_content: list[dict], *, extra_reminder: str = "") -> str:
-        """Send the cached system prompt + this crop; return the model's raw text."""
+    def transcribe(self, user_content: list[dict], *, extra_reminder: str = "",
+                   max_tokens: int | None = None) -> str:
+        """Send the cached system prompt + this crop; return the model's raw text.
+
+        `max_tokens` overrides the configured cap for this call (the runner
+        raises it when a previous attempt was truncated).
+        """
         # The system block must stay byte-identical across every call so it caches
         # (spec §18.3). The per-retry reminder therefore goes in the user message tail,
         # never in the cached prefix.
@@ -54,7 +59,7 @@ class VLMClient:
             user_content = user_content + [{"type": "text", "text": extra_reminder.strip()}]
         kwargs: dict = {
             "model": self.config.model,
-            "max_tokens": self.config.max_output_tokens,
+            "max_tokens": max_tokens or self.config.max_output_tokens,
             "system": system,
             "messages": [{"role": "user", "content": user_content}],
             # Force the model to answer by calling the tool — guarantees structured

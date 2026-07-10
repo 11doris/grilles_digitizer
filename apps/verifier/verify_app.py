@@ -109,6 +109,28 @@ def _validate_tune(data: dict) -> str | None:
     return None
 
 
+# Title cache for the list endpoint, keyed by source file and mtime: a list
+# refresh over the full book (~1600 tunes) must not re-parse every JSON.
+_title_cache: dict[Path, tuple[int, str]] = {}
+
+
+def _tune_title(tid: str, fallback: Path) -> str:
+    src = _source_path(tid) or fallback
+    try:
+        mtime = src.stat().st_mtime_ns
+    except OSError:
+        return tid
+    cached = _title_cache.get(src)
+    if cached is not None and cached[0] == mtime:
+        return cached[1]
+    try:
+        title = json.loads(src.read_text("utf-8")).get("title", tid)
+    except Exception:
+        title = tid
+    _title_cache[src] = (mtime, title)
+    return title
+
+
 def _tune_sort_key(p: Path) -> tuple:
     """Natural sort: numeric prefix first, then full name."""
     m = re.match(r'^(\d+)', p.name)
@@ -186,11 +208,7 @@ def api_list():
     for p in _list_tunes():
         tid = p.stem
         # Show the WIP title if the tune has unsaved-to-source edits.
-        src = _source_path(tid) or p
-        try:
-            d = json.loads(src.read_text("utf-8"))
-        except Exception:
-            d = {}
+        title = _tune_title(tid, p)
         if tid in verified_set:
             status = "verified"
         elif tid in deferred_set:
@@ -199,7 +217,7 @@ def api_list():
             status = "needs_review"
         tunes.append({
             "id": tid,
-            "title": d.get("title", tid),
+            "title": title,
             "verified": status == "verified",
             "deferred": status == "deferred",
             "status": status,

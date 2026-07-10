@@ -21,7 +21,7 @@ from .images import prepare_crop
 from .manifest import WorkUnit, load_units
 from .prompt import STRICTER_REMINDER, build_user_content
 from .validation import ValidationError, parse_json, review_flags, validate
-from .vlm import MissingCredentials, VLMClient, VLMRefusal
+from .vlm import MissingCredentials, VLMClient, VLMRefusal, VLMTruncated
 
 
 @dataclass
@@ -114,10 +114,12 @@ def _transcribe_unit(config: Config, client: VLMClient, unit: WorkUnit) -> UnitR
 
     last_error = ""
     last_raw = ""
+    max_tokens = config.max_output_tokens
     for attempt in range(1, config.retries + 1):
         reminder = STRICTER_REMINDER * (attempt - 1)  # progressively stricter
         try:
-            raw = client.transcribe(user_content, extra_reminder=reminder)
+            raw = client.transcribe(user_content, extra_reminder=reminder,
+                                    max_tokens=max_tokens)
             last_raw = raw
             obj = parse_json(raw)
             # The runner owns title/page/source (spec §5) — inject before validating
@@ -127,6 +129,14 @@ def _transcribe_unit(config: Config, client: VLMClient, unit: WorkUnit) -> UnitR
             obj["source"] = SOURCE_CONSTANT
             _canonicalize_chords(obj)
             validate(obj, unit)
+        except VLMTruncated as exc:
+            # Dense multi-strain grids overflow the default cap. Retry at a
+            # doubled cap (output is billed by use, not by the cap) instead
+            # of burning an error stub that would need a manual
+            # --max-output-tokens rerun.
+            last_error = f"{type(exc).__name__}: {exc}"
+            max_tokens = min(max_tokens * 2, 32000)
+            continue
         except (ValidationError, VLMRefusal) as exc:
             last_error = f"{type(exc).__name__}: {exc}"
             continue

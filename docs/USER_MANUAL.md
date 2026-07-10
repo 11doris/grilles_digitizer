@@ -96,8 +96,10 @@ consulted to restore apostrophes and accents the slug can't encode).
 
 One vision call per crop turns the image into structured JSON in
 `data/chords/02_raw/`. Output is validated structurally; failures are
-retried with stricter reminders, and a tune that never validates leaves a
-`*.error.json` stub (listed in `run_report.json`, hidden from the verifier).
+retried with stricter reminders (and a truncated reply retries at a doubled
+token cap — dense multi-strain tunes need it), and a tune that never
+validates leaves a `*.error.json` stub (listed in `run_report.json`, hidden
+from the verifier).
 Resume = "a valid output file exists", so you can run the book in as many
 sittings as you like.
 

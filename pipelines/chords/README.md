@@ -79,7 +79,7 @@ flight is redone.
 | `--retries R` | `3` | Per-unit validation retries (progressively stricter reminder) |
 | `--dilate N` | `1` | Ink-thickening iterations before the call (`0` to disable, `2` for very thin scans) |
 | `--max-long-edge PX` | `1100` | Downscale the long edge to this before the call (never upscales) |
-| `--max-output-tokens N` | `2500` | Output token **cap** (billed by actual use, not the cap; raise for very dense/multi-strain grids) |
+| `--max-output-tokens N` | `2500` | Output token **cap** (billed by actual use, not the cap). A truncated reply auto-retries at a doubled cap, so only raise this if a tune still fails after its retries |
 | `--page-range A:B` | — | Limit a session to tunes whose `page` is in `[A, B]` |
 | `--delay S` | `0` | Sleep between units |
 | `--only FILE` | — | Restrict to one `current_file` (debugging) |
@@ -125,8 +125,9 @@ valid JSON after retries).
   crop, temperature 0 where the model allows it, with short exponential backoff
   on transient failures (429/5xx/connection). The tune is requested via **forced
   tool use** (a single `record_tune` tool), which guarantees structured JSON
-  with no prose preamble on every model. A `max_tokens` cutoff is surfaced as a
-  clear "raise --max-output-tokens" error.
+  with no prose preamble on every model. A `max_tokens` cutoff is retried
+  automatically at a doubled cap (dense multi-strain grids overflow the
+  default); only a tune that keeps overflowing lands in an error stub.
 - **Validate** ([digitizer/validation.py](digitizer/validation.py)) — the
   per-tune self-check from spec §17. Structural failures trigger a retry;
   exhausting retries writes an `.error.json` stub and the batch continues. A
