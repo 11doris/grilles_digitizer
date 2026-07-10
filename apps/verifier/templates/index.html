@@ -18,6 +18,11 @@
         <div id="progress-track"><div id="progress-fill"></div></div>
       </div>
     </div>
+    <nav id="filter-tabs" class="sb-tabs">
+      <button data-filter="needs_review" class="active">needs review</button>
+      <button data-filter="deferred">deferred</button>
+      <button data-filter="all">all</button>
+    </nav>
     <ul id="tune-list"></ul>
   </aside>
 
@@ -34,6 +39,8 @@
         <div id="editor-btns">
           <span id="dirty-dot" class="hidden" title="Unsaved changes">●</span>
           <button id="btn-save" class="btn btn-primary">Save  <kbd>Ctrl+S</kbd></button>
+          <button id="btn-defer" class="btn btn-outline" title="Park this tune for a later review pass">⏸ Defer</button>
+          <button id="btn-resume" class="btn btn-outline hidden" title="Return this tune to the review queue">▶ Resume</button>
           <button id="btn-verify" class="btn btn-success">✓ Mark Verified</button>
           <button id="btn-unverify" class="btn btn-danger hidden">↩ Unverify</button>
         </div>
