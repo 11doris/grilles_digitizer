@@ -12,7 +12,7 @@ A Flask web application for manually reviewing and editing the digitized tune JS
 |---|---|
 | Backend | Python 3.11+, Flask |
 | Frontend | Single-page HTML + Vanilla JS (no build step) |
-| Persistence | `data/chords/03_wip/verification_state.json` (progress) + in-place JSON edits saved back to `data/chords/02_raw/` |
+| Persistence | `data/chords/verification_state.json` (progress); edits go to `data/chords/03_wip/` — `02_raw/` is read-only source material, never written |
 | Styling | Plain CSS (or optionally Pico CSS CDN — minimal dependency) |
 
 No database. No npm. Runnable with `python apps/verifier/verify_app.py`.
@@ -277,15 +277,23 @@ If the user navigates away from an unsaved tune (clicks another tune in the side
 
 ---
 
-## 12. Validation (server-side, on PUT)
+## 12. Validation (server-side, on save and on verify)
 
-Minimal validation — reject only clearly broken data:
-- `sections` must be a dict.
-- Each section value must be a list.
-- Each bar must have a `beats` dict with string keys `"1"`–`"4"`.
+`04_verified` is ground truth for every downstream stage (key annotation,
+similarity, displayer), so both PUT (save to WIP) and POST verify (promotion)
+run the full gate and reject with HTTP 400 + a JSON error message the UI
+surfaces as a toast:
+
+- `sections` must be a dict; each section a list of bars; each bar a `beats`
+  dict with string keys `"1"`–`"4"` and string chord values (the digitizer's
+  structural checks, incl. section-key and shorthand rules).
+- Every chord must parse under the similarity engine's chord grammar
+  (`pipelines/chords/similarity/normalize.py`) — a typo fails here, in front
+  of the reviewer, instead of aborting a later similarity build.
 - Unknown top-level keys are passed through without error.
 
-Return HTTP 400 with a JSON error message on failure.
+`*.error.json` transcription stubs in `02_raw/` are not tunes and never
+appear in the tune list.
 
 ---
 
@@ -300,7 +308,7 @@ Return HTTP 400 with a JSON error message on failure.
 
 import argparse
 ...
-app.run(debug=True, port=args.port)
+app.run(debug=False, port=args.port)  # never ship the werkzeug debugger
 ```
 
 Opens `http://localhost:5000` in the default browser automatically on startup (`webbrowser.open`).

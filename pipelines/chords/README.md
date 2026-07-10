@@ -12,6 +12,7 @@ structured JSON — one file per tune. Run everything from the repo root.
 | 5 publish | `apps/displayer/build_data.py` | `verified/` + index → displayer bundle |
 | 6 annotate keys | `annotate_keys.py` (→ `key_annotation/` package) | `verified/` → `data/chords/05_annotated/*.json` (key, section keys, opening, fingerprint; resumable) |
 | 7 verify keys | `apps/key_verifier/key_verify_app.py` | human review of `05_annotated` (needs-review queue first) |
+| 8 similarity | `python -m pipelines.chords.similarity.compute` | `05_annotated` → `data/chords/06_similarity/` (regenerable, gitignored) |
 
 Helpers (not stages):
 
@@ -150,7 +151,11 @@ python apps/verifier/verify_app.py
 ```
 
 Browses `data/chords/02_raw/`, saves edits to `data/chords/03_wip/`, promotes approved
-tunes to `data/chords/04_verified/`. `raw/` itself is never modified. Spec:
+tunes to `data/chords/04_verified/`. `raw/` itself is never modified. Saving or
+promoting validates the tune server-side (structural checks + every chord run
+through the similarity engine's parser) and rejects with the exact error, so a
+typo can never reach `04_verified` and break a later similarity/displayer
+build. Spec:
 [docs/specs/verification_app_spec.md](../../docs/specs/verification_app_spec.md).
 
 ## Stage 6 — annotate keys (Phase 0 of the similarity spec)
@@ -159,6 +164,7 @@ tunes to `data/chords/04_verified/`. `raw/` itself is never modified. Spec:
 python pipelines/chords/annotate_keys.py                # annotate everything pending
 python pipelines/chords/annotate_keys.py --status       # per-status counts
 python pipelines/chords/annotate_keys.py --set-key <stem> <tonic> <major|minor>
+python pipelines/chords/annotate_keys.py --resume-batch  # fetch an interrupted batch run
 ```
 
 Implements Phase 0 of
@@ -175,6 +181,32 @@ skipped while its annotated file matches the source's sha256; editing a
 verified source demotes it back to the machine statuses. **Never hand-edit
 `05_annotated` files** — corrections go through the app or `--set-key`, which
 recompute the derived fields.
+
+Crash-safe by design: each annotation is written the moment its LLM vote
+arrives, and a Batches-API run persists its batch id to
+`data/chords/key_annotation_batch.json` until the results are fetched — if
+the run is interrupted (Ctrl-C, sleep, network), `--resume-batch` picks the
+batch up where it left off; the id can also be passed explicitly
+(`--resume-batch msgbatch_...`). Each run also removes orphan annotations
+whose `04_verified` source was deleted, so withdrawn tunes drop out of the
+similarity corpus and the displayer at the next annotate pass.
+
+## Stage 8 — similarity engine (Phase 3 of the similarity spec)
+
+```sh
+python -m pipelines.chords.similarity.compute           # full rebuild
+python -m pipelines.chords.similarity.compute --eval    # rebuild + eval harness
+```
+
+Reads `05_annotated` tunes with status `agreed`/`verified` and writes
+`data/chords/06_similarity/` (per-tune top-K neighbours + alignments, the
+compact displayer bundle, `index.json`). The whole directory is **regenerable
+and gitignored** — delete and rebuild at any time; only the displayer's
+`apps/displayer/data/similar_data.js` (written by `build_data.py` from it) is
+committed. The similarity explorer's bundle
+(`apps/similarity_explorer/data/explorer_data.js`) is likewise gitignored —
+rebuild it with `python apps/similarity_explorer/build_data.py` before
+opening the explorer.
 
 ## Stage 7 — verify keys (human review)
 

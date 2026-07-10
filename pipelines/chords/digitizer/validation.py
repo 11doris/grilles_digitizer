@@ -57,7 +57,7 @@ class ValidationError(Exception):
 def parse_json(text: str) -> dict:
     """Parse a bare JSON object, tolerating a ```json fence or a prose preamble.
 
-    The prompt and the assistant prefill ask for a bare object, but as a safety net
+    Forced tool use normally guarantees a bare object, but as a safety net
     we also recover the first JSON object embedded in surrounding prose.
     """
     stripped = text.strip()
