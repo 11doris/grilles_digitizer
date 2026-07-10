@@ -5,6 +5,11 @@ grilles** become structured JSON, the companion manuscript's **melodies** become
 ABC notation, and a static web app browses the whole corpus with chord grid and
 lead sheet side by side.
 
+New here (or back after a while)? Start with the
+[user manual](docs/USER_MANUAL.md) — the human-centric tour of the data flow,
+the apps, the similarity engine, the "I changed X, what do I run?" recipes,
+and where the Claude API is used and what it costs.
+
 ## Repository map
 
 ```
