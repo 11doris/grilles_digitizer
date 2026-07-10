@@ -15,7 +15,7 @@
    "family": "32-bar AABA standard",
    "score": 0.6007,
    "components": {
-    "cosine": 0.7568,
+    "cosine": 0.7554,
     "alignment": 0.6007,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -161,7 +161,7 @@
    "family": "32-bar AABA standard",
    "score": 0.5257,
    "components": {
-    "cosine": 0.5233,
+    "cosine": 0.5243,
     "alignment": 0.5257,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -295,7 +295,7 @@
    "family": "32-bar AABA standard",
    "score": 0.4382,
    "components": {
-    "cosine": 0.3981,
+    "cosine": 0.398,
     "alignment": 0.4382,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -445,7 +445,7 @@
    "family": "rhythm changes (32-bar AABA)",
    "score": 0.3904,
    "components": {
-    "cosine": 0.1054,
+    "cosine": 0.1077,
     "alignment": 0.3904,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -575,7 +575,7 @@
    "family": "32-bar AABA standard",
    "score": 0.3868,
    "components": {
-    "cosine": 0.1938,
+    "cosine": 0.194,
     "alignment": 0.3868,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -693,7 +693,7 @@
    "family": "32-bar AABA standard",
    "score": 0.3721,
    "components": {
-    "cosine": 0.117,
+    "cosine": 0.118,
     "alignment": 0.3721,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -843,7 +843,7 @@
    "family": "16-bar tune (AABB)",
    "score": 0.3309,
    "components": {
-    "cosine": 0.2847,
+    "cosine": 0.2879,
     "alignment": 0.3309,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -993,7 +993,7 @@
    "family": "32-bar AABA standard with verse",
    "score": 0.3037,
    "components": {
-    "cosine": 0.2147,
+    "cosine": 0.2102,
     "alignment": 0.3037,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1139,7 +1139,7 @@
    "family": "32-bar AABA standard",
    "score": 0.2846,
    "components": {
-    "cosine": 0.1659,
+    "cosine": 0.1708,
     "alignment": 0.2846,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1249,7 +1249,7 @@
    "family": "32-bar AABA standard",
    "score": 0.25,
    "components": {
-    "cosine": 0.2773,
+    "cosine": 0.2743,
     "alignment": 0.25,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1371,7 +1371,7 @@
    "family": "32-bar AABA standard",
    "score": 0.25,
    "components": {
-    "cosine": 0.1816,
+    "cosine": 0.1807,
     "alignment": 0.25,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1445,7 +1445,7 @@
    "family": "32-bar AABA standard",
    "score": 0.2368,
    "components": {
-    "cosine": 0.1583,
+    "cosine": 0.1595,
     "alignment": 0.2368,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1523,7 +1523,7 @@
    "family": "32-bar AABA standard",
    "score": 0.236,
    "components": {
-    "cosine": 0.174,
+    "cosine": 0.1742,
     "alignment": 0.236,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1665,7 +1665,7 @@
    "family": "verse-plus-32-bar standard (ABAB)",
    "score": 0.2353,
    "components": {
-    "cosine": 0.2439,
+    "cosine": 0.2214,
     "alignment": 0.2353,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1727,7 +1727,7 @@
    "family": "32-bar AABA standard",
    "score": 0.2353,
    "components": {
-    "cosine": 0.1787,
+    "cosine": 0.1786,
     "alignment": 0.2353,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1801,7 +1801,7 @@
    "family": "16-bar AABA-style riff tune",
    "score": 0.2353,
    "components": {
-    "cosine": 0.1654,
+    "cosine": 0.1668,
     "alignment": 0.2353,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1919,7 +1919,7 @@
    "family": "32-bar-style AABA standard (extended)",
    "score": 0.2294,
    "components": {
-    "cosine": 0.0506,
+    "cosine": 0.0501,
     "alignment": 0.2294,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2061,7 +2061,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.2257,
    "components": {
-    "cosine": 0.2212,
+    "cosine": 0.225,
     "alignment": 0.2257,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2159,7 +2159,7 @@
    "family": "32-bar AABA standard with 16-bar verse",
    "score": 0.225,
    "components": {
-    "cosine": 0.1177,
+    "cosine": 0.1149,
     "alignment": 0.225,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2272,172 +2272,68 @@
    ]
   },
   {
-   "id": "9_04_AIN_T_MISBEHAVIN",
-   "title": "AIN'T MISBEHAVIN'",
-   "family": "32-bar AABA standard (with 16-bar verse)",
-   "score": 0.2228,
+   "id": "29_03_BALLIN_THE_JACK",
+   "title": "BALLIN' THE JACK",
+   "family": "verse-chorus 16-bar tune",
+   "score": 0.2191,
    "components": {
-    "cosine": 0.1883,
-    "alignment": 0.2228,
+    "cosine": 0.2463,
+    "alignment": 0.2191,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
    },
    "bars": [
     [
-     2,
-     16
-    ],
-    [
-     3,
-     17
-    ],
-    [
-     4,
-     18
-    ],
-    [
-     5,
-     19
-    ],
-    [
-     6,
-     20
-    ],
-    [
-     7,
-     21
-    ],
-    [
-     10,
+     15,
      22
     ],
     [
-     10,
+     16,
+     23
+    ],
+    [
+     17,
+     23
+    ],
+    [
+     18,
      24
     ],
     [
-     11,
+     19,
      25
     ],
     [
-     12,
+     20,
      26
     ],
     [
-     13,
+     21,
      27
     ],
     [
-     14,
+     22,
      28
     ],
     [
-     15,
+     23,
      29
     ],
     [
-     15,
+     25,
      30
     ],
     [
-     16,
+     26,
      31
     ],
     [
-     16,
+     26,
      32
     ],
     [
-     17,
+     27,
      32
-    ],
-    [
-     17,
-     34
-    ],
-    [
-     18,
-     34
-    ],
-    [
-     18,
-     35
-    ],
-    [
-     19,
-     35
-    ],
-    [
-     19,
-     36
-    ],
-    [
-     20,
-     36
-    ],
-    [
-     20,
-     37
-    ],
-    [
-     21,
-     37
-    ],
-    [
-     21,
-     38
-    ],
-    [
-     22,
-     38
-    ],
-    [
-     22,
-     39
-    ],
-    [
-     23,
-     39
-    ],
-    [
-     23,
-     40
-    ],
-    [
-     24,
-     40
-    ],
-    [
-     25,
-     41
-    ],
-    [
-     28,
-     42
-    ],
-    [
-     29,
-     43
-    ],
-    [
-     30,
-     44
-    ],
-    [
-     31,
-     45
-    ],
-    [
-     31,
-     47
-    ],
-    [
-     32,
-     47
-    ],
-    [
-     34,
-     48
     ]
    ]
   }
@@ -2551,63 +2447,12 @@
    "start_bar": 0,
    "other": "339_02_RHYTHM_IN_MY_NURSERY_RHYMES",
    "other_title": "RHYTHM IN MY NURSERY RHYMES",
-   "other_section": "A1",
-   "other_local_key": null,
-   "other_start_bar": 8,
-   "score": 0.8906,
-   "components": {
-    "cosine": 0.8875,
-    "alignment": 0.8906,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     1
-    ],
-    [
-     2,
-     2
-    ],
-    [
-     3,
-     3
-    ],
-    [
-     4,
-     4
-    ],
-    [
-     5,
-     5
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     7,
-     7
-    ],
-    [
-     8,
-     8
-    ]
-   ]
-  },
-  {
-   "section": "A",
-   "local_key": null,
-   "start_bar": 0,
-   "other": "339_02_RHYTHM_IN_MY_NURSERY_RHYMES",
-   "other_title": "RHYTHM IN MY NURSERY RHYMES",
    "other_section": "A",
    "other_local_key": null,
    "other_start_bar": 0,
    "score": 0.8906,
    "components": {
-    "cosine": 0.8875,
+    "cosine": 0.8884,
     "alignment": 0.8906,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2658,7 +2503,7 @@
    "other_start_bar": 24,
    "score": 0.8906,
    "components": {
-    "cosine": 0.8875,
+    "cosine": 0.8884,
     "alignment": 0.8906,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2699,9 +2544,9 @@
    ]
   },
   {
-   "section": "A1",
+   "section": "A",
    "local_key": null,
-   "start_bar": 8,
+   "start_bar": 0,
    "other": "339_02_RHYTHM_IN_MY_NURSERY_RHYMES",
    "other_title": "RHYTHM IN MY NURSERY RHYMES",
    "other_section": "A1",
@@ -2709,7 +2554,7 @@
    "other_start_bar": 8,
    "score": 0.8906,
    "components": {
-    "cosine": 0.8875,
+    "cosine": 0.8884,
     "alignment": 0.8906,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2760,7 +2605,7 @@
    "other_start_bar": 0,
    "score": 0.8906,
    "components": {
-    "cosine": 0.8875,
+    "cosine": 0.8884,
     "alignment": 0.8906,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2811,7 +2656,58 @@
    "other_start_bar": 24,
    "score": 0.8906,
    "components": {
-    "cosine": 0.8875,
+    "cosine": 0.8884,
+    "alignment": 0.8906,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "A1",
+   "local_key": null,
+   "start_bar": 8,
+   "other": "339_02_RHYTHM_IN_MY_NURSERY_RHYMES",
+   "other_title": "RHYTHM IN MY NURSERY RHYMES",
+   "other_section": "A1",
+   "other_local_key": null,
+   "other_start_bar": 8,
+   "score": 0.8906,
+   "components": {
+    "cosine": 0.8884,
     "alignment": 0.8906,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2862,7 +2758,7 @@
    "other_start_bar": 24,
    "score": 0.8812,
    "components": {
-    "cosine": 0.6564,
+    "cosine": 0.6491,
     "alignment": 0.8812,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2917,7 +2813,7 @@
    "other_start_bar": 24,
    "score": 0.8812,
    "components": {
-    "cosine": 0.6564,
+    "cosine": 0.6491,
     "alignment": 0.8812,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2972,7 +2868,7 @@
    "other_start_bar": 16,
    "score": 0.8125,
    "components": {
-    "cosine": 0.7293,
+    "cosine": 0.7233,
     "alignment": 0.8125,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -3023,7 +2919,7 @@
    "other_start_bar": 16,
    "score": 0.7937,
    "components": {
-    "cosine": 0.6792,
+    "cosine": 0.676,
     "alignment": 0.7937,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -3065,12 +2961,63 @@
    "start_bar": 0,
    "other": "361_03_SHORTY_GEORGE",
    "other_title": "SHORTY GEORGE",
+   "other_section": "A3",
+   "other_local_key": null,
+   "other_start_bar": 24,
+   "score": 0.7812,
+   "components": {
+    "cosine": 0.6014,
+    "alignment": 0.7812,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "361_03_SHORTY_GEORGE",
+   "other_title": "SHORTY GEORGE",
    "other_section": "A1",
    "other_local_key": null,
    "other_start_bar": 8,
    "score": 0.7812,
    "components": {
-    "cosine": 0.6035,
+    "cosine": 0.6014,
     "alignment": 0.7812,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -3121,7 +3068,7 @@
    "other_start_bar": 0,
    "score": 0.7812,
    "components": {
-    "cosine": 0.6035,
+    "cosine": 0.6014,
     "alignment": 0.7812,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -3162,9 +3109,9 @@
    ]
   },
   {
-   "section": "A",
+   "section": "A1",
    "local_key": null,
-   "start_bar": 0,
+   "start_bar": 8,
    "other": "361_03_SHORTY_GEORGE",
    "other_title": "SHORTY GEORGE",
    "other_section": "A3",
@@ -3172,7 +3119,7 @@
    "other_start_bar": 24,
    "score": 0.7812,
    "components": {
-    "cosine": 0.6035,
+    "cosine": 0.6014,
     "alignment": 0.7812,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -3223,7 +3170,7 @@
    "other_start_bar": 8,
    "score": 0.7812,
    "components": {
-    "cosine": 0.6035,
+    "cosine": 0.6014,
     "alignment": 0.7812,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -3274,58 +3221,7 @@
    "other_start_bar": 0,
    "score": 0.7812,
    "components": {
-    "cosine": 0.6035,
-    "alignment": 0.7812,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     1
-    ],
-    [
-     2,
-     2
-    ],
-    [
-     3,
-     3
-    ],
-    [
-     4,
-     4
-    ],
-    [
-     5,
-     5
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     7,
-     7
-    ],
-    [
-     8,
-     8
-    ]
-   ]
-  },
-  {
-   "section": "A1",
-   "local_key": null,
-   "start_bar": 8,
-   "other": "361_03_SHORTY_GEORGE",
-   "other_title": "SHORTY GEORGE",
-   "other_section": "A3",
-   "other_local_key": null,
-   "other_start_bar": 24,
-   "score": 0.7812,
-   "components": {
-    "cosine": 0.6035,
+    "cosine": 0.6014,
     "alignment": 0.7812,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -3376,7 +3272,7 @@
    "other_start_bar": 16,
    "score": 0.7812,
    "components": {
-    "cosine": 0.7203,
+    "cosine": 0.7169,
     "alignment": 0.7812,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -3427,7 +3323,7 @@
    "other_start_bar": 16,
    "score": 0.75,
    "components": {
-    "cosine": 0.6759,
+    "cosine": 0.6737,
     "alignment": 0.75,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0

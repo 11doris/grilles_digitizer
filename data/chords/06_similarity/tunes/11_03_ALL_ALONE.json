@@ -15,7 +15,7 @@
    "family": "40-bar AABBA country-pop standard",
    "score": 0.4156,
    "components": {
-    "cosine": 0.4679,
+    "cosine": 0.4664,
     "alignment": 0.4156,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -128,138 +128,12 @@
    ]
   },
   {
-   "id": "394_03_STRUT_MISS_LIZZIE",
-   "title": "STRUT MISS LIZZIE",
-   "family": "verse-and-chorus standard",
-   "score": 0.3484,
-   "components": {
-    "cosine": 0.2966,
-    "alignment": 0.3484,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     2
-    ],
-    [
-     2,
-     4
-    ],
-    [
-     3,
-     5
-    ],
-    [
-     4,
-     6
-    ],
-    [
-     5,
-     7
-    ],
-    [
-     6,
-     8
-    ],
-    [
-     7,
-     9
-    ],
-    [
-     8,
-     10
-    ],
-    [
-     10,
-     11
-    ],
-    [
-     11,
-     12
-    ],
-    [
-     15,
-     13
-    ],
-    [
-     15,
-     14
-    ],
-    [
-     16,
-     16
-    ],
-    [
-     19,
-     17
-    ],
-    [
-     20,
-     19
-    ],
-    [
-     21,
-     20
-    ],
-    [
-     22,
-     21
-    ],
-    [
-     24,
-     22
-    ],
-    [
-     25,
-     23
-    ],
-    [
-     26,
-     24
-    ],
-    [
-     27,
-     25
-    ],
-    [
-     28,
-     26
-    ],
-    [
-     29,
-     27
-    ],
-    [
-     29,
-     30
-    ],
-    [
-     30,
-     30
-    ],
-    [
-     30,
-     34
-    ],
-    [
-     31,
-     35
-    ],
-    [
-     32,
-     36
-    ]
-   ]
-  },
-  {
    "id": "192_02_I_M_MORE_THAN_SATISFIED",
    "title": "I'M MORE THAN SATISFIED",
    "family": "32-bar AABA standard with 16-bar verse",
    "score": 0.3438,
    "components": {
-    "cosine": 0.3408,
+    "cosine": 0.3793,
     "alignment": 0.3438,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -369,7 +243,7 @@
    "family": "16-bar traditional (AB) tune",
    "score": 0.3422,
    "components": {
-    "cosine": 0.5508,
+    "cosine": 0.5496,
     "alignment": 0.3422,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -447,7 +321,7 @@
    "family": "32-bar AABA standard",
    "score": 0.3297,
    "components": {
-    "cosine": 0.26,
+    "cosine": 0.2608,
     "alignment": 0.3297,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -521,7 +395,7 @@
    "family": "verse-and-chorus standard (16-bar verse AB + 32-bar chorus ABAC)",
    "score": 0.3141,
    "components": {
-    "cosine": 0.2436,
+    "cosine": 0.2035,
     "alignment": 0.3141,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -639,7 +513,7 @@
    "family": "32-bar AABA standard",
    "score": 0.3125,
    "components": {
-    "cosine": 0.2245,
+    "cosine": 0.2266,
     "alignment": 0.3125,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -717,7 +591,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.3117,
    "components": {
-    "cosine": 0.5741,
+    "cosine": 0.5779,
     "alignment": 0.3117,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -811,7 +685,7 @@
    "family": "16-bar AABA-style riff tune",
    "score": 0.2953,
    "components": {
-    "cosine": 0.4501,
+    "cosine": 0.4518,
     "alignment": 0.2953,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -924,191 +798,17 @@
    ]
   },
   {
-   "id": "72_04_CHICAGO",
-   "title": "CHICAGO",
-   "family": "Verse-plus-32-bar standard (AABA'C)",
-   "score": 0.2906,
-   "components": {
-    "cosine": 0.4494,
-    "alignment": 0.2906,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     9
-    ],
-    [
-     2,
-     10
-    ],
-    [
-     3,
-     13
-    ],
-    [
-     4,
-     14
-    ],
-    [
-     5,
-     15
-    ],
-    [
-     7,
-     16
-    ],
-    [
-     8,
-     17
-    ],
-    [
-     11,
-     18
-    ],
-    [
-     12,
-     23
-    ],
-    [
-     16,
-     24
-    ],
-    [
-     17,
-     25
-    ],
-    [
-     18,
-     26
-    ],
-    [
-     21,
-     27
-    ],
-    [
-     22,
-     28
-    ],
-    [
-     23,
-     29
-    ],
-    [
-     24,
-     30
-    ],
-    [
-     25,
-     31
-    ],
-    [
-     25,
-     33
-    ],
-    [
-     26,
-     33
-    ],
-    [
-     26,
-     34
-    ],
-    [
-     27,
-     41
-    ],
-    [
-     27,
-     42
-    ],
-    [
-     28,
-     42
-    ],
-    [
-     28,
-     43
-    ],
-    [
-     29,
-     43
-    ],
-    [
-     29,
-     44
-    ],
-    [
-     30,
-     46
-    ],
-    [
-     31,
-     47
-    ],
-    [
-     32,
-     48
-    ]
-   ]
-  },
-  {
    "id": "162_02_HOW_COULD_I_BE_BLUE",
    "title": "HOW COULD I BE BLUE",
    "family": "32-bar AABA-type standard with verse",
-   "score": 0.2898,
+   "score": 0.282,
    "components": {
-    "cosine": 0.3297,
-    "alignment": 0.2898,
+    "cosine": 0.312,
+    "alignment": 0.282,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
    },
    "bars": [
-    [
-     1,
-     4
-    ],
-    [
-     2,
-     5
-    ],
-    [
-     3,
-     6
-    ],
-    [
-     3,
-     8
-    ],
-    [
-     4,
-     8
-    ],
-    [
-     4,
-     9
-    ],
-    [
-     5,
-     10
-    ],
-    [
-     6,
-     11
-    ],
-    [
-     6,
-     14
-    ],
-    [
-     7,
-     15
-    ],
-    [
-     8,
-     16
-    ],
     [
      16,
      16
@@ -1156,98 +856,12 @@
    ]
   },
   {
-   "id": "487_01_ZULU_WAIL",
-   "title": "ZULU WAIL",
-   "family": "16-bar verse + 32-bar AABA chorus",
-   "score": 0.2781,
-   "components": {
-    "cosine": 0.1285,
-    "alignment": 0.2781,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     5,
-     5
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     7,
-     7
-    ],
-    [
-     10,
-     8
-    ],
-    [
-     11,
-     9
-    ],
-    [
-     12,
-     11
-    ],
-    [
-     13,
-     12
-    ],
-    [
-     21,
-     13
-    ],
-    [
-     22,
-     14
-    ],
-    [
-     23,
-     15
-    ],
-    [
-     24,
-     16
-    ],
-    [
-     25,
-     17
-    ],
-    [
-     26,
-     21
-    ],
-    [
-     27,
-     22
-    ],
-    [
-     29,
-     23
-    ],
-    [
-     30,
-     24
-    ],
-    [
-     31,
-     25
-    ],
-    [
-     32,
-     27
-    ]
-   ]
-  },
-  {
    "id": "197_03_I_NEVER_KNEW_WHAT_A_GAL_COULD_DO",
    "title": "I NEVER KNEW WHAT A GAL COULD DO",
    "family": "verse-and-chorus standard (16-bar verse + 32-bar AA'BA chorus)",
    "score": 0.2766,
    "components": {
-    "cosine": 0.3221,
+    "cosine": 0.3865,
     "alignment": 0.2766,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1341,7 +955,7 @@
    "family": "32-bar AABA standard",
    "score": 0.2758,
    "components": {
-    "cosine": 0.3883,
+    "cosine": 0.3833,
     "alignment": 0.2758,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1399,7 +1013,7 @@
    "family": "multi-section song-form standard",
    "score": 0.2758,
    "components": {
-    "cosine": 0.2635,
+    "cosine": 0.2639,
     "alignment": 0.2758,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1540,12 +1154,134 @@
    ]
   },
   {
+   "id": "72_04_CHICAGO",
+   "title": "CHICAGO",
+   "family": "Verse-plus-32-bar standard (AABA'C)",
+   "score": 0.257,
+   "components": {
+    "cosine": 0.389,
+    "alignment": 0.257,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     17
+    ],
+    [
+     2,
+     18
+    ],
+    [
+     3,
+     19
+    ],
+    [
+     4,
+     20
+    ],
+    [
+     5,
+     21
+    ],
+    [
+     6,
+     22
+    ],
+    [
+     7,
+     23
+    ],
+    [
+     16,
+     24
+    ],
+    [
+     17,
+     25
+    ],
+    [
+     18,
+     26
+    ],
+    [
+     21,
+     27
+    ],
+    [
+     22,
+     28
+    ],
+    [
+     23,
+     29
+    ],
+    [
+     24,
+     30
+    ],
+    [
+     25,
+     31
+    ],
+    [
+     25,
+     33
+    ],
+    [
+     26,
+     33
+    ],
+    [
+     26,
+     34
+    ],
+    [
+     27,
+     41
+    ],
+    [
+     27,
+     42
+    ],
+    [
+     28,
+     42
+    ],
+    [
+     28,
+     43
+    ],
+    [
+     29,
+     43
+    ],
+    [
+     29,
+     44
+    ],
+    [
+     30,
+     46
+    ],
+    [
+     31,
+     47
+    ],
+    [
+     32,
+     48
+    ]
+   ]
+  },
+  {
    "id": "159_03_HONEY",
    "title": "HONEY",
    "family": "32-bar AABA standard",
    "score": 0.2516,
    "components": {
-    "cosine": 0.2526,
+    "cosine": 0.253,
     "alignment": 0.2516,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1631,7 +1367,7 @@
    "family": "32-bar AABA standard",
    "score": 0.2508,
    "components": {
-    "cosine": 0.3416,
+    "cosine": 0.3385,
     "alignment": 0.2508,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1709,7 +1445,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.2469,
    "components": {
-    "cosine": 0.3578,
+    "cosine": 0.3594,
     "alignment": 0.2469,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1831,7 +1567,7 @@
    "family": "16-bar AA' tune",
    "score": 0.2422,
    "components": {
-    "cosine": 0.2909,
+    "cosine": 0.2912,
     "alignment": 0.2422,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1897,7 +1633,7 @@
    "family": "32-bar ABAB' standard",
    "score": 0.2414,
    "components": {
-    "cosine": 0.3348,
+    "cosine": 0.3384,
     "alignment": 0.2414,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2024,6 +1760,210 @@
      32
     ]
    ]
+  },
+  {
+   "id": "20_01_ANNIE_LAURIE",
+   "title": "ANNIE LAURIE",
+   "family": "32-bar AABC standard",
+   "score": 0.2391,
+   "components": {
+    "cosine": 0.2955,
+    "alignment": 0.2391,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     2,
+     5
+    ],
+    [
+     3,
+     7
+    ],
+    [
+     4,
+     8
+    ],
+    [
+     5,
+     13
+    ],
+    [
+     6,
+     14
+    ],
+    [
+     7,
+     15
+    ],
+    [
+     8,
+     16
+    ],
+    [
+     12,
+     17
+    ],
+    [
+     16,
+     18
+    ],
+    [
+     17,
+     19
+    ],
+    [
+     18,
+     20
+    ],
+    [
+     19,
+     22
+    ],
+    [
+     20,
+     25
+    ],
+    [
+     21,
+     26
+    ],
+    [
+     22,
+     27
+    ],
+    [
+     23,
+     28
+    ],
+    [
+     24,
+     30
+    ],
+    [
+     25,
+     31
+    ],
+    [
+     26,
+     32
+    ]
+   ]
+  },
+  {
+   "id": "340_03_ROBBINS_NEST",
+   "title": "ROBBINS NEST",
+   "family": "32-bar AABA standard",
+   "score": 0.2391,
+   "components": {
+    "cosine": 0.202,
+    "alignment": 0.2391,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ],
+    [
+     11,
+     9
+    ],
+    [
+     12,
+     10
+    ],
+    [
+     13,
+     11
+    ],
+    [
+     14,
+     12
+    ],
+    [
+     15,
+     13
+    ],
+    [
+     16,
+     14
+    ],
+    [
+     17,
+     15
+    ],
+    [
+     18,
+     16
+    ],
+    [
+     19,
+     19
+    ],
+    [
+     20,
+     20
+    ],
+    [
+     21,
+     21
+    ],
+    [
+     22,
+     22
+    ],
+    [
+     23,
+     23
+    ],
+    [
+     24,
+     24
+    ],
+    [
+     25,
+     25
+    ],
+    [
+     26,
+     26
+    ],
+    [
+     27,
+     27
+    ],
+    [
+     28,
+     28
+    ],
+    [
+     29,
+     29
+    ],
+    [
+     30,
+     30
+    ],
+    [
+     31,
+     31
+    ],
+    [
+     32,
+     32
+    ]
+   ]
   }
  ],
  "section_matches": [
@@ -2031,8 +1971,8 @@
    "section": "C",
    "local_key": null,
    "start_bar": 16,
-   "other": "339_02_RHYTHM_IN_MY_NURSERY_RHYMES",
-   "other_title": "RHYTHM IN MY NURSERY RHYMES",
+   "other": "158_02_HIT_THAT_JIVE_JACK",
+   "other_title": "HIT THAT JIVE JACK",
    "other_section": "B",
    "other_local_key": null,
    "other_start_bar": 16,
@@ -2133,8 +2073,8 @@
    "section": "C",
    "local_key": null,
    "start_bar": 16,
-   "other": "158_02_HIT_THAT_JIVE_JACK",
-   "other_title": "HIT THAT JIVE JACK",
+   "other": "339_02_RHYTHM_IN_MY_NURSERY_RHYMES",
+   "other_title": "RHYTHM IN MY NURSERY RHYMES",
    "other_section": "B",
    "other_local_key": null,
    "other_start_bar": 16,
@@ -2242,7 +2182,7 @@
    "other_start_bar": 40,
    "score": 0.8906,
    "components": {
-    "cosine": 0.6536,
+    "cosine": 0.654,
     "alignment": 0.8906,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2293,7 +2233,7 @@
    "other_start_bar": 8,
    "score": 0.7,
    "components": {
-    "cosine": 0.4871,
+    "cosine": 0.4851,
     "alignment": 0.7,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2340,7 +2280,7 @@
    "other_start_bar": 36,
    "score": 0.675,
    "components": {
-    "cosine": 0.4594,
+    "cosine": 0.4538,
     "alignment": 0.675,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2383,7 +2323,7 @@
    "other_start_bar": 0,
    "score": 0.6687,
    "components": {
-    "cosine": 0.8731,
+    "cosine": 0.8708,
     "alignment": 0.6687,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2426,7 +2366,7 @@
    "other_start_bar": 40,
    "score": 0.6687,
    "components": {
-    "cosine": 0.716,
+    "cosine": 0.72,
     "alignment": 0.6687,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2469,7 +2409,7 @@
    "other_start_bar": 32,
    "score": 0.6687,
    "components": {
-    "cosine": 0.6995,
+    "cosine": 0.702,
     "alignment": 0.6687,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2512,7 +2452,7 @@
    "other_start_bar": 8,
    "score": 0.6687,
    "components": {
-    "cosine": 0.6995,
+    "cosine": 0.702,
     "alignment": 0.6687,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2555,7 +2495,7 @@
    "other_start_bar": 24,
    "score": 0.6687,
    "components": {
-    "cosine": 0.6604,
+    "cosine": 0.6674,
     "alignment": 0.6687,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2593,12 +2533,12 @@
    "start_bar": 0,
    "other": "192_02_I_M_MORE_THAN_SATISFIED",
    "other_title": "I'M MORE THAN SATISFIED",
-   "other_section": "A1",
+   "other_section": "A2",
    "other_local_key": null,
-   "other_start_bar": 24,
+   "other_start_bar": 40,
    "score": 0.6687,
    "components": {
-    "cosine": 0.5524,
+    "cosine": 0.5551,
     "alignment": 0.6687,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2648,12 +2588,12 @@
    "start_bar": 0,
    "other": "192_02_I_M_MORE_THAN_SATISFIED",
    "other_title": "I'M MORE THAN SATISFIED",
-   "other_section": "A2",
+   "other_section": "A1",
    "other_local_key": null,
-   "other_start_bar": 40,
+   "other_start_bar": 24,
    "score": 0.6687,
    "components": {
-    "cosine": 0.5524,
+    "cosine": 0.5551,
     "alignment": 0.6687,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2708,7 +2648,7 @@
    "other_start_bar": 16,
    "score": 0.6687,
    "components": {
-    "cosine": 0.5524,
+    "cosine": 0.5551,
     "alignment": 0.6687,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2763,7 +2703,7 @@
    "other_start_bar": 42,
    "score": 0.6594,
    "components": {
-    "cosine": 0.2225,
+    "cosine": 0.2235,
     "alignment": 0.6594,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2814,7 +2754,7 @@
    "other_start_bar": 24,
    "score": 0.6562,
    "components": {
-    "cosine": 0.2832,
+    "cosine": 0.2811,
     "alignment": 0.6562,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2860,12 +2800,12 @@
    "start_bar": 24,
    "other": "187_02_I_MAY_BE_WRONG",
    "other_title": "I MAY BE WRONG",
-   "other_section": "A",
+   "other_section": "A1",
    "other_local_key": null,
-   "other_start_bar": 0,
+   "other_start_bar": 8,
    "score": 0.6531,
    "components": {
-    "cosine": 0.424,
+    "cosine": 0.4165,
     "alignment": 0.6531,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2907,12 +2847,12 @@
    "start_bar": 24,
    "other": "187_02_I_MAY_BE_WRONG",
    "other_title": "I MAY BE WRONG",
-   "other_section": "A1",
+   "other_section": "A",
    "other_local_key": null,
-   "other_start_bar": 8,
+   "other_start_bar": 0,
    "score": 0.6531,
    "components": {
-    "cosine": 0.424,
+    "cosine": 0.4165,
     "alignment": 0.6531,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2959,7 +2899,7 @@
    "other_start_bar": 0,
    "score": 0.6438,
    "components": {
-    "cosine": 0.5886,
+    "cosine": 0.592,
     "alignment": 0.6438,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0

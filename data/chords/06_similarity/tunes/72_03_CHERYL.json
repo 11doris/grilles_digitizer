@@ -15,7 +15,7 @@
    "family": "12-bar blues",
    "score": 0.7042,
    "components": {
-    "cosine": 0.4823,
+    "cosine": 0.4828,
     "alignment": 0.7042,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -73,7 +73,7 @@
    "family": "34-bar AABA standard",
    "score": 0.4292,
    "components": {
-    "cosine": 0.0483,
+    "cosine": 0.0478,
     "alignment": 0.4292,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -131,7 +131,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.4042,
    "components": {
-    "cosine": 0.2171,
+    "cosine": 0.2165,
     "alignment": 0.4042,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -165,7 +165,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.4042,
    "components": {
-    "cosine": 0.0303,
+    "cosine": 0.031,
     "alignment": 0.4042,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -223,7 +223,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.3458,
    "components": {
-    "cosine": 0.083,
+    "cosine": 0.0837,
     "alignment": 0.3458,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -277,7 +277,7 @@
    "family": "32-bar bebop head (Indiana changes)",
    "score": 0.3313,
    "components": {
-    "cosine": 0.0281,
+    "cosine": 0.0273,
     "alignment": 0.3313,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -326,62 +326,12 @@
    ]
   },
   {
-   "id": "364_03_SINCE_MY_BEST_GAL_TURNED_ME_DOWN",
-   "title": "SINCE MY BEST GAL TURNED ME DOWN",
-   "family": "verse-plus-32-bar standard (ABAB)",
-   "score": 0.3313,
-   "components": {
-    "cosine": 0.0212,
-    "alignment": 0.3313,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     6
-    ],
-    [
-     3,
-     7
-    ],
-    [
-     4,
-     8
-    ],
-    [
-     5,
-     9
-    ],
-    [
-     6,
-     10
-    ],
-    [
-     7,
-     11
-    ],
-    [
-     8,
-     12
-    ],
-    [
-     9,
-     15
-    ],
-    [
-     10,
-     16
-    ]
-   ]
-  },
-  {
    "id": "23_03_AT_LONG_LAST_LOVE",
    "title": "AT LONG LAST LOVE",
    "family": "32-bar ABA'C standard",
    "score": 0.325,
    "components": {
-    "cosine": 0.0662,
+    "cosine": 0.0686,
     "alignment": 0.325,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -423,7 +373,7 @@
    "family": "rhythm changes (32-bar AABA)",
    "score": 0.3167,
    "components": {
-    "cosine": 0.132,
+    "cosine": 0.1327,
     "alignment": 0.3167,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -448,90 +398,12 @@
    ]
   },
   {
-   "id": "418_03_THERE_S_A_LULL_IN_MY_LIFE",
-   "title": "THERE'S A LULL IN MY LIFE",
-   "family": "38-bar AABA' standard with verse",
-   "score": 0.3146,
-   "components": {
-    "cosine": 0.1247,
-    "alignment": 0.3146,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     5
-    ],
-    [
-     2,
-     5
-    ],
-    [
-     2,
-     6
-    ],
-    [
-     3,
-     6
-    ],
-    [
-     3,
-     7
-    ],
-    [
-     4,
-     7
-    ],
-    [
-     4,
-     8
-    ],
-    [
-     7,
-     8
-    ],
-    [
-     7,
-     9
-    ],
-    [
-     8,
-     9
-    ],
-    [
-     8,
-     10
-    ],
-    [
-     9,
-     11
-    ],
-    [
-     10,
-     12
-    ],
-    [
-     11,
-     13
-    ],
-    [
-     12,
-     14
-    ],
-    [
-     12,
-     15
-    ]
-   ]
-  },
-  {
    "id": "169_01_I_CAN_T_STOP_LOVING_YOU",
    "title": "I CAN'T STOP LOVING YOU",
    "family": "40-bar AABBA country-pop standard",
    "score": 0.3104,
    "components": {
-    "cosine": 0.0393,
+    "cosine": 0.039,
     "alignment": 0.3104,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -577,7 +449,7 @@
    "family": "32-bar AABA standard",
    "score": 0.3042,
    "components": {
-    "cosine": 0.1365,
+    "cosine": 0.1385,
     "alignment": 0.3042,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -623,7 +495,7 @@
    "family": "32-bar AABA standard with verse",
    "score": 0.3,
    "components": {
-    "cosine": 0.0423,
+    "cosine": 0.0325,
     "alignment": 0.3,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -665,7 +537,7 @@
    "family": "16-bar blues",
    "score": 0.2979,
    "components": {
-    "cosine": 0.0363,
+    "cosine": 0.0355,
     "alignment": 0.2979,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -703,7 +575,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.2833,
    "components": {
-    "cosine": 0.1449,
+    "cosine": 0.1456,
     "alignment": 0.2833,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -753,7 +625,7 @@
    "family": "32-bar ABCD standard",
    "score": 0.2771,
    "components": {
-    "cosine": 0.102,
+    "cosine": 0.1018,
     "alignment": 0.2771,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -787,7 +659,7 @@
    "family": "multi-section song-form standard",
    "score": 0.2771,
    "components": {
-    "cosine": 0.0448,
+    "cosine": 0.0457,
     "alignment": 0.2771,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -845,7 +717,7 @@
    "family": "32-bar AABA standard",
    "score": 0.2563,
    "components": {
-    "cosine": 0.1368,
+    "cosine": 0.1372,
     "alignment": 0.2563,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -879,7 +751,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.2479,
    "components": {
-    "cosine": 0.0364,
+    "cosine": 0.0357,
     "alignment": 0.2479,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -917,7 +789,7 @@
    "family": "32-bar AABA standard",
    "score": 0.2479,
    "components": {
-    "cosine": 0.0286,
+    "cosine": 0.0297,
     "alignment": 0.2479,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -952,6 +824,78 @@
      20
     ]
    ]
+  },
+  {
+   "id": "291_01_NAGASAKI",
+   "title": "NAGASAKI",
+   "family": "32-bar AABA standard",
+   "score": 0.2479,
+   "components": {
+    "cosine": 0.0156,
+    "alignment": 0.2479,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     16
+    ],
+    [
+     2,
+     17
+    ],
+    [
+     3,
+     19
+    ],
+    [
+     4,
+     20
+    ],
+    [
+     5,
+     21
+    ]
+   ]
+  },
+  {
+   "id": "86_01_CREOLE_LOVE_CALL",
+   "title": "CREOLE LOVE CALL",
+   "family": "12-bar blues",
+   "score": 0.2479,
+   "components": {
+    "cosine": 0.0145,
+    "alignment": 0.2479,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ]
+   ]
   }
  ],
  "section_matches": [
@@ -966,7 +910,7 @@
    "other_start_bar": 0,
    "score": 0.7042,
    "components": {
-    "cosine": 0.4831,
+    "cosine": 0.4828,
     "alignment": 0.7042,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1029,7 +973,7 @@
    "other_start_bar": 0,
    "score": 0.35,
    "components": {
-    "cosine": 0.152,
+    "cosine": 0.1526,
     "alignment": 0.35,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1068,7 +1012,7 @@
    "other_start_bar": 0,
    "score": 0.325,
    "components": {
-    "cosine": 0.0796,
+    "cosine": 0.0807,
     "alignment": 0.325,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1115,7 +1059,7 @@
    "other_start_bar": 16,
    "score": 0.3208,
    "components": {
-    "cosine": 0.206,
+    "cosine": 0.2059,
     "alignment": 0.3208,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1150,7 +1094,7 @@
    "other_start_bar": 24,
    "score": 0.2896,
    "components": {
-    "cosine": 0.0454,
+    "cosine": 0.0463,
     "alignment": 0.2896,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1201,7 +1145,7 @@
    "other_start_bar": 16,
    "score": 0.275,
    "components": {
-    "cosine": 0.2173,
+    "cosine": 0.2181,
     "alignment": 0.275,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1236,7 +1180,7 @@
    "other_start_bar": 0,
    "score": 0.275,
    "components": {
-    "cosine": 0.2032,
+    "cosine": 0.204,
     "alignment": 0.275,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1271,7 +1215,7 @@
    "other_start_bar": 24,
    "score": 0.275,
    "components": {
-    "cosine": 0.1486,
+    "cosine": 0.1493,
     "alignment": 0.275,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1399,12 +1343,12 @@
    "start_bar": 0,
    "other": "80_03_CONFIRMATION",
    "other_title": "CONFIRMATION",
-   "other_section": "A1",
+   "other_section": "A2",
    "other_local_key": null,
-   "other_start_bar": 8,
+   "other_start_bar": 24,
    "score": 0.25,
    "components": {
-    "cosine": 0.1293,
+    "cosine": 0.1281,
     "alignment": 0.25,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1458,12 +1402,12 @@
    "start_bar": 0,
    "other": "80_03_CONFIRMATION",
    "other_title": "CONFIRMATION",
-   "other_section": "A2",
+   "other_section": "A1",
    "other_local_key": null,
-   "other_start_bar": 24,
+   "other_start_bar": 8,
    "score": 0.25,
    "components": {
-    "cosine": 0.1293,
+    "cosine": 0.1281,
     "alignment": 0.25,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1522,7 +1466,7 @@
    "other_start_bar": 0,
    "score": 0.2458,
    "components": {
-    "cosine": 0.1285,
+    "cosine": 0.1268,
     "alignment": 0.2458,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1561,7 +1505,7 @@
    "other_start_bar": 24,
    "score": 0.2354,
    "components": {
-    "cosine": 0.0366,
+    "cosine": 0.0376,
     "alignment": 0.2354,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1596,7 +1540,7 @@
    "other_start_bar": 16,
    "score": 0.2333,
    "components": {
-    "cosine": 0.0475,
+    "cosine": 0.0484,
     "alignment": 0.2333,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1639,7 +1583,7 @@
    "other_start_bar": 24,
    "score": 0.2333,
    "components": {
-    "cosine": 0.0372,
+    "cosine": 0.0374,
     "alignment": 0.2333,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1669,12 +1613,12 @@
    "start_bar": 0,
    "other": "425_01_THOU_SWELL_MODERN_VERSION",
    "other_title": "THOU SWELL (Modern Version)",
-   "other_section": "A",
+   "other_section": "A1",
    "other_local_key": null,
-   "other_start_bar": 0,
+   "other_start_bar": 16,
    "score": 0.2208,
    "components": {
-    "cosine": 0.1203,
+    "cosine": 0.1206,
     "alignment": 0.2208,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1708,12 +1652,12 @@
    "start_bar": 0,
    "other": "425_01_THOU_SWELL_MODERN_VERSION",
    "other_title": "THOU SWELL (Modern Version)",
-   "other_section": "A1",
+   "other_section": "A",
    "other_local_key": null,
-   "other_start_bar": 16,
+   "other_start_bar": 0,
    "score": 0.2208,
    "components": {
-    "cosine": 0.1203,
+    "cosine": 0.1206,
     "alignment": 0.2208,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1745,81 +1689,6 @@
    "section": "A",
    "local_key": null,
    "start_bar": 0,
-   "other": "418_03_THERE_S_A_LULL_IN_MY_LIFE",
-   "other_title": "THERE'S A LULL IN MY LIFE",
-   "other_section": "verse_A",
-   "other_local_key": null,
-   "other_start_bar": 0,
-   "score": 0.2167,
-   "components": {
-    "cosine": 0.1167,
-    "alignment": 0.2167,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     5
-    ],
-    [
-     2,
-     5
-    ],
-    [
-     2,
-     6
-    ],
-    [
-     3,
-     6
-    ],
-    [
-     3,
-     7
-    ],
-    [
-     4,
-     7
-    ],
-    [
-     4,
-     8
-    ],
-    [
-     7,
-     8
-    ],
-    [
-     7,
-     9
-    ],
-    [
-     8,
-     9
-    ],
-    [
-     8,
-     10
-    ],
-    [
-     9,
-     11
-    ],
-    [
-     9,
-     12
-    ],
-    [
-     10,
-     12
-    ]
-   ]
-  },
-  {
-   "section": "A",
-   "local_key": null,
-   "start_bar": 0,
    "other": "79_03_CON_ALMA",
    "other_title": "CON ALMA",
    "other_section": "B",
@@ -1827,7 +1696,7 @@
    "other_start_bar": 16,
    "score": 0.2083,
    "components": {
-    "cosine": 0.1251,
+    "cosine": 0.1252,
     "alignment": 0.2083,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1844,6 +1713,49 @@
     [
      11,
      5
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "487_01_ZULU_WAIL",
+   "other_title": "ZULU WAIL",
+   "other_section": "A2",
+   "other_local_key": null,
+   "other_start_bar": 40,
+   "score": 0.2042,
+   "components": {
+    "cosine": 0.136,
+    "alignment": 0.2042,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     5,
+     4
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
     ]
    ]
   }

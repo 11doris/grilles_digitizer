@@ -15,7 +15,7 @@
    "family": "32-bar AABA standard (with 16-bar verse)",
    "score": 0.3742,
    "components": {
-    "cosine": 0.0688,
+    "cosine": 0.0811,
     "alignment": 0.3742,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -165,7 +165,7 @@
    "family": "rhythm changes",
    "score": 0.2508,
    "components": {
-    "cosine": 0.174,
+    "cosine": 0.1742,
     "alignment": 0.2508,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -307,7 +307,7 @@
    "family": "32-bar AABA standard",
    "score": 0.2289,
    "components": {
-    "cosine": 0.2243,
+    "cosine": 0.2246,
     "alignment": 0.2289,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -453,7 +453,7 @@
    "family": "32-bar AABA standard",
    "score": 0.2164,
    "components": {
-    "cosine": 0.0492,
+    "cosine": 0.0491,
     "alignment": 0.2164,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -623,7 +623,7 @@
    "family": "32-bar AABA standard",
    "score": 0.2094,
    "components": {
-    "cosine": 0.0768,
+    "cosine": 0.0805,
     "alignment": 0.2094,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -765,7 +765,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1898,
    "components": {
-    "cosine": 0.086,
+    "cosine": 0.0874,
     "alignment": 0.1898,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -899,7 +899,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1891,
    "components": {
-    "cosine": 0.1726,
+    "cosine": 0.1734,
     "alignment": 0.1891,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -953,7 +953,7 @@
    "family": "34-bar AABA ballad",
    "score": 0.1711,
    "components": {
-    "cosine": 0.0638,
+    "cosine": 0.064,
     "alignment": 0.1711,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1071,7 +1071,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1695,
    "components": {
-    "cosine": 0.0853,
+    "cosine": 0.0851,
     "alignment": 0.1695,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1217,7 +1217,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1641,
    "components": {
-    "cosine": 0.0271,
+    "cosine": 0.0275,
     "alignment": 0.1641,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1307,7 +1307,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1539,
    "components": {
-    "cosine": 0.0605,
+    "cosine": 0.0641,
     "alignment": 0.1539,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1433,7 +1433,7 @@
    "family": "32-bar AABA standard with 16-bar verse",
    "score": 0.1484,
    "components": {
-    "cosine": 0.07,
+    "cosine": 0.0736,
     "alignment": 0.1484,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1515,7 +1515,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1438,
    "components": {
-    "cosine": 0.093,
+    "cosine": 0.0934,
     "alignment": 0.1438,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1585,7 +1585,7 @@
    "family": "32-bar-style AABA standard (extended)",
    "score": 0.1414,
    "components": {
-    "cosine": 0.0286,
+    "cosine": 0.0283,
     "alignment": 0.1414,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1643,7 +1643,7 @@
    "family": "36-bar ABCA' ballad",
    "score": 0.1313,
    "components": {
-    "cosine": 0.0786,
+    "cosine": 0.0794,
     "alignment": 0.1313,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1685,7 +1685,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1289,
    "components": {
-    "cosine": 0.0424,
+    "cosine": 0.0426,
     "alignment": 0.1289,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1751,7 +1751,7 @@
    "family": "verse-and-chorus standard (16-bar verse AB + 32-bar chorus ABAC)",
    "score": 0.1266,
    "components": {
-    "cosine": 0.0769,
+    "cosine": 0.0918,
     "alignment": 0.1266,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1809,7 +1809,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1258,
    "components": {
-    "cosine": 0.0254,
+    "cosine": 0.0256,
     "alignment": 0.1258,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1862,82 +1862,12 @@
    ]
   },
   {
-   "id": "369_01_SMALL_FRY",
-   "title": "SMALL FRY",
-   "family": "36-bar standard (verse + AA'BA'C)",
-   "score": 0.1203,
-   "components": {
-    "cosine": 0.0271,
-    "alignment": 0.1203,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     2,
-     4
-    ],
-    [
-     3,
-     5
-    ],
-    [
-     4,
-     6
-    ],
-    [
-     5,
-     7
-    ],
-    [
-     6,
-     8
-    ],
-    [
-     7,
-     9
-    ],
-    [
-     8,
-     10
-    ],
-    [
-     9,
-     11
-    ],
-    [
-     10,
-     12
-    ],
-    [
-     11,
-     13
-    ],
-    [
-     12,
-     14
-    ],
-    [
-     13,
-     15
-    ],
-    [
-     14,
-     16
-    ],
-    [
-     15,
-     17
-    ]
-   ]
-  },
-  {
    "id": "447_02_WEE",
    "title": "WEE",
    "family": "rhythm changes (32-bar AABA)",
    "score": 0.1195,
    "components": {
-    "cosine": 0.045,
+    "cosine": 0.0451,
     "alignment": 0.1195,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2088,6 +2018,136 @@
      32
     ]
    ]
+  },
+  {
+   "id": "369_01_SMALL_FRY",
+   "title": "SMALL FRY",
+   "family": "36-bar standard (verse + AA'BA'C)",
+   "score": 0.1172,
+   "components": {
+    "cosine": 0.027,
+    "alignment": 0.1172,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     2,
+     12
+    ],
+    [
+     3,
+     13
+    ],
+    [
+     4,
+     14
+    ],
+    [
+     5,
+     15
+    ],
+    [
+     6,
+     16
+    ],
+    [
+     7,
+     17
+    ],
+    [
+     8,
+     18
+    ],
+    [
+     9,
+     19
+    ],
+    [
+     10,
+     20
+    ],
+    [
+     11,
+     21
+    ],
+    [
+     12,
+     22
+    ],
+    [
+     12,
+     23
+    ],
+    [
+     13,
+     24
+    ],
+    [
+     13,
+     26
+    ],
+    [
+     14,
+     27
+    ],
+    [
+     15,
+     28
+    ],
+    [
+     16,
+     28
+    ],
+    [
+     16,
+     29
+    ],
+    [
+     17,
+     29
+    ],
+    [
+     19,
+     30
+    ],
+    [
+     21,
+     30
+    ],
+    [
+     22,
+     31
+    ],
+    [
+     23,
+     32
+    ],
+    [
+     23,
+     33
+    ],
+    [
+     24,
+     34
+    ],
+    [
+     25,
+     35
+    ],
+    [
+     26,
+     36
+    ],
+    [
+     27,
+     37
+    ],
+    [
+     28,
+     38
+    ]
+   ]
   }
  ],
  "section_matches": [
@@ -2102,7 +2162,7 @@
    "other_start_bar": 24,
    "score": 0.875,
    "components": {
-    "cosine": 0.8488,
+    "cosine": 0.8486,
     "alignment": 0.875,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2149,7 +2209,7 @@
    "other_start_bar": 0,
    "score": 0.875,
    "components": {
-    "cosine": 0.8488,
+    "cosine": 0.8486,
     "alignment": 0.875,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2196,7 +2256,7 @@
    "other_start_bar": 8,
    "score": 0.75,
    "components": {
-    "cosine": 0.7278,
+    "cosine": 0.7268,
     "alignment": 0.75,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2239,7 +2299,7 @@
    "other_start_bar": 0,
    "score": 0.75,
    "components": {
-    "cosine": 0.7278,
+    "cosine": 0.7268,
     "alignment": 0.75,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2282,7 +2342,7 @@
    "other_start_bar": 24,
    "score": 0.75,
    "components": {
-    "cosine": 0.6882,
+    "cosine": 0.6869,
     "alignment": 0.75,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2325,7 +2385,7 @@
    "other_start_bar": 8,
    "score": 0.75,
    "components": {
-    "cosine": 0.6882,
+    "cosine": 0.6869,
     "alignment": 0.75,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2368,7 +2428,7 @@
    "other_start_bar": 24,
    "score": 0.6406,
    "components": {
-    "cosine": 0.2236,
+    "cosine": 0.2214,
     "alignment": 0.6406,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2419,7 +2479,7 @@
    "other_start_bar": 40,
    "score": 0.5938,
    "components": {
-    "cosine": 0.1303,
+    "cosine": 0.1293,
     "alignment": 0.5938,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2470,7 +2530,7 @@
    "other_start_bar": 16,
    "score": 0.4844,
    "components": {
-    "cosine": 0.0672,
+    "cosine": 0.0657,
     "alignment": 0.4844,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2521,7 +2581,7 @@
    "other_start_bar": 40,
    "score": 0.4813,
    "components": {
-    "cosine": 0.2614,
+    "cosine": 0.26,
     "alignment": 0.4813,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2563,59 +2623,59 @@
    "start_bar": 8,
    "other": "339_02_RHYTHM_IN_MY_NURSERY_RHYMES",
    "other_title": "RHYTHM IN MY NURSERY RHYMES",
+   "other_section": "A1",
+   "other_local_key": null,
+   "other_start_bar": 8,
+   "score": 0.4781,
+   "components": {
+    "cosine": 0.2961,
+    "alignment": 0.4781,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     3,
+     5
+    ],
+    [
+     4,
+     6
+    ],
+    [
+     5,
+     7
+    ],
+    [
+     6,
+     7
+    ],
+    [
+     7,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "A1",
+   "local_key": null,
+   "start_bar": 8,
+   "other": "339_02_RHYTHM_IN_MY_NURSERY_RHYMES",
+   "other_title": "RHYTHM IN MY NURSERY RHYMES",
    "other_section": "A2",
    "other_local_key": null,
    "other_start_bar": 24,
    "score": 0.4781,
    "components": {
-    "cosine": 0.2985,
-    "alignment": 0.4781,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     3
-    ],
-    [
-     2,
-     4
-    ],
-    [
-     3,
-     5
-    ],
-    [
-     4,
-     6
-    ],
-    [
-     5,
-     7
-    ],
-    [
-     6,
-     7
-    ],
-    [
-     7,
-     8
-    ]
-   ]
-  },
-  {
-   "section": "A1",
-   "local_key": null,
-   "start_bar": 8,
-   "other": "339_02_RHYTHM_IN_MY_NURSERY_RHYMES",
-   "other_title": "RHYTHM IN MY NURSERY RHYMES",
-   "other_section": "A1",
-   "other_local_key": null,
-   "other_start_bar": 8,
-   "score": 0.4781,
-   "components": {
-    "cosine": 0.2985,
+    "cosine": 0.2961,
     "alignment": 0.4781,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2662,7 +2722,7 @@
    "other_start_bar": 0,
    "score": 0.4781,
    "components": {
-    "cosine": 0.2985,
+    "cosine": 0.2961,
     "alignment": 0.4781,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2709,7 +2769,7 @@
    "other_start_bar": 0,
    "score": 0.4781,
    "components": {
-    "cosine": 0.2274,
+    "cosine": 0.2251,
     "alignment": 0.4781,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2756,7 +2816,7 @@
    "other_start_bar": 8,
    "score": 0.4781,
    "components": {
-    "cosine": 0.2274,
+    "cosine": 0.2251,
     "alignment": 0.4781,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2803,7 +2863,7 @@
    "other_start_bar": 40,
    "score": 0.4688,
    "components": {
-    "cosine": 0.0644,
+    "cosine": 0.0629,
     "alignment": 0.4688,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2850,7 +2910,7 @@
    "other_start_bar": 16,
    "score": 0.4688,
    "components": {
-    "cosine": 0.058,
+    "cosine": 0.0568,
     "alignment": 0.4688,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2897,7 +2957,7 @@
    "other_start_bar": 0,
    "score": 0.4656,
    "components": {
-    "cosine": 0.0725,
+    "cosine": 0.071,
     "alignment": 0.4656,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2948,7 +3008,7 @@
    "other_start_bar": 8,
    "score": 0.4656,
    "components": {
-    "cosine": 0.0725,
+    "cosine": 0.071,
     "alignment": 0.4656,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2994,12 +3054,12 @@
    "start_bar": 24,
    "other": "339_02_RHYTHM_IN_MY_NURSERY_RHYMES",
    "other_title": "RHYTHM IN MY NURSERY RHYMES",
-   "other_section": "A2",
+   "other_section": "A1",
    "other_local_key": null,
-   "other_start_bar": 24,
+   "other_start_bar": 8,
    "score": 0.4594,
    "components": {
-    "cosine": 0.2297,
+    "cosine": 0.2267,
     "alignment": 0.4594,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0

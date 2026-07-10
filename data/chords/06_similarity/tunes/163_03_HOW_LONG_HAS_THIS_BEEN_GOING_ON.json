@@ -15,7 +15,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.0891,
    "components": {
-    "cosine": 0.0726,
+    "cosine": 0.0728,
     "alignment": 0.0891,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -49,7 +49,7 @@
    "family": "32-bar AABA standard",
    "score": 0.0758,
    "components": {
-    "cosine": 0.0617,
+    "cosine": 0.0611,
     "alignment": 0.0758,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -135,7 +135,7 @@
    "family": "20-bar AA' standard",
    "score": 0.075,
    "components": {
-    "cosine": 0.076,
+    "cosine": 0.0753,
     "alignment": 0.075,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -161,7 +161,7 @@
    "family": "16-bar AABA-style riff tune",
    "score": 0.0734,
    "components": {
-    "cosine": 0.058,
+    "cosine": 0.0584,
     "alignment": 0.0734,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -187,7 +187,7 @@
    "family": "Verse-plus-32-bar standard (AABA'C)",
    "score": 0.0734,
    "components": {
-    "cosine": 0.0564,
+    "cosine": 0.0577,
     "alignment": 0.0734,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -213,7 +213,7 @@
    "family": "32-bar AABC standard",
    "score": 0.0734,
    "components": {
-    "cosine": 0.0555,
+    "cosine": 0.0559,
     "alignment": 0.0734,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -239,7 +239,7 @@
    "family": "16-bar tune (AABB)",
    "score": 0.0734,
    "components": {
-    "cosine": 0.0449,
+    "cosine": 0.046,
     "alignment": 0.0734,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -265,7 +265,7 @@
    "family": "32-bar ABCD standard",
    "score": 0.0734,
    "components": {
-    "cosine": 0.0435,
+    "cosine": 0.0441,
     "alignment": 0.0734,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -291,7 +291,7 @@
    "family": "40-bar AABBA country-pop standard",
    "score": 0.0734,
    "components": {
-    "cosine": 0.0388,
+    "cosine": 0.0389,
     "alignment": 0.0734,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -317,7 +317,7 @@
    "family": "16-bar traditional (AB) tune",
    "score": 0.0734,
    "components": {
-    "cosine": 0.0379,
+    "cosine": 0.0382,
     "alignment": 0.0734,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -369,7 +369,7 @@
    "family": "16-bar blues",
    "score": 0.0734,
    "components": {
-    "cosine": 0.0362,
+    "cosine": 0.0363,
     "alignment": 0.0734,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -390,72 +390,12 @@
    ]
   },
   {
-   "id": "394_03_STRUT_MISS_LIZZIE",
-   "title": "STRUT MISS LIZZIE",
-   "family": "verse-and-chorus standard",
-   "score": 0.0734,
-   "components": {
-    "cosine": 0.0309,
-    "alignment": 0.0734,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     8,
-     4
-    ],
-    [
-     9,
-     5
-    ],
-    [
-     11,
-     6
-    ]
-   ]
-  },
-  {
-   "id": "25_02_AUTUMN_LEAVES",
-   "title": "AUTUMN LEAVES",
-   "family": "32-bar tune with verse (AAB verse + AABC chorus)",
-   "score": 0.071,
-   "components": {
-    "cosine": 0.0112,
-    "alignment": 0.0789,
-    "meter_penalty": 1.0,
-    "mode_penalty": 0.9
-   },
-   "bars": [
-    [
-     14,
-     7
-    ],
-    [
-     15,
-     8
-    ],
-    [
-     16,
-     9
-    ],
-    [
-     17,
-     10
-    ],
-    [
-     18,
-     11
-    ]
-   ]
-  },
-  {
    "id": "192_02_I_M_MORE_THAN_SATISFIED",
    "title": "I'M MORE THAN SATISFIED",
    "family": "32-bar AABA standard with 16-bar verse",
    "score": 0.0703,
    "components": {
-    "cosine": 0.0791,
+    "cosine": 0.0593,
     "alignment": 0.0703,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -485,7 +425,7 @@
    "family": "32-bar AABC standard",
    "score": 0.0703,
    "components": {
-    "cosine": 0.0362,
+    "cosine": 0.0373,
     "alignment": 0.0703,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -515,7 +455,7 @@
    "family": "32-bar AABA standard",
    "score": 0.0703,
    "components": {
-    "cosine": 0.0218,
+    "cosine": 0.0226,
     "alignment": 0.0703,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -541,7 +481,7 @@
    "family": "32-bar AABA standard",
    "score": 0.0672,
    "components": {
-    "cosine": 0.0091,
+    "cosine": 0.009,
     "alignment": 0.0672,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -571,7 +511,7 @@
    "family": "32-bar ABCD standard",
    "score": 0.0664,
    "components": {
-    "cosine": 0.0548,
+    "cosine": 0.0543,
     "alignment": 0.0664,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -597,7 +537,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.0664,
    "components": {
-    "cosine": 0.0467,
+    "cosine": 0.0466,
     "alignment": 0.0664,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -632,6 +572,82 @@
      19
     ]
    ]
+  },
+  {
+   "id": "291_01_NAGASAKI",
+   "title": "NAGASAKI",
+   "family": "32-bar AABA standard",
+   "score": 0.0664,
+   "components": {
+    "cosine": 0.0148,
+    "alignment": 0.0664,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     8,
+     8
+    ],
+    [
+     8,
+     9
+    ],
+    [
+     9,
+     10
+    ],
+    [
+     10,
+     11
+    ],
+    [
+     11,
+     12
+    ],
+    [
+     12,
+     14
+    ]
+   ]
+  },
+  {
+   "id": "425_01_THOU_SWELL",
+   "title": "THOU SWELL (OLD VERSION)",
+   "family": "32-bar ABAB' standard",
+   "score": 0.0656,
+   "components": {
+    "cosine": 0.0586,
+    "alignment": 0.0656,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     13,
+     8
+    ],
+    [
+     14,
+     9
+    ],
+    [
+     15,
+     10
+    ],
+    [
+     16,
+     11
+    ],
+    [
+     17,
+     12
+    ],
+    [
+     18,
+     13
+    ]
+   ]
   }
  ],
  "section_matches": [
@@ -641,9 +657,9 @@
    "start_bar": 0,
    "other": "163_03_HOW_LONG_HAS_THIS_BEEN_GOING_ON",
    "other_title": "HOW LONG HAS THIS BEEN GOING ON ?",
-   "other_section": "A1",
+   "other_section": "A2",
    "other_local_key": null,
-   "other_start_bar": 8,
+   "other_start_bar": 24,
    "score": 1.0,
    "components": {
     "cosine": 1.0,
@@ -690,6 +706,57 @@
    "section": "A",
    "local_key": null,
    "start_bar": 0,
+   "other": "163_03_HOW_LONG_HAS_THIS_BEEN_GOING_ON",
+   "other_title": "HOW LONG HAS THIS BEEN GOING ON ?",
+   "other_section": "A1",
+   "other_local_key": null,
+   "other_start_bar": 8,
+   "score": 1.0,
+   "components": {
+    "cosine": 1.0,
+    "alignment": 1.0,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "A1",
+   "local_key": null,
+   "start_bar": 8,
    "other": "163_03_HOW_LONG_HAS_THIS_BEEN_GOING_ON",
    "other_title": "HOW LONG HAS THIS BEEN GOING ON ?",
    "other_section": "A2",
@@ -789,14 +856,14 @@
    ]
   },
   {
-   "section": "A1",
+   "section": "A2",
    "local_key": null,
-   "start_bar": 8,
+   "start_bar": 24,
    "other": "163_03_HOW_LONG_HAS_THIS_BEEN_GOING_ON",
    "other_title": "HOW LONG HAS THIS BEEN GOING ON ?",
-   "other_section": "A2",
+   "other_section": "A1",
    "other_local_key": null,
-   "other_start_bar": 24,
+   "other_start_bar": 8,
    "score": 1.0,
    "components": {
     "cosine": 1.0,
@@ -891,57 +958,6 @@
    ]
   },
   {
-   "section": "A2",
-   "local_key": null,
-   "start_bar": 24,
-   "other": "163_03_HOW_LONG_HAS_THIS_BEEN_GOING_ON",
-   "other_title": "HOW LONG HAS THIS BEEN GOING ON ?",
-   "other_section": "A1",
-   "other_local_key": null,
-   "other_start_bar": 8,
-   "score": 1.0,
-   "components": {
-    "cosine": 1.0,
-    "alignment": 1.0,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     1
-    ],
-    [
-     2,
-     2
-    ],
-    [
-     3,
-     3
-    ],
-    [
-     4,
-     4
-    ],
-    [
-     5,
-     5
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     7,
-     7
-    ],
-    [
-     8,
-     8
-    ]
-   ]
-  },
-  {
    "section": "A",
    "local_key": null,
    "start_bar": 0,
@@ -952,7 +968,7 @@
    "other_start_bar": 8,
    "score": 0.3,
    "components": {
-    "cosine": 0.0906,
+    "cosine": 0.0891,
     "alignment": 0.3,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -983,7 +999,7 @@
    "other_start_bar": 8,
    "score": 0.3,
    "components": {
-    "cosine": 0.0906,
+    "cosine": 0.0891,
     "alignment": 0.3,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1014,7 +1030,7 @@
    "other_start_bar": 8,
    "score": 0.3,
    "components": {
-    "cosine": 0.0906,
+    "cosine": 0.0891,
     "alignment": 0.3,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1045,7 +1061,7 @@
    "other_start_bar": 0,
    "score": 0.2937,
    "components": {
-    "cosine": 0.0601,
+    "cosine": 0.059,
     "alignment": 0.2937,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1076,7 +1092,7 @@
    "other_start_bar": 16,
    "score": 0.2937,
    "components": {
-    "cosine": 0.0499,
+    "cosine": 0.049,
     "alignment": 0.2937,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1102,12 +1118,12 @@
    "start_bar": 0,
    "other": "120_02_EVERYTIME_WE_SAY_GOODBYE",
    "other_title": "EVERYTIME WE SAY GOODBYE",
-   "other_section": "A",
+   "other_section": "A1",
    "other_local_key": null,
-   "other_start_bar": 0,
+   "other_start_bar": 16,
    "score": 0.25,
    "components": {
-    "cosine": 0.1211,
+    "cosine": 0.1206,
     "alignment": 0.25,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1133,12 +1149,12 @@
    "start_bar": 0,
    "other": "120_02_EVERYTIME_WE_SAY_GOODBYE",
    "other_title": "EVERYTIME WE SAY GOODBYE",
-   "other_section": "A1",
+   "other_section": "A",
    "other_local_key": null,
-   "other_start_bar": 16,
+   "other_start_bar": 0,
    "score": 0.25,
    "components": {
-    "cosine": 0.1211,
+    "cosine": 0.1206,
     "alignment": 0.25,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1169,7 +1185,7 @@
    "other_start_bar": 0,
    "score": 0.25,
    "components": {
-    "cosine": 0.1138,
+    "cosine": 0.1113,
     "alignment": 0.25,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1200,7 +1216,7 @@
    "other_start_bar": 8,
    "score": 0.25,
    "components": {
-    "cosine": 0.1084,
+    "cosine": 0.1064,
     "alignment": 0.25,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1231,7 +1247,7 @@
    "other_start_bar": 0,
    "score": 0.25,
    "components": {
-    "cosine": 0.0505,
+    "cosine": 0.0498,
     "alignment": 0.25,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1265,12 +1281,12 @@
    "start_bar": 8,
    "other": "120_02_EVERYTIME_WE_SAY_GOODBYE",
    "other_title": "EVERYTIME WE SAY GOODBYE",
-   "other_section": "A",
+   "other_section": "A1",
    "other_local_key": null,
-   "other_start_bar": 0,
+   "other_start_bar": 16,
    "score": 0.25,
    "components": {
-    "cosine": 0.1211,
+    "cosine": 0.1206,
     "alignment": 0.25,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1296,12 +1312,12 @@
    "start_bar": 8,
    "other": "120_02_EVERYTIME_WE_SAY_GOODBYE",
    "other_title": "EVERYTIME WE SAY GOODBYE",
-   "other_section": "A1",
+   "other_section": "A",
    "other_local_key": null,
-   "other_start_bar": 16,
+   "other_start_bar": 0,
    "score": 0.25,
    "components": {
-    "cosine": 0.1211,
+    "cosine": 0.1206,
     "alignment": 0.25,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1332,7 +1348,7 @@
    "other_start_bar": 0,
    "score": 0.25,
    "components": {
-    "cosine": 0.1138,
+    "cosine": 0.1113,
     "alignment": 0.25,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1363,7 +1379,7 @@
    "other_start_bar": 8,
    "score": 0.25,
    "components": {
-    "cosine": 0.1084,
+    "cosine": 0.1064,
     "alignment": 0.25,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0

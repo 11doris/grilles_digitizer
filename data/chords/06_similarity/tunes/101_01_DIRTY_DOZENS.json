@@ -15,7 +15,7 @@
    "family": "40-bar AABBA country-pop standard",
    "score": 0.7156,
    "components": {
-    "cosine": 0.7641,
+    "cosine": 0.7632,
     "alignment": 0.7156,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -93,7 +93,7 @@
    "family": "12-bar blues",
    "score": 0.5891,
    "components": {
-    "cosine": 0.5316,
+    "cosine": 0.5321,
     "alignment": 0.5891,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -155,7 +155,7 @@
    "family": "multi-section song-form standard",
    "score": 0.575,
    "components": {
-    "cosine": 0.5865,
+    "cosine": 0.5895,
     "alignment": 0.575,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -225,7 +225,7 @@
    "family": "16-bar traditional (AB) tune",
    "score": 0.5672,
    "components": {
-    "cosine": 0.8184,
+    "cosine": 0.8193,
     "alignment": 0.5672,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -287,7 +287,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.5531,
    "components": {
-    "cosine": 0.7764,
+    "cosine": 0.7742,
     "alignment": 0.5531,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -357,7 +357,7 @@
    "family": "32-bar AABC standard",
    "score": 0.5406,
    "components": {
-    "cosine": 0.3311,
+    "cosine": 0.3332,
     "alignment": 0.5406,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -426,70 +426,12 @@
    ]
   },
   {
-   "id": "364_03_SINCE_MY_BEST_GAL_TURNED_ME_DOWN",
-   "title": "SINCE MY BEST GAL TURNED ME DOWN",
-   "family": "verse-plus-32-bar standard (ABAB)",
-   "score": 0.5109,
-   "components": {
-    "cosine": 0.2515,
-    "alignment": 0.5109,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     1
-    ],
-    [
-     2,
-     2
-    ],
-    [
-     3,
-     3
-    ],
-    [
-     4,
-     4
-    ],
-    [
-     5,
-     5
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     7,
-     7
-    ],
-    [
-     8,
-     8
-    ],
-    [
-     9,
-     9
-    ],
-    [
-     10,
-     10
-    ],
-    [
-     11,
-     11
-    ]
-   ]
-  },
-  {
    "id": "197_03_I_NEVER_KNEW_WHAT_A_GAL_COULD_DO",
    "title": "I NEVER KNEW WHAT A GAL COULD DO",
    "family": "verse-and-chorus standard (16-bar verse + 32-bar AA'BA chorus)",
    "score": 0.4906,
    "components": {
-    "cosine": 0.4096,
+    "cosine": 0.4206,
     "alignment": 0.4906,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -563,7 +505,7 @@
    "family": "32-bar AABA standard",
    "score": 0.4594,
    "components": {
-    "cosine": 0.1791,
+    "cosine": 0.1785,
     "alignment": 0.4594,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -664,110 +606,12 @@
    ]
   },
   {
-   "id": "72_04_CHICAGO",
-   "title": "CHICAGO",
-   "family": "Verse-plus-32-bar standard (AABA'C)",
-   "score": 0.4516,
-   "components": {
-    "cosine": 0.525,
-    "alignment": 0.4516,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     15
-    ],
-    [
-     2,
-     16
-    ],
-    [
-     3,
-     17
-    ],
-    [
-     4,
-     18
-    ],
-    [
-     4,
-     23
-    ],
-    [
-     5,
-     23
-    ],
-    [
-     5,
-     25
-    ],
-    [
-     6,
-     25
-    ],
-    [
-     6,
-     26
-    ],
-    [
-     7,
-     26
-    ],
-    [
-     7,
-     33
-    ],
-    [
-     8,
-     33
-    ],
-    [
-     8,
-     34
-    ],
-    [
-     9,
-     41
-    ],
-    [
-     10,
-     42
-    ],
-    [
-     11,
-     43
-    ],
-    [
-     12,
-     44
-    ],
-    [
-     13,
-     45
-    ],
-    [
-     14,
-     46
-    ],
-    [
-     15,
-     47
-    ],
-    [
-     16,
-     48
-    ]
-   ]
-  },
-  {
    "id": "192_02_I_M_MORE_THAN_SATISFIED",
    "title": "I'M MORE THAN SATISFIED",
    "family": "32-bar AABA standard with 16-bar verse",
    "score": 0.4312,
    "components": {
-    "cosine": 0.3849,
+    "cosine": 0.4743,
     "alignment": 0.4312,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -845,7 +689,7 @@
    "family": "34-bar AABA standard",
    "score": 0.4281,
    "components": {
-    "cosine": 0.3339,
+    "cosine": 0.3354,
     "alignment": 0.4281,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -915,7 +759,7 @@
    "family": "32-bar ABAB' standard",
    "score": 0.4234,
    "components": {
-    "cosine": 0.2187,
+    "cosine": 0.2155,
     "alignment": 0.4234,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1008,12 +852,94 @@
    ]
   },
   {
+   "id": "72_04_CHICAGO",
+   "title": "CHICAGO",
+   "family": "Verse-plus-32-bar standard (AABA'C)",
+   "score": 0.4203,
+   "components": {
+    "cosine": 0.3598,
+    "alignment": 0.4203,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     2,
+     23
+    ],
+    [
+     3,
+     25
+    ],
+    [
+     4,
+     26
+    ],
+    [
+     5,
+     31
+    ],
+    [
+     5,
+     33
+    ],
+    [
+     6,
+     33
+    ],
+    [
+     6,
+     34
+    ],
+    [
+     7,
+     39
+    ],
+    [
+     8,
+     40
+    ],
+    [
+     9,
+     41
+    ],
+    [
+     10,
+     42
+    ],
+    [
+     11,
+     43
+    ],
+    [
+     12,
+     44
+    ],
+    [
+     13,
+     45
+    ],
+    [
+     14,
+     46
+    ],
+    [
+     15,
+     47
+    ],
+    [
+     16,
+     48
+    ]
+   ]
+  },
+  {
    "id": "11_03_ALL_ALONE",
    "title": "ALL ALONE",
    "family": "32-bar ABCD standard",
    "score": 0.4188,
    "components": {
-    "cosine": 0.4333,
+    "cosine": 0.4332,
     "alignment": 0.4188,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1091,7 +1017,7 @@
    "family": "32-bar AABA standard",
    "score": 0.4188,
    "components": {
-    "cosine": 0.1149,
+    "cosine": 0.1157,
     "alignment": 0.4188,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1169,7 +1095,7 @@
    "family": "32-bar AABA standard",
    "score": 0.4125,
    "components": {
-    "cosine": 0.0759,
+    "cosine": 0.0769,
     "alignment": 0.4125,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1259,7 +1185,7 @@
    "family": "32-bar AABA standard (with 24-bar AAB verse)",
    "score": 0.3966,
    "components": {
-    "cosine": 0.0283,
+    "cosine": 0.0325,
     "alignment": 0.4406,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -1353,7 +1279,7 @@
    "family": "32-bar AABA standard",
    "score": 0.3891,
    "components": {
-    "cosine": 0.1636,
+    "cosine": 0.1644,
     "alignment": 0.3891,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1415,7 +1341,7 @@
    "family": "32-bar AABC standard",
    "score": 0.3875,
    "components": {
-    "cosine": 0.4197,
+    "cosine": 0.4173,
     "alignment": 0.3875,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1493,7 +1419,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.3844,
    "components": {
-    "cosine": 0.4372,
+    "cosine": 0.4361,
     "alignment": 0.3844,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1552,6 +1478,100 @@
      22
     ]
    ]
+  },
+  {
+   "id": "187_02_I_MAY_BE_WRONG",
+   "title": "I MAY BE WRONG",
+   "family": "32-bar AABA standard",
+   "score": 0.375,
+   "components": {
+    "cosine": 0.2704,
+    "alignment": 0.375,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     3,
+     1
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     8
+    ],
+    [
+     7,
+     9
+    ],
+    [
+     8,
+     10
+    ],
+    [
+     9,
+     11
+    ],
+    [
+     10,
+     11
+    ],
+    [
+     10,
+     12
+    ],
+    [
+     11,
+     12
+    ],
+    [
+     11,
+     13
+    ],
+    [
+     12,
+     13
+    ],
+    [
+     12,
+     14
+    ],
+    [
+     13,
+     14
+    ],
+    [
+     13,
+     15
+    ],
+    [
+     14,
+     15
+    ],
+    [
+     14,
+     16
+    ],
+    [
+     15,
+     16
+    ],
+    [
+     15,
+     17
+    ],
+    [
+     16,
+     18
+    ]
+   ]
   }
  ],
  "section_matches": [
@@ -1566,7 +1586,7 @@
    "other_start_bar": 32,
    "score": 0.9062,
    "components": {
-    "cosine": 0.8442,
+    "cosine": 0.8466,
     "alignment": 0.9062,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1617,7 +1637,7 @@
    "other_start_bar": 8,
    "score": 0.9062,
    "components": {
-    "cosine": 0.8442,
+    "cosine": 0.8466,
     "alignment": 0.9062,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1668,7 +1688,7 @@
    "other_start_bar": 0,
    "score": 0.8813,
    "components": {
-    "cosine": 0.8084,
+    "cosine": 0.8098,
     "alignment": 0.8813,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1719,7 +1739,7 @@
    "other_start_bar": 40,
    "score": 0.7969,
    "components": {
-    "cosine": 0.5165,
+    "cosine": 0.5214,
     "alignment": 0.7969,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1770,7 +1790,7 @@
    "other_start_bar": 0,
    "score": 0.75,
    "components": {
-    "cosine": 0.9141,
+    "cosine": 0.9128,
     "alignment": 0.75,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1813,7 +1833,7 @@
    "other_start_bar": 0,
    "score": 0.75,
    "components": {
-    "cosine": 0.9141,
+    "cosine": 0.9128,
     "alignment": 0.75,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1856,7 +1876,7 @@
    "other_start_bar": 16,
    "score": 0.725,
    "components": {
-    "cosine": 0.715,
+    "cosine": 0.7161,
     "alignment": 0.725,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1899,7 +1919,7 @@
    "other_start_bar": 0,
    "score": 0.7031,
    "components": {
-    "cosine": 0.6484,
+    "cosine": 0.6471,
     "alignment": 0.7031,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1940,53 +1960,6 @@
    ]
   },
   {
-   "section": "A",
-   "local_key": null,
-   "start_bar": 0,
-   "other": "418_03_THERE_S_A_LULL_IN_MY_LIFE",
-   "other_title": "THERE'S A LULL IN MY LIFE",
-   "other_section": "verse_A",
-   "other_local_key": null,
-   "other_start_bar": 0,
-   "score": 0.6562,
-   "components": {
-    "cosine": 0.5056,
-    "alignment": 0.6562,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     2
-    ],
-    [
-     2,
-     3
-    ],
-    [
-     3,
-     4
-    ],
-    [
-     4,
-     5
-    ],
-    [
-     5,
-     6
-    ],
-    [
-     6,
-     7
-    ],
-    [
-     7,
-     8
-    ]
-   ]
-  },
-  {
    "section": "B",
    "local_key": null,
    "start_bar": 8,
@@ -1997,63 +1970,12 @@
    "other_start_bar": 0,
    "score": 0.6562,
    "components": {
-    "cosine": 0.5123,
+    "cosine": 0.5188,
     "alignment": 0.6562,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
    },
    "bars": [
-    [
-     3,
-     3
-    ],
-    [
-     4,
-     4
-    ],
-    [
-     5,
-     5
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     7,
-     7
-    ],
-    [
-     8,
-     8
-    ]
-   ]
-  },
-  {
-   "section": "A",
-   "local_key": null,
-   "start_bar": 0,
-   "other": "364_03_SINCE_MY_BEST_GAL_TURNED_ME_DOWN",
-   "other_title": "SINCE MY BEST GAL TURNED ME DOWN",
-   "other_section": "verse_A",
-   "other_local_key": null,
-   "other_start_bar": 0,
-   "score": 0.6469,
-   "components": {
-    "cosine": 0.4109,
-    "alignment": 0.6469,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     1
-    ],
-    [
-     2,
-     2
-    ],
     [
      3,
      3
@@ -2091,7 +2013,7 @@
    "other_start_bar": 34,
    "score": 0.6313,
    "components": {
-    "cosine": 0.8283,
+    "cosine": 0.8298,
     "alignment": 0.6313,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2134,7 +2056,7 @@
    "other_start_bar": 0,
    "score": 0.6313,
    "components": {
-    "cosine": 0.8283,
+    "cosine": 0.8298,
     "alignment": 0.6313,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2177,7 +2099,7 @@
    "other_start_bar": 8,
    "score": 0.6313,
    "components": {
-    "cosine": 0.7804,
+    "cosine": 0.7805,
     "alignment": 0.6313,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2220,7 +2142,7 @@
    "other_start_bar": 0,
    "score": 0.575,
    "components": {
-    "cosine": 0.4983,
+    "cosine": 0.5037,
     "alignment": 0.575,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2263,7 +2185,7 @@
    "other_start_bar": 16,
    "score": 0.5625,
    "components": {
-    "cosine": 0.5496,
+    "cosine": 0.5428,
     "alignment": 0.5625,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2296,131 +2218,6 @@
    ]
   },
   {
-   "section": "A",
-   "local_key": null,
-   "start_bar": 0,
-   "other": "197_03_I_NEVER_KNEW_WHAT_A_GAL_COULD_DO",
-   "other_title": "I NEVER KNEW WHAT A GAL COULD DO",
-   "other_section": "verse_A",
-   "other_local_key": null,
-   "other_start_bar": 4,
-   "score": 0.5437,
-   "components": {
-    "cosine": 0.6401,
-    "alignment": 0.5437,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     1
-    ],
-    [
-     2,
-     2
-    ],
-    [
-     3,
-     4
-    ],
-    [
-     4,
-     5
-    ],
-    [
-     5,
-     6
-    ]
-   ]
-  },
-  {
-   "section": "B",
-   "local_key": null,
-   "start_bar": 8,
-   "other": "72_04_CHICAGO",
-   "other_title": "CHICAGO",
-   "other_section": "verse_A",
-   "other_local_key": null,
-   "other_start_bar": 0,
-   "score": 0.5375,
-   "components": {
-    "cosine": 0.3014,
-    "alignment": 0.5375,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     3,
-     1
-    ],
-    [
-     4,
-     2
-    ],
-    [
-     5,
-     5
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     7,
-     7
-    ],
-    [
-     8,
-     8
-    ]
-   ]
-  },
-  {
-   "section": "B",
-   "local_key": null,
-   "start_bar": 8,
-   "other": "72_04_CHICAGO",
-   "other_title": "CHICAGO",
-   "other_section": "verse_A1",
-   "other_local_key": null,
-   "other_start_bar": 8,
-   "score": 0.5375,
-   "components": {
-    "cosine": 0.3014,
-    "alignment": 0.5375,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     3,
-     1
-    ],
-    [
-     4,
-     2
-    ],
-    [
-     5,
-     5
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     7,
-     7
-    ],
-    [
-     8,
-     8
-    ]
-   ]
-  },
-  {
    "section": "B",
    "local_key": null,
    "start_bar": 8,
@@ -2431,7 +2228,7 @@
    "other_start_bar": 24,
    "score": 0.5344,
    "components": {
-    "cosine": 0.1974,
+    "cosine": 0.1913,
     "alignment": 0.5344,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2455,6 +2252,221 @@
     ],
     [
      5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "B",
+   "local_key": null,
+   "start_bar": 8,
+   "other": "169_01_I_CAN_T_STOP_LOVING_YOU",
+   "other_title": "I CAN'T STOP LOVING YOU",
+   "other_section": "B1",
+   "other_local_key": null,
+   "other_start_bar": 24,
+   "score": 0.5094,
+   "components": {
+    "cosine": 0.5303,
+    "alignment": 0.5094,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     3,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "B",
+   "local_key": null,
+   "start_bar": 8,
+   "other": "400_02_SWEET_AND_HOT",
+   "other_title": "SWEET AND HOT",
+   "other_section": "A1",
+   "other_local_key": null,
+   "other_start_bar": 12,
+   "score": 0.5062,
+   "components": {
+    "cosine": 0.2189,
+    "alignment": 0.5062,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     6,
+     8
+    ],
+    [
+     7,
+     9
+    ],
+    [
+     8,
+     10
+    ]
+   ]
+  },
+  {
+   "section": "B",
+   "local_key": null,
+   "start_bar": 8,
+   "other": "457_03_WHEN_THE_SAINTS_GO_MARCHING_IN",
+   "other_title": "WHEN THE SAINTS GO MARCHING IN",
+   "other_section": "A",
+   "other_local_key": null,
+   "other_start_bar": 0,
+   "score": 0.5,
+   "components": {
+    "cosine": 0.3979,
+    "alignment": 0.5,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     3,
+     5
+    ],
+    [
+     4,
+     6
+    ],
+    [
+     5,
+     7
+    ],
+    [
+     6,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "B",
+   "local_key": null,
+   "start_bar": 8,
+   "other": "74_02_CHINATOWN_MY_CHINATOWN",
+   "other_title": "CHINATOWN MY CHINATOWN",
+   "other_section": "A",
+   "other_local_key": null,
+   "other_start_bar": 0,
+   "score": 0.5,
+   "components": {
+    "cosine": 0.3979,
+    "alignment": 0.5,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     3,
+     5
+    ],
+    [
+     4,
+     6
+    ],
+    [
+     5,
+     7
+    ],
+    [
+     6,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "B",
+   "local_key": null,
+   "start_bar": 8,
+   "other": "192_02_I_M_MORE_THAN_SATISFIED",
+   "other_title": "I'M MORE THAN SATISFIED",
+   "other_section": "A",
+   "other_local_key": null,
+   "other_start_bar": 16,
+   "score": 0.4938,
+   "components": {
+    "cosine": 0.3011,
+    "alignment": 0.4938,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     3,
+     1
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     5,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
      5
     ],
     [

@@ -583,6 +583,11 @@ python -m pipelines.chords.similarity.compute --eval     # rebuild + run harness
 Input: all `05_annotated` tunes with `status` ∈ {`agreed`, `verified`}
 (`needs_review` tunes are excluded). Output: `data/chords/06_similarity/`.
 
+Verse sections (section names starting `verse`) never enter comparisons, at either level:
+the tune-level sequence is the verse-free form, and verses get no section entries. Reported
+bar numbers still reference the full flattened chart (verses included), so the apps highlight
+the right bars.
+
 ### 6.1 Stage A — exact-hash contrafact groups
 
 Hash each normalized `full_seq` and `section_seq`. Identical hashes → score 1.0 families,
@@ -650,9 +655,12 @@ data/chords/06_similarity/
 score components (retrieval cosine, alignment score, penalties applied), alignment bar-mapping,
 and the candidate's fingerprint `family`.
 
-`displayer_similar.json` (displayer): per tune, top-10 whole-tune suggestions and top-5 section
-matches — score, matched-section labels, bar-mapping only. No component breakdowns. Size guard:
-this bundle must stay < ~2 MB at 2500 tunes (it ships to GitHub Pages).
+`displayer_similar.json` (displayer): per tune, up to 10 whole-tune suggestions and up to 10
+section matches (deduped: repeated sections A/A1/A2 share a base name — one entry per tune-pair
+relationship, best score) — score, matched-section labels, bar-mapping only. No component
+breakdowns. Entries scoring below 0.25 are dropped, except that the top 5 are always kept
+whatever their score (the UI shows ~5 rows and scrolls the rest). Size guard: this bundle must
+stay < ~2 MB at 2500 tunes (it ships to GitHub Pages).
 
 ### 6.5 Fingerprint channel (conditional)
 

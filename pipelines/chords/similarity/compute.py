@@ -12,6 +12,12 @@ Stages: A exact-hash contrafact groups; B n-gram TF-IDF cosine retrieval
 music-aware substitution model and meter/mode penalties. Section matching is
 any↔any over §4.3 section sequences (local-relative where annotated); no
 shift search — transposition handling is annotation-driven.
+
+Verse sections (names starting "verse") never enter comparisons, at either
+level: the tune-level sequence is the verse-free form and verses get no
+section entries. Reported bar numbers still reference the full flattened
+chart (verses included) via Entry.slot_map, so the apps highlight the right
+bars.
 """
 from __future__ import annotations
 
@@ -19,6 +25,7 @@ import argparse
 import datetime
 import json
 import math
+import re
 import sys
 import time
 from collections import Counter
@@ -44,11 +51,34 @@ NGRAM_SIZES = (2, 3, 4)
 TOP_CANDIDATES = 100          # retrieval candidates per query (spec §6.2)
 TOP_TUNES = 20                # explorer: top-K similar tunes (spec §6.4)
 TOP_SECTIONS = 20             # explorer: top-K section matches
-DISPLAYER_TUNES = 10          # displayer bundle (spec §6.4)
-DISPLAYER_SECTIONS = 5
+DISPLAYER_TUNES = 10          # displayer bundle caps (spec §6.4)
+DISPLAYER_SECTIONS = 10
+DISPLAYER_MIN_SCORE = 0.25    # drop weaker suggestions from the bundle ...
+DISPLAYER_MIN_KEEP = 5        # ... but always keep the top 5, any score
 MIN_SECTION_SLOTS = 8         # skip tiny codas/interludes (< 4 bars)
 METER_PENALTY = 0.95          # multiplicative, small (spec §6.3)
 MODE_PENALTY = 0.9            # a nudge, not a wall (spec §6.3)
+
+
+def _is_verse(name: str) -> bool:
+    """Verse sections are prologue material, not the form: they never enter
+    comparisons at either level (owner decision 2026-07-10)."""
+    return name.lower().startswith("verse")
+
+
+def _section_base(name: str) -> str:
+    """'A1', 'A2', "A'" -> 'A': repeats of a section share their base name."""
+    return re.sub(r"[0-9']+$", "", name)
+
+
+def _displayer_cut(matches: list[dict], cap: int) -> list[dict]:
+    """Bundle cut (spec §6.4): drop scores below DISPLAYER_MIN_SCORE, but
+    always keep the top DISPLAYER_MIN_KEEP whatever they score. `matches`
+    is score-sorted descending."""
+    kept = [m for m in matches if m["score"] >= DISPLAYER_MIN_SCORE]
+    if len(kept) < DISPLAYER_MIN_KEEP:
+        kept = matches[:DISPLAYER_MIN_KEEP]
+    return kept[:cap]
 
 
 # ---------------------------------------------------------------------------
@@ -122,6 +152,7 @@ class Entry:
     meter: str | None
     local_key: dict | None = None
     start_bar: int = 0   # bar offset of the section inside the flattened form
+    slot_map: np.ndarray | None = None  # comparison slot -> full-chart slot
 
 
 def _final_score(query: Entry, cand: Entry, raw: float, cosine: float) -> dict:
@@ -139,13 +170,20 @@ def _final_score(query: Entry, cand: Entry, raw: float, cosine: float) -> dict:
     }
 
 
+def _chart_bar(entry: Entry, slot: int) -> int:
+    """Slot in the comparison sequence -> 1-based bar in the full chart."""
+    if entry.slot_map is not None:
+        slot = int(entry.slot_map[slot])
+    return slot // 2 + 1
+
+
 def _rescore_with_path(query: Entry, cand: Entry, cosine: float,
                        table: TokenTable) -> dict:
     raw, path = sw_traceback(query.encoded, cand.encoded, table.matrix)
     result = _final_score(query, cand, raw, cosine)
     bars, seen = [], set()
     for qs, cs in path:
-        pair = (qs // 2 + 1, cs // 2 + 1)  # bar granularity (spec §6.3)
+        pair = (_chart_bar(query, qs), _chart_bar(cand, cs))  # bar granularity
         if pair not in seen:
             seen.add(pair)
             bars.append(list(pair))
@@ -167,11 +205,19 @@ def build_entries(docs: dict[str, dict]
             print(f"  form warning: {stem}: {warning}")
         seqs: TuneSequences = tonic_relative(doc)
         meter = seqs.meter
-        enc = table.encode(seqs.full_seq)
-        tunes.append(Entry(stem, None, seqs.full_seq, enc,
-                           table.self_score(enc), seqs.mode, meter))
+        # tune-level comparison sequence: the form without verses; slot_map
+        # points each comparison slot back at its full-chart slot so bar
+        # mappings stay chart-accurate
+        chart_slots = [i for name, sec in seqs.section_seqs.items()
+                       if not _is_verse(name)
+                       for i in range(sec.start, sec.start + len(sec.tokens))]
+        full = tuple(seqs.full_seq[i] for i in chart_slots)
+        enc = table.encode(full)
+        tunes.append(Entry(stem, None, full, enc, table.self_score(enc),
+                           seqs.mode, meter,
+                           slot_map=np.asarray(chart_slots, dtype=np.int32)))
         for name, sec in seqs.section_seqs.items():
-            if len(sec.tokens) < MIN_SECTION_SLOTS:
+            if _is_verse(name) or len(sec.tokens) < MIN_SECTION_SLOTS:
                 continue
             enc = table.encode(sec.tokens)
             mode = sec.local_key["mode"] if sec.local_key else seqs.mode
@@ -289,20 +335,31 @@ def run_engine(docs: dict[str, dict], out_dir: Path,
         (tunes_dir / f"{q.stem}.json").write_text(
             json.dumps(out, indent=1, ensure_ascii=False) + "\n", "utf-8")
 
-        # compact displayer bundle: cross-tune only (spec §6.4)
+        # compact displayer bundle: cross-tune only (spec §6.4). Repeated
+        # sections (A, A1, A2 share a base name) list each tune-pair
+        # relationship once — best score wins — so an AABA matching another
+        # AABA doesn't fill the list with its A x A cross product.
+        seen_pairs: set = set()
+        dedup = []
+        for m in sec_matches:
+            key = (_section_base(m["section"]), m["other"],
+                   _section_base(m["other_section"]))
+            if m["other"] == q.stem or key in seen_pairs:
+                continue
+            seen_pairs.add(key)
+            dedup.append(m)
         displayer[q.stem] = {
             "similar": [
                 {"id": s["id"], "score": s["score"], "family": s["family"],
                  "bars": s["bars"]}
-                for s in similar[:DISPLAYER_TUNES]],
+                for s in _displayer_cut(similar, DISPLAYER_TUNES)],
             "sections": [
                 {"section": m["section"],
                  "local_key": m["local_key"],
                  "other": m["other"], "other_section": m["other_section"],
                  "other_local_key": m["other_local_key"],
                  "score": m["score"], "bars": m["bars"]}
-                for m in sec_matches if m["other"] != q.stem
-            ][:DISPLAYER_SECTIONS],
+                for m in _displayer_cut(dedup, DISPLAYER_SECTIONS)],
         }
 
     displayer_path = out_dir / "displayer_similar.json"

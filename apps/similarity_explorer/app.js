@@ -107,6 +107,11 @@ function fmtLocal(lk) {
   return lk ? `locally in ${lk.tonic} ${lk.mode}` : "";
 }
 
+/* 'A1', 'A2', "A'" -> 'A' (mirrors the engine's _section_base). */
+function sectionBase(name) {
+  return name.replace(/[0-9']+$/, "");
+}
+
 function visibleMatches() {
   const t = TUNES[state.currentId];
   if (!t) return [];
@@ -115,10 +120,22 @@ function visibleMatches() {
       s.score >= state.minScore &&
       (!state.sameFamily || s.family === t.family));
   }
+  // display-level dedupe of repeated sections (A, A1, A2): one row per
+  // tune-pair relationship, best score first (the list is score-sorted).
+  // The underlying section_matches JSON stays complete — the eval harness
+  // matches ground-truth members by exact section names.
+  const seen = new Set();
   return t.section_matches.filter((m) =>
     m.score >= state.minScore &&
     (!state.crossTune || m.other !== state.currentId) &&
-    (!state.sameFamily || (TUNES[m.other] || {}).family === t.family));
+    (!state.sameFamily || (TUNES[m.other] || {}).family === t.family))
+    .filter((m) => {
+      const key =
+        `${sectionBase(m.section)}|${m.other}|${sectionBase(m.other_section)}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
 }
 
 function renderMatches() {
@@ -200,6 +217,9 @@ function gridHTML(id, opts) {
   holder.appendChild(title);
   for (const [name, sec] of Object.entries(t.grid)) {
     if (opts.sections && !opts.sections.includes(name)) continue;
+    // verses never enter comparisons — don't render them in the whole-tune
+    // view either (start_bar keeps the remaining bar numbers chart-accurate)
+    if (!opts.sections && /^verse/i.test(name)) continue;
     const wrap = document.createElement("div");
     wrap.className = "g-section";
     const head = document.createElement("div");

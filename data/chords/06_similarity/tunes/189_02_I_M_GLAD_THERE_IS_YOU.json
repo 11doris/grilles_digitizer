@@ -15,7 +15,7 @@
    "family": "32-bar ABCD standard",
    "score": 0.2146,
    "components": {
-    "cosine": 0.273,
+    "cosine": 0.276,
     "alignment": 0.2146,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -141,7 +141,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.2007,
    "components": {
-    "cosine": 0.1654,
+    "cosine": 0.1681,
     "alignment": 0.2007,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -247,7 +247,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.1875,
    "components": {
-    "cosine": 0.2232,
+    "cosine": 0.2289,
     "alignment": 0.1875,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -365,7 +365,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1875,
    "components": {
-    "cosine": 0.1298,
+    "cosine": 0.1317,
     "alignment": 0.1875,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -479,7 +479,7 @@
    "family": "32-bar AABA standard with 16-bar verse",
    "score": 0.1736,
    "components": {
-    "cosine": 0.1206,
+    "cosine": 0.1364,
     "alignment": 0.1736,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -605,7 +605,7 @@
    "family": "34-bar AABA standard",
    "score": 0.1722,
    "components": {
-    "cosine": 0.1044,
+    "cosine": 0.1058,
     "alignment": 0.1722,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -691,7 +691,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.1715,
    "components": {
-    "cosine": 0.2274,
+    "cosine": 0.2319,
     "alignment": 0.1715,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -749,7 +749,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1597,
    "components": {
-    "cosine": 0.0996,
+    "cosine": 0.1013,
     "alignment": 0.1597,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -875,7 +875,7 @@
    "family": "64-bar AABA standard",
    "score": 0.159,
    "components": {
-    "cosine": 0.1441,
+    "cosine": 0.1462,
     "alignment": 0.159,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -961,7 +961,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.1569,
    "components": {
-    "cosine": 0.1479,
+    "cosine": 0.1521,
     "alignment": 0.1569,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1027,7 +1027,7 @@
    "family": "32-bar ABAB standard",
    "score": 0.1562,
    "components": {
-    "cosine": 0.1976,
+    "cosine": 0.2018,
     "alignment": 0.1562,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1157,7 +1157,7 @@
    "family": "40-bar AABBA country-pop standard",
    "score": 0.1549,
    "components": {
-    "cosine": 0.1277,
+    "cosine": 0.1271,
     "alignment": 0.1549,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1251,7 +1251,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.15,
    "components": {
-    "cosine": 0.2568,
+    "cosine": 0.2616,
     "alignment": 0.15,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1361,7 +1361,7 @@
    "family": "32-bar bebop head (Indiana changes)",
    "score": 0.1472,
    "components": {
-    "cosine": 0.1454,
+    "cosine": 0.1461,
     "alignment": 0.1472,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1427,7 +1427,7 @@
    "family": "32-bar ABAB' standard",
    "score": 0.1431,
    "components": {
-    "cosine": 0.1178,
+    "cosine": 0.1211,
     "alignment": 0.1431,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1489,7 +1489,7 @@
    "family": "32-bar AABA standard with verse and coda",
    "score": 0.141,
    "components": {
-    "cosine": 0.1383,
+    "cosine": 0.1554,
     "alignment": 0.141,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1574,158 +1574,12 @@
    ]
   },
   {
-   "id": "418_03_THERE_S_A_LULL_IN_MY_LIFE",
-   "title": "THERE'S A LULL IN MY LIFE",
-   "family": "38-bar AABA' standard with verse",
-   "score": 0.1382,
-   "components": {
-    "cosine": 0.0924,
-    "alignment": 0.1382,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     7
-    ],
-    [
-     2,
-     8
-    ],
-    [
-     3,
-     9
-    ],
-    [
-     4,
-     10
-    ],
-    [
-     5,
-     11
-    ],
-    [
-     6,
-     12
-    ],
-    [
-     7,
-     13
-    ],
-    [
-     8,
-     13
-    ],
-    [
-     8,
-     14
-    ],
-    [
-     9,
-     14
-    ],
-    [
-     9,
-     15
-    ],
-    [
-     10,
-     15
-    ],
-    [
-     10,
-     16
-    ],
-    [
-     11,
-     16
-    ],
-    [
-     11,
-     17
-    ],
-    [
-     12,
-     18
-    ],
-    [
-     13,
-     19
-    ],
-    [
-     14,
-     19
-    ],
-    [
-     15,
-     20
-    ],
-    [
-     16,
-     21
-    ],
-    [
-     17,
-     21
-    ],
-    [
-     17,
-     22
-    ],
-    [
-     18,
-     22
-    ],
-    [
-     19,
-     23
-    ],
-    [
-     20,
-     23
-    ],
-    [
-     20,
-     24
-    ],
-    [
-     21,
-     24
-    ],
-    [
-     21,
-     25
-    ],
-    [
-     23,
-     25
-    ],
-    [
-     23,
-     26
-    ],
-    [
-     24,
-     26
-    ],
-    [
-     25,
-     27
-    ],
-    [
-     26,
-     28
-    ]
-   ]
-  },
-  {
    "id": "25_02_AUTUMN_LEAVES",
    "title": "AUTUMN LEAVES",
    "family": "32-bar tune with verse (AAB verse + AABC chorus)",
    "score": 0.1363,
    "components": {
-    "cosine": 0.122,
+    "cosine": 0.1296,
     "alignment": 0.1514,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -1795,7 +1649,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1361,
    "components": {
-    "cosine": 0.1163,
+    "cosine": 0.1144,
     "alignment": 0.1361,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1853,7 +1707,7 @@
    "family": "56-bar AABA' standard",
    "score": 0.1354,
    "components": {
-    "cosine": 0.1152,
+    "cosine": 0.1184,
     "alignment": 0.1354,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1908,6 +1762,72 @@
      42
     ]
    ]
+  },
+  {
+   "id": "394_03_STRUT_MISS_LIZZIE",
+   "title": "STRUT MISS LIZZIE",
+   "family": "verse-and-chorus standard",
+   "score": 0.1354,
+   "components": {
+    "cosine": 0.065,
+    "alignment": 0.1354,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     16,
+     24
+    ],
+    [
+     17,
+     25
+    ],
+    [
+     18,
+     26
+    ],
+    [
+     18,
+     29
+    ],
+    [
+     19,
+     30
+    ],
+    [
+     20,
+     31
+    ],
+    [
+     21,
+     32
+    ],
+    [
+     21,
+     33
+    ],
+    [
+     22,
+     33
+    ],
+    [
+     22,
+     34
+    ],
+    [
+     24,
+     34
+    ],
+    [
+     25,
+     35
+    ],
+    [
+     26,
+     36
+    ]
+   ]
   }
  ],
  "section_matches": [
@@ -1922,7 +1842,7 @@
    "other_start_bar": 24,
    "score": 0.825,
    "components": {
-    "cosine": 0.6702,
+    "cosine": 0.6697,
     "alignment": 0.825,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1977,7 +1897,7 @@
    "other_start_bar": 0,
    "score": 0.55,
    "components": {
-    "cosine": 0.6702,
+    "cosine": 0.6697,
     "alignment": 0.55,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2032,7 +1952,7 @@
    "other_start_bar": 0,
    "score": 0.45,
    "components": {
-    "cosine": 0.1308,
+    "cosine": 0.1301,
     "alignment": 0.45,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2074,12 +1994,12 @@
    "start_bar": 8,
    "other": "361_02_SHOE_SHINE_BOY",
    "other_title": "SHOE SHINE BOY",
-   "other_section": "A",
+   "other_section": "A2",
    "other_local_key": null,
-   "other_start_bar": 0,
+   "other_start_bar": 24,
    "score": 0.4094,
    "components": {
-    "cosine": 0.1637,
+    "cosine": 0.1663,
     "alignment": 0.4094,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2118,7 +2038,7 @@
    "other_start_bar": 8,
    "score": 0.4094,
    "components": {
-    "cosine": 0.1637,
+    "cosine": 0.1663,
     "alignment": 0.4094,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2152,12 +2072,12 @@
    "start_bar": 8,
    "other": "361_02_SHOE_SHINE_BOY",
    "other_title": "SHOE SHINE BOY",
-   "other_section": "A2",
+   "other_section": "A",
    "other_local_key": null,
-   "other_start_bar": 24,
+   "other_start_bar": 0,
    "score": 0.4094,
    "components": {
-    "cosine": 0.1637,
+    "cosine": 0.1663,
     "alignment": 0.4094,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2196,7 +2116,7 @@
    "other_start_bar": 40,
    "score": 0.4078,
    "components": {
-    "cosine": 0.2095,
+    "cosine": 0.2182,
     "alignment": 0.4531,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -2235,7 +2155,7 @@
    "other_start_bar": 8,
    "score": 0.4063,
    "components": {
-    "cosine": 0.2776,
+    "cosine": 0.2871,
     "alignment": 0.4063,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2276,45 +2196,6 @@
    ]
   },
   {
-   "section": "C",
-   "local_key": null,
-   "start_bar": 16,
-   "other": "402_02_SWEET_LORRAINE",
-   "other_title": "SWEET LORRAINE",
-   "other_section": "verse_A1",
-   "other_local_key": null,
-   "other_start_bar": 8,
-   "score": 0.4062,
-   "components": {
-    "cosine": 0.1662,
-    "alignment": 0.4062,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     4,
-     4
-    ],
-    [
-     5,
-     5
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     7,
-     7
-    ],
-    [
-     8,
-     8
-    ]
-   ]
-  },
-  {
    "section": "A1",
    "local_key": null,
    "start_bar": 24,
@@ -2325,7 +2206,7 @@
    "other_start_bar": 0,
    "score": 0.4021,
    "components": {
-    "cosine": 0.1262,
+    "cosine": 0.1242,
     "alignment": 0.4021,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2427,7 +2308,7 @@
    "other_start_bar": 8,
    "score": 0.3937,
    "components": {
-    "cosine": 0.3469,
+    "cosine": 0.3414,
     "alignment": 0.3937,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2474,7 +2355,7 @@
    "other_start_bar": 16,
    "score": 0.3906,
    "components": {
-    "cosine": 0.3235,
+    "cosine": 0.3238,
     "alignment": 0.3906,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2509,7 +2390,7 @@
    "other_start_bar": 0,
    "score": 0.3875,
    "components": {
-    "cosine": 0.1353,
+    "cosine": 0.1333,
     "alignment": 0.3875,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2564,7 +2445,7 @@
    "other_start_bar": 16,
    "score": 0.3875,
    "components": {
-    "cosine": 0.0651,
+    "cosine": 0.0686,
     "alignment": 0.3875,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2611,7 +2492,7 @@
    "other_start_bar": 8,
    "score": 0.3812,
    "components": {
-    "cosine": 0.1696,
+    "cosine": 0.1725,
     "alignment": 0.3812,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2654,7 +2535,7 @@
    "other_start_bar": 0,
    "score": 0.375,
    "components": {
-    "cosine": 0.2091,
+    "cosine": 0.2095,
     "alignment": 0.375,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2688,7 +2569,7 @@
    "other_start_bar": 32,
    "score": 0.375,
    "components": {
-    "cosine": 0.1592,
+    "cosine": 0.1593,
     "alignment": 0.375,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2719,7 +2600,7 @@
    "other_start_bar": 8,
    "score": 0.375,
    "components": {
-    "cosine": 0.1928,
+    "cosine": 0.1929,
     "alignment": 0.375,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2750,7 +2631,62 @@
    "other_start_bar": 48,
    "score": 0.3656,
    "components": {
-    "cosine": 0.1057,
+    "cosine": 0.1039,
+    "alignment": 0.3656,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     6
+    ],
+    [
+     2,
+     8
+    ],
+    [
+     3,
+     9
+    ],
+    [
+     5,
+     9
+    ],
+    [
+     5,
+     10
+    ],
+    [
+     6,
+     10
+    ],
+    [
+     6,
+     12
+    ],
+    [
+     7,
+     13
+    ],
+    [
+     8,
+     14
+    ]
+   ]
+  },
+  {
+   "section": "C",
+   "local_key": null,
+   "start_bar": 16,
+   "other": "72_01_CHEROKEE",
+   "other_title": "CHEROKEE",
+   "other_section": "A1",
+   "other_local_key": null,
+   "other_start_bar": 16,
+   "score": 0.3656,
+   "components": {
+    "cosine": 0.1039,
     "alignment": 0.3656,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0

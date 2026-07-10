@@ -15,7 +15,7 @@
    "family": "32-bar AABA standard",
    "score": 0.2422,
    "components": {
-    "cosine": 0.0807,
+    "cosine": 0.0808,
     "alignment": 0.2422,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -181,7 +181,7 @@
    "family": "32-bar ABCD standard",
    "score": 0.1664,
    "components": {
-    "cosine": 0.0788,
+    "cosine": 0.0795,
     "alignment": 0.1664,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -319,7 +319,7 @@
    "family": "verse-and-chorus standard",
    "score": 0.1641,
    "components": {
-    "cosine": 0.1284,
+    "cosine": 0.1733,
     "alignment": 0.1641,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -377,7 +377,7 @@
    "family": "32-bar AABA standard with 16-bar verse",
    "score": 0.1641,
    "components": {
-    "cosine": 0.1192,
+    "cosine": 0.1421,
     "alignment": 0.1641,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -483,7 +483,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.1617,
    "components": {
-    "cosine": 0.0547,
+    "cosine": 0.0553,
     "alignment": 0.1617,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -627,7 +627,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1531,
    "components": {
-    "cosine": 0.1878,
+    "cosine": 0.1844,
     "alignment": 0.1531,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -761,7 +761,7 @@
    "family": "verse-and-chorus standard (16-bar verse AB + 32-bar chorus ABAC)",
    "score": 0.1516,
    "components": {
-    "cosine": 0.0455,
+    "cosine": 0.0574,
     "alignment": 0.1516,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -815,7 +815,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1477,
    "components": {
-    "cosine": 0.2179,
+    "cosine": 0.2176,
     "alignment": 0.1477,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -865,7 +865,7 @@
    "family": "16-bar traditional (AB) tune",
    "score": 0.1477,
    "components": {
-    "cosine": 0.1039,
+    "cosine": 0.1032,
     "alignment": 0.1477,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -919,7 +919,7 @@
    "family": "32-bar ABCD standard",
    "score": 0.1477,
    "components": {
-    "cosine": 0.0787,
+    "cosine": 0.0782,
     "alignment": 0.1477,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -973,7 +973,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1375,
    "components": {
-    "cosine": 0.1025,
+    "cosine": 0.1033,
     "alignment": 0.1375,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1019,7 +1019,7 @@
    "family": "56-bar AABA' standard",
    "score": 0.1352,
    "components": {
-    "cosine": 0.0505,
+    "cosine": 0.052,
     "alignment": 0.1352,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1073,7 +1073,7 @@
    "family": "32-bar AABA standard with 16-bar verse",
    "score": 0.132,
    "components": {
-    "cosine": 0.0643,
+    "cosine": 0.0612,
     "alignment": 0.132,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1127,7 +1127,7 @@
    "family": "32-bar ABAB standard",
    "score": 0.1312,
    "components": {
-    "cosine": 0.0969,
+    "cosine": 0.0979,
     "alignment": 0.1312,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1261,7 +1261,7 @@
    "family": "34-bar AABA standard",
    "score": 0.1289,
    "components": {
-    "cosine": 0.0891,
+    "cosine": 0.0889,
     "alignment": 0.1289,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1319,7 +1319,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.1289,
    "components": {
-    "cosine": 0.0646,
+    "cosine": 0.0662,
     "alignment": 0.1289,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1461,7 +1461,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1258,
    "components": {
-    "cosine": 0.1674,
+    "cosine": 0.1651,
     "alignment": 0.1258,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1499,7 +1499,7 @@
    "family": "32-bar AABA standard with verse",
    "score": 0.1258,
    "components": {
-    "cosine": 0.0566,
+    "cosine": 0.0564,
     "alignment": 0.1258,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1545,7 +1545,7 @@
    "family": "32-bar AABA standard",
    "score": 0.125,
    "components": {
-    "cosine": 0.0596,
+    "cosine": 0.0612,
     "alignment": 0.125,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1928,7 +1928,7 @@
    "other_start_bar": 24,
    "score": 0.5625,
    "components": {
-    "cosine": 0.1043,
+    "cosine": 0.1039,
     "alignment": 0.5625,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1979,7 +1979,7 @@
    "other_start_bar": 24,
    "score": 0.5625,
    "components": {
-    "cosine": 0.1043,
+    "cosine": 0.1039,
     "alignment": 0.5625,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2030,7 +2030,7 @@
    "other_start_bar": 24,
    "score": 0.5625,
    "components": {
-    "cosine": 0.1043,
+    "cosine": 0.1039,
     "alignment": 0.5625,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2081,7 +2081,7 @@
    "other_start_bar": 24,
    "score": 0.4781,
    "components": {
-    "cosine": 0.1773,
+    "cosine": 0.1758,
     "alignment": 0.4781,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2128,7 +2128,7 @@
    "other_start_bar": 24,
    "score": 0.4781,
    "components": {
-    "cosine": 0.1773,
+    "cosine": 0.1758,
     "alignment": 0.4781,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2175,7 +2175,7 @@
    "other_start_bar": 24,
    "score": 0.4781,
    "components": {
-    "cosine": 0.1773,
+    "cosine": 0.1758,
     "alignment": 0.4781,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2222,7 +2222,7 @@
    "other_start_bar": 40,
    "score": 0.4406,
    "components": {
-    "cosine": 0.0557,
+    "cosine": 0.056,
     "alignment": 0.4406,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2277,7 +2277,7 @@
    "other_start_bar": 40,
    "score": 0.4406,
    "components": {
-    "cosine": 0.0557,
+    "cosine": 0.056,
     "alignment": 0.4406,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2332,7 +2332,7 @@
    "other_start_bar": 40,
    "score": 0.4406,
    "components": {
-    "cosine": 0.0557,
+    "cosine": 0.056,
     "alignment": 0.4406,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2387,7 +2387,7 @@
    "other_start_bar": 40,
    "score": 0.4281,
    "components": {
-    "cosine": 0.2056,
+    "cosine": 0.2043,
     "alignment": 0.4281,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2434,7 +2434,7 @@
    "other_start_bar": 40,
    "score": 0.4281,
    "components": {
-    "cosine": 0.2056,
+    "cosine": 0.2043,
     "alignment": 0.4281,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2481,55 +2481,8 @@
    "other_start_bar": 40,
    "score": 0.4281,
    "components": {
-    "cosine": 0.2056,
+    "cosine": 0.2043,
     "alignment": 0.4281,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     3
-    ],
-    [
-     2,
-     4
-    ],
-    [
-     3,
-     5
-    ],
-    [
-     5,
-     5
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     7,
-     7
-    ],
-    [
-     8,
-     8
-    ]
-   ]
-  },
-  {
-   "section": "A",
-   "local_key": null,
-   "start_bar": 0,
-   "other": "11_03_ALL_ALONE",
-   "other_title": "ALL ALONE",
-   "other_section": "D",
-   "other_local_key": null,
-   "other_start_bar": 24,
-   "score": 0.4125,
-   "components": {
-    "cosine": 0.2074,
-    "alignment": 0.4125,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
    },
@@ -2575,7 +2528,54 @@
    "other_start_bar": 8,
    "score": 0.4125,
    "components": {
-    "cosine": 0.2074,
+    "cosine": 0.2062,
+    "alignment": 0.4125,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     3,
+     5
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "11_03_ALL_ALONE",
+   "other_title": "ALL ALONE",
+   "other_section": "D",
+   "other_local_key": null,
+   "other_start_bar": 24,
+   "score": 0.4125,
+   "components": {
+    "cosine": 0.2062,
     "alignment": 0.4125,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0

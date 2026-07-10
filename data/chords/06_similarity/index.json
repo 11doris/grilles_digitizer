@@ -1,9 +1,9 @@
 {
- "built": "2026-07-10T21:12:33",
+ "built": "2026-07-10T22:38:05",
  "engine_version": "1.0",
  "corpus": 94,
- "sections": 397,
- "elapsed_seconds": 14.1,
+ "sections": 362,
+ "elapsed_seconds": 15.1,
  "hash_groups": {
   "tunes": [],
   "sections": [
@@ -74,39 +74,5 @@
     }
    ]
   ]
- },
- "metrics": {
-  "computed": "2026-07-10T21:12:34",
-  "tunes_in_output": 94,
-  "tune_recall": {
-   "confirmed": {
-    "families": 0,
-    "members": 0,
-    "recall@5": null,
-    "recall@10": null
-   },
-   "candidate": {
-    "families": 4,
-    "members": 11,
-    "recall@5": 0.5758,
-    "recall@10": 0.5758
-   }
-  },
-  "section_recall": {
-   "confirmed": {
-    "families": 5,
-    "members": 14,
-    "recall@5": 1.0,
-    "recall@10": 1.0
-   },
-   "candidate": {
-    "families": 2,
-    "members": 16,
-    "recall@5": 0.2404,
-    "recall@10": 0.2452
-   }
-  },
-  "precision": null,
-  "non_match_violations": []
  }
 }

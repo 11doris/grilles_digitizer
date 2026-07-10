@@ -15,7 +15,7 @@
    "family": "32-bar tune with verse (AAB verse + AABC chorus)",
    "score": 0.2949,
    "components": {
-    "cosine": 0.2628,
+    "cosine": 0.2922,
     "alignment": 0.2949,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -153,7 +153,7 @@
    "family": "32-bar AABA standard with verse and coda",
    "score": 0.1912,
    "components": {
-    "cosine": 0.059,
+    "cosine": 0.073,
     "alignment": 0.2125,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -243,7 +243,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1493,
    "components": {
-    "cosine": 0.1805,
+    "cosine": 0.1899,
     "alignment": 0.1493,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -325,7 +325,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1489,
    "components": {
-    "cosine": 0.0627,
+    "cosine": 0.064,
     "alignment": 0.1654,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -403,7 +403,7 @@
    "family": "32-bar ABAB' standard",
    "score": 0.1469,
    "components": {
-    "cosine": 0.2506,
+    "cosine": 0.2619,
     "alignment": 0.1632,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -500,86 +500,12 @@
    ]
   },
   {
-   "id": "72_04_CHICAGO",
-   "title": "CHICAGO",
-   "family": "Verse-plus-32-bar standard (AABA'C)",
-   "score": 0.1456,
-   "components": {
-    "cosine": 0.0424,
-    "alignment": 0.1618,
-    "meter_penalty": 1.0,
-    "mode_penalty": 0.9
-   },
-   "bars": [
-    [
-     1,
-     1
-    ],
-    [
-     2,
-     2
-    ],
-    [
-     3,
-     3
-    ],
-    [
-     4,
-     4
-    ],
-    [
-     5,
-     5
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     6,
-     7
-    ],
-    [
-     7,
-     8
-    ],
-    [
-     8,
-     8
-    ],
-    [
-     13,
-     9
-    ],
-    [
-     14,
-     10
-    ],
-    [
-     15,
-     11
-    ],
-    [
-     16,
-     12
-    ],
-    [
-     17,
-     13
-    ],
-    [
-     18,
-     14
-    ]
-   ]
-  },
-  {
    "id": "74_02_CHINATOWN_MY_CHINATOWN",
    "title": "CHINATOWN MY CHINATOWN",
    "family": "32-bar ABA'C standard",
    "score": 0.137,
    "components": {
-    "cosine": 0.1312,
+    "cosine": 0.138,
     "alignment": 0.1522,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -621,7 +547,7 @@
    "family": "32-bar AABA standard with 16-bar verse",
    "score": 0.137,
    "components": {
-    "cosine": 0.0896,
+    "cosine": 0.1152,
     "alignment": 0.1522,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -663,7 +589,7 @@
    "family": "32-bar AABA standard",
    "score": 0.137,
    "components": {
-    "cosine": 0.0668,
+    "cosine": 0.0696,
     "alignment": 0.1522,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -713,7 +639,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.1357,
    "components": {
-    "cosine": 0.1182,
+    "cosine": 0.122,
     "alignment": 0.1507,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -835,7 +761,7 @@
    "family": "32-bar bebop head (Indiana changes)",
    "score": 0.1343,
    "components": {
-    "cosine": 0.1438,
+    "cosine": 0.1493,
     "alignment": 0.1493,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -977,7 +903,7 @@
    "family": "64-bar AABA standard",
    "score": 0.133,
    "components": {
-    "cosine": 0.0686,
+    "cosine": 0.0709,
     "alignment": 0.1478,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -1079,7 +1005,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1231,
    "components": {
-    "cosine": 0.0189,
+    "cosine": 0.0191,
     "alignment": 0.1368,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -1164,126 +1090,12 @@
    ]
   },
   {
-   "id": "402_02_SWEET_LORRAINE",
-   "title": "SWEET LORRAINE",
-   "family": "32-bar AABA standard with 16-bar verse",
-   "score": 0.1224,
-   "components": {
-    "cosine": 0.0921,
-    "alignment": 0.136,
-    "meter_penalty": 1.0,
-    "mode_penalty": 0.9
-   },
-   "bars": [
-    [
-     1,
-     6
-    ],
-    [
-     2,
-     6
-    ],
-    [
-     2,
-     7
-    ],
-    [
-     4,
-     7
-    ],
-    [
-     5,
-     8
-    ],
-    [
-     6,
-     9
-    ],
-    [
-     10,
-     9
-    ],
-    [
-     10,
-     10
-    ],
-    [
-     11,
-     10
-    ],
-    [
-     13,
-     11
-    ],
-    [
-     14,
-     13
-    ],
-    [
-     15,
-     14
-    ],
-    [
-     16,
-     14
-    ],
-    [
-     16,
-     15
-    ],
-    [
-     17,
-     15
-    ],
-    [
-     17,
-     16
-    ],
-    [
-     18,
-     16
-    ],
-    [
-     18,
-     17
-    ],
-    [
-     19,
-     17
-    ],
-    [
-     19,
-     18
-    ],
-    [
-     20,
-     18
-    ],
-    [
-     20,
-     19
-    ],
-    [
-     21,
-     19
-    ],
-    [
-     21,
-     20
-    ],
-    [
-     22,
-     21
-    ]
-   ]
-  },
-  {
    "id": "452_01_WHAT_KIND_OF_FOOL_AM_I",
    "title": "WHAT KIND OF FOOL AM I ?",
    "family": "32-bar ABA'C standard",
    "score": 0.1138,
    "components": {
-    "cosine": 0.0519,
+    "cosine": 0.0532,
     "alignment": 0.1265,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -1327,99 +1139,71 @@
    "id": "99_03_DIGA_DIGA_DOO",
    "title": "DIGA DIGA DOO",
    "family": "32-bar AABA standard (with 24-bar AAB verse)",
-   "score": 0.1103,
+   "score": 0.1044,
    "components": {
-    "cosine": 0.3747,
-    "alignment": 0.1103,
+    "cosine": 0.3834,
+    "alignment": 0.1044,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
    },
    "bars": [
     [
-     12,
-     20
+     28,
+     46
     ],
     [
-     13,
-     21
+     29,
+     47
     ],
     [
-     14,
-     22
+     32,
+     48
     ],
     [
-     15,
-     23
+     33,
+     49
     ],
     [
-     17,
-     24
-    ],
-    [
-     18,
-     24
-    ],
-    [
-     18,
-     25
+     34,
+     50
     ]
    ]
   },
   {
-   "id": "487_01_ZULU_WAIL",
-   "title": "ZULU WAIL",
-   "family": "16-bar verse + 32-bar AABA chorus",
-   "score": 0.1039,
+   "id": "72_04_CHICAGO",
+   "title": "CHICAGO",
+   "family": "Verse-plus-32-bar standard (AABA'C)",
+   "score": 0.1026,
    "components": {
-    "cosine": 0.048,
-    "alignment": 0.1154,
+    "cosine": 0.0272,
+    "alignment": 0.114,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
    },
    "bars": [
     [
-     12,
-     8
+     1,
+     25
     ],
     [
-     13,
-     9
+     2,
+     26
     ],
     [
-     14,
-     11
+     3,
+     27
     ],
     [
-     15,
-     13
+     4,
+     28
     ],
     [
-     16,
-     14
+     5,
+     29
     ],
     [
-     17,
-     15
-    ],
-    [
-     17,
-     16
-    ],
-    [
-     18,
-     16
-    ],
-    [
-     18,
-     17
-    ],
-    [
-     20,
-     17
-    ],
-    [
-     21,
-     18
+     6,
+     30
     ]
    ]
   },
@@ -1429,7 +1213,7 @@
    "family": "32-bar AABA standard",
    "score": 0.0986,
    "components": {
-    "cosine": 0.0311,
+    "cosine": 0.0333,
     "alignment": 0.1096,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -1479,7 +1263,7 @@
    "family": "32-bar ABCD standard",
    "score": 0.0979,
    "components": {
-    "cosine": 0.1326,
+    "cosine": 0.1395,
     "alignment": 0.1088,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -1509,7 +1293,7 @@
    "family": "32-bar AABA standard",
    "score": 0.0953,
    "components": {
-    "cosine": 0.0599,
+    "cosine": 0.0652,
     "alignment": 0.1059,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -1580,6 +1364,118 @@
      15
     ]
    ]
+  },
+  {
+   "id": "23_03_AT_LONG_LAST_LOVE",
+   "title": "AT LONG LAST LOVE",
+   "family": "32-bar ABA'C standard",
+   "score": 0.0893,
+   "components": {
+    "cosine": 0.0249,
+    "alignment": 0.0993,
+    "meter_penalty": 1.0,
+    "mode_penalty": 0.9
+   },
+   "bars": [
+    [
+     25,
+     3
+    ],
+    [
+     26,
+     4
+    ],
+    [
+     27,
+     5
+    ],
+    [
+     28,
+     6
+    ],
+    [
+     29,
+     7
+    ]
+   ]
+  },
+  {
+   "id": "29_03_BALLIN_THE_JACK",
+   "title": "BALLIN' THE JACK",
+   "family": "verse-chorus 16-bar tune",
+   "score": 0.0887,
+   "components": {
+    "cosine": 0.0713,
+    "alignment": 0.0985,
+    "meter_penalty": 1.0,
+    "mode_penalty": 0.9
+   },
+   "bars": [
+    [
+     3,
+     19
+    ],
+    [
+     4,
+     20
+    ],
+    [
+     5,
+     21
+    ],
+    [
+     5,
+     22
+    ],
+    [
+     6,
+     22
+    ],
+    [
+     6,
+     23
+    ],
+    [
+     8,
+     23
+    ],
+    [
+     9,
+     24
+    ],
+    [
+     10,
+     26
+    ],
+    [
+     10,
+     27
+    ],
+    [
+     15,
+     27
+    ],
+    [
+     15,
+     28
+    ],
+    [
+     16,
+     28
+    ],
+    [
+     16,
+     29
+    ],
+    [
+     17,
+     31
+    ],
+    [
+     18,
+     32
+    ]
+   ]
   }
  ],
  "section_matches": [
@@ -1594,7 +1490,7 @@
    "other_start_bar": 12,
    "score": 0.9375,
    "components": {
-    "cosine": 0.7982,
+    "cosine": 0.8004,
     "alignment": 0.9375,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1661,7 +1557,7 @@
    "other_start_bar": 0,
    "score": 0.9375,
    "components": {
-    "cosine": 0.7982,
+    "cosine": 0.8004,
     "alignment": 0.9375,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1728,7 +1624,7 @@
    "other_start_bar": 48,
    "score": 0.435,
    "components": {
-    "cosine": 0.3367,
+    "cosine": 0.3531,
     "alignment": 0.435,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1771,7 +1667,7 @@
    "other_start_bar": 40,
    "score": 0.38,
    "components": {
-    "cosine": 0.2848,
+    "cosine": 0.3048,
     "alignment": 0.38,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1806,7 +1702,58 @@
    "other_start_bar": 32,
    "score": 0.3562,
    "components": {
-    "cosine": 0.1429,
+    "cosine": 0.1423,
+    "alignment": 0.3958,
+    "meter_penalty": 1.0,
+    "mode_penalty": 0.9
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     6,
+     7
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "445_01_WATCH_WHAT_HAPPENS",
+   "other_title": "WATCH WHAT HAPPENS",
+   "other_section": "A1",
+   "other_local_key": null,
+   "other_start_bar": 16,
+   "score": 0.3562,
+   "components": {
+    "cosine": 0.1226,
     "alignment": 0.3958,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -1857,58 +1804,7 @@
    "other_start_bar": 8,
    "score": 0.3562,
    "components": {
-    "cosine": 0.1223,
-    "alignment": 0.3958,
-    "meter_penalty": 1.0,
-    "mode_penalty": 0.9
-   },
-   "bars": [
-    [
-     1,
-     1
-    ],
-    [
-     2,
-     2
-    ],
-    [
-     3,
-     3
-    ],
-    [
-     4,
-     4
-    ],
-    [
-     5,
-     5
-    ],
-    [
-     5,
-     6
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     6,
-     7
-    ]
-   ]
-  },
-  {
-   "section": "A",
-   "local_key": null,
-   "start_bar": 0,
-   "other": "445_01_WATCH_WHAT_HAPPENS",
-   "other_title": "WATCH WHAT HAPPENS",
-   "other_section": "A1",
-   "other_local_key": null,
-   "other_start_bar": 16,
-   "score": 0.3562,
-   "components": {
-    "cosine": 0.1223,
+    "cosine": 0.1226,
     "alignment": 0.3958,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -1959,7 +1855,7 @@
    "other_start_bar": 48,
    "score": 0.3562,
    "components": {
-    "cosine": 0.0809,
+    "cosine": 0.0817,
     "alignment": 0.3958,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -2010,7 +1906,7 @@
    "other_start_bar": 16,
    "score": 0.3562,
    "components": {
-    "cosine": 0.0809,
+    "cosine": 0.0817,
     "alignment": 0.3958,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -2061,7 +1957,58 @@
    "other_start_bar": 32,
    "score": 0.3562,
    "components": {
-    "cosine": 0.1429,
+    "cosine": 0.1425,
+    "alignment": 0.3958,
+    "meter_penalty": 1.0,
+    "mode_penalty": 0.9
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     6,
+     7
+    ]
+   ]
+  },
+  {
+   "section": "A1",
+   "local_key": null,
+   "start_bar": 12,
+   "other": "445_01_WATCH_WHAT_HAPPENS",
+   "other_title": "WATCH WHAT HAPPENS",
+   "other_section": "A1",
+   "other_local_key": null,
+   "other_start_bar": 16,
+   "score": 0.3562,
+   "components": {
+    "cosine": 0.1228,
     "alignment": 0.3958,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -2112,58 +2059,7 @@
    "other_start_bar": 8,
    "score": 0.3562,
    "components": {
-    "cosine": 0.1223,
-    "alignment": 0.3958,
-    "meter_penalty": 1.0,
-    "mode_penalty": 0.9
-   },
-   "bars": [
-    [
-     1,
-     1
-    ],
-    [
-     2,
-     2
-    ],
-    [
-     3,
-     3
-    ],
-    [
-     4,
-     4
-    ],
-    [
-     5,
-     5
-    ],
-    [
-     5,
-     6
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     6,
-     7
-    ]
-   ]
-  },
-  {
-   "section": "A1",
-   "local_key": null,
-   "start_bar": 12,
-   "other": "445_01_WATCH_WHAT_HAPPENS",
-   "other_title": "WATCH WHAT HAPPENS",
-   "other_section": "A1",
-   "other_local_key": null,
-   "other_start_bar": 16,
-   "score": 0.3562,
-   "components": {
-    "cosine": 0.1223,
+    "cosine": 0.1228,
     "alignment": 0.3958,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -2209,12 +2105,12 @@
    "start_bar": 12,
    "other": "72_01_CHEROKEE",
    "other_title": "CHEROKEE",
-   "other_section": "A3",
+   "other_section": "A1",
    "other_local_key": null,
-   "other_start_bar": 48,
+   "other_start_bar": 16,
    "score": 0.3562,
    "components": {
-    "cosine": 0.0809,
+    "cosine": 0.0818,
     "alignment": 0.3958,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -2260,12 +2156,12 @@
    "start_bar": 12,
    "other": "72_01_CHEROKEE",
    "other_title": "CHEROKEE",
-   "other_section": "A1",
+   "other_section": "A3",
    "other_local_key": null,
-   "other_start_bar": 16,
+   "other_start_bar": 48,
    "score": 0.3562,
    "components": {
-    "cosine": 0.0809,
+    "cosine": 0.0818,
     "alignment": 0.3958,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -2316,7 +2212,7 @@
    "other_start_bar": 32,
    "score": 0.342,
    "components": {
-    "cosine": 0.2852,
+    "cosine": 0.3022,
     "alignment": 0.38,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -2351,7 +2247,7 @@
    "other_start_bar": 8,
    "score": 0.342,
    "components": {
-    "cosine": 0.2852,
+    "cosine": 0.3022,
     "alignment": 0.38,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -2386,7 +2282,7 @@
    "other_start_bar": 8,
    "score": 0.3412,
    "components": {
-    "cosine": 0.2339,
+    "cosine": 0.2383,
     "alignment": 0.3792,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -2433,7 +2329,7 @@
    "other_start_bar": 8,
    "score": 0.3412,
    "components": {
-    "cosine": 0.2339,
+    "cosine": 0.2386,
     "alignment": 0.3792,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -2480,7 +2376,7 @@
    "other_start_bar": 8,
    "score": 0.3375,
    "components": {
-    "cosine": 0.3264,
+    "cosine": 0.3362,
     "alignment": 0.375,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -2519,7 +2415,7 @@
    "other_start_bar": 8,
    "score": 0.3375,
    "components": {
-    "cosine": 0.3264,
+    "cosine": 0.3367,
     "alignment": 0.375,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9

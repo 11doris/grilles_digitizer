@@ -15,7 +15,7 @@
    "family": "32-bar ABAB standard",
    "score": 0.268,
    "components": {
-    "cosine": 0.2955,
+    "cosine": 0.2999,
     "alignment": 0.268,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -157,7 +157,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.2453,
    "components": {
-    "cosine": 0.29,
+    "cosine": 0.2942,
     "alignment": 0.2453,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -287,7 +287,7 @@
    "family": "32-bar ABCD standard",
    "score": 0.2437,
    "components": {
-    "cosine": 0.3948,
+    "cosine": 0.3979,
     "alignment": 0.2437,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -441,7 +441,7 @@
    "family": "64-bar AABA standard",
    "score": 0.2141,
    "components": {
-    "cosine": 0.1824,
+    "cosine": 0.1851,
     "alignment": 0.2141,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -547,7 +547,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.2141,
    "components": {
-    "cosine": 0.1485,
+    "cosine": 0.1511,
     "alignment": 0.2141,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -673,7 +673,7 @@
    "family": "36-bar ABCA' ballad",
    "score": 0.2109,
    "components": {
-    "cosine": 0.2232,
+    "cosine": 0.2289,
     "alignment": 0.2109,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -791,7 +791,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1789,
    "components": {
-    "cosine": 0.1896,
+    "cosine": 0.1914,
     "alignment": 0.1789,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -897,7 +897,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.1734,
    "components": {
-    "cosine": 0.1828,
+    "cosine": 0.1876,
     "alignment": 0.1734,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -983,7 +983,7 @@
    "family": "34-bar AABA standard",
    "score": 0.1695,
    "components": {
-    "cosine": 0.1339,
+    "cosine": 0.1362,
     "alignment": 0.1695,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1041,7 +1041,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.1586,
    "components": {
-    "cosine": 0.1471,
+    "cosine": 0.1489,
     "alignment": 0.1586,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1139,7 +1139,7 @@
    "family": "12-bar blues",
    "score": 0.1539,
    "components": {
-    "cosine": 0.2349,
+    "cosine": 0.237,
     "alignment": 0.1539,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1185,7 +1185,7 @@
    "family": "12-bar blues",
    "score": 0.1516,
    "components": {
-    "cosine": 0.2171,
+    "cosine": 0.2165,
     "alignment": 0.1516,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1219,7 +1219,7 @@
    "family": "rhythm changes (32-bar AABA)",
    "score": 0.1484,
    "components": {
-    "cosine": 0.0974,
+    "cosine": 0.0986,
     "alignment": 0.1484,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1313,7 +1313,7 @@
    "family": "32-bar ABAB' standard",
    "score": 0.1477,
    "components": {
-    "cosine": 0.15,
+    "cosine": 0.1548,
     "alignment": 0.1477,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1455,7 +1455,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.143,
    "components": {
-    "cosine": 0.1795,
+    "cosine": 0.1846,
     "alignment": 0.143,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1577,7 +1577,7 @@
    "family": "32-bar AABC standard",
    "score": 0.1406,
    "components": {
-    "cosine": 0.1516,
+    "cosine": 0.1526,
     "alignment": 0.1406,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1611,7 +1611,7 @@
    "family": "32-bar bebop head (Indiana changes)",
    "score": 0.1391,
    "components": {
-    "cosine": 0.1465,
+    "cosine": 0.1473,
     "alignment": 0.1391,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1685,7 +1685,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1344,
    "components": {
-    "cosine": 0.0712,
+    "cosine": 0.073,
     "alignment": 0.1344,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1763,7 +1763,7 @@
    "family": "32-bar AABA standard with verse and coda",
    "score": 0.1336,
    "components": {
-    "cosine": 0.1515,
+    "cosine": 0.1605,
     "alignment": 0.1336,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1841,7 +1841,7 @@
    "family": "multi-section song-form standard",
    "score": 0.1336,
    "components": {
-    "cosine": 0.0747,
+    "cosine": 0.0755,
     "alignment": 0.1336,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1918,7 +1918,7 @@
    "other_start_bar": 24,
    "score": 0.6719,
    "components": {
-    "cosine": 0.2402,
+    "cosine": 0.2429,
     "alignment": 0.6719,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1969,7 +1969,7 @@
    "other_start_bar": 24,
    "score": 0.6094,
    "components": {
-    "cosine": 0.3776,
+    "cosine": 0.3767,
     "alignment": 0.6094,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2020,7 +2020,7 @@
    "other_start_bar": 16,
    "score": 0.5969,
    "components": {
-    "cosine": 0.1967,
+    "cosine": 0.1965,
     "alignment": 0.5969,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2063,7 +2063,7 @@
    "other_start_bar": 24,
    "score": 0.5906,
    "components": {
-    "cosine": 0.3035,
+    "cosine": 0.3047,
     "alignment": 0.5906,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2118,7 +2118,7 @@
    "other_start_bar": 24,
    "score": 0.5719,
    "components": {
-    "cosine": 0.2133,
+    "cosine": 0.2143,
     "alignment": 0.5719,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2169,7 +2169,7 @@
    "other_start_bar": 0,
    "score": 0.5625,
    "components": {
-    "cosine": 0.3585,
+    "cosine": 0.3591,
     "alignment": 0.5625,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2208,7 +2208,7 @@
    "other_start_bar": 24,
    "score": 0.5625,
    "components": {
-    "cosine": 0.2957,
+    "cosine": 0.295,
     "alignment": 0.5625,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2247,7 +2247,7 @@
    "other_start_bar": 0,
    "score": 0.525,
    "components": {
-    "cosine": 0.4851,
+    "cosine": 0.4852,
     "alignment": 0.525,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2294,7 +2294,7 @@
    "other_start_bar": 0,
    "score": 0.525,
    "components": {
-    "cosine": 0.152,
+    "cosine": 0.1526,
     "alignment": 0.525,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2333,7 +2333,7 @@
    "other_start_bar": 24,
    "score": 0.5062,
    "components": {
-    "cosine": 0.1358,
+    "cosine": 0.1394,
     "alignment": 0.5062,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2384,7 +2384,7 @@
    "other_start_bar": 16,
    "score": 0.5,
    "components": {
-    "cosine": 0.3036,
+    "cosine": 0.3031,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2431,7 +2431,7 @@
    "other_start_bar": 32,
    "score": 0.5,
    "components": {
-    "cosine": 0.2417,
+    "cosine": 0.2396,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2466,7 +2466,7 @@
    "other_start_bar": 16,
    "score": 0.5,
    "components": {
-    "cosine": 0.1738,
+    "cosine": 0.174,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2501,7 +2501,7 @@
    "other_start_bar": 48,
    "score": 0.5,
    "components": {
-    "cosine": 0.1738,
+    "cosine": 0.174,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2536,7 +2536,7 @@
    "other_start_bar": 24,
    "score": 0.5,
    "components": {
-    "cosine": 0.1732,
+    "cosine": 0.173,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2571,7 +2571,7 @@
    "other_start_bar": 16,
    "score": 0.5,
    "components": {
-    "cosine": 0.161,
+    "cosine": 0.1625,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2606,42 +2606,7 @@
    "other_start_bar": 8,
    "score": 0.5,
    "components": {
-    "cosine": 0.1462,
-    "alignment": 0.5,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     5,
-     5
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     7,
-     7
-    ],
-    [
-     8,
-     8
-    ]
-   ]
-  },
-  {
-   "section": "C",
-   "local_key": null,
-   "start_bar": 24,
-   "other": "102_02_DJANGOLOGY",
-   "other_title": "DJANGOLOGY",
-   "other_section": "A",
-   "other_local_key": null,
-   "other_start_bar": 0,
-   "score": 0.5,
-   "components": {
-    "cosine": 0.1462,
+    "cosine": 0.1472,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2676,7 +2641,42 @@
    "other_start_bar": 20,
    "score": 0.5,
    "components": {
-    "cosine": 0.1462,
+    "cosine": 0.1472,
+    "alignment": 0.5,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "C",
+   "local_key": null,
+   "start_bar": 24,
+   "other": "102_02_DJANGOLOGY",
+   "other_title": "DJANGOLOGY",
+   "other_section": "A",
+   "other_local_key": null,
+   "other_start_bar": 0,
+   "score": 0.5,
+   "components": {
+    "cosine": 0.1472,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2714,7 +2714,7 @@
    "other_start_bar": 16,
    "score": 0.5,
    "components": {
-    "cosine": 0.1333,
+    "cosine": 0.1339,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0

@@ -15,7 +15,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.2455,
    "components": {
-    "cosine": 0.2931,
+    "cosine": 0.2945,
     "alignment": 0.2455,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -101,7 +101,7 @@
    "family": "32-bar AABA standard with verse and coda",
    "score": 0.2304,
    "components": {
-    "cosine": 0.185,
+    "cosine": 0.1918,
     "alignment": 0.2304,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -155,7 +155,7 @@
    "family": "32-bar ABCD standard",
    "score": 0.2232,
    "components": {
-    "cosine": 0.2106,
+    "cosine": 0.2138,
     "alignment": 0.2232,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -221,7 +221,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.1795,
    "components": {
-    "cosine": 0.1191,
+    "cosine": 0.1224,
     "alignment": 0.1795,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -283,7 +283,7 @@
    "family": "56-bar AABA' standard",
    "score": 0.1732,
    "components": {
-    "cosine": 0.1539,
+    "cosine": 0.1558,
     "alignment": 0.1732,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -325,7 +325,7 @@
    "family": "64-bar AABA standard",
    "score": 0.1732,
    "components": {
-    "cosine": 0.1215,
+    "cosine": 0.1245,
     "alignment": 0.1732,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -399,7 +399,7 @@
    "family": "32-bar ABAB' standard",
    "score": 0.1589,
    "components": {
-    "cosine": 0.1034,
+    "cosine": 0.1066,
     "alignment": 0.1589,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -443,10 +443,10 @@
    "id": "197_03_I_NEVER_KNEW_WHAT_A_GAL_COULD_DO",
    "title": "I NEVER KNEW WHAT A GAL COULD DO",
    "family": "verse-and-chorus standard (16-bar verse + 32-bar AA'BA chorus)",
-   "score": 0.1562,
+   "score": 0.1571,
    "components": {
-    "cosine": 0.1057,
-    "alignment": 0.1562,
+    "cosine": 0.1099,
+    "alignment": 0.1571,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
    },
@@ -469,15 +469,35 @@
     ],
     [
      15,
-     5
+     21
     ],
     [
      16,
-     6
+     22
     ],
     [
      17,
-     7
+     23
+    ],
+    [
+     19,
+     24
+    ],
+    [
+     20,
+     25
+    ],
+    [
+     26,
+     26
+    ],
+    [
+     27,
+     27
+    ],
+    [
+     28,
+     29
     ]
    ]
   },
@@ -487,7 +507,7 @@
    "family": "32-bar AABA standard",
    "score": 0.15,
    "components": {
-    "cosine": 0.1181,
+    "cosine": 0.1174,
     "alignment": 0.15,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -545,7 +565,7 @@
    "family": "36-bar ABCA' ballad",
    "score": 0.1491,
    "components": {
-    "cosine": 0.107,
+    "cosine": 0.1095,
     "alignment": 0.1491,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -619,7 +639,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.1455,
    "components": {
-    "cosine": 0.1132,
+    "cosine": 0.1146,
     "alignment": 0.1455,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -669,7 +689,7 @@
    "family": "32-bar ABAB standard",
    "score": 0.1429,
    "components": {
-    "cosine": 0.1351,
+    "cosine": 0.1384,
     "alignment": 0.1429,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -723,7 +743,7 @@
    "family": "32-bar AABC standard",
    "score": 0.1429,
    "components": {
-    "cosine": 0.1286,
+    "cosine": 0.1287,
     "alignment": 0.1429,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -753,7 +773,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.1429,
    "components": {
-    "cosine": 0.1178,
+    "cosine": 0.1209,
     "alignment": 0.1429,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -783,7 +803,7 @@
    "family": "34-bar AABA standard",
    "score": 0.1429,
    "components": {
-    "cosine": 0.067,
+    "cosine": 0.0681,
     "alignment": 0.1429,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -813,7 +833,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1402,
    "components": {
-    "cosine": 0.0897,
+    "cosine": 0.0923,
     "alignment": 0.1402,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -855,7 +875,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.1384,
    "components": {
-    "cosine": 0.1354,
+    "cosine": 0.1367,
     "alignment": 0.1384,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -917,7 +937,7 @@
    "family": "32-bar bebop head (Indiana changes)",
    "score": 0.1384,
    "components": {
-    "cosine": 0.0779,
+    "cosine": 0.0776,
     "alignment": 0.1384,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -971,7 +991,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1357,
    "components": {
-    "cosine": 0.015,
+    "cosine": 0.0152,
     "alignment": 0.1357,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1001,7 +1021,7 @@
    "family": "16-bar AABA-style riff tune",
    "score": 0.1321,
    "components": {
-    "cosine": 0.1258,
+    "cosine": 0.1255,
     "alignment": 0.1321,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1045,9 +1065,9 @@
    "start_bar": 0,
    "other": "102_02_DJANGOLOGY",
    "other_title": "DJANGOLOGY",
-   "other_section": "A1",
+   "other_section": "A2",
    "other_local_key": null,
-   "other_start_bar": 8,
+   "other_start_bar": 20,
    "score": 1.0,
    "components": {
     "cosine": 1.0,
@@ -1094,6 +1114,57 @@
    "section": "A",
    "local_key": null,
    "start_bar": 0,
+   "other": "102_02_DJANGOLOGY",
+   "other_title": "DJANGOLOGY",
+   "other_section": "A1",
+   "other_local_key": null,
+   "other_start_bar": 8,
+   "score": 1.0,
+   "components": {
+    "cosine": 1.0,
+    "alignment": 1.0,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "A1",
+   "local_key": null,
+   "start_bar": 8,
    "other": "102_02_DJANGOLOGY",
    "other_title": "DJANGOLOGY",
    "other_section": "A2",
@@ -1193,14 +1264,14 @@
    ]
   },
   {
-   "section": "A1",
+   "section": "A2",
    "local_key": null,
-   "start_bar": 8,
+   "start_bar": 20,
    "other": "102_02_DJANGOLOGY",
    "other_title": "DJANGOLOGY",
-   "other_section": "A2",
+   "other_section": "A1",
    "other_local_key": null,
-   "other_start_bar": 20,
+   "other_start_bar": 8,
    "score": 1.0,
    "components": {
     "cosine": 1.0,
@@ -1295,57 +1366,6 @@
    ]
   },
   {
-   "section": "A2",
-   "local_key": null,
-   "start_bar": 20,
-   "other": "102_02_DJANGOLOGY",
-   "other_title": "DJANGOLOGY",
-   "other_section": "A1",
-   "other_local_key": null,
-   "other_start_bar": 8,
-   "score": 1.0,
-   "components": {
-    "cosine": 1.0,
-    "alignment": 1.0,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     1,
-     1
-    ],
-    [
-     2,
-     2
-    ],
-    [
-     3,
-     3
-    ],
-    [
-     4,
-     4
-    ],
-    [
-     5,
-     5
-    ],
-    [
-     6,
-     6
-    ],
-    [
-     7,
-     7
-    ],
-    [
-     8,
-     8
-    ]
-   ]
-  },
-  {
    "section": "A",
    "local_key": null,
    "start_bar": 0,
@@ -1356,7 +1376,7 @@
    "other_start_bar": 24,
    "score": 0.5312,
    "components": {
-    "cosine": 0.3595,
+    "cosine": 0.3543,
     "alignment": 0.5312,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1399,7 +1419,7 @@
    "other_start_bar": 24,
    "score": 0.5312,
    "components": {
-    "cosine": 0.3595,
+    "cosine": 0.3543,
     "alignment": 0.5312,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1442,7 +1462,7 @@
    "other_start_bar": 24,
    "score": 0.5312,
    "components": {
-    "cosine": 0.3595,
+    "cosine": 0.3543,
     "alignment": 0.5312,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1485,7 +1505,7 @@
    "other_start_bar": 16,
    "score": 0.5063,
    "components": {
-    "cosine": 0.2609,
+    "cosine": 0.2611,
     "alignment": 0.5063,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1524,7 +1544,7 @@
    "other_start_bar": 16,
    "score": 0.5063,
    "components": {
-    "cosine": 0.2609,
+    "cosine": 0.2611,
     "alignment": 0.5063,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1563,7 +1583,7 @@
    "other_start_bar": 16,
    "score": 0.5063,
    "components": {
-    "cosine": 0.2609,
+    "cosine": 0.2611,
     "alignment": 0.5063,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1602,7 +1622,7 @@
    "other_start_bar": 32,
    "score": 0.5,
    "components": {
-    "cosine": 0.2427,
+    "cosine": 0.2405,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1637,7 +1657,7 @@
    "other_start_bar": 24,
    "score": 0.5,
    "components": {
-    "cosine": 0.2273,
+    "cosine": 0.2253,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1672,7 +1692,7 @@
    "other_start_bar": 24,
    "score": 0.5,
    "components": {
-    "cosine": 0.2142,
+    "cosine": 0.2151,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1707,7 +1727,7 @@
    "other_start_bar": 24,
    "score": 0.5,
    "components": {
-    "cosine": 0.164,
+    "cosine": 0.1642,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1742,7 +1762,7 @@
    "other_start_bar": 24,
    "score": 0.5,
    "components": {
-    "cosine": 0.1619,
+    "cosine": 0.1616,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1777,7 +1797,7 @@
    "other_start_bar": 16,
    "score": 0.5,
    "components": {
-    "cosine": 0.1557,
+    "cosine": 0.1565,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1812,7 +1832,7 @@
    "other_start_bar": 48,
    "score": 0.5,
    "components": {
-    "cosine": 0.1557,
+    "cosine": 0.1565,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1847,7 +1867,7 @@
    "other_start_bar": 24,
    "score": 0.5,
    "components": {
-    "cosine": 0.1462,
+    "cosine": 0.1472,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0

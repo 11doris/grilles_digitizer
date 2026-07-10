@@ -15,7 +15,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.0969,
    "components": {
-    "cosine": 0.1376,
+    "cosine": 0.137,
     "alignment": 0.0969,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -53,7 +53,7 @@
    "family": "32-bar ABCD standard",
    "score": 0.0961,
    "components": {
-    "cosine": 0.055,
+    "cosine": 0.0545,
     "alignment": 0.0961,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -99,7 +99,7 @@
    "family": "32-bar AABA standard",
    "score": 0.0945,
    "components": {
-    "cosine": 0.008,
+    "cosine": 0.0083,
     "alignment": 0.0945,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -137,7 +137,7 @@
    "family": "32-bar AABA standard",
    "score": 0.0938,
    "components": {
-    "cosine": 0.0503,
+    "cosine": 0.0509,
     "alignment": 0.0938,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -179,7 +179,7 @@
    "family": "36-bar ABCA' ballad",
    "score": 0.0922,
    "components": {
-    "cosine": 0.1352,
+    "cosine": 0.1348,
     "alignment": 0.0922,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -229,7 +229,7 @@
    "family": "32-bar AABA standard",
    "score": 0.0906,
    "components": {
-    "cosine": 0.0051,
+    "cosine": 0.0052,
     "alignment": 0.0906,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -267,7 +267,7 @@
    "family": "38-bar AABA' standard with verse",
    "score": 0.0891,
    "components": {
-    "cosine": 0.0767,
+    "cosine": 0.0778,
     "alignment": 0.0891,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -309,7 +309,7 @@
    "family": "32-bar AABA standard",
    "score": 0.0891,
    "components": {
-    "cosine": 0.0058,
+    "cosine": 0.0059,
     "alignment": 0.0891,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -355,7 +355,7 @@
    "family": "32-bar AABA standard",
    "score": 0.0867,
    "components": {
-    "cosine": 0.0207,
+    "cosine": 0.0215,
     "alignment": 0.0867,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -385,7 +385,7 @@
    "family": "12-bar blues",
    "score": 0.0859,
    "components": {
-    "cosine": 0.0517,
+    "cosine": 0.0523,
     "alignment": 0.0859,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -423,7 +423,7 @@
    "family": "32-bar AABA standard",
    "score": 0.0859,
    "components": {
-    "cosine": 0.0167,
+    "cosine": 0.017,
     "alignment": 0.0859,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -465,7 +465,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.0844,
    "components": {
-    "cosine": 0.0484,
+    "cosine": 0.0486,
     "alignment": 0.0844,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -491,7 +491,7 @@
    "family": "16-bar verse + 32-bar AABA chorus",
    "score": 0.0797,
    "components": {
-    "cosine": 0.0462,
+    "cosine": 0.0497,
     "alignment": 0.0797,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -533,7 +533,7 @@
    "family": "34-bar AABA ballad",
    "score": 0.0781,
    "components": {
-    "cosine": 0.0139,
+    "cosine": 0.0145,
     "alignment": 0.0781,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -567,7 +567,7 @@
    "family": "32-bar AABA standard",
    "score": 0.0773,
    "components": {
-    "cosine": 0.0715,
+    "cosine": 0.0717,
     "alignment": 0.0773,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -600,46 +600,12 @@
    ]
   },
   {
-   "id": "162_02_HOW_COULD_I_BE_BLUE",
-   "title": "HOW COULD I BE BLUE",
-   "family": "32-bar AABA-type standard with verse",
-   "score": 0.075,
-   "components": {
-    "cosine": 0.0173,
-    "alignment": 0.075,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     14,
-     22
-    ],
-    [
-     15,
-     23
-    ],
-    [
-     16,
-     24
-    ],
-    [
-     18,
-     25
-    ],
-    [
-     19,
-     26
-    ]
-   ]
-  },
-  {
    "id": "28_03_BACK_BAY_SHUFFLE",
    "title": "BACK BAY SHUFFLE",
    "family": "32-bar AABA standard",
    "score": 0.075,
    "components": {
-    "cosine": 0.017,
+    "cosine": 0.0183,
     "alignment": 0.075,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -673,7 +639,7 @@
    "family": "multi-section song-form standard",
    "score": 0.075,
    "components": {
-    "cosine": 0.0127,
+    "cosine": 0.013,
     "alignment": 0.075,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -718,12 +684,46 @@
    ]
   },
   {
+   "id": "162_02_HOW_COULD_I_BE_BLUE",
+   "title": "HOW COULD I BE BLUE",
+   "family": "32-bar AABA-type standard with verse",
+   "score": 0.075,
+   "components": {
+    "cosine": 0.0103,
+    "alignment": 0.075,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     14,
+     22
+    ],
+    [
+     15,
+     23
+    ],
+    [
+     16,
+     24
+    ],
+    [
+     18,
+     25
+    ],
+    [
+     19,
+     26
+    ]
+   ]
+  },
+  {
    "id": "72_03_CHERYL",
    "title": "CHERYL",
    "family": "12-bar blues",
    "score": 0.0734,
    "components": {
-    "cosine": 0.0513,
+    "cosine": 0.0514,
     "alignment": 0.0734,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -749,7 +749,7 @@
    "family": "rhythm changes (32-bar AABA)",
    "score": 0.0734,
    "components": {
-    "cosine": 0.0446,
+    "cosine": 0.0449,
     "alignment": 0.0734,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -780,12 +780,12 @@
    "start_bar": 24,
    "other": "25_02_AUTUMN_LEAVES",
    "other_title": "AUTUMN LEAVES",
-   "other_section": "A1",
+   "other_section": "A",
    "other_local_key": null,
-   "other_start_bar": 32,
+   "other_start_bar": 24,
    "score": 0.4063,
    "components": {
-    "cosine": 0.1956,
+    "cosine": 0.2085,
     "alignment": 0.4063,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -826,12 +826,12 @@
    "start_bar": 24,
    "other": "25_02_AUTUMN_LEAVES",
    "other_title": "AUTUMN LEAVES",
-   "other_section": "A",
+   "other_section": "A1",
    "other_local_key": null,
-   "other_start_bar": 24,
+   "other_start_bar": 32,
    "score": 0.4063,
    "components": {
-    "cosine": 0.1956,
+    "cosine": 0.2085,
     "alignment": 0.4063,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -874,7 +874,7 @@
    "other_start_bar": 16,
    "score": 0.4062,
    "components": {
-    "cosine": 0.309,
+    "cosine": 0.3079,
     "alignment": 0.4062,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -909,7 +909,7 @@
    "other_start_bar": 0,
    "score": 0.4062,
    "components": {
-    "cosine": 0.309,
+    "cosine": 0.3079,
     "alignment": 0.4062,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -987,7 +987,7 @@
    "other_start_bar": 16,
    "score": 0.375,
    "components": {
-    "cosine": 0.2669,
+    "cosine": 0.2666,
     "alignment": 0.375,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1025,7 +1025,7 @@
    "other_start_bar": 24,
    "score": 0.36,
    "components": {
-    "cosine": 0.2244,
+    "cosine": 0.2356,
     "alignment": 0.4,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -1063,7 +1063,7 @@
    "other_start_bar": 8,
    "score": 0.36,
    "components": {
-    "cosine": 0.1945,
+    "cosine": 0.2059,
     "alignment": 0.4,
     "meter_penalty": 1.0,
     "mode_penalty": 0.9
@@ -1088,43 +1088,6 @@
    ]
   },
   {
-   "section": "C",
-   "local_key": {
-    "tonic": "F",
-    "mode": "minor"
-   },
-   "start_bar": 24,
-   "other": "69_01_CHARLESTON",
-   "other_title": "CHARLESTON",
-   "other_section": "verse_A",
-   "other_local_key": {
-    "tonic": "G",
-    "mode": "minor"
-   },
-   "other_start_bar": 0,
-   "score": 0.3562,
-   "components": {
-    "cosine": 0.1444,
-    "alignment": 0.3562,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     6,
-     3
-    ],
-    [
-     7,
-     4
-    ],
-    [
-     8,
-     5
-    ]
-   ]
-  },
-  {
    "section": "A",
    "local_key": null,
    "start_bar": 0,
@@ -1135,7 +1098,7 @@
    "other_start_bar": 24,
    "score": 0.3469,
    "components": {
-    "cosine": 0.0278,
+    "cosine": 0.0283,
     "alignment": 0.3469,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1170,7 +1133,7 @@
    "other_start_bar": 0,
    "score": 0.3469,
    "components": {
-    "cosine": 0.0278,
+    "cosine": 0.0283,
     "alignment": 0.3469,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1205,7 +1168,7 @@
    "other_start_bar": 8,
    "score": 0.3469,
    "components": {
-    "cosine": 0.0278,
+    "cosine": 0.0283,
     "alignment": 0.3469,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1240,7 +1203,7 @@
    "other_start_bar": 0,
    "score": 0.3438,
    "components": {
-    "cosine": 0.0475,
+    "cosine": 0.048,
     "alignment": 0.3438,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1283,7 +1246,7 @@
    "other_start_bar": 0,
    "score": 0.3187,
    "components": {
-    "cosine": 0.1794,
+    "cosine": 0.1791,
     "alignment": 0.3187,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1318,40 +1281,6 @@
     "mode": "minor"
    },
    "start_bar": 24,
-   "other": "99_03_DIGA_DIGA_DOO",
-   "other_title": "DIGA DIGA DOO",
-   "other_section": "verse_B",
-   "other_local_key": null,
-   "other_start_bar": 16,
-   "score": 0.3125,
-   "components": {
-    "cosine": 0.2047,
-    "alignment": 0.3125,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     6,
-     4
-    ],
-    [
-     7,
-     5
-    ],
-    [
-     8,
-     6
-    ]
-   ]
-  },
-  {
-   "section": "C",
-   "local_key": {
-    "tonic": "F",
-    "mode": "minor"
-   },
-   "start_bar": 24,
    "other": "25_02_AUTUMN_LEAVES",
    "other_title": "AUTUMN LEAVES",
    "other_section": "B",
@@ -1359,7 +1288,7 @@
    "other_start_bar": 40,
    "score": 0.3125,
    "components": {
-    "cosine": 0.1941,
+    "cosine": 0.2065,
     "alignment": 0.3125,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1393,7 +1322,7 @@
    "other_start_bar": 48,
    "score": 0.3125,
    "components": {
-    "cosine": 0.1886,
+    "cosine": 0.2005,
     "alignment": 0.3125,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1427,7 +1356,7 @@
    "other_start_bar": 0,
    "score": 0.3125,
    "components": {
-    "cosine": 0.1822,
+    "cosine": 0.195,
     "alignment": 0.3125,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1461,7 +1390,7 @@
    "other_start_bar": 24,
    "score": 0.3125,
    "components": {
-    "cosine": 0.181,
+    "cosine": 0.1936,
     "alignment": 0.3125,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1492,7 +1421,7 @@
    "other_start_bar": 0,
    "score": 0.3094,
    "components": {
-    "cosine": 0.0373,
+    "cosine": 0.0376,
     "alignment": 0.3094,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1513,6 +1442,83 @@
     [
      5,
      5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ]
+   ]
+  },
+  {
+   "section": "A1",
+   "local_key": null,
+   "start_bar": 16,
+   "other": "418_03_THERE_S_A_LULL_IN_MY_LIFE",
+   "other_title": "THERE'S A LULL IN MY LIFE",
+   "other_section": "B",
+   "other_local_key": {
+    "tonic": "Db",
+    "mode": "major"
+   },
+   "other_start_bar": 28,
+   "score": 0.3094,
+   "components": {
+    "cosine": 0.0695,
+    "alignment": 0.3094,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "418_03_THERE_S_A_LULL_IN_MY_LIFE",
+   "other_title": "THERE'S A LULL IN MY LIFE",
+   "other_section": "A2",
+   "other_local_key": null,
+   "other_start_bar": 36,
+   "score": 0.3063,
+   "components": {
+    "cosine": 0.0621,
+    "alignment": 0.3063,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     3,
+     2
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     5,
+     3
     ],
     [
      6,

@@ -15,7 +15,7 @@
    "family": "32-bar ABAB standard",
    "score": 0.3312,
    "components": {
-    "cosine": 0.4037,
+    "cosine": 0.4095,
     "alignment": 0.3312,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -125,7 +125,7 @@
    "family": "32-bar ABA'C standard",
    "score": 0.2766,
    "components": {
-    "cosine": 0.4313,
+    "cosine": 0.4403,
     "alignment": 0.2766,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -222,130 +222,12 @@
    ]
   },
   {
-   "id": "445_01_WATCH_WHAT_HAPPENS",
-   "title": "WATCH WHAT HAPPENS",
-   "family": "32-bar AABA standard with verse and coda",
-   "score": 0.2594,
-   "components": {
-    "cosine": 0.2527,
-    "alignment": 0.2594,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     9,
-     7
-    ],
-    [
-     10,
-     8
-    ],
-    [
-     11,
-     9
-    ],
-    [
-     12,
-     10
-    ],
-    [
-     14,
-     10
-    ],
-    [
-     14,
-     11
-    ],
-    [
-     15,
-     11
-    ],
-    [
-     16,
-     12
-    ],
-    [
-     17,
-     13
-    ],
-    [
-     18,
-     14
-    ],
-    [
-     19,
-     17
-    ],
-    [
-     20,
-     18
-    ],
-    [
-     21,
-     21
-    ],
-    [
-     22,
-     22
-    ],
-    [
-     23,
-     23
-    ],
-    [
-     23,
-     27
-    ],
-    [
-     24,
-     28
-    ],
-    [
-     25,
-     31
-    ],
-    [
-     26,
-     32
-    ],
-    [
-     27,
-     33
-    ],
-    [
-     27,
-     35
-    ],
-    [
-     28,
-     36
-    ],
-    [
-     29,
-     37
-    ],
-    [
-     30,
-     38
-    ],
-    [
-     31,
-     39
-    ],
-    [
-     32,
-     40
-    ]
-   ]
-  },
-  {
    "id": "105_03_DON_T_WORRY_BOUT_ME",
    "title": "DON'T WORRY 'BOUT ME",
    "family": "32-bar ABA'C standard",
    "score": 0.2437,
    "components": {
-    "cosine": 0.3948,
+    "cosine": 0.3979,
     "alignment": 0.2437,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -499,7 +381,7 @@
    "family": "36-bar ABCA' ballad",
    "score": 0.2414,
    "components": {
-    "cosine": 0.273,
+    "cosine": 0.276,
     "alignment": 0.2414,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -625,7 +507,7 @@
    "family": "32-bar AABA standard",
    "score": 0.2391,
    "components": {
-    "cosine": 0.2731,
+    "cosine": 0.2727,
     "alignment": 0.2391,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -751,7 +633,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.2195,
    "components": {
-    "cosine": 0.2623,
+    "cosine": 0.2667,
     "alignment": 0.2195,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -884,12 +766,98 @@
    ]
   },
   {
+   "id": "445_01_WATCH_WHAT_HAPPENS",
+   "title": "WATCH WHAT HAPPENS",
+   "family": "32-bar AABA standard with verse and coda",
+   "score": 0.218,
+   "components": {
+    "cosine": 0.2541,
+    "alignment": 0.218,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     17,
+     13
+    ],
+    [
+     18,
+     14
+    ],
+    [
+     19,
+     17
+    ],
+    [
+     20,
+     18
+    ],
+    [
+     21,
+     21
+    ],
+    [
+     22,
+     22
+    ],
+    [
+     23,
+     23
+    ],
+    [
+     23,
+     27
+    ],
+    [
+     24,
+     28
+    ],
+    [
+     25,
+     31
+    ],
+    [
+     26,
+     32
+    ],
+    [
+     27,
+     33
+    ],
+    [
+     27,
+     35
+    ],
+    [
+     28,
+     36
+    ],
+    [
+     29,
+     37
+    ],
+    [
+     30,
+     38
+    ],
+    [
+     31,
+     39
+    ],
+    [
+     32,
+     40
+    ]
+   ]
+  },
+  {
    "id": "483_03_YOURS_AND_MINE",
    "title": "YOURS AND MINE",
    "family": "32-bar ABAB' standard",
    "score": 0.2141,
    "components": {
-    "cosine": 0.2379,
+    "cosine": 0.2426,
     "alignment": 0.2141,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1014,122 +982,12 @@
    ]
   },
   {
-   "id": "480_03_YOU_RE_DRIVING_ME_CRAZY",
-   "title": "YOU'RE DRIVING ME CRAZY",
-   "family": "32-bar AABA standard with 16-bar verse",
-   "score": 0.2141,
-   "components": {
-    "cosine": 0.1587,
-    "alignment": 0.2141,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     14,
-     9
-    ],
-    [
-     15,
-     10
-    ],
-    [
-     16,
-     11
-    ],
-    [
-     17,
-     12
-    ],
-    [
-     18,
-     16
-    ],
-    [
-     19,
-     17
-    ],
-    [
-     20,
-     18
-    ],
-    [
-     21,
-     19
-    ],
-    [
-     21,
-     20
-    ],
-    [
-     22,
-     22
-    ],
-    [
-     23,
-     23
-    ],
-    [
-     25,
-     23
-    ],
-    [
-     25,
-     24
-    ],
-    [
-     26,
-     24
-    ],
-    [
-     26,
-     25
-    ],
-    [
-     27,
-     25
-    ],
-    [
-     27,
-     26
-    ],
-    [
-     28,
-     26
-    ],
-    [
-     28,
-     27
-    ],
-    [
-     29,
-     27
-    ],
-    [
-     29,
-     28
-    ],
-    [
-     30,
-     30
-    ],
-    [
-     31,
-     31
-    ],
-    [
-     32,
-     32
-    ]
-   ]
-  },
-  {
    "id": "67_01_CHANGE_PARTNERS",
    "title": "CHANGE PARTNERS",
    "family": "56-bar AABA' standard",
    "score": 0.2086,
    "components": {
-    "cosine": 0.1918,
+    "cosine": 0.1957,
     "alignment": 0.2086,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1207,7 +1065,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.2063,
    "components": {
-    "cosine": 0.1305,
+    "cosine": 0.1323,
     "alignment": 0.2063,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1341,7 +1199,7 @@
    "family": "28-bar AABA standard",
    "score": 0.1953,
    "components": {
-    "cosine": 0.2106,
+    "cosine": 0.2138,
     "alignment": 0.1953,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1402,138 +1260,12 @@
    ]
   },
   {
-   "id": "418_03_THERE_S_A_LULL_IN_MY_LIFE",
-   "title": "THERE'S A LULL IN MY LIFE",
-   "family": "38-bar AABA' standard with verse",
-   "score": 0.1938,
-   "components": {
-    "cosine": 0.13,
-    "alignment": 0.1938,
-    "meter_penalty": 1.0,
-    "mode_penalty": 1.0
-   },
-   "bars": [
-    [
-     6,
-     4
-    ],
-    [
-     7,
-     5
-    ],
-    [
-     11,
-     6
-    ],
-    [
-     12,
-     7
-    ],
-    [
-     13,
-     7
-    ],
-    [
-     14,
-     8
-    ],
-    [
-     15,
-     9
-    ],
-    [
-     16,
-     10
-    ],
-    [
-     17,
-     11
-    ],
-    [
-     18,
-     12
-    ],
-    [
-     19,
-     13
-    ],
-    [
-     20,
-     14
-    ],
-    [
-     21,
-     15
-    ],
-    [
-     21,
-     16
-    ],
-    [
-     23,
-     17
-    ],
-    [
-     25,
-     17
-    ],
-    [
-     25,
-     18
-    ],
-    [
-     26,
-     18
-    ],
-    [
-     26,
-     20
-    ],
-    [
-     27,
-     21
-    ],
-    [
-     27,
-     22
-    ],
-    [
-     28,
-     22
-    ],
-    [
-     28,
-     23
-    ],
-    [
-     29,
-     24
-    ],
-    [
-     29,
-     25
-    ],
-    [
-     30,
-     26
-    ],
-    [
-     31,
-     27
-    ],
-    [
-     32,
-     28
-    ]
-   ]
-  },
-  {
    "id": "447_02_WEE",
    "title": "WEE",
    "family": "rhythm changes (32-bar AABA)",
    "score": 0.1922,
    "components": {
-    "cosine": 0.1251,
+    "cosine": 0.126,
     "alignment": 0.1922,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1679,7 +1411,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1852,
    "components": {
-    "cosine": 0.221,
+    "cosine": 0.2191,
     "alignment": 0.1852,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1737,7 +1469,7 @@
    "family": "32-bar ABAC standard",
    "score": 0.1852,
    "components": {
-    "cosine": 0.1854,
+    "cosine": 0.1894,
     "alignment": 0.1852,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1791,7 +1523,7 @@
    "family": "16-bar AABA-style riff tune",
    "score": 0.1781,
    "components": {
-    "cosine": 0.1909,
+    "cosine": 0.1915,
     "alignment": 0.1781,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -1877,7 +1609,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1758,
    "components": {
-    "cosine": 0.0934,
+    "cosine": 0.0961,
     "alignment": 0.1758,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2002,12 +1734,106 @@
    ]
   },
   {
+   "id": "197_03_I_NEVER_KNEW_WHAT_A_GAL_COULD_DO",
+   "title": "I NEVER KNEW WHAT A GAL COULD DO",
+   "family": "verse-and-chorus standard (16-bar verse + 32-bar AA'BA chorus)",
+   "score": 0.1711,
+   "components": {
+    "cosine": 0.141,
+    "alignment": 0.1711,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     9,
+     3
+    ],
+    [
+     10,
+     4
+    ],
+    [
+     11,
+     21
+    ],
+    [
+     12,
+     22
+    ],
+    [
+     14,
+     22
+    ],
+    [
+     14,
+     23
+    ],
+    [
+     15,
+     23
+    ],
+    [
+     16,
+     24
+    ],
+    [
+     17,
+     25
+    ],
+    [
+     18,
+     26
+    ],
+    [
+     19,
+     27
+    ],
+    [
+     22,
+     28
+    ],
+    [
+     23,
+     29
+    ],
+    [
+     23,
+     31
+    ],
+    [
+     24,
+     32
+    ],
+    [
+     25,
+     34
+    ],
+    [
+     26,
+     35
+    ],
+    [
+     30,
+     36
+    ],
+    [
+     31,
+     37
+    ],
+    [
+     32,
+     38
+    ]
+   ]
+  },
+  {
    "id": "69_01_CHARLESTON",
    "title": "CHARLESTON",
    "family": "verse-and-chorus standard (16-bar verse AB + 32-bar chorus ABAC)",
    "score": 0.1695,
    "components": {
-    "cosine": 0.1265,
+    "cosine": 0.1206,
     "alignment": 0.1695,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2113,7 +1939,7 @@
    "family": "32-bar AABA standard",
    "score": 0.1664,
    "components": {
-    "cosine": 0.0788,
+    "cosine": 0.0795,
     "alignment": 0.1664,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2244,6 +2070,68 @@
      32
     ]
    ]
+  },
+  {
+   "id": "103_02_DONNA_LEE",
+   "title": "DONNA LEE",
+   "family": "32-bar bebop head (Indiana changes)",
+   "score": 0.1617,
+   "components": {
+    "cosine": 0.1817,
+    "alignment": 0.1617,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     16,
+     2
+    ],
+    [
+     17,
+     5
+    ],
+    [
+     18,
+     6
+    ],
+    [
+     19,
+     7
+    ],
+    [
+     20,
+     8
+    ],
+    [
+     21,
+     9
+    ],
+    [
+     22,
+     10
+    ],
+    [
+     23,
+     11
+    ],
+    [
+     24,
+     12
+    ],
+    [
+     25,
+     15
+    ],
+    [
+     26,
+     16
+    ],
+    [
+     27,
+     17
+    ]
+   ]
   }
  ],
  "section_matches": [
@@ -2258,7 +2146,7 @@
    "other_start_bar": 8,
    "score": 0.6875,
    "components": {
-    "cosine": 0.552,
+    "cosine": 0.5518,
     "alignment": 0.6875,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2309,7 +2197,7 @@
    "other_start_bar": 16,
    "score": 0.6313,
    "components": {
-    "cosine": 0.2393,
+    "cosine": 0.2413,
     "alignment": 0.6313,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2352,7 +2240,7 @@
    "other_start_bar": 0,
    "score": 0.625,
    "components": {
-    "cosine": 0.493,
+    "cosine": 0.4928,
     "alignment": 0.625,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2399,7 +2287,7 @@
    "other_start_bar": 0,
    "score": 0.6094,
    "components": {
-    "cosine": 0.3776,
+    "cosine": 0.3767,
     "alignment": 0.6094,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2496,7 +2384,7 @@
    "other_start_bar": 24,
    "score": 0.5719,
    "components": {
-    "cosine": 0.2133,
+    "cosine": 0.2143,
     "alignment": 0.5719,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2542,12 +2430,12 @@
    "start_bar": 16,
    "other": "28_03_BACK_BAY_SHUFFLE",
    "other_title": "BACK BAY SHUFFLE",
-   "other_section": "A",
+   "other_section": "A2",
    "other_local_key": null,
-   "other_start_bar": 0,
+   "other_start_bar": 24,
    "score": 0.5625,
    "components": {
-    "cosine": 0.4878,
+    "cosine": 0.4868,
     "alignment": 0.5625,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2581,12 +2469,12 @@
    "start_bar": 16,
    "other": "28_03_BACK_BAY_SHUFFLE",
    "other_title": "BACK BAY SHUFFLE",
-   "other_section": "A2",
+   "other_section": "A",
    "other_local_key": null,
-   "other_start_bar": 24,
+   "other_start_bar": 0,
    "score": 0.5625,
    "components": {
-    "cosine": 0.4878,
+    "cosine": 0.4868,
     "alignment": 0.5625,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2625,7 +2513,7 @@
    "other_start_bar": 8,
    "score": 0.5625,
    "components": {
-    "cosine": 0.4878,
+    "cosine": 0.4868,
     "alignment": 0.5625,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2664,7 +2552,7 @@
    "other_start_bar": 0,
    "score": 0.5312,
    "components": {
-    "cosine": 0.1992,
+    "cosine": 0.2,
     "alignment": 0.5312,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2707,7 +2595,7 @@
    "other_start_bar": 16,
    "score": 0.5312,
    "components": {
-    "cosine": 0.1992,
+    "cosine": 0.2,
     "alignment": 0.5312,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2750,7 +2638,7 @@
    "other_start_bar": 0,
    "score": 0.525,
    "components": {
-    "cosine": 0.4851,
+    "cosine": 0.4852,
     "alignment": 0.525,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2797,7 +2685,7 @@
    "other_start_bar": 16,
    "score": 0.525,
    "components": {
-    "cosine": 0.1523,
+    "cosine": 0.1522,
     "alignment": 0.525,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2836,7 +2724,7 @@
    "other_start_bar": 24,
    "score": 0.525,
    "components": {
-    "cosine": 0.2413,
+    "cosine": 0.2409,
     "alignment": 0.525,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2899,7 +2787,7 @@
    "other_start_bar": 24,
    "score": 0.5125,
    "components": {
-    "cosine": 0.368,
+    "cosine": 0.3668,
     "alignment": 0.5125,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -2954,7 +2842,7 @@
    "other_start_bar": 0,
    "score": 0.5125,
    "components": {
-    "cosine": 0.1744,
+    "cosine": 0.1747,
     "alignment": 0.5125,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -3001,7 +2889,7 @@
    "other_start_bar": 0,
    "score": 0.5063,
    "components": {
-    "cosine": 0.2666,
+    "cosine": 0.2661,
     "alignment": 0.5063,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -3040,7 +2928,7 @@
    "other_start_bar": 16,
    "score": 0.5063,
    "components": {
-    "cosine": 0.2666,
+    "cosine": 0.2661,
     "alignment": 0.5063,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -3079,7 +2967,7 @@
    "other_start_bar": 0,
    "score": 0.5063,
    "components": {
-    "cosine": 0.2143,
+    "cosine": 0.2161,
     "alignment": 0.5063,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0
@@ -3118,7 +3006,7 @@
    "other_start_bar": 24,
    "score": 0.5,
    "components": {
-    "cosine": 0.3122,
+    "cosine": 0.312,
     "alignment": 0.5,
     "meter_penalty": 1.0,
     "mode_penalty": 1.0

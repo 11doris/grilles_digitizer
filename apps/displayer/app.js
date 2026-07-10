@@ -73,7 +73,7 @@
     activeVariants: new Set(), // indices of variants swapped into the grid (independent, but exclusive among variants sharing a bar); per-tune
     chordsOnly: false, // list filter: only tunes with digitized chords (persisted)
     startsOn: "", // list filter: opening degree ("" = any, "unknown", "other", or a degree; §8.2a)
-    showSuggest: false, // "Suggest similar tunes" panel open; per-tune
+    showSuggest: null, // open suggestions group: null | "tunes" | "sections"; per-tune
     compare: null, // {otherId, mode: original|transposed|roman, bars} — comparison view (§8.3); per-tune
   };
 
@@ -1538,48 +1538,84 @@
     renderTune(state.currentId);
   }
 
-  /* "Suggest similar tunes" panel: top-10 whole-tune suggestions (score as a
-     0–100 match value + fingerprint family) and section-match chips
-     ("bridge ≈ A of …"). Clicking either opens the comparison view. */
-  function renderSuggestPanel(t) {
-    const data = similarOf(t.id);
-    if (!data) return null;
+  /* Match quality bands for the score meter (score is 0–1). */
+  const QUALITY_BANDS = [
+    [0.85, "q-high", "very close match"],
+    [0.65, "q-good", "close match"],
+    [0.45, "q-fair", "clearly related"],
+    [0, "q-low", "loosely related"],
+  ];
+
+  function qualityBand(score) {
+    return QUALITY_BANDS.find(([min]) => score >= min);
+  }
+
+  function scoreBadge(score) {
+    const pct = Math.round(score * 100);
+    const [, cls, label] = qualityBand(score);
+    return `<span class="sim-score ${cls}" title="${label} — ${pct}/100">` +
+      `<i style="width:${pct}%"></i><b>${pct}</b></span>`;
+  }
+
+  /* The engine's suggestions for a tune, split by kind and filtered to
+     bundled corpus tunes. */
+  function suggestKinds(t) {
+    const data = similarOf(t.id) || {};
+    return {
+      tunes: (data.similar || []).filter((s) => tuneById(s.id)),
+      sections: (data.sections || []).filter((m) => tuneById(m.other)),
+    };
+  }
+
+  /* Suggestions panel (§8.2): one group at a time — whole-tune suggestions
+     or section matches ("bridge ≈ A of …") — each a list of rows with a
+     colored quality meter and a short how-to hint. Clicking a row opens the
+     comparison view. */
+  function renderSuggestPanel(t, kind) {
+    const items = suggestKinds(t)[kind];
+    if (!items.length) return null;
     const panel = el("section", "suggest-panel");
-    const title = el("div", "suggest-title");
-    title.textContent = "Similar tunes";
-    panel.appendChild(title);
+    const g = el("div", "suggest-group");
+    const hint = kind === "tunes"
+      ? "whole tunes with a similar chord form — click one to compare the two grids side by side"
+      : "single parts of this tune that match part of another tune — click to compare with the matching bars highlighted";
+    g.innerHTML =
+      `<div class="suggest-group-head"><span class="sg-title">` +
+      `${kind === "tunes" ? "Similar tunes" : "Similar sections"}</span>` +
+      `<span class="sg-hint">${hint}</span></div>`;
+    panel.appendChild(g);
+    /* ~5 rows visible, the rest reachable by scrolling (.suggest-list). */
+    const list = el("div", "suggest-list");
+    g.appendChild(list);
 
-    (data.similar || []).forEach((s) => {
-      const other = tuneById(s.id);
-      if (!other) return;
-      const row = el("button", "suggest-row");
-      row.type = "button";
-      const pct = Math.round(s.score * 100);
-      row.innerHTML =
-        `<span class="sim-score">${pct}</span>` +
-        `<span class="sim-title">${escapeHtml(other.title || s.id)}</span>` +
-        (s.family ? `<span class="sim-family">${escapeHtml(s.family)}</span>` : "");
-      row.title = `${pct}/100 match — open side-by-side comparison`;
-      row.addEventListener("click", () => openComparison(s.id, s.bars));
-      panel.appendChild(row);
-    });
-
-    const sections = (data.sections || []).filter((m) => tuneById(m.other));
-    if (sections.length) {
-      const sub = el("div", "suggest-subtitle");
-      sub.textContent = "Section matches";
-      panel.appendChild(sub);
-      const chips = el("div", "suggest-chips");
-      sections.forEach((m) => {
+    if (kind === "tunes") {
+      items.forEach((s) => {
+        const other = tuneById(s.id);
+        const row = el("button", "suggest-row");
+        row.type = "button";
+        row.innerHTML =
+          scoreBadge(s.score) +
+          `<span class="sim-title">${escapeHtml(other.title || s.id)}</span>` +
+          (s.family ? `<span class="sim-family">${escapeHtml(s.family)}</span>` : "");
+        row.title = "open side-by-side comparison";
+        row.addEventListener("click", () => openComparison(s.id, s.bars));
+        list.appendChild(row);
+      });
+    } else {
+      items.forEach((m) => {
         const other = tuneById(m.other);
-        const chip = el("button", "section-chip");
-        chip.type = "button";
+        const row = el("button", "suggest-row");
+        row.type = "button";
         const local = m.other_local_key
-          ? ` (locally in ${noteGlyph(m.other_local_key.tonic)} ${m.other_local_key.mode})` : "";
-        chip.textContent =
-          `${displaySectionName(m.section)} ≈ ${displaySectionName(m.other_section)}` +
-          ` of ${other.title}${local} · ${Math.round(m.score * 100)}`;
-        chip.addEventListener("click", () => {
+          ? `locally in ${noteGlyph(m.other_local_key.tonic)} ${m.other_local_key.mode}` : "";
+        row.innerHTML =
+          scoreBadge(m.score) +
+          `<span class="sim-title">${escapeHtml(
+            `${displaySectionName(m.section)} ≈ ${displaySectionName(m.other_section)}` +
+            ` of ${other.title || m.other}`)}</span>` +
+          (local ? `<span class="sim-family">${escapeHtml(local)}</span>` : "");
+        row.title = "open side-by-side comparison";
+        row.addEventListener("click", () => {
           /* Section bar mappings are section-relative — shift both sides to
              flattened bar numbers so the full-form grids highlight right. */
           const qOff = sectionBarOffset(meta(t), m.section);
@@ -1587,9 +1623,8 @@
           const bars = (m.bars || []).map(([q, c]) => [q + qOff, c + cOff]);
           openComparison(m.other, bars);
         });
-        chips.appendChild(chip);
+        list.appendChild(row);
       });
-      panel.appendChild(chips);
     }
     return panel;
   }
@@ -1614,9 +1649,10 @@
     return { q: orig, c: orig };
   }
 
-  /* One side of the comparison: the full form (every section — the engine's
-     bar numbering flattens verses and codas too), bars tagged with flattened
-     numbers and the aligned ones highlighted. */
+  /* One side of the comparison: the form without its verses (verses never
+     enter comparisons), bars tagged with flattened full-chart numbers — the
+     engine's bar numbering flattens verses and codas too, so skipped verse
+     bars still advance the counter — and the aligned ones highlighted. */
   function comparisonSide(t, renderer, mapped, side, keyCaption) {
     const tune = meta(t);
     const wrap = el("div", "cmp-side");
@@ -1632,17 +1668,31 @@
     wrap.appendChild(head);
     const grid = el("div", "grid cmp-grid");
     const beats = beatsPerBar(tune);
-    Object.keys(tune.sections || {}).forEach((sec, i) => {
-      grid.appendChild(renderSection(sec, tune.sections[sec], beats,
-        i === 0, tune.time_signature, null, renderer));
-    });
     let fbar = 0;
-    grid.querySelectorAll(".bar:not(.empty)").forEach((cell) => {
-      fbar++;
-      cell.dataset.fbar = String(fbar);
-      cell.dataset.side = side;
-      if (mapped && mapped.has(fbar)) cell.classList.add("sim-hl");
+    let first = true;
+    let skippedVerse = false;
+    Object.entries(tune.sections || {}).forEach(([sec, bars]) => {
+      if (/^verse/i.test(sec)) {
+        fbar += (bars || []).length;
+        skippedVerse = true;
+        return;
+      }
+      const secEl = renderSection(sec, bars, beats,
+        first, tune.time_signature, null, renderer);
+      first = false;
+      secEl.querySelectorAll(".bar:not(.empty)").forEach((cell) => {
+        fbar++;
+        cell.dataset.fbar = String(fbar);
+        cell.dataset.side = side;
+        if (mapped && mapped.has(fbar)) cell.classList.add("sim-hl");
+      });
+      grid.appendChild(secEl);
     });
+    if (skippedVerse) {
+      const note = el("span", "cmp-side-note");
+      note.textContent = "verse omitted";
+      head.appendChild(note);
+    }
     wrap.appendChild(grid);
     return wrap;
   }
@@ -1666,8 +1716,8 @@
 
     const label = el("span", "cmp-label");
     const entry = ((SIMILAR[t.id] || {}).similar || []).find((s) => s.id === cmp.otherId);
-    label.textContent = `vs ${other.title || cmp.otherId}` +
-      (entry ? ` · ${Math.round(entry.score * 100)}/100 match` : "");
+    label.innerHTML = `vs ${escapeHtml(other.title || cmp.otherId)}` +
+      (entry ? ` ${scoreBadge(entry.score)}` : "");
     bar.appendChild(label);
 
     /* Three-way display switch (§8.3, locked decision §1). */
@@ -1748,7 +1798,7 @@
       state.transpose = null; // every tune opens in its own printed key
       state.gridZoom = 1; // grid zoom is per-tune: every tune opens at the fitted size
       state.compare = null; // comparison view is per-tune
-      state.showSuggest = false; // suggestions panel is per-tune
+      state.showSuggest = null; // suggestions panel is per-tune
       restoreActiveVariants(meta(t), id); // restore the user's saved variant swaps
     }
     document.title = `${t.title || id} — Grilles`;
@@ -1794,23 +1844,31 @@
     }
     const transpose = makeTransposeControl(t);
     if (transpose) bar.appendChild(transpose);
-    /* "Suggest similar tunes" (§8.2) — only when the engine produced
-       suggestions for this tune. */
-    if (similarOf(t.id)) {
-      const btn = el("button", "suggest-btn" + (state.showSuggest ? " on" : ""));
-      btn.type = "button";
-      btn.textContent = "Suggest similar tunes";
-      btn.setAttribute("aria-pressed", String(state.showSuggest));
-      btn.addEventListener("click", () => {
-        state.showSuggest = !state.showSuggest;
-        renderTune(state.currentId); // same tune → keeps zoom/scroll/transpose
+    /* Suggestion buttons (§8.2) — one per kind the engine produced,
+       colored by the best match's quality band. */
+    const kinds = suggestKinds(t);
+    [["tunes", "Similar tunes"], ["sections", "Similar sections"]]
+      .forEach(([kind, label]) => {
+        const items = kinds[kind];
+        if (!items.length) return;
+        const best = Math.max(...items.map((x) => x.score));
+        const [, cls, bandLabel] = qualityBand(best);
+        const on = state.showSuggest === kind;
+        const btn = el("button", `suggest-btn ${cls}` + (on ? " on" : ""));
+        btn.type = "button";
+        btn.textContent = label;
+        btn.title = `best match: ${bandLabel} (${Math.round(best * 100)}/100)`;
+        btn.setAttribute("aria-pressed", String(on));
+        btn.addEventListener("click", () => {
+          state.showSuggest = on ? null : kind;
+          renderTune(state.currentId); // same tune → keeps zoom/scroll/transpose
+        });
+        bar.appendChild(btn);
       });
-      bar.appendChild(btn);
-    }
     if (bar.childElementCount) paneEl.appendChild(bar);
 
     if (state.showSuggest) {
-      const suggest = renderSuggestPanel(t);
+      const suggest = renderSuggestPanel(t, state.showSuggest);
       if (suggest) paneEl.appendChild(suggest);
     }
 
