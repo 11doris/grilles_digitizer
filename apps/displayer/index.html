@@ -12,6 +12,7 @@
     <span class="appname">Grilles</span>
     <input id="search" type="search" placeholder="Search title or composer…" autocomplete="off" spellcheck="false">
     <button id="chordFilter" type="button" title="Show only tunes with digitized chords" aria-label="Filter: digitized chords only" aria-pressed="false">▦</button>
+    <select id="startsOnFilter" title="Filter by opening degree" aria-label="Filter by opening degree"></select>
     <button id="playlistBtn" type="button" title="Playlists">Playlists</button>
     <button id="playlistClear" type="button" title="Show all tunes" aria-label="Deactivate playlist" hidden>✕</button>
     <button id="themeToggle" type="button" title="Toggle theme">☀</button>
@@ -36,6 +37,7 @@
   <div id="plPopover" hidden></div>
   <input id="plImportFile" type="file" accept=".json,application/json" hidden>
   <script src="data/tunes_data.js"></script>
+  <script src="data/similar_data.js"></script>
   <script src="vendor/abcjs-basic-min.js"></script>
   <script src="chords.js"></script>
   <script src="playlists.js"></script>

@@ -1,0 +1,2327 @@
+{
+ "id": "96_01_DEDICATED_TO_YOU",
+ "title": "DEDICATED TO YOU",
+ "key": {
+  "tonic": "Bb",
+  "mode": "major"
+ },
+ "family": "32-bar AABA standard",
+ "form": "32 A A' B A'",
+ "bar_count": 32,
+ "similar": [
+  {
+   "id": "98_02_DETOUR_AHEAD",
+   "title": "DETOUR AHEAD",
+   "family": "34-bar AABA ballad",
+   "score": 0.2203,
+   "components": {
+    "cosine": 0.1614,
+    "alignment": 0.2203,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     5,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     5
+    ],
+    [
+     6,
+     7
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     7,
+     8
+    ],
+    [
+     8,
+     8
+    ],
+    [
+     9,
+     9
+    ],
+    [
+     10,
+     10
+    ],
+    [
+     12,
+     11
+    ],
+    [
+     13,
+     12
+    ],
+    [
+     13,
+     13
+    ],
+    [
+     14,
+     13
+    ],
+    [
+     14,
+     14
+    ],
+    [
+     15,
+     15
+    ],
+    [
+     16,
+     16
+    ],
+    [
+     16,
+     18
+    ],
+    [
+     17,
+     19
+    ],
+    [
+     19,
+     20
+    ],
+    [
+     20,
+     23
+    ],
+    [
+     23,
+     24
+    ],
+    [
+     24,
+     24
+    ],
+    [
+     25,
+     25
+    ],
+    [
+     26,
+     26
+    ],
+    [
+     28,
+     27
+    ],
+    [
+     29,
+     28
+    ]
+   ]
+  },
+  {
+   "id": "191_02_I_M_JUST_A_LUCKY_SO_AND_SO",
+   "title": "I'M JUST A LUCKY SO-AND-SO",
+   "family": "32-bar AABA standard",
+   "score": 0.2055,
+   "components": {
+    "cosine": 0.3173,
+    "alignment": 0.2055,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     6,
+     4
+    ],
+    [
+     7,
+     5
+    ],
+    [
+     8,
+     8
+    ],
+    [
+     9,
+     9
+    ],
+    [
+     10,
+     10
+    ],
+    [
+     11,
+     11
+    ],
+    [
+     14,
+     12
+    ],
+    [
+     16,
+     12
+    ],
+    [
+     16,
+     13
+    ],
+    [
+     22,
+     13
+    ],
+    [
+     23,
+     14
+    ],
+    [
+     24,
+     14
+    ],
+    [
+     24,
+     15
+    ],
+    [
+     25,
+     16
+    ],
+    [
+     26,
+     17
+    ],
+    [
+     27,
+     18
+    ]
+   ]
+  },
+  {
+   "id": "369_01_SMALL_FRY",
+   "title": "SMALL FRY",
+   "family": "36-bar standard (verse + AA'BA'C)",
+   "score": 0.1563,
+   "components": {
+    "cosine": 0.1161,
+    "alignment": 0.1563,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     7,
+     15
+    ],
+    [
+     8,
+     16
+    ],
+    [
+     9,
+     17
+    ],
+    [
+     9,
+     19
+    ],
+    [
+     10,
+     20
+    ],
+    [
+     11,
+     21
+    ],
+    [
+     12,
+     22
+    ],
+    [
+     13,
+     23
+    ],
+    [
+     14,
+     25
+    ],
+    [
+     14,
+     26
+    ],
+    [
+     15,
+     26
+    ],
+    [
+     15,
+     27
+    ],
+    [
+     16,
+     28
+    ],
+    [
+     19,
+     29
+    ],
+    [
+     20,
+     29
+    ],
+    [
+     20,
+     30
+    ],
+    [
+     22,
+     30
+    ],
+    [
+     22,
+     31
+    ],
+    [
+     23,
+     31
+    ],
+    [
+     23,
+     32
+    ],
+    [
+     24,
+     32
+    ],
+    [
+     24,
+     34
+    ],
+    [
+     25,
+     35
+    ],
+    [
+     26,
+     36
+    ],
+    [
+     27,
+     37
+    ],
+    [
+     28,
+     38
+    ],
+    [
+     29,
+     39
+    ],
+    [
+     30,
+     41
+    ],
+    [
+     30,
+     42
+    ],
+    [
+     31,
+     42
+    ],
+    [
+     31,
+     43
+    ],
+    [
+     32,
+     44
+    ]
+   ]
+  },
+  {
+   "id": "428_02_TIME_WAS",
+   "title": "TIME WAS",
+   "family": "32-bar AABA standard",
+   "score": 0.1539,
+   "components": {
+    "cosine": 0.0605,
+    "alignment": 0.1539,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     4,
+     7
+    ],
+    [
+     5,
+     8
+    ],
+    [
+     6,
+     9
+    ],
+    [
+     7,
+     9
+    ],
+    [
+     8,
+     10
+    ],
+    [
+     9,
+     11
+    ],
+    [
+     10,
+     12
+    ],
+    [
+     11,
+     13
+    ],
+    [
+     12,
+     13
+    ],
+    [
+     13,
+     14
+    ],
+    [
+     14,
+     15
+    ],
+    [
+     15,
+     15
+    ],
+    [
+     16,
+     16
+    ],
+    [
+     17,
+     17
+    ],
+    [
+     18,
+     17
+    ],
+    [
+     19,
+     18
+    ],
+    [
+     20,
+     19
+    ],
+    [
+     20,
+     20
+    ],
+    [
+     21,
+     21
+    ],
+    [
+     22,
+     21
+    ],
+    [
+     22,
+     22
+    ],
+    [
+     23,
+     23
+    ],
+    [
+     23,
+     24
+    ],
+    [
+     24,
+     24
+    ],
+    [
+     24,
+     26
+    ],
+    [
+     25,
+     27
+    ],
+    [
+     26,
+     28
+    ],
+    [
+     27,
+     29
+    ]
+   ]
+  },
+  {
+   "id": "452_01_WHAT_KIND_OF_FOOL_AM_I",
+   "title": "WHAT KIND OF FOOL AM I ?",
+   "family": "32-bar ABA'C standard",
+   "score": 0.1516,
+   "components": {
+    "cosine": 0.0797,
+    "alignment": 0.1516,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     21,
+     13
+    ],
+    [
+     22,
+     14
+    ],
+    [
+     23,
+     15
+    ],
+    [
+     24,
+     16
+    ],
+    [
+     25,
+     17
+    ],
+    [
+     27,
+     18
+    ],
+    [
+     29,
+     19
+    ],
+    [
+     30,
+     20
+    ],
+    [
+     31,
+     21
+    ]
+   ]
+  },
+  {
+   "id": "487_01_ZULU_WAIL",
+   "title": "ZULU WAIL",
+   "family": "16-bar verse + 32-bar AABA chorus",
+   "score": 0.1508,
+   "components": {
+    "cosine": 0.3987,
+    "alignment": 0.1508,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     19
+    ],
+    [
+     2,
+     20
+    ],
+    [
+     3,
+     21
+    ],
+    [
+     4,
+     22
+    ],
+    [
+     6,
+     23
+    ],
+    [
+     7,
+     23
+    ],
+    [
+     7,
+     24
+    ],
+    [
+     8,
+     24
+    ],
+    [
+     9,
+     25
+    ],
+    [
+     10,
+     26
+    ],
+    [
+     11,
+     27
+    ]
+   ]
+  },
+  {
+   "id": "25_02_AUTUMN_LEAVES",
+   "title": "AUTUMN LEAVES",
+   "family": "32-bar tune with verse (AAB verse + AABC chorus)",
+   "score": 0.147,
+   "components": {
+    "cosine": 0.0422,
+    "alignment": 0.1633,
+    "meter_penalty": 1.0,
+    "mode_penalty": 0.9
+   },
+   "bars": [
+    [
+     1,
+     9
+    ],
+    [
+     2,
+     10
+    ],
+    [
+     2,
+     11
+    ],
+    [
+     3,
+     12
+    ],
+    [
+     4,
+     13
+    ],
+    [
+     4,
+     14
+    ],
+    [
+     5,
+     14
+    ],
+    [
+     5,
+     15
+    ],
+    [
+     6,
+     15
+    ],
+    [
+     8,
+     16
+    ],
+    [
+     9,
+     17
+    ],
+    [
+     10,
+     18
+    ],
+    [
+     11,
+     19
+    ],
+    [
+     11,
+     20
+    ],
+    [
+     14,
+     20
+    ],
+    [
+     14,
+     21
+    ],
+    [
+     15,
+     22
+    ],
+    [
+     16,
+     22
+    ],
+    [
+     16,
+     23
+    ],
+    [
+     19,
+     23
+    ],
+    [
+     20,
+     24
+    ],
+    [
+     23,
+     25
+    ],
+    [
+     24,
+     26
+    ],
+    [
+     25,
+     27
+    ],
+    [
+     26,
+     28
+    ]
+   ]
+  },
+  {
+   "id": "183_02_I_LL_NEVER_SMILE_AGAIN",
+   "title": "I'LL NEVER SMILE AGAIN",
+   "family": "32-bar ABAC standard",
+   "score": 0.1469,
+   "components": {
+    "cosine": 0.083,
+    "alignment": 0.1469,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     23,
+     21
+    ],
+    [
+     24,
+     22
+    ],
+    [
+     25,
+     23
+    ],
+    [
+     25,
+     24
+    ],
+    [
+     26,
+     25
+    ],
+    [
+     27,
+     27
+    ],
+    [
+     28,
+     28
+    ],
+    [
+     29,
+     29
+    ],
+    [
+     30,
+     30
+    ],
+    [
+     31,
+     31
+    ],
+    [
+     32,
+     32
+    ]
+   ]
+  },
+  {
+   "id": "189_02_I_M_GLAD_THERE_IS_YOU",
+   "title": "I'M GLAD THERE IS YOU",
+   "family": "36-bar ABCA' ballad",
+   "score": 0.1359,
+   "components": {
+    "cosine": 0.047,
+    "alignment": 0.1359,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     22,
+     22
+    ],
+    [
+     23,
+     23
+    ],
+    [
+     24,
+     24
+    ],
+    [
+     25,
+     25
+    ],
+    [
+     27,
+     26
+    ]
+   ]
+  },
+  {
+   "id": "483_04_YOU_SHOWED_ME_THE_WAY",
+   "title": "YOU SHOWED ME THE WAY",
+   "family": "34-bar AABA standard",
+   "score": 0.1359,
+   "components": {
+    "cosine": 0.0373,
+    "alignment": 0.1359,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     22,
+     22
+    ],
+    [
+     23,
+     23
+    ],
+    [
+     24,
+     24
+    ],
+    [
+     25,
+     25
+    ],
+    [
+     27,
+     26
+    ]
+   ]
+  },
+  {
+   "id": "103_02_DONNA_LEE",
+   "title": "DONNA LEE",
+   "family": "32-bar bebop head (Indiana changes)",
+   "score": 0.1289,
+   "components": {
+    "cosine": 0.0499,
+    "alignment": 0.1289,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     22,
+     4
+    ],
+    [
+     23,
+     5
+    ],
+    [
+     24,
+     6
+    ],
+    [
+     25,
+     7
+    ],
+    [
+     26,
+     9
+    ],
+    [
+     27,
+     11
+    ],
+    [
+     28,
+     12
+    ]
+   ]
+  },
+  {
+   "id": "83_03_COTTAGE_FOR_SALE",
+   "title": "COTTAGE FOR SALE",
+   "family": "32-bar AABA standard",
+   "score": 0.1258,
+   "components": {
+    "cosine": 0.1641,
+    "alignment": 0.1258,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     4,
+     3
+    ],
+    [
+     5,
+     4
+    ],
+    [
+     6,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     7
+    ],
+    [
+     9,
+     8
+    ],
+    [
+     11,
+     9
+    ],
+    [
+     12,
+     11
+    ],
+    [
+     13,
+     12
+    ],
+    [
+     14,
+     13
+    ]
+   ]
+  },
+  {
+   "id": "28_03_BACK_BAY_SHUFFLE",
+   "title": "BACK BAY SHUFFLE",
+   "family": "32-bar AABA standard",
+   "score": 0.1258,
+   "components": {
+    "cosine": 0.0672,
+    "alignment": 0.1258,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     22,
+     10
+    ],
+    [
+     23,
+     11
+    ],
+    [
+     24,
+     12
+    ],
+    [
+     25,
+     13
+    ],
+    [
+     26,
+     14
+    ],
+    [
+     26,
+     15
+    ],
+    [
+     27,
+     16
+    ],
+    [
+     28,
+     17
+    ]
+   ]
+  },
+  {
+   "id": "23_04_AU_PRIVAVE",
+   "title": "AU PRIVAVE",
+   "family": "12-bar blues",
+   "score": 0.1242,
+   "components": {
+    "cosine": 0.0925,
+    "alignment": 0.1242,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     7,
+     1
+    ],
+    [
+     8,
+     2
+    ],
+    [
+     9,
+     3
+    ],
+    [
+     10,
+     6
+    ],
+    [
+     11,
+     7
+    ],
+    [
+     12,
+     8
+    ],
+    [
+     13,
+     9
+    ]
+   ]
+  },
+  {
+   "id": "156_01_HERE_S_THAT_RAINY_DAY",
+   "title": "HERE'S THAT RAINY DAY",
+   "family": "32-bar ABAC standard",
+   "score": 0.1211,
+   "components": {
+    "cosine": 0.0506,
+    "alignment": 0.1211,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     21,
+     26
+    ],
+    [
+     21,
+     27
+    ],
+    [
+     22,
+     27
+    ],
+    [
+     22,
+     28
+    ],
+    [
+     23,
+     29
+    ],
+    [
+     24,
+     30
+    ],
+    [
+     25,
+     31
+    ],
+    [
+     27,
+     32
+    ]
+   ]
+  },
+  {
+   "id": "285_03_MY_OLD_FLAME",
+   "title": "MY OLD FLAME",
+   "family": "32-bar AABA standard",
+   "score": 0.1211,
+   "components": {
+    "cosine": 0.0164,
+    "alignment": 0.1211,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     3,
+     1
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     5,
+     3
+    ],
+    [
+     6,
+     4
+    ],
+    [
+     7,
+     5
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ],
+    [
+     11,
+     9
+    ],
+    [
+     12,
+     10
+    ],
+    [
+     13,
+     11
+    ],
+    [
+     14,
+     12
+    ],
+    [
+     15,
+     13
+    ],
+    [
+     15,
+     15
+    ],
+    [
+     22,
+     15
+    ],
+    [
+     23,
+     16
+    ],
+    [
+     23,
+     18
+    ],
+    [
+     24,
+     18
+    ],
+    [
+     24,
+     19
+    ],
+    [
+     25,
+     19
+    ],
+    [
+     25,
+     20
+    ],
+    [
+     26,
+     20
+    ],
+    [
+     26,
+     24
+    ],
+    [
+     27,
+     25
+    ],
+    [
+     28,
+     26
+    ],
+    [
+     29,
+     27
+    ],
+    [
+     30,
+     28
+    ],
+    [
+     31,
+     29
+    ],
+    [
+     31,
+     31
+    ],
+    [
+     32,
+     32
+    ]
+   ]
+  },
+  {
+   "id": "445_01_WATCH_WHAT_HAPPENS",
+   "title": "WATCH WHAT HAPPENS",
+   "family": "32-bar AABA standard with verse and coda",
+   "score": 0.1203,
+   "components": {
+    "cosine": 0.0656,
+    "alignment": 0.1203,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     22,
+     36
+    ],
+    [
+     23,
+     37
+    ],
+    [
+     24,
+     38
+    ],
+    [
+     25,
+     39
+    ],
+    [
+     27,
+     40
+    ]
+   ]
+  },
+  {
+   "id": "72_01_CHEROKEE",
+   "title": "CHEROKEE",
+   "family": "64-bar AABA standard",
+   "score": 0.1203,
+   "components": {
+    "cosine": 0.0493,
+    "alignment": 0.1203,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     22,
+     28
+    ],
+    [
+     23,
+     29
+    ],
+    [
+     24,
+     30
+    ],
+    [
+     25,
+     31
+    ],
+    [
+     27,
+     32
+    ]
+   ]
+  },
+  {
+   "id": "64_03_CAROLINA_IN_THE_MORNING",
+   "title": "CAROLINA IN THE MORNING",
+   "family": "32-bar ABAC standard",
+   "score": 0.1188,
+   "components": {
+    "cosine": 0.0431,
+    "alignment": 0.1188,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     8
+    ],
+    [
+     2,
+     9
+    ],
+    [
+     3,
+     10
+    ],
+    [
+     4,
+     12
+    ],
+    [
+     5,
+     13
+    ],
+    [
+     6,
+     14
+    ],
+    [
+     7,
+     15
+    ],
+    [
+     8,
+     16
+    ],
+    [
+     9,
+     17
+    ]
+   ]
+  },
+  {
+   "id": "413_04_THAT_LUCKY_OLD_SUN",
+   "title": "THAT LUCKY OLD SUN",
+   "family": "32-bar AABA standard",
+   "score": 0.1156,
+   "components": {
+    "cosine": 0.0309,
+    "alignment": 0.1156,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     4
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     3,
+     6
+    ],
+    [
+     3,
+     7
+    ],
+    [
+     5,
+     7
+    ],
+    [
+     6,
+     8
+    ],
+    [
+     7,
+     9
+    ],
+    [
+     8,
+     9
+    ],
+    [
+     9,
+     10
+    ],
+    [
+     10,
+     11
+    ],
+    [
+     11,
+     12
+    ],
+    [
+     12,
+     14
+    ],
+    [
+     13,
+     15
+    ],
+    [
+     14,
+     16
+    ],
+    [
+     15,
+     17
+    ],
+    [
+     15,
+     18
+    ],
+    [
+     16,
+     18
+    ],
+    [
+     22,
+     19
+    ],
+    [
+     24,
+     19
+    ],
+    [
+     24,
+     20
+    ],
+    [
+     25,
+     20
+    ],
+    [
+     25,
+     21
+    ],
+    [
+     26,
+     21
+    ],
+    [
+     26,
+     22
+    ],
+    [
+     27,
+     22
+    ],
+    [
+     27,
+     23
+    ],
+    [
+     28,
+     23
+    ],
+    [
+     29,
+     24
+    ],
+    [
+     30,
+     25
+    ],
+    [
+     31,
+     26
+    ],
+    [
+     31,
+     27
+    ],
+    [
+     32,
+     28
+    ]
+   ]
+  }
+ ],
+ "section_matches": [
+  {
+   "section": "A1",
+   "local_key": null,
+   "start_bar": 8,
+   "other": "96_01_DEDICATED_TO_YOU",
+   "other_title": "DEDICATED TO YOU",
+   "other_section": "A2",
+   "other_local_key": null,
+   "other_start_bar": 24,
+   "score": 0.9375,
+   "components": {
+    "cosine": 0.9102,
+    "alignment": 0.9375,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "A2",
+   "local_key": null,
+   "start_bar": 24,
+   "other": "96_01_DEDICATED_TO_YOU",
+   "other_title": "DEDICATED TO YOU",
+   "other_section": "A1",
+   "other_local_key": null,
+   "other_start_bar": 8,
+   "score": 0.9375,
+   "components": {
+    "cosine": 0.9102,
+    "alignment": 0.9375,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "96_01_DEDICATED_TO_YOU",
+   "other_title": "DEDICATED TO YOU",
+   "other_section": "A2",
+   "other_local_key": null,
+   "other_start_bar": 24,
+   "score": 0.8125,
+   "components": {
+    "cosine": 0.7482,
+    "alignment": 0.8125,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "96_01_DEDICATED_TO_YOU",
+   "other_title": "DEDICATED TO YOU",
+   "other_section": "A1",
+   "other_local_key": null,
+   "other_start_bar": 8,
+   "score": 0.8125,
+   "components": {
+    "cosine": 0.7318,
+    "alignment": 0.8125,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ]
+   ]
+  },
+  {
+   "section": "A1",
+   "local_key": null,
+   "start_bar": 8,
+   "other": "96_01_DEDICATED_TO_YOU",
+   "other_title": "DEDICATED TO YOU",
+   "other_section": "A",
+   "other_local_key": null,
+   "other_start_bar": 0,
+   "score": 0.8125,
+   "components": {
+    "cosine": 0.7318,
+    "alignment": 0.8125,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ]
+   ]
+  },
+  {
+   "section": "A2",
+   "local_key": null,
+   "start_bar": 24,
+   "other": "96_01_DEDICATED_TO_YOU",
+   "other_title": "DEDICATED TO YOU",
+   "other_section": "A",
+   "other_local_key": null,
+   "other_start_bar": 0,
+   "score": 0.8125,
+   "components": {
+    "cosine": 0.7482,
+    "alignment": 0.8125,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "191_02_I_M_JUST_A_LUCKY_SO_AND_SO",
+   "other_title": "I'M JUST A LUCKY SO-AND-SO",
+   "other_section": "B",
+   "other_local_key": null,
+   "other_start_bar": 16,
+   "score": 0.4281,
+   "components": {
+    "cosine": 0.2629,
+    "alignment": 0.4281,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     6,
+     5
+    ],
+    [
+     7,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "23_04_AU_PRIVAVE",
+   "other_title": "AU PRIVAVE",
+   "other_section": "A",
+   "other_local_key": null,
+   "other_start_bar": 0,
+   "score": 0.4188,
+   "components": {
+    "cosine": 0.0747,
+    "alignment": 0.4188,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     3,
+     7
+    ],
+    [
+     4,
+     8
+    ],
+    [
+     5,
+     9
+    ],
+    [
+     6,
+     10
+    ],
+    [
+     7,
+     11
+    ],
+    [
+     8,
+     12
+    ]
+   ]
+  },
+  {
+   "section": "A1",
+   "local_key": null,
+   "start_bar": 8,
+   "other": "72_03_CHERYL",
+   "other_title": "CHERYL",
+   "other_section": "A",
+   "other_local_key": null,
+   "other_start_bar": 0,
+   "score": 0.4125,
+   "components": {
+    "cosine": 0.126,
+    "alignment": 0.4125,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     3,
+     7
+    ],
+    [
+     4,
+     8
+    ],
+    [
+     5,
+     9
+    ],
+    [
+     6,
+     10
+    ],
+    [
+     7,
+     11
+    ]
+   ]
+  },
+  {
+   "section": "A2",
+   "local_key": null,
+   "start_bar": 24,
+   "other": "183_02_I_LL_NEVER_SMILE_AGAIN",
+   "other_title": "I'LL NEVER SMILE AGAIN",
+   "other_section": "C",
+   "other_local_key": null,
+   "other_start_bar": 24,
+   "score": 0.4125,
+   "components": {
+    "cosine": 0.1642,
+    "alignment": 0.4125,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     2,
+     1
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     5
+    ],
+    [
+     6,
+     6
+    ],
+    [
+     7,
+     7
+    ],
+    [
+     8,
+     8
+    ]
+   ]
+  },
+  {
+   "section": "A2",
+   "local_key": null,
+   "start_bar": 24,
+   "other": "72_03_CHERYL",
+   "other_title": "CHERYL",
+   "other_section": "A",
+   "other_local_key": null,
+   "other_start_bar": 0,
+   "score": 0.4125,
+   "components": {
+    "cosine": 0.1486,
+    "alignment": 0.4125,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     3,
+     7
+    ],
+    [
+     4,
+     8
+    ],
+    [
+     5,
+     9
+    ],
+    [
+     6,
+     10
+    ],
+    [
+     7,
+     11
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "191_02_I_M_JUST_A_LUCKY_SO_AND_SO",
+   "other_title": "I'M JUST A LUCKY SO-AND-SO",
+   "other_section": "A2",
+   "other_local_key": null,
+   "other_start_bar": 24,
+   "score": 0.4031,
+   "components": {
+    "cosine": 0.2424,
+    "alignment": 0.4031,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     6,
+     4
+    ],
+    [
+     7,
+     5
+    ],
+    [
+     8,
+     6
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "191_02_I_M_JUST_A_LUCKY_SO_AND_SO",
+   "other_title": "I'M JUST A LUCKY SO-AND-SO",
+   "other_section": "A",
+   "other_local_key": null,
+   "other_start_bar": 0,
+   "score": 0.4031,
+   "components": {
+    "cosine": 0.2171,
+    "alignment": 0.4031,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     6,
+     4
+    ],
+    [
+     7,
+     5
+    ],
+    [
+     8,
+     6
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "191_02_I_M_JUST_A_LUCKY_SO_AND_SO",
+   "other_title": "I'M JUST A LUCKY SO-AND-SO",
+   "other_section": "A1",
+   "other_local_key": null,
+   "other_start_bar": 8,
+   "score": 0.4031,
+   "components": {
+    "cosine": 0.2163,
+    "alignment": 0.4031,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ],
+    [
+     6,
+     4
+    ],
+    [
+     7,
+     5
+    ],
+    [
+     8,
+     6
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "72_03_CHERYL",
+   "other_title": "CHERYL",
+   "other_section": "A",
+   "other_local_key": null,
+   "other_start_bar": 0,
+   "score": 0.3844,
+   "components": {
+    "cosine": 0.128,
+    "alignment": 0.3844,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     3,
+     7
+    ],
+    [
+     4,
+     8
+    ],
+    [
+     5,
+     9
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "487_01_ZULU_WAIL",
+   "other_title": "ZULU WAIL",
+   "other_section": "A2",
+   "other_local_key": null,
+   "other_start_bar": 40,
+   "score": 0.375,
+   "components": {
+    "cosine": 0.4163,
+    "alignment": 0.375,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "487_01_ZULU_WAIL",
+   "other_title": "ZULU WAIL",
+   "other_section": "A1",
+   "other_local_key": null,
+   "other_start_bar": 24,
+   "score": 0.375,
+   "components": {
+    "cosine": 0.4124,
+    "alignment": 0.375,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ]
+   ]
+  },
+  {
+   "section": "A",
+   "local_key": null,
+   "start_bar": 0,
+   "other": "487_01_ZULU_WAIL",
+   "other_title": "ZULU WAIL",
+   "other_section": "A",
+   "other_local_key": null,
+   "other_start_bar": 16,
+   "score": 0.375,
+   "components": {
+    "cosine": 0.412,
+    "alignment": 0.375,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ]
+   ]
+  },
+  {
+   "section": "A1",
+   "local_key": null,
+   "start_bar": 8,
+   "other": "487_01_ZULU_WAIL",
+   "other_title": "ZULU WAIL",
+   "other_section": "A2",
+   "other_local_key": null,
+   "other_start_bar": 40,
+   "score": 0.375,
+   "components": {
+    "cosine": 0.4162,
+    "alignment": 0.375,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ]
+   ]
+  },
+  {
+   "section": "A1",
+   "local_key": null,
+   "start_bar": 8,
+   "other": "487_01_ZULU_WAIL",
+   "other_title": "ZULU WAIL",
+   "other_section": "A1",
+   "other_local_key": null,
+   "other_start_bar": 24,
+   "score": 0.375,
+   "components": {
+    "cosine": 0.4122,
+    "alignment": 0.375,
+    "meter_penalty": 1.0,
+    "mode_penalty": 1.0
+   },
+   "bars": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     3
+    ]
+   ]
+  }
+ ]
+}

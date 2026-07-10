@@ -19,7 +19,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from pipelines.chords.similarity.normalize import PC_NAME, Chord, Slot, expand_tune, flatten
+from pipelines.chords.similarity.normalize import (
+    PC_NAME, Chord, Slot, expand_tune, flatten, pitch_class,
+)
 
 # --- tunable weights -------------------------------------------------------
 
@@ -180,16 +182,28 @@ def _section_local_key(slots: list[Slot], global_pc: int, global_mode: str
     return {"tonic": PC_NAME[pc], "mode": mode, "margin": round(local_margin, 4)}
 
 
+def _local_keys(sections: dict[str, list[Slot]], tonic_pc: int, mode: str
+                ) -> dict[str, dict]:
+    section_keys: dict[str, dict] = {}
+    for name, slots in sections.items():
+        local = _section_local_key(slots, tonic_pc, mode)
+        if local is not None:
+            section_keys[name] = local
+    return section_keys
+
+
+def section_local_keys(tune: dict, tonic: str, mode: str) -> dict[str, dict]:
+    """The per-section pass alone, under a given (e.g. human-corrected)
+    global key — used by the §3.5 update routine to re-detect local keys
+    after a key correction."""
+    return _local_keys(expand_tune(tune), pitch_class(tonic), mode)
+
+
 def score_tune(tune: dict) -> KeyVote:
     """Score the whole tune, then rerun per section for local keys."""
     sections = expand_tune(tune)
     full = flatten(sections)
     (tonic_pc, mode, _), margin = _best_two(full)
 
-    section_keys: dict[str, dict] = {}
-    for name, slots in sections.items():
-        local = _section_local_key(slots, tonic_pc, mode)
-        if local is not None:
-            section_keys[name] = local
-
-    return KeyVote(PC_NAME[tonic_pc], mode, margin, section_keys)
+    return KeyVote(PC_NAME[tonic_pc], mode, margin,
+                   _local_keys(sections, tonic_pc, mode))

@@ -1,0 +1,112 @@
+{
+ "built": "2026-07-10T21:12:33",
+ "engine_version": "1.0",
+ "corpus": 94,
+ "sections": 397,
+ "elapsed_seconds": 14.1,
+ "hash_groups": {
+  "tunes": [],
+  "sections": [
+   [
+    {
+     "tune": "11_03_ALL_ALONE",
+     "section": "C"
+    },
+    {
+     "tune": "158_02_HIT_THAT_JIVE_JACK",
+     "section": "B"
+    },
+    {
+     "tune": "162_02_HOW_COULD_I_BE_BLUE",
+     "section": "B"
+    },
+    {
+     "tune": "339_02_RHYTHM_IN_MY_NURSERY_RHYMES",
+     "section": "B"
+    }
+   ],
+   [
+    {
+     "tune": "11_03_ALL_ALONE",
+     "section": "D"
+    },
+    {
+     "tune": "457_03_WHEN_THE_SAINTS_GO_MARCHING_IN",
+     "section": "B"
+    }
+   ],
+   [
+    {
+     "tune": "192_02_I_M_MORE_THAN_SATISFIED",
+     "section": "B"
+    },
+    {
+     "tune": "74_02_CHINATOWN_MY_CHINATOWN",
+     "section": "B"
+    }
+   ],
+   [
+    {
+     "tune": "344_02_ROSE_OF_THE_RIO_GRANDE",
+     "section": "A"
+    },
+    {
+     "tune": "344_02_ROSE_OF_THE_RIO_GRANDE",
+     "section": "A1"
+    },
+    {
+     "tune": "364_03_SINCE_MY_BEST_GAL_TURNED_ME_DOWN",
+     "section": "A"
+    },
+    {
+     "tune": "364_03_SINCE_MY_BEST_GAL_TURNED_ME_DOWN",
+     "section": "A1"
+    }
+   ],
+   [
+    {
+     "tune": "457_03_WHEN_THE_SAINTS_GO_MARCHING_IN",
+     "section": "A"
+    },
+    {
+     "tune": "74_02_CHINATOWN_MY_CHINATOWN",
+     "section": "A"
+    }
+   ]
+  ]
+ },
+ "metrics": {
+  "computed": "2026-07-10T21:12:34",
+  "tunes_in_output": 94,
+  "tune_recall": {
+   "confirmed": {
+    "families": 0,
+    "members": 0,
+    "recall@5": null,
+    "recall@10": null
+   },
+   "candidate": {
+    "families": 4,
+    "members": 11,
+    "recall@5": 0.5758,
+    "recall@10": 0.5758
+   }
+  },
+  "section_recall": {
+   "confirmed": {
+    "families": 5,
+    "members": 14,
+    "recall@5": 1.0,
+    "recall@10": 1.0
+   },
+   "candidate": {
+    "families": 2,
+    "members": 16,
+    "recall@5": 0.2404,
+    "recall@10": 0.2452
+   }
+  },
+  "precision": null,
+  "non_match_violations": []
+ }
+}

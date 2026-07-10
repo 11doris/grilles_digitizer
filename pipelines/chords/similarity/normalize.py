@@ -207,6 +207,121 @@ def flatten(section_slots: dict[str, list[Slot]]) -> list[Slot]:
 
 
 # ---------------------------------------------------------------------------
+# Tonic-relative sequences (spec §4.3)
+# ---------------------------------------------------------------------------
+
+# A token is (degree, quality_class); degree is (root_pc - reference_pc) % 12,
+# None only for N.C. slots. Plain tuples so sequences hash and shingle cheaply.
+Token = tuple
+
+
+def reference_pc(tonic: str, mode: str) -> int:
+    """One shared pitch space (locked decision, spec §1): the reference is
+    the tonic for major keys and the relative major's tonic for minor keys —
+    majors read as if in C, minors as if in A minor."""
+    pc = pitch_class(tonic)
+    return pc if mode == "major" else (pc + 3) % 12
+
+
+def _token(chord: Chord, ref_pc: int) -> Token:
+    if not chord.is_sounding:
+        return (None, "nc")
+    return ((chord.root_pc - ref_pc) % 12, chord.quality)
+
+
+@dataclass(frozen=True)
+class SectionSeq:
+    tokens: tuple      # Token sequence, local-relative when local_key is set
+    start: int         # slot offset of this section inside full_seq
+    local_key: dict | None  # {"tonic", "mode"} from Phase 0 section_keys
+
+
+@dataclass(frozen=True)
+class TuneSequences:
+    full_seq: tuple                     # flattened form, global-key relative
+    section_seqs: dict[str, SectionSeq]
+    mode: str
+    meter: str | None
+    form: str | None
+    bar_count: int
+
+
+def tonic_relative(annotated: dict) -> TuneSequences:
+    """Tonic-relative token sequences for one annotated tune (spec §4.3).
+
+    `full_seq` keeps every degree relative to the tune's global `key`
+    (modulations included — a modulating tune looking less similar at the
+    whole-tune level is musically correct). Each section with a Phase 0
+    `section_keys` entry gets its degrees computed against its *local* key
+    and carries the `local_key` marker; every other section's sequence is
+    the exact slice of `full_seq`.
+    """
+    key = annotated["key"]
+    section_keys = annotated.get("section_keys") or {}
+    global_ref = reference_pc(key["tonic"], key["mode"])
+    sections = expand_tune(annotated)
+
+    full_seq: list[Token] = []
+    section_seqs: dict[str, SectionSeq] = {}
+    for name, slots in sections.items():
+        start = len(full_seq)
+        global_tokens = tuple(_token(s.chord, global_ref) for s in slots)
+        full_seq.extend(global_tokens)
+        local = section_keys.get(name)
+        if local:
+            local_ref = reference_pc(local["tonic"], local["mode"])
+            tokens = tuple(_token(s.chord, local_ref) for s in slots)
+            marker = {"tonic": local["tonic"], "mode": local["mode"]}
+        else:
+            tokens, marker = global_tokens, None
+        section_seqs[name] = SectionSeq(tokens, start, marker)
+
+    return TuneSequences(tuple(full_seq), section_seqs, key["mode"],
+                         annotated.get("time_signature"),
+                         annotated.get("form"), len(full_seq) // 2)
+
+
+# ---------------------------------------------------------------------------
+# Form-string cross-check (spec §4.2 / §4.4)
+# ---------------------------------------------------------------------------
+
+# Section names that don't appear in the printed form string.
+_UNCOUNTED_SECTIONS = ("intro", "coda")
+
+
+def _declared_sections(form: str) -> int:
+    """Sections declared by a form string like "16 A A' | 32 A A B A'".
+
+    Each segment is <bars> <letters...>; a letter (with primes) is one
+    section, a word like BLUES or PATTER counts as one. Jammed tokens
+    ("A'C") contribute one section per capital letter.
+    """
+    count = 0
+    for segment in form.split("|"):
+        for tok in segment.split():
+            if tok.replace("'", "").isdigit() or not any(c.isalpha() for c in tok):
+                continue
+            letters = sum(1 for c in tok if c.isupper())
+            count += 1 if len(tok.replace("'", "")) > 2 else max(letters, 1)
+    return count
+
+
+def form_warnings(tune: dict) -> list[str]:
+    """Cross-check the section count against the `form` string; returns
+    human-readable warnings (empty when the form checks out)."""
+    form = (tune.get("form") or "").strip()
+    names = [n for n in (tune.get("sections") or {})
+             if n not in _UNCOUNTED_SECTIONS]
+    if not form:
+        return [f"no form string ({len(names)} sections)"]
+    declared = _declared_sections(form)
+    if declared != len(names):
+        return [f"form {form!r} declares {declared} sections,"
+                f" tune has {len(names)}: {', '.join(names)}"]
+    return []
+
+
+# ---------------------------------------------------------------------------
 # Scale-degree naming (used for the `opening` field, spec §3.1)
 # ---------------------------------------------------------------------------
 

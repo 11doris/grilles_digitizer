@@ -39,6 +39,18 @@ def _tune_paths(verified_dir: Path) -> list[Path]:
             if p.stem not in _IGNORED_STEMS and not p.stem.endswith("_opus")]
 
 
+def _stale_fingerprint_paths(annotated_dir: Path) -> list[Path]:
+    """Annotated files flagged for the key-pinned fingerprint refresh (§3.5)."""
+    out = []
+    for path in sorted(annotated_dir.glob("*.json")):
+        if path.stem in _IGNORED_STEMS:
+            continue
+        annotated = core.read_json(path)
+        if (annotated.get("harmonic_fingerprint") or {}).get("stale"):
+            out.append(path)
+    return out
+
+
 def cmd_status(verified_dir: Path, annotated_dir: Path) -> int:
     counts: Counter[str] = Counter()
     for path in _tune_paths(verified_dir):
@@ -52,7 +64,39 @@ def cmd_status(verified_dir: Path, annotated_dir: Path) -> int:
     print(f"{total} tunes: " + ", ".join(
         f"{counts[k]} {k}" for k in ("verified", "agreed", "needs_review", "pending")
         if counts[k]))
+    stale = _stale_fingerprint_paths(annotated_dir) if annotated_dir.exists() else []
+    if stale:
+        print(f"{len(stale)} stale fingerprint(s) awaiting key-pinned refresh: "
+              + ", ".join(p.stem for p in stale))
     return 0
+
+
+def refresh_stale_fingerprints(annotated_dir: Path) -> int:
+    """Key-pinned LLM refresh for fingerprints flagged stale by a key
+    correction (spec §3.5). Never touches `key`, `opening` or `status`;
+    on failure the stale flag stays so the next run retries.
+    """
+    paths = _stale_fingerprint_paths(annotated_dir)
+    if not paths:
+        return 0
+    print(f"{len(paths)} stale fingerprint(s); running key-pinned refresh")
+    from pipelines.chords.key_annotation import llm
+    docs = {p.stem: core.read_json(p) for p in paths}
+    items = {stem: (d, d["key"], d.get("section_keys"))
+             for stem, d in docs.items()}
+    results = llm.refresh_fingerprints(items)
+    refreshed = 0
+    for path in paths:
+        stem, annotated = path.stem, docs[path.stem]
+        result = results[stem]
+        if isinstance(result, LLMVoteError):
+            print(f"  {stem}: refresh failed, fingerprint stays stale ({result})")
+            continue
+        annotated["harmonic_fingerprint"] = core.fingerprint_json(result)
+        core.write_annotated(path, annotated)
+        refreshed += 1
+        print(f"  {stem}: fingerprint refreshed")
+    return refreshed
 
 
 def cmd_annotate(verified_dir: Path, annotated_dir: Path, *,
@@ -64,6 +108,8 @@ def cmd_annotate(verified_dir: Path, annotated_dir: Path, *,
         pending = pending[:limit]
     print(f"{len(paths)} tunes in {verified_dir.name}; {len(pending)} pending")
     if not pending:
+        if not scorer_only:
+            refresh_stale_fingerprints(annotated_dir)
         return 0
 
     tunes = {p.stem: core.read_json(p) for p in pending}
@@ -95,6 +141,8 @@ def cmd_annotate(verified_dir: Path, annotated_dir: Path, *,
         print(f"  {stem:55s} {key['tonic']:>2s} {key['mode']:5s} [{status}]{extra}")
 
     print("done: " + ", ".join(f"{v} {k}" for k, v in sorted(counts.items())))
+    if not scorer_only:
+        refresh_stale_fingerprints(annotated_dir)
     return 0
 
 
@@ -111,6 +159,16 @@ def cmd_set_key(annotated_dir: Path, stem: str, tonic: str, mode: str) -> int:
     human = annotated["key_annotation"]["human"]
     print(f"{stem}: key set to {key['tonic']} {key['mode']}"
           f" (verified, corrected={human['corrected']})")
+    proposals = annotated["key_annotation"].get("section_key_proposals")
+    if proposals:
+        print("  re-detected local keys under the new key — review in the "
+              "key verifier app (accept or dismiss):")
+        for name, d in proposals.items():
+            print(f"    section {name}: {d['tonic']} {d['mode']}"
+                  f" (margin {d.get('margin', 0):.2f})")
+    if (annotated.get("harmonic_fingerprint") or {}).get("stale"):
+        print("  fingerprint flagged stale; the next annotate_keys.py run "
+              "refreshes it (key-pinned LLM call)")
     return 0
 
 

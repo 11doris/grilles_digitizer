@@ -1224,3 +1224,141 @@ body.list-collapsed #gridZoom { left: 1rem; }
   .timesig { left: -0.42em; }
   #gridZoom { left: 1rem; } /* sidebar is a drawer here, corner is free */
 }
+
+/* ───────────────────────── Similar tunes & comparison (spec §8.2/§8.3) ── */
+
+/* "Starts on" filter dropdown in the top bar (§8.2a). */
+#startsOnFilter {
+  flex: none;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  color: var(--fg);
+  font-size: 0.85rem;
+  padding: 0.3rem 0.4rem;
+  max-width: 10rem;
+}
+#startsOnFilter.on { border-color: var(--accent); color: var(--accent-ink); }
+
+/* Opening-degree chip next to the key chip. */
+.harm-chip.opening { background: var(--chip-bg); }
+.harm-chip.opening .harm-label { color: var(--muted); }
+
+/* Suggest button in the panel bar. */
+.suggest-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  color: var(--fg);
+  font-size: 0.85rem;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+}
+.suggest-btn.on { border-color: var(--accent); color: var(--accent-ink); }
+
+/* Suggestions panel. */
+.suggest-panel {
+  margin: 0.6rem auto 0.8rem;
+  max-width: 44rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.8rem;
+}
+.suggest-title, .suggest-subtitle {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin: 0.2rem 0 0.4rem;
+}
+.suggest-subtitle { margin-top: 0.7rem; }
+.suggest-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.1rem;
+  cursor: pointer;
+}
+.suggest-row:hover .sim-title { color: var(--accent-ink); }
+.suggest-row:last-of-type { border-bottom: none; }
+.sim-score {
+  flex: none;
+  min-width: 2.1rem;
+  text-align: right;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-ink);
+}
+.sim-title { flex: 1; min-width: 0; }
+.sim-family {
+  color: var(--muted);
+  font-size: 0.75rem;
+  max-width: 11rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.suggest-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.section-chip {
+  background: var(--chip-bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.7rem;
+  cursor: pointer;
+}
+.section-chip:hover { border-color: var(--accent); }
+
+/* Comparison view. */
+.compare { margin-top: 0.6rem; }
+.cmp-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.8rem;
+}
+.cmp-back, .cmp-mode {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.7rem;
+  cursor: pointer;
+}
+.cmp-mode.active { border-color: var(--accent); color: var(--accent-ink); }
+.cmp-mode:disabled { opacity: 0.4; cursor: default; }
+.cmp-modes { display: flex; gap: 0.3rem; margin-left: auto; }
+.cmp-label { font-size: 0.9rem; color: var(--muted); }
+.cmp-panels { display: flex; gap: 1.2rem; align-items: flex-start; flex-wrap: wrap; }
+.cmp-side { flex: 1 1 24rem; min-width: 20rem; }
+.cmp-side-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+.cmp-side-title { font-weight: 700; }
+.cmp-side-key { color: var(--muted); font-size: 0.8rem; }
+/* The comparison grids size themselves (no fit pass): a fixed readable font. */
+.grid.cmp-grid { font-size: 12px; max-width: none; }
+
+/* Aligned-bar highlighting from the engine's bar mapping. */
+.bar.sim-hl { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+.bar.sim-hl-active { background: color-mix(in srgb, var(--accent) 55%, transparent); }
+
+/* Roman-degree cells in the comparison's Degrees mode. */
+.chord.degree { font-weight: 500; letter-spacing: 0.02em; }

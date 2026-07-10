@@ -40,6 +40,30 @@ _LOCAL_KEY_SCHEMA = {
 # names vary per tune, so `sections` is an array of {name, summary,
 # local_key} objects (spec §3.3 note); it is converted to a keyed object
 # when the annotated file is written.
+_FINGERPRINT_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "family": {"type": "string"},
+        "tags": {"type": "array", "items": {"type": "string"}},
+        "sections": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string"},
+                    "summary": {"type": "string"},
+                    "local_key": _LOCAL_KEY_SCHEMA,
+                },
+                "required": ["name", "summary", "local_key"],
+                "additionalProperties": False,
+            },
+        },
+        "modulates": {"type": "boolean"},
+    },
+    "required": ["family", "tags", "sections", "modulates"],
+    "additionalProperties": False,
+}
+
 KEY_SCHEMA = {
     "type": "object",
     "properties": {
@@ -47,31 +71,22 @@ KEY_SCHEMA = {
         "mode": {"type": "string", "enum": ["major", "minor"]},
         "confidence": {"type": "string", "enum": ["high", "medium", "low"]},
         "modulation_note": {"type": ["string", "null"]},
-        "fingerprint": {
-            "type": "object",
-            "properties": {
-                "family": {"type": "string"},
-                "tags": {"type": "array", "items": {"type": "string"}},
-                "sections": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "name": {"type": "string"},
-                            "summary": {"type": "string"},
-                            "local_key": _LOCAL_KEY_SCHEMA,
-                        },
-                        "required": ["name", "summary", "local_key"],
-                        "additionalProperties": False,
-                    },
-                },
-                "modulates": {"type": "boolean"},
-            },
-            "required": ["family", "tags", "sections", "modulates"],
-            "additionalProperties": False,
-        },
+        "fingerprint": _FINGERPRINT_SCHEMA,
     },
     "required": ["tonic", "mode", "confidence", "modulation_note", "fingerprint"],
+    "additionalProperties": False,
+}
+
+# Key-pinned refresh (spec §3.5): the verified key is ground truth, the key-
+# voting fields are dropped — the call returns only a fresh fingerprint
+# (plus the modulation note, which is fingerprint prose).
+PINNED_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "modulation_note": {"type": ["string", "null"]},
+        "fingerprint": _FINGERPRINT_SCHEMA,
+    },
+    "required": ["modulation_note", "fingerprint"],
     "additionalProperties": False,
 }
 
@@ -113,6 +128,11 @@ For the tune you are given, determine:
      ii-V-chains, dominant-cycle-bridge, circle-of-fifths, turnaround-ending,
      tonic-pedal, chromatic-descent, modal, verse-present,
      montgomery-ward-bridge, sears-roebuck-bridge.
+     "family" and "tags" must be KEY-AGNOSTIC: they describe function and
+     form (e.g. "dominant-cycle-bridge"), never absolute pitches — a tag
+     like "bridge-in-A" is forbidden; that information belongs in local_key
+     and modulation_note. Only the free-text section summaries and
+     modulation_note may name keys or roman numerals.
    - "sections": one entry per section (use the exact section names from the
      input, in the same order), each with a one-line summary of its harmonic
      content in roman-numeral terms (e.g. "I-vi-ii-V loop with a V/V in
@@ -148,6 +168,32 @@ def request_params(tune: dict) -> dict:
         "output_config": {"format": {"type": "json_schema", "schema": KEY_SCHEMA}},
         "messages": [{"role": "user", "content": user_payload(tune)}],
     }
+
+
+def pinned_payload(tune: dict, key: dict, section_keys: dict | None) -> str:
+    """User turn for the key-pinned refresh: verified key stated as ground
+    truth ahead of the tune JSON (spec §3.5)."""
+    if section_keys:
+        locals_line = "Verified local section keys (ground truth): " + ", ".join(
+            f"section {name} is in {d['tonic']} {d['mode']}"
+            for name, d in section_keys.items()) + "."
+    else:
+        locals_line = "No section has a local key of its own."
+    return (
+        f"The key of this tune was verified by a human and is ground truth: "
+        f"{key['tonic']} {key['mode']}. {locals_line}\n"
+        "Do not re-derive the key. Produce only the harmonic fingerprint "
+        "(and modulation note) under this verified key.\n\n"
+        + user_payload(tune))
+
+
+def pinned_request_params(tune: dict, key: dict, section_keys: dict | None) -> dict:
+    params = request_params(tune)
+    params["output_config"] = {
+        "format": {"type": "json_schema", "schema": PINNED_SCHEMA}}
+    params["messages"] = [{"role": "user",
+                           "content": pinned_payload(tune, key, section_keys)}]
+    return params
 
 
 class LLMVoteError(Exception):
@@ -191,14 +237,18 @@ def _call_with_backoff(client: anthropic.Anthropic, params: dict):
     raise last_exc
 
 
-def _one_interactive(client: anthropic.Anthropic, tune: dict
-                     ) -> dict | LLMVoteError:
+def _one_call(client: anthropic.Anthropic, params: dict) -> dict | LLMVoteError:
     try:
-        return _parse_response(_call_with_backoff(client, request_params(tune)))
+        return _parse_response(_call_with_backoff(client, params))
     except LLMVoteError as exc:
         return exc
     except anthropic.APIStatusError as exc:
         return LLMVoteError(f"API error {exc.status_code}: {exc.message}")
+
+
+def _one_interactive(client: anthropic.Anthropic, tune: dict
+                     ) -> dict | LLMVoteError:
+    return _one_call(client, request_params(tune))
 
 
 def run_interactive(client: anthropic.Anthropic, tunes: dict[str, dict],
@@ -257,6 +307,25 @@ def run_batch(client: anthropic.Anthropic, tunes: dict[str, dict],
             if kind == "errored":
                 detail = f": {result.result.error}"
             results[stem] = LLMVoteError(f"batch request {kind}{detail}")
+    return results
+
+
+def refresh_fingerprints(items: dict[str, tuple[dict, dict, dict | None]],
+                         progress=print) -> dict[str, dict | LLMVoteError]:
+    """Key-pinned refresh for stale fingerprints (spec §3.5).
+
+    `items` maps stem -> (tune dict, verified key, section_keys or None).
+    Returns per stem either {"modulation_note", "fingerprint"} or the error.
+    Corrections are rare, so this is always interactive and sequential.
+    """
+    if not items:
+        return {}
+    client = anthropic.Anthropic()
+    results: dict[str, dict | LLMVoteError] = {}
+    for i, (stem, (tune, key, section_keys)) in enumerate(items.items(), 1):
+        progress(f"  [{i}/{len(items)}] fingerprint refresh: {stem}")
+        results[stem] = _one_call(
+            client, pinned_request_params(tune, key, section_keys))
     return results
 
 

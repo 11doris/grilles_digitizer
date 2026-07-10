@@ -85,6 +85,9 @@ async function selectTune(id) {
   state.currentId = id;
   state.doc = data.data;
   const fp = state.doc.harmonic_fingerprint || {};
+  // §3.5 re-detected local keys: proposals from the last key correction,
+  // shown for accept/dismiss; any Verify save clears them server-side.
+  state.proposals = { ...((state.doc.key_annotation || {}).section_key_proposals || {}) };
   state.edit = {
     tonic: normTonic(state.doc.key.tonic),
     mode: state.doc.key.mode,
@@ -191,6 +194,39 @@ function renderSectionKeys() {
     holder.appendChild(row);
   }
   if (!sections.length) holder.innerHTML = '<span class="muted">no sections</span>';
+  renderProposals(holder);
+}
+
+function renderProposals(holder) {
+  // Local keys re-detected by the scorer after a key correction (spec §3.5):
+  // never auto-applied — the human accepts (into section_keys) or dismisses.
+  const pending = Object.entries(state.proposals || {})
+    .filter(([name]) => !state.edit.sectionKeys[name]);
+  if (!pending.length) return;
+  const box = document.createElement("div");
+  box.id = "sk-proposals";
+  box.innerHTML = '<div class="prop-title">re-detected under the corrected key — accept?</div>';
+  for (const [name, k] of pending) {
+    const row = document.createElement("div");
+    row.className = "prop-row";
+    row.innerHTML = `<span class="prop-text"></span>
+      <button class="prop-accept">accept</button>
+      <button class="prop-dismiss">dismiss</button>`;
+    row.querySelector(".prop-text").textContent =
+      `${name}: ${normTonic(k.tonic)} ${k.mode}` +
+      (k.margin != null ? ` (margin ${Number(k.margin).toFixed(2)})` : "");
+    row.querySelector(".prop-accept").addEventListener("click", () => {
+      state.edit.sectionKeys[name] = { tonic: normTonic(k.tonic), mode: k.mode };
+      delete state.proposals[name];
+      renderSectionKeys();
+    });
+    row.querySelector(".prop-dismiss").addEventListener("click", () => {
+      delete state.proposals[name];
+      renderSectionKeys();
+    });
+    box.appendChild(row);
+  }
+  holder.appendChild(box);
 }
 
 function fmtKey(k) { return k ? `${normTonic(k.tonic)} ${k.mode}` : "—"; }
@@ -230,6 +266,7 @@ function renderVotes() {
 
 function renderFingerprint() {
   const fp = state.edit.fingerprint;
+  $("#fp-stale").hidden = !(state.doc.harmonic_fingerprint || {}).stale;
   $("#fp-family").value = fp.family;
   $("#fp-tags").value = fp.tags.join(", ");
   $("#fp-modulates").checked = fp.modulates;

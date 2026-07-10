@@ -114,6 +114,21 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
 .sk-row select { padding: 3px 6px; border: 1px solid var(--border2); border-radius: 4px; }
 label.row { display: flex; align-items: center; gap: 6px; font-size: 13px; }
 
+#sk-proposals {
+  margin-top: 8px; padding: 8px; border: 1px dashed var(--warning);
+  border-radius: 6px; background: #fffbeb;
+}
+.prop-title { font-size: 12px; color: #92400e; margin-bottom: 6px; }
+.prop-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font-size: 13px; }
+.prop-text { flex: 1; }
+.prop-row button {
+  padding: 3px 10px; border: 1px solid var(--border2); border-radius: 6px;
+  background: var(--surface); cursor: pointer; font-size: 12px;
+}
+.prop-accept { border-color: var(--success-h); color: var(--success-h); }
+.prop-dismiss { color: var(--text-muted); }
+.badge.stale { background: #fef3c7; border-color: var(--warning); color: #92400e; }
+
 .vote { padding: 4px 0; font-size: 13px; }
 .vote-name {
   display: inline-block; min-width: 52px; font-weight: 600;

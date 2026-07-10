@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Similarity Explorer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <div class="sb-header">
+        <h1>Similarity Explorer</h1>
+        <div id="engine-info" class="sb-progress"></div>
+      </div>
+      <input id="search" type="search" placeholder="search title…" autocomplete="off">
+      <ul id="tune-list"></ul>
+      <div class="sb-footer">
+        <button id="btn-export">Export ratings (<span id="rating-count">0</span>)</button>
+      </div>
+    </aside>
+
+    <main id="main">
+      <header id="topbar">
+        <div>
+          <span id="tune-title">–</span>
+          <span id="tune-meta" class="muted"></span>
+        </div>
+        <nav id="view-tabs">
+          <button data-view="tunes" class="active">Similar tunes</button>
+          <button data-view="sections">Section matches</button>
+          <button data-view="confirm">Confirm queue</button>
+        </nav>
+        <div id="filters">
+          <label>min score
+            <input id="f-minscore" type="range" min="0" max="1" step="0.05" value="0">
+            <span id="f-minscore-val">0</span>
+          </label>
+          <label><input id="f-samefamily" type="checkbox"> same family only</label>
+          <label><input id="f-crosstune" type="checkbox" checked> exclude same tune</label>
+        </div>
+      </header>
+
+      <div id="content">
+        <section id="match-pane">
+          <ul id="match-list"></ul>
+        </section>
+        <section id="compare-pane">
+          <div id="confirm-bar" hidden>
+            <span id="confirm-pos"></span>
+            <span id="confirm-family" class="muted"></span>
+            <button id="btn-good" class="good">good match (G)</button>
+            <button id="btn-bad" class="bad">bad match (B)</button>
+            <button id="btn-skip">skip (→)</button>
+          </div>
+          <div id="compare-grids">
+            <div class="grid-side" id="side-q"></div>
+            <div class="grid-side" id="side-c"></div>
+          </div>
+          <div id="compare-empty" class="muted">select a match to compare</div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="data/explorer_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
