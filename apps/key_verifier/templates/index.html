@@ -70,7 +70,11 @@
           </div>
 
           <div class="card" id="fingerprint-card">
-            <div class="card-title">Harmonic fingerprint</div>
+            <div class="card-title">Harmonic fingerprint
+              <span id="fp-stale" class="badge stale"
+                    title="written under the previous key; refreshed by the next annotate_keys.py run"
+                    hidden>stale</span>
+            </div>
             <label>family
               <input id="fp-family" type="text">
             </label>

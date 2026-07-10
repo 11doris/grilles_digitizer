@@ -1224,3 +1224,182 @@ body.list-collapsed #gridZoom { left: 1rem; }
   .timesig { left: -0.42em; }
   #gridZoom { left: 1rem; } /* sidebar is a drawer here, corner is free */
 }
+
+/* ───────────────────────── Similar tunes & comparison (spec §8.2/§8.3) ── */
+
+/* "Starts on" filter dropdown in the top bar (§8.2a). */
+#startsOnFilter {
+  flex: none;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  color: var(--fg);
+  font-size: 0.85rem;
+  padding: 0.3rem 0.4rem;
+  max-width: 10rem;
+}
+#startsOnFilter.on { border-color: var(--accent); color: var(--accent-ink); }
+
+/* Opening-degree chip next to the key chip. */
+.harm-chip.opening { background: var(--chip-bg); }
+.harm-chip.opening .harm-label { color: var(--muted); }
+
+/* Suggestion buttons in the panel bar, tinted by the best match's quality
+   band (same palette as the score meters). */
+.suggest-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  color: var(--fg);
+  font-size: 0.85rem;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+}
+.suggest-btn.q-high { border-color: #2eb872; background: color-mix(in srgb, #2eb872 18%, transparent); }
+.suggest-btn.q-good { border-color: #8fc63f; background: color-mix(in srgb, #8fc63f 18%, transparent); }
+.suggest-btn.q-fair { border-color: #e8a33d; background: color-mix(in srgb, #e8a33d 18%, transparent); }
+.suggest-btn.q-low  { border-color: #9aa0a6; background: color-mix(in srgb, #9aa0a6 15%, transparent); }
+.suggest-btn.on { box-shadow: 0 0 0 2px var(--accent); }
+
+/* Suggestions panel. */
+.suggest-panel {
+  margin: 0.6rem auto 0.8rem;
+  max-width: 44rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.8rem;
+}
+.suggest-group {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--chip-bg);
+  padding: 0.5rem 0.7rem 0.6rem;
+}
+.suggest-group + .suggest-group { margin-top: 0.7rem; }
+.suggest-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 0 0 0.45rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border);
+}
+.sg-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--fg);
+}
+.sg-hint { font-size: 0.75rem; color: var(--muted); }
+/* ~5 rows visible; longer lists scroll. */
+.suggest-list {
+  max-height: 10.4rem;
+  overflow-y: auto;
+}
+.suggest-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.1rem;
+  cursor: pointer;
+}
+.suggest-row:hover .sim-title { color: var(--accent-ink); }
+.suggest-row:last-of-type { border-bottom: none; }
+
+/* Score as a quality meter: colored fill by band, number overlaid. */
+.sim-score {
+  flex: none;
+  position: relative;
+  display: inline-block;
+  width: 3rem;
+  height: 1.05rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  overflow: hidden;
+  vertical-align: -0.2rem;
+}
+.sim-score i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+}
+.sim-score b {
+  position: relative;
+  display: block;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.05rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
+.sim-score.q-high i { background: color-mix(in srgb, #2eb872 45%, transparent); }
+.sim-score.q-good i { background: color-mix(in srgb, #8fc63f 45%, transparent); }
+.sim-score.q-fair i { background: color-mix(in srgb, #e8a33d 45%, transparent); }
+.sim-score.q-low i  { background: color-mix(in srgb, #9aa0a6 40%, transparent); }
+
+.sim-title { flex: 1; min-width: 0; }
+.sim-family {
+  color: var(--muted);
+  font-size: 0.75rem;
+  max-width: 11rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Comparison view. */
+.compare { margin-top: 0.6rem; }
+.cmp-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.8rem;
+}
+.cmp-back, .cmp-mode {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.7rem;
+  cursor: pointer;
+}
+.cmp-mode.active { border-color: var(--accent); color: var(--accent-ink); }
+.cmp-mode:disabled { opacity: 0.4; cursor: default; }
+.cmp-modes { display: flex; gap: 0.3rem; margin-left: auto; }
+.cmp-label { font-size: 0.9rem; color: var(--muted); }
+.cmp-panels { display: flex; gap: 1.2rem; align-items: flex-start; flex-wrap: wrap; }
+.cmp-side { flex: 1 1 24rem; min-width: 20rem; }
+.cmp-side-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+.cmp-side-title { font-weight: 700; }
+.cmp-side-key { color: var(--muted); font-size: 0.8rem; }
+.cmp-side-note { color: var(--muted); font-size: 0.75rem; font-style: italic; }
+/* The comparison grids size themselves (no fit pass): a fixed readable font. */
+.grid.cmp-grid { font-size: 12px; max-width: none; }
+
+/* Aligned-bar highlighting from the engine's bar mapping. */
+.bar.sim-hl { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+.bar.sim-hl-active { background: color-mix(in srgb, var(--accent) 55%, transparent); }
+
+/* Roman-degree cells in the comparison's Degrees mode. */
+.chord.degree { font-weight: 400; letter-spacing: 0.02em; font-size: 2.1em;}

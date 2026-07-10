@@ -142,6 +142,52 @@ class TestAdjudicationAndUpdate(unittest.TestCase):
             ann, section_keys={"A": {"tonic": "F", "mode": "major"}})
         self.assertNotIn("section_keys", ann)  # equal to global key -> dropped
 
+    # --- §3.5 staleness handling -------------------------------------------
+
+    def test_key_correction_flags_fingerprint_stale(self):
+        ann = self._annotate_au_privave(self._fake_llm())
+        core.update_annotation(ann, tonic="Bb", mode="major")
+        self.assertTrue(ann["harmonic_fingerprint"]["stale"])
+
+    def test_plain_verify_does_not_flag_stale(self):
+        ann = self._annotate_au_privave(self._fake_llm())
+        core.update_annotation(ann)
+        self.assertNotIn("stale", ann["harmonic_fingerprint"])
+
+    def test_fingerprint_edit_in_same_save_clears_stale(self):
+        ann = self._annotate_au_privave(self._fake_llm())
+        core.update_annotation(
+            ann, tonic="Bb", mode="major",
+            fingerprint={"family": "12-bar blues", "tags": ["blues-form"],
+                         "sections": {"A": "Bb blues chorus"}})
+        self.assertNotIn("stale", ann["harmonic_fingerprint"])
+
+    def test_key_change_proposes_rescanned_section_keys(self):
+        # Forcing Au Privave to B major makes its A section read as F major
+        # locally; that must surface as a proposal, never as section_keys.
+        ann = self._annotate_au_privave(self._fake_llm())
+        core.update_annotation(ann, tonic="B", mode="major")
+        proposals = ann["key_annotation"]["section_key_proposals"]
+        self.assertEqual(proposals["A"]["tonic"], "F")
+        self.assertEqual(proposals["A"]["mode"], "major")
+        self.assertNotIn("section_keys", ann)
+
+    def test_next_save_clears_pending_proposals(self):
+        ann = self._annotate_au_privave(self._fake_llm())
+        core.update_annotation(ann, tonic="B", mode="major")
+        self.assertIn("section_key_proposals", ann["key_annotation"])
+        core.update_annotation(ann)  # human dismisses (verify without changes)
+        self.assertNotIn("section_key_proposals", ann["key_annotation"])
+
+    def test_accepting_a_proposal_via_section_keys(self):
+        ann = self._annotate_au_privave(self._fake_llm())
+        core.update_annotation(ann, tonic="B", mode="major")
+        core.update_annotation(
+            ann, section_keys={"A": {"tonic": "F", "mode": "major"}})
+        self.assertEqual(ann["section_keys"]["A"],
+                         {"tonic": "F", "mode": "major"})
+        self.assertNotIn("section_key_proposals", ann["key_annotation"])
+
 
 class TestIdempotence(unittest.TestCase):
     def test_pending_detection(self):

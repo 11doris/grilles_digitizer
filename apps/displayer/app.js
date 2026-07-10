@@ -4,9 +4,13 @@
 
 (function () {
   const { renderChordHTML, escapeHtml, transposeChordSymbol, pitchClass,
-    FLAT_SPELL, SHARP_SPELL } = window.GrillesChords;
+    chordDegree, FLAT_SPELL, SHARP_SPELL } = window.GrillesChords;
   const PL = window.GrillesPlaylists;
   const TUNES = window.TUNES || [];
+  /* Per-tune similarity suggestions (spec §8), bundled by build_data.py from
+     data/chords/06_similarity/displayer_similar.json; empty when the engine
+     hasn't run. Only digitized tunes appear as suggestions by construction. */
+  const SIMILAR = window.SIMILAR || {};
 
   /* Target tonics offered by the transpose control, in pitch-class order, with
      the book's preferred enharmonic spelling per mode (spec §7.2): "Gb major"
@@ -68,6 +72,9 @@
     transpose: null, // {shift, spell, targetPc, mode} or null (original key); per-tune
     activeVariants: new Set(), // indices of variants swapped into the grid (independent, but exclusive among variants sharing a bar); per-tune
     chordsOnly: false, // list filter: only tunes with digitized chords (persisted)
+    startsOn: "", // list filter: opening degree ("" = any, "unknown", "other", or a degree; §8.2a)
+    showSuggest: null, // open suggestions group: null | "tunes" | "sections"; per-tune
+    compare: null, // {otherId, mode: original|transposed|roman, bars} — comparison view (§8.3); per-tune
   };
 
   /* ------------------------------------------------------------- helpers */
@@ -232,7 +239,73 @@
     const terms = normalize(query).split(/\s+/).filter(Boolean);
     if (terms.length) list = list.filter((t) => terms.every((term) => t._hay.includes(term)));
     if (state.chordsOnly) list = list.filter((t) => t.has_chord_json);
+    /* "Starts on" filter (§8.2a) — over `opening.degree` from the annotation;
+       tunes without one land in the "unknown" bucket rather than vanishing. */
+    if (state.startsOn) {
+      list = list.filter((t) => {
+        const deg = ((meta(t).opening || {}).degree) || null;
+        if (state.startsOn === "unknown") return !deg;
+        if (state.startsOn === "other") return deg !== null && rareDegrees.has(deg);
+        return deg === state.startsOn;
+      });
+    }
     return list;
+  }
+
+  /* --------------------------------------------- "starts on" filter (§8.2a) */
+
+  const startsOnEl = document.getElementById("startsOnFilter");
+  /* Canonical display order for opening degrees (pitch order, upper before
+     lower); anything not listed sorts after, alphabetically. */
+  const DEGREE_ORDER = ["I", "i", "bII", "bii", "II", "ii", "bIII", "biii",
+    "III", "iii", "IV", "iv", "#IV", "#iv", "V", "v", "bVI", "bvi",
+    "VI", "vi", "bVII", "bvii", "VII", "vii"];
+  let rareDegrees = new Set();
+
+  /* Populate the dropdown from the degrees actually present in the bundled
+     data (spec: don't hard-code the list). Degrees carried by a single tune
+     collapse into an "other" bucket to keep the dropdown short. */
+  function initStartsOnFilter() {
+    if (!startsOnEl) return;
+    const counts = new Map();
+    let unknown = 0;
+    TUNES.forEach((t) => {
+      const deg = ((meta(t).opening || {}).degree) || null;
+      if (deg) counts.set(deg, (counts.get(deg) || 0) + 1);
+      else unknown++;
+    });
+    if (!counts.size) { // no annotated tunes: hide the control entirely
+      startsOnEl.hidden = true;
+      return;
+    }
+    const degrees = [...counts.keys()].sort((a, b) => {
+      const ia = DEGREE_ORDER.indexOf(a), ib = DEGREE_ORDER.indexOf(b);
+      if (ia !== -1 || ib !== -1) return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+      return a.localeCompare(b);
+    });
+    rareDegrees = new Set(degrees.filter((d) => counts.get(d) < 2));
+    const opts = ['<option value="">Starts on…</option>'];
+    degrees.filter((d) => !rareDegrees.has(d)).forEach((d) => {
+      opts.push(`<option value="${escapeHtml(d)}">starts on ${escapeHtml(d)} (${counts.get(d)})</option>`);
+    });
+    if (rareDegrees.size) {
+      const n = [...rareDegrees].reduce((s, d) => s + counts.get(d), 0);
+      opts.push(`<option value="other">other (${n})</option>`);
+    }
+    if (unknown) opts.push(`<option value="unknown">unknown (${unknown})</option>`);
+    startsOnEl.innerHTML = opts.join("");
+    startsOnEl.addEventListener("change", () => {
+      state.startsOn = startsOnEl.value;
+      startsOnEl.classList.toggle("on", Boolean(state.startsOn));
+      state.filtered = filterTunes(searchEl.value);
+      state.activeIndex = state.filtered.length ? 0 : -1;
+      renderList();
+      /* Reveal the narrowed list, like the digitized-chords toggle. */
+      if (state.startsOn) {
+        if (narrowMq.matches) setListOpen(true);
+        else if (state.listCollapsed) setListCollapsed(false);
+      }
+    });
   }
 
   searchEl.addEventListener("input", () => {
@@ -497,7 +570,8 @@
      span allows is kept from colliding with the next by fitGridWidth, which
      measures crowding per chord-span (chord width vs its span's columns), not per
      bar. `data-beats`/`data-span` hand those measurements to the fit pass. */
-  function fillBar(cell, barObj, beats) {
+  function fillBar(cell, barObj, beats, chordRenderer) {
+    const rc = chordRenderer || renderChord;
     const entries = Object.entries(barObj.beats || {})
       .map(([k, v]) => [parseInt(k, 10), v])
       .filter(([k]) => Number.isFinite(k) && k >= 1 && k <= beats)
@@ -513,7 +587,7 @@
       const slot = el("div", "slot");
       slot.style.gridColumn = `${beat} / ${next}`;
       slot.dataset.span = String(next - beat);
-      slot.innerHTML = renderChord(chord);
+      slot.innerHTML = rc(chord);
       cell.appendChild(slot);
     });
   }
@@ -548,7 +622,8 @@
           // number, so barlines/section marks are unchanged) and flags it.
           const ov = opts && opts.overrides && opts.overrides[idx];
           if (ov) cell.classList.add("variant-swap");
-          fillBar(cell, ov ? { bar: bar.bar, beats: ov.beats } : bar, beats);
+          fillBar(cell, ov ? { bar: bar.bar, beats: ov.beats } : bar, beats,
+            opts && opts.renderChord);
         } else {
           cell.classList.add("empty");
         }
@@ -559,13 +634,13 @@
     return frag;
   }
 
-  function renderSection(name, bars, beats, isFirst, ts, overrides) {
+  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer) {
     const sec = el("div", "section");
     const badge = el("div", "sec-label");
     badge.textContent = displaySectionName(name);
     sec.appendChild(badge);
     sec.appendChild(renderGrid(bars, beats,
-      { double: true, timesig: isFirst ? ts : null, overrides }));
+      { double: true, timesig: isFirst ? ts : null, overrides, renderChord: renderer }));
     return sec;
   }
 
@@ -621,6 +696,14 @@
       if (state.transpose && state.transpose.shift && tune.key) {
         chip.title = "Transposed from " + keyLabel(tune.key);
       }
+      keys.appendChild(chip);
+    }
+
+    /* Opening-degree badge next to the key (§8.2a) — degrees are
+       key-relative, so the chip is transposition-invariant. */
+    if (tune.opening && tune.opening.degree) {
+      const chip = harmChip("opening", "starts on", tune.opening.degree);
+      chip.title = "First chord: " + tune.opening.chord;
       keys.appendChild(chip);
     }
 
@@ -1432,6 +1515,276 @@
     }
   });
 
+  /* ----------------------------------- similar tunes & comparison (§8.2/§8.3) */
+
+  function similarOf(id) {
+    const d = SIMILAR[id];
+    return d && (d.similar || []).length + (d.sections || []).length ? d : null;
+  }
+
+  /* Flattened 1-based bar offset of a section inside a tune's full form —
+     mirrors the engine's §4.2 flattening (all sections in document order). */
+  function sectionBarOffset(tune, sectionName) {
+    let off = 0;
+    for (const [name, bars] of Object.entries(tune.sections || {})) {
+      if (name === sectionName) return off;
+      off += (bars || []).length;
+    }
+    return 0;
+  }
+
+  function openComparison(otherId, bars) {
+    state.compare = { otherId, mode: "original", bars: bars || null };
+    renderTune(state.currentId);
+  }
+
+  /* Match quality bands for the score meter (score is 0–1). */
+  const QUALITY_BANDS = [
+    [0.85, "q-high", "very close match"],
+    [0.65, "q-good", "close match"],
+    [0.45, "q-fair", "clearly related"],
+    [0, "q-low", "loosely related"],
+  ];
+
+  function qualityBand(score) {
+    return QUALITY_BANDS.find(([min]) => score >= min);
+  }
+
+  function scoreBadge(score) {
+    const pct = Math.round(score * 100);
+    const [, cls, label] = qualityBand(score);
+    return `<span class="sim-score ${cls}" title="${label} — ${pct}/100">` +
+      `<i style="width:${pct}%"></i><b>${pct}</b></span>`;
+  }
+
+  /* The engine's suggestions for a tune, split by kind and filtered to
+     bundled corpus tunes. */
+  function suggestKinds(t) {
+    const data = similarOf(t.id) || {};
+    return {
+      tunes: (data.similar || []).filter((s) => tuneById(s.id)),
+      sections: (data.sections || []).filter((m) => tuneById(m.other)),
+    };
+  }
+
+  /* Suggestions panel (§8.2): one group at a time — whole-tune suggestions
+     or section matches ("bridge ≈ A of …") — each a list of rows with a
+     colored quality meter and a short how-to hint. Clicking a row opens the
+     comparison view. */
+  function renderSuggestPanel(t, kind) {
+    const items = suggestKinds(t)[kind];
+    if (!items.length) return null;
+    const panel = el("section", "suggest-panel");
+    const g = el("div", "suggest-group");
+    const hint = kind === "tunes"
+      ? "whole tunes with a similar chord form — click one to compare the two grids side by side"
+      : "single parts of this tune that match part of another tune — click to compare with the matching bars highlighted";
+    g.innerHTML =
+      `<div class="suggest-group-head"><span class="sg-title">` +
+      `${kind === "tunes" ? "Similar tunes" : "Similar sections"}</span>` +
+      `<span class="sg-hint">${hint}</span></div>`;
+    panel.appendChild(g);
+    /* ~5 rows visible, the rest reachable by scrolling (.suggest-list). */
+    const list = el("div", "suggest-list");
+    g.appendChild(list);
+
+    if (kind === "tunes") {
+      items.forEach((s) => {
+        const other = tuneById(s.id);
+        const row = el("button", "suggest-row");
+        row.type = "button";
+        row.innerHTML =
+          scoreBadge(s.score) +
+          `<span class="sim-title">${escapeHtml(other.title || s.id)}</span>` +
+          (s.family ? `<span class="sim-family">${escapeHtml(s.family)}</span>` : "");
+        row.title = "open side-by-side comparison";
+        row.addEventListener("click", () => openComparison(s.id, s.bars));
+        list.appendChild(row);
+      });
+    } else {
+      items.forEach((m) => {
+        const other = tuneById(m.other);
+        const row = el("button", "suggest-row");
+        row.type = "button";
+        const local = m.other_local_key
+          ? `locally in ${noteGlyph(m.other_local_key.tonic)} ${m.other_local_key.mode}` : "";
+        row.innerHTML =
+          scoreBadge(m.score) +
+          `<span class="sim-title">${escapeHtml(
+            `${displaySectionName(m.section)} ≈ ${displaySectionName(m.other_section)}` +
+            ` of ${other.title || m.other}`)}</span>` +
+          (local ? `<span class="sim-family">${escapeHtml(local)}</span>` : "");
+        row.title = "open side-by-side comparison";
+        row.addEventListener("click", () => {
+          /* Section bar mappings are section-relative — shift both sides to
+             flattened bar numbers so the full-form grids highlight right. */
+          const qOff = sectionBarOffset(meta(t), m.section);
+          const cOff = sectionBarOffset(meta(other), m.other_section);
+          const bars = (m.bars || []).map(([q, c]) => [q + qOff, c + cOff]);
+          openComparison(m.other, bars);
+        });
+        list.appendChild(row);
+      });
+    }
+    return panel;
+  }
+
+  /* Chord renderers for the §8.3 three-way switch. */
+  function cmpRenderers(qTune, cTune, mode) {
+    const orig = (sym) => renderChordHTML(sym);
+    const qKey = qTune.key, cKey = cTune.key;
+    if (mode === "transposed" && qKey && cKey) {
+      const targetPc = pitchClass(qKey.tonic);
+      const shift = ((targetPc - pitchClass(cKey.tonic)) % 12 + 12) % 12;
+      const spell = spellTableFor(targetPc, qKey.mode === "minor" ? "minor" : "major");
+      return { q: orig, c: (sym) => renderChordHTML(transposeChordSymbol(sym, shift, spell)) };
+    }
+    if (mode === "roman" && qKey && cKey) {
+      const deg = (tonicPc) => (sym) => {
+        const d = chordDegree(sym, tonicPc);
+        return `<span class="chord degree">${escapeHtml(d || "N.C.")}</span>`;
+      };
+      return { q: deg(pitchClass(qKey.tonic)), c: deg(pitchClass(cKey.tonic)) };
+    }
+    return { q: orig, c: orig };
+  }
+
+  /* One side of the comparison: the form without its verses (verses never
+     enter comparisons), bars tagged with flattened full-chart numbers — the
+     engine's bar numbering flattens verses and codas too, so skipped verse
+     bars still advance the counter — and the aligned ones highlighted. */
+  function comparisonSide(t, renderer, mapped, side, keyCaption) {
+    const tune = meta(t);
+    const wrap = el("div", "cmp-side");
+    const head = el("div", "cmp-side-head");
+    const name = el("span", "cmp-side-title");
+    name.textContent = t.title || t.id;
+    head.appendChild(name);
+    if (keyCaption) {
+      const key = el("span", "cmp-side-key");
+      key.textContent = keyCaption;
+      head.appendChild(key);
+    }
+    wrap.appendChild(head);
+    const grid = el("div", "grid cmp-grid");
+    const beats = beatsPerBar(tune);
+    let fbar = 0;
+    let first = true;
+    let skippedVerse = false;
+    Object.entries(tune.sections || {}).forEach(([sec, bars]) => {
+      if (/^verse/i.test(sec)) {
+        fbar += (bars || []).length;
+        skippedVerse = true;
+        return;
+      }
+      const secEl = renderSection(sec, bars, beats,
+        first, tune.time_signature, null, renderer);
+      first = false;
+      secEl.querySelectorAll(".bar:not(.empty)").forEach((cell) => {
+        fbar++;
+        cell.dataset.fbar = String(fbar);
+        cell.dataset.side = side;
+        if (mapped && mapped.has(fbar)) cell.classList.add("sim-hl");
+      });
+      grid.appendChild(secEl);
+    });
+    if (skippedVerse) {
+      const note = el("span", "cmp-side-note");
+      note.textContent = "verse omitted";
+      head.appendChild(note);
+    }
+    wrap.appendChild(grid);
+    return wrap;
+  }
+
+  function renderComparison(t) {
+    const cmp = state.compare;
+    const other = tuneById(cmp.otherId);
+    if (!other) { state.compare = null; return el("div"); }
+    const qTune = meta(t), cTune = meta(other);
+
+    const view = el("div", "compare");
+    const bar = el("div", "cmp-bar");
+    const back = el("button", "cmp-back");
+    back.type = "button";
+    back.textContent = "‹ Back";
+    back.addEventListener("click", () => {
+      state.compare = null;
+      renderTune(state.currentId);
+    });
+    bar.appendChild(back);
+
+    const label = el("span", "cmp-label");
+    const entry = ((SIMILAR[t.id] || {}).similar || []).find((s) => s.id === cmp.otherId);
+    label.innerHTML = `vs ${escapeHtml(other.title || cmp.otherId)}` +
+      (entry ? ` ${scoreBadge(entry.score)}` : "");
+    bar.appendChild(label);
+
+    /* Three-way display switch (§8.3, locked decision §1). */
+    const canKey = Boolean(qTune.key && cTune.key);
+    const modes = [
+      ["original", "Original keys", true],
+      ["transposed", qTune.key ? `In ${noteGlyph(qTune.key.tonic)} ${qTune.key.mode}` : "Transposed", canKey],
+      ["roman", "Degrees", canKey],
+    ];
+    const switcher = el("div", "cmp-modes");
+    modes.forEach(([mode, text, enabled]) => {
+      const btn = el("button", "cmp-mode" + (cmp.mode === mode ? " active" : ""));
+      btn.type = "button";
+      btn.textContent = text;
+      btn.dataset.mode = mode;
+      btn.disabled = !enabled;
+      btn.addEventListener("click", () => {
+        state.compare.mode = mode;
+        renderTune(state.currentId);
+      });
+      switcher.appendChild(btn);
+    });
+    bar.appendChild(switcher);
+    view.appendChild(bar);
+
+    /* Bar maps: flattened query bar -> candidate bars, and the reverse. */
+    const mapQ = new Map(), mapC = new Map();
+    (cmp.bars || []).forEach(([q, c]) => {
+      if (!mapQ.has(q)) mapQ.set(q, []);
+      mapQ.get(q).push(c);
+      if (!mapC.has(c)) mapC.set(c, []);
+      mapC.get(c).push(q);
+    });
+
+    const r = cmpRenderers(qTune, cTune, cmp.mode);
+    const keyCap = (tune, transposedTo) => {
+      if (!tune.key) return "";
+      if (cmp.mode === "roman") return "degrees";
+      if (transposedTo) return `in ${noteGlyph(transposedTo.tonic)} ${transposedTo.mode} (from ${noteGlyph(tune.key.tonic)} ${tune.key.mode})`;
+      return `${noteGlyph(tune.key.tonic)} ${tune.key.mode}`;
+    };
+    const panels = el("div", "cmp-panels");
+    panels.appendChild(comparisonSide(t, r.q, new Set(mapQ.keys()), "q", keyCap(qTune)));
+    panels.appendChild(comparisonSide(other, r.c, new Set(mapC.keys()), "c",
+      keyCap(cTune, cmp.mode === "transposed" && canKey ? qTune.key : null)));
+    view.appendChild(panels);
+
+    /* Hovering an aligned bar lights up its counterpart(s) on the other side. */
+    panels.querySelectorAll(".bar.sim-hl").forEach((cell) => {
+      const map = cell.dataset.side === "q" ? mapQ : mapC;
+      const counterparts = map.get(parseInt(cell.dataset.fbar, 10)) || [];
+      const otherSide = cell.dataset.side === "q" ? "c" : "q";
+      cell.addEventListener("mouseenter", () => {
+        panels.querySelectorAll(`.bar[data-side="${otherSide}"]`).forEach((o) => {
+          o.classList.toggle("sim-hl-active",
+            counterparts.includes(parseInt(o.dataset.fbar, 10)));
+        });
+        cell.classList.add("sim-hl-active");
+      });
+      cell.addEventListener("mouseleave", () => {
+        panels.querySelectorAll(".sim-hl-active").forEach((o) =>
+          o.classList.remove("sim-hl-active"));
+      });
+    });
+    return view;
+  }
+
   /* ----------------------------------------------------------- main render */
 
   function renderTune(id) {
@@ -1444,12 +1797,25 @@
     if (isNewTune) {
       state.transpose = null; // every tune opens in its own printed key
       state.gridZoom = 1; // grid zoom is per-tune: every tune opens at the fitted size
+      state.compare = null; // comparison view is per-tune
+      state.showSuggest = null; // suggestions panel is per-tune
       restoreActiveVariants(meta(t), id); // restore the user's saved variant swaps
     }
     document.title = `${t.title || id} — Grilles`;
 
     paneEl.innerHTML = "";
     paneEl.appendChild(renderHead(t));
+
+    /* Comparison view (§8.3) replaces the normal panels until Back. */
+    if (state.compare) {
+      paneEl.appendChild(renderComparison(t));
+      if (isNewTune) viewEl.scrollTop = 0;
+      if (narrowMq.matches) setListOpen(false);
+      updateListHighlight();
+      updateStepButtons();
+      closePopover();
+      return;
+    }
 
     /* Switch toolbar (spec §5.4) — one switch per available asset. */
     const bar = el("div", "panel-bar");
@@ -1478,7 +1844,33 @@
     }
     const transpose = makeTransposeControl(t);
     if (transpose) bar.appendChild(transpose);
+    /* Suggestion buttons (§8.2) — one per kind the engine produced,
+       colored by the best match's quality band. */
+    const kinds = suggestKinds(t);
+    [["tunes", "Similar tunes"], ["sections", "Similar sections"]]
+      .forEach(([kind, label]) => {
+        const items = kinds[kind];
+        if (!items.length) return;
+        const best = Math.max(...items.map((x) => x.score));
+        const [, cls, bandLabel] = qualityBand(best);
+        const on = state.showSuggest === kind;
+        const btn = el("button", `suggest-btn ${cls}` + (on ? " on" : ""));
+        btn.type = "button";
+        btn.textContent = label;
+        btn.title = `best match: ${bandLabel} (${Math.round(best * 100)}/100)`;
+        btn.setAttribute("aria-pressed", String(on));
+        btn.addEventListener("click", () => {
+          state.showSuggest = on ? null : kind;
+          renderTune(state.currentId); // same tune → keeps zoom/scroll/transpose
+        });
+        bar.appendChild(btn);
+      });
     if (bar.childElementCount) paneEl.appendChild(bar);
+
+    if (state.showSuggest) {
+      const suggest = renderSuggestPanel(t, state.showSuggest);
+      if (suggest) paneEl.appendChild(suggest);
+    }
 
     const panels = el("div", "panels");
 
@@ -1737,6 +2129,7 @@
   const storedPl = PL.getActiveId();
   if (storedPl && PL.byId(storedPl)) state.activePl = storedPl;
   updateTopbar();
+  initStartsOnFilter();
   state.filtered = filterTunes("");
   renderList();
   searchEl.focus();

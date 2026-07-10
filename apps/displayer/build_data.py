@@ -86,6 +86,14 @@ def main() -> int:
                         help="Title index CSV (default: data/title_index.csv)")
     parser.add_argument("--tunes-dir", default=str(root / "data" / "chords" / "05_annotated"),
                         help="Annotated chord tune JSONs (default: data/chords/05_annotated)")
+    parser.add_argument("--fallback-tunes-dir",
+                        default=str(root / "data" / "chords" / "04_verified"),
+                        help="Verified tunes without an annotation yet — bundled "
+                             "without key-dependent features (spec §8.1)")
+    parser.add_argument("--similarity-dir",
+                        default=str(root / "data" / "chords" / "06_similarity"),
+                        help="Similarity output; its displayer_similar.json is "
+                             "bundled into data/similar_data.js when present")
     parser.add_argument("--crops-dir", default=str(root / "data" / "chords" / "01_crops"),
                         help="Chord scan PNGs (default: data/chords/01_crops)")
     parser.add_argument("--melody-crops-dir", default=str(root / "data" / "melody" / "01_crops"),
@@ -107,9 +115,14 @@ def main() -> int:
     out_melody = here / "melody_crops"
 
     # Digitized chord tunes, keyed by file stem (= chords_file stem).
+    # Annotated files win; a verified tune without an annotation yet falls
+    # back to its 04_verified source, so it still displays — its
+    # key-dependent features are simply absent (spec §8.1).
     digitized: dict[str, dict] = {}
-    if tunes_dir.is_dir():
-        for path in sorted(tunes_dir.glob("*.json")):
+    for source_dir in (Path(args.fallback_tunes_dir), tunes_dir):
+        if not source_dir.is_dir():
+            continue
+        for path in sorted(source_dir.glob("*.json")):
             if path.stem in IGNORED_STEMS or path.stem.endswith("_opus"):
                 continue
             try:
@@ -216,6 +229,32 @@ def main() -> int:
     out_path.parent.mkdir(exist_ok=True)
     payload = json.dumps(tunes, ensure_ascii=False, indent=1)
     out_path.write_text(f"window.TUNES = {payload};\n", encoding="utf-8")
+
+    # Similarity bundle (spec §8.1): compact top-K suggestions per tune.
+    # Only digitized tunes appear as suggestions by construction. Hard size
+    # guard (spec §6.4/§10): fail the build rather than truncate silently.
+    SIMILAR_LIMIT_MB = 2.0
+    similar_path = Path(args.similarity_dir) / "displayer_similar.json"
+    similar_out = here / "data" / "similar_data.js"
+    if similar_path.is_file():
+        similar = json.loads(similar_path.read_text(encoding="utf-8"))
+        similar = {k: v for k, v in similar.items() if k in by_id}
+        similar_out.write_text(
+            "window.SIMILAR = " + json.dumps(similar, ensure_ascii=False,
+                                             separators=(",", ":")) + ";\n",
+            encoding="utf-8")
+        size_mb = similar_out.stat().st_size / 1e6
+        if size_mb > SIMILAR_LIMIT_MB:
+            print(f"ERROR: similar_data.js is {size_mb:.2f} MB "
+                  f"(> {SIMILAR_LIMIT_MB} MB guard) — reduce the engine's "
+                  "displayer top-K instead of shipping this", file=sys.stderr)
+            return 1
+        print(f"Wrote {len(similar)} tunes' suggestions to "
+              f"{similar_out.relative_to(here)} ({size_mb:.2f} MB)")
+    else:
+        similar_out.write_text("window.SIMILAR = {};\n", encoding="utf-8")
+        warnings.append(f"no similarity output at {similar_path} — "
+                        "suggestions disabled (empty similar_data.js)")
 
     for w in warnings:
         print(f"WARNING: {w}", file=sys.stderr)

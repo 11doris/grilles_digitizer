@@ -1,0 +1,372 @@
+{
+ "families": [
+  {
+   "name": "hash-section-11_03_ALL_ALONE.C-158_02_HIT_THAT_JIVE_JACK.B-162_02_HOW_COULD_I_BE",
+   "level": "section",
+   "status": "confirmed",
+   "source": "hash",
+   "members": [
+    {
+     "tune": "11_03_ALL_ALONE",
+     "section": "C"
+    },
+    {
+     "tune": "158_02_HIT_THAT_JIVE_JACK",
+     "section": "B"
+    },
+    {
+     "tune": "162_02_HOW_COULD_I_BE_BLUE",
+     "section": "B"
+    },
+    {
+     "tune": "339_02_RHYTHM_IN_MY_NURSERY_RHYMES",
+     "section": "B"
+    }
+   ]
+  },
+  {
+   "name": "hash-section-11_03_ALL_ALONE.D-457_03_WHEN_THE_SAINTS_GO_MARCHING_IN.B",
+   "level": "section",
+   "status": "confirmed",
+   "source": "hash",
+   "members": [
+    {
+     "tune": "11_03_ALL_ALONE",
+     "section": "D"
+    },
+    {
+     "tune": "457_03_WHEN_THE_SAINTS_GO_MARCHING_IN",
+     "section": "B"
+    }
+   ]
+  },
+  {
+   "name": "hash-section-192_02_I_M_MORE_THAN_SATISFIED.B-74_02_CHINATOWN_MY_CHINATOWN.B",
+   "level": "section",
+   "status": "confirmed",
+   "source": "hash",
+   "members": [
+    {
+     "tune": "192_02_I_M_MORE_THAN_SATISFIED",
+     "section": "B"
+    },
+    {
+     "tune": "74_02_CHINATOWN_MY_CHINATOWN",
+     "section": "B"
+    }
+   ]
+  },
+  {
+   "name": "hash-section-344_02_ROSE_OF_THE_RIO_GRANDE.A-344_02_ROSE_OF_THE_RIO_GRANDE.A1-36",
+   "level": "section",
+   "status": "confirmed",
+   "source": "hash",
+   "members": [
+    {
+     "tune": "344_02_ROSE_OF_THE_RIO_GRANDE",
+     "section": "A"
+    },
+    {
+     "tune": "344_02_ROSE_OF_THE_RIO_GRANDE",
+     "section": "A1"
+    },
+    {
+     "tune": "364_03_SINCE_MY_BEST_GAL_TURNED_ME_DOWN",
+     "section": "A"
+    },
+    {
+     "tune": "364_03_SINCE_MY_BEST_GAL_TURNED_ME_DOWN",
+     "section": "A1"
+    }
+   ]
+  },
+  {
+   "name": "hash-section-457_03_WHEN_THE_SAINTS_GO_MARCHING_IN.A-74_02_CHINATOWN_MY_CHINATOW",
+   "level": "section",
+   "status": "confirmed",
+   "source": "hash",
+   "members": [
+    {
+     "tune": "457_03_WHEN_THE_SAINTS_GO_MARCHING_IN",
+     "section": "A"
+    },
+    {
+     "tune": "74_02_CHINATOWN_MY_CHINATOWN",
+     "section": "A"
+    }
+   ]
+  },
+  {
+   "name": "family-12-bar-blues",
+   "level": "tune",
+   "status": "candidate",
+   "source": "fingerprint",
+   "members": [
+    "23_04_AU_PRIVAVE",
+    "72_03_CHERYL",
+    "86_01_CREOLE_LOVE_CALL"
+   ]
+  },
+  {
+   "name": "family-rhythm-changes",
+   "level": "tune",
+   "status": "candidate",
+   "source": "fingerprint",
+   "members": [
+    "178_01_I_GOT_RHYTHM",
+    "447_02_WEE"
+   ]
+  },
+  {
+   "name": "tag-blues-form",
+   "level": "tune",
+   "status": "candidate",
+   "source": "fingerprint",
+   "members": [
+    "101_01_DIRTY_DOZENS",
+    "23_04_AU_PRIVAVE",
+    "72_03_CHERYL",
+    "86_01_CREOLE_LOVE_CALL"
+   ]
+  },
+  {
+   "name": "tag-dominant-cycle-bridge",
+   "level": "section",
+   "status": "candidate",
+   "source": "fingerprint",
+   "members": [
+    {
+     "tune": "168_01_I_CAN_T_BELIEVE_THAT_YOU_RE_IN_LOVE_WITH_ME",
+     "section": "B"
+    },
+    {
+     "tune": "169_03_IDAHO",
+     "section": "B"
+    },
+    {
+     "tune": "178_01_I_GOT_RHYTHM",
+     "section": "B"
+    },
+    {
+     "tune": "197_03_I_NEVER_KNEW_WHAT_A_GAL_COULD_DO",
+     "section": "B"
+    },
+    {
+     "tune": "22_01_AS_LONG_AS_I_LIVE",
+     "section": "B"
+    },
+    {
+     "tune": "339_02_RHYTHM_IN_MY_NURSERY_RHYMES",
+     "section": "B"
+    },
+    {
+     "tune": "340_03_ROBBINS_NEST",
+     "section": "B"
+    },
+    {
+     "tune": "344_02_ROSE_OF_THE_RIO_GRANDE",
+     "section": "B"
+    },
+    {
+     "tune": "364_03_SINCE_MY_BEST_GAL_TURNED_ME_DOWN",
+     "section": "B"
+    },
+    {
+     "tune": "447_02_WEE",
+     "section": "B"
+    },
+    {
+     "tune": "478_02_YOU_MADE_ME_LOVE_YOU",
+     "section": "B"
+    },
+    {
+     "tune": "69_01_CHARLESTON",
+     "section": "B"
+    },
+    {
+     "tune": "74_02_CHINATOWN_MY_CHINATOWN",
+     "section": "B"
+    },
+    {
+     "tune": "83_03_COTTAGE_FOR_SALE",
+     "section": "B"
+    }
+   ]
+  },
+  {
+   "name": "tag-rhythm-changes-a",
+   "level": "tune",
+   "status": "candidate",
+   "source": "fingerprint",
+   "members": [
+    "178_01_I_GOT_RHYTHM",
+    "447_02_WEE"
+   ]
+  },
+  {
+   "name": "tag-rhythm-changes-bridge",
+   "level": "section",
+   "status": "candidate",
+   "source": "fingerprint",
+   "members": [
+    {
+     "tune": "178_01_I_GOT_RHYTHM",
+     "section": "B"
+    },
+    {
+     "tune": "447_02_WEE",
+     "section": "B"
+    }
+   ]
+  },
+  {
+   "name": "llm-rhythm-changes-heads",
+   "level": "tune",
+   "status": "candidate",
+   "source": "llm",
+   "note": "All built on the 32-bar AABA 'I Got Rhythm' changes (usually in Bb): the head melodies differ but the harmonic form (I-vi-ii-V A-sections and a III7-VI7-II7-V7 dominant-cycle bridge) is shared. FIFTY SECOND = Monk's '52nd Street Theme', WEE = 'Allen's Alley'.",
+   "members": [
+    "178_01_I_GOT_RHYTHM",
+    "447_02_WEE"
+   ]
+  },
+  {
+   "name": "llm-rhythm-changes",
+   "level": "tune",
+   "status": "candidate",
+   "source": "llm",
+   "note": "'WEE' (also known as Allen's Alley, Denzil Best) is a bebop head built on the AABA 'I Got Rhythm' changes; classic rhythm-changes contrafact of I GOT RHYTHM.",
+   "members": [
+    "178_01_I_GOT_RHYTHM",
+    "447_02_WEE"
+   ]
+  },
+  {
+   "name": "llm-bebop-blues-in-f",
+   "level": "tune",
+   "status": "candidate",
+   "source": "llm",
+   "note": "Both are Charlie Parker 12-bar bebop blues heads (in F) sharing the standard bebop-blues progression with ii-V turnarounds.",
+   "members": [
+    "23_04_AU_PRIVAVE",
+    "72_03_CHERYL"
+   ]
+  },
+  {
+   "name": "llm-thou-swell-versions",
+   "level": "tune",
+   "status": "candidate",
+   "source": "llm",
+   "note": "Two arrangement versions of the same Rodgers & Hart tune 'Thou Swell', sharing the same underlying melody/harmony.",
+   "members": [
+    "425_01_THOU_SWELL",
+    "425_01_THOU_SWELL_MODERN_VERSION"
+   ]
+  }
+ ],
+ "non_matches": [
+  {
+   "pair": [
+    "457_03_WHEN_THE_SAINTS_GO_MARCHING_IN",
+    "79_03_CON_ALMA"
+   ],
+   "status": "candidate",
+   "source": "llm"
+  },
+  {
+   "pair": [
+    "22_02_AS_TIME_GOES_BY",
+    "23_04_AU_PRIVAVE"
+   ],
+   "status": "candidate",
+   "source": "llm"
+  },
+  {
+   "pair": [
+    "69_01_CHARLESTON",
+    "80_03_CONFIRMATION"
+   ],
+   "status": "candidate",
+   "source": "llm"
+  },
+  {
+   "pair": [
+    "153_02_HEART_AND_SOUL",
+    "72_01_CHEROKEE"
+   ],
+   "status": "candidate",
+   "source": "llm"
+  },
+  {
+   "pair": [
+    "178_01_I_GOT_RHYTHM",
+    "30_04_BASIN_STREET_BLUES"
+   ],
+   "status": "candidate",
+   "source": "llm"
+  },
+  {
+   "pair": [
+    "457_03_WHEN_THE_SAINTS_GO_MARCHING_IN",
+    "72_01_CHEROKEE"
+   ],
+   "status": "candidate",
+   "source": "llm"
+  },
+  {
+   "pair": [
+    "11_03_ALL_ALONE",
+    "23_04_AU_PRIVAVE"
+   ],
+   "status": "candidate",
+   "source": "llm"
+  }
+ ],
+ "llm_modulating_bridge_examples": [
+  {
+   "title": "BODY AND SOUL",
+   "stem": null,
+   "note": "Ballad in Db whose bridge lifts to the distant key of D major before returning."
+  },
+  {
+   "title": "CHEROKEE",
+   "stem": "72_01_CHEROKEE",
+   "note": "Bridge famously modulates through a descending sequence of ii-V's (starting in B) far from the home key of Bb."
+  },
+  {
+   "title": "HAVE YOU MET MISS JONES",
+   "stem": null,
+   "note": "Bridge cycles through three keys a major third apart (the 'Coltrane changes' bridge) rather than staying in the home key of F."
+  },
+  {
+   "title": "GIRL FROM IPANEMA THE",
+   "stem": null,
+   "note": "Bridge shifts to a remote key (a half-step-up tonal area) contrasting the home key of the A-sections."
+  },
+  {
+   "title": "ALL THE THINGS YOU ARE",
+   "stem": null,
+   "note": "Continuously modulating form; the bridge tonicizes G major then E major, distinct from the Ab/opening tonal center."
+  },
+  {
+   "title": "IN A SENTIMENTAL MOOD",
+   "stem": null,
+   "note": "A-sections in the home key with a bridge that moves to a contrasting key area (Db) a distance away."
+  },
+  {
+   "title": "I GOT RHYTHM",
+   "stem": "178_01_I_GOT_RHYTHM",
+   "note": "Rhythm-changes bridge leaves the tonic entirely for a III7-VI7-II7-V7 dominant cycle."
+  },
+  {
+   "title": "TAKE THE A TRAIN",
+   "stem": null,
+   "note": "A-sections in C with a bridge that moves up to the II (D) tonal area."
+  },
+  {
+   "title": "CON ALMA",
+   "stem": "79_03_CON_ALMA",
+   "note": "Dizzy Gillespie tune whose harmony continually modulates through symmetrical key centers, a strong seed for the modulating-section family."
+  }
+ ]
+}

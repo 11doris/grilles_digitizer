@@ -14,7 +14,7 @@ from pathlib import Path
 
 from pipelines.chords.similarity.normalize import PC_NAME, compute_opening, pitch_class
 from .llm import LLMVoteError
-from .scorer import TUNE_MARGIN_THRESHOLD, KeyVote
+from .scorer import TUNE_MARGIN_THRESHOLD, KeyVote, section_local_keys
 
 STATUS_AGREED = "agreed"
 STATUS_NEEDS_REVIEW = "needs_review"
@@ -172,6 +172,15 @@ def update_annotation(annotated: dict, *, tonic: str | None = None,
     voter votes, and sets status `verified` with `human.corrected` reflecting
     whether the key or section keys actually changed. Returns `annotated`
     (mutated in place).
+
+    §3.5 staleness handling: when the key or section keys actually changed
+    and the human did not edit the fingerprint in the same save, the
+    fingerprint (whose prose was written under the old key) is flagged
+    `stale: true` for the key-pinned LLM refresh on the next
+    `annotate_keys.py` run. On a key change the deterministic per-section
+    pass is re-run under the corrected key; newly detected local keys are
+    stored as `key_annotation.section_key_proposals` for the verifier app to
+    accept or dismiss — never silently written into `section_keys`.
     """
     old_key = dict(annotated["key"])
     old_sections = dict(annotated.get("section_keys") or {})
@@ -190,18 +199,47 @@ def update_annotation(annotated: dict, *, tonic: str | None = None,
         annotated.pop("section_keys", None)
     annotated["opening"] = compute_opening(annotated, key["tonic"], key["mode"])
 
+    # The verifier app posts the fingerprint on every save, edited or not —
+    # "edited" therefore means the merge actually changed something, not that
+    # the field was present in the request.
+    fingerprint_edited = False
     if fingerprint is not _UNSET and fingerprint is not None:
         current = annotated.get("harmonic_fingerprint") or {}
+        before = {k: v for k, v in current.items() if k != "stale"}
         for field in ("family", "tags", "sections", "modulates", "modulation_note"):
             if field in fingerprint:
                 current[field] = fingerprint[field]
         if current.get("modulation_note") in ("", None):
             current.pop("modulation_note", None)
         annotated["harmonic_fingerprint"] = current
+        fingerprint_edited = (
+            {k: v for k, v in current.items() if k != "stale"} != before)
 
-    corrected = (not _same_key(key, old_key)
-                 or _clean_section_keys(old_sections, key) != new_sections)
+    key_changed = not _same_key(key, old_key)
+    corrected = key_changed or _clean_section_keys(old_sections, key) != new_sections
+
+    fp = annotated.get("harmonic_fingerprint")
+    if fp is not None:
+        if fingerprint_edited:
+            fp.pop("stale", None)
+        elif corrected:
+            fp["stale"] = True
+
     annotation = annotated["key_annotation"]
+    if key_changed:
+        proposals = {
+            name: local for name, local
+            in section_local_keys(annotated, key["tonic"], key["mode"]).items()
+            if name not in new_sections}
+        if proposals:
+            annotation["section_key_proposals"] = proposals
+        else:
+            annotation.pop("section_key_proposals", None)
+    else:
+        # No key change: any pending proposals were on screen in this save —
+        # the human accepted them (via section_keys) or is dismissing them.
+        annotation.pop("section_key_proposals", None)
+
     annotation["status"] = STATUS_VERIFIED
     annotation["human"] = {"tonic": key["tonic"], "mode": key["mode"],
                            "corrected": corrected}
