@@ -17,6 +17,12 @@
   "variants": [
     {
       "applies_to": "BAR 27",
+      "targets": [
+        {
+          "section": "C",
+          "bar": 3
+        }
+      ],
       "bars": [
         {
           "bar": 1,
@@ -36,6 +42,12 @@
     },
     {
       "applies_to": "BAR 6",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 6
+        }
+      ],
       "bars": [
         {
           "bar": 1,

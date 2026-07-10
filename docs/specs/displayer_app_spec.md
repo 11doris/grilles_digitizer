@@ -177,7 +177,7 @@ As produced by the digitizer / verifier (see `docs/specs/jazz_chord_digitization
 { "bar": 3, "beats": { "1": "Eb", "3": "Fm7", "4": "F#o7" } }
 ```
 
-- `variants`: optional array of `{ "applies_to": "<string>", "bars": [ <bar objects> ] }`.
+- `variants`: optional array of `{ "applies_to": "<string>", "targets": [ { "section": "<name>", "bar": <n> }, … ], "bars": [ <bar objects> ] }`. `targets` gives one anchor per occurrence — the grid bar (1-indexed within its section) where the variant's first bar applies; the rest follow consecutively in the same section. Legacy tunes may lack `targets`, in which case the app falls back to parsing `applies_to` over the *chorus frame* (bar numbers count the main strain, excluding auxiliary `verse_*`/`intro`/`interlude`/`coda` sections).
 - `recordings`: optional array of strings.
 - `notation_notes`: optional object of string → string.
 
@@ -443,11 +443,12 @@ The root's own accidental also renders as `♯`/`♭`.
 ## 9. Extras (below the chord grid)
 
 Only for digitized-chord tunes (they read from the embedded `tune` JSON), shown
-below the chord panel. Rendered as four collapsible `<details>` blocks,
+below the chord panel. **Variants** render as an always-visible block immediately
+below the grid (item 2); the remaining blocks are collapsible `<details>`,
 collapsed by default, in small muted type:
 
 1. **Same changes** — the `same_chord_changes` string, when present.
-2. **Variants** — for each entry in `variants`: its `applies_to` string as a caption, then its `bars` rendered as a mini chord grid (same renderer as §6/§7 at ~65% scale, 4 bars per row, single barlines only — variants have no sections).
+2. **Variants** — rendered directly below the main grid (always visible, **not** collapsed). For each entry in `variants`: its `applies_to` string as a caption, then its `bars` rendered as a mini chord grid (same renderer as §6/§7, column-aligned to the main grid, single barlines only — variants have no sections). When a variant's `targets` (or, for legacy data, its `applies_to`) resolve to real grid bars, the variant box is **clickable**: clicking swaps the variant's chords into the matching grid bars and clicking again restores them. Variants toggle **independently** — several may be applied at once, and their overrides merge (a later-applied variant wins on any bar two of them both touch). Applying a variant does **not** visually mark the affected grid bars (the swapped chords stand on their own); an internal `.bar.variant-swap` class marks them only as a hook for tests/inspection. The active state is per-tune and resets when a different tune is opened.
 3. **Recordings** — the `recordings` array as a plain list.
 4. **Notes** — each `notation_notes` key/value as `key: value` lines.
 

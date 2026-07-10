@@ -25,6 +25,12 @@
   "variants": [
     {
       "applies_to": "Bar 7",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 7
+        }
+      ],
       "bars": [
         {
           "bar": 1,

@@ -20,6 +20,12 @@
   "variants": [
     {
       "applies_to": "Bar 1",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 1
+        }
+      ],
       "bars": [
         {
           "bar": 1,

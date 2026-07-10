@@ -62,6 +62,7 @@
     gridZoom: 1, // user zoom factor on top of the fitted grid size; reset per tune
     activePl: null, // active playlist id (persisted, §11.4)
     transpose: null, // {shift, spell, targetPc, mode} or null (original key); per-tune
+    activeVariants: new Set(), // indices of variants swapped into the grid (non-exclusive); per-tune
   };
 
   /* ------------------------------------------------------------- helpers */
@@ -507,7 +508,11 @@
           if (double && idx === 0) cell.classList.add("sec-start");
           if (double && idx === bars.length - 1) cell.classList.add("sec-end");
           if (i === 3 || idx === bars.length - 1) cell.classList.add("rowlast");
-          fillBar(cell, bar, beats);
+          // An active variant swaps its beats into the matching bar (same bar
+          // number, so barlines/section marks are unchanged) and flags it.
+          const ov = opts && opts.overrides && opts.overrides[idx];
+          if (ov) cell.classList.add("variant-swap");
+          fillBar(cell, ov ? { bar: bar.bar, beats: ov.beats } : bar, beats);
         } else {
           cell.classList.add("empty");
         }
@@ -518,12 +523,13 @@
     return frag;
   }
 
-  function renderSection(name, bars, beats, isFirst, ts) {
+  function renderSection(name, bars, beats, isFirst, ts, overrides) {
     const sec = el("div", "section");
     const badge = el("div", "sec-label");
     badge.textContent = displaySectionName(name);
     sec.appendChild(badge);
-    sec.appendChild(renderGrid(bars, beats, { double: true, timesig: isFirst ? ts : null }));
+    sec.appendChild(renderGrid(bars, beats,
+      { double: true, timesig: isFirst ? ts : null, overrides }));
     return sec;
   }
 
@@ -660,16 +666,97 @@
     return details;
   }
 
+  /* Sections that don't count toward the "chorus" bar frame the legacy captions
+     use (verse/intro/… are auxiliary). Mirrors the backfill tool. */
+  const AUX_SECTION = /^(verse|intro|interlude|coda|transition)/i;
+
+  /* Chorus bars in printed order as {name, idx}, EXCLUDING auxiliary sections —
+     the frame an old "applies_to" caption's bar numbers count over. Only used as
+     a fallback for variants that predate the explicit `targets` anchors. */
+  function chorusFlatBarsOf(tune) {
+    const flat = [];
+    Object.keys(tune.sections || {}).forEach((name) => {
+      if (AUX_SECTION.test(name)) return;
+      (tune.sections[name] || []).forEach((_bar, idx) => flat.push({ name, idx }));
+    });
+    return flat;
+  }
+
+  /* Resolve which main-grid bars a variant swaps in. Prefers the explicit
+     `targets` anchors — one {section, bar} per occurrence, placing the variant's
+     FIRST bar at that (1-indexed) grid bar with the rest following consecutively
+     within the same section. Falls back to parsing the free-text "applies_to"
+     over the chorus frame for un-migrated data. Returns
+     { bySection: {name: {idx: variantBar}}, count } so both the grid substitution
+     and the clickability check share one mapping. */
+  function variantOverrides(tune, variant) {
+    const bySection = {};
+    let count = 0;
+    const bars = (variant && variant.bars) || [];
+    if (!bars.length) return { bySection, count };
+
+    const place = (name, startIdx) => {
+      const secBars = (tune.sections || {})[name];
+      if (!secBars) return;
+      bars.forEach((vb, i) => {
+        const idx = startIdx + i;
+        if (idx < 0 || idx >= secBars.length) return; // never spill past a section
+        (bySection[name] || (bySection[name] = {}))[idx] = vb;
+        count++;
+      });
+    };
+
+    const targets = Array.isArray(variant.targets) ? variant.targets : null;
+    if (targets && targets.length) {
+      targets.forEach((tg) => {
+        if (tg && tg.section) place(tg.section, (tg.bar || 1) - 1);
+      });
+    } else {
+      const starts = (String(variant.applies_to || "").match(/\d+/g) || []).map(Number);
+      const flat = chorusFlatBarsOf(tune);
+      starts.forEach((start) => {
+        const loc = flat[start - 1];
+        if (loc) place(loc.name, loc.idx);
+      });
+    }
+    return { bySection, count };
+  }
+
   /* Variants (spec §6): alternative changes for certain bars, rendered as small
-     chord grids directly below the main grid — always visible, not collapsed. */
+     chord grids directly below the main grid — always visible, not collapsed.
+     Clicking a variant swaps its bars into the main grid and back. Variants
+     toggle independently — several can be applied at once (their overrides are
+     merged; the grid is not visually marked where a swap is in effect). */
   function renderVariants(tune, beats) {
     if (!Array.isArray(tune.variants) || !tune.variants.length) return null;
     const wrap = el("div", "variants");
     const title = el("div", "variants-title");
     title.textContent = tune.variants.length > 1 ? "Variants" : "Variant";
     wrap.appendChild(title);
-    tune.variants.forEach((variant) => {
+    tune.variants.forEach((variant, vi) => {
       const v = el("div", "variant");
+      // Clickable only when we can map its anchors to real grid bars.
+      const canApply = variantOverrides(tune, variant).count > 0;
+      const active = state.activeVariants.has(vi);
+      if (canApply) {
+        v.classList.add("clickable");
+        v.setAttribute("role", "button");
+        v.tabIndex = 0;
+        v.setAttribute("aria-pressed", active ? "true" : "false");
+        v.title = active
+          ? "Applied to the grid — click to restore the original bars"
+          : "Click to swap these bars into the grid";
+        if (active) v.classList.add("active");
+        const toggle = () => {
+          if (state.activeVariants.has(vi)) state.activeVariants.delete(vi);
+          else state.activeVariants.add(vi);
+          renderTune(state.currentId); // same tune → keeps zoom/scroll/transpose
+        };
+        v.addEventListener("click", toggle);
+        v.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+        });
+      }
       if (variant.applies_to) {
         const cap = el("div", "variant-caption");
         cap.textContent = variant.applies_to;
@@ -1233,6 +1320,7 @@
     if (isNewTune) {
       state.transpose = null; // every tune opens in its own printed key
       state.gridZoom = 1; // grid zoom is per-tune: every tune opens at the fitted size
+      state.activeVariants.clear(); // and with no variant swapped in
     }
     document.title = `${t.title || id} — Grilles`;
 
@@ -1267,8 +1355,22 @@
       if (t.has_chord_json) {
         const grid = el("div", "grid");
         const beats = beatsPerBar(tune);
+        // Merge the per-section bar substitutions of every active variant (empty
+        // when none). Later variants win on any bar two of them both touch.
+        const overrides = {};
+        if (Array.isArray(tune.variants)) {
+          state.activeVariants.forEach((vi) => {
+            const variant = tune.variants[vi];
+            if (!variant) return;
+            const bySection = variantOverrides(tune, variant).bySection;
+            Object.keys(bySection).forEach((name) => {
+              Object.assign(overrides[name] || (overrides[name] = {}), bySection[name]);
+            });
+          });
+        }
         Object.keys(tune.sections || {}).forEach((name, i) => {
-          grid.appendChild(renderSection(name, tune.sections[name], beats, i === 0, tune.time_signature));
+          grid.appendChild(renderSection(name, tune.sections[name], beats,
+            i === 0, tune.time_signature, overrides[name]));
         });
         panel.appendChild(grid);
         const variants = renderVariants(tune, beats);

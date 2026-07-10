@@ -24,6 +24,20 @@
   "variants": [
     {
       "applies_to": "Bar 5, 13,28",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 5
+        },
+        {
+          "section": "A1",
+          "bar": 5
+        },
+        {
+          "section": "A2",
+          "bar": 4
+        }
+      ],
       "bars": [
         {
           "bar": 1,

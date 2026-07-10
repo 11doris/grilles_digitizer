@@ -24,6 +24,20 @@
   "variants": [
     {
       "applies_to": "Bar 1, 9, 25",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 1
+        },
+        {
+          "section": "A1",
+          "bar": 1
+        },
+        {
+          "section": "A 3",
+          "bar": 1
+        }
+      ],
       "bars": [
         {
           "bar": 1,
@@ -36,6 +50,12 @@
     },
     {
       "applies_to": "Bar 17",
+      "targets": [
+        {
+          "section": "B",
+          "bar": 1
+        }
+      ],
       "bars": [
         {
           "bar": 1,
@@ -50,6 +70,12 @@
     },
     {
       "applies_to": "Bar 17",
+      "targets": [
+        {
+          "section": "B",
+          "bar": 1
+        }
+      ],
       "bars": [
         {
           "bar": 1,
@@ -69,6 +95,12 @@
     },
     {
       "applies_to": "Bar 17",
+      "targets": [
+        {
+          "section": "B",
+          "bar": 1
+        }
+      ],
       "bars": [
         {
           "bar": 1,

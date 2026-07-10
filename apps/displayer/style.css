@@ -927,6 +927,29 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
 .variant { margin: 0.75rem 0 1rem; }
 
+/* A clickable variant swaps its bars into the grid; its box lifts on hover and
+   shows an "applied" state when active. Padding keeps the outline off the bars. */
+.variant.clickable {
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  transition: background 0.12s, border-color 0.12s;
+}
+.variant.clickable:hover { background: var(--panel); border-color: var(--border); }
+.variant.clickable:focus-visible { outline: 2px solid var(--muted); outline-offset: 2px; }
+.variant.clickable.active { border-color: var(--accent); background: var(--chip-bg); }
+/* A small "applied" tag on the active variant's caption. */
+.variant.clickable.active .variant-caption::after {
+  content: " ✓ applied";
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+/* `.bar.variant-swap` marks main-grid bars an applied variant has swapped in.
+   It carries no visual styling (the swapped chords speak for themselves); the
+   class is kept purely as a hook for tests/inspection. */
+
 .variant-caption {
   color: var(--fg);
   font-size: 0.85rem;
