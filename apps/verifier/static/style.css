@@ -151,7 +151,6 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
 .tune-item:hover  { background: var(--sb-hover); }
 .tune-item.status-verified { border-left-color: var(--verified); }
 .tune-item.status-deferred { border-left-color: var(--warning); }
-.tune-item.status-variant_review { border-left-color: var(--accent); }
 /* Active selection wins the accent border regardless of review state. */
 .tune-item.active { background: var(--sb-active); border-left-color: var(--accent); }
 
@@ -163,7 +162,6 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
 }
 .tune-item.status-verified    .tune-status { color: var(--verified); }
 .tune-item.status-deferred    .tune-status { color: var(--warning); }
-.tune-item.status-variant_review .tune-status { color: var(--accent); }
 .tune-item.status-needs_review .tune-status { color: var(--sb-muted); }
 
 .tune-title {
@@ -232,24 +230,6 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
   font-size: 18px;
   line-height: 1;
 }
-
-/* ─── Variant-review banner ───────────────────────────────────────────── */
-#variant-banner {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 20px;
-  background: #eff6ff;
-  border-bottom: 1px solid var(--border);
-  color: #1e3a8a;
-  font-size: 13px;
-  flex-shrink: 0;
-}
-#variant-banner.hidden { display: none; }
-#variant-banner .vb-icon { color: var(--accent); font-size: 14px; flex-shrink: 0; }
-#variant-banner .vb-text { flex: 1; min-width: 0; }
-#variant-banner .vb-text strong { font-weight: 700; }
-#variant-banner #vb-goto { flex-shrink: 0; }
 
 /* ─── Editor body ─────────────────────────────────────────────────────── */
 #editor-body {

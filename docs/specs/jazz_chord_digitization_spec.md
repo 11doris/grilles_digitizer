@@ -571,9 +571,8 @@ Rules:
 * **Omit** `variants` entirely when the page has none.
 
 > Legacy tunes digitized before `targets` existed carry only `applies_to`; the displayer and
-> tools fall back to parsing that caption over the chorus frame, and
-> `pipelines/chords/tools/backfill_variant_targets.py` computes `targets` for the verified
-> corpus. New transcriptions must emit `targets`.
+> tools fall back to parsing that caption over the chorus frame. The verified corpus has since
+> been backfilled with explicit `targets`, and new transcriptions must emit `targets`.
 
 ---
 
