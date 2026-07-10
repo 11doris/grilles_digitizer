@@ -1269,6 +1269,7 @@
    * font), so both levers are computed from one measurement pass. */
   const MAX_GRID_WIDTH_EM = 56; // aesthetic cap: past this, shrink the font instead
   const MIN_BEAT_GAP_EM = 0.1; // minimum gap kept between a chord and the next beat's chord
+  const PER_CHORD_OVERFLOW_EM = 0.20; // how far a chord may poke past its beat column before it counts as crowding
   const MAX_MOBILE_FONT = 20; // px — ceiling for the grow-to-fill pass on phones/portrait
 
   function fitGridWidth() {
@@ -1291,7 +1292,15 @@
     // room) over every bar; it's font-proportional (chord width and gap both scale
     // with the font), so this one pass drives every lever below. >1 collides, <1
     // has slack the grow-to-fill pass can spend on a larger font.
-    const gapPx = MIN_BEAT_GAP_EM * parseFloat(getComputedStyle(grid).fontSize);
+    //
+    // A small per-chord overflow allowance lets a wide chord poke slightly past
+    // its own column into the whitespace before the next chord's ink, so a dense
+    // bar can stay a bit larger without the chords actually touching — it trades a
+    // touch of that gap for font size, without disturbing the beat alignment
+    // (chords stay anchored to their beat lines).
+    const fontPx = parseFloat(getComputedStyle(grid).fontSize);
+    const gapPx = MIN_BEAT_GAP_EM * fontPx;
+    const allowPx = PER_CHORD_OVERFLOW_EM * fontPx;
     let ratio = 0;
     grid.querySelectorAll(".bar").forEach((bar) => {
       const slots = bar.querySelectorAll(".slot");
@@ -1304,14 +1313,12 @@
       const colW = inner / beats;
       slots.forEach((slot) => {
         const span = parseInt(slot.dataset.span, 10) || 1;
-        const room = span * colW - gapPx; // room before the next beat's chord
+        const room = span * colW - gapPx + allowPx; // span, less a min gap, plus overflow
         if (room <= 0) return;
         ratio = Math.max(ratio, slot.getBoundingClientRect().width / room);
       });
     });
     if (ratio <= 0) return; // no bars carry chords
-
-    const fontPx = parseFloat(getComputedStyle(grid).fontSize);
 
     // Phones / portrait: the grid always fills the full panel width, and the font
     // grows (or shrinks) so the busiest bar just fits — the chords get as large as
