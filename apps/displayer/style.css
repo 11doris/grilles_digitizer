@@ -23,6 +23,24 @@
   src: url("fonts/barlow-condensed-700.woff2") format("woff2");
 }
 
+/* Saira Extra Condensed (Google Fonts, latin subset) — used only for crowded
+   bars (.bar.tight): a much narrower face so 3–4 chords fit a single bar without
+   forcing the whole grid's font down. ♯ ♭ Δ fall back to the system font, same
+   as Barlow Condensed. */
+@font-face {
+  font-family: "Saira Extra Condensed";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/saira-extra-condensed-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Saira Extra Condensed";
+  font-style: normal;
+  font-weight: 500;
+  src: url("fonts/saira-extra-condensed-500.woff2") format("woff2");
+}
+
 :root[data-theme="dark"] {
   --bg: #0b0b0d;
   --panel: #16161a;
@@ -650,9 +668,9 @@ body.list-collapsed #gridZoom { left: 1rem; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Barlow Condensed", "Arial Narrow", sans-serif;
   font-weight: 500;
-  font-size: 1.3em;
+  font-size: 1.4em;
   line-height: 1;
   gap: 0.08em;
 }
@@ -694,6 +712,24 @@ body.list-collapsed #gridZoom { left: 1rem; }
   flex: 1 0 0;
   min-width: 0.1em;
 }
+
+/* Crowded bars (3+ chords, tagged .tight in fillBar) render their chords in a
+   much narrower face and pack the columns tighter, so a single busy bar can't
+   force the whole grid's font down — the rest of the grid stays large while the
+   dense bar simply gets condensed (see fitGridWidth). */
+.bar.tight .chord {
+  font-family: "Saira Extra Condensed", "Barlow Condensed", "Arial Narrow", sans-serif;
+  letter-spacing: -0.02em;
+}
+/* Narrow the middle/right columns (never the root, so the ground line and the
+   root's height stay consistent with the roomy bars) and pull the columns in
+   tight, so a dense bar's chords are horizontally compact but still full-height. */
+.bar.tight .chord .qual { font-size: 0.95em; margin-left: 0.01em; }
+.bar.tight .chord .acc { margin-left: 0.01em; }
+.bar.tight .chord .acc.flat { font-size: 1.55em; }
+.bar.tight .chord .acc.sharp { font-size: 1.35em; }
+.bar.tight .chord .alt-up,
+.bar.tight .chord .alt-down { font-size: 0.9em; margin-left: 0em; }
 
 /* -------------------------------------------------------- chord symbols */
 
@@ -1104,7 +1140,12 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
   body.list-open #listBackdrop { display: block; }
 
-  #tuneView { padding: 0.75rem 0.8rem 3.2rem; }
-  .grid { padding-left: 1.0em; }
+  #tuneView { padding: 0.75rem 0.2rem 3.2rem; }
+  /* Tight left gutter so the grid runs nearly edge-to-edge; just wide enough to
+     hold the first row's (narrow Saira) time signature. The section badge and
+     timesig ride in this gutter, their offsets trimmed to match. */
+  .grid { padding-left: 0.5em; }
+  .sec-label { margin-left: -0.5em; }
+  .timesig { left: -0.42em; }
   #gridZoom { left: 1rem; } /* sidebar is a drawer here, corner is free */
 }
