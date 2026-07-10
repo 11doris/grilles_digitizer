@@ -1180,7 +1180,9 @@ body.list-collapsed #gridZoom { left: 1rem; }
 /* ------------------------------------------------------------ responsive */
 
 /* Phones: portrait (narrow) or landscape (short) — sidebar becomes a drawer. */
-@media (max-width: 700px), (max-height: 500px) {
+/* Phones, short landscape, and portrait tablets below the 900px desktop seam.
+   Keep this list in sync with narrowMq in app.js. */
+@media (max-width: 700px), (max-height: 500px), (max-width: 899px) and (orientation: portrait) {
   .topbar { gap: 0.5rem; padding: 0.5rem 0.7rem; }
 
   /* The drawer is driven by .list-open only; a desktop collapse choice
