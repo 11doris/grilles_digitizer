@@ -198,8 +198,10 @@ body.list-collapsed #gridZoom { left: 1rem; }
 /* Toolbar with the Chords / Melody switches, under the tune head (§5.4). */
 .panel-bar {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 0.6rem 1.4rem;
   margin: 0.2rem auto 1rem;
 }
 
@@ -240,6 +242,33 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .switch input:checked + .knob { background: var(--accent); border-color: var(--accent); }
 .switch input:checked + .knob::after { transform: translateX(0.9rem); background: #fff; }
 .switch input:focus-visible + .knob { outline: 2px solid var(--muted); }
+
+/* Transpose key picker: a compact native <select> so it stays small and gets
+   the OS picker on phones. Sits in the panel bar beside the Chords/Melody
+   switches. */
+.transpose {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+.transpose-label { color: var(--fg); }
+
+.key-select {
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--fg);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.15rem 0.4rem;
+  cursor: pointer;
+  max-width: 9.5rem;
+}
+
+.key-select:focus-visible { outline: 2px solid var(--muted); }
 
 /* Panels stack vertically (mobile portrait); on wide screens two visible
    panels sit side by side — chords left, melody right (§5.4). */

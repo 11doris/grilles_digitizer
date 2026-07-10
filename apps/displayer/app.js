@@ -3,9 +3,30 @@
 "use strict";
 
 (function () {
-  const { renderChordHTML, escapeHtml } = window.GrillesChords;
+  const { renderChordHTML, escapeHtml, transposeChordSymbol, pitchClass,
+    FLAT_SPELL, SHARP_SPELL } = window.GrillesChords;
   const PL = window.GrillesPlaylists;
   const TUNES = window.TUNES || [];
+
+  /* Target tonics offered by the transpose control, in pitch-class order, with
+     the book's preferred enharmonic spelling per mode (spec §7.2): "Gb major"
+     not "F# major", "Ebm" not "D#m". */
+  const MAJOR_TONICS = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+  const MINOR_TONICS = ["C", "C#", "D", "Eb", "E", "F", "F#", "G", "G#", "A", "Bb", "B"];
+  // Pitch classes whose key uses a sharp-biased chord spelling (rest use flats).
+  const MAJOR_SHARP_PCS = new Set([2, 4, 7, 9, 11]); // D E G A B
+  const MINOR_SHARP_PCS = new Set([1, 4, 6, 8, 11]); // C#m Em F#m G#m Bm
+
+  function spellTableFor(pc, mode) {
+    const sharp = mode === "minor" ? MINOR_SHARP_PCS.has(pc) : MAJOR_SHARP_PCS.has(pc);
+    return sharp ? SHARP_SPELL : FLAT_SPELL;
+  }
+
+  /* Render a chord symbol, applying the current transposition if one is set. */
+  function renderChord(sym) {
+    const tr = state.transpose;
+    return renderChordHTML(tr ? transposeChordSymbol(sym, tr.shift, tr.spell) : sym);
+  }
 
   const searchEl = document.getElementById("search");
   const listEl = document.getElementById("tuneList");
@@ -40,6 +61,7 @@
     overlayMag: false, // fullscreen scan magnified (pan by scrolling)
     gridZoom: 1, // user zoom factor on top of the fitted grid size; reset per tune
     activePl: null, // active playlist id (persisted, §11.4)
+    transpose: null, // {shift, spell, targetPc, mode} or null (original key); per-tune
   };
 
   /* ------------------------------------------------------------- helpers */
@@ -454,7 +476,7 @@
       const slot = el("div", "slot");
       slot.style.gridColumn = `${beat} / ${next}`;
       slot.dataset.span = String(next - beat);
-      slot.innerHTML = renderChordHTML(chord);
+      slot.innerHTML = renderChord(chord);
       cell.appendChild(slot);
     });
   }
@@ -522,6 +544,16 @@
     return noteGlyph(k.tonic) + (k.mode ? " " + k.mode : "");
   }
 
+  /* Same, but transposed to the current target key when a transposition is
+     active — so the Key/section-key chips track the transposed grid. */
+  function displayKey(k) {
+    if (!k || !k.tonic) return null;
+    const tr = state.transpose;
+    if (!tr || !tr.shift) return keyLabel(k);
+    const pc = (pitchClass(k.tonic) + tr.shift) % 12;
+    return keyLabel({ tonic: tr.spell[((pc % 12) + 12) % 12], mode: k.mode });
+  }
+
   function harmChip(kind, label, value) {
     const chip = el("span", "harm-chip " + kind);
     if (label) {
@@ -541,13 +573,19 @@
      per-section analysis lives in the collapsible extras below the grid. */
   function renderHarmony(tune) {
     const keys = el("div", "harm-row harm-keys");
-    const mainKey = keyLabel(tune.key);
-    if (mainKey) keys.appendChild(harmChip("key", "Key", mainKey));
+    const mainKey = displayKey(tune.key);
+    if (mainKey) {
+      const chip = harmChip("key", "Key", mainKey);
+      if (state.transpose && state.transpose.shift && tune.key) {
+        chip.title = "Transposed from " + keyLabel(tune.key);
+      }
+      keys.appendChild(chip);
+    }
 
     const scorer = (tune.key_annotation || {}).scorer || {};
     const sectionKeys = scorer.section_keys || {};
     Object.keys(sectionKeys).forEach((name) => {
-      const label = keyLabel(sectionKeys[name]);
+      const label = displayKey(sectionKeys[name]);
       if (label) keys.appendChild(harmChip("section", displaySectionName(name), label));
     });
 
@@ -734,6 +772,47 @@
     return wrap;
   }
 
+  /* Compact key/transpose picker for the panel bar (chord tunes with a known
+     key only). A native <select> stays small and gets the OS picker on mobile;
+     the tune's own key is marked "(orig)" so the default is always visible.
+     Changing it re-renders the tune in the chosen key (grid, variants, melody
+     and the harmony key chips all follow). */
+  function makeTransposeControl(t) {
+    const tune = meta(t);
+    const key = tune.key;
+    if (!t.has_chord_json || !key || !key.tonic) return null;
+    const mode = key.mode === "minor" ? "minor" : "major";
+    const sourcePc = pitchClass(key.tonic);
+    const tonics = mode === "minor" ? MINOR_TONICS : MAJOR_TONICS;
+
+    const wrap = el("label", "transpose");
+    wrap.title = "Transpose — original key " + noteGlyph(key.tonic) + " " + mode;
+    const text = el("span", "transpose-label");
+    text.textContent = "Key";
+    const sel = document.createElement("select");
+    sel.className = "key-select";
+    const selectedPc = state.transpose ? state.transpose.targetPc : sourcePc;
+    tonics.forEach((tonic, pc) => {
+      const opt = document.createElement("option");
+      opt.value = String(pc);
+      opt.textContent = noteGlyph(tonic) + " " + mode + (pc === sourcePc ? " (orig)" : "");
+      if (pc === selectedPc) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    sel.addEventListener("change", () => {
+      const targetPc = parseInt(sel.value, 10);
+      if (targetPc === sourcePc) {
+        state.transpose = null;
+      } else {
+        const shift = ((targetPc - sourcePc) % 12 + 12) % 12;
+        state.transpose = { shift, spell: spellTableFor(targetPc, mode), targetPc, mode };
+      }
+      renderTune(state.currentId); // same tune → keeps zoom/scroll (see renderTune)
+    });
+    wrap.append(text, sel);
+    return wrap;
+  }
+
   function scanImg(src, alt) {
     const frag = document.createDocumentFragment();
     const img = el("img", "scan");
@@ -788,7 +867,7 @@
 
   /* Melody lead sheet from the embedded ABC (spec §5.4). Never crashes the
      page: a malformed ABC renders a warning and falls back to the scan. */
-  function renderAbcSheet(panel, t) {
+  function renderAbcSheet(panel, t, shift) {
     const sheet = panel.querySelector(".abc-sheet");
     if (!sheet) return;
     /* abcjs styles the element it renders into inline (display:inline-block),
@@ -806,6 +885,7 @@
         add_classes: true,
         paddingtop: 0,
         paddingbottom: 0,
+        visualTranspose: shift || 0, // move with the transposed chords
       });
       if (!sheet.querySelector("svg")) throw new Error("abcjs produced no output");
     } catch (err) {
@@ -1146,8 +1226,14 @@
   function renderTune(id) {
     const t = tuneById(id);
     if (!t) return;
+    /* A genuine tune change resets the per-tune transposition, zoom and scroll;
+       re-rendering the same tune (e.g. after picking a new key) preserves them. */
+    const isNewTune = id !== state.currentId;
     state.currentId = id;
-    state.gridZoom = 1; // grid zoom is per-tune: every tune opens at the fitted size
+    if (isNewTune) {
+      state.transpose = null; // every tune opens in its own printed key
+      state.gridZoom = 1; // grid zoom is per-tune: every tune opens at the fitted size
+    }
     document.title = `${t.title || id} — Grilles`;
 
     paneEl.innerHTML = "";
@@ -1169,6 +1255,8 @@
         applyPanels(t);
       }));
     }
+    const transpose = makeTransposeControl(t);
+    if (transpose) bar.appendChild(transpose);
     if (bar.childElementCount) paneEl.appendChild(bar);
 
     const panels = el("div", "panels");
@@ -1217,11 +1305,12 @@
     }
 
     paneEl.appendChild(panels);
-    /* abcjs measures the container, so render after the panel is in the DOM. */
-    if (melodyPanel) renderAbcSheet(melodyPanel, t);
+    /* abcjs measures the container, so render after the panel is in the DOM.
+       The melody moves with the chords: same semitone shift via visualTranspose. */
+    if (melodyPanel) renderAbcSheet(melodyPanel, t, state.transpose ? state.transpose.shift : 0);
     applyPanels(t);
 
-    viewEl.scrollTop = 0;
+    if (isNewTune) viewEl.scrollTop = 0;
     if (narrowMq.matches) setListOpen(false);
     updateListHighlight();
     updateStepButtons();
