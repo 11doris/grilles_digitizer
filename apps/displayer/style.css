@@ -740,7 +740,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
 /* Narrow the middle/right columns (never the root, so the ground line and the
    root's height stay consistent with the roomy bars) and pull the columns in
    tight, so a dense bar's chords are horizontally compact but still full-height. */
-.bar.tight .chord .qual { font-size: 0.95em; margin-left: 0.01em; }
+.bar.tight .chord .qual { font-size: 1.3em; margin-left: 0.01em; }
 .bar.tight .chord .acc { margin-left: 0.01em; }
 .bar.tight .chord .acc.flat { font-size: 1.55em; }
 .bar.tight .chord .acc.sharp { font-size: 1.35em; }
