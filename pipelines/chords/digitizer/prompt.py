@@ -322,12 +322,24 @@ bars the alternate applies to, but do NOT output the symbol itself. Transcribe t
 "variants", a list of objects — ONE object per VARIANTE label:
   {{
     "applies_to": "Bar 1, 9, 25",  // the printed bar reference, verbatim
+    "targets": [ {{ "section": "A", "bar": 1 }}, {{ "section": "A1", "bar": 1 }}, {{ "section": "A2", "bar": 1 }} ],
     "bars": [ {{ "bar": 1, "beats": {{ "1": "Fm7", "3": "Gm7" }} }}, ... ]
   }}
 - "bars" uses the SAME shape and the SAME subdivision/notation/expansion rules as a
   section: one object per printed variant box, "bar" 1-indexed in printed left-to-right
   order, beats read from each box's own regions. These are the replacement chords for
-  the referenced grid bar(s); downstream code maps them using "applies_to".
+  the referenced grid bar(s).
+- "targets": ONE object per occurrence the alternate applies to, giving the grid bar
+  where the alternate's FIRST box lands: {{ "section": "<section id>", "bar": <n> }} with
+  "bar" 1-indexed WITHIN that section (NOT a global count). Read each straight off the
+  grid — find the marker (or the referenced bar) in the grid, and record the section it
+  sits in and its position within that section. The alternate's remaining boxes follow
+  consecutively in the SAME section (box 2 → bar+1, box 3 → bar+2, …); they never spill
+  past the section's end. Emit one target per printed occurrence, in printed order.
+- The "applies_to" caption's numbers count the CHORUS (the main strain: sections A, A1,
+  B, … ) and SKIP any verse/intro/interlude/coda — but you do NOT need to count: just
+  locate the marker on the grid. E.g. on a "16 A A' | 32 A A B A" tune, "Bar 1" is bar 1
+  of the CHORUS section A, not bar 1 of the verse → target {{ "section": "A", "bar": 1 }}.
 - Keep the main grid UNCHANGED: the original chords stay in "sections", and the marker
   symbol (*, ①, ...) is NEVER written into a chord string nor emitted as a field — it
   only tells you which grid bar an alternate belongs to.
@@ -470,6 +482,25 @@ TUNE_TOOL = {
                                 '"Bar 1, 9, 25").'
                             ),
                         },
+                        "targets": {
+                            "type": "array",
+                            "description": (
+                                "One anchor per occurrence the alternate applies "
+                                "to, giving the grid bar where its FIRST box lands. "
+                                "The remaining boxes follow consecutively in the "
+                                "same section. Bar numbers are 1-indexed WITHIN a "
+                                "section and count the chorus (verse/intro skipped). "
+                                "See the system instructions."
+                            ),
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "section": {"type": "string"},
+                                    "bar": {"type": "integer"},
+                                },
+                                "required": ["section", "bar"],
+                            },
+                        },
                         "bars": {
                             "type": "array",
                             "description": (
@@ -479,7 +510,7 @@ TUNE_TOOL = {
                             ),
                         },
                     },
-                    "required": ["applies_to", "bars"],
+                    "required": ["applies_to", "targets", "bars"],
                 },
             },
             "same_chord_changes": {

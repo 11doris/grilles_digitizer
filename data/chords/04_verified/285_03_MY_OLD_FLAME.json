@@ -8,22 +8,23 @@
   "title": "MY OLD FLAME",
   "page": 285,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints '8 VERSE'."
-  },
-  "recordings": [
-    "Ch.Baker 59- Co.Williams 44.58- H.Edison 76",
-    "Pl.Johnson 59- O.Mulligan 55- C.Parker 47.48",
-    "D.Ellington 34.55- B.Goodman 41- E.Bunes 79",
-    "J.Pass 73- A.Reig 54- C.Basie 41- T.Lewis 34",
-    "O.Peterson 55- T.Farlow 54- E.Fitzgerald 59",
-    "K.Dorham 57- D.Gillespie 52- B.Holiday 44",
-    "S.Getz 50.51- J.J.Johnson 58- Keynoters 46",
-    "M.Davis 58- M.Davis 51"
-  ],
   "variants": [
     {
       "applies_to": "Bar 1, 9, 25",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 1
+        },
+        {
+          "section": "A1",
+          "bar": 1
+        },
+        {
+          "section": "A2",
+          "bar": 1
+        }
+      ],
       "bars": [
         {
           "bar": 1,
@@ -36,6 +37,12 @@
     },
     {
       "applies_to": "Bar 17",
+      "targets": [
+        {
+          "section": "B",
+          "bar": 1
+        }
+      ],
       "bars": [
         {
           "bar": 1,
@@ -50,6 +57,12 @@
     },
     {
       "applies_to": "Bar 17",
+      "targets": [
+        {
+          "section": "B",
+          "bar": 1
+        }
+      ],
       "bars": [
         {
           "bar": 1,
@@ -69,6 +82,12 @@
     },
     {
       "applies_to": "Bar 17",
+      "targets": [
+        {
+          "section": "B",
+          "bar": 1
+        }
+      ],
       "bars": [
         {
           "bar": 1,
@@ -100,6 +119,19 @@
         }
       ]
     }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
+  "recordings": [
+    "Ch.Baker 59- Co.Williams 44.58- H.Edison 76",
+    "Pl.Johnson 59- O.Mulligan 55- C.Parker 47.48",
+    "D.Ellington 34.55- B.Goodman 41- E.Bunes 79",
+    "J.Pass 73- A.Reig 54- C.Basie 41- T.Lewis 34",
+    "O.Peterson 55- T.Farlow 54- E.Fitzgerald 59",
+    "K.Dorham 57- D.Gillespie 52- B.Holiday 44",
+    "S.Getz 50.51- J.J.Johnson 58- Keynoters 46",
+    "M.Davis 58- M.Davis 51"
   ],
   "sections": {
     "A": [
@@ -280,7 +312,7 @@
         }
       }
     ],
-    "A 3": [
+    "A2": [
       {
         "bar": 1,
         "beats": {

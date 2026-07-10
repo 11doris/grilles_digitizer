@@ -109,6 +109,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "BAR 1",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -804,6 +810,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "BAR 27",
+     "targets": [
+      {
+       "section": "C",
+       "bar": 3
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -823,6 +835,12 @@ window.TUNES = [
     },
     {
      "applies_to": "BAR 6",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 6
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -1177,6 +1195,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 17",
+     "targets": [
+      {
+       "section": "B",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -1483,6 +1507,20 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 1, 9, 25",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 1
+      },
+      {
+       "section": "A1",
+       "bar": 1
+      },
+      {
+       "section": "A2",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -2963,6 +3001,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 27",
+     "targets": [
+      {
+       "section": "C",
+       "bar": 3
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -8727,6 +8771,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 9",
+     "targets": [
+      {
+       "section": "B",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -9070,6 +9120,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 15",
+     "targets": [
+      {
+       "section": "A1",
+       "bar": 7
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -9830,6 +9886,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 23",
+     "targets": [
+      {
+       "section": "B",
+       "bar": 7
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -10578,6 +10640,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 7",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 7
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -11672,6 +11740,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 1",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -14339,6 +14413,20 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 2, 10 and 26",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 2
+      },
+      {
+       "section": "A1",
+       "bar": 2
+      },
+      {
+       "section": "A2",
+       "bar": 2
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -14680,6 +14768,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 27",
+     "targets": [
+      {
+       "section": "C",
+       "bar": 3
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -14699,6 +14793,12 @@ window.TUNES = [
     },
     {
      "applies_to": "Bar 14",
+     "targets": [
+      {
+       "section": "B",
+       "bar": 6
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -16024,6 +16124,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 1",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -16399,6 +16505,16 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 1, 17",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 1
+      },
+      {
+       "section": "A1",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -17851,6 +17967,16 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 1, 5, 25",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 1
+      },
+      {
+       "section": "A2",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -18242,6 +18368,20 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 6, 14, 30",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 6
+      },
+      {
+       "section": "A1",
+       "bar": 6
+      },
+      {
+       "section": "A2",
+       "bar": 6
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -20815,6 +20955,20 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 5, 13,28",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 5
+      },
+      {
+       "section": "A1",
+       "bar": 5
+      },
+      {
+       "section": "A2",
+       "bar": 4
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -21147,6 +21301,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 23",
+     "targets": [
+      {
+       "section": "B",
+       "bar": 7
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -22154,6 +22314,16 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 4, 28",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 4
+      },
+      {
+       "section": "A1",
+       "bar": 4
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -22781,6 +22951,16 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 3, 11",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 3
+      },
+      {
+       "section": "A1",
+       "bar": 3
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -23999,6 +24179,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 28",
+     "targets": [
+      {
+       "section": "B1",
+       "bar": 4
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -26484,6 +26670,20 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 1, 9, 25",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 1
+      },
+      {
+       "section": "A1",
+       "bar": 1
+      },
+      {
+       "section": "A 3",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -26496,6 +26696,12 @@ window.TUNES = [
     },
     {
      "applies_to": "Bar 17",
+     "targets": [
+      {
+       "section": "B",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -26510,6 +26716,12 @@ window.TUNES = [
     },
     {
      "applies_to": "Bar 17",
+     "targets": [
+      {
+       "section": "B",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -26529,6 +26741,12 @@ window.TUNES = [
     },
     {
      "applies_to": "Bar 17",
+     "targets": [
+      {
+       "section": "B",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -32946,6 +33164,20 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 2, 10 and 26 :",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 2
+      },
+      {
+       "section": "A1",
+       "bar": 2
+      },
+      {
+       "section": "A2",
+       "bar": 2
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -33984,6 +34216,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 6",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 6
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -35321,6 +35559,16 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 5, 21",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 5
+      },
+      {
+       "section": "A1",
+       "bar": 5
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -36327,6 +36575,20 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 3, 11, 27",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 3
+      },
+      {
+       "section": "A1",
+       "bar": 3
+      },
+      {
+       "section": "A2",
+       "bar": 3
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -36815,6 +37077,20 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 7, 15 and 27",
+     "targets": [
+      {
+       "section": "A",
+       "bar": 7
+      },
+      {
+       "section": "A1",
+       "bar": 7
+      },
+      {
+       "section": "C",
+       "bar": 3
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -36827,6 +37103,12 @@ window.TUNES = [
     },
     {
      "applies_to": "Bar 23",
+     "targets": [
+      {
+       "section": "B",
+       "bar": 7
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -39320,6 +39602,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 17",
+     "targets": [
+      {
+       "section": "B",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,
@@ -39685,6 +39973,12 @@ window.TUNES = [
    "variants": [
     {
      "applies_to": "Bar 25",
+     "targets": [
+      {
+       "section": "C",
+       "bar": 1
+      }
+     ],
      "bars": [
       {
        "bar": 1,

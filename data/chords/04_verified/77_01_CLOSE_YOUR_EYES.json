@@ -8,6 +8,31 @@
   "title": "CLOSE YOUR EYES",
   "page": 77,
   "source": "Anthologie des grilles de jazz",
+  "variants": [
+    {
+      "applies_to": "Bar 15",
+      "targets": [
+        {
+          "section": "A1",
+          "bar": 7
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Fm"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Fm"
+          }
+        }
+      ]
+    }
+  ],
   "recordings": [
     "G.Ammons 60- K.Curtis 60- Jazz Messengers 59",
     "E.Fitzgerald 57- B.Goodman 54- M.Jackson 59",
@@ -19,19 +44,6 @@
     "verse_note": "Header prints '16 VERSE'.",
     "bar15_variant": "Variant marker '*' at Bar 15 of the head (A' section bar 7)."
   },
-  "variants": [
-    {
-      "applies_to": "Bar 15",
-      "bars": [
-        {
-          "bar": 1,
-          "beats": {
-            "1": "Fm"
-          }
-        }
-      ]
-    }
-  ],
   "sections": {
     "A": [
       {

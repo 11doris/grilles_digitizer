@@ -529,6 +529,11 @@ Transcribe them into a top-level `variants` field — a list of objects, **one o
   {
     "marker": "*",
     "applies_to": "Bar 1, 9, 25",
+    "targets": [
+      { "section": "A", "bar": 1 },
+      { "section": "A1", "bar": 1 },
+      { "section": "A2", "bar": 1 }
+    ],
     "bars": [
       { "bar": 1, "beats": { "1": "Fm7", "3": "Gm7" } },
       { "bar": 2, "beats": { "1": "Ab7M", "3": "Bb7" } }
@@ -539,6 +544,18 @@ Transcribe them into a top-level `variants` field — a list of objects, **one o
 
 * `marker` — the symbol tying this variant to its grid bar(s); **omit** if none is drawn.
 * `applies_to` — the printed bar reference, **verbatim** (e.g. `"Bar 1, 9, 25"`, `"Bar 27"`).
+  Kept for display; it is **not** the mechanism that maps the variant onto the grid.
+* `targets` — the **structured mapping**: one `{ "section", "bar" }` anchor **per occurrence**
+  the alternate applies to, giving the grid bar where the alternate's **first** box lands.
+  `bar` is **1-indexed within its section** (not a global count); the alternate's remaining
+  boxes follow consecutively in the **same** section (box 2 → `bar+1`, …) and never spill past
+  the section's end. Read each anchor straight off the grid by locating the marker (or the
+  referenced bar), not by counting.
+  **Chorus frame:** the `applies_to` numbers count the **chorus** (the main strain — sections
+  `A`, `A1`, `B`, …) and **skip** any auxiliary `verse_*`/`intro`/`interlude`/`coda`. So on a
+  `16 A A' | 32 A A B A` tune, `Bar 1` is bar 1 of chorus section `A`, not of the verse →
+  `{ "section": "A", "bar": 1 }`. (This is why the free-text caption alone is ambiguous and
+  `targets` is authoritative.)
 * `bars` — the alternate bars in the **same shape** and under the **same** subdivision /
   notation / expansion rules as a section (§8–§12): one object per printed variant box, `bar`
   1-indexed in printed left-to-right order, beats read from each box's own regions.
@@ -552,6 +569,10 @@ Rules:
 * Variant boxes are sometimes **cut off** at the crop edge — transcribe what you can, append
   `?` to any uncertain chord, and add a `notation_notes` entry. Do not invent chords.
 * **Omit** `variants` entirely when the page has none.
+
+> Legacy tunes digitized before `targets` existed carry only `applies_to`; the displayer and
+> tools fall back to parsing that caption over the chorus frame. The verified corpus has since
+> been backfilled with explicit `targets`, and new transcriptions must emit `targets`.
 
 ---
 

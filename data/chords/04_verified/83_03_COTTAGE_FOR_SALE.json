@@ -8,6 +8,31 @@
   "title": "COTTAGE FOR SALE",
   "page": 83,
   "source": "Anthologie des grilles de jazz",
+  "variants": [
+    {
+      "applies_to": "Bar 7",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 7
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "F7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Bb7"
+          }
+        }
+      ]
+    }
+  ],
   "notation_notes": {
     "verse": "Header prints '8 VERSE'."
   },
@@ -21,20 +46,6 @@
     "E.Bernier 48.54",
     "B.Eckstine 45",
     "C.Hawkins 55"
-  ],
-  "variants": [
-    {
-      "applies_to": "Bar 7",
-      "bars": [
-        {
-          "bar": 1,
-          "beats": {
-            "1": "F7",
-            "3": "Bb7"
-          }
-        }
-      ]
-    }
   ],
   "sections": {
     "A": [

@@ -3,11 +3,33 @@
 "use strict";
 
 (function () {
-  const { renderChordHTML, escapeHtml } = window.GrillesChords;
+  const { renderChordHTML, escapeHtml, transposeChordSymbol, pitchClass,
+    FLAT_SPELL, SHARP_SPELL } = window.GrillesChords;
   const PL = window.GrillesPlaylists;
   const TUNES = window.TUNES || [];
 
+  /* Target tonics offered by the transpose control, in pitch-class order, with
+     the book's preferred enharmonic spelling per mode (spec §7.2): "Gb major"
+     not "F# major", "Ebm" not "D#m". */
+  const MAJOR_TONICS = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+  const MINOR_TONICS = ["C", "C#", "D", "Eb", "E", "F", "F#", "G", "G#", "A", "Bb", "B"];
+  // Pitch classes whose key uses a sharp-biased chord spelling (rest use flats).
+  const MAJOR_SHARP_PCS = new Set([2, 4, 7, 9, 11]); // D E G A B
+  const MINOR_SHARP_PCS = new Set([1, 4, 6, 8, 11]); // C#m Em F#m G#m Bm
+
+  function spellTableFor(pc, mode) {
+    const sharp = mode === "minor" ? MINOR_SHARP_PCS.has(pc) : MAJOR_SHARP_PCS.has(pc);
+    return sharp ? SHARP_SPELL : FLAT_SPELL;
+  }
+
+  /* Render a chord symbol, applying the current transposition if one is set. */
+  function renderChord(sym) {
+    const tr = state.transpose;
+    return renderChordHTML(tr ? transposeChordSymbol(sym, tr.shift, tr.spell) : sym);
+  }
+
   const searchEl = document.getElementById("search");
+  const chordFilterBtn = document.getElementById("chordFilter");
   const listEl = document.getElementById("tuneList");
   const viewEl = document.getElementById("tuneView");
   const paneEl = document.getElementById("tunePane");
@@ -40,6 +62,9 @@
     overlayMag: false, // fullscreen scan magnified (pan by scrolling)
     gridZoom: 1, // user zoom factor on top of the fitted grid size; reset per tune
     activePl: null, // active playlist id (persisted, §11.4)
+    transpose: null, // {shift, spell, targetPc, mode} or null (original key); per-tune
+    activeVariants: new Set(), // indices of variants swapped into the grid (independent, but exclusive among variants sharing a bar); per-tune
+    chordsOnly: false, // list filter: only tunes with digitized chords (persisted)
   };
 
   /* ------------------------------------------------------------- helpers */
@@ -188,12 +213,15 @@
     t._hay = normalize((t.title || "") + " " + (meta(t).composer || ""));
   });
 
-  /* Search filters within the active playlist when one is on (§11.4). */
+  /* Search filters within the active playlist when one is on (§11.4). The
+     "digitized chords" toggle further restricts the list to tunes carrying
+     chord JSON, independently of the search query. */
   function filterTunes(query) {
-    const list = baseList();
+    let list = baseList();
     const terms = normalize(query).split(/\s+/).filter(Boolean);
-    if (!terms.length) return list;
-    return list.filter((t) => terms.every((term) => t._hay.includes(term)));
+    if (terms.length) list = list.filter((t) => terms.every((term) => t._hay.includes(term)));
+    if (state.chordsOnly) list = list.filter((t) => t.has_chord_json);
+    return list;
   }
 
   searchEl.addEventListener("input", () => {
@@ -205,6 +233,26 @@
       if (narrowMq.matches) setListOpen(true);
       else if (state.listCollapsed) setListCollapsed(false);
     }
+  });
+
+  /* Reflect the digitized-chords filter on the button and re-filter the list. */
+  function applyChordFilter() {
+    chordFilterBtn.classList.toggle("on", state.chordsOnly);
+    chordFilterBtn.setAttribute("aria-pressed", String(state.chordsOnly));
+    state.filtered = filterTunes(searchEl.value);
+    state.activeIndex = state.filtered.length ? 0 : -1;
+    renderList();
+  }
+
+  chordFilterBtn.addEventListener("click", () => {
+    state.chordsOnly = !state.chordsOnly;
+    try {
+      localStorage.setItem("grilles.chordsOnly", state.chordsOnly ? "1" : "0");
+    } catch (e) { /* ignore */ }
+    applyChordFilter();
+    /* Reveal the list so the narrowed result is visible on phones/collapsed. */
+    if (narrowMq.matches) setListOpen(true);
+    else if (state.listCollapsed) setListCollapsed(false);
   });
 
   /* ------------------------------------------------------------ tune list */
@@ -454,7 +502,7 @@
       const slot = el("div", "slot");
       slot.style.gridColumn = `${beat} / ${next}`;
       slot.dataset.span = String(next - beat);
-      slot.innerHTML = renderChordHTML(chord);
+      slot.innerHTML = renderChord(chord);
       cell.appendChild(slot);
     });
   }
@@ -485,7 +533,11 @@
           if (double && idx === 0) cell.classList.add("sec-start");
           if (double && idx === bars.length - 1) cell.classList.add("sec-end");
           if (i === 3 || idx === bars.length - 1) cell.classList.add("rowlast");
-          fillBar(cell, bar, beats);
+          // An active variant swaps its beats into the matching bar (same bar
+          // number, so barlines/section marks are unchanged) and flags it.
+          const ov = opts && opts.overrides && opts.overrides[idx];
+          if (ov) cell.classList.add("variant-swap");
+          fillBar(cell, ov ? { bar: bar.bar, beats: ov.beats } : bar, beats);
         } else {
           cell.classList.add("empty");
         }
@@ -496,12 +548,13 @@
     return frag;
   }
 
-  function renderSection(name, bars, beats, isFirst, ts) {
+  function renderSection(name, bars, beats, isFirst, ts, overrides) {
     const sec = el("div", "section");
     const badge = el("div", "sec-label");
     badge.textContent = displaySectionName(name);
     sec.appendChild(badge);
-    sec.appendChild(renderGrid(bars, beats, { double: true, timesig: isFirst ? ts : null }));
+    sec.appendChild(renderGrid(bars, beats,
+      { double: true, timesig: isFirst ? ts : null, overrides }));
     return sec;
   }
 
@@ -520,6 +573,16 @@
   function keyLabel(k) {
     if (!k || !k.tonic) return null;
     return noteGlyph(k.tonic) + (k.mode ? " " + k.mode : "");
+  }
+
+  /* Same, but transposed to the current target key when a transposition is
+     active — so the Key/section-key chips track the transposed grid. */
+  function displayKey(k) {
+    if (!k || !k.tonic) return null;
+    const tr = state.transpose;
+    if (!tr || !tr.shift) return keyLabel(k);
+    const pc = (pitchClass(k.tonic) + tr.shift) % 12;
+    return keyLabel({ tonic: tr.spell[((pc % 12) + 12) % 12], mode: k.mode });
   }
 
   function harmChip(kind, label, value) {
@@ -541,14 +604,31 @@
      per-section analysis lives in the collapsible extras below the grid. */
   function renderHarmony(tune) {
     const keys = el("div", "harm-row harm-keys");
-    const mainKey = keyLabel(tune.key);
-    if (mainKey) keys.appendChild(harmChip("key", "Key", mainKey));
+    const mainKey = displayKey(tune.key);
+    if (mainKey) {
+      const chip = harmChip("key", "Key", mainKey);
+      if (state.transpose && state.transpose.shift && tune.key) {
+        chip.title = "Transposed from " + keyLabel(tune.key);
+      }
+      keys.appendChild(chip);
+    }
 
-    const scorer = (tune.key_annotation || {}).scorer || {};
-    const sectionKeys = scorer.section_keys || {};
+    /* Section keys come from the tune's own top-level `section_keys` (only
+       present where a section modulates away from the main key). The copy nested
+       under `key_annotation` is scorer bookkeeping and is deliberately ignored.
+       Repeats of the same section that modulate identically (e.g. Chattanooga
+       Choo Choo's B and B1, both to F) collapse to a single chip: dedupe on the
+       displayed label + key so one "B: F major" shows, not two. */
+    const sectionKeys = tune.section_keys || {};
+    const seenSection = new Set();
     Object.keys(sectionKeys).forEach((name) => {
-      const label = keyLabel(sectionKeys[name]);
-      if (label) keys.appendChild(harmChip("section", displaySectionName(name), label));
+      const label = displayKey(sectionKeys[name]);
+      if (!label) return;
+      const shown = displaySectionName(name);
+      const dedupeKey = shown + " " + label;
+      if (seenSection.has(dedupeKey)) return;
+      seenSection.add(dedupeKey);
+      keys.appendChild(harmChip("section", shown, label));
     });
 
     const tags = el("div", "harm-row harm-tags");
@@ -622,16 +702,174 @@
     return details;
   }
 
+  /* Sections that don't count toward the "chorus" bar frame the legacy captions
+     use (verse/intro/… are auxiliary). Mirrors the backfill tool. */
+  const AUX_SECTION = /^(verse|intro|interlude|coda|transition)/i;
+
+  /* Chorus bars in printed order as {name, idx}, EXCLUDING auxiliary sections —
+     the frame an old "applies_to" caption's bar numbers count over. Only used as
+     a fallback for variants that predate the explicit `targets` anchors. */
+  function chorusFlatBarsOf(tune) {
+    const flat = [];
+    Object.keys(tune.sections || {}).forEach((name) => {
+      if (AUX_SECTION.test(name)) return;
+      (tune.sections[name] || []).forEach((_bar, idx) => flat.push({ name, idx }));
+    });
+    return flat;
+  }
+
+  /* Resolve which main-grid bars a variant swaps in. Prefers the explicit
+     `targets` anchors — one {section, bar} per occurrence, placing the variant's
+     FIRST bar at that (1-indexed) grid bar with the rest following consecutively
+     within the same section. Falls back to parsing the free-text "applies_to"
+     over the chorus frame for un-migrated data. Returns
+     { bySection: {name: {idx: variantBar}}, count } so both the grid substitution
+     and the clickability check share one mapping. */
+  function variantOverrides(tune, variant) {
+    const bySection = {};
+    let count = 0;
+    const bars = (variant && variant.bars) || [];
+    if (!bars.length) return { bySection, count };
+
+    const place = (name, startIdx) => {
+      const secBars = (tune.sections || {})[name];
+      if (!secBars) return;
+      bars.forEach((vb, i) => {
+        const idx = startIdx + i;
+        if (idx < 0 || idx >= secBars.length) return; // never spill past a section
+        (bySection[name] || (bySection[name] = {}))[idx] = vb;
+        count++;
+      });
+    };
+
+    const targets = Array.isArray(variant.targets) ? variant.targets : null;
+    if (targets && targets.length) {
+      targets.forEach((tg) => {
+        if (tg && tg.section) place(tg.section, (tg.bar || 1) - 1);
+      });
+    } else {
+      const starts = (String(variant.applies_to || "").match(/\d+/g) || []).map(Number);
+      const flat = chorusFlatBarsOf(tune);
+      starts.forEach((start) => {
+        const loc = flat[start - 1];
+        if (loc) place(loc.name, loc.idx);
+      });
+    }
+    return { bySection, count };
+  }
+
+  /* The grid cells a variant occupies, as a set of "section\0idx" keys — used to
+     detect when two variants compete for the same bar. */
+  function variantCells(tune, variant) {
+    const cells = new Set();
+    const bySection = variantOverrides(tune, variant).bySection;
+    Object.keys(bySection).forEach((name) => {
+      Object.keys(bySection[name]).forEach((idx) => cells.add(name + " " + idx));
+    });
+    return cells;
+  }
+
+  /* True when the two variants both override at least one common grid bar, i.e.
+     they're alternatives for the same spot (e.g. My Old Flame's three bar-17
+     variants) and only one may be applied at a time. */
+  function variantsConflict(tune, a, b) {
+    const ca = variantCells(tune, a);
+    for (const c of variantCells(tune, b)) {
+      if (ca.has(c)) return true;
+    }
+    return false;
+  }
+
+  /* Applied variants persist per tune: a { tuneId: [variantIndex,…] } map in
+     localStorage, so reopening (or reloading) a tune restores the swaps the user
+     had applied. */
+  const VARIANTS_KEY = "grilles.variants";
+
+  function loadVariantMap() {
+    try {
+      const obj = JSON.parse(localStorage.getItem(VARIANTS_KEY) || "null");
+      return obj && typeof obj === "object" ? obj : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  /* Persist the current tune's active variant set (or drop its entry when none
+     are applied). */
+  function saveActiveVariants(tuneId) {
+    if (!tuneId) return;
+    const map = loadVariantMap();
+    const arr = [...state.activeVariants].sort((a, b) => a - b);
+    if (arr.length) map[tuneId] = arr;
+    else delete map[tuneId];
+    try {
+      localStorage.setItem(VARIANTS_KEY, JSON.stringify(map));
+    } catch (e) { /* ignore */ }
+  }
+
+  /* Load a tune's saved variant set into state, keeping only indices that still
+     point at an applicable variant (guards against a changed corpus). */
+  function restoreActiveVariants(tune, tuneId) {
+    state.activeVariants = new Set();
+    const saved = loadVariantMap()[tuneId];
+    if (!Array.isArray(saved)) return;
+    const variants = (tune && tune.variants) || [];
+    saved.forEach((vi) => {
+      if (variants[vi] && variantOverrides(tune, variants[vi]).count > 0) {
+        state.activeVariants.add(vi);
+      }
+    });
+  }
+
   /* Variants (spec §6): alternative changes for certain bars, rendered as small
-     chord grids directly below the main grid — always visible, not collapsed. */
+     chord grids directly below the main grid — always visible, not collapsed.
+     Clicking a variant swaps its bars into the main grid and back. Variants that
+     touch different bars toggle independently and can be applied together (their
+     overrides are merged). Variants that compete for the same bar are mutually
+     exclusive: applying one drops any active variant it overlaps, so the grid
+     never shows two conflicting alternatives for one bar. */
   function renderVariants(tune, beats) {
     if (!Array.isArray(tune.variants) || !tune.variants.length) return null;
     const wrap = el("div", "variants");
     const title = el("div", "variants-title");
     title.textContent = tune.variants.length > 1 ? "Variants" : "Variant";
     wrap.appendChild(title);
-    tune.variants.forEach((variant) => {
+    tune.variants.forEach((variant, vi) => {
       const v = el("div", "variant");
+      // Clickable only when we can map its anchors to real grid bars.
+      const canApply = variantOverrides(tune, variant).count > 0;
+      const active = state.activeVariants.has(vi);
+      if (canApply) {
+        v.classList.add("clickable");
+        v.setAttribute("role", "button");
+        v.tabIndex = 0;
+        v.setAttribute("aria-pressed", active ? "true" : "false");
+        v.title = active
+          ? "Applied to the grid — click to restore the original bars"
+          : "Click to swap these bars into the grid";
+        if (active) v.classList.add("active");
+        const toggle = () => {
+          if (state.activeVariants.has(vi)) {
+            state.activeVariants.delete(vi);
+          } else {
+            // Exclusive within a bar: drop any active variant that competes for
+            // one of the bars this one overrides.
+            state.activeVariants.forEach((other) => {
+              if (other !== vi && tune.variants[other] &&
+                  variantsConflict(tune, variant, tune.variants[other])) {
+                state.activeVariants.delete(other);
+              }
+            });
+            state.activeVariants.add(vi);
+          }
+          saveActiveVariants(state.currentId); // persist per tune
+          renderTune(state.currentId); // same tune → keeps zoom/scroll/transpose
+        };
+        v.addEventListener("click", toggle);
+        v.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+        });
+      }
       if (variant.applies_to) {
         const cap = el("div", "variant-caption");
         cap.textContent = variant.applies_to;
@@ -734,6 +972,47 @@
     return wrap;
   }
 
+  /* Compact key/transpose picker for the panel bar (chord tunes with a known
+     key only). A native <select> stays small and gets the OS picker on mobile;
+     the tune's own key is marked "(orig)" so the default is always visible.
+     Changing it re-renders the tune in the chosen key (grid, variants, melody
+     and the harmony key chips all follow). */
+  function makeTransposeControl(t) {
+    const tune = meta(t);
+    const key = tune.key;
+    if (!t.has_chord_json || !key || !key.tonic) return null;
+    const mode = key.mode === "minor" ? "minor" : "major";
+    const sourcePc = pitchClass(key.tonic);
+    const tonics = mode === "minor" ? MINOR_TONICS : MAJOR_TONICS;
+
+    const wrap = el("label", "transpose");
+    wrap.title = "Transpose — original key " + noteGlyph(key.tonic) + " " + mode;
+    const text = el("span", "transpose-label");
+    text.textContent = "Key";
+    const sel = document.createElement("select");
+    sel.className = "key-select";
+    const selectedPc = state.transpose ? state.transpose.targetPc : sourcePc;
+    tonics.forEach((tonic, pc) => {
+      const opt = document.createElement("option");
+      opt.value = String(pc);
+      opt.textContent = noteGlyph(tonic) + " " + mode + (pc === sourcePc ? " (orig)" : "");
+      if (pc === selectedPc) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    sel.addEventListener("change", () => {
+      const targetPc = parseInt(sel.value, 10);
+      if (targetPc === sourcePc) {
+        state.transpose = null;
+      } else {
+        const shift = ((targetPc - sourcePc) % 12 + 12) % 12;
+        state.transpose = { shift, spell: spellTableFor(targetPc, mode), targetPc, mode };
+      }
+      renderTune(state.currentId); // same tune → keeps zoom/scroll (see renderTune)
+    });
+    wrap.append(text, sel);
+    return wrap;
+  }
+
   function scanImg(src, alt) {
     const frag = document.createDocumentFragment();
     const img = el("img", "scan");
@@ -788,7 +1067,7 @@
 
   /* Melody lead sheet from the embedded ABC (spec §5.4). Never crashes the
      page: a malformed ABC renders a warning and falls back to the scan. */
-  function renderAbcSheet(panel, t) {
+  function renderAbcSheet(panel, t, shift) {
     const sheet = panel.querySelector(".abc-sheet");
     if (!sheet) return;
     /* abcjs styles the element it renders into inline (display:inline-block),
@@ -806,6 +1085,7 @@
         add_classes: true,
         paddingtop: 0,
         paddingbottom: 0,
+        visualTranspose: shift || 0, // move with the transposed chords
       });
       if (!sheet.querySelector("svg")) throw new Error("abcjs produced no output");
     } catch (err) {
@@ -1146,8 +1426,15 @@
   function renderTune(id) {
     const t = tuneById(id);
     if (!t) return;
+    /* A genuine tune change resets the per-tune transposition, zoom and scroll;
+       re-rendering the same tune (e.g. after picking a new key) preserves them. */
+    const isNewTune = id !== state.currentId;
     state.currentId = id;
-    state.gridZoom = 1; // grid zoom is per-tune: every tune opens at the fitted size
+    if (isNewTune) {
+      state.transpose = null; // every tune opens in its own printed key
+      state.gridZoom = 1; // grid zoom is per-tune: every tune opens at the fitted size
+      restoreActiveVariants(meta(t), id); // restore the user's saved variant swaps
+    }
     document.title = `${t.title || id} — Grilles`;
 
     paneEl.innerHTML = "";
@@ -1169,6 +1456,8 @@
         applyPanels(t);
       }));
     }
+    const transpose = makeTransposeControl(t);
+    if (transpose) bar.appendChild(transpose);
     if (bar.childElementCount) paneEl.appendChild(bar);
 
     const panels = el("div", "panels");
@@ -1179,8 +1468,22 @@
       if (t.has_chord_json) {
         const grid = el("div", "grid");
         const beats = beatsPerBar(tune);
+        // Merge the per-section bar substitutions of every active variant (empty
+        // when none). Later variants win on any bar two of them both touch.
+        const overrides = {};
+        if (Array.isArray(tune.variants)) {
+          state.activeVariants.forEach((vi) => {
+            const variant = tune.variants[vi];
+            if (!variant) return;
+            const bySection = variantOverrides(tune, variant).bySection;
+            Object.keys(bySection).forEach((name) => {
+              Object.assign(overrides[name] || (overrides[name] = {}), bySection[name]);
+            });
+          });
+        }
         Object.keys(tune.sections || {}).forEach((name, i) => {
-          grid.appendChild(renderSection(name, tune.sections[name], beats, i === 0, tune.time_signature));
+          grid.appendChild(renderSection(name, tune.sections[name], beats,
+            i === 0, tune.time_signature, overrides[name]));
         });
         panel.appendChild(grid);
         const variants = renderVariants(tune, beats);
@@ -1217,11 +1520,12 @@
     }
 
     paneEl.appendChild(panels);
-    /* abcjs measures the container, so render after the panel is in the DOM. */
-    if (melodyPanel) renderAbcSheet(melodyPanel, t);
+    /* abcjs measures the container, so render after the panel is in the DOM.
+       The melody moves with the chords: same semitone shift via visualTranspose. */
+    if (melodyPanel) renderAbcSheet(melodyPanel, t, state.transpose ? state.transpose.shift : 0);
     applyPanels(t);
 
-    viewEl.scrollTop = 0;
+    if (isNewTune) viewEl.scrollTop = 0;
     if (narrowMq.matches) setListOpen(false);
     updateListHighlight();
     updateStepButtons();
@@ -1400,8 +1704,11 @@
     const m = localStorage.getItem("grilles.showMelody");
     state.showChords = c === null ? true : c === "1";
     state.showMelody = m === null ? true : m === "1";
+    state.chordsOnly = localStorage.getItem("grilles.chordsOnly") === "1";
     if (localStorage.getItem("grilles.list") === "0") setListCollapsed(true);
   } catch (e) { /* ignore */ }
+  chordFilterBtn.classList.toggle("on", state.chordsOnly);
+  chordFilterBtn.setAttribute("aria-pressed", String(state.chordsOnly));
   /* Restore the active playlist (§11.4); a stale id starts deactivated. */
   const storedPl = PL.getActiveId();
   if (storedPl && PL.byId(storedPl)) state.activePl = storedPl;

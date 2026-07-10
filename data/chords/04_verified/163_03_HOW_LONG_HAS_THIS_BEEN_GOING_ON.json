@@ -8,22 +8,23 @@
   "title": "HOW LONG HAS THIS BEEN GOING ON ?",
   "page": 163,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints '24 VERSE'."
-  },
-  "recordings": [
-    "Jay & Kay 54- E.Fitzgerald 59",
-    "F.Ellside 28- L.Wiley 39",
-    "J.Lewis 59- E.Rosolino 58",
-    "J.Reny 55- G.Shearing 55",
-    "H.Silver 56- O.Sims 58",
-    "M.Roach 60- C.Ho Mae 58",
-    "R.Thomas 60",
-    "H.Mc Kusick 55- A.Previn 63"
-  ],
   "variants": [
     {
       "applies_to": "Bar 1, 5, 25",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 1
+        },
+        {
+          "section": "A1",
+          "bar": 1
+        },
+        {
+          "section": "A2",
+          "bar": 1
+        }
+      ],
       "bars": [
         {
           "bar": 1,
@@ -69,6 +70,19 @@
         }
       ]
     }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '24 VERSE'."
+  },
+  "recordings": [
+    "Jay & Kay 54- E.Fitzgerald 59",
+    "F.Ellside 28- L.Wiley 39",
+    "J.Lewis 59- E.Rosolino 58",
+    "J.Reny 55- G.Shearing 55",
+    "H.Silver 56- O.Sims 58",
+    "M.Roach 60- C.Ho Mae 58",
+    "R.Thomas 60",
+    "H.Mc Kusick 55- A.Previn 63"
   ],
   "sections": {
     "A": [

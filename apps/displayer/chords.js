@@ -177,7 +177,58 @@
     return `<span class="${cls}">${open}${html}${close}</span>`;
   }
 
-  const api = { parseChord, displayQuality, splitQuality, renderChordHTML, escapeHtml };
+  /* ---------------------------------------------------------- transposition
+   *
+   * Transposing a chart moves only the absolute pitches — the root and the
+   * slash bass. Everything else in a chord symbol (quality, extensions and
+   * alterations like "m7b5", "7#5", "b9", "sus4") is written relative to the
+   * root, so it is carried over verbatim. We therefore rewrite just the two
+   * note letters in the raw symbol and leave the rest of the string untouched,
+   * which keeps the exact printed quality text intact.
+   *
+   * Spelling is table-driven (§7.2): the caller passes a 12-entry pitch-class →
+   * name table chosen for the target key's flat/sharp bias, so a chart in G♭ is
+   * spelled with flats (G♭, not F♯) and a sharp key with sharps. This always
+   * yields clean single-accidental names — never C♭/F♯-in-a-flat-key,
+   * double-accidentals or the like.
+   */
+  const LETTER_PC = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+
+  /* "Bb" -> 10, "F#" -> 6. */
+  function pitchClass(name) {
+    let pc = LETTER_PC[name[0]];
+    for (const acc of name.slice(1)) pc += acc === "#" ? 1 : acc === "b" ? -1 : 0;
+    return ((pc % 12) + 12) % 12;
+  }
+
+  // Flat- and sharp-biased spellings; pick per target key (§7.2). "Gb" not "F#".
+  const FLAT_SPELL = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+  const SHARP_SPELL = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
+  function transposeNote(letter, acc, shift, spell) {
+    const pc = (pitchClass(letter + (acc || "")) + shift) % 12;
+    return spell[((pc % 12) + 12) % 12];
+  }
+
+  /* Transpose one printed chord symbol up `shift` semitones, spelling roots via
+   * the `spell` table. A shift of 0 (or N.C./unparseable tokens) returns the
+   * symbol unchanged. */
+  function transposeChordSymbol(raw, shift, spell) {
+    let s = String(raw);
+    if (!shift) return s;
+    // Root: the first note letter, possibly behind an opening "(" (optional chord).
+    const m = /^(\(?)([A-G])(#|b)?/.exec(s);
+    if (!m) return s; // N.C. or anything without a leading note letter
+    s = m[1] + transposeNote(m[2], m[3], shift, spell) + s.slice(m[0].length);
+    // Slash bass: a note letter after "/" at the very end (before a closing ")"
+    // of an optional chord and/or a trailing "?" uncertainty marker).
+    s = s.replace(/\/([A-G])(#|b)?(?=\)?\??$)/,
+      (_full, bl, ba) => "/" + transposeNote(bl, ba, shift, spell));
+    return s;
+  }
+
+  const api = { parseChord, displayQuality, splitQuality, renderChordHTML, escapeHtml,
+    pitchClass, transposeChordSymbol, FLAT_SPELL, SHARP_SPELL };
   global.GrillesChords = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

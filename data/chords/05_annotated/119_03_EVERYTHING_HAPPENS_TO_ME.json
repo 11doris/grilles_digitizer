@@ -28,6 +28,20 @@
   "variants": [
     {
       "applies_to": "Bar 2, 10 and 26",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 2
+        },
+        {
+          "section": "A1",
+          "bar": 2
+        },
+        {
+          "section": "A2",
+          "bar": 2
+        }
+      ],
       "bars": [
         {
           "bar": 1,

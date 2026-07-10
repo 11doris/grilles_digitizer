@@ -8,6 +8,41 @@
   "title": "EVERYTHING HAPPENS TO ME",
   "page": 119,
   "source": "Anthologie des grilles de jazz",
+  "variants": [
+    {
+      "applies_to": "Bar 2, 10 and 26",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 2
+        },
+        {
+          "section": "A1",
+          "bar": 2
+        },
+        {
+          "section": "A2",
+          "bar": 2
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Dm7",
+            "3": "Gm7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "E9b5",
+            "3": "Eb9b5"
+          }
+        }
+      ]
+    }
+  ],
   "notation_notes": {
     "verse": "Header prints '4 VERSE'."
   },
@@ -24,27 +59,6 @@
     "L.Gonsalves 54- B.De Franco 54",
     "J.Dorsey 41- B.De Franco",
     "A.Cohn 54- T.Wilson 53"
-  ],
-  "variants": [
-    {
-      "applies_to": "Bar 2, 10 and 26",
-      "bars": [
-        {
-          "bar": 1,
-          "beats": {
-            "1": "Dm7",
-            "3": "Gm7"
-          }
-        },
-        {
-          "bar": 2,
-          "beats": {
-            "1": "E9b5",
-            "3": "E(b5b9)"
-          }
-        }
-      ]
-    }
   ],
   "sections": {
     "A": [

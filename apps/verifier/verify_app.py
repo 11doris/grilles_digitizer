@@ -51,8 +51,9 @@ app.json.sort_keys = False  # type: ignore[attr-defined]
 # ---------------------------------------------------------------------------
 
 def _state_path() -> Path:
-    # State lives with the WIP edits so TUNES_DIR stays untouched.
-    return WIP_DIR / "verification_state.json"
+    # State lives in the chords root (a tracked directory), separate from the
+    # gitignored WIP edits, so the review state can be versioned.
+    return WIP_DIR.parent / "verification_state.json"
 
 
 def _wip_path(tune_id: str) -> Path:
@@ -100,11 +101,16 @@ def _load_state() -> dict:
             return json.loads(sp.read_text("utf-8"))
         except Exception:
             pass
-    return {"last_opened": None, "verified": [], "deferred": [], "in_progress": None}
+    return {
+        "last_opened": None,
+        "verified": [],
+        "deferred": [],
+        "in_progress": None,
+    }
 
 
 def _save_state(s: dict) -> None:
-    WIP_DIR.mkdir(exist_ok=True)
+    _state_path().parent.mkdir(parents=True, exist_ok=True)
     _state_path().write_text(
         json.dumps(s, indent=2, ensure_ascii=False), "utf-8"
     )
@@ -240,7 +246,7 @@ def api_verify(tune_id: str):
     if tune_id not in verified:
         verified.append(tune_id)
     s["verified"] = verified
-    # Verified and deferred are mutually exclusive states.
+    # Verified is exclusive with the other review states.
     s["deferred"] = [d for d in s.get("deferred", []) if d != tune_id]
     _save_state(s)
     return jsonify({"ok": True})
@@ -271,6 +277,7 @@ def api_defer(tune_id: str):
     if tune_id not in deferred:
         deferred.append(tune_id)
     s["deferred"] = deferred
+    # Deferred is exclusive with verified.
     # A deferred tune is not verified; drop any stale verified file/state.
     if tune_id in s.get("verified", []):
         s["verified"] = [v for v in s["verified"] if v != tune_id]

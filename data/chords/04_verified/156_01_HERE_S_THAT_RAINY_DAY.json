@@ -8,17 +8,19 @@
   "title": "HERE'S THAT RAINY DAY",
   "page": 156,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "B.Evans 68- B.Carter 77- T.Flanagan 77",
-    "W.Montgomery 65- P.Desmond 65- C.Fisher 8",
-    "E.Fitzgerald 65- A.Gilberto 65- P.Horn 65",
-    "O.Peterson 62- Jazz Piano Quartet 74",
-    "S.Getz 64- U.Green 68- C.Basie 66- MJQ 69",
-    "J.Pass 73- K.Burrel/M.B.Davis 64"
-  ],
   "variants": [
     {
       "applies_to": "Bar 1, 17",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 1
+        },
+        {
+          "section": "A1",
+          "bar": 1
+        }
+      ],
       "bars": [
         {
           "bar": 1,
@@ -45,7 +47,7 @@
           "bar": 4,
           "beats": {
             "1": "Cm",
-            "3": "F7"
+            "3": "Cm7"
           }
         },
         {
@@ -56,6 +58,14 @@
         }
       ]
     }
+  ],
+  "recordings": [
+    "B.Evans 68- B.Carter 77- T.Flanagan 77",
+    "W.Montgomery 65- P.Desmond 65- C.Fisher 8",
+    "E.Fitzgerald 65- A.Gilberto 65- P.Horn 65",
+    "O.Peterson 62- Jazz Piano Quartet 74",
+    "S.Getz 64- U.Green 68- C.Basie 66- MJQ 69",
+    "J.Pass 73- K.Burrel/M.B.Davis 64"
   ],
   "notation_notes": {
     "maj7_notation": "The book writes major 7th as '7M' throughout (converted to maj7).",

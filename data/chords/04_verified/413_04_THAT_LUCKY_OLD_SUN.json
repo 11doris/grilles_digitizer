@@ -8,6 +8,33 @@
   "title": "THAT LUCKY OLD SUN",
   "page": 413,
   "source": "Anthologie des grilles de jazz",
+  "variants": [
+    {
+      "applies_to": "Bar 6",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 6
+        },
+        {
+          "section": "A1",
+          "bar": 6
+        },
+        {
+          "section": "A2",
+          "bar": 6
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Bb13"
+          }
+        }
+      ]
+    }
+  ],
   "notation_notes": {
     "verse": "Header prints '8 VERSE'."
   },
@@ -18,19 +45,6 @@
     "Gr.Green 65- S.Vaughan 49-",
     "H.L.Page 49- Ger.Brown 61",
     "G.Benson 66-"
-  ],
-  "variants": [
-    {
-      "applies_to": "Bar 6",
-      "bars": [
-        {
-          "bar": 1,
-          "beats": {
-            "1": "Bb13"
-          }
-        }
-      ]
-    }
   ],
   "sections": {
     "A": [

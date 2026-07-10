@@ -7,35 +7,15 @@
   "title": "ANNIE LAURIE",
   "page": 20,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "D.Byas 45- J.Forrest 61- T.Grimes 48",
-    "B.Myers 45- J.Newman 55- T.Dorsey 38",
-    "J.Lunceford 37.42- M.Manone 36- B.May 57",
-    "M.Sullivan 37- F.Waller 39",
-    "C.Basie/F.Sinatra 62"
-  ],
   "variants": [
     {
-      "applies_to": "BAR 27",
-      "bars": [
-        {
-          "bar": 1,
-          "beats": {
-            "1": "C",
-            "3": "E7"
-          }
-        },
-        {
-          "bar": 2,
-          "beats": {
-            "1": "Am",
-            "3": "Fm6"
-          }
-        }
-      ]
-    },
-    {
       "applies_to": "BAR 6",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 6
+        }
+      ],
       "bars": [
         {
           "bar": 1,
@@ -56,7 +36,39 @@
           }
         }
       ]
+    },
+    {
+      "applies_to": "BAR 27",
+      "targets": [
+        {
+          "section": "C",
+          "bar": 3
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "C",
+            "3": "E7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Am",
+            "3": "Fm6"
+          }
+        }
+      ]
     }
+  ],
+  "recordings": [
+    "D.Byas 45- J.Forrest 61- T.Grimes 48",
+    "B.Myers 45- J.Newman 55- T.Dorsey 38",
+    "J.Lunceford 37.42- M.Manone 36- B.May 57",
+    "M.Sullivan 37- F.Waller 39",
+    "C.Basie/F.Sinatra 62"
   ],
   "notation_notes": {
     "composer_date": "Composer's dates unknown - the header prints '(Lady J.D. Scott, ?)'.",

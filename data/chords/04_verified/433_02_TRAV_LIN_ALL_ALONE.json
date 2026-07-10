@@ -18,6 +18,20 @@
   "variants": [
     {
       "applies_to": "Bar 7, 15 and 27",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 7
+        },
+        {
+          "section": "A1",
+          "bar": 7
+        },
+        {
+          "section": "C",
+          "bar": 3
+        }
+      ],
       "bars": [
         {
           "bar": 1,
@@ -30,6 +44,12 @@
     },
     {
       "applies_to": "Bar 23",
+      "targets": [
+        {
+          "section": "B",
+          "bar": 7
+        }
+      ],
       "bars": [
         {
           "bar": 1,

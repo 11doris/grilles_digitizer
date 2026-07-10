@@ -177,7 +177,7 @@ As produced by the digitizer / verifier (see `docs/specs/jazz_chord_digitization
 { "bar": 3, "beats": { "1": "Eb", "3": "Fm7", "4": "F#o7" } }
 ```
 
-- `variants`: optional array of `{ "applies_to": "<string>", "bars": [ <bar objects> ] }`.
+- `variants`: optional array of `{ "applies_to": "<string>", "targets": [ { "section": "<name>", "bar": <n> }, … ], "bars": [ <bar objects> ] }`. `targets` gives one anchor per occurrence — the grid bar (1-indexed within its section) where the variant's first bar applies; the rest follow consecutively in the same section. Legacy tunes may lack `targets`, in which case the app falls back to parsing `applies_to` over the *chorus frame* (bar numbers count the main strain, excluding auxiliary `verse_*`/`intro`/`interlude`/`coda` sections).
 - `recordings`: optional array of strings.
 - `notation_notes`: optional object of string → string.
 
@@ -260,6 +260,7 @@ non-digitized tune only the **title** is shown):
 - **Tempo**: top-left, in parentheses, e.g. `(Slow)` — title-cased from the JSON value.
 - **Composer**: top-right.
 - **Metadata line** below the title, small and muted: `style · year · form · p. N`. The `source` field is not displayed. Fields that are absent are simply omitted.
+- **Key chips** below the metadata: a **Key** chip from the tune's top-level `key` (`{tonic, mode}`), followed by one chip per entry in the tune's top-level `section_keys` (only present where a section modulates away from the main key), labelled with the section name. Repeats of the same section that modulate identically collapse to a single chip — dedupe on the **displayed label + key**, so e.g. Chattanooga Choo Choo's `B` and `B1` (both to F major) show one `B: F major` chip, not two. Both sources are the tune's own top-level fields; the `key_annotation` block (scorer bookkeeping, including its nested `section_keys` copy) is **ignored** for display. Chips track the active transposition.
 - **Add to playlist** button (§11.2): a small `＋ Add to playlist` control in the
   header (near the composer/right side, so it never collides with the centered
   title). Present for **every** tune, digitized or not. Clicking opens the
@@ -437,17 +438,19 @@ The root's own accidental also renders as `♯`/`♭`.
   precomputed lowercase/normalized search string per tune) keeps typing smooth;
   no external index is needed.
 - Empty query shows the full list. Zero matches shows a "No tunes found" message in the sidebar.
+- **Digitized-chords filter**: a toggle button (▦) in the top bar, beside the search box. When engaged it restricts the list to tunes carrying chord JSON (`has_chord_json`), applied on top of the search query and any active playlist. The button lights (accent colour) while on, is `aria-pressed`, and its state persists in `localStorage` under `grilles.chordsOnly`.
 
 ---
 
 ## 9. Extras (below the chord grid)
 
 Only for digitized-chord tunes (they read from the embedded `tune` JSON), shown
-below the chord panel. Rendered as four collapsible `<details>` blocks,
+below the chord panel. **Variants** render as an always-visible block immediately
+below the grid (item 2); the remaining blocks are collapsible `<details>`,
 collapsed by default, in small muted type:
 
 1. **Same changes** — the `same_chord_changes` string, when present.
-2. **Variants** — for each entry in `variants`: its `applies_to` string as a caption, then its `bars` rendered as a mini chord grid (same renderer as §6/§7 at ~65% scale, 4 bars per row, single barlines only — variants have no sections).
+2. **Variants** — rendered directly below the main grid (always visible, **not** collapsed). For each entry in `variants`: its `applies_to` string as a caption, then its `bars` rendered as a mini chord grid (same renderer as §6/§7, column-aligned to the main grid, single barlines only — variants have no sections). When a variant's `targets` (or, for legacy data, its `applies_to`) resolve to real grid bars, the variant box is **clickable**: clicking swaps the variant's chords into the matching grid bars and clicking again restores them. Variants that touch **different** bars toggle **independently** — several may be applied at once, and their overrides merge. Variants that compete for the **same** bar (their resolved targets overlap on any grid bar, e.g. *My Old Flame*'s three "Bar 17" alternatives) are mutually **exclusive**: applying one drops any active variant it overlaps, so the grid never shows two conflicting alternatives for one bar. Applying a variant does **not** visually mark the affected grid bars (the swapped chords stand on their own); an internal `.bar.variant-swap` class marks them only as a hook for tests/inspection. The active state is per-tune and **persisted** in `localStorage` (key `grilles.variants`, a `{ tuneId: [variantIndex,…] }` map): reopening or reloading a tune restores the swaps the user had applied. Saved indices that no longer point at an applicable variant (a changed corpus) are ignored on load.
 3. **Recordings** — the `recordings` array as a plain list.
 4. **Notes** — each `notation_notes` key/value as `key: value` lines.
 

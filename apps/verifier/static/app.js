@@ -29,7 +29,9 @@ const STATUS_GLYPH = { verified: '✓', deferred: '⏸', needs_review: '○' };
 
 /** The review state of a tune list entry. */
 function tuneStatus(t) {
-  return t.verified ? 'verified' : (t.deferred ? 'deferred' : 'needs_review');
+  if (t.verified) return 'verified';
+  if (t.deferred) return 'deferred';
+  return 'needs_review';
 }
 
 // Known meta fields shown in the grid (in display order)
@@ -249,6 +251,24 @@ function invalidChordList(payload) {
   return out;
 }
 
+/** Variant targets that name a missing section or run past its end. */
+function invalidTargetList(payload) {
+  const out = [];
+  const counts = {};
+  Object.entries(payload.sections || {}).forEach(([n, bars]) => { counts[n] = (bars || []).length; });
+  (Array.isArray(payload.variants) ? payload.variants : []).forEach((v, i) => {
+    const nb = (v.bars || []).length;
+    (Array.isArray(v.targets) ? v.targets : []).forEach(tg => {
+      if (!(tg.section in counts)) {
+        out.push(`variant ${i + 1}: unknown section "${tg.section}"`);
+      } else if (tg.bar < 1 || (tg.bar - 1 + nb) > counts[tg.section]) {
+        out.push(`variant ${i + 1}: ${tg.section}/${tg.bar} + ${nb} bars runs past section end`);
+      }
+    });
+  });
+  return out;
+}
+
 // ─── Dirty tracking ───────────────────────────────────────────────────────────
 function setDirty() {
   if (!S.dirty) {
@@ -267,7 +287,7 @@ function clearDirty() {
 function updateProgress() {
   const total    = S.tunes.length;
   const done     = S.tunes.filter(t => t.verified).length;
-  const deferred = S.tunes.filter(t => t.deferred).length;
+  const deferred = S.tunes.filter(t => tuneStatus(t) === 'deferred').length;
   const parts = [`${done} / ${total} verified`];
   if (deferred) parts.push(`${deferred} deferred`);
   qs('#progress-text').textContent = parts.join(' · ');
@@ -277,8 +297,8 @@ function updateProgress() {
 // ─── Filter tabs ──────────────────────────────────────────────────────────────
 /** Tunes visible under the active filter, keeping source order. */
 function visibleTunes() {
-  if (S.filter === 'needs_review') return S.tunes.filter(t => tuneStatus(t) === 'needs_review');
-  if (S.filter === 'deferred')     return S.tunes.filter(t => tuneStatus(t) === 'deferred');
+  if (S.filter === 'needs_review')   return S.tunes.filter(t => tuneStatus(t) === 'needs_review');
+  if (S.filter === 'deferred')       return S.tunes.filter(t => tuneStatus(t) === 'deferred');
   return S.tunes;
 }
 
@@ -412,6 +432,20 @@ function collectVariants() {
 
   // Renumber bars sequentially within each variant
   S.data.variants.forEach(vr => (vr.bars || []).forEach((bar, i) => { bar.bar = i + 1; }));
+
+  // Targets: rebuild each variant's {section, bar} anchors from its rows.
+  const collected = S.data.variants.map(() => []);
+  qsa('#variants-container .target-row').forEach(row => {
+    const vi = +row.dataset.vi;
+    if (!collected[vi]) return;
+    const sec = qs('.target-sec', row)?.value.trim();
+    const bar = parseInt(qs('.target-bar', row)?.value, 10);
+    if (sec && Number.isFinite(bar)) collected[vi].push({ section: sec, bar });
+  });
+  S.data.variants.forEach((vr, vi) => {
+    if (collected[vi].length) vr.targets = collected[vi];
+    else delete vr.targets;
+  });
 }
 
 function collectFromDOM() {
@@ -710,10 +744,47 @@ function addSection() {
   }, 50);
 }
 
+// ─── Variant targets (structured section+bar anchors) ─────────────────────────
+/* A variant's `targets` map it onto the grid: one {section, bar} per occurrence,
+   pointing at the grid bar (1-indexed within its section) where the variant's
+   FIRST bar lands; the rest follow consecutively in the same section. The
+   free-text `applies_to` caption is kept for display only. */
+
+// Sections that don't count toward the "chorus" frame the captions use.
+const AUX_SECTION_RE = /^(verse|intro|interlude|coda|transition)/i;
+
+/** Chorus bars in printed order as {name, bar} (1-indexed), auxiliary sections
+    skipped — the frame a legacy `applies_to` caption's numbers count over. */
+function chorusFlat() {
+  const flat = [];
+  (S.data.sections || []).forEach(sec => {
+    if (AUX_SECTION_RE.test(sec.name)) return;
+    (sec.bars || []).forEach((_bar, i) => flat.push({ name: sec.name, bar: i + 1 }));
+  });
+  return flat;
+}
+
+/** Derive `targets` from a variant's caption over the chorus frame (same rule as
+    the backfill): one anchor per caption number whose run stays in one section. */
+function deriveTargets(variant) {
+  const starts = (String(variant.applies_to || '').match(/\d+/g) || []).map(Number);
+  const nb = (variant.bars || []).length;
+  const flat = chorusFlat();
+  const out = [];
+  if (!nb) return out;
+  starts.forEach(s => {
+    if (s < 1 || s + nb - 1 > flat.length) return;   // out of range
+    const run = flat.slice(s - 1, s - 1 + nb);
+    if (new Set(run.map(r => r.name)).size > 1) return; // straddles sections
+    out.push({ section: run[0].name, bar: run[0].bar });
+  });
+  return out;
+}
+
 // ─── Render variants ──────────────────────────────────────────────────────────
 /* Variants are alternative changes for certain bars. They edit exactly like
    sections — same bar/row/beat grid and chord validation — but carry a free-text
-   "applies to" caption instead of a section name. */
+   "applies to" caption plus a structured `targets` list instead of a section name. */
 function renderVariants() {
   const bc        = getBeatCount();
   const variants  = Array.isArray(S.data.variants) ? S.data.variants : [];
@@ -748,6 +819,7 @@ function renderVariantHTML(variant, vi, totalVariants, bc) {
                   title="Delete variant">×</button>
         </div>
       </div>
+      ${renderVariantTargetsHTML(variant, vi)}
       <div class="sec-body">
         ${rows || '<div class="no-bars">No bars — use the buttons below to add some.</div>'}
       </div>
@@ -759,7 +831,83 @@ function renderVariantHTML(variant, vi, totalVariants, bc) {
   `;
 }
 
+/* The targets editor: one row per {section, bar} anchor. The section dropdown is
+   populated from the live section names; a stored-but-missing section is kept as
+   an option so it is never silently dropped and is flagged. "Auto from caption"
+   fills the rows from `applies_to` over the chorus frame. */
+function renderVariantTargetsHTML(variant, vi) {
+  const targets  = Array.isArray(variant.targets) ? variant.targets : [];
+  const secNames = (S.data.sections || []).map(s => s.name);
+
+  const rows = targets.map((tg, ti) => {
+    const opts = secNames.slice();
+    if (tg.section && !opts.includes(tg.section)) opts.push(tg.section); // keep unknown
+    const missing = tg.section && !secNames.includes(tg.section);
+    const optHtml = opts.map(n =>
+      `<option value="${esc(n)}"${n === tg.section ? ' selected' : ''}>${esc(n)}</option>`
+    ).join('');
+    return `
+      <div class="target-row${missing ? ' target-missing' : ''}" data-vi="${vi}" data-ti="${ti}">
+        <select class="target-sec" data-vi="${vi}" data-ti="${ti}" title="Section">
+          <option value=""${tg.section ? '' : ' selected'}>—</option>
+          ${optHtml}
+        </select>
+        <span class="target-at">bar</span>
+        <input class="target-bar" type="number" min="1" step="1"
+               data-vi="${vi}" data-ti="${ti}"
+               value="${esc(tg.bar != null ? tg.bar : '')}"
+               title="Bar within that section (1-indexed) where the variant's first bar lands" />
+        <button class="btn-icon danger btn-xs" data-action="target-del"
+                data-vi="${vi}" data-ti="${ti}" title="Remove target">×</button>
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="var-targets" data-vi="${vi}">
+      <div class="var-targets-head">
+        <span class="var-targets-label"
+              title="Grid bars this variant swaps into — one per occurrence; the first variant bar lands here, the rest follow within the same section">Targets</span>
+        <button class="btn btn-xs btn-outline" data-action="target-auto" data-vi="${vi}"
+                title="Fill targets from the caption, counting the chorus (verse/intro skipped)">Auto from caption</button>
+        <button class="btn btn-xs btn-outline" data-action="target-add" data-vi="${vi}">+ Target</button>
+      </div>
+      <div class="var-targets-rows">
+        ${rows || '<div class="no-targets">No targets — use “Auto from caption” or “+ Target”.</div>'}
+      </div>
+    </div>`;
+}
+
 // ─── Variant structural operations ─────────────────────────────────────────────
+function addVariantTarget(vi) {
+  const v = S.data.variants[vi];
+  if (!v) return;
+  if (!Array.isArray(v.targets)) v.targets = [];
+  v.targets.push({ section: S.data.sections[0]?.name || '', bar: 1 });
+  renderVariants();
+  setDirty();
+}
+
+function deleteVariantTarget(vi, ti) {
+  const v = S.data.variants[vi];
+  if (!v || !Array.isArray(v.targets)) return;
+  v.targets.splice(ti, 1);
+  if (!v.targets.length) delete v.targets;
+  renderVariants();
+}
+
+function autoVariantTargets(vi) {
+  const v = S.data.variants[vi];
+  if (!v) return;
+  const derived = deriveTargets(v);
+  if (!derived.length) {
+    toast('Could not derive targets — check “applies to” and the section lengths.', 'warn');
+    return;
+  }
+  v.targets = derived;
+  renderVariants();
+  setDirty();
+}
+
 function moveVariantUp(vi) {
   const v = S.data.variants;
   [v[vi - 1], v[vi]] = [v[vi], v[vi - 1]];
@@ -774,6 +922,9 @@ function copyVariant(vi) {
   const src   = S.data.variants[vi];
   const clone = {
     ...(src.applies_to ? { applies_to: src.applies_to } : {}),
+    ...(Array.isArray(src.targets) && src.targets.length
+      ? { targets: src.targets.map(t => ({ section: t.section, bar: t.bar })) }
+      : {}),
     bars: (src.bars || []).map(bar => ({
       bar:   bar.bar,
       beats: Object.assign({}, bar.beats),
@@ -862,10 +1013,14 @@ async function doSave() {
       body:    JSON.stringify(payload),
     });
     clearDirty();
-    const bad = invalidChordList(payload);
-    if (bad.length) {
-      const shown = bad.slice(0, 3).join(' · ');
-      toast(`Saved ✓ — but ${bad.length} chord${bad.length > 1 ? 's' : ''} look wrong: ${shown}${bad.length > 3 ? ' …' : ''}`, 'warn');
+    const bad  = invalidChordList(payload);
+    const badT = invalidTargetList(payload);
+    if (bad.length || badT.length) {
+      const parts = [];
+      if (bad.length)  parts.push(`${bad.length} chord${bad.length > 1 ? 's' : ''} look wrong`);
+      if (badT.length) parts.push(`${badT.length} variant target${badT.length > 1 ? 's' : ''} off`);
+      const detail = [...bad.slice(0, 2), ...badT.slice(0, 2)].join(' · ');
+      toast(`Saved ✓ — but ${parts.join(', ')}: ${detail}${(bad.length + badT.length) > 2 ? ' …' : ''}`, 'warn');
     } else {
       toast('Saved ✓', 'success');
     }
@@ -975,7 +1130,10 @@ async function openTune(id) {
 
     // Sync review state from server response
     const t = S.tunes.find(t => t.id === id);
-    if (t) { t.verified = result.verified; t.deferred = result.deferred; }
+    if (t) {
+      t.verified = result.verified;
+      t.deferred = result.deferred;
+    }
 
     renderEditor();
     renderSidebar(); // update active highlight
@@ -1142,22 +1300,26 @@ function wireEvents() {
     const vi = btn.dataset.vi != null ? +btn.dataset.vi : undefined;
     const ri = btn.dataset.ri != null ? +btn.dataset.ri : undefined;
     const bi = btn.dataset.bi != null ? +btn.dataset.bi : undefined;
+    const ti = btn.dataset.ti != null ? +btn.dataset.ti : undefined;
 
     // Persist current input values before mutating
     collectFromDOM();
     setDirty();
 
     switch (action) {
-      case 'var-up':   moveVariantUp(vi);        break;
-      case 'var-down': moveVariantDown(vi);      break;
-      case 'var-copy': copyVariant(vi);          break;
-      case 'var-del':  deleteVariant(vi);        break;
-      case 'row-up':   moveVariantRowUp(vi, ri); break;
-      case 'row-down': moveVariantRowDown(vi, ri); break;
-      case 'row-del':  deleteVariantRow(vi, ri); break;
-      case 'bar-del':  deleteVariantBar(vi, bi); break;
-      case 'add-row':  addVariantRow(vi);        break;
-      case 'add-bar':  addVariantBar(vi);        break;
+      case 'var-up':      moveVariantUp(vi);         break;
+      case 'var-down':    moveVariantDown(vi);       break;
+      case 'var-copy':    copyVariant(vi);           break;
+      case 'var-del':     deleteVariant(vi);         break;
+      case 'row-up':      moveVariantRowUp(vi, ri);  break;
+      case 'row-down':    moveVariantRowDown(vi, ri); break;
+      case 'row-del':     deleteVariantRow(vi, ri);  break;
+      case 'bar-del':     deleteVariantBar(vi, bi);  break;
+      case 'add-row':     addVariantRow(vi);         break;
+      case 'add-bar':     addVariantBar(vi);         break;
+      case 'target-add':  addVariantTarget(vi);      break;
+      case 'target-del':  deleteVariantTarget(vi, ti); break;
+      case 'target-auto': autoVariantTargets(vi);    break;
     }
   });
 
@@ -1165,6 +1327,11 @@ function wireEvents() {
   qs('#variants-container').addEventListener('input', e => {
     setDirty();
     if (e.target.classList.contains('beat-inp')) validateChordInput(e.target, true);
+  });
+
+  // ── Variants: target section dropdowns fire 'change', not 'input'
+  qs('#variants-container').addEventListener('change', e => {
+    if (e.target.classList.contains('target-sec')) setDirty();
   });
 
   // ── Chord hint bubble follows focus
