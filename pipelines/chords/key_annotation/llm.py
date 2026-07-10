@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import time
+from pathlib import Path
 
 import anthropic
 
@@ -252,14 +253,24 @@ def _one_interactive(client: anthropic.Anthropic, tune: dict
 
 
 def run_interactive(client: anthropic.Anthropic, tunes: dict[str, dict],
-                    progress=print, workers: int = 1
+                    progress=print, workers: int = 1, on_result=None
                     ) -> dict[str, dict | LLMVoteError]:
-    """messages.create calls, optionally a few in parallel (workers > 1)."""
+    """messages.create calls, optionally a few in parallel (workers > 1).
+
+    `on_result(stem, result)` fires as each tune's vote lands, so the caller
+    can persist it immediately — a crash mid-run loses at most one paid call.
+    """
     results: dict[str, dict | LLMVoteError] = {}
+
+    def record(stem: str, result: dict | LLMVoteError) -> None:
+        results[stem] = result
+        if on_result is not None:
+            on_result(stem, result)
+
     if workers <= 1:
         for i, (stem, tune) in enumerate(tunes.items(), 1):
             progress(f"  [{i}/{len(tunes)}] LLM: {stem}")
-            results[stem] = _one_interactive(client, tune)
+            record(stem, _one_interactive(client, tune))
         return results
 
     from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -268,45 +279,103 @@ def run_interactive(client: anthropic.Anthropic, tunes: dict[str, dict],
                    for stem, tune in tunes.items()}
         for i, fut in enumerate(as_completed(futures), 1):
             stem = futures[fut]
-            results[stem] = fut.result()
             progress(f"  [{i}/{len(tunes)}] LLM done: {stem}")
+            record(stem, fut.result())
     return results
 
 
+def _fetch_batch_results(client: anthropic.Anthropic, batch_id: str,
+                         stems: set[str]) -> dict[str, dict | LLMVoteError]:
+    """Results for an ended batch, restricted to `stems`; transient errors
+    during the (paginated) fetch retry the whole listing."""
+    last_exc: Exception | None = None
+    for attempt in range(len(_TRANSIENT_BACKOFF) + 1):
+        results: dict[str, dict | LLMVoteError] = {}
+        try:
+            for result in client.messages.batches.results(batch_id):
+                stem = result.custom_id
+                if stem not in stems:
+                    continue  # no longer pending (verified since submission)
+                kind = result.result.type
+                if kind == "succeeded":
+                    try:
+                        results[stem] = _parse_response(result.result.message)
+                    except LLMVoteError as exc:
+                        results[stem] = exc
+                else:
+                    detail = ""
+                    if kind == "errored":
+                        detail = f": {result.result.error}"
+                    results[stem] = LLMVoteError(f"batch request {kind}{detail}")
+            return results
+        except (anthropic.APIConnectionError, anthropic.APIStatusError) as exc:
+            last_exc = exc
+        if attempt < len(_TRANSIENT_BACKOFF):
+            time.sleep(_TRANSIENT_BACKOFF[attempt])
+    assert last_exc is not None
+    raise last_exc
+
+
+def poll_batch(client: anthropic.Anthropic, batch_id: str, stems: set[str],
+               progress=print, poll_seconds: float = 15.0
+               ) -> dict[str, dict | LLMVoteError]:
+    """Poll a submitted batch until it ends, then fetch its results.
+
+    Transient poll failures are logged and retried indefinitely — the batch
+    keeps running server-side either way, and the persisted batch id means an
+    interrupted poll is resumable with `annotate_keys.py --resume-batch`.
+    """
+    try:
+        while True:
+            try:
+                batch = client.messages.batches.retrieve(batch_id)
+            except (anthropic.APIConnectionError,
+                    anthropic.APIStatusError) as exc:
+                progress(f"  batch {batch_id}: poll failed ({exc}); retrying")
+                time.sleep(poll_seconds)
+                continue
+            if batch.processing_status == "ended":
+                break
+            counts = batch.request_counts
+            progress(f"  batch {batch_id}: {batch.processing_status}"
+                     f" (processing={counts.processing}"
+                     f" succeeded={counts.succeeded}"
+                     f" errored={counts.errored})")
+            time.sleep(poll_seconds)
+    except KeyboardInterrupt:
+        progress(f"\n  interrupted — batch {batch_id} keeps running "
+                 "server-side; fetch it later with "
+                 "annotate_keys.py --resume-batch")
+        raise
+    return _fetch_batch_results(client, batch_id, stems)
+
+
 def run_batch(client: anthropic.Anthropic, tunes: dict[str, dict],
-              progress=print, poll_seconds: float = 15.0
+              progress=print, poll_seconds: float = 15.0,
+              state_path: Path | None = None
               ) -> dict[str, dict | LLMVoteError]:
-    """Batches API run — 50% price, used for large pending sets (spec §3.3)."""
+    """Batches API run — 50% price, used for large pending sets (spec §3.3).
+
+    The batch id is persisted to `state_path` right after submission and
+    removed once the results are in, so a crash or interrupt between the two
+    never orphans a paid batch.
+    """
     requests = [{"custom_id": stem, "params": request_params(tune)}
                 for stem, tune in tunes.items()]
     batch = client.messages.batches.create(requests=requests)
+    if state_path is not None:
+        state_path.write_text(json.dumps({
+            "batch_id": batch.id,
+            "submitted_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
+            "stems": sorted(tunes),
+        }, indent=2) + "\n", "utf-8")
     progress(f"  batch {batch.id} submitted ({len(requests)} tunes); polling ...")
 
-    while True:
-        batch = client.messages.batches.retrieve(batch.id)
-        if batch.processing_status == "ended":
-            break
-        counts = batch.request_counts
-        progress(f"  batch {batch.id}: {batch.processing_status}"
-                 f" (processing={counts.processing} succeeded={counts.succeeded}"
-                 f" errored={counts.errored})")
-        time.sleep(poll_seconds)
-
-    results: dict[str, dict | LLMVoteError] = {
-        stem: LLMVoteError("missing from batch results") for stem in tunes}
-    for result in client.messages.batches.results(batch.id):
-        stem = result.custom_id
-        kind = result.result.type
-        if kind == "succeeded":
-            try:
-                results[stem] = _parse_response(result.result.message)
-            except LLMVoteError as exc:
-                results[stem] = exc
-        else:
-            detail = ""
-            if kind == "errored":
-                detail = f": {result.result.error}"
-            results[stem] = LLMVoteError(f"batch request {kind}{detail}")
+    results = poll_batch(client, batch.id, set(tunes), progress, poll_seconds)
+    for stem in tunes:
+        results.setdefault(stem, LLMVoteError("missing from batch results"))
+    if state_path is not None and state_path.exists():
+        state_path.unlink()
     return results
 
 
@@ -330,16 +399,25 @@ def refresh_fingerprints(items: dict[str, tuple[dict, dict, dict | None]],
 
 
 def run(tunes: dict[str, dict], progress=print, *,
-        force_interactive: bool = False, workers: int = 1
+        force_interactive: bool = False, workers: int = 1,
+        on_result=None, state_path: Path | None = None
         ) -> dict[str, dict | LLMVoteError]:
     """Dispatch on the pending count (spec §3.3 run modes).
 
     `force_interactive` skips the Batches API regardless of size — useful when
     results are wanted now and batch scheduling latency is not.
+    `on_result(stem, result)` fires exactly once per tune in every mode
+    (per call interactively, on arrival of the batch results in batch mode)
+    so the caller can write each annotation as soon as its vote exists.
     """
     if not tunes:
         return {}
     client = anthropic.Anthropic()
     if len(tunes) >= BATCH_THRESHOLD and not force_interactive:
-        return run_batch(client, tunes, progress)
-    return run_interactive(client, tunes, progress, workers=workers)
+        results = run_batch(client, tunes, progress, state_path=state_path)
+        if on_result is not None:
+            for stem, result in results.items():
+                on_result(stem, result)
+        return results
+    return run_interactive(client, tunes, progress, workers=workers,
+                           on_result=on_result)

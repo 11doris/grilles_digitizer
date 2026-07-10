@@ -7,6 +7,9 @@ Usage
     python pipelines/chords/annotate_keys.py --status        # per-status counts, no work
     python pipelines/chords/annotate_keys.py --scorer-only   # skip the LLM voter (dev/offline)
     python pipelines/chords/annotate_keys.py --set-key <stem> <tonic> <major|minor>
+    python pipelines/chords/annotate_keys.py --resume-batch [BATCH_ID]  # pick up an
+        # interrupted Batches-API run (id read from data/chords/key_annotation_batch.json
+        # when omitted)
 
 Each tune gets two independent key votes — a deterministic functional scorer
 and one Claude call (structured outputs) — adjudicated into `agreed` /
@@ -39,6 +42,30 @@ def _tune_paths(verified_dir: Path) -> list[Path]:
             if p.stem not in _IGNORED_STEMS and not p.stem.endswith("_opus")]
 
 
+def _batch_state_path(annotated_dir: Path) -> Path:
+    # Sibling of verification_state.json, outside both tune directories so
+    # no *.json glob (corpus load, displayer build) ever picks it up.
+    return annotated_dir.parent / "key_annotation_batch.json"
+
+
+def _orphan_paths(verified_dir: Path, annotated_dir: Path) -> list[Path]:
+    """Annotated files whose 04_verified source no longer exists — without a
+    sweep they would keep flowing into the similarity corpus and displayer."""
+    if not annotated_dir.exists():
+        return []
+    verified = {p.name for p in _tune_paths(verified_dir)}
+    return [p for p in _tune_paths(annotated_dir) if p.name not in verified]
+
+
+def sweep_orphans(verified_dir: Path, annotated_dir: Path) -> int:
+    orphans = _orphan_paths(verified_dir, annotated_dir)
+    for path in orphans:
+        path.unlink()
+        print(f"  removed orphan annotation (source gone from "
+              f"{verified_dir.name}): {path.name}")
+    return len(orphans)
+
+
 def _stale_fingerprint_paths(annotated_dir: Path) -> list[Path]:
     """Annotated files flagged for the key-pinned fingerprint refresh (§3.5)."""
     out = []
@@ -68,6 +95,16 @@ def cmd_status(verified_dir: Path, annotated_dir: Path) -> int:
     if stale:
         print(f"{len(stale)} stale fingerprint(s) awaiting key-pinned refresh: "
               + ", ".join(p.stem for p in stale))
+    orphans = _orphan_paths(verified_dir, annotated_dir)
+    if orphans:
+        print(f"{len(orphans)} orphan annotation(s) (source deleted; the next "
+              "annotate run removes them): "
+              + ", ".join(p.stem for p in orphans))
+    state_path = _batch_state_path(annotated_dir)
+    if state_path.exists():
+        batch_id = core.read_json(state_path).get("batch_id")
+        print(f"unfinished batch {batch_id} on record — fetch it with "
+              "--resume-batch")
     return 0
 
 
@@ -99,37 +136,24 @@ def refresh_stale_fingerprints(annotated_dir: Path) -> int:
     return refreshed
 
 
-def cmd_annotate(verified_dir: Path, annotated_dir: Path, *,
-                 scorer_only: bool, limit: int | None,
-                 interactive: bool = False, workers: int = 1) -> int:
-    paths = _tune_paths(verified_dir)
-    pending = [p for p in paths if core.is_pending(p, annotated_dir / p.name)]
-    if limit is not None:
-        pending = pending[:limit]
-    print(f"{len(paths)} tunes in {verified_dir.name}; {len(pending)} pending")
-    if not pending:
-        if not scorer_only:
-            refresh_stale_fingerprints(annotated_dir)
-        return 0
+def _make_writer(pending: list[Path], annotated_dir: Path
+                 ) -> tuple[dict[str, dict], Counter, "callable"]:
+    """(tunes, counts, record) for a set of pending tunes.
 
+    `record(stem, llm_result)` builds and writes one annotation immediately —
+    it is handed to llm.run as the on_result callback so every paid result
+    hits disk the moment it exists, whatever happens to the rest of the run.
+    """
     tunes = {p.stem: core.read_json(p) for p in pending}
+    shas = {p.stem: core.source_sha256(p) for p in pending}
+    names = {p.stem: p.name for p in pending}
     scorer_votes = {stem: score_tune(tune) for stem, tune in tunes.items()}
-
-    if scorer_only:
-        llm_results = {stem: LLMVoteError("llm pass not run (--scorer-only)")
-                       for stem in tunes}
-    else:
-        from pipelines.chords.key_annotation import llm
-        llm_results = llm.run(tunes, force_interactive=interactive,
-                              workers=workers)
-
     counts: Counter[str] = Counter()
-    for path in pending:
-        stem = path.stem
+
+    def record(stem: str, llm_result) -> None:
         annotated = core.build_annotation(
-            tunes[stem], core.source_sha256(path),
-            scorer_votes[stem], llm_results[stem])
-        core.write_annotated(annotated_dir / path.name, annotated)
+            tunes[stem], shas[stem], scorer_votes[stem], llm_result)
+        core.write_annotated(annotated_dir / names[stem], annotated)
         status = annotated["key_annotation"]["status"]
         counts[status] += 1
         key = annotated["key"]
@@ -140,9 +164,79 @@ def cmd_annotate(verified_dir: Path, annotated_dir: Path, *,
                 for n, d in annotated["section_keys"].items())
         print(f"  {stem:55s} {key['tonic']:>2s} {key['mode']:5s} [{status}]{extra}")
 
+    return tunes, counts, record
+
+
+def cmd_annotate(verified_dir: Path, annotated_dir: Path, *,
+                 scorer_only: bool, limit: int | None,
+                 interactive: bool = False, workers: int = 1) -> int:
+    sweep_orphans(verified_dir, annotated_dir)
+    paths = _tune_paths(verified_dir)
+    pending = [p for p in paths if core.is_pending(p, annotated_dir / p.name)]
+    if limit is not None:
+        pending = pending[:limit]
+    print(f"{len(paths)} tunes in {verified_dir.name}; {len(pending)} pending")
+    if not pending:
+        if not scorer_only:
+            refresh_stale_fingerprints(annotated_dir)
+        return 0
+
+    tunes, counts, record = _make_writer(pending, annotated_dir)
+
+    if scorer_only:
+        for stem in tunes:
+            record(stem, LLMVoteError("llm pass not run (--scorer-only)"))
+    else:
+        from pipelines.chords.key_annotation import llm
+        llm.run(tunes, force_interactive=interactive, workers=workers,
+                on_result=record,
+                state_path=_batch_state_path(annotated_dir))
+
     print("done: " + ", ".join(f"{v} {k}" for k, v in sorted(counts.items())))
     if not scorer_only:
         refresh_stale_fingerprints(annotated_dir)
+    return 0
+
+
+def cmd_resume_batch(verified_dir: Path, annotated_dir: Path,
+                     batch_id: str) -> int:
+    """Fetch (polling first if still running) a previously submitted batch
+    and write its annotations — the recovery path when a batch run was
+    interrupted after submission."""
+    import anthropic
+
+    from pipelines.chords.key_annotation import llm
+
+    state_path = _batch_state_path(annotated_dir)
+    if not batch_id:
+        if not state_path.exists():
+            print(f"error: no {state_path.name} on record — pass the batch id "
+                  "explicitly: --resume-batch msgbatch_...", file=sys.stderr)
+            return 1
+        batch_id = core.read_json(state_path)["batch_id"]
+
+    paths = _tune_paths(verified_dir)
+    pending = [p for p in paths if core.is_pending(p, annotated_dir / p.name)]
+    if not pending:
+        print("nothing pending; batch results (if any) are no longer needed")
+        if state_path.exists():
+            state_path.unlink()
+        return 0
+    print(f"resuming batch {batch_id} ({len(pending)} pending tunes)")
+
+    tunes, counts, record = _make_writer(pending, annotated_dir)
+    results = llm.poll_batch(anthropic.Anthropic(), batch_id, set(tunes))
+    for stem, result in results.items():
+        record(stem, result)
+    skipped = len(tunes) - len(results)
+    if skipped:
+        print(f"  {skipped} pending tune(s) were not in this batch; "
+              "they stay pending for the next run")
+    if state_path.exists():
+        state_path.unlink()
+
+    print("done: " + ", ".join(f"{v} {k}" for k, v in sorted(counts.items())))
+    refresh_stale_fingerprints(annotated_dir)
     return 0
 
 
@@ -194,6 +288,12 @@ def main() -> int:
     parser.add_argument("--set-key", nargs=3,
                         metavar=("STEM", "TONIC", "MODE"),
                         help="scripted human override for one tune")
+    parser.add_argument("--resume-batch", nargs="?", const="", default=None,
+                        metavar="BATCH_ID",
+                        help="fetch an interrupted Batches-API run and write "
+                             "its annotations (id read from "
+                             "data/chords/key_annotation_batch.json when "
+                             "omitted)")
     args = parser.parse_args()
 
     verified_dir, annotated_dir = Path(args.verified), Path(args.annotated)
@@ -207,6 +307,8 @@ def main() -> int:
         return cmd_set_key(annotated_dir, stem, tonic, mode)
     if args.status:
         return cmd_status(verified_dir, annotated_dir)
+    if args.resume_batch is not None:
+        return cmd_resume_batch(verified_dir, annotated_dir, args.resume_batch)
     workers = args.workers if args.workers else (4 if args.interactive else 1)
     return cmd_annotate(verified_dir, annotated_dir,
                         scorer_only=args.scorer_only, limit=args.limit,
