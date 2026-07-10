@@ -299,7 +299,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "df4ee4fd1ff8a7e91463fef2458967c1abe1a68bacc3923a49100854092df925",
+    "source_sha256": "d351aa7f2d8136f960d91ac2139869dee1149f1233cd9aa8055b5ade42b44ef3",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -325,17 +325,16 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "36-bar ABCA' standard",
+    "family": "36-bar ABCA' ballad",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending",
-      "chromatic-descent"
+      "turnaround-ending"
     ],
     "sections": {
-      "A": "I with borrowed iv (Fm7), then Gm(maj7 line cliche) ii-V and V/ii (Am7-D7) back to ii-V",
-      "B": "I-ii-iii with Abo7 passing, Gm line cliche, I-bVII9-V/ii, ii-V and ii-V of IV (Cm7-F7)",
-      "C": "IV (Bbmaj7) with iv (Bbm7-Eb7), back to I, then vi tonicization (Em7b5-A7-Dm line cliche) and ii-V",
-      "A1": "I with borrowed iv, ii-V, V/ii (Am7b5-D7), then bVI-I, ii-V(b9) resolving to tonic F"
+      "A": "Imaj7 to iv (Fm7) with ii-V (Gm7-C7) and V/ii (Am7-D7) loop",
+      "B": "Imaj7-ii-iii with Ab dim passing, F-Eb9-D7-Gm7-C7, ending Cm7-F7 (V/IV)",
+      "C": "IV (Bbmaj7) area with Bbm7-Eb7, Em7b5-A7 to Dm(vi), Dm7-G7-Gm7-C7 back to V",
+      "A1": "Imaj7 to iv, Gm7-C7 and Am7b5-D7, resolving Bb-F to Gm7-C(b9)-F cadence"
     },
     "modulates": false
   }

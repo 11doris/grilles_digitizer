@@ -324,7 +324,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "0e7af36560038cba09d36523663008a70ab00b8d36f60892109713ac5223cfd5",
+    "source_sha256": "1f7fc2972d3b822674813eebd6283727cfe307a6364246d7931c931f8db9a993",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -356,10 +356,10 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "ii-V (Fm7-Bb7) to I Eb, with V/V (C7) and F7 (V/V) motion, ending Fm7-Eo7",
-      "A1": "Same as A but ends on I Eb moving to Eb7 (V/IV) via Abm",
-      "B": "IV Ab, half-dim ii-V toward Fm/Cm region, F7 then Fm7-Eo7 returning home",
-      "A2": "ii-V to I Eb with diminished passing and final resolution to Eb"
+      "A": "ii-V (Fm7-Bb7) into I (Eb), with V/V (C7) and dominant motion, ends on iv-related Fm7-Eo7",
+      "A1": "Same ii-V-I opening resolving to Eb, closing with Eb-Abm-Eb7 setting up the bridge",
+      "B": "Starts on IV (Ab), moves through Gm7b5-C7 to Fm, diminished passing to Cm-F7, back to Fm7-Eo7",
+      "A2": "ii-V-I opening as before with added diminished passing chords, final cadence resting on Eb"
     },
     "modulates": false
   }

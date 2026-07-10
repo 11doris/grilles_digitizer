@@ -280,8 +280,8 @@
     "chord": "Ebmaj7"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "0056579dc95987cc045608f456dc7016b818cd14fab110548e3437d301f9cfce",
+    "status": "agreed",
+    "source_sha256": "fef83a84186166cb64a68f57f1b3ee9e69b0bfe966bc8131f67a2833ddb25fc8",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -292,25 +292,20 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "Eb",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",
     "tags": [
-      "ii-V-chains",
       "dominant-cycle-bridge",
-      "circle-of-fifths"
+      "ii-V-chains",
+      "turnaround-ending"
     ],
     "sections": {
-      "A": "I with V/ii, iii-#iio, ii-V repeated resolving to I (Eb6)",
-      "B": "Dominant chain V/V/V (C7)-V/V (F7)-V7 then ii-V back home",
-      "A1": "Same A opening but ends on V (G7) as turnaround into C",
-      "C": "C7-F7 dominant approach, bVI6-passing dim, I then ii-V-I cadence on Eb6"
+      "A": "I with V/vi passing, iii-diminished, then ii-V (Fm7-Bb7) resolving to I (Eb6)",
+      "B": "Dominant cycle C7-F7-Bb7 (V/V/V - V/V - V) into ii-V back to Eb",
+      "A1": "Same as A but ends on V/V area (D7 to G7) as a turnaround",
+      "C": "C7-F7 then bVI (Ab6) diminished passing, back to I via Fm7-Bb7 to Eb6"
     },
     "modulates": false
   }

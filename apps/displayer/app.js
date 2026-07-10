@@ -48,9 +48,11 @@
   const plPopover = document.getElementById("plPopover");
   const plImportFile = document.getElementById("plImportFile");
 
-  /* Phones (narrow, or short in landscape): the list is a drawer; from 900px
-     wide the visible panels sit side by side. Keep in sync with style.css. */
-  const narrowMq = window.matchMedia("(max-width: 700px), (max-height: 500px)");
+  /* Phones (narrow, or short in landscape) and portrait tablets up to the 900px
+     desktop seam get the mobile treatment: the list is a drawer; from 900px wide
+     the visible panels sit side by side. Keep in sync with style.css. */
+  const narrowMq = window.matchMedia(
+    "(max-width: 700px), (max-height: 500px), (max-width: 899px) and (orientation: portrait)");
 
   const state = {
     filtered: TUNES,
@@ -58,6 +60,7 @@
     currentId: null, // tune displayed in the main panel
     showChords: true, // Chords switch (persisted)
     showMelody: true, // Melody switch (persisted); default on when a melody exists
+    showVerses: true, // Verses switch (persisted); hides verse_* sections from the grid
     listCollapsed: false, // desktop: docked sidebar hidden (persisted)
     overlayMag: false, // fullscreen scan magnified (pan by scrolling)
     gridZoom: 1, // user zoom factor on top of the fitted grid size; reset per tune
@@ -80,6 +83,14 @@
 
   function hasMelodyAsset(t) {
     return Boolean(t.melody_image || t.has_melody_abc);
+  }
+
+  /* Verse sections (spec §6.2 naming: "verse", "verse_A", …) are auxiliary — the
+     Verses switch hides them so only the chorus grid shows. */
+  const VERSE_SECTION = /^verse/i;
+
+  function hasVerseSection(t) {
+    return Object.keys(meta(t).sections || {}).some((n) => VERSE_SECTION.test(n));
   }
 
   /* All melody sheets of a tune; melody_images exists when there are several. */
@@ -1456,6 +1467,15 @@
         applyPanels(t);
       }));
     }
+    /* Only offered when the tune has a verse — the grid rebuilds on toggle, and
+       re-rendering the same tune keeps zoom/scroll/transpose/variants. */
+    if (t.has_chord_json && hasVerseSection(t)) {
+      bar.appendChild(makeSwitch("Verses", state.showVerses, (on) => {
+        state.showVerses = on;
+        saveSwitch("grilles.showVerses", on);
+        renderTune(state.currentId);
+      }));
+    }
     const transpose = makeTransposeControl(t);
     if (transpose) bar.appendChild(transpose);
     if (bar.childElementCount) paneEl.appendChild(bar);
@@ -1481,7 +1501,9 @@
             });
           });
         }
-        Object.keys(tune.sections || {}).forEach((name, i) => {
+        let sectionNames = Object.keys(tune.sections || {});
+        if (!state.showVerses) sectionNames = sectionNames.filter((n) => !VERSE_SECTION.test(n));
+        sectionNames.forEach((name, i) => {
           grid.appendChild(renderSection(name, tune.sections[name], beats,
             i === 0, tune.time_signature, overrides[name]));
         });
@@ -1702,8 +1724,10 @@
        persisted choice ("0"/"1") wins over the default. */
     const c = localStorage.getItem("grilles.showChords");
     const m = localStorage.getItem("grilles.showMelody");
+    const v = localStorage.getItem("grilles.showVerses");
     state.showChords = c === null ? true : c === "1";
     state.showMelody = m === null ? true : m === "1";
+    state.showVerses = v === null ? true : v === "1";
     state.chordsOnly = localStorage.getItem("grilles.chordsOnly") === "1";
     if (localStorage.getItem("grilles.list") === "0") setListCollapsed(true);
   } catch (e) { /* ignore */ }

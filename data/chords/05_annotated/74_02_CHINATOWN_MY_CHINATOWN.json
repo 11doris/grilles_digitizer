@@ -259,8 +259,8 @@
     "chord": "Eb"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "852b7a8053dff21035e90cdaa5f99e41f67c62bee18dd3ac5b913a6d64773317",
+    "status": "agreed",
+    "source_sha256": "3aaa16da92cef98ca6cb0518fb5e60ef0a5b21b30dfae21d67b3c8463ea9f13b",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -271,25 +271,19 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "Eb",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar ABAC standard",
+    "family": "32-bar ABA'C standard",
     "tags": [
       "circle-of-fifths",
-      "dominant-cycle-bridge",
-      "ii-V-chains"
+      "dominant-cycle-bridge"
     ],
     "sections": {
-      "A": "Tonic I (Eb) for six bars then V7 (Bb7)",
-      "B": "Dominant cycle: III7(G7)-vi(Cm)-II7(F7)-V7(Bb7)",
-      "A1": "I-I7-IV: Eb to Eb7 leading to Ab (IV)",
-      "C": "IV-ivm-I-VI7-II7-V7-I turnaround resolving to Eb"
+      "A": "I held for six bars then V7 (Bb7) for two",
+      "B": "Dominant cycle: V/vi (G7) - vi (Cm) - V/V (F7) - V (Bb7)",
+      "A1": "I - I7 (V7/IV) - IV (Ab)",
+      "C": "IV - iv (Ab-Abm) - I - V/ii (C7) - V/V (F7) - V (Bb7) - I resolution"
     },
     "modulates": false
   }

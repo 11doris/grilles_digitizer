@@ -359,8 +359,8 @@
     "chord": "Fm7"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "08b1a66797e2537763d87d8dc7144af3789449313933ce86152398c1d0b74f30",
+    "status": "agreed",
+    "source_sha256": "e57da524b2ec523a10c59032ab513c40480acdf801c90a117fa8b5e92d17ad05",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -377,34 +377,30 @@
       "tonic": "Eb",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "bridge tonicizes Ab (IV) via ii-V-I before returning to V of Eb",
+      "modulation_note": "bridge tonicizes Ab (IV) before returning via V",
       "section_keys": {
         "B": {
           "tonic": "Ab",
           "mode": "major"
         }
       }
-    },
-    "human": {
-      "tonic": "Eb",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard with verse",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending"
+      "turnaround-ending",
+      "verse-present"
     ],
     "sections": {
-      "verse_A": "ii-V into I (Fm7-Bb7-Eb), then rising ii-Vs (Am7b5-D7 to Gm, Cm7b5-F7) landing on Bb7 (V)",
-      "A": "Imaj7-vi with ii-V (Fm7-Bb7), IV to iv (Abmaj7-Abm6), ending Fm9-Bb7#5 (ii-V)",
-      "A1": "same as A ending on Eb tonic (I)",
-      "B": "Bbm7-Eb7 ii-V-I to Ab6 (IV), then Cm7-F7 to Bb7 (V of Eb)",
-      "A2": "A material extended with Gm7b5-C7 then F9-Bb7 turnaround resolving to Eb (I)"
+      "verse_A": "ii-V to I in Eb, then ii-Vs and minor chords ending on V (Bb7) as turnaround",
+      "A": "Imaj7-vi | ii-V loop with IV/IVm color, ends on ii-V back to I",
+      "A1": "same as A, resolving to Eb tonic in bar 8",
+      "B": "ii-V of Ab to Ab6 (IV), then ii-V of Bb, ending on Bb7 (V)",
+      "A2": "A section extended with ii-V (Gm7b5-C7, F9-Bb7) resolving to Eb tonic"
     },
     "modulates": true,
-    "modulation_note": "bridge tonicizes Ab (IV) via ii-V-I before returning to V of Eb"
+    "modulation_note": "bridge tonicizes Ab (IV) before returning via V"
   }
 }

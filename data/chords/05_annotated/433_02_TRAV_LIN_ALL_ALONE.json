@@ -261,17 +261,17 @@
     ]
   },
   "key": {
-    "tonic": "F",
-    "mode": "minor"
+    "tonic": "Ab",
+    "mode": "major"
   },
   "opening": {
-    "degree": "i",
+    "degree": "vi",
     "quality": "min",
     "chord": "Fm"
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "00886b3e1b4c3d12fd25d9b3f13ff52559501b4deb2c4df9e8bf6ee55db31c73",
+    "source_sha256": "26e39241a9bdd701ea31cd7c3d93b5eb68ec5d205622a19c1dd4d1c9820cdd72",
     "scorer": {
       "tonic": "Ab",
       "mode": "major",
@@ -291,22 +291,23 @@
       "modulation_note": null
     },
     "human": {
-      "tonic": "F",
-      "mode": "minor",
-      "corrected": false
+      "tonic": "Ab",
+      "mode": "major",
+      "corrected": true
     }
   },
   "harmonic_fingerprint": {
-    "family": "28-bar AABC tune",
+    "family": "28-bar AABC form",
     "tags": [
+      "minor-key",
       "turnaround-ending",
-      "ii-V-chains"
+      "chromatic-descent"
     ],
     "sections": {
-      "A": "i-bVI-V(C7) loop in Fm, then i-bivm6-bIII7(Eb7)-bIII(Ab) with C7 turnaround back to i",
-      "A1": "Same as A but ending on bIII (Ab) without the C7 turnaround",
-      "B": "bivm6-iiø-bIII7(Eb7) vamp resolving to Ab, then Fm7-Bb7 and Ab7-Db7 motion",
-      "C": "i-bivm6-Eb7-Ab tag cadencing to the relative major"
+      "A": "i (Fm) with bVI-V7 (Db-C7) motion, iv-flavored Dbm6, then V7/relative (Eb7) to Ab (bIII), ending on C7 (V of i)",
+      "A1": "Same as A: i with Db-C7, Dbm6, Eb7 to Ab (bIII) at close",
+      "B": "Dbm6-Bbm7b5-Eb7 (ii-V into Ab) repeated, then Ab/Abmaj7, Fm7-Bb7, i-Dbm, Ab7-Db7",
+      "C": "i (Fm)-Dbm6-Eb7 resolving to Ab (bIII)"
     },
     "modulates": false
   }

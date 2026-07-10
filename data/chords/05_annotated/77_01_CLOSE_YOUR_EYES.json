@@ -8,17 +8,6 @@
   "title": "CLOSE YOUR EYES",
   "page": 77,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "G.Ammons 60- K.Curtis 60- Jazz Messengers 59",
-    "E.Fitzgerald 57- B.Goodman 54- M.Jackson 59",
-    "U.Green 61- Jo Jones 59- O.Peterson 59",
-    "H.Baker 59- R.Eldridge/B.Carter 55-",
-    "E.Davis 58"
-  ],
-  "notation_notes": {
-    "verse_note": "Header prints '16 VERSE'.",
-    "bar15_variant": "Variant marker '*' at Bar 15 of the head (A' section bar 7)."
-  },
   "variants": [
     {
       "applies_to": "Bar 15",
@@ -34,10 +23,27 @@
           "beats": {
             "1": "Fm"
           }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Fm"
+          }
         }
       ]
     }
   ],
+  "recordings": [
+    "G.Ammons 60- K.Curtis 60- Jazz Messengers 59",
+    "E.Fitzgerald 57- B.Goodman 54- M.Jackson 59",
+    "U.Green 61- Jo Jones 59- O.Peterson 59",
+    "H.Baker 59- R.Eldridge/B.Carter 55-",
+    "E.Davis 58"
+  ],
+  "notation_notes": {
+    "verse_note": "Header prints '16 VERSE'.",
+    "bar15_variant": "Variant marker '*' at Bar 15 of the head (A' section bar 7)."
+  },
   "sections": {
     "A": [
       {
@@ -261,7 +267,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "b09a02694726c1a8bf76e492fc0352c2f82483def903b8eb77426ffe26bfc75a",
+    "source_sha256": "69b99d2956fe01b5017fd7c8a4a38ef8b13f316ee9f7a993565e713478df0bb7",
     "scorer": {
       "tonic": "F",
       "mode": "minor",
@@ -271,7 +277,7 @@
       "tonic": "F",
       "mode": "minor",
       "confidence": "high",
-      "modulation_note": "bridge moves to Bb (ii-V-I in Bb) before returning via C7 to F minor",
+      "modulation_note": "bridge tonicizes Bb (ii-V-I in Bb) before turning back to Fm",
       "section_keys": {
         "B": {
           "tonic": "Bb",
@@ -289,15 +295,16 @@
     "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending"
+      "turnaround-ending",
+      "chromatic-descent"
     ],
     "sections": {
-      "A": "iidim7-V7 (Gm7b5-C7) repeated resolving to i (Fm), with ii-V back to i",
-      "A1": "same ii-V to i, ending with Fmaj7-Gb7-F6/9 (Picardy tonic)",
-      "B": "Cm7-F7 (ii-V of Bb) to Bb9, Db7 then C7 as V7 back to F minor",
-      "A2": "iidim7-V7 to i (Fm), ending on F tonic"
+      "A": "iidim-V7 (Gm7b5-C7) repeated resolving to i (Fm) in F minor",
+      "A1": "same ii-V opening, ending on Fmaj7-Gb7-F69 Picardy tonic",
+      "B": "Cm7-F7 ii-V into Bb9, then Db7-C7 turnaround back to F minor",
+      "A2": "ii-V (Gm7b5-C7) to i (Fm), ending on F tonic"
     },
     "modulates": true,
-    "modulation_note": "bridge moves to Bb (ii-V-I in Bb) before returning via C7 to F minor"
+    "modulation_note": "bridge tonicizes Bb (ii-V-I in Bb) before turning back to Fm"
   }
 }

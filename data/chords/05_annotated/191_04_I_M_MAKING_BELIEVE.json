@@ -198,8 +198,8 @@
     "chord": "Bb"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "1488598a0f8b4139d8d5b9b43a3025b2143367f7443874c284c4053439175fe3",
+    "status": "agreed",
+    "source_sha256": "d9e2c42080d6c7899b41faf133736031c22cc712b0024bd7986932ea62d5da22",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",
@@ -210,11 +210,6 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "Bb",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -222,11 +217,11 @@
     "tags": [
       "ii-V-chains",
       "turnaround-ending",
-      "circle-of-fifths"
+      "chromatic-descent"
     ],
     "sections": {
-      "A": "I with V/V-type dominants, iv-ish Cm chord line (Cm-Cm6-CmMaj7-Cm7), F7 (V) to I, then ii-V (Cm7b5-F7) turnaround",
-      "A1": "Restates I and Cm line, then IV-iv, chromatic ii-V motion (Dm7-Dbo7-Cm7-F7), Fm7-Bb7 to IV(Eb), circle-of-fifths back through Dm7-Gm7-C7-F7 to final I (Bb)"
+      "A": "I with V(b9) and V/vi, minor-line cliché on ii (Cm-Cm6-Cm(maj7)-Cm7), V7-I then Gm/Gmaj7 to iim7-V7 turnaround",
+      "A1": "Same opening then IV-iv, iii-bIII°, ii-V, iim/V, IV with V/ii, ii-Vs resolving via C7-F7 to final I"
     },
     "modulates": false
   }
