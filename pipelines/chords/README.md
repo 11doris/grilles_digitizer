@@ -67,6 +67,17 @@ already exists and still validates is skipped, so you can stop (Ctrl-C, lid
 close, power loss) and continue across sittings — at most the one tune in
 flight is redone.
 
+**Batch mode (automatic at ≥ 50 pending crops):** the calls are submitted
+through the Batches API at **50% price** and polled until done (usually well
+under an hour, up to 24 h worst case). The batch id is saved to
+`data/chords/02_raw/batch_state.json` the moment it is created and removed
+once the results are in, so interrupting the wait costs nothing — just re-run
+`transcribe.py` and it fetches the same batch instead of paying again. Every
+batch reply passes through the exact same validation as interactive mode;
+the few that fail are retried interactively with the normal stricter-reminder
+ladder (never re-batched). Force per-call mode with `--interactive` when you
+want a handful of results right now.
+
 ### Options (Appendix B of the spec)
 
 | Flag | Default | Purpose |
@@ -85,6 +96,7 @@ flight is redone.
 | `--only FILE` | — | Restrict to one `current_file` (debugging) |
 | `--sample N` | — | Randomly pick at most `N` crops whose tune is not yet decoded into `--out` |
 | `--seed N` | — | RNG seed for `--sample` (reproducible selection) |
+| `--interactive` | off | Force per-call mode even at ≥ 50 pending crops (batch mode is automatic otherwise: 50% price, results within hours) |
 
 Run the book in slices with `--page-range`, or just stop and re-run — resume
 makes that free; no sharding is needed on a single machine.

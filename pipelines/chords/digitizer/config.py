@@ -39,6 +39,9 @@ class Config:
     # `out_dir` (i.e. still to do). None = no sampling (process all).
     sample: int | None = None
     seed: int | None = None  # RNG seed for --sample; None = nondeterministic
+    # Force per-call mode even at >= batch.BATCH_THRESHOLD pending crops
+    # (batch mode is automatic otherwise: 50% price, results within hours).
+    interactive: bool = False
     debug: bool = False
 
     @property

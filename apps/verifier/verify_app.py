@@ -45,7 +45,8 @@ VERIFIED_DIR = (_REPO / "data" / "chords" / "04_verified").resolve()
 # WIP_DIR until a tune is verified, at which point it is copied to VERIFIED_DIR.
 WIP_DIR = (_REPO / "data" / "chords" / "03_wip").resolve()
 
-_IGNORED_STEMS = frozenset({"run_report", "run_state", "verification_state"})
+_IGNORED_STEMS = frozenset(
+    {"run_report", "run_state", "verification_state", "batch_state"})
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 # Preserve insertion order of JSON keys (e.g. section names) instead of

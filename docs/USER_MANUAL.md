@@ -100,6 +100,16 @@ retried with stricter reminders (and a truncated reply retries at a doubled
 token cap — dense multi-strain tunes need it), and a tune that never
 validates leaves a `*.error.json` stub (listed in `run_report.json`, hidden
 from the verifier).
+
+**At 50 or more pending crops the run switches to the Batches API
+automatically — half price.** You submit, the script polls (usually well
+under an hour), results are validated and written exactly as in per-call
+mode, and the few tunes whose batch reply fails validation are retried
+interactively at the end. The batch id is saved next to the outputs until
+the results are fetched, so if you close the laptop mid-wait you simply
+re-run `transcribe.py` later — it resumes the same batch instead of paying
+again. Use `--interactive` when you want a small sample right now instead
+of cheaper-but-later.
 Resume = "a valid output file exists", so you can run the book in as many
 sittings as you like.
 
@@ -296,6 +306,10 @@ saved when the batch was submitted; the results are fetched and written as
 if nothing happened. `--status` will remind you if an unfinished batch is on
 record.
 
+**A transcription batch run was interrupted.**
+Just re-run `python pipelines/chords/transcribe.py` — it notices the saved
+`batch_state.json`, fetches the same batch (no new charge), and carries on.
+
 **I changed similarity weights or code.**
 `python -m pipelines.chords.similarity.compute --eval` and compare the
 harness metrics before/after; rebuild the explorer bundle
@@ -313,7 +327,7 @@ similarity, both review apps, the displayer) is local and free.
 
 | Step | Calls | Model / mode | Rough cost |
 |---|---|---|---|
-| Stage 2 transcription | 1 per crop (+ retries on validation failure) | `claude-opus-4-8`, forced tool use, cached system prompt | ~2–3 ¢/tune ⇒ ~$30–45 for the ~1400 crops still to do; a cheaper model with caching lands well under $5 for the same work (spec Appendix C) |
+| Stage 2 transcription | 1 per crop (+ retries on validation failure) | `claude-opus-4-8`, forced tool use, cached system prompt; Batches API (−50 %) at ≥50 pending | ~2–3 ¢/tune per-call, roughly half that batched ⇒ ~$15–30 for the ~1400 crops still to do; a cheaper model lands well under $5 for the same work (spec Appendix C) |
 | Stage 6 key annotation | 1 per new/changed verified tune | `claude-opus-4-8`, structured output, adaptive thinking; Batches API (−50 %) at ≥50 pending | a few ¢/tune. Thinking tokens bill as output, so budget ~$20–60 for ~1400 tunes batched, and check the actual `usage` on the first big batch |
 | Key correction refresh | 1 per corrected key | same, key pinned | cents; corrections are rare |
 | Eval seeding (`--seed-llm`) | 1, ever | one call proposing candidate families | cents; **not yet run** — ask before running |
@@ -323,9 +337,9 @@ Practical habits that keep this cheap:
 - **Resume is free.** Re-running `transcribe.py` or `annotate_keys.py` costs
   nothing for tunes that are already done — only genuinely new or changed
   work is billed.
-- **Let the Batches API kick in** for big annotation runs (it does so
-  automatically at 50 pending); interactive mode is for small top-ups where
-  you want results now.
+- **Let the Batches API kick in** for big runs — both transcription and key
+  annotation switch to it automatically at 50 pending (half price);
+  `--interactive` is for small top-ups where you want results now.
 - Both callers write every paid result to disk immediately — an interrupted
   run never wastes what was already bought.
 

@@ -51,6 +51,11 @@ def _parse_args(argv: list[str] | None) -> Config:
         help="randomly select at most N crops whose tune is not yet decoded into --out",
     )
     p.add_argument("--seed", type=int, default=None, help="RNG seed for --sample (reproducible selection)")
+    p.add_argument(
+        "--interactive", action="store_true",
+        help="force per-call mode even at >= 50 pending crops (batch mode is "
+             "automatic otherwise: Batches API, 50%% price, results within hours)",
+    )
     p.add_argument("--debug", action="store_true", help="verbose errors")
     args = p.parse_args(argv)
 
@@ -70,6 +75,7 @@ def _parse_args(argv: list[str] | None) -> Config:
         only=args.only,
         sample=None if args.sample is None else max(0, args.sample),
         seed=args.seed,
+        interactive=args.interactive,
         debug=args.debug,
     )
 

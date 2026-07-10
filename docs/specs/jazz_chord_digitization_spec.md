@@ -746,13 +746,16 @@ default schema.** Do not emit `fingerprints` unless the run is explicitly config
 transcribe.py  --crops data/chords/01_crops/  --manifest manifest.csv  --out data/chords/02_raw/
                --model <vlm-id> --workers 1 --retries 3 --dilate 1
                --max-long-edge 1100 --max-output-tokens 1200
-               [--page-range 7:120] [--delay 0] [--batch] [--debug]
+               [--page-range 7:120] [--delay 0] [--interactive] [--debug]
 ```
 * **Single laptop:** keep `--workers 1` for a local model; raise it only when calling a remote API.
 * Resumable: re-running the same command skips tunes whose valid JSON already exists (§4.2), so you
   can stop and continue across sittings — no sharding needed.
-* Cost: `--max-long-edge` downscales the image before the call (§18.2); `--batch` uses the async
-  API when available (§18.4); `--page-range` optionally limits a session.
+* Cost: `--max-long-edge` downscales the image before the call (§18.2); at **≥ 50 pending crops the
+  Batches API is used automatically** (§18.4: 50% price; batch ids persist in
+  `<out>/batch_state.json` until fetched, so re-running resumes an interrupted batch; replies that
+  fail validation fall back to the interactive retry ladder) — `--interactive` opts out;
+  `--page-range` optionally limits a session.
 * Writes `data/chords/02_raw/*.json`, `run_state.jsonl`, and `run_report.json`.
 
 ---
