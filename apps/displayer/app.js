@@ -719,7 +719,7 @@
       const label = displayKey(sectionKeys[name]);
       if (!label) return;
       const shown = displaySectionName(name);
-      const dedupeKey = shown + " " + label;
+      const dedupeKey = shown + "\u0000" + label;
       if (seenSection.has(dedupeKey)) return;
       seenSection.add(dedupeKey);
       keys.appendChild(harmChip("section", shown, label));
@@ -858,7 +858,7 @@
     const cells = new Set();
     const bySection = variantOverrides(tune, variant).bySection;
     Object.keys(bySection).forEach((name) => {
-      Object.keys(bySection[name]).forEach((idx) => cells.add(name + " " + idx));
+      Object.keys(bySection[name]).forEach((idx) => cells.add(name + "\u0000" + idx));
     });
     return cells;
   }
