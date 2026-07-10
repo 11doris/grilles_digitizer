@@ -260,7 +260,7 @@ non-digitized tune only the **title** is shown):
 - **Tempo**: top-left, in parentheses, e.g. `(Slow)` — title-cased from the JSON value.
 - **Composer**: top-right.
 - **Metadata line** below the title, small and muted: `style · year · form · p. N`. The `source` field is not displayed. Fields that are absent are simply omitted.
-- **Key chips** below the metadata: a **Key** chip from the tune's top-level `key` (`{tonic, mode}`), followed by one chip per entry in the tune's top-level `section_keys` (only present where a section modulates away from the main key), labelled with the section name. Both sources are the tune's own top-level fields; the `key_annotation` block (scorer bookkeeping, including its nested `section_keys` copy) is **ignored** for display. Chips track the active transposition.
+- **Key chips** below the metadata: a **Key** chip from the tune's top-level `key` (`{tonic, mode}`), followed by one chip per entry in the tune's top-level `section_keys` (only present where a section modulates away from the main key), labelled with the section name. Repeats of the same section that modulate identically collapse to a single chip — dedupe on the **displayed label + key**, so e.g. Chattanooga Choo Choo's `B` and `B1` (both to F major) show one `B: F major` chip, not two. Both sources are the tune's own top-level fields; the `key_annotation` block (scorer bookkeeping, including its nested `section_keys` copy) is **ignored** for display. Chips track the active transposition.
 - **Add to playlist** button (§11.2): a small `＋ Add to playlist` control in the
   header (near the composer/right side, so it never collides with the centered
   title). Present for **every** tune, digitized or not. Clicking opens the
@@ -438,6 +438,7 @@ The root's own accidental also renders as `♯`/`♭`.
   precomputed lowercase/normalized search string per tune) keeps typing smooth;
   no external index is needed.
 - Empty query shows the full list. Zero matches shows a "No tunes found" message in the sidebar.
+- **Digitized-chords filter**: a toggle button (▦) in the top bar, beside the search box. When engaged it restricts the list to tunes carrying chord JSON (`has_chord_json`), applied on top of the search query and any active playlist. The button lights (accent colour) while on, is `aria-pressed`, and its state persists in `localStorage` under `grilles.chordsOnly`.
 
 ---
 

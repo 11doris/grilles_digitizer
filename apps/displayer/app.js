@@ -29,6 +29,7 @@
   }
 
   const searchEl = document.getElementById("search");
+  const chordFilterBtn = document.getElementById("chordFilter");
   const listEl = document.getElementById("tuneList");
   const viewEl = document.getElementById("tuneView");
   const paneEl = document.getElementById("tunePane");
@@ -63,6 +64,7 @@
     activePl: null, // active playlist id (persisted, §11.4)
     transpose: null, // {shift, spell, targetPc, mode} or null (original key); per-tune
     activeVariants: new Set(), // indices of variants swapped into the grid (independent, but exclusive among variants sharing a bar); per-tune
+    chordsOnly: false, // list filter: only tunes with digitized chords (persisted)
   };
 
   /* ------------------------------------------------------------- helpers */
@@ -211,12 +213,15 @@
     t._hay = normalize((t.title || "") + " " + (meta(t).composer || ""));
   });
 
-  /* Search filters within the active playlist when one is on (§11.4). */
+  /* Search filters within the active playlist when one is on (§11.4). The
+     "digitized chords" toggle further restricts the list to tunes carrying
+     chord JSON, independently of the search query. */
   function filterTunes(query) {
-    const list = baseList();
+    let list = baseList();
     const terms = normalize(query).split(/\s+/).filter(Boolean);
-    if (!terms.length) return list;
-    return list.filter((t) => terms.every((term) => t._hay.includes(term)));
+    if (terms.length) list = list.filter((t) => terms.every((term) => t._hay.includes(term)));
+    if (state.chordsOnly) list = list.filter((t) => t.has_chord_json);
+    return list;
   }
 
   searchEl.addEventListener("input", () => {
@@ -228,6 +233,26 @@
       if (narrowMq.matches) setListOpen(true);
       else if (state.listCollapsed) setListCollapsed(false);
     }
+  });
+
+  /* Reflect the digitized-chords filter on the button and re-filter the list. */
+  function applyChordFilter() {
+    chordFilterBtn.classList.toggle("on", state.chordsOnly);
+    chordFilterBtn.setAttribute("aria-pressed", String(state.chordsOnly));
+    state.filtered = filterTunes(searchEl.value);
+    state.activeIndex = state.filtered.length ? 0 : -1;
+    renderList();
+  }
+
+  chordFilterBtn.addEventListener("click", () => {
+    state.chordsOnly = !state.chordsOnly;
+    try {
+      localStorage.setItem("grilles.chordsOnly", state.chordsOnly ? "1" : "0");
+    } catch (e) { /* ignore */ }
+    applyChordFilter();
+    /* Reveal the list so the narrowed result is visible on phones/collapsed. */
+    if (narrowMq.matches) setListOpen(true);
+    else if (state.listCollapsed) setListCollapsed(false);
   });
 
   /* ------------------------------------------------------------ tune list */
@@ -590,11 +615,20 @@
 
     /* Section keys come from the tune's own top-level `section_keys` (only
        present where a section modulates away from the main key). The copy nested
-       under `key_annotation` is scorer bookkeeping and is deliberately ignored. */
+       under `key_annotation` is scorer bookkeeping and is deliberately ignored.
+       Repeats of the same section that modulate identically (e.g. Chattanooga
+       Choo Choo's B and B1, both to F) collapse to a single chip: dedupe on the
+       displayed label + key so one "B: F major" shows, not two. */
     const sectionKeys = tune.section_keys || {};
+    const seenSection = new Set();
     Object.keys(sectionKeys).forEach((name) => {
       const label = displayKey(sectionKeys[name]);
-      if (label) keys.appendChild(harmChip("section", displaySectionName(name), label));
+      if (!label) return;
+      const shown = displaySectionName(name);
+      const dedupeKey = shown + " " + label;
+      if (seenSection.has(dedupeKey)) return;
+      seenSection.add(dedupeKey);
+      keys.appendChild(harmChip("section", shown, label));
     });
 
     const tags = el("div", "harm-row harm-tags");
@@ -1670,8 +1704,11 @@
     const m = localStorage.getItem("grilles.showMelody");
     state.showChords = c === null ? true : c === "1";
     state.showMelody = m === null ? true : m === "1";
+    state.chordsOnly = localStorage.getItem("grilles.chordsOnly") === "1";
     if (localStorage.getItem("grilles.list") === "0") setListCollapsed(true);
   } catch (e) { /* ignore */ }
+  chordFilterBtn.classList.toggle("on", state.chordsOnly);
+  chordFilterBtn.setAttribute("aria-pressed", String(state.chordsOnly));
   /* Restore the active playlist (§11.4); a stale id starts deactivated. */
   const storedPl = PL.getActiveId();
   if (storedPl && PL.byId(storedPl)) state.activePl = storedPl;

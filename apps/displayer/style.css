@@ -110,6 +110,7 @@ body {
 
 #themeToggle,
 #listToggle,
+#chordFilter,
 #playlistBtn,
 #playlistClear {
   background: none;
@@ -120,6 +121,10 @@ body {
   padding: 0.25rem 0.6rem;
   cursor: pointer;
 }
+
+/* Digitized-chords filter: lit like the active-playlist button when engaged. */
+#chordFilter { flex: none; }
+#chordFilter.on { border-color: var(--accent); color: var(--accent); }
 
 /* The playlist button carries the push-right margin (it sits left of ☾/☀). */
 #playlistBtn {
