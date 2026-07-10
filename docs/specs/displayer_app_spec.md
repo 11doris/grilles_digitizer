@@ -260,6 +260,7 @@ non-digitized tune only the **title** is shown):
 - **Tempo**: top-left, in parentheses, e.g. `(Slow)` — title-cased from the JSON value.
 - **Composer**: top-right.
 - **Metadata line** below the title, small and muted: `style · year · form · p. N`. The `source` field is not displayed. Fields that are absent are simply omitted.
+- **Key chips** below the metadata: a **Key** chip from the tune's top-level `key` (`{tonic, mode}`), followed by one chip per entry in the tune's top-level `section_keys` (only present where a section modulates away from the main key), labelled with the section name. Both sources are the tune's own top-level fields; the `key_annotation` block (scorer bookkeeping, including its nested `section_keys` copy) is **ignored** for display. Chips track the active transposition.
 - **Add to playlist** button (§11.2): a small `＋ Add to playlist` control in the
   header (near the composer/right side, so it never collides with the centered
   title). Present for **every** tune, digitized or not. Clicking opens the

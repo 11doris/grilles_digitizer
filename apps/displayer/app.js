@@ -588,8 +588,10 @@
       keys.appendChild(chip);
     }
 
-    const scorer = (tune.key_annotation || {}).scorer || {};
-    const sectionKeys = scorer.section_keys || {};
+    /* Section keys come from the tune's own top-level `section_keys` (only
+       present where a section modulates away from the main key). The copy nested
+       under `key_annotation` is scorer bookkeeping and is deliberately ignored. */
+    const sectionKeys = tune.section_keys || {};
     Object.keys(sectionKeys).forEach((name) => {
       const label = displayKey(sectionKeys[name]);
       if (label) keys.appendChild(harmChip("section", displaySectionName(name), label));
