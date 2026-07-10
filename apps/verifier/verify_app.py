@@ -51,8 +51,9 @@ app.json.sort_keys = False  # type: ignore[attr-defined]
 # ---------------------------------------------------------------------------
 
 def _state_path() -> Path:
-    # State lives with the WIP edits so TUNES_DIR stays untouched.
-    return WIP_DIR / "verification_state.json"
+    # State lives in the chords root (a tracked directory), separate from the
+    # gitignored WIP edits, so the review state can be versioned.
+    return WIP_DIR.parent / "verification_state.json"
 
 
 def _wip_path(tune_id: str) -> Path:
@@ -100,11 +101,17 @@ def _load_state() -> dict:
             return json.loads(sp.read_text("utf-8"))
         except Exception:
             pass
-    return {"last_opened": None, "verified": [], "deferred": [], "in_progress": None}
+    return {
+        "last_opened": None,
+        "verified": [],
+        "deferred": [],
+        "variant_review": [],
+        "in_progress": None,
+    }
 
 
 def _save_state(s: dict) -> None:
-    WIP_DIR.mkdir(exist_ok=True)
+    _state_path().parent.mkdir(parents=True, exist_ok=True)
     _state_path().write_text(
         json.dumps(s, indent=2, ensure_ascii=False), "utf-8"
     )
@@ -148,6 +155,7 @@ def api_list():
     state = _load_state()
     verified_set = set(state.get("verified", []))
     deferred_set = set(state.get("deferred", []))
+    variant_review_set = set(state.get("variant_review", []))
     tunes = []
     for p in _list_tunes():
         tid = p.stem
@@ -159,6 +167,8 @@ def api_list():
             d = {}
         if tid in verified_set:
             status = "verified"
+        elif tid in variant_review_set:
+            status = "variant_review"
         elif tid in deferred_set:
             status = "deferred"
         else:
@@ -168,17 +178,19 @@ def api_list():
             "title": d.get("title", tid),
             "verified": status == "verified",
             "deferred": status == "deferred",
+            "variant_review": status == "variant_review",
             "status": status,
             "has_image": (CROPS_DIR / f"{tid}.png").exists(),
         })
     counts = {s: sum(1 for t in tunes if t["status"] == s)
-              for s in ("verified", "deferred", "needs_review")}
+              for s in ("verified", "deferred", "variant_review", "needs_review")}
     return jsonify({
         "tunes": tunes,
         "total": len(tunes),
         "counts": counts,
         "verified": counts["verified"],
         "deferred": counts["deferred"],
+        "variant_review": counts["variant_review"],
         "remaining": len(tunes) - counts["verified"],
         "last_opened": state.get("last_opened"),
         "in_progress": state.get("in_progress"),
@@ -198,6 +210,7 @@ def api_get(tune_id: str):
         "id": tune_id,
         "verified": tune_id in state.get("verified", []),
         "deferred": tune_id in state.get("deferred", []),
+        "variant_review": tune_id in state.get("variant_review", []),
         "data": data,
     })
 
@@ -240,8 +253,10 @@ def api_verify(tune_id: str):
     if tune_id not in verified:
         verified.append(tune_id)
     s["verified"] = verified
-    # Verified and deferred are mutually exclusive states.
+    # Verified is exclusive with the other review states; verifying also clears a
+    # pending variant-review flag (the variants have now been checked).
     s["deferred"] = [d for d in s.get("deferred", []) if d != tune_id]
+    s["variant_review"] = [v for v in s.get("variant_review", []) if v != tune_id]
     _save_state(s)
     return jsonify({"ok": True})
 
@@ -271,6 +286,8 @@ def api_defer(tune_id: str):
     if tune_id not in deferred:
         deferred.append(tune_id)
     s["deferred"] = deferred
+    # Deferred is exclusive with the other review states.
+    s["variant_review"] = [v for v in s.get("variant_review", []) if v != tune_id]
     # A deferred tune is not verified; drop any stale verified file/state.
     if tune_id in s.get("verified", []):
         s["verified"] = [v for v in s["verified"] if v != tune_id]
@@ -288,6 +305,38 @@ def api_undefer(tune_id: str):
         abort(400)
     s = _load_state()
     s["deferred"] = [d for d in s.get("deferred", []) if d != tune_id]
+    _save_state(s)
+    return jsonify({"ok": True})
+
+
+@app.route("/api/tunes/<tune_id>/variant-review", methods=["POST"])
+def api_variant_review(tune_id: str):
+    """Flag a tune as needing a VARIANTS-only review (its chords are already
+    reviewed; only the auto-computed variant targets need a human glance). This
+    is exclusive with verified/deferred, but keeps any existing 04_verified file
+    so the chord work is not thrown away."""
+    if not _safe_id(tune_id):
+        abort(400)
+    if _source_path(tune_id) is None:
+        abort(404)
+    s = _load_state()
+    vr = s.get("variant_review", [])
+    if tune_id not in vr:
+        vr.append(tune_id)
+    s["variant_review"] = vr
+    s["verified"] = [v for v in s.get("verified", []) if v != tune_id]
+    s["deferred"] = [d for d in s.get("deferred", []) if d != tune_id]
+    _save_state(s)
+    return jsonify({"ok": True})
+
+
+@app.route("/api/tunes/<tune_id>/variant-review", methods=["DELETE"])
+def api_clear_variant_review(tune_id: str):
+    """Clear the variant-review flag, returning the tune to the review queue."""
+    if not _safe_id(tune_id):
+        abort(400)
+    s = _load_state()
+    s["variant_review"] = [v for v in s.get("variant_review", []) if v != tune_id]
     _save_state(s)
     return jsonify({"ok": True})
 

@@ -25,11 +25,15 @@ const S = {
 };
 
 // Sidebar glyph per review state.
-const STATUS_GLYPH = { verified: '✓', deferred: '⏸', needs_review: '○' };
+const STATUS_GLYPH = { verified: '✓', variant_review: '◆', deferred: '⏸', needs_review: '○' };
 
-/** The review state of a tune list entry. */
+/** The review state of a tune list entry. `variant_review` = chords already
+    reviewed, only the auto-computed variant targets still need a glance. */
 function tuneStatus(t) {
-  return t.verified ? 'verified' : (t.deferred ? 'deferred' : 'needs_review');
+  if (t.verified) return 'verified';
+  if (t.variant_review) return 'variant_review';
+  if (t.deferred) return 'deferred';
+  return 'needs_review';
 }
 
 // Known meta fields shown in the grid (in display order)
@@ -285,8 +289,10 @@ function clearDirty() {
 function updateProgress() {
   const total    = S.tunes.length;
   const done     = S.tunes.filter(t => t.verified).length;
-  const deferred = S.tunes.filter(t => t.deferred).length;
+  const deferred = S.tunes.filter(t => tuneStatus(t) === 'deferred').length;
+  const variant  = S.tunes.filter(t => tuneStatus(t) === 'variant_review').length;
   const parts = [`${done} / ${total} verified`];
+  if (variant)  parts.push(`${variant} variants`);
   if (deferred) parts.push(`${deferred} deferred`);
   qs('#progress-text').textContent = parts.join(' · ');
   qs('#progress-fill').style.width = total > 0 ? `${(done / total) * 100}%` : '0%';
@@ -295,8 +301,9 @@ function updateProgress() {
 // ─── Filter tabs ──────────────────────────────────────────────────────────────
 /** Tunes visible under the active filter, keeping source order. */
 function visibleTunes() {
-  if (S.filter === 'needs_review') return S.tunes.filter(t => tuneStatus(t) === 'needs_review');
-  if (S.filter === 'deferred')     return S.tunes.filter(t => tuneStatus(t) === 'deferred');
+  if (S.filter === 'needs_review')   return S.tunes.filter(t => tuneStatus(t) === 'needs_review');
+  if (S.filter === 'variant_review') return S.tunes.filter(t => tuneStatus(t) === 'variant_review');
+  if (S.filter === 'deferred')       return S.tunes.filter(t => tuneStatus(t) === 'deferred');
   return S.tunes;
 }
 
@@ -1042,7 +1049,7 @@ async function doVerify() {
   try {
     await apiFetch(`/api/tunes/${encodeURIComponent(S.currentId)}/verify`, { method: 'POST' });
     const t = S.tunes.find(t => t.id === S.currentId);
-    if (t) { t.verified = true; t.deferred = false; }
+    if (t) { t.verified = true; t.deferred = false; t.variant_review = false; }
     afterStatusChange();
     toast('Marked as verified ✓', 'success');
   } catch (err) {
@@ -1077,7 +1084,7 @@ async function doDefer() {
   try {
     await apiFetch(`/api/tunes/${encodeURIComponent(S.currentId)}/defer`, { method: 'POST' });
     const t = S.tunes.find(t => t.id === S.currentId);
-    if (t) { t.deferred = true; t.verified = false; }
+    if (t) { t.deferred = true; t.verified = false; t.variant_review = false; }
     afterStatusChange();
     toast('Deferred for later ⏸', 'info');
   } catch (err) {
@@ -1128,7 +1135,11 @@ async function openTune(id) {
 
     // Sync review state from server response
     const t = S.tunes.find(t => t.id === id);
-    if (t) { t.verified = result.verified; t.deferred = result.deferred; }
+    if (t) {
+      t.verified = result.verified;
+      t.deferred = result.deferred;
+      t.variant_review = result.variant_review;
+    }
 
     renderEditor();
     renderSidebar(); // update active highlight
@@ -1138,6 +1149,16 @@ async function openTune(id) {
   }
 }
 
+/* Banner shown for a tune flagged `variant_review`: its chords are already
+   verified, only the auto-computed variant targets need a human glance. */
+function renderVariantBanner() {
+  const banner = qs('#variant-banner');
+  if (!banner) return;
+  const t = S.tunes.find(t => t.id === S.currentId);
+  const show = tuneStatus(t) === 'variant_review';
+  banner.classList.toggle('hidden', !show);
+}
+
 // ─── Full editor render ───────────────────────────────────────────────────────
 function renderEditor() {
   qs('#no-tune').classList.add('hidden');
@@ -1145,6 +1166,7 @@ function renderEditor() {
 
   qs('#editor-title').textContent = S.data?.title || S.currentId;
 
+  renderVariantBanner();
   renderMeta();
   renderSections();
   renderVariants();
@@ -1183,6 +1205,11 @@ function wireEvents() {
     // If the open tune isn't in this view, jump to the first one that is.
     const vis = visibleTunes();
     if (vis.length && !vis.some(t => t.id === S.currentId)) openTune(vis[0].id);
+  });
+
+  // ── Variant-review banner: jump to the variants editor
+  qs('#vb-goto').addEventListener('click', () => {
+    qs('#variants-area')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   // ── Save / Verify / Defer buttons
