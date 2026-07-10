@@ -1,0 +1,281 @@
+{
+  "composer": "Lady J.D. SCOTT",
+  "style": "OLD SCOTCH SONG",
+  "tempo": "MEDIUM",
+  "form": "32 A A' B C",
+  "time_signature": "4/4",
+  "title": "ANNIE LAURIE",
+  "page": 20,
+  "source": "Anthologie des grilles de jazz",
+  "variants": [
+    {
+      "applies_to": "BAR 6",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 6
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Am"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "D7"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "G7"
+          }
+        }
+      ]
+    },
+    {
+      "applies_to": "BAR 27",
+      "targets": [
+        {
+          "section": "C",
+          "bar": 3
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "C",
+            "3": "E7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Am",
+            "3": "Fm6"
+          }
+        }
+      ]
+    }
+  ],
+  "recordings": [
+    "D.Byas 45- J.Forrest 61- T.Grimes 48",
+    "B.Myers 45- J.Newman 55- T.Dorsey 38",
+    "J.Lunceford 37.42- M.Manone 36- B.May 57",
+    "M.Sullivan 37- F.Waller 39",
+    "C.Basie/F.Sinatra 62"
+  ],
+  "notation_notes": {
+    "composer_date": "Composer's dates unknown - the header prints '(Lady J.D. Scott, ?)'.",
+    "C_bar4": "Section C bar 4 is printed parenthesised '(G7)', an optional/passing chord; kept as printed.",
+    "dash_expansion": "A' (2nd printed row) is a leading-arrow row copying section A positionally; empty/dash boxes take the same-position bar from A, and trailing dashes copy the preceding bar."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C(#5)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F#o7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C(#5)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F#o7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am",
+          "3": "Am7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "E7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "(G7)"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  }
+}

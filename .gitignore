@@ -10,5 +10,9 @@ sources/
 
 # Run artifacts (regenerable)
 data/chords/02_raw/
-data/chords/03_wip/
 data/melody/debug/
+data/chords/06_similarity/
+apps/similarity_explorer/data/explorer_data.js
+
+# Transient Batches-API state (deleted when the batch is fetched)
+data/chords/key_annotation_batch.json

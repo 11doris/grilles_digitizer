@@ -1,0 +1,378 @@
+{
+  "composer": "Elmer SCHOEBEL – E.S.",
+  "year": "1925",
+  "style": "DIXIELAND",
+  "tempo": "MEDIUM FAST",
+  "form": "16 A B | 32 A A' B A",
+  "time_signature": "4/4",
+  "title": "I NEVER KNEW WHAT A GAL COULD DO",
+  "page": 197,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "V.Herman 34(Zero)- B.Freora 37- C.Barber 55",
+    "N.O.R.K. 25- A.Hodea 45- A.Hug 58"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 23",
+      "targets": [
+        {
+          "section": "B",
+          "bar": 7
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "F#o7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "F#o7"
+          }
+        }
+      ]
+    }
+  ],
+  "notation_notes": {
+    "variant_dash": "The variant for Bar 23 prints an F#o7 box followed by a dash box; the dash copies the preceding variant bar (F#o7)."
+  },
+  "sections": {
+    "intro": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab7",
+          "4": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "verse_B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  }
+}

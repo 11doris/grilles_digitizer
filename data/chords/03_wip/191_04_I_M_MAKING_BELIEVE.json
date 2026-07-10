@@ -1,0 +1,191 @@
+{
+  "composer": "James V. MONACO – Mack GORDON",
+  "year": "1944",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "20 A A'",
+  "time_signature": "4/4",
+  "title": "I'M MAKING BELIEVE",
+  "page": 191,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
+  "recordings": [
+    "B.Leighton B7- R.Charles",
+    "C.Calloway 44- F.Wolf 44",
+    "T.Almerardo B7",
+    "E.Fitzgerald 44"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 3, 11",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 3
+        },
+        {
+          "section": "A1",
+          "bar": 3
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Cm",
+            "2": "Cm#5",
+            "3": "Cm6",
+            "4": "Cm7"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb",
+          "3": "F(b9)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb",
+          "3": "G(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm",
+          "3": "Cm6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm(maj7)",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb",
+          "3": "Gm",
+          "4": "Gmaj7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb",
+          "3": "F(b9)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb",
+          "3": "G(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm",
+          "3": "Cm6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm(maj7)",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "Ebm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Eb",
+          "3": "A(b9)"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Dm7",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "C7",
+          "3": "F(b9)"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ]
+  }
+}
