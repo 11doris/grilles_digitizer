@@ -108,6 +108,14 @@ const CHORD_CORE_RE = new RegExp(
 const CHORD_HAS_EXT = /(?:6|7|9|11|13)/;
 const CHORD_ALT_DEGREE = { b5: 5.0, '#5': 5.5, b9: 9.0, '#9': 9.5, '#11': 11.0, b13: 13.0 };
 
+// A bare-triad flat-nine as the WHOLE quality — the canonical "(b9)", plus the
+// raw printed spellings "(9b)" and "9b" — denotes a dominant flat-nine, so the
+// verifier presents and saves it as "7b9" (e.g. "Bb(b9)" → "Bb7b9"), the same
+// reading the displayer applies (apps/displayer/chords.js). "9b5" (a flat-5 nine
+// chord) is deliberately left alone. NOTE: this is an intentional divergence from
+// prompt.py, whose canonical spelling for the digitizer stays "(b9)".
+const BARE_FLAT9_RE = /^(?:\(b9\)|\(9b\)|9b)$/;
+
 /** Targeted hints for strings the grammar rejects. */
 function chordParseHints(s) {
   const hints = [];
@@ -118,7 +126,7 @@ function chordParseHints(s) {
   if (/^H/.test(s))
     hints.push('German "H" is written B.');
   if (/9b(?!5)|\(9b\)/.test(s))
-    hints.push('Flat-nine is always spelled "(b9)", never "9b" — e.g. Bb(b9).');
+    hints.push('A bare-triad flat-nine is written "7b9" — e.g. E7b9 (typed "(b9)"/"(9b)"/"9b" convert on blur).');
   if (/7M|M7|Δ|∆/.test(s))
     hints.push('Major 7th is written maj7 (7M / M7 / Δ → maj7), e.g. Ebmaj7.');
   if (/ø|Ø/.test(s))
@@ -196,6 +204,36 @@ function chordErrors(raw) {
   return chordCoreErrors(s);
 }
 
+/** Rewrite a bare-triad flat-nine ("(b9)", "(9b)", "9b") to the "7b9" spelling,
+    preserving an optional-chord wrapper, a /bass, and a trailing "?". Any other
+    string (including "9b5" and an already-"7b9" chord) is returned unchanged, so
+    the function is idempotent and safe to run on every value. */
+function normalizeChord(raw) {
+  const s = String(raw ?? '').trim();
+  if (!s) return s;
+  // Whole optional chord in parens, e.g. "(A(b9))": normalize the inside, re-wrap.
+  if (s.startsWith('(') && s.endsWith(')')) {
+    const inner = s.slice(1, -1);
+    let depth = 0, wraps = true;
+    for (const c of inner) {
+      if (c === '(') depth++;
+      else if (c === ')' && --depth < 0) { wraps = false; break; }
+    }
+    if (wraps) return `(${normalizeChord(inner)})`;
+  }
+  const rootM = s.match(new RegExp('^' + CHORD_ROOT));
+  if (!rootM) return s;
+  const root = rootM[0];
+  let rest = s.slice(root.length);
+  // Peel a trailing "?" then a /bass so the quality stands alone for the test.
+  let tail = '';
+  if (rest.endsWith('?')) { tail = '?'; rest = rest.slice(0, -1); }
+  const bassM = rest.match(new RegExp('/' + CHORD_ROOT + '$'));
+  if (bassM) { tail = bassM[0] + tail; rest = rest.slice(0, bassM.index); }
+  if (BARE_FLAT9_RE.test(rest)) rest = '7b9';
+  return root + rest + tail;
+}
+
 // ── Live validation UI ──
 function chordHintEl() {
   let el = qs('#chord-hint');
@@ -235,6 +273,16 @@ function validateChordInput(el, withHint = false) {
 
 function validateAllChords() {
   qsa('.beat-inp').forEach(el => validateChordInput(el));
+}
+
+/** On blur, rewrite a bare-triad flat-nine in one beat input to its "7b9" form. */
+function normalizeBeatInput(el) {
+  const norm = normalizeChord(el.value);
+  if (norm !== el.value.trim()) {
+    el.value = norm;
+    setDirty();
+    validateChordInput(el);
+  }
 }
 
 /** All invalid chords in a save payload (sections + variants), as readable strings. */
@@ -401,7 +449,7 @@ function collectSections() {
   S.data.sections.forEach(sec => sec.bars.forEach(bar => { bar.beats = {}; }));
   qsa('#sections-container .beat-inp').forEach(el => {
     const si = +el.dataset.si, bi = +el.dataset.bi, beat = el.dataset.beat;
-    const v  = el.value.trim();
+    const v  = normalizeChord(el.value);
     if (v && S.data.sections[si]?.bars[bi]) {
       S.data.sections[si].bars[bi].beats[beat] = v;
     }
@@ -424,7 +472,7 @@ function collectVariants() {
   S.data.variants.forEach(vr => (vr.bars || []).forEach(bar => { bar.beats = {}; }));
   qsa('#variants-container .beat-inp').forEach(el => {
     const vi = +el.dataset.vi, bi = +el.dataset.bi, beat = el.dataset.beat;
-    const v  = el.value.trim();
+    const v  = normalizeChord(el.value);
     if (v && S.data.variants[vi]?.bars[bi]) {
       S.data.variants[vi].bars[bi].beats[beat] = v;
     }
@@ -618,7 +666,7 @@ function buildRows(bars, idxAttr, idx, bc) {
 function renderBarHTML(bar, idxAttr, idx, bi, bc) {
   const beatsHtml = Array.from({ length: bc }, (_, i) => {
     const beat  = String(i + 1);
-    const chord = bar.beats?.[beat] || '';
+    const chord = normalizeChord(bar.beats?.[beat] || '');
     return `
       <div class="beat-row">
         <span class="beat-lbl">${beat}</span>
@@ -1339,13 +1387,13 @@ function wireEvents() {
     if (e.target.classList.contains('beat-inp')) validateChordInput(e.target, true);
   });
   qs('#sections-container').addEventListener('focusout', e => {
-    if (e.target.classList.contains('beat-inp')) hideChordHint();
+    if (e.target.classList.contains('beat-inp')) { normalizeBeatInput(e.target); hideChordHint(); }
   });
   qs('#variants-container').addEventListener('focusin', e => {
     if (e.target.classList.contains('beat-inp')) validateChordInput(e.target, true);
   });
   qs('#variants-container').addEventListener('focusout', e => {
-    if (e.target.classList.contains('beat-inp')) hideChordHint();
+    if (e.target.classList.contains('beat-inp')) { normalizeBeatInput(e.target); hideChordHint(); }
   });
   qs('#editor-scroll').addEventListener('scroll', hideChordHint);
 
