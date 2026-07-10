@@ -23,6 +23,17 @@
   src: url("fonts/barlow-condensed-700.woff2") format("woff2");
 }
 
+/* Sofia Sans Extra Condensed (Google Fonts, latin subset, variable) — a much
+   narrower face used for the crowded .bar.tight chords (so 3–4 chords fit a
+   single bar without forcing the whole grid's font down) and the time
+   signature. ♯ ♭ Δ fall back to the system font, same as Barlow Condensed. */
+@font-face {
+  font-family: "Sofia Sans Extra Condensed";
+  font-style: normal;
+  font-weight: 400 500;
+  src: url("fonts/sofia-sans-extra-condensed.woff2") format("woff2");
+}
+
 :root[data-theme="dark"] {
   --bg: #0b0b0d;
   --panel: #16161a;
@@ -650,50 +661,91 @@ body.list-collapsed #gridZoom { left: 1rem; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Sofia Sans Extra Condensed", "Barlow Condensed", "Arial Narrow", sans-serif;
   font-weight: 500;
-  font-size: 1.3em;
+  font-size: 1.4em;
   line-height: 1;
   gap: 0.08em;
 }
 
 .bar {
   min-width: 0;
+  position: relative; /* anchors the barline pseudo-elements */
   /* Just tall enough to enclose a chord box (2.1em) with a little air above and
      below; the barlines hug the row instead of towering over it. */
   min-height: 2.5em;
-  /* Flex row of content-width chords separated by beat-weighted spacers (see
-     fillBar): roomy bars space chords out by beat; crowded bars let the spacers
-     collapse to a minimum gap so the chords pack close and stay big. */
-  display: flex;
+  /* Fixed grid of `beats` equal columns (grid-template-columns set per bar in
+     fillBar). Each chord is anchored to its beat's column line, so beats sit at
+     the same fraction of every bar and align vertically bar-to-bar. */
+  display: grid;
   align-items: center;
-  border-left: 2px solid var(--line);
-  /* Tight left/right insets so the first chord hugs the barline and the last
-     chord sits close to the next one (top/bottom keep the box's breathing air). */
-  padding: 0.15em 0.15em 0.15em 0.2em;
+  /* Uniform insets — the left inset just clears a section double-bar. Crucially
+     the padding (hence the content box and its beat grid) is identical on every
+     bar, which is what keeps beats aligned: the barlines are drawn as
+     pseudo-elements below, NOT as borders, so a thick section bar never changes
+     a bar's width. */
+  padding: 0.15em 0.15em 0.15em 0.27em;
 }
 
-.bar.rowlast { border-right: 2px solid var(--line); }
-.bar.sec-start { border-left: 6px double var(--line); }
-.bar.sec-end { border-right: 6px double var(--line); }
-.bar.empty { border: none; }
+/* Barlines as em-scaled pseudo-elements (position:absolute → no layout effect).
+   Left line on every bar; right line on the last bar of a row; section
+   boundaries thicken to a double bar. */
+.bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0.09em;
+  background: var(--line);
+}
+.bar.rowlast::after,
+.bar.sec-end::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 0.09em;
+  background: var(--line);
+}
+/* Double bar (two thin lines with a small gap) at a section start/end. */
+.bar.sec-start::before,
+.bar.sec-end::after {
+  width: 0.24em;
+  background: linear-gradient(90deg,
+    var(--line) 0 0.09em, transparent 0.09em 0.15em, var(--line) 0.15em 0.24em);
+}
+.bar.empty::before,
+.bar.empty::after { content: none; }
 
 .slot {
   min-width: 0;
   overflow: visible;
-  /* Content width, never compressed — a crowded chord overflows into the
-     spacer beside it rather than squashing. */
-  flex: 0 0 auto;
+  /* Left-aligned at its beat column line; content width, never compressed — a
+     crowded chord overflows to the right (fitGridWidth keeps it from colliding
+     with the next beat's chord). */
+  justify-self: start;
+  align-self: center;
 }
 
-/* Elastic gap between chords, one after each chord, its grow weight set to the
-   chord's held duration in beats (see fillBar). It absorbs the bar's leftover
-   room so chords sit near their beat, and collapses to this minimum gap when
-   the bar is crowded. The minimum must match MIN_BEAT_GAP_EM in app.js. */
-.beat-spacer {
-  flex: 1 0 0;
-  min-width: 0.1em;
+/* Crowded bars (3+ chords, tagged .tight in fillBar) render their chords in a
+   much narrower face and pack the columns tighter, so a single busy bar can't
+   force the whole grid's font down — the rest of the grid stays large while the
+   dense bar simply gets condensed (see fitGridWidth). */
+.bar.tight .chord {
+  font-family: "Sofia Sans Extra Condensed", "Barlow Condensed", "Arial Narrow", sans-serif;
+  letter-spacing: -0.03em;
 }
+/* Narrow the middle/right columns (never the root, so the ground line and the
+   root's height stay consistent with the roomy bars) and pull the columns in
+   tight, so a dense bar's chords are horizontally compact but still full-height. */
+.bar.tight .chord .qual { font-size: 1.3em; margin-left: 0.01em; }
+.bar.tight .chord .acc { margin-left: 0.01em; }
+.bar.tight .chord .acc.flat { font-size: 1.55em; }
+.bar.tight .chord .acc.sharp { font-size: 1.35em; }
+.bar.tight .chord .alt-up,
+.bar.tight .chord .alt-down { font-size: 0.8em; margin-left: 0em; letter-spacing: -0.04em; }
 
 /* -------------------------------------------------------- chord symbols */
 
@@ -1104,7 +1156,12 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
   body.list-open #listBackdrop { display: block; }
 
-  #tuneView { padding: 0.75rem 0.8rem 3.2rem; }
-  .grid { padding-left: 1.0em; }
+  #tuneView { padding: 0.75rem 0.2rem 3.2rem; }
+  /* Tight left gutter so the grid runs nearly edge-to-edge; just wide enough to
+     hold the first row's (narrow Sofia) time signature. The section badge and
+     timesig ride in this gutter, their offsets trimmed to match. */
+  .grid { padding-left: 0.5em; }
+  .sec-label { margin-left: -0.5em; }
+  .timesig { left: -0.42em; }
   #gridZoom { left: 1rem; } /* sidebar is a drawer here, corner is free */
 }

@@ -430,25 +430,32 @@
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
-  /* A bar is a flex row: each chord (content width) is followed by an elastic
-     spacer whose grow weight is the chord's held duration in beats. When the bar
-     has room the spacers spread the chords out roughly by beat; when it's
-     crowded they collapse to the CSS minimum gap so the chords pack close and
-     the grid font can stay large (spec §6.4). fitGridWidth measures the crowding
-     per bar — the sum of the chords — not per beat-slot. */
+  /* A bar is a fixed grid of `beats` equal columns (one per beat). Each chord is
+     anchored to its beat's column line and left-aligned there, spanning to the
+     next chord's beat, so a beat sits at the same fraction of every bar's width
+     regardless of the chord's own width — beat 3 of one bar lines up vertically
+     with beat 3 of the bar below it (spec §6.1). A chord wider than the room its
+     span allows is kept from colliding with the next by fitGridWidth, which
+     measures crowding per chord-span (chord width vs its span's columns), not per
+     bar. `data-beats`/`data-span` hand those measurements to the fit pass. */
   function fillBar(cell, barObj, beats) {
     const entries = Object.entries(barObj.beats || {})
       .map(([k, v]) => [parseInt(k, 10), v])
       .filter(([k]) => Number.isFinite(k) && k >= 1 && k <= beats)
       .sort((a, b) => a[0] - b[0]);
+    // Crowded bars (3+ chords) get the condensed treatment (.tight, see CSS) so
+    // one dense bar doesn't shrink the whole grid's font — fitGridWidth measures
+    // the already-condensed widths.
+    if (entries.length >= 3) cell.classList.add("tight");
+    cell.style.gridTemplateColumns = `repeat(${beats}, 1fr)`;
+    cell.dataset.beats = String(beats);
     entries.forEach(([beat, chord], idx) => {
       const next = idx + 1 < entries.length ? entries[idx + 1][0] : beats + 1;
       const slot = el("div", "slot");
+      slot.style.gridColumn = `${beat} / ${next}`;
+      slot.dataset.span = String(next - beat);
       slot.innerHTML = renderChordHTML(chord);
       cell.appendChild(slot);
-      const spacer = el("div", "beat-spacer");
-      spacer.style.flexGrow = String(Math.max(1, next - beat));
-      cell.appendChild(spacer);
     });
   }
 
@@ -1261,7 +1268,9 @@
    * The overflow ratio is font-independent (chord and slot both scale with the
    * font), so both levers are computed from one measurement pass. */
   const MAX_GRID_WIDTH_EM = 56; // aesthetic cap: past this, shrink the font instead
-  const MIN_BEAT_GAP_EM = 0.1; // minimum gap kept between packed chords; matches .beat-spacer
+  const MIN_BEAT_GAP_EM = 0.1; // minimum gap kept between a chord and the next beat's chord
+  const PER_CHORD_OVERFLOW_EM = 0.20; // how far a chord may poke past its beat column before it counts as crowding
+  const MAX_MOBILE_FONT = 20; // px — ceiling for the grow-to-fill pass on phones/portrait
 
   function fitGridWidth() {
     const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid:not(.variant-grid)");
@@ -1274,28 +1283,63 @@
     const availPx = grid.getBoundingClientRect().width;
     grid.style.maxWidth = ""; // back to the CSS default (fills the panel), the starting width
     const curPx = grid.getBoundingClientRect().width;
+    if (!availPx || !curPx) return;
 
-    // Crowding is measured per bar, not per beat-slot: a bar overflows only when
-    // its chords together (plus a minimum gap after each) can't fit its width, so
-    // a wide chord borrows the room a narrow neighbour leaves instead of shrinking
-    // the whole grid. The ratio is font-independent (chords and gap both scale
-    // with the font), so one measurement pass drives both levers below.
-    const gapPx = MIN_BEAT_GAP_EM * parseFloat(getComputedStyle(grid).fontSize);
-    let ratio = 1;
+    // Crowding is measured per chord-span, not per bar: on the fixed beat grid a
+    // chord occupies only its own beat column(s) and can't borrow a neighbour's
+    // room, so it collides when its width exceeds its span (nextBeat − beat) worth
+    // of columns (less a minimum gap). ratio = the worst such (chord width ÷ span
+    // room) over every bar; it's font-proportional (chord width and gap both scale
+    // with the font), so this one pass drives every lever below. >1 collides, <1
+    // has slack the grow-to-fill pass can spend on a larger font.
+    //
+    // A small per-chord overflow allowance lets a wide chord poke slightly past
+    // its own column into the whitespace before the next chord's ink, so a dense
+    // bar can stay a bit larger without the chords actually touching — it trades a
+    // touch of that gap for font size, without disturbing the beat alignment
+    // (chords stay anchored to their beat lines).
+    const fontPx = parseFloat(getComputedStyle(grid).fontSize);
+    const gapPx = MIN_BEAT_GAP_EM * fontPx;
+    const allowPx = PER_CHORD_OVERFLOW_EM * fontPx;
+    let ratio = 0;
     grid.querySelectorAll(".bar").forEach((bar) => {
       const slots = bar.querySelectorAll(".slot");
       if (!slots.length) return;
       const cs = getComputedStyle(bar);
-      const inner = bar.getBoundingClientRect().width -
+      const inner = bar.clientWidth -
         (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
       if (inner <= 0) return;
-      let need = gapPx * slots.length; // one minimum gap after each chord
-      slots.forEach((slot) => { need += slot.getBoundingClientRect().width; });
-      if (need > inner) ratio = Math.max(ratio, need / inner);
+      const beats = parseInt(bar.dataset.beats, 10) || 4;
+      const colW = inner / beats;
+      slots.forEach((slot) => {
+        const span = parseInt(slot.dataset.span, 10) || 1;
+        const room = span * colW - gapPx + allowPx; // span, less a min gap, plus overflow
+        if (room <= 0) return;
+        ratio = Math.max(ratio, slot.getBoundingClientRect().width / room);
+      });
     });
-    if (ratio <= 1.001) return;
+    if (ratio <= 0) return; // no bars carry chords
 
-    const fontPx = parseFloat(getComputedStyle(grid).fontSize);
+    // Phones / portrait: the grid always fills the full panel width, and the font
+    // grows (or shrinks) so the busiest bar just fits — the chords get as large as
+    // the crowding allows instead of being pinned to a small width-based size. The
+    // fitted size is font-independent (both `fontPx` and `ratio` scale together),
+    // so the user's zoom is re-applied as a plain multiplier on top of it.
+    if (narrowMq.matches) {
+      grid.style.maxWidth = availPx.toFixed(1) + "px";
+      // 0.97 leaves a hair of slack so sub-pixel/letter-spacing rounding can't push
+      // the busiest bar's last chord into the barline.
+      const fitPx = fontPx * (availPx / curPx) / ratio * 0.97;
+      const base = Math.min(MAX_MOBILE_FONT, fitPx);
+      const next = Math.max(MIN_GRID_FONT, base * state.gridZoom);
+      grid.style.fontSize = next.toFixed(2) + "px";
+      return;
+    }
+
+    // Desktop: keep the grid centred at its width-based size, only reacting when a
+    // busy bar would collide — widen first, then shrink the font if there's no
+    // room left to give.
+    if (ratio <= 1.001) return;
     const neededPx = curPx * ratio; // grid width at which chords would just fit
     const widenCap = Math.min(availPx, MAX_GRID_WIDTH_EM * fontPx);
     if (neededPx <= widenCap) {

@@ -55,6 +55,10 @@
       rest = rest.slice(0, bassMatch.index);
     }
 
+    // A bare "(b9)" on a root is shorthand for a dominant flat-nine — render it
+    // as "7b9" (e.g. "Bb(b9)" → "Bb7b9").
+    if (rest === "(b9)") rest = "7b9";
+
     return {
       optional,
       letter: rootMatch[1],
