@@ -8,23 +8,6 @@
   "title": "EVERYTHING HAPPENS TO ME",
   "page": 119,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints '4 VERSE'."
-  },
-  "recordings": [
-    "C.Fisher 75- Giants of Jazz72",
-    "B.Powell 47- A.Pepper 52.54",
-    "C.Hawkins 57- B.Holiday 55",
-    "T.Monk 59- C.Parker 49.51",
-    "G.Mulligan 55- S.Getz 63",
-    "S.Rollins 52- J.Raney 54",
-    "D.Gillespie 52- B.Evans 63",
-    "O.Byrd 55",
-    "E.Garner 44.49- S.Getz 51.55",
-    "L.Gonsalves 54- B.De Franco 54",
-    "J.Dorsey 41- B.De Franco",
-    "A.Cohn 54- T.Wilson 53"
-  ],
   "variants": [
     {
       "applies_to": "Bar 2, 10 and 26",
@@ -54,11 +37,28 @@
           "bar": 2,
           "beats": {
             "1": "E9b5",
-            "3": "E(b5b9)"
+            "3": "Eb9b5"
           }
         }
       ]
     }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '4 VERSE'."
+  },
+  "recordings": [
+    "C.Fisher 75- Giants of Jazz72",
+    "B.Powell 47- A.Pepper 52.54",
+    "C.Hawkins 57- B.Holiday 55",
+    "T.Monk 59- C.Parker 49.51",
+    "G.Mulligan 55- S.Getz 63",
+    "S.Rollins 52- J.Raney 54",
+    "D.Gillespie 52- B.Evans 63",
+    "O.Byrd 55",
+    "E.Garner 44.49- S.Getz 51.55",
+    "L.Gonsalves 54- B.De Franco 54",
+    "J.Dorsey 41- B.De Franco",
+    "A.Cohn 54- T.Wilson 53"
   ],
   "sections": {
     "A": [

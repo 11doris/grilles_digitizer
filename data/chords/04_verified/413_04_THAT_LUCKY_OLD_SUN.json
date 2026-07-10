@@ -8,23 +8,20 @@
   "title": "THAT LUCKY OLD SUN",
   "page": 413,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints '8 VERSE'."
-  },
-  "recordings": [
-    "L.Armstrong 49.49-",
-    "R.Charles 65- A.Franklin 61",
-    "S.Davis 61- F.Sinatra 49",
-    "Gr.Green 65- S.Vaughan 49-",
-    "H.L.Page 49- Ger.Brown 61",
-    "G.Benson 66-"
-  ],
   "variants": [
     {
       "applies_to": "Bar 6",
       "targets": [
         {
           "section": "A",
+          "bar": 6
+        },
+        {
+          "section": "A1",
+          "bar": 6
+        },
+        {
+          "section": "A2",
           "bar": 6
         }
       ],
@@ -37,6 +34,17 @@
         }
       ]
     }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
+  "recordings": [
+    "L.Armstrong 49.49-",
+    "R.Charles 65- A.Franklin 61",
+    "S.Davis 61- F.Sinatra 49",
+    "Gr.Green 65- S.Vaughan 49-",
+    "H.L.Page 49- Ger.Brown 61",
+    "G.Benson 66-"
   ],
   "sections": {
     "A": [

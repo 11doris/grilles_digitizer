@@ -8,15 +8,6 @@
   "title": "HEART AND SOUL",
   "page": 153,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "R.Sharon 51- M.Jackson 52- B.Powell 50",
-    "Bat.Carter 63- H.Jones 55- D.brubeck 51",
-    "L.Clinton 38- P.Whiteman 38- T.Dorsey 51",
-    "C.Fuller 57- B.Axen 61"
-  ],
-  "notation_notes": {
-    "verse": "Header prints '8 VERSE'."
-  },
   "variants": [
     {
       "applies_to": "Bar 1",
@@ -31,7 +22,7 @@
           "bar": 1,
           "beats": {
             "1": "B7b5",
-            "2": "B7",
+            "2": "Bb7",
             "3": "A7#5",
             "4": "Ab13"
           }
@@ -39,6 +30,15 @@
       ]
     }
   ],
+  "recordings": [
+    "R.Sharon 51- M.Jackson 52- B.Powell 50",
+    "Bat.Carter 63- H.Jones 55- D.brubeck 51",
+    "L.Clinton 38- P.Whiteman 38- T.Dorsey 51",
+    "C.Fuller 57- B.Axen 61"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
   "sections": {
     "A": [
       {

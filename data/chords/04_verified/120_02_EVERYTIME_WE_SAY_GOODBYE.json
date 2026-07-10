@@ -8,17 +8,31 @@
   "title": "EVERYTIME WE SAY GOODBYE",
   "page": 120,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints '10 VERSE'."
-  },
-  "recordings": [
-    "J.Mehegan 55- S.Rollins 55- S.Vaughan 61",
-    "J.Morello 61- T.Wilson 45- E.Fitzgerald 56",
-    "B.Evers/L.Konitz/W.Marsh 77- J.Coltrane 60",
-    "R.Charles 61- S.Hanna 61- I.Jacquet 64",
-    "S.Kenton 44.55"
-  ],
   "variants": [
+    {
+      "applies_to": "Bar 14",
+      "targets": [
+        {
+          "section": "B",
+          "bar": 6
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Gbmaj7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "C9b5",
+            "3": "B7"
+          }
+        }
+      ]
+    },
     {
       "applies_to": "Bar 27",
       "targets": [
@@ -43,31 +57,17 @@
           }
         }
       ]
-    },
-    {
-      "applies_to": "Bar 14",
-      "targets": [
-        {
-          "section": "B",
-          "bar": 6
-        }
-      ],
-      "bars": [
-        {
-          "bar": 1,
-          "beats": {
-            "1": "Gbmaj7"
-          }
-        },
-        {
-          "bar": 2,
-          "beats": {
-            "1": "C9b5",
-            "3": "B7"
-          }
-        }
-      ]
     }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '10 VERSE'."
+  },
+  "recordings": [
+    "J.Mehegan 55- S.Rollins 55- S.Vaughan 61",
+    "J.Morello 61- T.Wilson 45- E.Fitzgerald 56",
+    "B.Evers/L.Konitz/W.Marsh 77- J.Coltrane 60",
+    "R.Charles 61- S.Hanna 61- I.Jacquet 64",
+    "S.Kenton 44.55"
   ],
   "sections": {
     "A": [

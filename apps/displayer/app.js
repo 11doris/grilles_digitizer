@@ -62,7 +62,7 @@
     gridZoom: 1, // user zoom factor on top of the fitted grid size; reset per tune
     activePl: null, // active playlist id (persisted, §11.4)
     transpose: null, // {shift, spell, targetPc, mode} or null (original key); per-tune
-    activeVariants: new Set(), // indices of variants swapped into the grid (non-exclusive); per-tune
+    activeVariants: new Set(), // indices of variants swapped into the grid (independent, but exclusive among variants sharing a bar); per-tune
   };
 
   /* ------------------------------------------------------------- helpers */
@@ -722,11 +722,35 @@
     return { bySection, count };
   }
 
+  /* The grid cells a variant occupies, as a set of "section\0idx" keys — used to
+     detect when two variants compete for the same bar. */
+  function variantCells(tune, variant) {
+    const cells = new Set();
+    const bySection = variantOverrides(tune, variant).bySection;
+    Object.keys(bySection).forEach((name) => {
+      Object.keys(bySection[name]).forEach((idx) => cells.add(name + " " + idx));
+    });
+    return cells;
+  }
+
+  /* True when the two variants both override at least one common grid bar, i.e.
+     they're alternatives for the same spot (e.g. My Old Flame's three bar-17
+     variants) and only one may be applied at a time. */
+  function variantsConflict(tune, a, b) {
+    const ca = variantCells(tune, a);
+    for (const c of variantCells(tune, b)) {
+      if (ca.has(c)) return true;
+    }
+    return false;
+  }
+
   /* Variants (spec §6): alternative changes for certain bars, rendered as small
      chord grids directly below the main grid — always visible, not collapsed.
-     Clicking a variant swaps its bars into the main grid and back. Variants
-     toggle independently — several can be applied at once (their overrides are
-     merged; the grid is not visually marked where a swap is in effect). */
+     Clicking a variant swaps its bars into the main grid and back. Variants that
+     touch different bars toggle independently and can be applied together (their
+     overrides are merged). Variants that compete for the same bar are mutually
+     exclusive: applying one drops any active variant it overlaps, so the grid
+     never shows two conflicting alternatives for one bar. */
   function renderVariants(tune, beats) {
     if (!Array.isArray(tune.variants) || !tune.variants.length) return null;
     const wrap = el("div", "variants");
@@ -748,8 +772,19 @@
           : "Click to swap these bars into the grid";
         if (active) v.classList.add("active");
         const toggle = () => {
-          if (state.activeVariants.has(vi)) state.activeVariants.delete(vi);
-          else state.activeVariants.add(vi);
+          if (state.activeVariants.has(vi)) {
+            state.activeVariants.delete(vi);
+          } else {
+            // Exclusive within a bar: drop any active variant that competes for
+            // one of the bars this one overrides.
+            state.activeVariants.forEach((other) => {
+              if (other !== vi && tune.variants[other] &&
+                  variantsConflict(tune, variant, tune.variants[other])) {
+                state.activeVariants.delete(other);
+              }
+            });
+            state.activeVariants.add(vi);
+          }
           renderTune(state.currentId); // same tune → keeps zoom/scroll/transpose
         };
         v.addEventListener("click", toggle);

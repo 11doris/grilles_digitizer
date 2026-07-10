@@ -8,19 +8,6 @@
   "title": "I MAY BE WRONG",
   "page": 187,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints '18 VERSE'.",
-    "other_note": "Below the grid prints 'Another different \"I may be wrong\" by J.Rushing/C.Basie'."
-  },
-  "recordings": [
-    "J.Bradley 28- E.Garner 50",
-    "Prestige Blue Swingers 60",
-    "G.Kulligan 63- B.Green 55",
-    "B.Stewart 47- H.J.Webb 55",
-    "T.Dorsey 37.45- J.Kirby 39",
-    "R.Nichols 26- B.Auld 55",
-    "P.Brown 44"
-  ],
   "variants": [
     {
       "applies_to": "Bar 5, 13,28",
@@ -35,7 +22,7 @@
         },
         {
           "section": "A2",
-          "bar": 4
+          "bar": 5
         }
       ],
       "bars": [
@@ -61,6 +48,19 @@
         }
       ]
     }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '18 VERSE'.",
+    "other_note": "Below the grid prints 'Another different \"I may be wrong\" by J.Rushing/C.Basie'."
+  },
+  "recordings": [
+    "J.Bradley 28- E.Garner 50",
+    "Prestige Blue Swingers 60",
+    "G.Kulligan 63- B.Green 55",
+    "B.Stewart 47- H.J.Webb 55",
+    "T.Dorsey 37.45- J.Kirby 39",
+    "R.Nichols 26- B.Auld 55",
+    "P.Brown 44"
   ],
   "sections": {
     "A": [

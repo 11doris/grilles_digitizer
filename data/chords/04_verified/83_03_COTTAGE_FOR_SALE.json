@@ -8,20 +8,6 @@
   "title": "COTTAGE FOR SALE",
   "page": 83,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints '8 VERSE'."
-  },
-  "recordings": [
-    "V.Dickenson 57- T.King 57",
-    "L.Miles 55- D.Henderson 61",
-    "E.Hines 64.65- F.Sinatra 55",
-    "J.Teagarden 62- D.Wehling",
-    "ton 55- C.Bullock 30-",
-    "B.Doggett 55- D.Byas 62",
-    "E.Bernier 48.54",
-    "B.Eckstine 45",
-    "C.Hawkins 55"
-  ],
   "variants": [
     {
       "applies_to": "Bar 7",
@@ -35,12 +21,31 @@
         {
           "bar": 1,
           "beats": {
-            "1": "F7",
-            "3": "Bb7"
+            "1": "F7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Bb7"
           }
         }
       ]
     }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
+  "recordings": [
+    "V.Dickenson 57- T.King 57",
+    "L.Miles 55- D.Henderson 61",
+    "E.Hines 64.65- F.Sinatra 55",
+    "J.Teagarden 62- D.Wehling",
+    "ton 55- C.Bullock 30-",
+    "B.Doggett 55- D.Byas 62",
+    "E.Bernier 48.54",
+    "B.Eckstine 45",
+    "C.Hawkins 55"
   ],
   "sections": {
     "A": [
