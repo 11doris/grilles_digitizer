@@ -774,7 +774,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .bar.tight .chord .acc.flat { font-size: 1.55em; }
 .bar.tight .chord .acc.sharp { font-size: 1.35em; }
 .bar.tight .chord .alt-up,
-.bar.tight .chord .alt-down { font-size: 0.8em; margin-left: 0em; letter-spacing: -0.04em; }
+.bar.tight .chord .alt-down { font-size: 1.2em; margin-left: 0em; letter-spacing: -0.04em; }
 
 /* -------------------------------------------------------- chord symbols */
 
