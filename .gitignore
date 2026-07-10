@@ -5,10 +5,10 @@ __pycache__/
 build/
 dist/
 .vscode/
-
 # Local-only source scans (see README: supply these yourself)
 sources/
 
 # Run artifacts (regenerable)
 data/chords/02_raw/
+data/chords/03_wip/
 data/melody/debug/

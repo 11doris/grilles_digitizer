@@ -9,6 +9,10 @@ Usage
 
 Verified tunes and WIP edits go to the siblings of --tunes: <parent>/verified
 and <parent>/wip (data/chords/04_verified and data/chords/03_wip by default).
+
+Each tune is in one of three review states, tracked in verification_state.json:
+verified, deferred (parked for a later pass), or needs_review (neither).
+Verified and deferred are mutually exclusive.
 """
 from __future__ import annotations
 
@@ -96,7 +100,7 @@ def _load_state() -> dict:
             return json.loads(sp.read_text("utf-8"))
         except Exception:
             pass
-    return {"last_opened": None, "verified": [], "in_progress": None}
+    return {"last_opened": None, "verified": [], "deferred": [], "in_progress": None}
 
 
 def _save_state(s: dict) -> None:
@@ -143,6 +147,7 @@ def ui_crop(tune_id: str):
 def api_list():
     state = _load_state()
     verified_set = set(state.get("verified", []))
+    deferred_set = set(state.get("deferred", []))
     tunes = []
     for p in _list_tunes():
         tid = p.stem
@@ -152,18 +157,29 @@ def api_list():
             d = json.loads(src.read_text("utf-8"))
         except Exception:
             d = {}
+        if tid in verified_set:
+            status = "verified"
+        elif tid in deferred_set:
+            status = "deferred"
+        else:
+            status = "needs_review"
         tunes.append({
             "id": tid,
             "title": d.get("title", tid),
-            "verified": tid in verified_set,
+            "verified": status == "verified",
+            "deferred": status == "deferred",
+            "status": status,
             "has_image": (CROPS_DIR / f"{tid}.png").exists(),
         })
-    n_verified = sum(1 for t in tunes if t["verified"])
+    counts = {s: sum(1 for t in tunes if t["status"] == s)
+              for s in ("verified", "deferred", "needs_review")}
     return jsonify({
         "tunes": tunes,
         "total": len(tunes),
-        "verified": n_verified,
-        "remaining": len(tunes) - n_verified,
+        "counts": counts,
+        "verified": counts["verified"],
+        "deferred": counts["deferred"],
+        "remaining": len(tunes) - counts["verified"],
         "last_opened": state.get("last_opened"),
         "in_progress": state.get("in_progress"),
     })
@@ -181,6 +197,7 @@ def api_get(tune_id: str):
     return jsonify({
         "id": tune_id,
         "verified": tune_id in state.get("verified", []),
+        "deferred": tune_id in state.get("deferred", []),
         "data": data,
     })
 
@@ -223,6 +240,8 @@ def api_verify(tune_id: str):
     if tune_id not in verified:
         verified.append(tune_id)
     s["verified"] = verified
+    # Verified and deferred are mutually exclusive states.
+    s["deferred"] = [d for d in s.get("deferred", []) if d != tune_id]
     _save_state(s)
     return jsonify({"ok": True})
 
@@ -237,6 +256,39 @@ def api_unverify(tune_id: str):
     vp = VERIFIED_DIR / f"{tune_id}.json"
     if vp.exists():
         vp.unlink()
+    return jsonify({"ok": True})
+
+
+@app.route("/api/tunes/<tune_id>/defer", methods=["POST"])
+def api_defer(tune_id: str):
+    """Park a tune for a later review pass (mutually exclusive with verified)."""
+    if not _safe_id(tune_id):
+        abort(400)
+    if _source_path(tune_id) is None:
+        abort(404)
+    s = _load_state()
+    deferred = s.get("deferred", [])
+    if tune_id not in deferred:
+        deferred.append(tune_id)
+    s["deferred"] = deferred
+    # A deferred tune is not verified; drop any stale verified file/state.
+    if tune_id in s.get("verified", []):
+        s["verified"] = [v for v in s["verified"] if v != tune_id]
+        vp = VERIFIED_DIR / f"{tune_id}.json"
+        if vp.exists():
+            vp.unlink()
+    _save_state(s)
+    return jsonify({"ok": True})
+
+
+@app.route("/api/tunes/<tune_id>/defer", methods=["DELETE"])
+def api_undefer(tune_id: str):
+    """Return a deferred tune to the review queue."""
+    if not _safe_id(tune_id):
+        abort(400)
+    s = _load_state()
+    s["deferred"] = [d for d in s.get("deferred", []) if d != tune_id]
+    _save_state(s)
     return jsonify({"ok": True})
 
 

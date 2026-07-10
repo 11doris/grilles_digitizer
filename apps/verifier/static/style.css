@@ -99,11 +99,37 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
   width: 0%;
 }
 
+/* Filter tabs */
+.sb-tabs {
+  display: flex;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--sb-border);
+}
+.sb-tabs button {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--sb-muted);
+  padding: 8px 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.sb-tabs button:hover { color: var(--sb-text); }
+.sb-tabs button.active { color: var(--sb-text); background: var(--sb-active); }
+
 #tune-list {
   list-style: none;
   overflow-y: auto;
   flex: 1;
   padding: 6px 0;
+}
+
+.tune-empty {
+  padding: 14px;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--sb-muted);
 }
 
 #tune-list::-webkit-scrollbar { width: 4px; }
@@ -123,9 +149,10 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
 }
 
 .tune-item:hover  { background: var(--sb-hover); }
+.tune-item.status-verified { border-left-color: var(--verified); }
+.tune-item.status-deferred { border-left-color: var(--warning); }
+/* Active selection wins the accent border regardless of review state. */
 .tune-item.active { background: var(--sb-active); border-left-color: var(--accent); }
-.tune-item.verified { border-left-color: var(--verified); }
-.tune-item.verified.active { border-left-color: var(--accent); }
 
 .tune-status {
   font-size: 11px;
@@ -133,8 +160,9 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
   width: 14px;
   text-align: center;
 }
-.tune-item.verified .tune-status { color: var(--verified); }
-.tune-item:not(.verified) .tune-status { color: var(--sb-muted); }
+.tune-item.status-verified    .tune-status { color: var(--verified); }
+.tune-item.status-deferred    .tune-status { color: var(--warning); }
+.tune-item.status-needs_review .tune-status { color: var(--sb-muted); }
 
 .tune-title {
   overflow: hidden;

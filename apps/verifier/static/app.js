@@ -17,11 +17,20 @@ function esc(val) {
 
 // ─── State ────────────────────────────────────────────────────────────────────
 const S = {
-  tunes:     [],    // [{id, title, verified, has_image}]
-  currentId: null,  // ID of open tune
-  data:      null,  // tune data; sections is [{name, bars}] (array form)
+  tunes:     [],              // [{id, title, verified, deferred, status, has_image}]
+  filter:    'needs_review',  // active sidebar tab: needs_review | deferred | all
+  currentId: null,            // ID of open tune
+  data:      null,            // tune data; sections is [{name, bars}] (array form)
   dirty:     false,
 };
+
+// Sidebar glyph per review state.
+const STATUS_GLYPH = { verified: '✓', deferred: '⏸', needs_review: '○' };
+
+/** The review state of a tune list entry. */
+function tuneStatus(t) {
+  return t.verified ? 'verified' : (t.deferred ? 'deferred' : 'needs_review');
+}
 
 // Known meta fields shown in the grid (in display order)
 const KNOWN_META = [
@@ -274,22 +283,56 @@ function clearDirty() {
 
 // ─── Progress ─────────────────────────────────────────────────────────────────
 function updateProgress() {
-  const total = S.tunes.length;
-  const done  = S.tunes.filter(t => t.verified).length;
-  qs('#progress-text').textContent = `${done} / ${total} verified`;
+  const total    = S.tunes.length;
+  const done     = S.tunes.filter(t => t.verified).length;
+  const deferred = S.tunes.filter(t => t.deferred).length;
+  const parts = [`${done} / ${total} verified`];
+  if (deferred) parts.push(`${deferred} deferred`);
+  qs('#progress-text').textContent = parts.join(' · ');
   qs('#progress-fill').style.width = total > 0 ? `${(done / total) * 100}%` : '0%';
+}
+
+// ─── Filter tabs ──────────────────────────────────────────────────────────────
+/** Tunes visible under the active filter, keeping source order. */
+function visibleTunes() {
+  if (S.filter === 'needs_review') return S.tunes.filter(t => tuneStatus(t) === 'needs_review');
+  if (S.filter === 'deferred')     return S.tunes.filter(t => tuneStatus(t) === 'deferred');
+  return S.tunes;
+}
+
+function setFilter(f) {
+  S.filter = f;
+  qsa('#filter-tabs button').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
 }
 
 // ─── Sidebar ──────────────────────────────────────────────────────────────────
 function renderSidebar() {
-  qs('#tune-list').innerHTML = S.tunes.map(t => `
-    <li class="tune-item${t.verified ? ' verified' : ''}${t.id === S.currentId ? ' active' : ''}"
+  const vis = visibleTunes();
+  qs('#tune-list').innerHTML = vis.map(t => {
+    const st = tuneStatus(t);
+    return `
+    <li class="tune-item status-${st}${t.id === S.currentId ? ' active' : ''}"
         data-id="${esc(t.id)}">
-      <span class="tune-status">${t.verified ? '✓' : '○'}</span>
+      <span class="tune-status">${STATUS_GLYPH[st]}</span>
       <span class="tune-title">${esc(t.title || t.id)}</span>
-    </li>
-  `).join('');
+    </li>`;
+  }).join('') || '<li class="tune-empty">No tunes in this view</li>';
   updateProgress();
+}
+
+/** After a status change, refresh the list/buttons and advance out of an
+    emptied slot: if the current tune left the active filter, open the next
+    visible one (by source order). */
+function afterStatusChange() {
+  const vis = visibleTunes();
+  if (S.currentId && !vis.some(t => t.id === S.currentId)) {
+    const pos  = S.tunes.findIndex(t => t.id === S.currentId);
+    const next = vis.find(t => S.tunes.indexOf(t) > pos) || vis[0];
+    renderSidebar();
+    if (next) { openTune(next.id); return; }
+  }
+  renderSidebar();
+  updateActionButtons();
 }
 
 // ─── Data conversion ──────────────────────────────────────────────────────────
@@ -999,9 +1042,8 @@ async function doVerify() {
   try {
     await apiFetch(`/api/tunes/${encodeURIComponent(S.currentId)}/verify`, { method: 'POST' });
     const t = S.tunes.find(t => t.id === S.currentId);
-    if (t) t.verified = true;
-    renderSidebar();
-    updateVerifyButtons();
+    if (t) { t.verified = true; t.deferred = false; }
+    afterStatusChange();
     toast('Marked as verified ✓', 'success');
   } catch (err) {
     toast(`Verify failed: ${err.message}`, 'error');
@@ -1015,19 +1057,56 @@ async function doUnverify() {
     await apiFetch(`/api/tunes/${encodeURIComponent(S.currentId)}/verify`, { method: 'DELETE' });
     const t = S.tunes.find(t => t.id === S.currentId);
     if (t) t.verified = false;
-    renderSidebar();
-    updateVerifyButtons();
+    afterStatusChange();
     toast('Verification removed', 'info');
   } catch (err) {
     toast(`Failed: ${err.message}`, 'error');
   }
 }
 
-// ─── Verify buttons state ─────────────────────────────────────────────────────
-function updateVerifyButtons() {
-  const verified = S.tunes.find(t => t.id === S.currentId)?.verified ?? false;
+// ─── Defer / Resume ───────────────────────────────────────────────────────────
+/* Deferring parks a tune for a later review pass: it drops out of the
+   "needs review" queue into the "deferred" tab until resumed. Any pending
+   edits are saved first so nothing is lost. */
+async function doDefer() {
+  if (!S.currentId) return;
+  if (S.dirty) {
+    await doSave();
+    if (S.dirty) return; // save failed
+  }
+  try {
+    await apiFetch(`/api/tunes/${encodeURIComponent(S.currentId)}/defer`, { method: 'POST' });
+    const t = S.tunes.find(t => t.id === S.currentId);
+    if (t) { t.deferred = true; t.verified = false; }
+    afterStatusChange();
+    toast('Deferred for later ⏸', 'info');
+  } catch (err) {
+    toast(`Defer failed: ${err.message}`, 'error');
+  }
+}
+
+async function doResume() {
+  if (!S.currentId) return;
+  try {
+    await apiFetch(`/api/tunes/${encodeURIComponent(S.currentId)}/defer`, { method: 'DELETE' });
+    const t = S.tunes.find(t => t.id === S.currentId);
+    if (t) t.deferred = false;
+    afterStatusChange();
+    toast('Back in the review queue', 'info');
+  } catch (err) {
+    toast(`Failed: ${err.message}`, 'error');
+  }
+}
+
+// ─── Action buttons state ─────────────────────────────────────────────────────
+function updateActionButtons() {
+  const t        = S.tunes.find(t => t.id === S.currentId);
+  const verified = t?.verified ?? false;
+  const deferred = t?.deferred ?? false;
   qs('#btn-verify').classList.toggle('hidden', verified);
   qs('#btn-unverify').classList.toggle('hidden', !verified);
+  qs('#btn-defer').classList.toggle('hidden', verified || deferred);
+  qs('#btn-resume').classList.toggle('hidden', !deferred);
 }
 
 // ─── Open a tune ──────────────────────────────────────────────────────────────
@@ -1047,9 +1126,9 @@ async function openTune(id) {
     S.data      = { ...raw, sections: sectionsToArray(raw.sections) };
     S.dirty     = false;
 
-    // Sync verified state from server response
+    // Sync review state from server response
     const t = S.tunes.find(t => t.id === id);
-    if (t) t.verified = result.verified;
+    if (t) { t.verified = result.verified; t.deferred = result.deferred; }
 
     renderEditor();
     renderSidebar(); // update active highlight
@@ -1069,7 +1148,7 @@ function renderEditor() {
   renderMeta();
   renderSections();
   renderVariants();
-  updateVerifyButtons();
+  updateActionButtons();
   clearDirty();
 
   // Image panel
@@ -1095,10 +1174,23 @@ function wireEvents() {
     if (item) openTune(item.dataset.id);
   });
 
-  // ── Save / Verify buttons
+  // ── Filter tabs
+  qs('#filter-tabs').addEventListener('click', e => {
+    const btn = e.target.closest('button[data-filter]');
+    if (!btn) return;
+    setFilter(btn.dataset.filter);
+    renderSidebar();
+    // If the open tune isn't in this view, jump to the first one that is.
+    const vis = visibleTunes();
+    if (vis.length && !vis.some(t => t.id === S.currentId)) openTune(vis[0].id);
+  });
+
+  // ── Save / Verify / Defer buttons
   qs('#btn-save').addEventListener('click',     () => doSave());
   qs('#btn-verify').addEventListener('click',   () => doVerify());
   qs('#btn-unverify').addEventListener('click', () => doUnverify());
+  qs('#btn-defer').addEventListener('click',    () => doDefer());
+  qs('#btn-resume').addEventListener('click',   () => doResume());
   qs('#btn-add-section').addEventListener('click', () => addSection());
   qs('#btn-add-variant').addEventListener('click', () => addVariant());
 
@@ -1278,9 +1370,12 @@ async function init() {
   try {
     const result = await apiFetch('/api/tunes');
     S.tunes = result.tunes;
+    // Start on the "needs review" queue, but fall through to "all" once it's
+    // empty so the list is never blank on first load.
+    if (!visibleTunes().length) setFilter('all');
     renderSidebar();
 
-    const startId = result.last_opened || result.tunes[0]?.id;
+    const startId = result.last_opened || visibleTunes()[0]?.id || S.tunes[0]?.id;
     if (startId) await openTune(startId);
     else qs('#no-tune').textContent = 'No tune files found in tunes/.';
   } catch (err) {
