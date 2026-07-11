@@ -28,45 +28,39 @@
       {
         "bar": 2,
         "beats": {
-          "1": "D(b9)",
+          "1": "D7b9",
           "3": "G7"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "D(b9)",
+          "1": "D7b9",
           "3": "G7"
         }
       },
       {
-        "bar": 5,
+        "bar": 4,
         "beats": {
           "1": "C",
           "3": "C7"
         }
       },
       {
-        "bar": 6,
+        "bar": 5,
         "beats": {
           "1": "F",
           "3": "Ab7"
         }
       },
       {
-        "bar": 7,
+        "bar": 6,
         "beats": {
           "1": "C"
         }
       },
       {
-        "bar": 8,
+        "bar": 7,
         "beats": {
           "1": "D9",
           "3": "G7"
@@ -177,7 +171,7 @@
         "bar": 7,
         "beats": {
           "1": "D7",
-          "3": "Dm7"
+          "3": "Dm7/4"
         }
       },
       {
@@ -240,12 +234,12 @@
       {
         "bar": 8,
         "beats": {
-          "1": "Dm7",
+          "1": "Dm7/4",
           "3": "G7"
         }
       }
     ],
-    "A3": [
+    "A2": [
       {
         "bar": 1,
         "beats": {
@@ -292,7 +286,7 @@
         "bar": 7,
         "beats": {
           "1": "D7",
-          "3": "Dm7"
+          "3": "Dm7/4"
         }
       },
       {
@@ -344,38 +338,34 @@
     "chord": "C"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "bc1f2b277be1c68f4e0b84509772d427c5f40828830330f2be2777217c3f0d3e",
+    "status": "agreed",
+    "source_sha256": "f800cc895d0b13838f8715f810a2111f52b3dc9a654204ad3c64cd901e66ac53",
     "scorer": {
       "tonic": "C",
       "mode": "major",
-      "margin": 0.8088
+      "margin": 0.8085
     },
     "llm": {
       "tonic": "C",
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "C",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
-    "family": "36-bar standard (verse + AA'BA'C)",
+    "family": "36-bar AABA-variant standard",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending"
+      "turnaround-ending",
+      "circle-of-fifths"
     ],
     "sections": {
-      "verse_A": "I with repeated V/V(D b9)-V7 motion, I-I7-IV-bVI7 chromatic touch, ending on ii-V",
-      "A": "I-VI7-II7-V7 turnarounds, I7-IV7-VI7, D7 then ii-V",
-      "A1": "same as A ending on tonic with IV plagal touch",
-      "B": "IV9-I, III7-vi, ii-V-I, repeated then D7 to ii-V",
-      "A3": "same as A1 ending on tonic",
-      "C": "IV9-I, III7-vi, ii-V-I final cadence"
+      "verse_A": "I with repeated V/V–V (D7b9-G7), I-I7 to IV with Ab7 chromatic, back to I and D9-G7",
+      "A": "I-VI7-II7-V7 loop, then I7-IV7-VI7-II7 into ii-V",
+      "A1": "Same as A resolving to I with F neighbor",
+      "B": "IV-I, III7-vi, ii-V-I repeated, then D7 and ii-V turnaround",
+      "A2": "Same as A1 resolving to I",
+      "C": "IV-I, III7-vi, ii-V-I final cadence"
     },
     "modulates": false
   }

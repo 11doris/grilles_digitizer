@@ -77,7 +77,7 @@
       {
         "bar": 1,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -89,7 +89,7 @@
       {
         "bar": 3,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -113,7 +113,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "C",
+          "1": "C/5",
           "3": "G7"
         }
       },
@@ -152,14 +152,14 @@
       {
         "bar": 5,
         "beats": {
-          "1": "C7",
+          "1": "C7/5",
           "3": "F#o7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -204,14 +204,14 @@
       {
         "bar": 5,
         "beats": {
-          "1": "C7",
+          "1": "C7/5",
           "3": "F#o7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -310,14 +310,14 @@
       {
         "bar": 5,
         "beats": {
-          "1": "C7",
+          "1": "C7/5",
           "3": "F#o7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -352,7 +352,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "c85ed49a284c0bfd0e8e2d99220611355906806a2a2482c9c7a224725bf61fce",
+    "source_sha256": "12f2cb5212e2250e0cbc437b9efbbd17ec420b5142e5b3258377af42ff66b503",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -362,7 +362,7 @@
       "tonic": "F",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "bridge (B) sits in Bb major before returning via C7",
+      "modulation_note": "bridge (B) leans to Bb (IV) with F7-Bb alternation before turning back via C7",
       "section_keys": {
         "B": {
           "tonic": "Bb",
@@ -377,21 +377,20 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "verse + 32-bar AABA standard",
+    "family": "32-bar AABA standard with 16-bar verse",
     "tags": [
-      "verse-present",
-      "ii-V-chains",
-      "chromatic-descent"
+      "turnaround-ending",
+      "circle-of-fifths"
     ],
     "sections": {
-      "verse_A": "I-IV-I loop with bIV diminished passing chord into V (F-Bb7-F/Dbo7-C7)",
-      "verse_B": "Alternating V-I (C7-F), then IV and V/V-V, ending on V7 (C7) into the chorus",
-      "A": "V7 dominant into iv (Fm), passing F#o7, resolving to I with IV7 (F-Bb7-F)",
-      "A1": "Repeat of A: V7-iv-V7-I with diminished passing chord",
-      "B": "Bridge in Bb: V7/Bb-C7-F7 alternating with Bb tonic, ending Bb-G7-C7 back to V of F",
-      "A2": "Final A: V7-iv-V7-I resolving to tonic F"
+      "verse_A": "I-IV7-I with a Db dim passing chord into V7, cadencing on I",
+      "verse_B": "I over V pedal alternating with IV7, ending on V7 turnaround",
+      "A": "V7 to iv (Fm) then C7/F#o7 resolving to I with IV7",
+      "A1": "Repeat of A: V7-iv-I cadence",
+      "B": "F7-Bb alternation tonicizing IV (Bb), ending G7-C7 back to home V7",
+      "A2": "Repeat of A: V7-iv-I cadence"
     },
     "modulates": true,
-    "modulation_note": "bridge (B) sits in Bb major before returning via C7"
+    "modulation_note": "bridge (B) leans to Bb (IV) with F7-Bb alternation before turning back via C7"
   }
 }

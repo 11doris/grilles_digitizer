@@ -24,14 +24,14 @@
         "bar": 1,
         "beats": {
           "1": "Bbm",
-          "3": "F7"
+          "3": "F7/5"
         }
       },
       {
         "bar": 2,
         "beats": {
           "1": "Bbm",
-          "3": "F7"
+          "3": "F7/5"
         }
       },
       {
@@ -50,14 +50,14 @@
         "bar": 5,
         "beats": {
           "1": "Ebm",
-          "3": "Bb7"
+          "3": "Bb7/5"
         }
       },
       {
         "bar": 6,
         "beats": {
           "1": "Ebm",
-          "3": "Bb7"
+          "3": "Bb7/5"
         }
       },
       {
@@ -129,14 +129,14 @@
         "bar": 1,
         "beats": {
           "1": "Bbm",
-          "3": "F7"
+          "3": "F7/5"
         }
       },
       {
         "bar": 2,
         "beats": {
           "1": "Bbm",
-          "3": "F7"
+          "3": "F7/5"
         }
       },
       {
@@ -155,14 +155,14 @@
         "bar": 5,
         "beats": {
           "1": "Ebm",
-          "3": "Bb7"
+          "3": "Bb7/5"
         }
       },
       {
         "bar": 6,
         "beats": {
           "1": "Ebm",
-          "3": "Bb7"
+          "3": "Bb7/5"
         }
       },
       {
@@ -194,7 +194,7 @@
       {
         "bar": 3,
         "beats": {
-          "1": "Db"
+          "1": "Db/5"
         }
       },
       {
@@ -240,7 +240,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "cc434dd0f3391cba7867cfea2211eff176fe56561b8ba154339e44706f043bb7",
+    "source_sha256": "0ccc5410f544d9499bb27136f6d23b382c11621b948eed871522b2ba062f8009",
     "scorer": {
       "tonic": "Bb",
       "mode": "minor",
@@ -273,10 +273,10 @@
       "dominant-cycle-bridge"
     ],
     "sections": {
-      "A": "Alternates vi (Bbm) with F7 then ii (Ebm) with Bb7, hovering on chords of Db without resolving",
-      "B": "ii-V-I into Db (Ebm7-Ab7-Db), then dominant cycle Bb7-Eb7-Ab7 to ii-V (Cm7b5-F7)",
-      "A1": "Repeat of A: vi-F7 and ii-Bb7 vamp in Db",
-      "C": "IV (Gb)-dim-I (Db), then Bb7-Eb7-Ab7 dominant cycle resolving to I (Db)"
+      "A": "vi (Bbm) with its V, then ii (Ebm) with its V — chords built on vi and ii of the home key",
+      "B": "ii-V-I into Db, then a chain of dominants (Bb7-Eb7-Ab7) ending on iiø-V7",
+      "A1": "repeat of A: vi and ii chords with their applied dominants",
+      "C": "IV-#IVo7-I then VI7-II7-V7-I dominant cycle cadencing on Db"
     },
     "modulates": false
   }

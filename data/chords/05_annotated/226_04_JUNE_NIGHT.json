@@ -33,7 +33,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "B7"
+          "1": "B7/5"
         }
       },
       {
@@ -83,7 +83,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "B7"
+          "1": "B7/5"
         }
       },
       {
@@ -352,7 +352,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "129fe91bef36121e3dfa69d275e91a78f628300d262cbfdd830dd404c7ed424b",
+    "source_sha256": "70fa08d90163627bf04b1905e385c403f02ff4eaaf094106247e6f9dba46e254",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -362,7 +362,7 @@
       "tonic": "C",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "16-bar verse opens in the relative minor (A minor) before the chorus settles firmly in C major",
+      "modulation_note": "16-bar verse sits in relative A minor before the chorus settles into C major",
       "section_keys": {
         "verse_A": {
           "tonic": "A",
@@ -381,22 +381,22 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "verse-plus-32-bar chorus (ABAC)",
+    "family": "32-bar ABAC standard with 16-bar verse",
     "tags": [
-      "ii-V-chains",
-      "circle-of-fifths",
       "verse-present",
-      "turnaround-ending"
+      "dominant-cycle-bridge",
+      "turnaround-ending",
+      "ii-V-chains"
     ],
     "sections": {
-      "verse_A": "Opens on i-V(B7 as V/V)-V7-i in A minor, then D7-G7-C with an E7 turnaround",
-      "verse_A1": "Same A-minor opening, closing with Dm7-G7 ii-V back to C",
-      "A": "I with G7#5 embellishment and I7, then V/V (A7) to V (D9)",
-      "B": "V7-I then vi, D7 (V/V) and G7 back to a Dm7-G7#5 ii-V",
-      "A1": "I with G7#5 and I7, A7 to Dm — tonicizing ii/vi at the close",
-      "C": "IV-iv-I plaginess then A7-D7-G7-C full authentic cadence in C"
+      "verse_A": "i-V/V-V-i in A minor, then D7-G7-C tonicizing the relative major, ending on E7 (V of A minor)",
+      "verse_A1": "Same A-minor opening (i-V/V-V-i) resolving through D7-G7 into a ii-V (Dm7-G7) toward C",
+      "A": "I with G7#5 and I7 color, then dominant cycle A7 (V/V/V) to D9 (V/V)",
+      "B": "V7-I, then D7-G7 dominant motion cadencing back with a ii-V (Dm7-G7#5)",
+      "A1": "I with G7#5 and I7, A7 leading to a Dm (ii) area with A7 tag",
+      "C": "IV-iv-I, then A7-D7-G7-C circle-of-fifths cadence resolving on I"
     },
     "modulates": true,
-    "modulation_note": "16-bar verse opens in the relative minor (A minor) before the chorus settles firmly in C major"
+    "modulation_note": "16-bar verse sits in relative A minor before the chorus settles into C major"
   }
 }

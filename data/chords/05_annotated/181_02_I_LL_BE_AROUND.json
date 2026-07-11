@@ -48,8 +48,8 @@
       {
         "bar": 4,
         "beats": {
-          "1": "F",
-          "3": "G7"
+          "1": "F/3",
+          "3": "G7/3"
         }
       },
       {
@@ -106,8 +106,8 @@
       {
         "bar": 4,
         "beats": {
-          "1": "F",
-          "3": "G7"
+          "1": "F/3",
+          "3": "G7/3"
         }
       },
       {
@@ -142,23 +142,23 @@
       {
         "bar": 1,
         "beats": {
-          "1": "Db7",
+          "1": "Db7/5",
           "3": "Gm7"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "Gm9",
+          "1": "Gm9/4",
           "3": "C7"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "Db7",
+          "1": "Db7/5",
           "2": "Gm7",
-          "3": "Gm7",
+          "3": "Gm7/4",
           "4": "C7"
         }
       },
@@ -172,14 +172,14 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Ab7",
+          "1": "Ab7/5",
           "3": "Dm7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "Dm9",
+          "1": "Dm9/4",
           "3": "G13b9"
         }
       },
@@ -259,20 +259,14 @@
     "tonic": "C",
     "mode": "major"
   },
-  "section_keys": {
-    "B": {
-      "tonic": "F",
-      "mode": "major"
-    }
-  },
   "opening": {
     "degree": "I",
     "quality": "maj",
     "chord": "C"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "6b648861b0e085d6a9c6f8406366f7495520338c50f511043c0c1562f5e67d6a",
+    "status": "agreed",
+    "source_sha256": "cb1e5d6c8bebe4c43dac4ecc1425704a3791194429ce93babb77e3606c5aa642",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -282,18 +276,7 @@
       "tonic": "C",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "bridge (B) tonicizes IV (F) before returning to C",
-      "section_keys": {
-        "B": {
-          "tonic": "F",
-          "mode": "major"
-        }
-      }
-    },
-    "human": {
-      "tonic": "C",
-      "mode": "major",
-      "corrected": false
+      "modulation_note": null
     }
   },
   "harmonic_fingerprint": {
@@ -304,12 +287,11 @@
       "chromatic-descent"
     ],
     "sections": {
-      "A": "I with stepwise Dm7-Em7-Fmaj7 rise, V7 with #ivo7, then I-vi-ii-V and a chromatic Eb69-Abmaj7-G7alt tag",
-      "A1": "Same as A but resolves I-Am7-Dm7-G7b9 back to I with IV-I plagal ending",
-      "B": "Db7-Gm7-C7 ii-V into Fmaj7 (IV), then Ab7-Dm7 and Em7-Am7-Dm7-G13b9 leading back to C",
-      "A2": "Opening as A then Am9-F9#11-Em7-Am7-Dm7-G7b9 resolving to I"
+      "A": "I with rising diatonic ii-iii-IV, V7 with #v°7 passing chord, then I-vi-ii-V; ends bVI (Eb69/Abmaj7) into altered V7",
+      "A1": "Same as A but resolves cleanly I-vi-ii-V7 back to tonic I",
+      "B": "tritone-sub Db7 to ii-V (Gm7-C7) cadencing to IV (Fmaj7), then Ab7/ii-V figures resolving via iii-vi-ii-V7 back to I",
+      "A2": "I with rising diatonic motion, then vi9/IV9#11 variation, iii-vi-ii-V7 back to tonic I"
     },
-    "modulates": true,
-    "modulation_note": "bridge (B) tonicizes IV (F) before returning to C"
+    "modulates": false
   }
 }

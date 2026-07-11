@@ -1,42 +1,44 @@
 {
-  "composer": "Peter DE ROSE – Joe TRENT",
-  "year": "1928",
-  "style": "STANDARD",
+  "composer": "Thomas \"Fats\" WALLER – Raymond KLAGES",
+  "year": "1927",
+  "style": "TRADITIONAL",
   "tempo": "MEDIUM",
-  "form": "16 A B | 32 A A B A",
+  "form": "16 A A' | 32 A A B A",
   "time_signature": "4/4",
-  "title": "CAUSE I FEEL LOWDOWN",
-  "page": 65,
+  "title": "I'M MORE THAN SATISFIED",
+  "page": 192,
   "source": "Anthologie des grilles de jazz",
   "recordings": [
-    "Picadilly Dance Band 28- A.Hershaw 28",
-    "California Ramblers 28- S.Stewart 28",
-    "F.Rich 28- Cl.Bleck 28"
+    "L.Abbott 27- V.Price 25- J.Hamilton 25",
+    "S.Lombardo 26- Chicago Loopers 27",
+    "Original Memphis Five 26",
+    "All Stars Orchestra 26"
   ],
   "notation_notes": {
-    "verse_strain": "Top grid labelled 'VERSE' with printed label '16 A B'; recorded as verse_A / verse_B. Lower grid is the 32-bar chorus labelled '32 A A B A'.",
-    "two_bar_repeat": "verse_B bar 3-4 shows a two-bar repeat sign straddling the barline; copies verse_B bars 1-2 (F, Bb7)."
+    "verse": "Header prints 'VERSE' above the first strain.",
+    "two_bar_repeat": "verse_A1 bars 3-4 show a two-bar repeat sign restating bars 1-2."
   },
   "sections": {
     "verse_A": [
       {
         "bar": 1,
         "beats": {
-          "1": "F"
+          "1": "F7",
+          "3": "E7#5"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "Bb7"
+          "1": "Eb7",
+          "3": "D7"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "F",
-          "3": "Dbo7",
-          "4": "C7"
+          "1": "G7",
+          "3": "C7"
         }
       },
       {
@@ -48,73 +50,73 @@
       {
         "bar": 5,
         "beats": {
-          "1": "F"
+          "1": "F7",
+          "3": "E7#5"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "Bb7"
+          "1": "Eb7",
+          "3": "D7"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "F",
-          "3": "Dbo7",
-          "4": "C7"
+          "1": "G7"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "F",
-          "3": "C7"
+          "1": "C7"
         }
       }
     ],
-    "verse_B": [
+    "verse_A1": [
       {
         "bar": 1,
         "beats": {
-          "1": "C7/5"
+          "1": "C7"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "F"
+          "1": "Bb7"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "C7/5"
+          "1": "C7"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "F"
+          "1": "Bb7"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "F"
+          "1": "F7",
+          "3": "E7#5"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "Bb7"
+          "1": "Eb7",
+          "3": "D7"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "C/5",
-          "3": "G7"
+          "1": "G7"
         }
       },
       {
@@ -128,45 +130,45 @@
       {
         "bar": 1,
         "beats": {
-          "1": "C7"
+          "1": "F"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "C7"
+          "1": "F"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "Fm"
+          "1": "C7"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Fm"
+          "1": "Gm7",
+          "3": "C7"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "C7/5",
-          "3": "F#o7"
+          "1": "C7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "C7/5"
+          "1": "G7",
+          "3": "C7"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "F",
-          "3": "Bb7"
+          "1": "F"
         }
       },
       {
@@ -180,45 +182,45 @@
       {
         "bar": 1,
         "beats": {
-          "1": "C7"
+          "1": "F"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "C7"
+          "1": "F"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "Fm"
+          "1": "C7"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Fm"
+          "1": "Gm7",
+          "3": "C7"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "C7/5",
-          "3": "F#o7"
+          "1": "C7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "C7/5"
+          "1": "G7",
+          "3": "C7"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "F",
-          "3": "Bb7"
+          "1": "F"
         }
       },
       {
@@ -232,47 +234,43 @@
       {
         "bar": 1,
         "beats": {
-          "1": "F7",
-          "3": "C7"
+          "1": "A7"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "F7"
+          "1": "A7"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "Bb",
-          "3": "F7"
+          "1": "Dm"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Bb"
+          "1": "Dm"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "F7",
-          "3": "C7"
+          "1": "G7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "F7"
+          "1": "G7"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "Bb",
-          "3": "G7"
+          "1": "C7"
         }
       },
       {
@@ -286,45 +284,45 @@
       {
         "bar": 1,
         "beats": {
-          "1": "C7"
+          "1": "F"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "C7"
+          "1": "F"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "Fm"
+          "1": "C7"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Fm"
+          "1": "Gm7",
+          "3": "C7"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "C7/5",
-          "3": "F#o7"
+          "1": "C7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "C7/5"
+          "1": "G7",
+          "3": "C7"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "F",
-          "3": "Bb7"
+          "1": "F"
         }
       },
       {

@@ -8,18 +8,6 @@
   "title": "AS TIME GOES BY",
   "page": 22,
   "source": "Anthologie des grilles de jazz",
-  "same_chord_changes": "BALLADE (C.Parker, C.Hawkins)",
-  "notation_notes": {
-    "verse_note": "Header prints '12 VERSE'."
-  },
-  "recordings": [
-    "S.Grappelly 75- B.Doggett 54- F.Rich 31",
-    "B.Brookmeyer/B.Evans 59- F.Domino 57",
-    "T.Dorsey 50- B.Berigan 31- T.Glenn 59",
-    "E.Garner 54.65- B.Holiday 44- A.Ross 52",
-    "B.Taylor 55- J.Bushkin 55",
-    "T.Wilson 47.55"
-  ],
   "variants": [
     {
       "applies_to": "Bar 1, 9, 25",
@@ -85,6 +73,18 @@
         }
       ]
     }
+  ],
+  "same_chord_changes": "BALLADE (C.Parker, C.Hawkins)",
+  "notation_notes": {
+    "verse_note": "Header prints '12 VERSE'."
+  },
+  "recordings": [
+    "S.Grappelly 75- B.Doggett 54- F.Rich 31",
+    "B.Brookmeyer/B.Evans 59- F.Domino 57",
+    "T.Dorsey 50- B.Berigan 31- T.Glenn 59",
+    "E.Garner 54.65- B.Holiday 44- A.Ross 52",
+    "B.Taylor 55- J.Bushkin 55",
+    "T.Wilson 47.55"
   ],
   "sections": {
     "A": [
@@ -230,8 +230,8 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Cm",
-          "3": "Cm7"
+          "1": "Cm/5",
+          "3": "Cm7/5"
         }
       },
       {

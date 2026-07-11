@@ -279,6 +279,25 @@ SUS / SLASH / NO-CHORD:
 - Suspended: sus4, sus2, 7sus4 (Gsus4, D7sus4). A printed bare "sus" with no number
   means sus4 — keep any printed extension: C9 with "sus" -> C9sus4, never "C9sus".
 - Slash / bass note: root then "/" then bass note, as printed (C/E, Fm7/Bb).
+- SLASH-CHORD CORNER DIGIT (inversions): a LONE small digit — 3, 4, 5, 6, or 7 — drawn
+  OFF BY ITSELF in a CORNER of a box (typically bottom-left or top-left), set apart from
+  every chord root, is NOT part of any chord symbol. It names the chord DEGREE to put IN
+  THE BASS — an inversion / slash chord: 3=third, 4=fourth, 5=fifth, 6=sixth, 7=seventh.
+  Record it AS A DEGREE: write the box's chord, then "/", then the digit EXACTLY as
+  printed — do NOT resolve it to a bass NOTE. Worked cases from a real page: A7 + corner 3
+  -> A7/3; Dm7 + corner 7 -> Dm7/7; Dm7 + corner 5 -> Dm7/5; Dm7 + corner 4 -> Dm7/4; a
+  Bb + corner 3 -> Bb/3; a C + corner 3 -> C/3. In a SUBDIVIDED box the digit belongs ONLY
+  to the chord in whose corner/region it sits (a top-left digit -> the upper/left chord; a
+  bottom-left digit -> the lower/right chord); that chord becomes the slash chord and the
+  other region is unchanged. E.g. a box split C7(13) upper / Bb lower with a 3 in the
+  bottom-left is {{ "1": "C7(13)", "3": "Bb/3" }}.
+  DO NOT confuse this corner digit with a chord's OWN superscript number. An extension or
+  alteration (the 6 of C6 / Dm6, the b5 of Bm7b5 / F#m7b5 / Em7b5, the 13 of C7(13), the
+  9 of Bb9) hugs its root as a small raised suffix and IS part of the chord — NEVER turn
+  it into a bass note, and never read a slash digit as an added extension. The tell: a
+  slash-chord digit stands ALONE in a corner, away from any root; an extension/alteration
+  sits TIGHT against its root. Digit hugging a root -> the chord's own number; digit
+  floating by itself in a corner -> the bass degree of a slash chord.
 - An empty / no-chord bar is N.C.
 - A WHOLE chord printed in parentheses — e.g. "(G7)" — is an optional/passing chord:
   KEEP it exactly as printed, parentheses included ("(G7)"), as that bar's chord. You

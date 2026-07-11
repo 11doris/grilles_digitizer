@@ -8,13 +8,6 @@
   "title": "TRAV'LIN' ALL ALONE",
   "page": 433,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "Boswell Sisters 35- B.Holiday 37",
-    "J.Moore 31- Er.Waters 29.47- R.Allen 65",
-    "McKinney's Cotton Pickers 30-",
-    "B.Eckstine/C.Basie 59- D.Fischberg 76",
-    "Q.Jackson 60- Mar.Moore 57- E.Hines 64"
-  ],
   "variants": [
     {
       "applies_to": "Bar 7, 15 and 27",
@@ -55,11 +48,18 @@
           "bar": 1,
           "beats": {
             "1": "Ab",
-            "3": "G(b9)"
+            "3": "G7b9"
           }
         }
       ]
     }
+  ],
+  "recordings": [
+    "Boswell Sisters 35- B.Holiday 37",
+    "J.Moore 31- Er.Waters 29.47- R.Allen 65",
+    "McKinney's Cotton Pickers 30-",
+    "B.Eckstine/C.Basie 59- D.Fischberg 76",
+    "Q.Jackson 60- Mar.Moore 57- E.Hines 64"
   ],
   "notation_notes": {
     "A1_arrow": "Second printed row (A1) is a leading-arrow/dash row copying section A positionally; empty/dash boxes take the same-position bar from A, with the final box (Ab) written explicitly."
@@ -221,7 +221,7 @@
         "bar": 7,
         "beats": {
           "1": "Fm",
-          "3": "Dbm"
+          "3": "Dbm/3"
         }
       },
       {

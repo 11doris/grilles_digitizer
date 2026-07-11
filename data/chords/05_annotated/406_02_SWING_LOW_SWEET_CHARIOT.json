@@ -11,8 +11,8 @@
         {
           "bar": 1,
           "beats": {
-            "1": "A7",
-            "3": "Cm6"
+            "1": "A7/5",
+            "3": "Cm6/3"
           }
         }
       ],
@@ -156,7 +156,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "4f9ed0f6e9a03cac130b3bbf484a0139d90bd80459627200244990ed13dfd782",
+    "source_sha256": "843f11ded8bdce8d98edef9e833a4027683b49f4f1d3d9f7aa6ab6cc8bafa397",
     "scorer": {
       "tonic": "G",
       "mode": "major",
@@ -170,13 +170,13 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "16-bar tune (AB)",
+    "family": "16-bar spiritual (AB form)",
     "tags": [
       "turnaround-ending"
     ],
     "sections": {
-      "A": "I-IV-V7, then vi-iii-ii7-V7 turnaround",
-      "B": "I9-IV-V7, #iv half-dim to iv, I-V7, IV-iv-I plagal ending"
+      "A": "I-IV-V7 with vi-iii-ii-V motion, ending on V7",
+      "B": "I9-IV-V7 then #iv half-dim to iv, cadencing I-V7-IV-iv-I with borrowed minor iv"
     },
     "modulates": false
   }

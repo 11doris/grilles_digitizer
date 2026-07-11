@@ -8,7 +8,10 @@
   "title": "I'M JUST A LUCKY SO-AND-SO",
   "page": 191,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": "{\n  \"verse\": \"Header prints '16 VERSE'.\",\n}",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "B_bar4": "Section B bar 4 shows a two-bar repeat sign straddling the barline; filled by copying the preceding two bars (bars 1-2)."
+  },
   "recordings": [
     "W.Montgomery 61- C.Hamilton 59",
     "S.Clark 58- G.Tren 61- E.Fitz-",
@@ -117,7 +120,7 @@
         "bar": 7,
         "beats": {
           "1": "G",
-          "3": "D(b9)"
+          "3": "D7b9"
         }
       },
       {
@@ -170,8 +173,8 @@
       {
         "bar": 7,
         "beats": {
-          "1": "D",
-          "3": "A(b9)"
+          "1": "D/5",
+          "3": "A7b9"
         }
       },
       {
@@ -245,8 +248,8 @@
     "chord": "G"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "77b8e4fa169aab7e3145eb90c05aa290a112e61c986d150cf048f0d7a4046d26",
+    "status": "agreed",
+    "source_sha256": "b5e09296f2f15d620cd48b0a6598c068529717f23b455ad6f57466680ee543ed",
     "scorer": {
       "tonic": "G",
       "mode": "major",
@@ -257,11 +260,6 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "G",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -271,10 +269,10 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "I with IV7 neighbor, I-I7-IV7-V/ii, ii-V turnaround with #Io7 passing chord",
-      "A1": "Same as A ending on I with V/... and I-I7 leading to bridge",
-      "B": "IV9 alternating with Imaj7, then vii7b5-V/vi to vi, #ii7b5, V-V/ii, ii-V back to I",
-      "A2": "I with IV7 neighbor and ii-V, resolving to I"
+      "A": "I with IV7 color, I-I7-IV7-V/ii then ii-V, ending on ii-V turnaround",
+      "A1": "Same as A but resolves to I with V/IV setup at end",
+      "B": "IV9 to Imaj7 alternation, then vii-ish and secondary dominants leading to ii-V",
+      "A2": "Restatement resolving firmly onto I"
     },
     "modulates": false
   }

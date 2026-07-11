@@ -188,7 +188,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "Gm7",
+          "1": "Gm7/4",
           "3": "C7"
         }
       }
@@ -247,7 +247,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "Gm7",
+          "1": "Gm7/4",
           "3": "Bbm7",
           "4": "Eb7"
         }
@@ -264,20 +264,20 @@
         "bar": 2,
         "beats": {
           "1": "Gm7b5",
-          "3": "C(b9)"
+          "3": "C7b9"
         }
       },
       {
         "bar": 3,
         "beats": {
           "1": "(Gb7)",
-          "3": "F(b9)"
+          "3": "F7b9"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Fm7",
+          "1": "Fm7/4",
           "3": "Bb7"
         }
       },
@@ -307,7 +307,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "Gm7",
+          "1": "Gm7/4",
           "3": "C7"
         }
       }
@@ -382,7 +382,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "d62de5e325a5027a7b2af89983ce772c250b088484ca7340826d7d927bb324db",
+    "source_sha256": "285c6d50c68d246ca9778c12eec56daf0a031a252de6d477670093ee97d96f95",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -420,10 +420,10 @@
       "chromatic-descent"
     ],
     "sections": {
-      "A": "Imaj7 with bVI dominant, V/ii-ii, iv-bVII borrowed motion, I then Bbm7-Eb7 into bVI, ii-V turnaround",
-      "A1": "Same as A, ending on ii with Bbm7-Eb7 setup",
-      "B": "bVI maj7 opening, descending dominants, iv-bVII, ii-V's leading back to ii-V of F",
-      "A2": "Same A opening, resolving with Gm9-C7b9 ii-V to final I"
+      "A": "I with bVI chromatic passing, iii-VI to ii, then ii-V and back to I with chromatic ii-V motion, ending on V7",
+      "A1": "Same as A, ending on ii-V (Bbm7-Eb7) turnaround",
+      "B": "Wandering bridge over bVI, ii-Vs and secondary dominants, resolving via ii-V (Gm7-C7)",
+      "A2": "Same as A resolving to I with final Gm-C7-F cadence"
     },
     "modulates": false
   }

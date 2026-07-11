@@ -23,8 +23,7 @@
       {
         "bar": 1,
         "beats": {
-          "1": "Gm",
-          "3": "Gm7"
+          "1": "Gm7"
         }
       },
       {
@@ -49,8 +48,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Gm",
-          "3": "Gm7"
+          "1": "Gm7"
         }
       },
       {
@@ -89,7 +87,7 @@
       {
         "bar": 3,
         "beats": {
-          "1": "D7"
+          "1": "D7/5"
         }
       },
       {
@@ -101,15 +99,15 @@
       {
         "bar": 5,
         "beats": {
-          "1": "F",
+          "1": "F/3",
           "3": "Abo7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "C7",
-          "3": "D7"
+          "1": "C7/5",
+          "3": "D7/3"
         }
       },
       {
@@ -136,7 +134,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "D7"
+          "1": "D7/5"
         }
       },
       {
@@ -173,7 +171,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "F7"
+          "1": "F7/5"
         }
       }
     ],
@@ -187,7 +185,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "D7"
+          "1": "D7/5"
         }
       },
       {
@@ -205,7 +203,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Dm"
+          "1": "Dm/5"
         }
       },
       {
@@ -237,7 +235,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "D7"
+          "1": "D7/5"
         }
       },
       {
@@ -274,7 +272,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "F7"
+          "1": "F7/5"
         }
       }
     ],
@@ -306,7 +304,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Bb",
+          "1": "Bb/3",
           "3": "Dbo7"
         }
       },
@@ -344,11 +342,11 @@
   "opening": {
     "degree": "vi",
     "quality": "min",
-    "chord": "Gm"
+    "chord": "Gm7"
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "10fd5904d571abbfaabd5444c752a3dff69463badc209fb749fa546d32cc5c34",
+    "source_sha256": "2172934b90e7f4c0e95f0e600009d136d435f2b31eca7d960021d497440e2801",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",
@@ -358,7 +356,7 @@
       "tonic": "Bb",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "verse in G minor (relative minor) before the chorus settles in Bb major",
+      "modulation_note": "verse A sits in the relative G minor before the choruses settle in Bb major",
       "section_keys": {
         "verse_A": {
           "tonic": "G",
@@ -373,22 +371,22 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "verse-and-chorus standard (16-bar verse AB + 32-bar chorus ABAC)",
+    "family": "verse-and-chorus standard (16-bar verse + 32-bar ABAC chorus)",
     "tags": [
       "verse-present",
-      "circle-of-fifths",
-      "dominant-cycle-bridge",
-      "turnaround-ending"
+      "ii-V-chains",
+      "turnaround-ending",
+      "circle-of-fifths"
     ],
     "sections": {
-      "verse_A": "i-i6/7 with iio7b5, bVI and V7 (D7) resolving to i in G minor",
-      "verse_B": "V7-of-Bb (F7) to I, secondary dominants D7/A7, ii-V (Gm7-C7) cadencing on F7 (V of Bb)",
-      "A": "I then dominant cycle D7-G7-C7-F7 back to I with I-#io7-V7 turnaround",
-      "B": "I-V/vi-V/ii then iiø-vi(Dm)-V/ii(A7)-D7-F7",
-      "A1": "repeat of A: I with dominant cycle and I-#io7-V7 turnaround",
-      "C": "I-I7-IV-iv (subdominant minor) then I-#io7, ii-V, resting on I"
+      "verse_A": "Gm7-Em7b5-Eb-D7 to Gm, dwelling on the relative minor with its own V7 (D7)",
+      "verse_B": "F7-Bb then diminished passing chords and ii-V (Gm7-C7-F7) turning toward Bb",
+      "A": "I with V/V-V/ii-V/V-V-I motion (Bb-D7-G7-C7-F7-Bb) ending on F7",
+      "B": "I to G7/Em7b5 then Dm-A7-D7-F7 secondary-dominant chain back to V",
+      "A1": "repeat of A: Bb-D7-G7-C7-F7-Bb with F7 turnaround",
+      "C": "Bb-Bb7-Eb-Ebm plagal cadence then Cm7-F7-Bb final I"
     },
     "modulates": true,
-    "modulation_note": "verse in G minor (relative minor) before the chorus settles in Bb major"
+    "modulation_note": "verse A sits in the relative G minor before the choruses settle in Bb major"
   }
 }

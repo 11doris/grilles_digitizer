@@ -66,14 +66,14 @@
       {
         "bar": 6,
         "beats": {
-          "1": "Eb",
-          "3": "Ebm"
+          "1": "Eb/3",
+          "3": "Ebm/3"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "Bb",
+          "1": "Bb/5",
           "3": "F7"
         }
       },
@@ -123,14 +123,14 @@
       {
         "bar": 6,
         "beats": {
-          "1": "Eb",
-          "3": "Ebm"
+          "1": "Eb/3",
+          "3": "Ebm/3"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "Bb",
+          "1": "Bb/5",
           "3": "F7"
         }
       },
@@ -230,14 +230,14 @@
       {
         "bar": 6,
         "beats": {
-          "1": "Eb",
-          "3": "Ebm"
+          "1": "Eb/3",
+          "3": "Ebm/3"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "Bb",
+          "1": "Bb/5",
           "3": "Ab7"
         }
       },
@@ -272,8 +272,8 @@
     "chord": "Bb"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "8f997f55168cb16db6fa9561b01d3812735906cbf14add001fdc63e86c9a2670",
+    "status": "agreed",
+    "source_sha256": "a9702cc098e7bf25e27265cf116b6abe95eb13cff8c4dc84f699f227ae9c0059",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",
@@ -284,11 +284,6 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "Bb",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -300,10 +295,10 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "I-vi-ii-V with Dbo7 passing chord, IV/iv motion in bar 6, ii-V-I",
-      "A1": "Same as A: I-vi-ii-V, Dbo7, Eb-Ebm, ii-V-I",
-      "B": "Dominant cycle III7-VI7-II7-V7 (D7-G7-C7-F7) with tritone sub Gb7b5",
-      "A2": "A section extended with Ab7-G7-C7-F7 turnaround resolving to I"
+      "A": "I-vi-ii-V rhythm changes A with I-#Io7-ii-V and IV/iv motion",
+      "A1": "Repeat of A: I-vi-ii-V with #Io7 and IV to iv6",
+      "B": "Dominant cycle bridge III7-VI7-II7-V7 (tritone sub Gb7 to F7)",
+      "A2": "A section extended with tag: VI7-III7-VI7-II7-V7 turnaround into I"
     },
     "modulates": false
   }

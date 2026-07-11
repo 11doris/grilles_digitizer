@@ -116,7 +116,7 @@
         "bar": 7,
         "beats": {
           "1": "Gm",
-          "3": "Ebm6"
+          "3": "Ebm6/3"
         }
       },
       {
@@ -244,7 +244,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "cf4669c06ff74d4b9d27df759e20d5c535ca73acae17d87ad7224a643b6f7f41",
+    "source_sha256": "f51bcff4d00d3d27c818258910076fbee999f44784c4d1af9230acba375f94b0",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -264,10 +264,10 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "ii-V (Fm7-Bb7) with V/V (F9), resolving to I (Eb), then Gm7b5-C7 setting up next section",
-      "B": "V/V to ii-V into I, Eb7-D7 to Gm chords, ending F7-Bb7 dominant approach",
-      "A1": "repeat of A with ii-V, V/V, I and Gm7b5-C7",
-      "B1": "ii-V to I, Gm-C7, then Fm7-Bb7 ii-V resolving finally to I (Eb)"
+      "A": "ii-V (Fm7-Bb7) with V/V (F9), resolving to I (Eb); ends on ii-V toward vi (Gm7b5-C7)",
+      "B": "V/V and ii-V into I (Eb), then Eb7-D7 tonicizing Gm (vi), returning via F7-Bb7",
+      "A1": "identical to A: ii-V, V/V, I, then ii-V toward vi",
+      "B1": "V/V, ii-V to I, brief D7-Gm, then ii-V-I cadence resolving firmly to Eb"
     },
     "modulates": false
   }

@@ -8,14 +8,6 @@
   "title": "DETOUR AHEAD",
   "page": 98,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "Alexander 58.62- A.O'Day 80- S.Rivers",
-    "stellen Jazz Quintet 58- S.Vaughan 58",
-    "Jackson/H.Laws 72- S.Getz 57- B.Evans 61",
-    "Holiday 45.51- M.A.McCall 58-",
-    "W.Williams 64- B.Brookmeyer 61",
-    "Ellis 55.63- J.Griffin 61"
-  ],
   "variants": [
     {
       "applies_to": "Bar 1",
@@ -59,6 +51,14 @@
       ]
     }
   ],
+  "recordings": [
+    "Alexander 58.62- A.O'Day 80- S.Rivers",
+    "stellen Jazz Quintet 58- S.Vaughan 58",
+    "Jackson/H.Laws 72- S.Getz 57- B.Evans 61",
+    "Holiday 45.51- M.A.McCall 58-",
+    "W.Williams 64- B.Brookmeyer 61",
+    "Ellis 55.63- J.Griffin 61"
+  ],
   "notation_notes": {
     "A_bar11_correction": "Section A bar 11 printed 'Dm7 / Dbo7 E?5 Bb'; final bars read Dm7/Dbo7 and Cm7/Bb per grid.",
     "A2_final": "Final row shows C7M Gb13, B9+ (aug), then Em7 Am7 / Dm7 Dbo7 / C6 turnaround.",
@@ -82,7 +82,7 @@
         "bar": 3,
         "beats": {
           "1": "Em7",
-          "3": "A(b9)"
+          "3": "A7b9"
         }
       },
       {
@@ -96,14 +96,14 @@
         "bar": 5,
         "beats": {
           "1": "Gm7",
-          "3": "C(b9)"
+          "3": "C7b9"
         }
       },
       {
         "bar": 6,
         "beats": {
           "1": "F",
-          "3": "Fm7"
+          "3": "Fm7/4"
         }
       },
       {
@@ -138,7 +138,7 @@
         "bar": 3,
         "beats": {
           "1": "Em7",
-          "3": "A(b9)"
+          "3": "A7b9"
         }
       },
       {
@@ -152,14 +152,14 @@
         "bar": 5,
         "beats": {
           "1": "Gm7",
-          "3": "C(b9)"
+          "3": "C7b9"
         }
       },
       {
         "bar": 6,
         "beats": {
           "1": "F",
-          "3": "Fm7"
+          "3": "Fm7/4"
         }
       },
       {
@@ -175,7 +175,7 @@
         "beats": {
           "1": "C",
           "3": "Fm7b5",
-          "4": "B(b9)"
+          "4": "B7b9"
         }
       }
     ],
@@ -250,7 +250,7 @@
         "bar": 3,
         "beats": {
           "1": "Em7",
-          "3": "A(b9)"
+          "3": "A7b9"
         }
       },
       {
@@ -264,14 +264,14 @@
         "bar": 5,
         "beats": {
           "1": "Gm7",
-          "3": "C(b9)"
+          "3": "C7b9"
         }
       },
       {
         "bar": 6,
         "beats": {
           "1": "F",
-          "3": "Fm7"
+          "3": "Fm7/4"
         }
       },
       {
@@ -299,7 +299,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "dfbd483bcae74b959aa90306bcafd21df587763f291ee9657f750f09c9a1cb7f",
+    "source_sha256": "d76a74bbb4f40601ff2d7c76cb7115922a3b330f9289cb72bcec1c7392306f4d",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -316,7 +316,7 @@
       "tonic": "C",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "bridge (B) shifts toward E major before returning via ii-V to C",
+      "modulation_note": "bridge tonicizes E major (Emaj7 with ii-V) before returning via Dm7-G7",
       "section_keys": {
         "B": {
           "tonic": "E",
@@ -338,11 +338,13 @@
       "chromatic-descent"
     ],
     "sections": {
-      "A": "I-IV9, iii-VI7b9, ii-V, then Gm7-C7 to F, Fm7, iii-vi, V/V to V7alt",
-      "A1": "Same opening; ends I with chromatic Dm7-Db, C with iv-V7/vi turnaround",
-      "B": "Em to F9 then Emaj7 with C#m7-F#m7-B7 tonicizing E, repeats, ends ii-V back to C",
-      "A2": "Restatement of A ending on Cmaj7-F9"
+      "A": "I-IV9 then ii-V chains (Em7-A7 into Dm7-G7, Gm7-C7 to IV) ending on V7",
+      "A1": "same opening, cadences to I with chromatic Db approach and Fm7b5-B7b9 turn",
+      "B": "Em-F9 then Emaj7-C#m7-F#m7-B7 tonicizing E major, repeated, back via ii-V (Dm7-G7)",
+      "A2": "restatement resolving to I, ending on IV9 (F9) as loop"
     },
-    "modulates": false
+    "modulates": true,
+    "modulation_note": "bridge tonicizes E major (Emaj7 with ii-V) before returning via Dm7-G7",
+    "stale": true
   }
 }

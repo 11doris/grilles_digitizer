@@ -93,7 +93,7 @@
         "bar": 4,
         "beats": {
           "1": "Gm",
-          "4": "C7"
+          "3": "C7"
         }
       },
       {
@@ -113,7 +113,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "C7",
+          "1": "C7/5",
           "3": "C7b5"
         }
       },
@@ -233,7 +233,7 @@
       {
         "bar": 9,
         "beats": {
-          "1": "Bb",
+          "1": "Bb/5",
           "3": "Gm"
         }
       },
@@ -269,11 +269,18 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "7aa9a969a01fca11654b90f947bcfe2e8ac7912f68613ae573fb4d57233e74b3",
+    "source_sha256": "836bacdb01e211f0741680ff776d89a41a5505d0b654a0aa5a855e852ff6e427",
     "scorer": {
-      "tonic": "Bb",
+      "tonic": "F",
       "mode": "major",
-      "margin": 0.4556
+      "margin": 0.0271,
+      "section_keys": {
+        "A": {
+          "tonic": "Bb",
+          "mode": "major",
+          "margin": 0.7802
+        }
+      }
     },
     "llm": {
       "tonic": "Bb",
@@ -290,15 +297,16 @@
   "harmonic_fingerprint": {
     "family": "verse-and-chorus standard",
     "tags": [
-      "circle-of-fifths",
+      "ii-V-chains",
+      "turnaround-ending",
       "chromatic-descent",
-      "turnaround-ending"
+      "verse-present"
     ],
     "sections": {
-      "verse_A": "I with C7-F7 (V/V-V) turns and F7 dominant, all in Bb",
-      "verse_B": "I, D7 (V/vi) to ii-V, I with chromatic diminished passing chords, closing V7-I7 into IV",
-      "A": "IV-iv-I, G9 (V/ii) to C7-F7 (V/V-V), I with Bbo7 and I7",
-      "A1": "IV-iv-I, then extended vi (Gm) tonicization with D7, closing ii-V-I in Bb"
+      "verse_A": "I with V/V-V (C7-F7) motion, all resolving to I in Bb",
+      "verse_B": "I to V/ii-ii-V, then IV-based diminished passing chords over V7, ending on V7-I7 turnaround",
+      "A": "IV-iv-I, then G9(V/ii)-C7(V/V)-F7(V) back to I with I-io7 tag",
+      "A1": "IV-iv-I then vi tonicized by D7, Gm/D7-Cm oscillation, resolving via C7-F7 to I"
     },
     "modulates": false
   }

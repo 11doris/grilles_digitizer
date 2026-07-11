@@ -8,13 +8,6 @@
   "title": "TRAV'LIN' ALL ALONE",
   "page": 433,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "Boswell Sisters 35- B.Holiday 37",
-    "J.Moore 31- Er.Waters 29.47- R.Allen 65",
-    "McKinney's Cotton Pickers 30-",
-    "B.Eckstine/C.Basie 59- D.Fischberg 76",
-    "Q.Jackson 60- Mar.Moore 57- E.Hines 64"
-  ],
   "variants": [
     {
       "applies_to": "Bar 7, 15 and 27",
@@ -55,11 +48,18 @@
           "bar": 1,
           "beats": {
             "1": "Ab",
-            "3": "G(b9)"
+            "3": "G7b9"
           }
         }
       ]
     }
+  ],
+  "recordings": [
+    "Boswell Sisters 35- B.Holiday 37",
+    "J.Moore 31- Er.Waters 29.47- R.Allen 65",
+    "McKinney's Cotton Pickers 30-",
+    "B.Eckstine/C.Basie 59- D.Fischberg 76",
+    "Q.Jackson 60- Mar.Moore 57- E.Hines 64"
   ],
   "notation_notes": {
     "A1_arrow": "Second printed row (A1) is a leading-arrow/dash row copying section A positionally; empty/dash boxes take the same-position bar from A, with the final box (Ab) written explicitly."
@@ -221,7 +221,7 @@
         "bar": 7,
         "beats": {
           "1": "Fm",
-          "3": "Dbm"
+          "3": "Dbm/3"
         }
       },
       {
@@ -261,17 +261,23 @@
     ]
   },
   "key": {
-    "tonic": "Ab",
-    "mode": "major"
+    "tonic": "F",
+    "mode": "minor"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "Ab",
+      "mode": "major"
+    }
   },
   "opening": {
-    "degree": "vi",
+    "degree": "i",
     "quality": "min",
     "chord": "Fm"
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "26e39241a9bdd701ea31cd7c3d93b5eb68ec5d205622a19c1dd4d1c9820cdd72",
+    "source_sha256": "ecbe8bbc9f7ffc4786c2522c5a619a318ea1d64921bf83b4de3ecf295f91e0c0",
     "scorer": {
       "tonic": "Ab",
       "mode": "major",
@@ -288,26 +294,32 @@
       "tonic": "F",
       "mode": "minor",
       "confidence": "medium",
-      "modulation_note": null
+      "modulation_note": null,
+      "section_keys": {
+        "B": {
+          "tonic": "Ab",
+          "mode": "major"
+        }
+      }
     },
     "human": {
-      "tonic": "Ab",
-      "mode": "major",
-      "corrected": true
+      "tonic": "F",
+      "mode": "minor",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {
-    "family": "28-bar AABC form",
+    "family": "28-bar AABC tune",
     "tags": [
       "minor-key",
-      "turnaround-ending",
-      "chromatic-descent"
+      "relative-major-cadence",
+      "ii-V-chains"
     ],
     "sections": {
-      "A": "i (Fm) with bVI-V7 (Db-C7) motion, iv-flavored Dbm6, then V7/relative (Eb7) to Ab (bIII), ending on C7 (V of i)",
-      "A1": "Same as A: i with Db-C7, Dbm6, Eb7 to Ab (bIII) at close",
-      "B": "Dbm6-Bbm7b5-Eb7 (ii-V into Ab) repeated, then Ab/Abmaj7, Fm7-Bb7, i-Dbm, Ab7-Db7",
-      "C": "i (Fm)-Dbm6-Eb7 resolving to Ab (bIII)"
+      "A": "i (Fm) with bVI-V7/i (Db-C7) alternation, then iv (Dbm6) and V7/bIII (Eb7) cadencing to bIII (Ab), tag with V7/i (C7)",
+      "A1": "Same as A: i-bVI-V7/i alternation, iv, Eb7 to bIII (Ab)",
+      "B": "iv-iiø-V7 cadencing to bIII (Ab major), then Ab-Abmaj7, Fm7-Bb7 (V/V), back to i and Ab7-Db7",
+      "C": "i (Fm), iv (Dbm6), V7 (Eb7) resolving to bIII (Ab)"
     },
     "modulates": false
   }

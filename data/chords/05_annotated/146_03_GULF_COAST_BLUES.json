@@ -34,7 +34,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Bb7"
+          "1": "Bb7/5"
         }
       },
       {
@@ -220,7 +220,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "fd2e01937db054e0763474647e21e5c2c19726d12211aba26c71e077cfc08ef3",
+    "source_sha256": "b9a58ecf96f177515bb496cbac1c90657a194aebc738a4f53d1e337e12b9aa17",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -234,16 +234,16 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "verse plus 12-bar blues",
+    "family": "verse-and-12-bar-blues",
     "tags": [
       "blues-form",
       "turnaround-ending",
-      "chromatic-descent"
+      "verse-present"
     ],
     "sections": {
-      "verse_A": "I with #io7 to V7, back to I, then secondary dominants (V/vi, V/ii, V/V) cadencing to V7",
-      "verse_B": "I-#io7-V7 then V/vi, ii, with D7 and G7 secondary dominants, C7-F7-V7 turnaround",
-      "A": "12-bar blues in I with IV in bar 5 and Bb7-C7-F7-Bb7 blues turnaround"
+      "verse_A": "I with #io7, V7 back to I; then chromatic passing dominants (V/V, V/ii) leading to a V7 turnaround",
+      "verse_B": "I-#io7-V7, V/vi to vi, then V/V, V/ii to F7-V7 turnaround ending on V",
+      "A": "12-bar blues in I: I with I7 to IV, back to I, then V7-C7-F7-V7 blues turnaround"
     },
     "modulates": false
   }

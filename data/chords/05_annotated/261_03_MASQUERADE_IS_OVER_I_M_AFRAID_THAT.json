@@ -125,7 +125,7 @@
       {
         "bar": 6,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -225,7 +225,7 @@
       {
         "bar": 6,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -345,7 +345,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "Fm7",
+          "1": "Fm7/4",
           "3": "Bb7"
         }
       }
@@ -384,7 +384,7 @@
       {
         "bar": 6,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -464,7 +464,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "6f9dddcaad125568ffceb40ff836fbb8f6a9cb6479d664cb5cbb89cb1f53dffb",
+    "source_sha256": "a8d8161eb23f0d0c8f2ab58c4badaefa43ed7f045f3dd64609f04ff1a0219c69",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -481,14 +481,14 @@
     "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "circle-of-fifths",
-      "turnaround-ending"
+      "turnaround-ending",
+      "circle-of-fifths"
     ],
     "sections": {
-      "A": "I-V/vi-vi-V/IV-IV with C7-F7-Bb7 circle of fifths back to I, ending on ii-V (Fm7-Bb7)",
-      "A1": "Same as A but resolving fully to I with iii-VI-ii-V turnaround into tonic",
-      "B": "ii-V and iii-vi motion in Eb, brief ii-V-I tonicization of G major (Am7-D7-Gmaj7), returning via Fm7-Bb7",
-      "A2": "Restatement of A resolving to I with ii-V turnaround into tonic"
+      "A": "I-V/vi-vi-V/IV to IV, then C7-F7 back through ii-V; ends on ii-V turnaround (Fm7-Bb7)",
+      "A1": "Same as A but resolves fully to I with ii-V (Gm7-C7 / Fm7-Bb7) into tonic",
+      "B": "ii-V chains over Eb, brief tonicization of G (Am7-D7-Gmaj7) then back to ii-V into A",
+      "A2": "Restatement resolving to I via Gm7-C9b5 / Fm7-Bb7 to Eb"
     },
     "modulates": false
   }

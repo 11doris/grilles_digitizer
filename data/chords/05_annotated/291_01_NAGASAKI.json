@@ -38,7 +38,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
@@ -51,7 +51,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
@@ -93,7 +93,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
@@ -106,7 +106,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
@@ -200,7 +200,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
@@ -213,7 +213,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
@@ -255,8 +255,8 @@
     "chord": "C"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "fd8b7b996f85d84f83df26b7521990bd24c8258bd9eab9efe8c751542b3c244b",
+    "status": "agreed",
+    "source_sha256": "a0d4b18e19cac34aedb864ae302bcba4dab104804f24f43a26563c6a46cda987",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -267,11 +267,6 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "C",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -281,10 +276,10 @@
       "chromatic-descent"
     ],
     "sections": {
-      "A": "I with #io7 passing to V7, then I-V7/vi, IV-iv, I-V7 turnaround to I",
-      "A1": "Same as A: I-#io7-V7 loops resolving to I with IV-iv and V7 turnaround",
-      "B": "IV-iv-I-I7 to IV-iv, then I-vi-II7-V7 back to tonic",
-      "A2": "Same as A: I-#io7-V7 with IV-iv and V7 resolving to I"
+      "A": "I with #io7 passing to V, then I-V/vi-IV-iv-I-V-I cadence",
+      "A1": "Same as A: I-#io7-V, I-E7-IV-iv-I-V-I",
+      "B": "IV-iv-I-I7 repeated, then I-vi-II7-V7 turnaround",
+      "A2": "Same as A resolving to I"
     },
     "modulates": false
   }

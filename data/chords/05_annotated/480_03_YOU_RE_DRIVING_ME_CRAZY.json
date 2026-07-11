@@ -48,7 +48,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Abm"
+          "1": "Abm/3"
         }
       },
       {
@@ -98,7 +98,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Abm"
+          "1": "Abm/3"
         }
       },
       {
@@ -356,7 +356,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "525c1e62aa5a8f533bcee08a095f3333959ef80973646f2ee66e4d2869fc805c",
+    "source_sha256": "09e50d5cda5ea52376b46950b277107c37fa2ea31812eaf55dbba42548b03c07",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -388,19 +388,20 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar AABA standard with 16-bar verse",
+    "family": "32-bar AABA standard with verse",
     "tags": [
+      "verse-present",
       "ii-V-chains",
-      "turnaround-ending",
-      "verse-present"
+      "circle-of-fifths",
+      "turnaround-ending"
     ],
     "sections": {
-      "verse_A": "Chain of dominants/ii moving V/ii-ii, V/... toward Eb, ending F7-Bb7 (ii-V into I)",
-      "verse_A1": "Same as verse_A ending on Bb7#5 (V of Eb)",
-      "A": "I with diminished passing chord, ii-V (Fm7-Bb7), F7-Bb7 (V/V-V) back to I",
-      "A1": "I, ii-V loop, ends I with D7 leading to bridge",
-      "B": "ii-V in G major (Am7-D7) resolving to G, back to Fm7-Bb7 into Eb",
-      "A2": "I, ii-V, F7-Bb7, resolving and resting on I (Eb)"
+      "verse_A": "Circle-of-fifths chain D7-Gm-C7-Fm then Eb, ending on V7 (Bb7)",
+      "verse_A1": "Same as verse_A ending on Bb7#5 (V) turnaround",
+      "A": "I-#Io7-ii-V vamp with F7-Bb7 (V/V-V) and Eb6 tonic returns",
+      "A1": "Same A material ending on Eb to D7 setting up the bridge",
+      "B": "I-ii-V loop in G major, then Eo7-Fm7-Bb7 pivots back to Eb",
+      "A2": "Final A: I-#Io7-ii-V-V/V-V-I ending on tonic Eb"
     },
     "modulates": true,
     "modulation_note": "bridge (B) in G major"

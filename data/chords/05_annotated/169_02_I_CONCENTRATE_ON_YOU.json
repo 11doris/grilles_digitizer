@@ -89,7 +89,7 @@
       {
         "bar": 12,
         "beats": {
-          "1": "Gb7"
+          "1": "Gb7/5"
         }
       },
       {
@@ -421,25 +421,25 @@
       {
         "bar": 1,
         "beats": {
-          "1": "Fm7"
+          "1": "Fm7/7"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "Fm7"
+          "1": "Fm7/7"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "Bb13b9"
+          "1": "Bb13b9/4"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Bb13b9"
+          "1": "Bb13b9/4"
         }
       },
       {
@@ -472,14 +472,20 @@
     "tonic": "Eb",
     "mode": "major"
   },
+  "section_keys": {
+    "B": {
+      "tonic": "Bb",
+      "mode": "major"
+    }
+  },
   "opening": {
     "degree": "I",
     "quality": "maj",
     "chord": "Ebmaj7"
   },
   "key_annotation": {
-    "status": "agreed",
-    "source_sha256": "cc22b5cb0e73f5333aabce3ca86e3fbde4eb7b423532b62f8715a9fba3366701",
+    "status": "verified",
+    "source_sha256": "a7cf358acbfcbe472d625aa3b2115802997c7e9966f4432d79ee8036aaf76174",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -489,23 +495,36 @@
       "tonic": "Eb",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": null
+      "modulation_note": "B section cadences onto Bb (the dominant) via Cm7b5-F7-Bb before returning to Eb",
+      "section_keys": {
+        "B": {
+          "tonic": "Bb",
+          "mode": "major"
+        }
+      }
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {
-    "family": "64-bar AABC standard",
+    "family": "64-bar AA'BC standard",
     "tags": [
       "ii-V-chains",
+      "circle-of-fifths",
       "turnaround-ending",
       "chromatic-descent"
     ],
     "sections": {
-      "A": "I with IV(#11), shifts to iv (Ebm/Abm), ii-V (Fm7b5-Bb7), tritone-inflected turns to I, ends on ii-V turnaround",
-      "A1": "Same opening, tonicizing Bmaj7 and Gbmaj7 briefly then B9-Bb7 back to I",
-      "B": "ii-V into I, moves to IV (Abmaj7) and Gbmaj7, Cm7b5-F7 cadencing onto V (Bb) area",
-      "C": "I-iii-vi-V motion, ii-V to I, secondary ii-Vs, ending B9-Bb7 to I",
-      "coda": "ii-V-I tag (Fm7-Bb13b9-Ebmaj7/Eb6)"
+      "A": "Imaj7 to IV9#11, then iv minor (Ebm6/m7) and bVIIm (Abm) coloring, ii-V (Fm7b5-Bb7) with tritone-sub approach (B9-Bb7) resolving to I, ending on ii-V",
+      "A1": "Like A but detours through Bmaj7/B6 and Abm7-Db7-Gbmaj7 tonicization before B9-Bb7 back to I",
+      "B": "ii-V into I, then modulates to the dominant: Eb7-Abmaj7-Gbmaj7 then Cm7b5-F7-Bb cadence",
+      "C": "I-iii-vi(ii)-V motion, ii-V to Imaj7, then Gm7b5-C7-Fm-Ab6 and B9-Bb7-I cadence",
+      "coda": "ii-V-I (Fm7-Bb13b9-Ebmaj7/Eb6) final tag"
     },
-    "modulates": false
+    "modulates": true,
+    "modulation_note": "B section cadences onto Bb (the dominant) via Cm7b5-F7-Bb before returning to Eb"
   }
 }

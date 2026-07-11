@@ -59,21 +59,21 @@
         "bar": 2,
         "beats": {
           "1": "Am",
-          "4": "Fm"
+          "4": "Fm/3"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "C",
+          "1": "C/5",
           "3": "F6"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "C",
-          "2": "G7",
+          "1": "C/3",
+          "2": "G7/5",
           "3": "C"
         }
       },
@@ -88,15 +88,15 @@
         "beats": {
           "1": "Em7",
           "3": "Am7",
-          "4": "Fm6"
+          "4": "Fm6/3"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "C",
-          "3": "Dm7",
-          "4": "G(b9)"
+          "1": "C/5",
+          "3": "Dm7/4",
+          "4": "G7b9"
         }
       },
       {
@@ -120,21 +120,21 @@
         "bar": 2,
         "beats": {
           "1": "Am",
-          "4": "Fm"
+          "4": "Fm/3"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "C",
+          "1": "C/5",
           "3": "F6"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "C",
-          "2": "G7",
+          "1": "C/3",
+          "2": "G7/5",
           "3": "C"
         }
       },
@@ -149,15 +149,15 @@
         "beats": {
           "1": "Em7",
           "3": "Am7",
-          "4": "Fm6"
+          "4": "Fm6/3"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "C",
-          "3": "Dm7",
-          "4": "G(b9)"
+          "1": "C/5",
+          "3": "Dm7/4",
+          "4": "G7b9"
         }
       },
       {
@@ -174,14 +174,14 @@
         "bar": 1,
         "beats": {
           "1": "Am",
-          "3": "Em"
+          "3": "Em/3"
         }
       },
       {
         "bar": 2,
         "beats": {
           "1": "F6",
-          "3": "C"
+          "3": "C/3"
         }
       },
       {
@@ -201,14 +201,14 @@
         "bar": 5,
         "beats": {
           "1": "Am",
-          "3": "Em"
+          "3": "Em/3"
         }
       },
       {
         "bar": 6,
         "beats": {
           "1": "F6",
-          "3": "C"
+          "3": "C/3"
         }
       },
       {
@@ -223,12 +223,12 @@
       {
         "bar": 8,
         "beats": {
-          "1": "Dm7",
+          "1": "Dm7/4",
           "3": "G7"
         }
       }
     ],
-    "A2": [
+    "A3": [
       {
         "bar": 1,
         "beats": {
@@ -240,21 +240,21 @@
         "bar": 2,
         "beats": {
           "1": "Am",
-          "4": "Fm"
+          "4": "Fm/3"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "C",
+          "1": "C/5",
           "3": "F6"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "C",
-          "2": "G7",
+          "1": "C/3",
+          "2": "G7/5",
           "3": "C"
         }
       },
@@ -269,15 +269,15 @@
         "beats": {
           "1": "Em7",
           "3": "Am7",
-          "4": "Fm6"
+          "4": "Fm6/3"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "C",
-          "3": "Dm7",
-          "4": "G(b9)"
+          "1": "C/5",
+          "3": "Dm7/4",
+          "4": "G7b9"
         }
       },
       {
@@ -301,7 +301,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "997aa698251d05510d25ebe5f31c5ac92364bb815b78d6df625fca7b50f75e52",
+    "source_sha256": "9fb7b6522a3394ac1d9c98f9d35e8689d23157f5c26840a46ca943861aafd810",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -317,13 +317,14 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
+      "ii-V-chains",
       "turnaround-ending"
     ],
     "sections": {
-      "A": "I-vi with iv (Fm) borrowed color, IV6, ii-V-I cadences resolving to C",
-      "A1": "Identical to A: I-vi-iv, IV6, ii-V-I in C",
-      "B": "vi-iii-IV-I motion with V/vi (D7) and ii-V (Dm7-G7) turnaround back to C",
-      "A2": "Same as A ending on I"
+      "A": "I-vi with iv borrowed, IV6 subdominant color, ii-V7b9-I cadence with IV7 plagal tag",
+      "A1": "Identical to A: I-vi, IV6, ii-V-I with borrowed iv and IV7 tag",
+      "B": "vi-iii, IV-I moves, vi-V7-I, then I-vi-V/V-ii-V7 setting up return",
+      "A3": "Repeat of A: I-vi with borrowed iv, IV6, ii-V7b9-I plagal tag"
     },
     "modulates": false
   }

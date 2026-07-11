@@ -113,7 +113,7 @@
       {
         "bar": 15,
         "beats": {
-          "1": "Eb6",
+          "1": "Eb6/5",
           "3": "Cm7"
         }
       },
@@ -216,7 +216,7 @@
       {
         "bar": 15,
         "beats": {
-          "1": "Eb6"
+          "1": "Eb6/5"
         }
       },
       {
@@ -373,7 +373,7 @@
       {
         "bar": 15,
         "beats": {
-          "1": "Eb6"
+          "1": "Eb6/5"
         }
       },
       {
@@ -395,7 +395,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "9f6410e661e29d36093bd2ee508fbe097848291c480df99933a08efb726b9a4a",
+    "source_sha256": "946dd6608b1dbaeb3a2485438315889a76a55fbf5e8cce4cdfcda9e93c66cc3f",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -409,17 +409,16 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar AABA standard (extended A sections)",
+    "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending",
-      "circle-of-fifths"
+      "turnaround-ending"
     ],
     "sections": {
-      "A": "I with ii-V (to IV), IV-bVII9, I with V/V (A7#11) back to IV, then diatonic ii-V and I-IV-#IVo7 turnaround to ii-V",
-      "A1": "Same as A ending on ii-V (Bbm7-Eb7) turnaround",
-      "B": "IV6, iii-VI7, ii-V7, I; then iii, ii/vi with V/vi (D7), iii-#iio7, ii-V7#5 all within Eb",
-      "A2": "Same A material resolving fully to I (Eb6) final"
+      "A": "I with ii-V, IV to bVII9, V/ii (A7#11) back to IV-bVII9, then Gb7 to ii-V-I with tonic diminished passing and turnaround (Fm7-Bb7#5)",
+      "A1": "Same as A: I ii-V IV bVII, V/ii back to IV, ii-V-I with turnaround ending on Bbm7-Eb7",
+      "B": "IV6 with ii-V to I, then iii/Am7b5-D7 to Gm, Fm7-Bb7#5 ii-V leading back to I",
+      "A2": "Same A statement resolving fully to Eb6 tonic"
     },
     "modulates": false
   }

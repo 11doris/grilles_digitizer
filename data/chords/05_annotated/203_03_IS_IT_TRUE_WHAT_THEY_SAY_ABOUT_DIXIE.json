@@ -45,7 +45,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "F#7"
+          "1": "F#7/5"
         }
       },
       {
@@ -103,7 +103,7 @@
       {
         "bar": 3,
         "beats": {
-          "1": "B7"
+          "1": "B7/5"
         }
       },
       {
@@ -147,7 +147,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "F#7"
+          "1": "F#7/5"
         }
       },
       {
@@ -194,7 +194,7 @@
       {
         "bar": 1,
         "beats": {
-          "1": "C"
+          "1": "C/3"
         }
       },
       {
@@ -253,7 +253,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "f00eeabbf2580d7e550f304cf33f58f26e1fe65bb0d3e3e055f47f5698e11f96",
+    "source_sha256": "559c3fcab573df49633a297f230e3fed91e60d7062444dce970387a9d1015944",
     "scorer": {
       "tonic": "G",
       "mode": "major",
@@ -270,14 +270,13 @@
     "family": "32-bar ABAC standard",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending",
-      "chromatic-descent"
+      "turnaround-ending"
     ],
     "sections": {
-      "A": "I with chromatic F#7 lower-neighbor dominant, V7 in bar 4, diminished passing chord (bIIIo7) to vi with V/vi, resting on vi",
-      "B": "ii-V in G, V/vi to vi (B7-Em), V/V (A7), back to ii-V",
-      "A1": "I with F#7 neighbor, V7, then I7 to IV (C) with G7#5/G7 turnaround toward IV",
-      "C": "IV, Eb7 (bVI7), I to F9/E9 chromatic, V/V-V (A7-D7), resolving home to I"
+      "A": "I with chromatic F#7b5 neighbor, V7 in bar 4, diminished passing chord, cadence to vi (Am) via its V (E7)",
+      "B": "ii-V (Am7-D7), then V/vi to vi (Em), A7 as V/V, closing on ii-V",
+      "A1": "same opening as A, then I-I7-IV with G7#5 back to IV and V7",
+      "C": "IV area with Eb7, I with F9/E9 passing dominants, A7-D7-I final cadence"
     },
     "modulates": false
   }

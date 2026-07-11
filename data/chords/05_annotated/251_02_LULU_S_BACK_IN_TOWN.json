@@ -12,37 +12,37 @@
         {
           "bar": 1,
           "beats": {
-            "1": "Ab",
-            "3": "Gm",
-            "4": "Fm"
+            "1": "Ab/3",
+            "3": "Gm/3",
+            "4": "Fm/3"
           }
         },
         {
           "bar": 2,
           "beats": {
-            "1": "Eb"
+            "1": "Eb/3"
           }
         },
         {
           "bar": 3,
           "beats": {
-            "1": "Ab",
-            "3": "Gm",
-            "4": "Fm"
+            "1": "Ab/3",
+            "3": "Gm/3",
+            "4": "Fm/3"
           }
         },
         {
           "bar": 4,
           "beats": {
-            "1": "Eb"
+            "1": "Eb/3"
           }
         },
         {
           "bar": 5,
           "beats": {
-            "1": "Ab",
-            "3": "Gm",
-            "4": "Fm"
+            "1": "Ab/3",
+            "3": "Gm/3",
+            "4": "Fm/3"
           }
         },
         {
@@ -233,7 +233,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Eb",
+          "1": "Eb/5",
           "3": "Eb7"
         }
       },
@@ -247,7 +247,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Eb",
+          "1": "Eb/5",
           "3": "Eb7"
         }
       },
@@ -261,7 +261,7 @@
       {
         "bar": 6,
         "beats": {
-          "1": "Eb",
+          "1": "Eb/5",
           "3": "C7"
         }
       },
@@ -347,7 +347,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "cdc95bf5b6cb1499664cb524b6bad4e259eadd83137f0347bad4301d2639da29",
+    "source_sha256": "57ace39843d7bcf0f1155fcb3b4fd9677df58949d7d12a5c83226c138279ab19",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -367,10 +367,10 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "I with V/V-V motion, IV-iv minor plagal in bar 5, then vi-related C7-F7-Bb7 back to I",
-      "A1": "Repeat of A: I-V/V-V loop, IV-iv, then C7-F7-Bb7 to I",
-      "B": "IV with #IVo7 passing to I, repeated, then C7-F7-Bb7 dominant chain to V",
-      "A2": "Repeat of A ending on I"
+      "A": "I with V/V-V oscillation, then IV-iv minor-plagal, vi/V7-ii-V back to I",
+      "A1": "Same as A: I-V/V-V loops, IV-iv, VI7-II7-V7-I",
+      "B": "IV-#iv°7-I6/V-I7 repeated, then V/V-II7-V7 dominant lead-back",
+      "A2": "Repeat of A: I with V/V-V motion, IV-iv, cadence to I"
     },
     "modulates": false
   }

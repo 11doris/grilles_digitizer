@@ -45,13 +45,13 @@
         "bar": 3,
         "beats": {
           "1": "F",
-          "3": "Db7"
+          "3": "Db7/5"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "F",
+          "1": "F/3",
           "3": "Abo7"
         }
       },
@@ -102,13 +102,13 @@
         "bar": 3,
         "beats": {
           "1": "F",
-          "3": "Db7"
+          "3": "Db7/5"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "F",
+          "1": "F/3",
           "3": "Abo7"
         }
       },
@@ -158,7 +158,7 @@
       {
         "bar": 3,
         "beats": {
-          "1": "F",
+          "1": "F/5",
           "3": "G7",
           "4": "C7"
         }
@@ -184,8 +184,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "D7",
-          "3": "(Eb7)"
+          "1": "D7"
         }
       },
       {
@@ -213,13 +212,13 @@
         "bar": 3,
         "beats": {
           "1": "F",
-          "3": "Db7"
+          "3": "Db7/5"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "F",
+          "1": "F/3",
           "3": "Abo7"
         }
       },
@@ -262,8 +261,8 @@
     "chord": "G7"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "eda10974a40700557b36fb18bc01ec893b2ae03d55e0c3d8a56963d2039e2747",
+    "status": "agreed",
+    "source_sha256": "63802ceb0a062f6d2e35016f0ea9de6a664ce69a3b1e6f7241a108b9dc3d78db",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -274,11 +273,6 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "F",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -289,10 +283,10 @@
       "chromatic-descent"
     ],
     "sections": {
-      "A": "V/V-ii-V into I, with I-bII7 and Ab°7 embellishments, ii-V and I with V/vi (D7)",
-      "A1": "Same as A ending on I with I7 (V/IV) pivot to bridge",
-      "B": "IV(Bb)-IV7-vii° back to I, then Am7b5-Eb-D7 leading back to V/V",
-      "A2": "Final A resolving fully to I (F)"
+      "A": "V7 into ii-V to I, with bVI7 and diminished passing chords, ending on I to III7 (V/vi) turnaround",
+      "A1": "Same as A, ending on I moving to I7 (V/IV) into the bridge",
+      "B": "IV with IV7 and passing dim, back to I via V-related chords, then vii-of-something, bVII, and D7 (V/V) pulling back to A",
+      "A2": "Restatement of A ending on tonic I"
     },
     "modulates": false
   }

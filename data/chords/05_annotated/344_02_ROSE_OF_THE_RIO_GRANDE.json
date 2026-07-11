@@ -106,13 +106,13 @@
       {
         "bar": 6,
         "beats": {
-          "1": "C"
+          "1": "C/3"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "E"
+          "1": "E/3"
         }
       },
       {
@@ -183,7 +183,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "G7"
+          "1": "G7/7"
         }
       },
       {
@@ -234,8 +234,8 @@
     "chord": "A7"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "a380848851d8c4128aad5604ac337d3c94a6a54677b36f38fed9a1f0fae98d0f",
+    "status": "agreed",
+    "source_sha256": "bc05344b6c844561a6bbd7e2cf55e6c7488d0e0411dfb10c724769d68cfcf1ac",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -246,11 +246,6 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "C",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -261,10 +256,10 @@
       "ii-V-chains"
     ],
     "sections": {
-      "A": "V/V/V to V/V: A7 (4 bars) into D7 (4 bars), extended dominant chain heading toward C",
-      "B": "G7 (V) resolving to C tonic, then E and B7-E7 secondary dominants setting up return to A7",
+      "A": "V/V/V dominant chain: A7 (four bars) into D7 (four bars), pushing toward G7 then C",
+      "B": "G7 (V) for four bars resolving to C tonic, then E7/B7-E7 secondary dominants",
       "A1": "Repeat of A: A7 into D7 dominant chain",
-      "C": "G7 with ii7b5-V (Em7b5-A7), D7-G7 circle-of-fifths cadence resolving to C"
+      "C": "G7 to Em7b5-A7-D7-G7 ii-V motion resolving to C tonic"
     },
     "modulates": false
   }

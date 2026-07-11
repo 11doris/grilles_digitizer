@@ -64,15 +64,15 @@
       {
         "bar": 4,
         "beats": {
-          "1": "C7",
-          "3": "F"
+          "1": "C7/5",
+          "3": "F/3"
         }
       },
       {
         "bar": 5,
         "beats": {
           "1": "Ao7",
-          "3": "Gm"
+          "3": "Gm/3"
         }
       },
       {
@@ -122,15 +122,15 @@
       {
         "bar": 4,
         "beats": {
-          "1": "C7",
-          "3": "F"
+          "1": "C7/5",
+          "3": "F/3"
         }
       },
       {
         "bar": 5,
         "beats": {
           "1": "Ao7",
-          "3": "Gm"
+          "3": "Gm/3"
         }
       },
       {
@@ -185,7 +185,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Cmaj7",
+          "1": "Cmaj7/5",
           "3": "Am7"
         }
       },
@@ -235,15 +235,15 @@
       {
         "bar": 4,
         "beats": {
-          "1": "C7",
-          "3": "F"
+          "1": "C7/5",
+          "3": "F/3"
         }
       },
       {
         "bar": 5,
         "beats": {
           "1": "Ao7",
-          "3": "Gm"
+          "3": "Gm/3"
         }
       },
       {
@@ -323,7 +323,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "d749c270627ac19d3c5b24cead74529e920ec0db303fb31e18cf4c09a4357b0e",
+    "source_sha256": "e34eb7509af126d3fc6aae55669686a889a05fa68cba1a270f689f84e7ff1e31",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -333,7 +333,7 @@
       "tonic": "F",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "Bridge (B) opens in Ab major before moving through C and turning back to F",
+      "modulation_note": "bridge (B) opens in Ab major before turning back to F",
       "section_keys": {
         "B": {
           "tonic": "Ab",
@@ -352,16 +352,16 @@
     "tags": [
       "ii-V-chains",
       "turnaround-ending",
-      "diminished-passing-chords"
+      "chromatic-descent"
     ],
     "sections": {
-      "A": "ii-V into I, with F#o7 and Ao7 passing diminished chords tonicizing F; ends on V (C7)",
-      "A1": "Same as A but turnaround to C7-Eb7 setting up the bridge",
-      "B": "Opens on Ab6 (bVI) with Bbm7-Eb7 confirming Ab, then Cmaj7-Am7-Dm7-G7-Gm7-C7 leading back to F",
-      "A2": "ii-V-I resolving firmly to F6 (tonic)",
-      "coda": "Chromatic diminished ascent over ii chords, Abm9-Db13 then Gm7-C7 and Db9 to final F6"
+      "A": "ii-V into I (Gm7-C7 to F), tonic with passing diminished, ending on V (D7b9-C7) turnaround",
+      "A1": "Same as A, ending on C7-Eb7 to set up the bridge",
+      "B": "Opens in bIII (Ab6 with ii-V Bbm7-Eb7), then Cmaj7-Am7-Dm7-G7-Gm7-C7 leading back to F",
+      "A2": "ii-V-I in F, resolving fully to F6",
+      "coda": "Chromatic diminished/ii ascent (F#o7-Gm7-G#o7-Am7), bII ii-V (Abm9-Db13), Gm7-C7 and Db9 into final F6"
     },
     "modulates": true,
-    "modulation_note": "Bridge (B) opens in Ab major before moving through C and turning back to F"
+    "modulation_note": "bridge (B) opens in Ab major before turning back to F"
   }
 }

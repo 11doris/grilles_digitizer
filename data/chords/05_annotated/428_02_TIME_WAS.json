@@ -8,17 +8,6 @@
   "title": "TIME WAS",
   "page": 428,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints 'B VERSE'.",
-    "B_bar7_optional": "Section B bar 7 lower region prints parenthesised optional chord '(Gb9)'; kept as printed."
-  },
-  "recordings": [
-    "J.Dorsey 41- J.Coltrane 57- D.Staton 59",
-    "B.Powell 54.56- M.Torme 57- D.Garcia 55",
-    "J.Christy 62- J.Davis 55- A.Haven 66",
-    "J.Hawkworth 63- T.Mayers 56.58-",
-    "J.Hoffman 57"
-  ],
   "variants": [
     {
       "applies_to": "Bar 3, 11, 27",
@@ -61,6 +50,17 @@
       ]
     }
   ],
+  "notation_notes": {
+    "verse": "Header prints 'B VERSE'.",
+    "B_bar7_optional": "Section B bar 7 lower region prints parenthesised optional chord '(Gb9)'; kept as printed."
+  },
+  "recordings": [
+    "J.Dorsey 41- J.Coltrane 57- D.Staton 59",
+    "B.Powell 54.56- M.Torme 57- D.Garcia 55",
+    "J.Christy 62- J.Davis 55- A.Haven 66",
+    "J.Hawkworth 63- T.Mayers 56.58-",
+    "J.Hoffman 57"
+  ],
   "sections": {
     "A": [
       {
@@ -74,7 +74,7 @@
         "bar": 2,
         "beats": {
           "1": "Bbm7",
-          "3": "Eb(b9)"
+          "3": "Eb7b9"
         }
       },
       {
@@ -94,7 +94,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Ab6",
+          "1": "Ab6/3",
           "3": "Bo7"
         }
       },
@@ -132,7 +132,7 @@
         "bar": 2,
         "beats": {
           "1": "Bbm7",
-          "3": "Eb(b9)"
+          "3": "Eb7b9"
         }
       },
       {
@@ -152,7 +152,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Ab6",
+          "1": "Ab6/3",
           "3": "Bo7"
         }
       },
@@ -218,7 +218,7 @@
         "bar": 6,
         "beats": {
           "1": "Gm7",
-          "3": "Bb7"
+          "3": "Bb7/5"
         }
       },
       {
@@ -231,7 +231,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "Bbm7",
+          "1": "Bbm7/4",
           "3": "Eb7"
         }
       }
@@ -248,7 +248,7 @@
         "bar": 2,
         "beats": {
           "1": "Bbm7",
-          "3": "Eb(b9)"
+          "3": "Eb7b9"
         }
       },
       {
@@ -268,7 +268,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Ab6",
+          "1": "Ab6/3",
           "3": "Bo7"
         }
       },
@@ -311,7 +311,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "298a631e1cfd8638d0af44cf72c0492e17827a03cf62702ddf1cfa93524842fc",
+    "source_sha256": "83c9b085133e2bf775435cd982de1b5c146003502a0a5899076d11e5ae5a8509",
     "scorer": {
       "tonic": "Ab",
       "mode": "major",
@@ -321,7 +321,7 @@
       "tonic": "Ab",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "bridge (B) moves to C major then Eb before a ii-V back to Ab",
+      "modulation_note": "bridge opens in C major (Dm7-G7 to C) before turning back to Ab via ii-V",
       "section_keys": {
         "B": {
           "tonic": "C",
@@ -339,16 +339,15 @@
     "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending",
-      "chromatic-passing-diminished"
+      "turnaround-ending"
     ],
     "sections": {
-      "A": "I-iii, ii-V(b9) to I, with V/V (D9#11) and IV/iv motion (Dbmaj7-Dbm6), ending on ii-V (Bbm7-Eb7)",
-      "A1": "Same as A opening, ending I-IV6 then G7 leading into bridge",
-      "B": "Cmaj7 with passing diminished and ii-V in C, then shifts to Ebmaj7 area and returns via Bbm7-Eb7 ii-V to Ab",
-      "A2": "Restatement of A, resolving to Ab6 tonic"
+      "A": "I with ii-V motion, IV/iv, back to ii-V (Bbm7-Eb7) in Ab",
+      "A1": "Same as A, ending I-IV6 and I with V/vi (G7)",
+      "B": "Cmaj7 with ii-V (Dm7-G7) in C, then shift to Eb and ii-V back to Ab",
+      "A2": "Restatement of A, resolving to I (Ab6)"
     },
     "modulates": true,
-    "modulation_note": "bridge (B) moves to C major then Eb before a ii-V back to Ab"
+    "modulation_note": "bridge opens in C major (Dm7-G7 to C) before turning back to Ab via ii-V"
   }
 }
