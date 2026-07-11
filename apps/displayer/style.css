@@ -1135,8 +1135,13 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   align-self: flex-end;
   transform: translateY(0.3em);
   margin-left: 0.08em;
-  font-size: 0.95em;
+  font-size: 1.2em;
   line-height: 1;
+}
+
+/* Enlarge the slash separator only — the bass note/degree keeps the .bass size. */
+.chord .bass .slash {
+  font-size: 1.5em;
 }
 
 .chord .paren {

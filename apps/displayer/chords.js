@@ -176,10 +176,12 @@
     }
     let html = `<span class="box">${box}</span>`;
     if (c.bass) {
-      const bassText = c.bass.degree
-        ? "/" + c.bass.degree
-        : "/" + c.bass.letter + displayAccidental(c.bass.acc);
-      html += `<span class="bass">${withFlats(bassText)}</span>`;
+      // The slash gets its own span so CSS can enlarge it without scaling the
+      // bass note/degree that follows it.
+      const bassRest = c.bass.degree
+        ? c.bass.degree
+        : c.bass.letter + displayAccidental(c.bass.acc);
+      html += `<span class="bass"><span class="slash">/</span>${withFlats(bassRest)}</span>`;
     }
     return `<span class="${cls}">${open}${html}${close}</span>`;
   }
