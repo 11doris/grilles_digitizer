@@ -25,13 +25,13 @@
           "bar": 3,
           "beats": {
             "1": "Dm",
-            "3": "A7"
+            "3": "A7/5"
           }
         },
         {
           "bar": 4,
           "beats": {
-            "1": "Dm",
+            "1": "Dm/3",
             "3": "Fm"
           }
         }
@@ -125,7 +125,7 @@
       {
         "bar": 3,
         "beats": {
-          "1": "G"
+          "1": "G/5"
         }
       },
       {
@@ -273,7 +273,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "888e33073e1a5250f452575eb39d729d0860288ee04560eb147819545bc606fa",
+    "source_sha256": "fdcf7c3a7c6eafd5f22cc4361aeb2fd5b412daa346bc4575f6f85b4c53abdc47",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -294,10 +294,10 @@
       "chromatic-descent"
     ],
     "sections": {
-      "A": "I-#i o7-ii-V-ii-V7#5-I, diminished passing chord into ii-V cadence",
-      "B": "I-bVI7(#11)-V-iii-vi-II7-ii-V7 leading back to tonic",
-      "A1": "Repeat of A: I-#i o7-ii-V-ii-V7#5-I",
-      "C": "I-I7-IV-iv-iii-vi-ii-V-I with iv borrowed chord and final cadence"
+      "A": "I with #i°7 passing chord, then ii-V ii-V resolving to I",
+      "B": "I, bVI7#11 chromatic, then iii-vi V/V-ii-V ending on dominant",
+      "A1": "Repeat of A: I-#i°7-ii-V-ii-V-I",
+      "C": "I-I7-IV-iv with iii-vi-ii-V turnaround resolving to I"
     },
     "modulates": false
   }

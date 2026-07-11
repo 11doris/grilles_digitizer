@@ -100,13 +100,13 @@
       {
         "bar": 5,
         "beats": {
-          "1": "G"
+          "1": "G/5"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "G",
+          "1": "G/5",
           "3": "D7"
         }
       },
@@ -119,7 +119,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "Bb7"
+          "1": "Bb7/5"
         }
       },
       {
@@ -216,7 +216,7 @@
       {
         "bar": 3,
         "beats": {
-          "1": "C"
+          "1": "C/5"
         }
       },
       {
@@ -374,7 +374,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "b9630b38a7d812d7291b76c90e140437f62168fe605e7177baa795939b43d134",
+    "source_sha256": "11a36753461b60d2af92a09217453605a8641a460012e92c2384a625da7bac29",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -396,7 +396,7 @@
       "tonic": "C",
       "mode": "major",
       "confidence": "medium",
-      "modulation_note": "20-bar verse in Eb major (Eb-Bb7 tonic loops), transitioning through G before the 32-bar chorus which settles firmly in C major",
+      "modulation_note": "20-bar verse in Eb major (moving toward G), then the 32-bar chorus (A-B-A'-C) is in C major",
       "section_keys": {
         "verse_A": {
           "tonic": "Eb",
@@ -415,21 +415,21 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "verse-plus-32-bar-chorus",
+    "family": "verse-and-chorus standard (20-bar verse + 32-bar ABAC chorus)",
     "tags": [
       "verse-present",
-      "turnaround-ending",
-      "ii-V-chains"
+      "circle-of-fifths",
+      "turnaround-ending"
     ],
     "sections": {
-      "verse_A": "I with I-V7 (Eb-Bb7) tonic loop, tag with B7-Bb7",
-      "verse_A1": "Opens I-V7 in Eb, then shifts to G area (G-D7-G) and ends on Bb7/Eb7/G7 leading toward the chorus",
-      "A": "I-iii with V/vi (C7) to IV, then V/ii (A7)",
-      "B": "ii-ii(b5)-I-V7/IV then B7-E-G7 chromatic move back to V",
-      "A1": "I-iii-C7-IV cadencing onto E (V/vi area)",
-      "C": "IV with #IVo7 passing, then A7-D7-G7-C circle-of-fifths cadence to I"
+      "verse_A": "I with V7 (Bb7) motion, iii (Gm), ends with B7-Bb7 chromatic dominant approach",
+      "verse_A1": "I then I7 pivoting toward G (G with D7), and Eb7/D7/G7 leading to the dominant of C for the chorus",
+      "A": "I-iii with C7 to F (IV), then A7 (V/ii) as dominant tension",
+      "B": "ii-related Dm/Dm7b5 to C7, then B7 tonicizing E, ending on G7",
+      "A1": "I-iii-IV as in A but ending on E (V/vi tonicization)",
+      "C": "IV-#IVo7-I then A7-D7-G7 circle-of-fifths cadence resolving to I"
     },
     "modulates": true,
-    "modulation_note": "20-bar verse in Eb major (Eb-Bb7 tonic loops), transitioning through G before the 32-bar chorus which settles firmly in C major"
+    "modulation_note": "20-bar verse in Eb major (moving toward G), then the 32-bar chorus (A-B-A'-C) is in C major"
   }
 }

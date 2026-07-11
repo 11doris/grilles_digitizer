@@ -3,7 +3,7 @@
   "year": "1922",
   "style": "TRADITIONAL STANDARD",
   "tempo": "MEDIUM",
-  "form": "16 A A | 32 A B A' C",
+  "form": "32 A B A' C",
   "time_signature": "4/4",
   "title": "CHICAGO",
   "page": 72,
@@ -139,25 +139,25 @@
       {
         "bar": 3,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -171,7 +171,7 @@
         "bar": 8,
         "beats": {
           "1": "G7",
-          "3": "C7"
+          "3": "C7/5"
         }
       }
     ],
@@ -222,7 +222,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       }
     ],
@@ -243,19 +243,19 @@
       {
         "bar": 3,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -274,7 +274,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "D7"
+          "1": "D7/7"
         }
       }
     ],
@@ -308,13 +308,13 @@
       {
         "bar": 5,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -341,8 +341,8 @@
     "chord": "F"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "e7e8d95dd16ed8e2fa26a257371dcaf95f30083da048697c167606437111ec15",
+    "status": "agreed",
+    "source_sha256": "e4e3c0e911c7c2570644a3b2436e4ce8c32739c6da1f5efaa26373f664291c4c",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -353,27 +353,21 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "F",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
-    "family": "Verse-plus-32-bar standard (AABA'C)",
+    "family": "32-bar multi-section standard (A B A' C)",
     "tags": [
-      "ii-V-chains",
-      "diminished-passing",
+      "circle-of-fifths",
       "turnaround-ending"
     ],
     "sections": {
-      "verse_A": "I - V/V (G7) - V7 (C7) - I in F major",
-      "verse_A1": "Repeat: I - V/V - V7 - I in F",
-      "A": "I with #io7 passing to C7 (V), returning I-vi and V/V-V7 turnaround",
-      "B": "I - V/V (G7) - V7 (C7) - I with #io7 to C7",
-      "A1": "I with #io7, dwell on C7 (V) with #Vo7, to Dm(vi)-D7 (V/V) launching next section",
-      "C": "IV (Bb)-iv (Bbm) plagal - I - Abo7 passing - V7 (C7) - I cadence in F"
+      "verse_A": "I - V/V (G7) - V (C7) - back to I in F",
+      "verse_A1": "Repeat: I - V/V - V - I in F",
+      "A": "I with #Io7 passing chord into sustained V7 pedal, then I-vi-ii-V turnaround",
+      "B": "I - V/V - V - I with #Io7 and dominant close",
+      "A1": "I with diminished passing chords over dominant, ending on ii/II7 setup",
+      "C": "IV - iv (Bb/Bbm) - I - #IVo7 - V7 - I plagal cadence in F"
     },
     "modulates": false
   }

@@ -48,20 +48,20 @@
         "bar": 5,
         "beats": {
           "1": "F",
-          "3": "F7"
+          "3": "F7/3"
         }
       },
       {
         "bar": 6,
         "beats": {
           "1": "Bb",
-          "3": "Gm7b5"
+          "3": "Gm7"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "F6",
+          "1": "F6/5",
           "3": "C7"
         }
       },
@@ -108,7 +108,7 @@
         "bar": 6,
         "beats": {
           "1": "Bb",
-          "3": "Gm7b5"
+          "3": "Gm7"
         }
       },
       {
@@ -212,7 +212,7 @@
         "bar": 6,
         "beats": {
           "1": "Bb",
-          "3": "Gm7b5"
+          "3": "Gm7"
         }
       },
       {
@@ -240,8 +240,8 @@
     "chord": "F"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "220c340082e57acc3456cc80f9471e3aecef1d8de79d94545fff7b67ac0f31aa",
+    "status": "agreed",
+    "source_sha256": "7a2fce2059555bead577b7f46784a907a0e7080ec7146038ecec668c94546e5b",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -252,11 +252,6 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "F",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -266,10 +261,10 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "I-vi-ii-V-I then I7-IV-viø-I6 with V7 turnaround",
-      "A1": "I-vi-ii-V-I then I7-IV-viø-I6 with V7 turnaround",
-      "B": "iii(Am) held to V/vi (E7), then IV/V area C with V/V-V7 back to F",
-      "A2": "I-vi-ii-V-I then I7-IV-viø-I6 resolving on I6"
+      "A": "I-(vi)-ii-V-I, then I7-IV-vi with I6-V7 turnaround resolving to I",
+      "A1": "Same as A: I-(vi)-ii-V then IV motion back to I with V7",
+      "B": "vi(Am) held with its V7(E7) for 4 bars, then III/C held with V7(G7) and C7 dominant back to I",
+      "A2": "Restated A: I-(vi)-ii-V and IV motion resolving to I"
     },
     "modulates": false
   }

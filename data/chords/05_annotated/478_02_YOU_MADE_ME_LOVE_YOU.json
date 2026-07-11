@@ -8,13 +8,6 @@
   "title": "YOU MADE ME LOVE YOU",
   "page": 478,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "J.Dorsey 42- R.James 41.62- G.Auld 51- R.Charles",
-    "T.Buckner(Ed.Hall) 58- Ed.Hall 49- E.Condon 55",
-    "A.Franklin 61- E.Heywood 46- E.Garner 45.65",
-    "U.M.Carlisle 40- M.Sullivan 61- T.Oraberg 81",
-    "V.Dickenson 47"
-  ],
   "variants": [
     {
       "applies_to": "Bar 25",
@@ -45,6 +38,13 @@
       ]
     }
   ],
+  "recordings": [
+    "J.Dorsey 42- R.James 41.62- G.Auld 51- R.Charles",
+    "T.Buckner(Ed.Hall) 58- Ed.Hall 49- E.Condon 55",
+    "A.Franklin 61- E.Heywood 46- E.Garner 45.65",
+    "U.M.Carlisle 40- M.Sullivan 61- T.Oraberg 81",
+    "V.Dickenson 47"
+  ],
   "notation_notes": {
     "verse": "Header prints '16 VERSE'.",
     "variant_statement": "VARIANT Bar 25 labelled 'For statement of the melody'.",
@@ -57,7 +57,7 @@
         "bar": 1,
         "beats": {
           "1": "Ebmaj7",
-          "3": "(A(b9))"
+          "3": "(A7b9)"
         }
       },
       {
@@ -165,7 +165,7 @@
         "bar": 1,
         "beats": {
           "1": "Ebmaj7",
-          "3": "(A(b9))"
+          "3": "(A7b9)"
         }
       },
       {
@@ -244,7 +244,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Eb6",
+          "1": "Eb6/5",
           "3": "Bo7",
           "4": "Cm"
         }
@@ -281,7 +281,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "fef83a84186166cb64a68f57f1b3ee9e69b0bfe966bc8131f67a2833ddb25fc8",
+    "source_sha256": "35f50a224e88bbc3c280268e6e174ea8a485f8754d7f85704d6b41422e7e1ec6",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -297,15 +297,16 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",
     "tags": [
-      "dominant-cycle-bridge",
       "ii-V-chains",
+      "dominant-cycle-bridge",
+      "circle-of-fifths",
       "turnaround-ending"
     ],
     "sections": {
-      "A": "I with V/vi passing, iii-diminished, then ii-V (Fm7-Bb7) resolving to I (Eb6)",
-      "B": "Dominant cycle C7-F7-Bb7 (V/V/V - V/V - V) into ii-V back to Eb",
-      "A1": "Same as A but ends on V/V area (D7 to G7) as a turnaround",
-      "C": "C7-F7 then bVI (Ab6) diminished passing, back to I via Fm7-Bb7 to Eb6"
+      "A": "I with a passing V/ii, ii-Vs (Fm7-Bb7) resolving to I (Eb6)",
+      "B": "Dominant cycle C7-F7-Bb7 (V/V/V - V/V - V) landing on ii-V of I",
+      "A1": "Same as A but turning to G7 (V/vi) at the end to set up section C",
+      "C": "C7-F7 dominant approach, chromatic passing dim chords, ii-V-I cadence to Eb6"
     },
     "modulates": false
   }

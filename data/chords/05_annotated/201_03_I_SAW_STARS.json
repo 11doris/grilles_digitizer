@@ -36,7 +36,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
@@ -49,14 +49,14 @@
       {
         "bar": 4,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
         "bar": 5,
         "beats": {
           "1": "C",
-          "3": "C7"
+          "3": "C7/3"
         }
       },
       {
@@ -69,7 +69,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "C",
+          "1": "C/5",
           "3": "G7#5"
         }
       },
@@ -91,7 +91,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
@@ -104,14 +104,14 @@
       {
         "bar": 4,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
         "bar": 5,
         "beats": {
           "1": "C",
-          "3": "C7"
+          "3": "C7/3"
         }
       },
       {
@@ -124,7 +124,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "C",
+          "1": "C/5",
           "3": "G7#5"
         }
       },
@@ -200,7 +200,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
@@ -213,14 +213,14 @@
       {
         "bar": 4,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
         "bar": 5,
         "beats": {
           "1": "C",
-          "3": "C7"
+          "3": "C7/3"
         }
       },
       {
@@ -233,7 +233,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "C",
+          "1": "C/5",
           "3": "G7#5"
         }
       },
@@ -256,7 +256,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "1e0606daa83578edd2815a881a9f90a61bc70625f44d0da490ac323ae4bcb0ce",
+    "source_sha256": "76b905366d549f79e2e7ab2d1051aaff8533ec14ac3a15116aa144be4bd413df",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -285,14 +285,14 @@
     "family": "32-bar AABA standard",
     "tags": [
       "turnaround-ending",
-      "chromatic-descent",
+      "chromatic-passing-diminished",
       "ii-V-chains"
     ],
     "sections": {
-      "A": "I with #io7 passing chord to V7, then I-I7-IV-iv-I-V7#5-I",
-      "A1": "Same as A: I-#io7-V7 alternation with IV-iv plagal move and V7#5 back to I",
-      "B": "iii-V7/iii then ii-V7/ii vamps (Em/B7, Dm/A7) ending Dm-G7 back to I",
-      "A2": "Restatement of A: I-#io7-V7, I7-IV-iv, V7#5-I"
+      "A": "I with #io7 passing to V, then I-V/IV(F-Fm)-I with V+ turnaround to I",
+      "A1": "Repeat of A: I-#io7-V, I7 to IV-iv, V+7 back to I",
+      "B": "iii(Em) tonicized by B7, then ii(Dm) via A7, ending on G7 (V) into last A",
+      "A2": "Final A: I-#io7-V, I7-IV-iv, V+7 resolving to I"
     },
     "modulates": false
   }

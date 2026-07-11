@@ -3,9 +3,9 @@
   "year": "1927",
   "style": "STANDARD",
   "tempo": "MEDIUM FAST",
-  "form": "32 A B A B'",
+  "form": "32 A B A B' | 32 A B A B'",
   "time_signature": "4/4",
-  "title": "THOU SWELL (OLD VERSION)",
+  "title": "THOU SWELL",
   "page": 425,
   "source": "Anthologie des grilles de jazz",
   "notation_notes": {
@@ -74,7 +74,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "Eb",
+          "1": "Eb/3",
           "3": "Gbo7"
         }
       }
@@ -83,7 +83,7 @@
       {
         "bar": 1,
         "beats": {
-          "1": "Bb7",
+          "1": "Bb7/5",
           "3": "Eo7"
         }
       },
@@ -186,7 +186,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "Eb",
+          "1": "Eb/3",
           "3": "Gbo7"
         }
       }
@@ -195,7 +195,7 @@
       {
         "bar": 1,
         "beats": {
-          "1": "Bb7",
+          "1": "Bb7/5",
           "3": "Eo7"
         }
       },
@@ -209,7 +209,7 @@
       {
         "bar": 3,
         "beats": {
-          "1": "G7",
+          "1": "G7/5",
           "3": "G7b5"
         }
       },
@@ -255,8 +255,8 @@
     "chord": "Bb7"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "1120aa68031c5700d7607231d2f075f9c6cc1d9c93090663b759ba0ce1a99933",
+    "status": "agreed",
+    "source_sha256": "4c0300335fd72bcd5c8df5ca5e269a404e1dc29c8e46052fc8799152d932cd57",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -267,25 +267,20 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "Eb",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABAB' standard",
     "tags": [
-      "circle-of-fifths",
       "ii-V-chains",
+      "circle-of-fifths",
       "turnaround-ending"
     ],
     "sections": {
-      "A": "V7 (Bb7) dominant vamp with V/V (F7) resolving to I (Eb), ending with #ii dim (Gbo7)",
-      "B": "V7-#idim-ii-V to I, then I7-IV-V/vi-ii-V circle back to V7 (Bb7) half cadence",
-      "A1": "Repeat of A: V7 vamp to I (Eb) with passing Gbo7",
-      "B1": "V7-#idim-ii-V then circle of fifths G7-C7-F7-Bb7 resolving to I (Eb)"
+      "A": "V7 (Bb7) prolonged four bars over dominant tension, resolving to I (Eb) with passing #ivo7",
+      "B": "V7 to ii-V into I, then I7 as V/IV to IV (Ab), ii-V returning to V (Bb7)",
+      "A1": "Repeat of A: prolonged V7 resolving to I with passing diminished",
+      "B1": "ii-V then circle-of-fifths descent G7-C7-F7-Bb7 landing firmly on I (Eb)"
     },
     "modulates": false
   }

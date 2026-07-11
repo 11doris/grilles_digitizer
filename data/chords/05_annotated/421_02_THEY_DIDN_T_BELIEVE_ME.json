@@ -31,7 +31,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Eb(b9)"
+          "1": "Eb7b9"
         }
       },
       {
@@ -45,7 +45,7 @@
         "bar": 4,
         "beats": {
           "1": "Cm7",
-          "3": "F(b9)"
+          "3": "F7b9"
         }
       },
       {
@@ -57,8 +57,8 @@
       {
         "bar": 6,
         "beats": {
-          "1": "Bbm7",
-          "3": "Eb(b9)"
+          "1": "Bbm7/4",
+          "3": "Eb7b9"
         }
       },
       {
@@ -87,13 +87,13 @@
         "bar": 2,
         "beats": {
           "1": "Eb9",
-          "3": "Eb(b9)"
+          "3": "Eb7b9"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "Abmaj7"
+          "1": "Abmaj7/3"
         }
       },
       {
@@ -128,7 +128,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "F(b9)"
+          "1": "F7b9"
         }
       }
     ],
@@ -142,7 +142,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Eb(b9)"
+          "1": "Eb7b9"
         }
       },
       {
@@ -193,7 +193,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Eb(b9)"
+          "1": "Eb7b9"
         }
       },
       {
@@ -220,7 +220,7 @@
         "bar": 6,
         "beats": {
           "1": "Eb9",
-          "3": "Eb(b9)"
+          "3": "Eb7b9"
         }
       },
       {
@@ -247,8 +247,8 @@
     "chord": "Bbm7"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "788334cc4e402e31b833fb31092ca8d141ad44615d3a1301278848d7413f664e",
+    "status": "agreed",
+    "source_sha256": "7798cfba7012e57177462789e8de1838268eb102b558bff39833fdbf9732a837",
     "scorer": {
       "tonic": "Ab",
       "mode": "major",
@@ -259,25 +259,19 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "Ab",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABCD standard",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending",
-      "circle-of-fifths"
+      "turnaround-ending"
     ],
     "sections": {
-      "A": "ii-V-I in Ab (Bbm7-Eb7-Abmaj7) then repeated ii-V motion, ending Cm7-Bo7",
-      "B": "ii-V-I in Ab then move to iii (Cm) with its own G7, ending on V/ii (F7b9)",
-      "C": "ii-V-I with Fm7, restated ii-V-I, then Gb7-F7 chromatic dominants",
-      "D": "ii-V-I with Db9 and Bbm7b5 approach, final ii-V resolving to Ab6"
+      "A": "ii-V-I in Ab (Bbm7-Eb7b9-Abmaj7) with repeated ii-V loops, ending on I to diminished passing chord",
+      "B": "ii-V-I in Ab then tonicizes iii (Cm) with its V (G7) before F7b9 turns back",
+      "C": "ii-V-I motion in Ab, cadence with Gb7 passing to F7 (V/ii)",
+      "D": "ii-V-I in Ab with chromatic ii-V motion, resolving firmly to Ab6"
     },
     "modulates": false
   }

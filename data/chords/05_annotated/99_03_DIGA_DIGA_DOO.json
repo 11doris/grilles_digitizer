@@ -17,7 +17,9 @@
     "Bob Crosby 38- Co.Williams 37",
     "D.Ellington 29?.32"
   ],
-  "notation_notes": "",
+  "notation_notes": {
+    "pattern": "Footer prints 'PATTER : 24 Bars.'"
+  },
   "sections": {
     "verse_A": [
       {
@@ -29,19 +31,19 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Dm(maj7)"
+          "1": "Dm(maj7)/7"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "Dm"
+          "1": "Dm7/7"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Dm6",
+          "1": "Dm6/6",
           "3": "A7"
         }
       },
@@ -75,58 +77,6 @@
       {
         "bar": 1,
         "beats": {
-          "1": "Dm"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Dm(maj7)"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Dm"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Dm6",
-          "3": "A7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Dm",
-          "3": "A7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Dm"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "A7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Dm"
-        }
-      }
-    ],
-    "verse_B": [
-      {
-        "bar": 1,
-        "beats": {
           "1": "C7"
         }
       },
@@ -146,7 +96,7 @@
         "bar": 4,
         "beats": {
           "1": "F",
-          "3": "A7"
+          "3": "A7/5"
         }
       },
       {
@@ -186,8 +136,8 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Dm7",
-          "3": "Dm6"
+          "1": "Dm7/7",
+          "3": "Dm6/6"
         }
       },
       {
@@ -200,8 +150,8 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Dm7",
-          "3": "Dm6"
+          "1": "Dm7/7",
+          "3": "Dm6/6"
         }
       },
       {
@@ -242,8 +192,8 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Dm7",
-          "3": "Dm6"
+          "1": "Dm7/7",
+          "3": "Dm6/6"
         }
       },
       {
@@ -256,8 +206,8 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Dm7",
-          "3": "Dm6"
+          "1": "Dm7/7",
+          "3": "Dm6/6"
         }
       },
       {
@@ -337,7 +287,7 @@
         }
       }
     ],
-    "A3": [
+    "A2": [
       {
         "bar": 1,
         "beats": {
@@ -348,8 +298,8 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Dm7",
-          "3": "Dm6"
+          "1": "Dm7/7",
+          "3": "Dm6/6"
         }
       },
       {
@@ -362,8 +312,8 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Dm7",
-          "3": "Dm6"
+          "1": "Dm7/7",
+          "3": "Dm6/6"
         }
       },
       {
@@ -405,11 +355,11 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "085b18c38045228b44d6bdaa2733a299078e7acee3645f0fabd2a9689f4a26ae",
+    "source_sha256": "05d96f267ef9fdee1a470ad27152598bec62f79a1c83ed0d6bb56ba952eace15",
     "scorer": {
       "tonic": "D",
       "mode": "minor",
-      "margin": 0.7316,
+      "margin": 0.6788,
       "section_keys": {
         "B": {
           "tonic": "F",
@@ -434,17 +384,16 @@
     "family": "32-bar AABA standard (with 24-bar AAB verse)",
     "tags": [
       "minor-key",
-      "line-cliche",
+      "tonic-line-cliche",
       "turnaround-ending"
     ],
     "sections": {
-      "verse_A": "i with descending line cliché (i-i(maj7)-i-i6) over Dm, V7 (A7) motion back to i",
-      "verse_A1": "repeat of verse_A: Dm line cliché resolving via A7 to i",
-      "verse_B": "bVII7-bIII (C7-F) tonicizing relative major, A7 to i, then G7-C7 turnaround",
-      "A": "i line cliché (Dm-Dm(maj7)-Dm7-Dm6) with V7 (A7) to i",
-      "A1": "repeat of A: i line cliché with A7-i motion",
-      "B": "C7-F (bVII7 to bIII), then D7-Gm (V/iv to iv), A7 (V) to prepare return",
-      "A3": "final A: i line cliché resolving on i"
+      "verse_A": "i with descending minor-line cliche (i-i(maj7)-i7-i6) over tonic, V7 (A7) answered by i",
+      "verse_A1": "bVII7-bIII (C7-F) alternations toward relative major, then i with line cliche, G7-C7 leading back",
+      "A": "tonic minor line-cliche (i, i(maj7), i7, i6) then i-V7 alternation resolving to i",
+      "A1": "repeat of A: tonic minor line-cliche then i-V7-i",
+      "B": "bVII7-bIII (C7-F) then V/iv (D7) to iv (Gm) and V7 (A7) back to i",
+      "A2": "repeat of A: tonic minor line-cliche then i-V7-i"
     },
     "modulates": false
   }

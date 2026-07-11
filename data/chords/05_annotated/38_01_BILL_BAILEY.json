@@ -75,13 +75,13 @@
       {
         "bar": 9,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
         "bar": 10,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -264,7 +264,7 @@
       {
         "bar": 3,
         "beats": {
-          "1": "F"
+          "1": "F/5"
         }
       },
       {
@@ -310,7 +310,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "c0e31d717af94710dfa5603bb6b5dc489393c0b7165913fab1ea4dc910b74cb2",
+    "source_sha256": "948ab5e3430cc20840f6a1d3fa4ca2527b5a2253e640dbab53585a751857c864",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -324,18 +324,18 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "Dixieland standard with verse",
+    "family": "32-bar ABA'C standard with verse",
     "tags": [
-      "verse-present",
       "circle-of-fifths",
-      "turnaround-ending"
+      "turnaround-ending",
+      "verse-present"
     ],
     "sections": {
-      "verse_A": "Sustained I with augmented passing, V/ii (A7) to ii and F#o7, then V7-I cadence",
-      "A": "Extended I moving to V7",
-      "B": "Dominant V7 pedal resolving to I",
-      "A1": "I turning into I7 (V/IV) to IV (Bb)",
-      "C": "IV-#IVo7-I then D7-G7-C7-F circle-of-fifths cadence"
+      "verse_A": "I prolonged with augmented color, V/ii (A7) to ii and passing diminished, V7 (C7) back to I",
+      "A": "I sustained moving to V7 (C7)",
+      "B": "Dominant V7 (C7) prolonged with augmented tension resolving to I",
+      "A1": "I moving through V/IV (F7) to IV (Bb)",
+      "C": "IV with chromatic diminished, then D7-G7-C7 circle of fifths (V/V/V into V) resolving to I"
     },
     "modulates": false
   }

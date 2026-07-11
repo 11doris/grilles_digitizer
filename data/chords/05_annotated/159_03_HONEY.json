@@ -149,7 +149,7 @@
         "bar": 4,
         "beats": {
           "1": "Dm",
-          "3": "F7"
+          "3": "F7/5"
         }
       },
       {
@@ -162,7 +162,7 @@
       {
         "bar": 6,
         "beats": {
-          "1": "F",
+          "1": "F/5",
           "3": "D7"
         }
       },
@@ -228,7 +228,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "C"
+          "1": "C7"
         }
       }
     ]
@@ -244,11 +244,11 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "c18d8555788a356e8df9c9d81904231850a0126d6f782c72c50fa911e70fb3fc",
+    "source_sha256": "b133ac16d7f818799e0be0647b9554c839c3ba233c1c51ecb0ff516d0858cc89",
     "scorer": {
       "tonic": "C",
       "mode": "major",
-      "margin": 0.6779
+      "margin": 0.5771
     },
     "llm": {
       "tonic": "F",
@@ -266,13 +266,13 @@
     "family": "32-bar AABA standard",
     "tags": [
       "turnaround-ending",
-      "circle-of-fifths"
+      "ii-V-chains"
     ],
     "sections": {
-      "A": "I - V/V (G7) - V7 (C7) with C#o7 passing to ii-V, ending on V7",
-      "A1": "Repeat of A: I - V/V - V7 - ii-V turnaround on C7",
-      "B": "I - V/vi (A7) to Dm - F7 to Bb(IV) - Bo7 - I - D7 - ii-V (G7-C7) back to I",
-      "A2": "I - V/V - V7 - Dm7-G7 resolving to C"
+      "A": "I to V/V (G7) to V7 (C7) with C#o7 passing, ii-V (Dm7-G7) then C7 turnaround",
+      "A1": "Identical to A: I - V/V - V7 with diminished passing and ii-V-V7 turnaround",
+      "B": "I, A7 (V/vi) to Dm, F7 (V/IV) to Bb (IV), Bo7 passing, F, D7 (V/V), G7-C7 to I",
+      "A2": "Same as A: I - V/V - V7 with diminished passing and ii-V-V7 turnaround"
     },
     "modulates": false
   }

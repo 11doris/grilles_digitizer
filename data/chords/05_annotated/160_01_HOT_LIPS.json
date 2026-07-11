@@ -307,13 +307,13 @@
       {
         "bar": 5,
         "beats": {
-          "1": "F7"
+          "1": "F7/5"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "F7"
+          "1": "F7/5"
         }
       },
       {
@@ -342,10 +342,6 @@
     "verse_A1": {
       "tonic": "G",
       "mode": "major"
-    },
-    "B": {
-      "tonic": "F",
-      "mode": "major"
     }
   },
   "opening": {
@@ -355,7 +351,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "3959fb5bec2d51be36b5cd9aacabd2c0dadf106ac24ae39c713347e1b52eccb6",
+    "source_sha256": "739c297582843feae3c61ea4fb472364ab6fe737a6e3ded5c19f5de03b0fb7bc",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",
@@ -377,7 +373,7 @@
       "tonic": "Bb",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "verse is in G major; the chorus (A B A' C) settles firmly in Bb major",
+      "modulation_note": "verse sits in G major (D7-G cadence) before the chorus settles in Bb",
       "section_keys": {
         "verse_A": {
           "tonic": "G",
@@ -385,10 +381,6 @@
         },
         "verse_A1": {
           "tonic": "G",
-          "mode": "major"
-        },
-        "B": {
-          "tonic": "F",
           "mode": "major"
         }
       }
@@ -400,21 +392,22 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "verse-and-chorus standard (32-bar A B A' C chorus)",
+    "family": "multi-section standard with verse",
     "tags": [
       "verse-present",
       "turnaround-ending",
-      "secondary-dominants"
+      "ii-V-chains",
+      "diminished-passing"
     ],
     "sections": {
-      "verse_A": "bVI7 then V7-I cadence establishing G major (Eb7 | G | D7 | G)",
-      "verse_A1": "opens in G, sequences up (A7-D), then F7 as V7 preparing Bb",
-      "A": "I-V7-I in Bb with F7#5 turnaround at the end",
-      "B": "tonicizes IV (F) with its own dominant (C7) and Abo7, then F7 back to home",
-      "A1": "I-V7-I moving to I7 (Bb7) to launch next section",
-      "C": "I-V/vi-vi-V7-I turnaround cadence in Bb (Bb-D7-Gm-C7-F7-Bb)"
+      "verse_A": "Eb7 to I, then V7-I in the local key (D7-G)",
+      "verse_A1": "same opening, A7-D then F7 pivots toward the chorus key (V7 of Bb)",
+      "A": "I with extended V7 (F7) and I, ending on F7#5 turnaround",
+      "B": "I moving to V area, F with C(#5)/Abo7 passing chords, C7-F cadence then F7 back",
+      "A1": "I with extended V7 then I moving to I7 (V of IV) to loop",
+      "C": "I-V/ii-ii-V7 with C#o7 passing, F7 to I final cadence"
     },
     "modulates": true,
-    "modulation_note": "verse is in G major; the chorus (A B A' C) settles firmly in Bb major"
+    "modulation_note": "verse sits in G major (D7-G cadence) before the chorus settles in Bb"
   }
 }

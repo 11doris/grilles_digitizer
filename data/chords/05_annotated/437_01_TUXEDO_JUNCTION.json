@@ -30,7 +30,7 @@
         "bar": 1,
         "beats": {
           "1": "Bb",
-          "3": "Bb7"
+          "3": "Bb7/3"
         }
       },
       {
@@ -44,7 +44,7 @@
         "bar": 3,
         "beats": {
           "1": "Bb",
-          "3": "Bb7"
+          "3": "Bb7/3"
         }
       },
       {
@@ -58,7 +58,7 @@
         "bar": 5,
         "beats": {
           "1": "Bb",
-          "3": "Bb7"
+          "3": "Bb7/3"
         }
       },
       {
@@ -71,7 +71,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "Bb",
+          "1": "Bb/5",
           "3": "F7"
         }
       },
@@ -87,7 +87,7 @@
         "bar": 1,
         "beats": {
           "1": "Bb",
-          "3": "Bb7"
+          "3": "Bb7/3"
         }
       },
       {
@@ -101,7 +101,7 @@
         "bar": 3,
         "beats": {
           "1": "Bb",
-          "3": "Bb7"
+          "3": "Bb7/3"
         }
       },
       {
@@ -115,7 +115,7 @@
         "bar": 5,
         "beats": {
           "1": "Bb",
-          "3": "Bb7"
+          "3": "Bb7/3"
         }
       },
       {
@@ -128,7 +128,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "Bb",
+          "1": "Bb/5",
           "3": "F7"
         }
       },
@@ -196,7 +196,7 @@
         "bar": 1,
         "beats": {
           "1": "Bb",
-          "3": "Bb7"
+          "3": "Bb7/3"
         }
       },
       {
@@ -210,7 +210,7 @@
         "bar": 3,
         "beats": {
           "1": "Bb",
-          "3": "Bb7"
+          "3": "Bb7/3"
         }
       },
       {
@@ -224,7 +224,7 @@
         "bar": 5,
         "beats": {
           "1": "Bb",
-          "3": "Bb7"
+          "3": "Bb7/3"
         }
       },
       {
@@ -237,7 +237,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "Bb",
+          "1": "Bb/5",
           "3": "F7"
         }
       },
@@ -260,7 +260,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "22452a41bcdb9444de512cf4f558043f35b2aedff78f3a668dc5ae6408ebb197",
+    "source_sha256": "bd7e3d458d1d4aecea16ebf9be4403fd76c04543b4f626c560a6156ac781da20",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",
@@ -292,10 +292,10 @@
       "chromatic-descent"
     ],
     "sections": {
-      "A": "I-I7 to IV-V7 vamp, with IV-#IVo7 passing to I and V7-I cadence",
-      "A1": "Repeat of A: I-IV oscillation with #IVo7, resolving to I",
-      "B": "IV-iv minor plagal motion, back to I-I7, then vi-ii-V7 turnaround",
-      "A2": "Repeat of A: I-IV vamp with #IVo7, cadencing on I"
+      "A": "I with I7/3 to IV and V7 alternating, with #IVo7 passing chord in bar 6 resolving to I",
+      "A1": "Same as A: I-IV-V7 alternation with #IVo7 passing to I",
+      "B": "IV to iv minor to I-I7, repeated, then vi-ii-V7 turnaround",
+      "A2": "Same as A: I-IV-V7 alternation resolving to I"
     },
     "modulates": false
   }

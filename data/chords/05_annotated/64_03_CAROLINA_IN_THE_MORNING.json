@@ -50,8 +50,8 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Dm",
-          "3": "Dm(maj7)"
+          "1": "Dm(maj7)",
+          "3": "Dm"
         }
       },
       {
@@ -70,7 +70,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "C"
+          "1": "C/3"
         }
       }
     ],
@@ -97,7 +97,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "A7"
+          "1": "A7/5"
         }
       },
       {
@@ -157,8 +157,8 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Dm",
-          "3": "Dm(maj7)"
+          "1": "Dm(maj7)",
+          "3": "Dm"
         }
       },
       {
@@ -246,8 +246,8 @@
     "chord": "C"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "052b2bafab0fe59e1eee18ce43a017e440384a044a11c030e4df80178bb382b3",
+    "status": "agreed",
+    "source_sha256": "5c3d23c1ac1e7f02c6f84c5ece50a887593205cd89295133b202f2ad2dc30fba",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -258,25 +258,20 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "C",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",
     "tags": [
       "ii-V-chains",
-      "circle-of-fifths",
-      "turnaround-ending"
+      "turnaround-ending",
+      "chromatic-descent"
     ],
     "sections": {
-      "A": "I-Imaj7-I6 with C#o7 passing, ii-V, then iv-ish Dm minor line resolving to I",
-      "B": "IV-I-I7-IV, V/vi (A7) into dominant cycle D7-G-E7, ii-V into V7",
-      "A1": "same as A with F#o7 leading to V7 for the turnaround",
-      "C": "I-I7-IV then V/V-V, resolving I with vi and ii-V-I cadence"
+      "A": "I with maj7/6 embellishment and chromatic diminished passing chords, ii-V then a dwell on Dm minor-line cliché, back toward I",
+      "B": "IV and I7 alternation, secondary dominants (VI7, II7, III7) leading through Am7-D7 to V7",
+      "A1": "Same as A with diminished passing motion, ending on V7 turnaround",
+      "C": "I-I7-IV then D7-G7, resolving I-V-I with a final tonic cadence"
     },
     "modulates": false
   }

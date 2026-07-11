@@ -132,7 +132,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "D7"
+          "1": "D7/5"
         }
       },
       {
@@ -182,7 +182,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "D7"
+          "1": "D7/5"
         }
       },
       {
@@ -226,14 +226,14 @@
       {
         "bar": 1,
         "beats": {
-          "1": "Eb7",
+          "1": "Eb7/5",
           "3": "Ao7"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "Eb7"
+          "1": "Eb7/5"
         }
       },
       {
@@ -252,14 +252,14 @@
       {
         "bar": 5,
         "beats": {
-          "1": "G7",
-          "3": "Gb7"
+          "1": "G7/5",
+          "3": "Gb7/5"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "F7"
+          "1": "F7/5"
         }
       },
       {
@@ -285,7 +285,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "D7"
+          "1": "D7/5"
         }
       },
       {
@@ -337,7 +337,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "dcf038a13c030c78af6f099e4f1e6735337aebd4926cfbe15a3b2df2cb483371",
+    "source_sha256": "b7ce1a5ec62db18a1028a525730d189ec6f59d6a1d6a157cbb7d470cc6bfcae0",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -351,19 +351,21 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar AABA standard with 16-bar verse",
+    "family": "32-bar AABA standard with verse",
     "tags": [
+      "verse-present",
       "ii-V-chains",
       "circle-of-fifths",
+      "chromatic-descent",
       "turnaround-ending"
     ],
     "sections": {
-      "verse_A": "I with passing #io7, ii-V (Fm7-Bb7) back to I, ending on ii-V turnaround",
-      "verse_A1": "I, #io7, ii-V with V/ii, then ii-V into vi and cadential ii(b5)-V",
-      "A": "I-VI7-ii(b5)-V7/... circle of fifths (D7-Gm7b5-C7-F7-Bb7) resolving to I",
-      "A1": "Same as A: circle-of-fifths descent resolving to I",
-      "B": "I7 with dim, tonicizing IV (Ab), then C7-Fm, chromatic G7-Gb7-F7-Bb7 back to V",
-      "A2": "Circle-of-fifths descent resolving to I"
+      "verse_A": "I with #i°7 passing chord then repeated ii-V (Fm7-Bb7) back to I",
+      "verse_A1": "Like verse_A but detours through vi (Cm)/F7 and ii°(Fm7b5)-V7 into Bb7",
+      "A": "Circle-of-fifths descent I-VI7-iiø-V7/F-V/V-V7-I (D7-Gm7b5-C7-F7-Bb7-Eb)",
+      "A1": "Repeat of A: circle-of-fifths I-VI7-iiø-V/F-V/V-V-I",
+      "B": "I7-vi° / I7 to IV (Ab) with C7-Fm, then chromatic descending dominants G7-Gb7-F7 resolving to V7 (Bb7)",
+      "A2": "Repeat of A: circle-of-fifths cadence back to I"
     },
     "modulates": false
   }

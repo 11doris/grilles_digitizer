@@ -64,7 +64,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "A7"
+          "1": "A7/5"
         }
       },
       {
@@ -171,7 +171,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "A7"
+          "1": "A7/5"
         }
       },
       {
@@ -281,7 +281,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "c9f0d713bb968cd05a5a5cbb9ab9ed5d3220b4d0a355480d64a37de943311a78",
+    "source_sha256": "db38513a1622252c4dbc68c63efbf9d7e110f7006df7e2f85e405ec100721938",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -295,17 +295,17 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar ABA'C standard",
+    "family": "32-bar ABAC standard",
     "tags": [
       "ii-V-chains",
       "turnaround-ending",
-      "circle-of-fifths"
+      "chromatic-descent"
     ],
     "sections": {
-      "A": "I with V/ii (A7) to ii (Dm), then G7 (V/V) into ii-V (Gm7-C7), F7 and Cm7-F7 pushing toward IV",
-      "B": "Chromatic minor motion around Fm/Cm (Bbm6-C7b9-Fm, Gm7b5-Gb7b5, Fm6-C7b9), returning via ii-V (Gm7b5-C7b9)",
-      "A1": "Restatement of I-V/ii-ii, then E7/A7 secondary-dominant chain ending on A7",
-      "C": "D7-Am7-D7-G7 dominant cycle, Dm7-G7 and Bb7b5-A7 leading to D7 then ii-V turnaround (Gm7-C7) back to F"
+      "A": "I with V/ii (A7) to ii, then ii-V motion (G7, Gm7-C7) resolving toward I/IV area",
+      "B": "Chromatic ii-V shifts through minor colors (Bbm6-C7b9, Fm, Gm7b5-Gb7b5) with backdoor/tritone subs, staying diatonic to F",
+      "A1": "I-V/ii-ii like A, then a chain of secondary dominants (E7, F#9b5, A7) redirecting the harmony",
+      "C": "Dominant cycle D7-G7 back through Dm7-G7 with tritone sub Bb7-A7, closing on a ii-V turnaround to I"
     },
     "modulates": false
   }

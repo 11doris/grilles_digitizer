@@ -2,7 +2,7 @@
   "composer": "Dan WILSON – Andy RAZAF",
   "year": "1926",
   "style": "STANDARD TRADITIONAL",
-  "form": "8 A | 32 A B A B'",
+  "form": "32 A B A B'",
   "time_signature": "4/4",
   "title": "HOW COULD I BE BLUE",
   "page": 162,
@@ -50,13 +50,13 @@
         "bar": 5,
         "beats": {
           "1": "C",
-          "4": "C#o7"
+          "3": "C#o7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "G",
+          "1": "G/5",
           "3": "E7"
         }
       },
@@ -71,8 +71,7 @@
         "bar": 8,
         "beats": {
           "1": "G",
-          "2": "Go7",
-          "3": "G7"
+          "4": "Go7"
         }
       }
     ],
@@ -81,33 +80,33 @@
         "bar": 1,
         "beats": {
           "1": "C",
-          "3": "G7"
+          "3": "G7/5"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "C",
+          "1": "C/3",
           "3": "Ebo7"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "G7",
+          "1": "G7/5",
           "3": "C#o7"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "G7",
+          "1": "G7/5",
           "3": "C#o7"
         }
       },
@@ -122,14 +121,14 @@
         "bar": 7,
         "beats": {
           "1": "C",
-          "3": "G7"
+          "3": "G7/5"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "C",
-          "3": "G7"
+          "1": "C/3",
+          "3": "G7/5"
         }
       }
     ],
@@ -183,38 +182,38 @@
         }
       }
     ],
-    "A1": [
+    "A 1": [
       {
         "bar": 1,
         "beats": {
           "1": "C",
-          "3": "G7"
+          "3": "G7/5"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "C",
+          "1": "C/3",
           "3": "Ebo7"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "G7",
+          "1": "G7/5",
           "3": "C#o7"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "G7",
+          "1": "G7/5",
           "3": "C#o7"
         }
       },
@@ -229,14 +228,14 @@
         "bar": 7,
         "beats": {
           "1": "C",
-          "3": "G7"
+          "3": "G7/5"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "C",
-          "3": "G7"
+          "1": "C/3",
+          "3": "G7/5"
         }
       }
     ],
@@ -268,14 +267,14 @@
       {
         "bar": 5,
         "beats": {
-          "1": "C",
-          "3": "G7"
+          "1": "C/5",
+          "3": "G7/7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "C",
+          "1": "C/3",
           "3": "A7"
         }
       },
@@ -305,7 +304,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "16a6f831e3664691520633944e8ab389abb269edd0fd319b56dec91b9885ddc8",
+    "source_sha256": "497cd30f5d4ab8dc35c40973e4e68b9c6643199d33de1d2a51166c70aaabdbd7",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -331,18 +330,19 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar AABA-type standard with verse",
+    "family": "32-bar ABAB' standard",
     "tags": [
       "ii-V-chains",
+      "circle-of-fifths",
       "turnaround-ending",
-      "circle-of-fifths"
+      "verse-present"
     ],
     "sections": {
-      "verse_A": "I with ii-V, augmented dominant, passing diminished, and A7-D7-G7 circle back to V",
-      "A": "I-V alternation with chromatic diminished passing chords, ii-V into I",
-      "B": "C7 (V7/IV) to F (IV), then D7 (V/V) to G7 (V) dominant chain",
-      "A1": "same as A: I-V with diminished passing chords and ii-V-I",
-      "B1": "C7-F to iv-flavored Dm7b5, then ii-V and A7-D7-G7 circle resolving to I"
+      "verse_A": "I with ii-V, chromatic diminished passing chords, secondary dominants (E7-A7-D7) cycling toward V, ends on G (V)",
+      "A": "I with G7/C#o7 pedal-ish dominant motion, ii-V back to I",
+      "B": "C7(V/IV)-F(IV)-D7(V/V)-G7(V): dominant/circle-of-fifths chain",
+      "A 1": "Repeat of A: I with diminished passing chords and ii-V-I",
+      "B1": "C7-F-Dm7b5 then I with A7/D7-G7 turnaround resolving to I"
     },
     "modulates": false
   }

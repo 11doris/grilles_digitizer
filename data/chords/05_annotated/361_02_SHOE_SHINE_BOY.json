@@ -9,7 +9,8 @@
   "page": 361,
   "source": "Anthologie des grilles de jazz",
   "notation_notes": {
-    "verse": "Header prints '8 VERSE'."
+    "verse": "Header prints '8 VERSE'.",
+    "two_bar_repeat": "Section A bars 3-4 show a two-bar repeat sign restating bars 1-2."
   },
   "recordings": [
     "L.Armstrong 35",
@@ -57,8 +58,8 @@
         "bar": 5,
         "beats": {
           "1": "F",
-          "3": "E7",
-          "4": "Eb7"
+          "3": "Eb7/5",
+          "4": "Eo7/5"
         }
       },
       {
@@ -114,8 +115,8 @@
         "bar": 5,
         "beats": {
           "1": "F",
-          "3": "E7",
-          "4": "Eb7"
+          "3": "Eb7/5",
+          "4": "Eo7/5"
         }
       },
       {
@@ -225,8 +226,8 @@
         "bar": 5,
         "beats": {
           "1": "F",
-          "3": "E7",
-          "4": "Eb7"
+          "3": "Eb7/5",
+          "4": "Eo7/5"
         }
       },
       {
@@ -260,8 +261,8 @@
     "chord": "F"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "e6849066a958215c33750977101a73c6408abfe2988af017dd0d97d24600e2c5",
+    "status": "agreed",
+    "source_sha256": "f0c76fbca10f152f66677f7c7955565ddc33370c8a2743495dc3ce9a512a9311",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -272,11 +273,6 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "F",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -284,13 +280,13 @@
     "tags": [
       "ii-V-chains",
       "turnaround-ending",
-      "circle-of-fifths"
+      "dominant-cycle-bridge"
     ],
     "sections": {
-      "A": "I-VI7-ii-V loop, bar5 I-III7-bVII7-VI7 then ii-V back to I",
+      "A": "I with VI7-ii-V loops, chromatic bIII7-passing to VI7, ii-V back to I",
       "A1": "Repeat of A: I-VI7-ii-V loops resolving to I",
-      "B": "V/vi (A7) to vi (Dm), G7 (V/V), then ii-V (Gm7-C7) back to I",
-      "A2": "Repeat of A ending on tonic F"
+      "B": "VI7 to vi, then II7 to V7 (dominant cycle) back toward I",
+      "A2": "Repeat of A: I-VI7-ii-V loops resolving to I"
     },
     "modulates": false
   }

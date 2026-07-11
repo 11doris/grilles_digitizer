@@ -50,7 +50,7 @@
         "bar": 1,
         "beats": {
           "1": "Emaj7",
-          "3": "Ab7"
+          "3": "Ab7/5"
         }
       },
       {
@@ -79,7 +79,7 @@
         "bar": 5,
         "beats": {
           "1": "Dbmaj7",
-          "3": "F7"
+          "3": "F7/5"
         }
       },
       {
@@ -110,7 +110,7 @@
         "bar": 1,
         "beats": {
           "1": "Emaj7",
-          "3": "Ab7"
+          "3": "Ab7/5"
         }
       },
       {
@@ -139,7 +139,7 @@
         "bar": 5,
         "beats": {
           "1": "Dbmaj7",
-          "3": "F7"
+          "3": "F7/5"
         }
       },
       {
@@ -219,7 +219,7 @@
         "bar": 1,
         "beats": {
           "1": "Emaj7",
-          "3": "Ab7"
+          "3": "Ab7/5"
         }
       },
       {
@@ -248,7 +248,7 @@
         "bar": 5,
         "beats": {
           "1": "Dbmaj7",
-          "3": "F7"
+          "3": "F7/5"
         }
       },
       {
@@ -316,7 +316,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "6bd9ee02adf69821a3d622a7911fedde134a4040927c836fa6462933702dc82e",
+    "source_sha256": "335cb946cb8847eb14b052f63b983451d25c990676b58eab4111acf7023f3024",
     "scorer": {
       "tonic": "E",
       "mode": "major",
@@ -334,14 +334,14 @@
     "tags": [
       "ii-V-chains",
       "major-thirds-cycle",
-      "circle-of-fifths"
+      "tonic-pedal"
     ],
     "sections": {
-      "A": "Imaj7 launching a major-thirds cycle (E, Db, C tonic areas) via ii-V pairs, ending Cmaj7 with a ii-V back to E",
-      "A1": "Same as A, resolving on Cmaj7",
-      "B": "ii-V in Bb (Cm7b5-F7), ii-V in E (F#m7b5-B7) to Emaj9, then ii-V in Eb (Fm7-Bb7)",
+      "A": "Starts on I (Emaj7) then tonicizes descending major-third centers: bVII (Eb) in bar 4, bVI (Db) in bar 5, and V-area (C) in bar 8, each approached by its own ii-V, ending with a ii-V (F#m7-B7) back to I",
+      "A1": "Same as A: I with major-third-cycle tonicizations to Ebmaj7, Dbmaj7 and Cmaj7",
+      "B": "ii-V to Bb (Cm7b5-F7), ii-V to I (F#m7b5-B7) landing on Emaj9, then ii-V to Eb (Fm7-Bb7)",
       "A2": "Restatement of A ending on Cmaj7",
-      "interlude": "C9#5 pedal to Gbmaj9, Fm(maj7), C7b5 vamp"
+      "interlude": "Altered dominant C9#5 held, then Gbmaj9, Fm(maj7) and C7b5 as a coloristic tag"
     },
     "modulates": false
   }

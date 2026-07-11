@@ -238,7 +238,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Eb7"
+          "1": "Eb7/5"
         }
       },
       {
@@ -250,7 +250,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Eb7"
+          "1": "Eb7/5"
         }
       },
       {
@@ -362,7 +362,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "d2cffc74034a5f3e7726ab9b19960d2967645b10f9fd0c2a411aba9e2e9fb47b",
+    "source_sha256": "47d7057c3963cfcef778745a94702f8c35df07a6396ef3a73e199cf50faac123",
     "scorer": {
       "tonic": "G",
       "mode": "major",
@@ -384,7 +384,7 @@
       "tonic": "Eb",
       "mode": "major",
       "confidence": "medium",
-      "modulation_note": "Verse and the openings of the A sections sit in the relative minor (C minor); the bridge is in the subdominant, Ab major, before the A sections cadence back to Eb.",
+      "modulation_note": "Verse sits in the relative minor (Cm); the bridge (B) dwells on Ab (IV). The A sections open on vi (Cm) but cadence to Eb.",
       "section_keys": {
         "verse_A": {
           "tonic": "C",
@@ -410,19 +410,18 @@
     "family": "32-bar AABA standard with verse",
     "tags": [
       "verse-present",
-      "circle-of-fifths",
-      "turnaround-ending",
-      "dominant-cycle-bridge"
+      "ii-V-chains",
+      "relative-minor-opening"
     ],
     "sections": {
-      "verse_A": "i-bVI7-i-V-i loop in C minor (Cm, Ab7, G7)",
-      "verse_B": "bVI (Ab) to i (Cm), tonicizing G with D7 then G7 to set up the head",
-      "A": "opens vi/i (Cm) with D7-G7, then a circle-of-fifths C7-F7-Bb7 cadencing to Eb (I)",
-      "A1": "same opening then ii-V (Cm7-F7) and Bb7-Eb7 turnaround into the bridge",
-      "B": "sustained IV (Ab) alternating with its dominant Eb7, Abm6 and Ao7-G7 leading back",
-      "A2": "Cm-D7-G7 opening then Ab-Ao7-Eb with F7-Bb7 resolving firmly to Eb (I)"
+      "verse_A": "i-bVI7-i-V7-i cadential loop in C minor",
+      "verse_B": "bVI (Ab) to i (Cm), then tonicizes G before landing on V7 back to i",
+      "A": "Opens on vi (Cm) with D7-G7, then F7-Bb7-Eb ii-V-I into I, tag F7-Bb7",
+      "A1": "Same opening on vi, Cm7-F7 to Bb7 then Bb7-Eb7 turn toward the bridge",
+      "B": "Sustained IV (Ab) alternating with Eb7 dominant, closing Abm6-Ao7-G7 back to i",
+      "A2": "Cm-D7-G7 opening, then Ab-Ao7-Eb-C7-F7-Bb7-Eb final cadence to I"
     },
     "modulates": true,
-    "modulation_note": "Verse and the openings of the A sections sit in the relative minor (C minor); the bridge is in the subdominant, Ab major, before the A sections cadence back to Eb."
+    "modulation_note": "Verse sits in the relative minor (Cm); the bridge (B) dwells on Ab (IV). The A sections open on vi (Cm) but cadence to Eb."
   }
 }

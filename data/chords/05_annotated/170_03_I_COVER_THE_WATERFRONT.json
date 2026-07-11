@@ -102,7 +102,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Cm7",
+          "1": "Cm7/4",
           "3": "Cm7"
         }
       },
@@ -116,7 +116,7 @@
       {
         "bar": 6,
         "beats": {
-          "1": "F",
+          "1": "F/5",
           "3": "Cm7"
         }
       }
@@ -146,7 +146,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Cm7",
+          "1": "Cm7/4",
           "3": "Cm7"
         }
       },
@@ -408,7 +408,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "3aca2965c4557ececd232d1fd8e506345cc4221a6bd1fdcab4f592335d5899ce",
+    "source_sha256": "090c0f4fce4a2ecd94330ce7d28b737711f3316034efc8aeeef8694d1db57b2c",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -422,20 +422,20 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar AABA standard",
+    "family": "32-bar AABA standard with verse",
     "tags": [
-      "verse-present",
       "ii-V-chains",
-      "turnaround-ending",
-      "chromatic-descent"
+      "verse-present",
+      "chromatic-descent",
+      "turnaround-ending"
     ],
     "sections": {
-      "verse_A": "I oscillating with minor v (Cm7) and a Dbo7 passing chord, all in the tonic",
-      "verse_A1": "Same I to minor-v vamp with Dbo7, resting on I",
-      "A": "ii-V (Dm7-G7), ii-V/IV then Imaj7, Am7-Abo7 chromatic to Gm7-C7, ending Am7-D7 turnaround",
-      "A1": "Same A progression cadencing to I with a bIVm (Bbm) color",
-      "B": "ii-V (Gm7-C7) with chromatic F#m7/F#o7 back to I, Am7-D7 secondary dominant with G#maj7/G#o7 passing, ending on Gm7-C7",
-      "A2": "A restated cadencing to I with bIVm (Bbm) color"
+      "verse_A": "I oscillating with v-ish Cm7, colored by Db diminished passing chord, all over F",
+      "verse_A1": "Same I / Cm7 oscillation with Dbo7 passing chord resolving back to I",
+      "A": "vi-II7 then ii-V7b9 to Imaj7, Am7-Abo7 passing, ii-V to Imaj7, ends vi-VI7 turnaround",
+      "A1": "Same ii-V motion to Imaj7 then cadence to I with borrowed iv (Bbm)",
+      "B": "ii-V loops with chromatic F#m7/F#o7 and G#maj7/G#o7 embellishments, resolving to I",
+      "A2": "Restated A ending on I with borrowed iv (Bbm) cadence"
     },
     "modulates": false
   }

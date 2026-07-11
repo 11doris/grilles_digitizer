@@ -168,7 +168,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "B7",
+          "1": "B7/5",
           "3": "Am7b5",
           "4": "D7"
         }
@@ -297,14 +297,20 @@
     "tonic": "C",
     "mode": "major"
   },
+  "section_keys": {
+    "B": {
+      "tonic": "G",
+      "mode": "major"
+    }
+  },
   "opening": {
     "degree": "I",
     "quality": "maj",
     "chord": "C"
   },
   "key_annotation": {
-    "status": "agreed",
-    "source_sha256": "0a10cb41a933e620ab430c5f221c9ee8c67f29c5bacf030630469103834af17f",
+    "status": "verified",
+    "source_sha256": "4745d5ffb3b491c069e0750dc019047ed9245300be74b2ce59d88c8d76fc2067",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -314,7 +320,18 @@
       "tonic": "C",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "Bridge (B) leaves C: first half oscillates around E major, second half around G major, before G7 leads back to C."
+      "modulation_note": "bridge (B) centers on G major before returning to C",
+      "section_keys": {
+        "B": {
+          "tonic": "G",
+          "mode": "major"
+        }
+      }
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -325,13 +342,13 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "I with V/ii, ii-V-#iio, descending line vi-#ivo7-iv, iii-biiio7-ii, chromatic dominants Bb9-A7-D9-G7#5",
-      "A1": "Same as A, resolving through Dm9-Bb7-A7-D9-G7#5 back to I, ending I with F#m7b5-B7",
-      "B": "E major oscillating with upper-neighbor F chords then B7; shifts to G major with Ab neighbors, Eb7-D7b9, ending Dm7b5-G7 (V of C)",
-      "A2": "I with V/ii, ii-V-#iio, vi motion, iii-A7b9, D9-G7#5, then I-Db7 tritone sub and ii-Db9",
-      "coda": "Imaj7 with Db9 tritone-sub tag, C7-Db9 vamp resolving to C69"
+      "A": "I with V/ii, ii-V, chromatic inner-voice descent (Am-F#m7b5-Fm6-Em7-Ebo7-Dm7-G7) ending on V",
+      "A1": "Same as A with ii-V back to I, ending on I to F#m7b5-B7",
+      "B": "static E chord with F neighbor resolving via D7 to G, then G with Ab neighbor, back to ii-V of C",
+      "A2": "I restatement with ii-V and tritone-sub (Db7/Db9) motion",
+      "coda": "Imaj7 with Db9 tritone-sub oscillation resolving to I6/9"
     },
     "modulates": true,
-    "modulation_note": "Bridge (B) leaves C: first half oscillates around E major, second half around G major, before G7 leads back to C."
+    "modulation_note": "bridge (B) centers on G major before returning to C"
   }
 }

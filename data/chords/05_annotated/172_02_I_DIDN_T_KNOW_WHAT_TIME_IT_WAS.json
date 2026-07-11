@@ -3,7 +3,7 @@
   "year": "1939",
   "style": "STANDARD",
   "tempo": "MEDIUM",
-  "form": "36 A A B A'",
+  "form": "32 A A B A'",
   "time_signature": "4/4",
   "title": "I DIDN'T KNOW WHAT TIME IT WAS",
   "page": 172,
@@ -47,7 +47,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Dm9",
+          "1": "Dm9/4",
           "3": "G13"
         }
       },
@@ -76,7 +76,7 @@
         "bar": 8,
         "beats": {
           "1": "Gm7",
-          "3": "G7"
+          "3": "Gm7"
         }
       }
     ],
@@ -104,7 +104,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Dm9",
+          "1": "Dm9/4",
           "3": "G13"
         }
       },
@@ -154,15 +154,15 @@
       {
         "bar": 3,
         "beats": {
-          "1": "Em7b5",
-          "3": "A7"
+          "1": "Dm",
+          "3": "Dm7"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Dm",
-          "3": "F7"
+          "1": "Dm7b5",
+          "3": "F7/5"
         }
       },
       {
@@ -189,7 +189,7 @@
         "bar": 8,
         "beats": {
           "1": "Gm7",
-          "3": "G7"
+          "3": "Gm7"
         }
       }
     ],
@@ -197,49 +197,48 @@
       {
         "bar": 1,
         "beats": {
-          "1": "Em9",
-          "3": "A7"
+          "1": "Am7",
+          "3": "Dm7"
         }
       },
       {
         "bar": 2,
         "beats": {
-          "1": "Dm9"
+          "1": "Gm7",
+          "3": "C7"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "Em9",
-          "3": "A7"
+          "1": "F"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Dm9",
-          "3": "G13"
+          "1": "Dm9/4",
+          "3": "F7"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "Gm7",
-          "3": "Em7b5"
+          "1": "Bb",
+          "3": "C7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "Dm",
+          "1": "F",
           "3": "Dm7"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "Bbmaj7",
-          "3": "Am7"
+          "1": "G7"
         }
       },
       {
@@ -247,32 +246,6 @@
         "beats": {
           "1": "Bbm7",
           "3": "Eb7"
-        }
-      },
-      {
-        "bar": 9,
-        "beats": {
-          "1": "Am7",
-          "3": "Dm7"
-        }
-      },
-      {
-        "bar": 10,
-        "beats": {
-          "1": "Gm7",
-          "3": "C7"
-        }
-      },
-      {
-        "bar": 11,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 12,
-        "beats": {
-          "1": "F"
         }
       }
     ]
@@ -288,16 +261,16 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "633f4b6a27bdff82e899a8cb1276b4e6394968355d6abf5a5f84bb3feb4e98ef",
+    "source_sha256": "b8868daac172d10d79c7faebf500ddb01c966d8f016f7042ce1abce976053acd",
     "scorer": {
       "tonic": "D",
       "mode": "minor",
-      "margin": 0.4274
+      "margin": 0.2441
     },
     "llm": {
       "tonic": "F",
       "mode": "major",
-      "confidence": "high",
+      "confidence": "medium",
       "modulation_note": null
     },
     "human": {
@@ -307,16 +280,16 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "36-bar AABA standard",
+    "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
       "turnaround-ending"
     ],
     "sections": {
-      "A": "ii-V (Em-A7) to Dm repeated, then descending Gm7-Em7b5-Dm to Bbmaj7-Am7-Gm7-G7 in F",
-      "A1": "same as A ending Gm7-C7 (ii-V back to F)",
-      "B": "F tonic with Em7b5-A7 tonicizing Dm, Bb-C7-F cadence, ends on G7/Gm7-G7",
-      "A2": "A material extended with Bbm7-Eb7 and Am7-Dm7-Gm7-C7 turnaround resolving to F"
+      "A": "Opens with ii-V-i into vi (Em9-A7-Dm), circles through IVmaj7, iii and ii (Bbmaj7-Am7-Gm7).",
+      "A1": "Same as A but ends on a ii-V (Gm7-C7) pushing into the bridge.",
+      "B": "Starts on I, ii-V-i to vi, then a clear IV-V-I cadence in F (Bb-C7-F), ending on ii.",
+      "A2": "iii-vi-ii-V into I, IV-V-I cadence in F, closing with a Bbm7-Eb7 turnaround."
     },
     "modulates": false
   }

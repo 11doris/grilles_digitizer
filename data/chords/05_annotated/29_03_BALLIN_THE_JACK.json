@@ -177,7 +177,7 @@
         }
       }
     ],
-    "A1": [
+    "B": [
       {
         "bar": 1,
         "beats": {
@@ -211,7 +211,7 @@
       {
         "bar": 6,
         "beats": {
-          "1": "Bb",
+          "1": "Bb/5",
           "2": "F#o7",
           "3": "Gm"
         }
@@ -253,7 +253,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "2c324315a23068c4aac2cd0d9f27716d36ca04409ac6a44a07ce81a191591fc4",
+    "source_sha256": "f83ff8e66c182170a77b7d49089e6723a4d85fd96b85ba053168d5b28855497f",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",
@@ -262,8 +262,8 @@
     "llm": {
       "tonic": "Bb",
       "mode": "major",
-      "confidence": "high",
-      "modulation_note": "verses centered on G (I with V/V-V and chromatic dominants); chorus in Bb",
+      "confidence": "medium",
+      "modulation_note": "verse centered on G (chromatic dominants cadencing to D7, the V of G) before the chorus settles in Bb",
       "section_keys": {
         "verse_A": {
           "tonic": "G",
@@ -282,21 +282,20 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "verse-chorus 16-bar tune",
+    "family": "16-bar verse + 16-bar chorus (AA / AA')",
     "tags": [
-      "circle-of-fifths",
       "dominant-cycle-bridge",
-      "verse-present",
+      "circle-of-fifths",
       "chromatic-descent",
       "turnaround-ending"
     ],
     "sections": {
-      "verse_A": "I in G then V/V-V (A7-D7), chain of chromatic dominants Eb7-C7-F7-Gb7-Eb7 ending on D7 (V)",
-      "verse_A1": "Repeat: G tonic, A7-D7, chromatic dominants ending on D7 (V)",
-      "A": "Circle of dominants VI7-II7-V7 (G7-C7-F7) to I (Bb), then Eb7-D7 turnaround",
-      "A1": "VI7-II7 (G7-C7) then Gb7, back to I with F#o7-Gm-Cm-Ebm-F7-Bb (V-I) cadence"
+      "verse_A": "Opens on I of G with chromatic dominants (A7-D7, Eb7, C7-F7, Gb7, Eb7) closing on D7, the V of G",
+      "verse_A1": "Repeat of verse: G tonic with chromatic dominant chain ending on D7 (V of G)",
+      "A": "Dominant cycle VI7-II7-V7 (G7-C7-F7) resolving to I (Bb), with Eb7-D7 turnaround",
+      "B": "Same dominant cycle then Gb7 to Bb/F#o7/Gm, ii-based Cm-Ebm and F7-Bb final cadence (V-I)"
     },
     "modulates": true,
-    "modulation_note": "verses centered on G (I with V/V-V and chromatic dominants); chorus in Bb"
+    "modulation_note": "verse centered on G (chromatic dominants cadencing to D7, the V of G) before the chorus settles in Bb"
   }
 }

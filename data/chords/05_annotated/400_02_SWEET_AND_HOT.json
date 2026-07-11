@@ -37,7 +37,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Eb",
+          "1": "Eb/3",
           "3": "Fm7"
         }
       },
@@ -51,7 +51,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Eb",
+          "1": "Eb/3",
           "3": "Fm7"
         }
       },
@@ -120,7 +120,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Eb",
+          "1": "Eb/3",
           "3": "Fm7"
         }
       },
@@ -134,7 +134,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Eb",
+          "1": "Eb/3",
           "3": "Fm7"
         }
       },
@@ -166,12 +166,24 @@
       {
         "bar": 9,
         "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
           "1": "Eb",
           "3": "Ab"
         }
       },
       {
-        "bar": 10,
+        "bar": 12,
         "beats": {
           "1": "Eb"
         }
@@ -193,13 +205,13 @@
       {
         "bar": 3,
         "beats": {
-          "1": "B7"
+          "1": "B7/7"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Eb"
+          "1": "Eb/5"
         }
       },
       {
@@ -239,7 +251,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Eb",
+          "1": "Eb/3",
           "3": "Fm7"
         }
       },
@@ -253,7 +265,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Eb",
+          "1": "Eb/3",
           "3": "Fm7"
         }
       },
@@ -320,37 +332,31 @@
     "chord": "Eb"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "cd8d97c856472440a19965a4f43cdb5b2ecdb9a0ed4c7978621ee3c72e679014",
+    "status": "agreed",
+    "source_sha256": "2946c60faa0c5be001a74cf713b6590623eb3447e4ccb08921cd2c6ca8da4be8",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
-      "margin": 0.81
+      "margin": 0.8103
     },
     "llm": {
       "tonic": "Eb",
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "Eb",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar-style AABA standard (extended)",
+    "family": "32-bar AABA standard (extended A sections)",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending",
-      "tonic-pedal"
+      "turnaround-ending"
     ],
     "sections": {
-      "A": "I-ii vamp (Eb-Fm7) then V7-I with Fm7-Bb7 turnaround, passing #io7 in bar 11",
-      "A1": "Same I-ii vamp then V-I resolving with plagal Ab (IV) to Eb",
-      "B": "iv minor (Abm), tritone-sub B7 back to I, then C7#5-F7-Bb7 dominant chain to V",
-      "A2": "I-ii vamp then repeated ii-V (Fm7-Bb7) resolving firmly onto Eb"
+      "A": "I with I-ii oscillation, V7 and ii-V7 turnarounds; passing #i dim into ii-V",
+      "A1": "I with I-ii oscillation, alternating I and V7, cadence via IV back to I",
+      "B": "iv minor moving through V7/vi to I inversion, then C7#5-F7-Bb7 dominant cycle back to V",
+      "A2": "I with I-ii oscillation and ii-V7 turnarounds resolving to I"
     },
     "modulates": false
   }

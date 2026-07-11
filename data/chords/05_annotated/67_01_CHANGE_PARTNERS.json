@@ -70,7 +70,7 @@
       {
         "bar": 9,
         "beats": {
-          "1": "F"
+          "1": "F/3"
         }
       },
       {
@@ -168,7 +168,7 @@
       {
         "bar": 9,
         "beats": {
-          "1": "F"
+          "1": "F/3"
         }
       },
       {
@@ -256,13 +256,13 @@
         "bar": 7,
         "beats": {
           "1": "C",
-          "3": "(Bb)"
+          "3": "(Bb/2)"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "(Am)",
+          "1": "(Am/3)",
           "3": "C7"
         }
       }
@@ -349,7 +349,7 @@
       {
         "bar": 14,
         "beats": {
-          "1": "Gm7b5",
+          "1": "Gm7b5/4",
           "3": "C7"
         }
       },
@@ -384,7 +384,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "51aaf28c2f8ebcc7a6e9be950e7bbadeace648ba607aaebe430472d376e85baa",
+    "source_sha256": "3970ba5c056aeac9f77f16bc7527441c9aeb8006fb2d05b56fb90fdcc71883cd",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -394,7 +394,7 @@
       "tonic": "F",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "bridge (B) sits in Ab major before returning via C7 to F",
+      "modulation_note": "bridge (B) sits in Ab major before returning via C7",
       "section_keys": {
         "B": {
           "tonic": "Ab",
@@ -409,19 +409,18 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "56-bar AABA' standard",
+    "family": "32-bar AABA standard (expanded)",
     "tags": [
-      "ii-V-chains",
       "turnaround-ending",
       "chromatic-descent"
     ],
     "sections": {
-      "A": "I with #ivo7 (Fo7), V7 (C7), ii (Gm7)-iv(Bbm6), back to I; ends on V7 turnaround",
-      "A1": "Same as A: I, #ivo7, V7, ii-iv, ii-V-I resolving on I",
-      "B": "bVI (Ab) with augmented color oscillation, moving to C (V) via C7 back to F",
-      "A2": "I, #ivo7, V7, ii-iv, then chromatic descending dominants E9-Eb9-D9 into ii-V-I"
+      "A": "I with I dim passing, V7, ii-V motion, ends on V7 turnaround",
+      "A1": "same as A resolving to I",
+      "B": "bVI major with augmented color, then C(V-of) leading back via C7",
+      "A2": "I with chromatic descent E9-Eb9-D9 into ii-V-I"
     },
     "modulates": true,
-    "modulation_note": "bridge (B) sits in Ab major before returning via C7 to F"
+    "modulation_note": "bridge (B) sits in Ab major before returning via C7"
   }
 }

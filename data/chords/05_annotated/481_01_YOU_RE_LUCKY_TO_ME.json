@@ -31,7 +31,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -89,7 +89,7 @@
       {
         "bar": 3,
         "beats": {
-          "1": "C"
+          "1": "C/5"
         }
       },
       {
@@ -101,7 +101,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "C"
+          "1": "C/5"
         }
       },
       {
@@ -262,7 +262,7 @@
       {
         "bar": 6,
         "beats": {
-          "1": "C7b9"
+          "1": "C7b9/3"
         }
       },
       {
@@ -342,7 +342,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "dfa2a6fcbbe044a25fbf441af7a8a27af9430f343d5d89247e5e839805f1e991",
+    "source_sha256": "48c4aacfb36b5e4998352cf3aae4078b7f40b7eede1297c69b725298d8772009",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -356,20 +356,20 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar AABA standard with 16-bar verse",
+    "family": "16-bar verse + 32-bar AABA chorus",
     "tags": [
       "verse-present",
       "ii-V-chains",
-      "dominant-cycle-bridge",
-      "turnaround-ending"
+      "turnaround-ending",
+      "circle-of-fifths"
     ],
     "sections": {
-      "verse_A": "I alternating with V7 (F–C7), tonicizing home key of F",
-      "verse_B": "vi–V/V motion (Am–D7), then oscillating C with G7 leading to C7 (V) at the end",
-      "A": "II7–V7 (G7–C7), vi7b5–V7/ii (Am7b5–D7b9), ii7 with tritone-sub Db7–C7 into I, ending on turnaround G7–C7",
-      "A1": "Same as A but resolving firmly to I with F–Bb7–F cadence",
-      "B": "Sustained D7 (V/V/V) then Gm7b5–G7–C7b9 dominant chain returning to V (C7)",
-      "A2": "A restatement with Db9 substitute, ii–tritone-sub–V into I, F–Bb7–F close"
+      "verse_A": "I alternating with V7 (F to C7), G7-C7 (V/V-V) into I",
+      "verse_B": "vi-II7 then repeated V/V-V motion ending on C7sus4-C7 (V of F)",
+      "A": "G7-C7 (V/V-V), Am7b5-D7b9 (ii-V toward Gm), Gm7-Db7-C7 to I, turnaround G7-C7",
+      "A1": "Same as A ending on I with Bb7 (IV7) into F",
+      "B": "Extended D7 (V/V/V) dominant span, Gm7b5-G7-C7b9 then G7-C7 (V/V-V)",
+      "A2": "G7-C7, Am7b5-Db9 tritone sub, Gm7-Db7-C7 resolving to F with IV7 tag"
     },
     "modulates": false
   }

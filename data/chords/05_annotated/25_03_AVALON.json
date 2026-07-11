@@ -175,7 +175,7 @@
         "bar": 8,
         "beats": {
           "1": "Bbm6",
-          "3": "Bo7"
+          "3": "C9"
         }
       }
     ],
@@ -183,7 +183,7 @@
       {
         "bar": 1,
         "beats": {
-          "1": "F"
+          "1": "F/5"
         }
       },
       {
@@ -241,11 +241,11 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "0e1a930c8596628ee1fefe1bda4e42eab8d07c185572834b447ad77ddf59c033",
+    "source_sha256": "29e32264d3d52a5546ebb6200aced0fc037d9547195a1f2922c025355eb70f09",
     "scorer": {
       "tonic": "F",
       "mode": "major",
-      "margin": 0.5792,
+      "margin": 0.6182,
       "section_keys": {
         "B": {
           "tonic": "G",
@@ -270,13 +270,13 @@
     "family": "32-bar AABC standard",
     "tags": [
       "turnaround-ending",
-      "circle-of-fifths"
+      "ii-V-chains"
     ],
     "sections": {
-      "A": "V7 (C7) held four bars resolving to I (F)",
-      "A1": "V7 with #5 alteration resolving to I (F)",
-      "B": "V/ii (D7) to ii (Gm) then bVIm6 (Bbm6) and #io7 (Bo7)",
-      "C": "I - V/ii (D7) - ii7 - V7 - I cadence in F"
+      "A": "V7 (C7) held four bars resolving to I (F), with V7 tag in bar 6",
+      "A1": "Same as A with C7#5 altered dominant approaching I",
+      "B": "D7 (V/ii) to Gm (ii), then Bbm6 to C9 (V) leading back",
+      "C": "I to D7 (V/ii), ii-V-I (Gm7-C7-F) cadence"
     },
     "modulates": false
   }

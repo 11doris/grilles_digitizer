@@ -111,7 +111,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "C",
+          "1": "C/3",
           "3": "Ebo7"
         }
       },
@@ -286,7 +286,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "1d18f82f299d878fc708602cb62e06d9f41f099af5f7c71ab7054506b9e52a9a",
+    "source_sha256": "86834410d6b37cbf41381d9b4a32dc182c7c1408e9550f895dcd79759b72314e",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -304,14 +304,14 @@
     "tags": [
       "ii-V-chains",
       "turnaround-ending",
-      "circle-of-fifths"
+      "chromatic-descent"
     ],
     "sections": {
-      "A": "I with V/V (D9) to V7 to I resolution",
-      "B": "I with chromatic passing dim, ii-V to I, ends on ii-V turnaround",
-      "A1": "I with V/V to V7, then ii-V (Gm7-C9) prepping IV",
-      "C": "IV7 (F7) for four bars back to I, ending on V7 turnaround",
-      "A2": "I with V/V to V7 resolving to I"
+      "A": "I with V/V (D9) resolving through V7 to Imaj7/I6",
+      "B": "I with chromatic #io7 passing, ii-V and Dm7-G7 turnarounds",
+      "A1": "I-V/V-V7 then Gm7-C9 setting up IV",
+      "C": "IV7 sustained then I, ending on V7",
+      "A2": "I with V/V and V7 resolving to I"
     },
     "modulates": false
   }

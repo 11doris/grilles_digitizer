@@ -8,16 +8,6 @@
   "title": "IF DREAMS COME TRUE",
   "page": 174,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "Jazz Club Mystery Hot Band 45",
-    "A.Persley 70- H.Henderson 40",
-    "OE:Lambert 60- L.Konitz 79",
-    "OE:B.Reff 81- H.O'Malica 44",
-    "N.Powell 84- E.Sampson 88",
-    "B.Goodman 37- J.P.Johnson 39",
-    "B.Hackett 38- C.Webb 34.37",
-    "T.Wilson 38.46"
-  ],
   "variants": [
     {
       "applies_to": "Bar 28",
@@ -32,7 +22,7 @@
           "bar": 1,
           "beats": {
             "1": "Dm",
-            "3": "F7"
+            "3": "F7/5"
           }
         },
         {
@@ -51,6 +41,16 @@
         }
       ]
     }
+  ],
+  "recordings": [
+    "Jazz Club Mystery Hot Band 45",
+    "A.Persley 70- H.Henderson 40",
+    "OE:Lambert 60- L.Konitz 79",
+    "OE:B.Reff 81- H.O'Malica 44",
+    "N.Powell 84- E.Sampson 88",
+    "B.Goodman 37- J.P.Johnson 39",
+    "B.Hackett 38- C.Webb 34.37",
+    "T.Wilson 38.46"
   ],
   "notation_notes": {
     "variant_purpose": "Header prints 'VARIANT Bar 28 for statement of the melody'.",
@@ -278,7 +278,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "ac9d15b7feb5d67c0d85188d059b6cd946e32225d5d2685c0cb3aa945f3cacf5",
+    "source_sha256": "011689f99ad224efccc3a36cd5c2e4c946fd23f3fa35dd9cb4ab2579b44d2580",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -306,14 +306,13 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABAB' standard",
     "tags": [
-      "ii-V-chains",
-      "turnaround-ending"
+      "ii-V-chains"
     ],
     "sections": {
-      "A": "II7(G9)-V(C7#5)-I(F) ii-V-I loop with V/V (D7) turning back to II",
-      "B": "IV(Bb)-A7-vi(Dm)-V/V(G7)-ii-V(Gm7-C7) with D7 turn",
-      "A1": "repeat of A: II7-V-I in F with D7 turnaround",
-      "B1": "IV(Bb)-A7-vi(Dm)-G7-C7-I(F) resolving home"
+      "A": "ii-V-I loop (Gm-C7-F) repeated twice, ending on F7 as V7/IV",
+      "B": "IV (Bb) with A7 tonicizing vi (Dm), then V/V (G7) and ii-V (Gm7-C7) with D7#5 turnaround",
+      "A1": "repeat of A: ii-V-I in F ending on F7",
+      "B1": "like B but resolving G7-C7 to F (I) for the final cadence"
     },
     "modulates": false
   }

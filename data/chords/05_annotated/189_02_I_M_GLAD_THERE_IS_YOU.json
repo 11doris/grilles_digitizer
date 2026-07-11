@@ -8,17 +8,6 @@
   "title": "I'M GLAD THERE IS YOU",
   "page": 189,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints '18 VERSE'."
-  },
-  "recordings": [
-    "S.Amoros 62- N.Bailey 45- S.Kenton 55.61",
-    "B.Clarke/F.Boland 69- F.Bailey 62",
-    "KO.Pearson 69- S.Getz 57- J.Gel/Y.Lin 57",
-    "B.Sinatra 47- C.Vaughan 45.55- H.Neff 8",
-    "J.Dorsey 41- C.Adderley 55- C.Baker 55",
-    "B.De Franco 57- E.Fitzgerald 55"
-  ],
   "variants": [
     {
       "applies_to": "Bar 4, 28",
@@ -42,6 +31,17 @@
         }
       ]
     }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '18 VERSE'."
+  },
+  "recordings": [
+    "S.Amoros 62- N.Bailey 45- S.Kenton 55.61",
+    "B.Clarke/F.Boland 69- F.Bailey 62",
+    "KO.Pearson 69- S.Getz 57- J.Gel/Y.Lin 57",
+    "B.Sinatra 47- C.Vaughan 45.55- H.Neff 8",
+    "J.Dorsey 41- C.Adderley 55- C.Baker 55",
+    "B.De Franco 57- E.Fitzgerald 55"
   ],
   "sections": {
     "A": [
@@ -264,14 +264,14 @@
         "bar": 9,
         "beats": {
           "1": "Bb",
-          "3": "F"
+          "3": "F/3"
         }
       },
       {
         "bar": 10,
         "beats": {
           "1": "Gm7",
-          "3": "C(b9)"
+          "3": "C7b9"
         }
       },
       {
@@ -299,7 +299,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "d351aa7f2d8136f960d91ac2139869dee1149f1233cd9aa8055b5ade42b44ef3",
+    "source_sha256": "3cdafcd354f2951583ee6c553f6b594b3b1c8b8f9d7138222c6ce4bf33a48fb5",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -328,13 +328,14 @@
     "family": "36-bar ABCA' ballad",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending"
+      "turnaround-ending",
+      "chromatic-descent"
     ],
     "sections": {
-      "A": "Imaj7 to iv (Fm7) with ii-V (Gm7-C7) and V/ii (Am7-D7) loop",
-      "B": "Imaj7-ii-iii with Ab dim passing, F-Eb9-D7-Gm7-C7, ending Cm7-F7 (V/IV)",
-      "C": "IV (Bbmaj7) area with Bbm7-Eb7, Em7b5-A7 to Dm(vi), Dm7-G7-Gm7-C7 back to V",
-      "A1": "Imaj7 to iv, Gm7-C7 and Am7b5-D7, resolving Bb-F to Gm7-C(b9)-F cadence"
+      "A": "I with iv borrowed (Fm7), then i-line cliché on ii (Gm–Gm(maj7)), ii-V loop with a iii-VI/V (Am7-D7) into ii-V",
+      "B": "I-ii-iii with passing dim, i-line ii figure, I-bVI9-V/ii, ii-V into iv-VII cadence figures",
+      "C": "IV (Bbmaj7) with its own iv-bVII7, back to I-IV, then vii°7/ii-V7/ii onto Dm line cliché resolving via ii-V of F",
+      "A1": "I with borrowed iv, ii-V, half-dim ii-V (Am7b5-D7), bVI/I passing chord, ii-V b9 to final I"
     },
     "modulates": false
   }
