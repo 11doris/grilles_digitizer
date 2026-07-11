@@ -362,6 +362,16 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .panel.show-scan .extras,
 .panel.show-scan .abc-sheet { display: none; }
 
+/* Book-layout view (.show-boxes): the 8-boxes-per-row lattice replaces the
+   4-bar grid and its variants; the extras stay. Scan view wins over it. */
+.panel .boxgrid { display: none; }
+.panel.show-boxes:not(.show-scan) .boxgrid { display: block; }
+.panel.show-boxes .grid,
+.panel.show-boxes .variants { display: none; }
+
+/* Segmented view switch (grid / book layout / scan) in the panel tools row. */
+.view-seg { display: inline-flex; gap: 0.25rem; }
+
 /* ------------------------------------------ melody lead sheet (abcjs) */
 
 /* abcjs draws with fill/stroke: currentColor, so the sheet follows the
@@ -766,20 +776,162 @@ body.list-collapsed #gridZoom { left: 1rem; }
 /* Crowded bars (3+ chords, tagged .tight in fillBar) render their chords in a
    much narrower face and pack the columns tighter, so a single busy bar can't
    force the whole grid's font down — the rest of the grid stays large while the
-   dense bar simply gets condensed (see fitGridWidth). */
-.bar.tight .chord {
+   dense bar simply gets condensed (see fitGridWidth). The same treatment
+   squeezes multi-chord boxes of the book-layout view (.bx.tight). */
+.bar.tight .chord,
+.bx.tight .chord {
   font-family: "Sofia Sans Extra Condensed", "Barlow Condensed", "Arial Narrow", sans-serif;
   letter-spacing: -0.03em;
 }
 /* Narrow the middle/right columns (never the root, so the ground line and the
    root's height stay consistent with the roomy bars) and pull the columns in
    tight, so a dense bar's chords are horizontally compact but still full-height. */
-.bar.tight .chord .qual { font-size: 1.3em; margin-left: 0.01em; }
-.bar.tight .chord .acc { margin-left: 0.01em; }
-.bar.tight .chord .acc.flat { font-size: 1.55em; }
-.bar.tight .chord .acc.sharp { font-size: 1.35em; }
+.bar.tight .chord .qual,
+.bx.tight .chord .qual { font-size: 1.3em; margin-left: 0.01em; }
+.bar.tight .chord .acc,
+.bx.tight .chord .acc { margin-left: 0.01em; }
+.bar.tight .chord .acc.flat,
+.bx.tight .chord .acc.flat { font-size: 1.55em; }
+.bar.tight .chord .acc.sharp,
+.bx.tight .chord .acc.sharp { font-size: 1.35em; }
 .bar.tight .chord .alt-up,
-.bar.tight .chord .alt-down { font-size: 1.2em; margin-left: 0em; letter-spacing: -0.04em; }
+.bar.tight .chord .alt-down,
+.bx.tight .chord .alt-up,
+.bx.tight .chord .alt-down { font-size: 1.2em; margin-left: 0em; letter-spacing: -0.04em; }
+
+/* ------------------------------------------- book layout ("boxes") view */
+
+/* Re-creation of the printed grille: one contiguous lattice, (up to) 8 boxes
+   per row, one section per row, the section letter in the left margin. All
+   dimensions are em-based so fitBoxes can zoom the whole lattice through this
+   one font-size; individual chords get a per-chord squeeze when they'd
+   overflow their box (or their half/slot of it). */
+.boxgrid {
+  max-width: 58em;
+  margin: 0 auto;
+  padding-left: 1.6em; /* gutter for the section letters */
+  font-size: clamp(8px, 2.2cqw, 13px);
+}
+
+/* Form badge, top-right above the lattice, like the book's "34 A A B A'". */
+.bx-formrow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bx-form {
+  border: 0.14em solid var(--line);
+  border-bottom: none;
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.1em;
+  letter-spacing: 0.1em;
+  padding: 0.15em 0.5em 0.1em;
+  text-transform: uppercase;
+}
+
+/* Auxiliary blocks (verse/intro/coda) print as their own grille. */
+.bx-block + .bx-block,
+.bx-caption { margin-top: 1.2em; }
+
+.bx-caption {
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.15em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.25em;
+}
+
+.bx-row {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  position: relative; /* anchors the section letter in the gutter */
+}
+
+/* Section letter in the left margin, centred on its section's first row. */
+.bx-seclabel {
+  position: absolute;
+  left: -1.6em;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--fg);
+  color: var(--bg);
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.0em;
+  line-height: 1;
+  padding: 0.12em 0.22em;
+}
+
+/* Lattice borders: every box draws right+bottom; left only at the start of a
+   run (.run-start), top only where no box sits above (.lat-top) — so shared
+   edges are a single line, like the printed table. */
+.bx {
+  position: relative;
+  min-height: 5em;
+  min-width: 0;
+  border-right: 0.14em solid var(--line);
+  border-bottom: 0.14em solid var(--line);
+}
+
+.bx.run-start { border-left: 0.14em solid var(--line); }
+.bx.lat-top { border-top: 0.14em solid var(--line); }
+
+/* Lone chord: big, centred — like the printed box. */
+.bx-solo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0.1em 0.3em;
+}
+
+/* Two chords: the book's diagonal split — first chord top-left, second
+   bottom-right, a hairline from bottom-left to top-right between them. */
+.bx.duo {
+  background-image: linear-gradient(to top right,
+    transparent calc(50% - 0.045em),
+    var(--line) calc(50% - 0.045em),
+    var(--line) calc(50% + 0.045em),
+    transparent calc(50% + 0.045em));
+}
+
+/* The book writes both chords nearly full-size: the diagonal frees the top
+   strip for the first chord and the bottom strip for the second, so each may
+   run well past the middle of the box (fitBoxes squeezes real collisions). */
+.bx-a,
+.bx-b {
+  position: absolute;
+  font-size: 1em;
+  white-space: nowrap;
+}
+
+.bx-a { top: 0.18em; left: 0.25em; }
+.bx-b { bottom: 0.3em; right: 0.25em; }
+
+/* Three or more chords: side by side across the box, condensed (.tight). */
+.bx-multi {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 0.15em;
+  padding: 0.1em 0.35em;
+  font-size: 0.62em;
+}
+
+.bx-slot { min-width: 0; white-space: nowrap; }
+
+/* Small beat digit before an off-default chord (the book's superscripts). */
+.bx-beat {
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.9em;
+  line-height: 1;
+  margin-right: 0.1em;
+  vertical-align: 1.1em;
+}
+
+/* In the flex containers the sup is a flex item: lift it to the top edge. */
+.bx-solo .bx-beat { align-self: flex-start; padding-top: 0.35em; }
 
 /* -------------------------------------------------------- chord symbols */
 

@@ -71,6 +71,7 @@
     activePl: null, // active playlist id (persisted, §11.4)
     transpose: null, // {shift, spell, targetPc, mode} or null (original key); per-tune
     activeVariants: new Set(), // indices of variants swapped into the grid (independent, but exclusive among variants sharing a bar); per-tune
+    chordView: "grid", // chords panel: "grid" (4 bars/row) | "boxes" (book layout) | "scan" (persisted)
     chordsOnly: false, // list filter: only tunes with digitized chords (persisted)
     startsOn: "", // list filter: opening degree ("" = any, "unknown", "other", or a degree; §8.2a)
     showSuggest: null, // open suggestions group: null | "tunes" | "sections"; per-tune
@@ -356,6 +357,12 @@
     '<rect x="1.7" y="2.7" width="12.6" height="10.6" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.4"/>' +
     '<circle cx="5.6" cy="6.4" r="1.25"/>' +
     '<path d="M3 12.2l3.4-4 2.7 3 2-2.4 2.6 3.4z"/></svg>';
+  /* Dense 4×2 lattice for the "book layout" view (8 boxes per row, like the
+     printed grille). */
+  const ICON_BOXES =
+    '<svg viewBox="0 0 16 16" aria-hidden="true">' +
+    '<path d="M1.2 4.4h13.6M1.2 8h13.6M1.2 11.6h13.6M1.2 4.4v7.2M4.6 4.4v7.2M8 4.4v7.2M11.4 4.4v7.2M14.8 4.4v7.2" ' +
+    'fill="none" stroke="currentColor" stroke-width="1.1"/></svg>';
 
   function iconCluster(t) {
     const chord = hasChordAsset(t)
@@ -642,6 +649,153 @@
     sec.appendChild(renderGrid(bars, beats,
       { double: true, timesig: isFirst ? ts : null, overrides, renderChord: renderer }));
     return sec;
+  }
+
+  /* --------------------------------------- book layout ("boxes") rendering */
+
+  /* Re-creation of the printed grille (data/chords/01_crops): one contiguous
+     lattice of boxes, a section per row of (up to) 8 boxes, the section letter
+     in the left margin and the form badge top-right. Unlike the book we write
+     the chords into every box instead of the "—" repeat dashes. */
+  const BOXES_PER_ROW = 8;
+
+  /* Split a section's bars into lattice rows. The book right-aligns a trailing
+     partial row under the last columns (I Got Rhythm's A' bars 9–10 sit under
+     columns 7–8; Au Privave's bars 9–12 under 5–8); a section that fits one row
+     starts at column 1. */
+  function boxRowsOf(name, bars) {
+    const rows = [];
+    for (let i = 0; i < bars.length; i += BOXES_PER_ROW) {
+      const slice = bars.slice(i, i + BOXES_PER_ROW);
+      const trailing = i > 0 && slice.length < BOXES_PER_ROW;
+      rows.push({
+        section: i === 0 ? name : null,
+        start: trailing ? BOXES_PER_ROW - slice.length + 1 : 1,
+        bars: slice,
+      });
+    }
+    if (!rows.length) rows.push({ section: name, start: 1, bars: [] });
+    return rows;
+  }
+
+  /* The book's unmarked beat placements: a lone chord sits on beat 1, a pair on
+     beats 1 and 3 (the bar's two halves). Anything else gets a small beat digit
+     before the chord, like the printed grille's superscript numerals. */
+  function defaultBoxBeats(count, beats) {
+    if (count === 1) return [1];
+    if (count === 2) return [1, Math.floor(beats / 2) + 1];
+    return null;
+  }
+
+  /* One box: solo chord centred; two chords split along a diagonal (top-left /
+     bottom-right, the book's slash convention); three or more side by side in
+     the condensed face. `data-slots` hands the per-chord room to fitBoxes. */
+  function fillBox(cell, barObj, beats) {
+    const entries = Object.entries(barObj.beats || {})
+      .map(([k, v]) => [parseInt(k, 10), v])
+      .filter(([k]) => Number.isFinite(k) && k >= 1 && k <= beats)
+      .sort((a, b) => a[0] - b[0]);
+    const defaults = defaultBoxBeats(entries.length, beats);
+    const chordHtml = ([beat, chord], i) => {
+      const digit = defaults
+        ? beat !== defaults[i] ? `<sup class="bx-beat">${beat}</sup>` : ""
+        : i > 0 ? `<sup class="bx-beat">${beat}</sup>` : "";
+      return digit + renderChord(chord);
+    };
+    if (!entries.length) return;
+    if (entries.length === 1) {
+      const solo = el("div", "bx-solo");
+      solo.innerHTML = chordHtml(entries[0], 0);
+      cell.appendChild(solo);
+    } else if (entries.length === 2) {
+      cell.classList.add("duo", "tight");
+      const a = el("div", "bx-a");
+      a.innerHTML = chordHtml(entries[0], 0);
+      const b = el("div", "bx-b");
+      b.innerHTML = chordHtml(entries[1], 1);
+      cell.append(a, b);
+    } else {
+      cell.classList.add("tight");
+      const multi = el("div", "bx-multi");
+      multi.dataset.slots = String(entries.length);
+      entries.forEach((entry, i) => {
+        const slot = el("div", "bx-slot");
+        slot.innerHTML = chordHtml(entry, i);
+        multi.appendChild(slot);
+      });
+      cell.appendChild(multi);
+    }
+  }
+
+  /* One lattice block (rows share borders like the printed table). Border
+     collapse: every box draws right+bottom; left only at the start of its run,
+     top only where the row above has no box in that column. */
+  function renderBoxBlock(rows) {
+    const block = el("div", "bx-block");
+    let prevCols = new Set();
+    rows.forEach((row) => {
+      const rowEl = el("div", "bx-row");
+      if (row.section) {
+        const label = el("div", "bx-seclabel");
+        label.textContent = displaySectionName(row.section);
+        rowEl.appendChild(label);
+      }
+      const cols = new Set();
+      row.bars.forEach((bar, i) => {
+        const col = row.start + i;
+        cols.add(col);
+        const cell = el("div", "bx");
+        cell.style.gridColumn = String(col);
+        if (i === 0) cell.classList.add("run-start");
+        if (!prevCols.has(col)) cell.classList.add("lat-top");
+        fillBox(cell, bar, row.beats);
+        rowEl.appendChild(cell);
+      });
+      prevCols = cols;
+      block.appendChild(rowEl);
+    });
+    return block;
+  }
+
+  /* The whole book-layout view for a tune: the form badge, then one block for
+     the chorus sections and a separately captioned block per auxiliary section
+     (verse/intro/coda print as their own grille in the book). */
+  function renderBoxGrid(tune) {
+    const wrap = el("div", "boxgrid");
+    const beats = beatsPerBar(tune);
+    if (tune.form) {
+      const formRow = el("div", "bx-formrow");
+      const badge = el("div", "bx-form");
+      badge.textContent = tune.form;
+      formRow.appendChild(badge);
+      wrap.appendChild(formRow);
+    }
+    let sectionNames = Object.keys(tune.sections || {});
+    if (!state.showVerses) sectionNames = sectionNames.filter((n) => !VERSE_SECTION.test(n));
+    /* Group into blocks: consecutive chorus sections share one lattice. */
+    const blocks = [];
+    sectionNames.forEach((name) => {
+      const aux = AUX_SECTION.test(name);
+      const last = blocks[blocks.length - 1];
+      if (aux || !last || last.aux) blocks.push({ aux, sections: [name] });
+      else last.sections.push(name);
+    });
+    blocks.forEach((blk) => {
+      if (blk.aux) {
+        const cap = el("div", "bx-caption");
+        cap.textContent = displaySectionName(blk.sections[0]);
+        wrap.appendChild(cap);
+      }
+      const rows = [];
+      blk.sections.forEach((name) => {
+        boxRowsOf(blk.aux ? null : name, tune.sections[name] || []).forEach((r) => {
+          r.beats = beats;
+          rows.push(r);
+        });
+      });
+      wrap.appendChild(renderBoxBlock(rows));
+    });
+    return wrap;
   }
 
   /* ------------------------------------------------------------ tune head */
@@ -1157,6 +1311,63 @@
     tools.appendChild(toggle);
     panel.prepend(tools);
     panel._setScan = apply; // lets the ABC error fallback flip to the scan
+  }
+
+  /* Three-way view switch on the chords panel of a digitized tune: rendered
+     grid (4 bars/row) ⇄ book layout (8 boxes/row, like the printed grille) ⇄
+     original scan. The choice persists across tunes; a tune without a scan
+     falls back to the grid for the scan choice without overwriting it. */
+  function addChordViewSwitch(panel, t, alt) {
+    panel.classList.add("has-render");
+    const views = [
+      ["grid", ICON_GRID, "Chord grid (4 bars per row)"],
+      ["boxes", ICON_BOXES, "Book layout (8 boxes per row)"],
+    ];
+    if (t.chord_image) {
+      [].concat(t.chord_image).forEach((src) => panel.appendChild(scanImg(src, alt)));
+      views.push(["scan", ICON_IMAGE, "Original scan"]);
+    }
+    const tools = el("div", "panel-tools");
+    const seg = el("div", "view-seg");
+    const buttons = new Map();
+    const apply = (view) => {
+      panel.classList.toggle("show-boxes", view === "boxes");
+      panel.classList.toggle("show-scan", view === "scan");
+      buttons.forEach((btn, v) => {
+        btn.classList.toggle("on", v === view);
+        btn.setAttribute("aria-pressed", String(v === view));
+      });
+    };
+    views.forEach(([view, icon, title]) => {
+      const btn = el("button", "scan-toggle");
+      btn.type = "button";
+      btn.innerHTML = icon;
+      btn.title = title;
+      btn.setAttribute("aria-label", title);
+      btn.addEventListener("click", () => {
+        if (state.chordView === view) return;
+        state.chordView = view;
+        try {
+          localStorage.setItem("grilles.chordView", view);
+        } catch (e) { /* ignore */ }
+        const scroll = viewEl.scrollTop;
+        apply(view);
+        requestAnimationFrame(fitAll); // the fit passes preserve the scroll
+        /* If a scan hasn't finished loading, the panel is briefly short and
+           the browser clamps the scroll — put it back once each image is in. */
+        panel.querySelectorAll("img.scan").forEach((img) => {
+          if (!img.complete) {
+            img.addEventListener("load", () => { viewEl.scrollTop = scroll; }, { once: true });
+          }
+        });
+      });
+      buttons.set(view, btn);
+      seg.appendChild(btn);
+    });
+    /* A persisted "scan" on a scan-less tune renders as the grid. */
+    apply(buttons.has(state.chordView) ? state.chordView : "grid");
+    tools.appendChild(seg);
+    panel.prepend(tools);
   }
 
   /* Melody lead sheet from the embedded ABC (spec §5.4). Never crashes the
@@ -1900,15 +2111,12 @@
             i === 0, tune.time_signature, overrides[name]));
         });
         panel.appendChild(grid);
+        panel.appendChild(renderBoxGrid(tune)); // book layout (hidden unless chosen)
         const variants = renderVariants(tune, beats);
         if (variants) panel.appendChild(variants);
         const extras = renderExtras(tune, beats);
         if (extras) panel.appendChild(extras);
-        if (t.chord_image) {
-          addScanToggle(panel, t.chord_image, `${t.title || id} — original chord scan`, ICON_GRID);
-        } else {
-          panel.classList.add("has-render");
-        }
+        addChordViewSwitch(panel, t, `${t.title || id} — original chord scan`);
       } else {
         panel.appendChild(scanImg(t.chord_image, `${t.title || id} — chord scan`));
       }
@@ -1958,7 +2166,7 @@
   const MIN_GRID_FONT = 8; // px — floor for the width-crowding shrink in fitGridWidth
 
   function fitGrid() {
-    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid:not(.variant-grid)");
+    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan):not(.show-boxes) .grid:not(.variant-grid)");
     if (!grid) return;
     grid.style.fontSize = ""; // back to the CSS width-based size
     if (state.gridZoom !== 1) {
@@ -1991,7 +2199,7 @@
   const MAX_MOBILE_FONT = 20; // px — ceiling for the grow-to-fill pass on phones/portrait
 
   function fitGridWidth() {
-    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid:not(.variant-grid)");
+    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan):not(.show-boxes) .grid:not(.variant-grid)");
     if (!grid) return;
     grid.style.maxWidth = "";
 
@@ -2075,7 +2283,7 @@
      the same centred pixel width — so every variant barline lines up with the
      main grid's columns above it (spec §6). Runs after the main grid is fitted. */
   function syncVariantGrids() {
-    const panel = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan)");
+    const panel = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan):not(.show-boxes)");
     if (!panel) return;
     const main = panel.querySelector(".grid:not(.variant-grid)");
     if (!main) return;
@@ -2092,10 +2300,60 @@
     });
   }
 
+  /* Book-layout view: apply the user's zoom to the lattice font, then squeeze
+     each chord into its box (or its part of the box — a diagonal half, a
+     side-by-side slot): any chord wider than its region gets a per-chord
+     font-size cut so it fits, instead of overflowing across the lattice line.
+     Regions are measured fresh each pass (inline sizes reset first), so
+     resize / zoom / transpose all re-fit correctly. */
+  const BOX_PAD_EM = 0.35; // breathing room kept inside a box, per side
+  const MIN_BOX_CHORD_PX = 6; // px floor for the per-chord squeeze
+
+  function fitBoxes() {
+    const bg = paneEl.querySelector(
+      ".panel.chords:not([hidden]).show-boxes:not(.show-scan) .boxgrid");
+    if (!bg) return;
+    bg.style.fontSize = "";
+    if (state.gridZoom !== 1) {
+      const base = parseFloat(getComputedStyle(bg).fontSize);
+      bg.style.fontSize = Math.max(6, base * state.gridZoom).toFixed(2) + "px";
+    }
+    const fontPx = parseFloat(getComputedStyle(bg).fontSize);
+    const padPx = BOX_PAD_EM * fontPx;
+    bg.querySelectorAll(".bx").forEach((box) => {
+      const inner = box.clientWidth - 2 * padPx;
+      if (inner <= 0) return;
+      /* region width per chord container inside this box */
+      const parts = [];
+      box.querySelectorAll(".bx-solo").forEach((p) => parts.push([p, inner]));
+      /* Diagonal halves ride the box's top/bottom strip, which the diagonal
+         leaves almost entirely free — so each chord may take most of the
+         width; only true collisions with the line get squeezed. */
+      box.querySelectorAll(".bx-a, .bx-b").forEach((p) => parts.push([p, inner * 0.8]));
+      const multi = box.querySelector(".bx-multi");
+      if (multi) {
+        const n = parseInt(multi.dataset.slots, 10) || 1;
+        multi.querySelectorAll(".bx-slot").forEach((p) => parts.push([p, inner / n]));
+      }
+      parts.forEach(([part, avail]) => {
+        if (!part.querySelector(".chord")) return;
+        part.style.fontSize = "";
+        /* Content width, not the container's: .bx-solo spans its whole box. */
+        const w = Array.from(part.children)
+          .reduce((s, c) => s + c.getBoundingClientRect().width, 0);
+        if (w <= avail) return;
+        const cur = parseFloat(getComputedStyle(part).fontSize);
+        part.style.fontSize =
+          Math.max(MIN_BOX_CHORD_PX, cur * (avail / w)).toFixed(2) + "px";
+      });
+    });
+  }
+
   function fitAll() {
     fitGrid();
     fitGridWidth();
     syncVariantGrids();
+    fitBoxes();
   }
 
   let resizeTimer = null;
@@ -2120,6 +2378,8 @@
     state.showChords = c === null ? true : c === "1";
     state.showMelody = m === null ? true : m === "1";
     state.showVerses = v === null ? true : v === "1";
+    const cv = localStorage.getItem("grilles.chordView");
+    if (cv === "grid" || cv === "boxes" || cv === "scan") state.chordView = cv;
     state.chordsOnly = localStorage.getItem("grilles.chordsOnly") === "1";
     if (localStorage.getItem("grilles.list") === "0") setListCollapsed(true);
   } catch (e) { /* ignore */ }
