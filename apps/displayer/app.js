@@ -744,12 +744,11 @@
     }
   }
 
-  /* One lattice block (rows share borders like the printed table). Border
-     collapse: every box draws right+bottom; left only at the start of its run,
-     top only where the row above has no box in that column. */
+  /* One block of box rows. Deliberate deviation from the print: the boxes
+     don't share borders — each draws its own full frame, separated by small
+     gaps (a little wider between rows), so the bars read apart. */
   function renderBoxBlock(rows) {
     const block = el("div", "bx-block");
-    let prevCols = new Set();
     rows.forEach((row) => {
       const rowEl = el("div", "bx-row");
       if (row.section) {
@@ -757,18 +756,12 @@
         label.textContent = displaySectionName(row.section);
         rowEl.appendChild(label);
       }
-      const cols = new Set();
       row.bars.forEach((bar, i) => {
-        const col = row.start + i;
-        cols.add(col);
         const cell = el("div", "bx");
-        cell.style.gridColumn = String(col);
-        if (i === 0) cell.classList.add("run-start");
-        if (!prevCols.has(col)) cell.classList.add("lat-top");
+        cell.style.gridColumn = String(row.start + i);
         fillBox(cell, bar, row.beats);
         rowEl.appendChild(cell);
       });
-      prevCols = cols;
       block.appendChild(rowEl);
     });
     return block;

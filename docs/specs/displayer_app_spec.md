@@ -386,8 +386,11 @@ closes it. (The rendered chord grid is not a scan and has its own zoom, §6.5.)
 Re-creates the printed grille (the `data/chords/01_crops` scans) from the
 digitized JSON, with the chords written into every box (no "—" repeat dashes):
 
-- **One contiguous lattice** of boxes, like the printed table: rows share their
-  horizontal borders, boxes their vertical ones (single lines, never doubled).
+- **A grid of framed boxes.** Deliberate deviation from the print (which runs
+  the boxes together as one lattice): every box draws its own full frame,
+  separated by a small gap — a little wider between rows — so the bars are
+  easy to tell apart. Inside lines (the two-chord diagonal, the half/cell
+  dividers, the inset frames) are much thinner than the box frames.
 - **One section per row of up to 8 boxes.** A section longer than 8 bars wraps;
   a trailing partial row is **right-aligned under the last columns**, as the
   book prints it (I Got Rhythm's A' bars 9–10 under columns 7–8, Au Privave's

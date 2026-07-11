@@ -824,11 +824,11 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
 .bx-form {
   border: 0.2em solid var(--line);
-  border-bottom: none;
   font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-size: 1.1em;
   letter-spacing: 0.1em;
   padding: 0.15em 0.5em 0.1em;
+  margin-bottom: 0.4em;
   text-transform: uppercase;
 }
 
@@ -848,8 +848,12 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .bx-row {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
+  column-gap: 0.3em; /* deviation from the print: air between the bars */
   position: relative; /* anchors the section letter in the gutter */
 }
+
+/* A little more air between rows than between the bars of a row. */
+.bx-row + .bx-row { margin-top: 0.55em; }
 
 /* Section letter in the left margin, centred on its section's first row. */
 .bx-seclabel {
@@ -865,19 +869,13 @@ body.list-collapsed #gridZoom { left: 1rem; }
   padding: 0.12em 0.22em;
 }
 
-/* Lattice borders: every box draws right+bottom; left only at the start of a
-   run (.run-start), top only where no box sits above (.lat-top) — so shared
-   edges are a single line, like the printed table. */
+/* Every box draws its own full frame (the gaps above keep them apart). */
 .bx {
   position: relative;
   min-height: 5em;
   min-width: 0;
-  border-right: 0.2em solid var(--line);
-  border-bottom: 0.2em solid var(--line);
+  border: 0.2em solid var(--line);
 }
-
-.bx.run-start { border-left: 0.2em solid var(--line); }
-.bx.lat-top { border-top: 0.2em solid var(--line); }
 
 /* Lone chord: big, centred — like the printed box. */
 .bx-solo {
@@ -899,10 +897,10 @@ body.list-collapsed #gridZoom { left: 1rem; }
    to it, i.e. along the top-right ↔ bottom-left diagonal.) */
 .bx.duo {
   background-image: linear-gradient(to bottom right,
-    transparent calc(50% - 0.05em),
-    var(--line) calc(50% - 0.05em),
-    var(--line) calc(50% + 0.05em),
-    transparent calc(50% + 0.05em));
+    transparent calc(50% - 0.03em),
+    var(--line) calc(50% - 0.03em),
+    var(--line) calc(50% + 0.03em),
+    transparent calc(50% + 0.03em));
 }
 
 /* The book writes both chords nearly full-size: the diagonal frees the top
@@ -933,8 +931,8 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .bx-main.clear-top { padding-top: 2.5em; }
 
 /* The inset is one quadrant of the box (half width × half height); its frame
-   is an inside line, thinner than the lattice (0.125em at the 0.8em font =
-   0.1em at the box scale). */
+   is an inside line, much thinner than the frame (0.075em at the 0.8em font =
+   0.06em at the box scale). */
 .bx-inset {
   position: absolute;
   width: 50%;
@@ -942,7 +940,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 0.125em solid var(--line);
+  border: 0.075em solid var(--line);
   background: var(--bg);
   font-size: 0.8em;
   line-height: 1;
@@ -970,9 +968,9 @@ body.list-collapsed #gridZoom { left: 1rem; }
   font-size: 0.8em;
 }
 
-/* Inside lines, thinner than the lattice: 0.125em at the halves' 0.8em font
-   = 0.1em at the box scale. */
-.bx-half + .bx-half { border-top: 0.125em solid var(--line); }
+/* Inside lines, much thinner than the box frame: 0.075em at the halves'
+   0.8em font = 0.06em at the box scale. */
+.bx-half + .bx-half { border-top: 0.075em solid var(--line); }
 
 .bx-cell {
   flex: 1;
@@ -984,7 +982,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
   white-space: nowrap;
 }
 
-.bx-cell + .bx-cell { border-left: 0.125em solid var(--line); }
+.bx-cell + .bx-cell { border-left: 0.075em solid var(--line); }
 
 /* Small beat digit before an off-default chord (the book's superscripts). */
 .bx-beat {
