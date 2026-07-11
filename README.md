@@ -5,6 +5,11 @@ grilles** become structured JSON, the companion manuscript's **melodies** become
 ABC notation, and a static web app browses the whole corpus with chord grid and
 lead sheet side by side.
 
+New here (or back after a while)? Start with the
+[user manual](docs/USER_MANUAL.md) — the human-centric tour of the data flow,
+the apps, the similarity engine, the "I changed X, what do I run?" recipes,
+and where the Claude API is used and what it costs.
+
 ## Repository map
 
 ```
@@ -34,6 +39,8 @@ Both pipelines share one data-flow convention under `data/<pipeline>/`:
 | `raw/` (chords) / `debug/` (melody) | machine output, regenerable | no (gitignored) |
 | `wip/` | human edits under review | yes |
 | `verified/` | approved ground truth | yes |
+| `05_annotated/` (chords) | verified + key/fingerprint annotations | yes |
+| `06_similarity/` (chords) | similarity engine output, regenerable | no (gitignored) |
 
 `data/chords/02_raw/` is **read-only source material** for the review apps — edits
 live in `wip/` until a tune is promoted to `verified/`.
@@ -57,6 +64,9 @@ Run every command below from the repo root.
 | 3 verify | `python apps/verifier/verify_app.py` | raw → `wip/` (edits) → `verified/` (approved) |
 | 4 index | `python pipelines/build_title_index.py` | both crops dirs → `data/title_index.csv` |
 | 5 publish | `python apps/displayer/build_data.py`, then push `main` | verified + index → displayer bundle → GitHub Pages |
+| 6 annotate keys | `python pipelines/chords/annotate_keys.py` | verified → `data/chords/05_annotated/*.json` (two-voter key annotation, resumable) |
+| 7 verify keys | `python apps/key_verifier/key_verify_app.py` | human review of the key annotations |
+| 8 similarity | `python -m pipelines.chords.similarity.compute` | `05_annotated` → `data/chords/06_similarity/` (regenerable) → rebundled by stage 5 |
 
 Details, options, and helper tools: [pipelines/chords/README.md](pipelines/chords/README.md).
 

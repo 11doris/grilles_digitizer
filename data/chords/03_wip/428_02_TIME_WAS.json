@@ -1,0 +1,297 @@
+{
+  "composer": "Miguel PRADO – Gabriel LUNA – S.K. RUSSELL",
+  "year": "1936",
+  "style": "STANDARD",
+  "tempo": "SLOW",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "TIME WAS",
+  "page": 428,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints 'B VERSE'.",
+    "B_bar7_optional": "Section B bar 7 lower region prints parenthesised optional chord '(Gb9)'; kept as printed."
+  },
+  "recordings": [
+    "J.Dorsey 41- J.Coltrane 57- D.Staton 59",
+    "B.Powell 54.56- M.Torme 57- D.Garcia 55",
+    "J.Christy 62- J.Davis 55- A.Haven 66",
+    "J.Hawkworth 63- T.Mayers 56.58-",
+    "J.Hoffman 57"
+  ],
+  "variants": [
+    {
+      "applies_to": "Bar 3, 11, 27",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 3
+        },
+        {
+          "section": "A1",
+          "bar": 3
+        },
+        {
+          "section": "A2",
+          "bar": 3
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Abmaj7",
+            "3": "(D7)"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Gm7b5",
+            "3": "C7"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "Fm7",
+            "3": "B9"
+          }
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "D9#11"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dbmaj7",
+          "3": "Dbm6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab6",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "D9#11"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dbmaj7",
+          "3": "Dbm6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab6",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab6",
+          "3": "Db6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab6",
+          "3": "G7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cmaj7",
+          "3": "Ebo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C6",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbm7",
+          "3": "(Gb13)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb(b9)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "D9#11"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dbmaj7",
+          "3": "Dbm6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab6",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab6"
+        }
+      }
+    ]
+  }
+}

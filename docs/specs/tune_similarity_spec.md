@@ -72,7 +72,9 @@ Conventions that carry over from the rest of the repo:
   pipeline; `05_annotated` and `06_similarity` are its outputs. Same philosophy as
   `02_raw` → `03_wip` → `04_verified`.
 * **Numbered = regenerable pipeline stage; un-numbered = curated data that must be preserved.**
-  `data/chords/06_similarity/` may be deleted and rebuilt from `05_annotated` at any time.
+  `data/chords/06_similarity/` may be deleted and rebuilt from `05_annotated` at any time —
+  it is therefore gitignored (as is the explorer's `explorer_data.js` bundle); only the compact
+  `apps/displayer/data/similar_data.js` the deployed app needs is committed.
   `data/chords/eval/` is deliberately *not* numbered: it holds human judgment (confirmations,
   ratings, hand-labeled keys) that no pipeline can regenerate — like `data/title_index.csv`, it
   sits beside the tiers, not in them. Never treat it as a build output.
@@ -261,10 +263,18 @@ answer.
   price, completes well within 24 h, perfect for the offline full-corpus run.
 * Either way, handle `stop_reason == "refusal"` and schema-violating replies by flagging the tune
   `needs_review` with the error recorded — never crash the batch.
+* **Durability:** every annotation is written to `05_annotated` the moment its vote arrives
+  (a crash loses at most one in-flight call), and a batch run persists its batch id to
+  `data/chords/key_annotation_batch.json` until the results are fetched, so an interrupted
+  poll (sleep, network, Ctrl-C) is recovered with `annotate_keys.py --resume-batch` — a paid
+  batch can never be orphaned.
 
 **Cost budget** (Opus 4.8, $5/$25 per MTok): ~2.5K input + ~250 output tokens per tune →
 ≈ $0.02/tune interactive, ≈ $0.01/tune batched. Full 2500-tune corpus ≈ **$25–50 one-time**; the
-32 current tunes are cents. The fingerprint accounts for only ~100–250 *output* tokens of that —
+32 current tunes are cents. *Implementation note:* the shipped voter runs **adaptive thinking**
+(`MAX_TOKENS = 16000`) and thinking tokens bill as output, so real per-tune output can exceed the
+~250-token JSON several-fold; check `usage` on the first large batch and expect the corpus total
+toward the upper end of (or above) this range — still halved by the Batches API. The fingerprint accounts for only ~100–250 *output* tokens of that —
 a few dollars across the whole corpus — because the expensive input is already being paid for the
 key. This is why the fingerprint rides along in the same call rather than being a separate pass.
 

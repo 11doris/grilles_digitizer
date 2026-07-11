@@ -20,6 +20,7 @@ import argparse
 import json
 import re
 import shutil
+import sys
 import threading
 import time
 import webbrowser
@@ -31,6 +32,12 @@ from flask import Flask, abort, jsonify, render_template, request, send_file
 # Mutable globals — overridden by CLI args before app.run()
 # ---------------------------------------------------------------------------
 _REPO = Path(__file__).resolve().parents[2]  # repo root
+sys.path.insert(0, str(_REPO))
+
+from pipelines.chords.digitizer.validation import (  # noqa: E402
+    ValidationError, _check_chord, _check_section_keys, _iter_chords)
+from pipelines.chords.similarity.normalize import (  # noqa: E402
+    ChordParseError, expand_tune)
 TUNES_DIR = (_REPO / "data" / "chords" / "02_raw").resolve()
 CROPS_DIR = (_REPO / "data" / "chords" / "01_crops").resolve()
 VERIFIED_DIR = (_REPO / "data" / "chords" / "04_verified").resolve()
@@ -38,7 +45,8 @@ VERIFIED_DIR = (_REPO / "data" / "chords" / "04_verified").resolve()
 # WIP_DIR until a tune is verified, at which point it is copied to VERIFIED_DIR.
 WIP_DIR = (_REPO / "data" / "chords" / "03_wip").resolve()
 
-_IGNORED_STEMS = frozenset({"run_report", "run_state", "verification_state"})
+_IGNORED_STEMS = frozenset(
+    {"run_report", "run_state", "verification_state", "batch_state"})
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 # Preserve insertion order of JSON keys (e.g. section names) instead of
@@ -76,9 +84,52 @@ def _is_tune(p: Path) -> bool:
     return (
         p.is_file()
         and p.suffix == ".json"
+        and not p.name.endswith(".error.json")  # transcription failure stubs
         and not p.stem.endswith("_opus")
         and p.stem not in _IGNORED_STEMS
     )
+
+
+def _validate_tune(data: dict) -> str | None:
+    """Why this tune would break downstream builds, or None if it is clean.
+
+    Runs the digitizer's structural checks plus the similarity engine's chord
+    parser, so a bad edit fails here — in front of the reviewer — instead of
+    aborting a later similarity/displayer build (tune_similarity_spec §10).
+    """
+    sections = data.get("sections")
+    if not isinstance(sections, dict):
+        return "sections must be an object"
+    try:
+        for chord in _iter_chords(sections):
+            _check_chord(chord)
+        _check_section_keys(sections)
+        expand_tune(data)
+    except (ValidationError, ChordParseError) as exc:
+        return str(exc)
+    return None
+
+
+# Title cache for the list endpoint, keyed by source file and mtime: a list
+# refresh over the full book (~1600 tunes) must not re-parse every JSON.
+_title_cache: dict[Path, tuple[int, str]] = {}
+
+
+def _tune_title(tid: str, fallback: Path) -> str:
+    src = _source_path(tid) or fallback
+    try:
+        mtime = src.stat().st_mtime_ns
+    except OSError:
+        return tid
+    cached = _title_cache.get(src)
+    if cached is not None and cached[0] == mtime:
+        return cached[1]
+    try:
+        title = json.loads(src.read_text("utf-8")).get("title", tid)
+    except Exception:
+        title = tid
+    _title_cache[src] = (mtime, title)
+    return title
 
 
 def _tune_sort_key(p: Path) -> tuple:
@@ -158,11 +209,7 @@ def api_list():
     for p in _list_tunes():
         tid = p.stem
         # Show the WIP title if the tune has unsaved-to-source edits.
-        src = _source_path(tid) or p
-        try:
-            d = json.loads(src.read_text("utf-8"))
-        except Exception:
-            d = {}
+        title = _tune_title(tid, p)
         if tid in verified_set:
             status = "verified"
         elif tid in deferred_set:
@@ -171,7 +218,7 @@ def api_list():
             status = "needs_review"
         tunes.append({
             "id": tid,
-            "title": d.get("title", tid),
+            "title": title,
             "verified": status == "verified",
             "deferred": status == "deferred",
             "status": status,
@@ -219,8 +266,9 @@ def api_save(tune_id: str):
     body = request.get_json(silent=True)
     if body is None:
         return jsonify({"error": "Invalid JSON body"}), 400
-    if "sections" in body and not isinstance(body["sections"], dict):
-        return jsonify({"error": "sections must be an object"}), 400
+    error = _validate_tune(body)
+    if error:
+        return jsonify({"error": f"Validation failed: {error}"}), 400
     WIP_DIR.mkdir(exist_ok=True)
     _wip_path(tune_id).write_text(
         json.dumps(body, indent=2, ensure_ascii=False), "utf-8"
@@ -239,6 +287,15 @@ def api_verify(tune_id: str):
     src = _source_path(tune_id)
     if src is None:
         abort(404)
+    # Promotion gate: 04_verified is ground truth for every downstream stage,
+    # so nothing unparseable may ever land there.
+    try:
+        data = json.loads(src.read_text("utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        return jsonify({"error": f"Cannot read tune: {exc}"}), 400
+    error = _validate_tune(data)
+    if error:
+        return jsonify({"error": f"Not verified — fix first: {error}"}), 400
     VERIFIED_DIR.mkdir(exist_ok=True)
     shutil.copy2(src, VERIFIED_DIR / f"{tune_id}.json")
     s = _load_state()
@@ -336,4 +393,4 @@ if __name__ == "__main__":
         webbrowser.open(f"http://localhost:{args.port}")
 
     threading.Thread(target=_open_browser, daemon=True).start()
-    app.run(debug=True, port=args.port, use_reloader=False)
+    app.run(debug=False, port=args.port, use_reloader=False)

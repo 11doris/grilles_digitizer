@@ -227,7 +227,9 @@ def main() -> int:
 
     out_path = here / "data" / "tunes_data.js"
     out_path.parent.mkdir(exist_ok=True)
-    payload = json.dumps(tunes, ensure_ascii=False, indent=1)
+    # Minified: this bundle is parsed on every page load (mobile included)
+    # and grows with every digitized tune — never ship it pretty-printed.
+    payload = json.dumps(tunes, ensure_ascii=False, separators=(",", ":"))
     out_path.write_text(f"window.TUNES = {payload};\n", encoding="utf-8")
 
     # Similarity bundle (spec §8.1): compact top-K suggestions per tune.

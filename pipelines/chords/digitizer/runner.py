@@ -21,7 +21,7 @@ from .images import prepare_crop
 from .manifest import WorkUnit, load_units
 from .prompt import STRICTER_REMINDER, build_user_content
 from .validation import ValidationError, parse_json, review_flags, validate
-from .vlm import MissingCredentials, VLMClient, VLMRefusal
+from .vlm import MissingCredentials, VLMClient, VLMRefusal, VLMTruncated
 
 
 @dataclass
@@ -104,6 +104,21 @@ def _already_valid(config: Config, unit: WorkUnit) -> bool:
         return False
 
 
+def _accept(config: Config, unit: WorkUnit, raw: str, attempts: int) -> UnitResult:
+    """Shared acceptance path for interactive and batch replies: parse,
+    inject the runner-owned fields (title/page/source, spec §5, so those
+    always-present fields can never be missing), canonicalize, validate,
+    write. Raises ValidationError when the reply doesn't hold up."""
+    obj = parse_json(raw)
+    obj["title"] = unit.title
+    obj["page"] = unit.page
+    obj["source"] = SOURCE_CONSTANT
+    _canonicalize_chords(obj)
+    validate(obj, unit)
+    output.write_tune(config, unit, obj)
+    return UnitResult(unit, "ok", attempts, review_flags(obj, unit))
+
+
 def _transcribe_unit(config: Config, client: VLMClient, unit: WorkUnit) -> UnitResult:
     """Run one work unit: clean image, then call+validate with per-unit retries."""
     crop_path = config.crops_dir / unit.current_file
@@ -114,24 +129,25 @@ def _transcribe_unit(config: Config, client: VLMClient, unit: WorkUnit) -> UnitR
 
     last_error = ""
     last_raw = ""
+    max_tokens = config.max_output_tokens
     for attempt in range(1, config.retries + 1):
         reminder = STRICTER_REMINDER * (attempt - 1)  # progressively stricter
         try:
-            raw = client.transcribe(user_content, extra_reminder=reminder)
+            raw = client.transcribe(user_content, extra_reminder=reminder,
+                                    max_tokens=max_tokens)
             last_raw = raw
-            obj = parse_json(raw)
-            # The runner owns title/page/source (spec §5) — inject before validating
-            # so those always-present fields can never be missing.
-            obj["title"] = unit.title
-            obj["page"] = unit.page
-            obj["source"] = SOURCE_CONSTANT
-            _canonicalize_chords(obj)
-            validate(obj, unit)
+            return _accept(config, unit, raw, attempt)
+        except VLMTruncated as exc:
+            # Dense multi-strain grids overflow the default cap. Retry at a
+            # doubled cap (output is billed by use, not by the cap) instead
+            # of burning an error stub that would need a manual
+            # --max-output-tokens rerun.
+            last_error = f"{type(exc).__name__}: {exc}"
+            max_tokens = min(max_tokens * 2, 32000)
+            continue
         except (ValidationError, VLMRefusal) as exc:
             last_error = f"{type(exc).__name__}: {exc}"
             continue
-        output.write_tune(config, unit, obj)
-        return UnitResult(unit, "ok", attempt, review_flags(obj, unit))
 
     output.write_error_stub(
         config, unit, attempts=config.retries, last_error=last_error, raw_excerpt=last_raw
@@ -229,7 +245,33 @@ def run(config: Config) -> dict:
 
     config.out_dir.mkdir(parents=True, exist_ok=True)
 
+    # Batch phase (spec §18 cost lever): resume any unfinished batch first,
+    # then submit a new one when this run's pending set is large enough. Two
+    # rounds cover the case where a resumed batch was submitted under a
+    # different selection and today's pending set still qualifies. Accepted
+    # results are written to disk inside the batch phase; everything else
+    # (batch errors, rejected replies) falls through to the interactive
+    # retry ladder below.
+    from . import batch as batch_mod
+    batch_results: dict[str, UnitResult] = {}
+    batch_attempted: set[str] = set()
+    for _ in range(2):
+        pending = [u for u in units
+                   if u.current_file not in batch_attempted
+                   and not _already_valid(config, u)]
+        if batch_mod.load_state(config) is None and (
+                config.interactive or not pending
+                or len(pending) < batch_mod.BATCH_THRESHOLD):
+            break
+        accepted, attempted = batch_mod.run_batch(
+            config, client.api, pending, _log)
+        batch_results.update(accepted)
+        batch_attempted |= attempted
+
     def process(unit: WorkUnit) -> UnitResult:
+        pre = batch_results.pop(unit.current_file, None)
+        if pre is not None:
+            return pre
         if _already_valid(config, unit):
             return UnitResult(unit, "skipped", 0)
         try:

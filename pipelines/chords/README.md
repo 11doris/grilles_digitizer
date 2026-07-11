@@ -12,6 +12,7 @@ structured JSON — one file per tune. Run everything from the repo root.
 | 5 publish | `apps/displayer/build_data.py` | `verified/` + index → displayer bundle |
 | 6 annotate keys | `annotate_keys.py` (→ `key_annotation/` package) | `verified/` → `data/chords/05_annotated/*.json` (key, section keys, opening, fingerprint; resumable) |
 | 7 verify keys | `apps/key_verifier/key_verify_app.py` | human review of `05_annotated` (needs-review queue first) |
+| 8 similarity | `python -m pipelines.chords.similarity.compute` | `05_annotated` → `data/chords/06_similarity/` (regenerable, gitignored) |
 
 Helpers (not stages):
 
@@ -66,6 +67,17 @@ already exists and still validates is skipped, so you can stop (Ctrl-C, lid
 close, power loss) and continue across sittings — at most the one tune in
 flight is redone.
 
+**Batch mode (automatic at ≥ 50 pending crops):** the calls are submitted
+through the Batches API at **50% price** and polled until done (usually well
+under an hour, up to 24 h worst case). The batch id is saved to
+`data/chords/02_raw/batch_state.json` the moment it is created and removed
+once the results are in, so interrupting the wait costs nothing — just re-run
+`transcribe.py` and it fetches the same batch instead of paying again. Every
+batch reply passes through the exact same validation as interactive mode;
+the few that fail are retried interactively with the normal stricter-reminder
+ladder (never re-batched). Force per-call mode with `--interactive` when you
+want a handful of results right now.
+
 ### Options (Appendix B of the spec)
 
 | Flag | Default | Purpose |
@@ -78,12 +90,13 @@ flight is redone.
 | `--retries R` | `3` | Per-unit validation retries (progressively stricter reminder) |
 | `--dilate N` | `1` | Ink-thickening iterations before the call (`0` to disable, `2` for very thin scans) |
 | `--max-long-edge PX` | `1100` | Downscale the long edge to this before the call (never upscales) |
-| `--max-output-tokens N` | `2500` | Output token **cap** (billed by actual use, not the cap; raise for very dense/multi-strain grids) |
+| `--max-output-tokens N` | `2500` | Output token **cap** (billed by actual use, not the cap). A truncated reply auto-retries at a doubled cap, so only raise this if a tune still fails after its retries |
 | `--page-range A:B` | — | Limit a session to tunes whose `page` is in `[A, B]` |
 | `--delay S` | `0` | Sleep between units |
 | `--only FILE` | — | Restrict to one `current_file` (debugging) |
 | `--sample N` | — | Randomly pick at most `N` crops whose tune is not yet decoded into `--out` |
 | `--seed N` | — | RNG seed for `--sample` (reproducible selection) |
+| `--interactive` | off | Force per-call mode even at ≥ 50 pending crops (batch mode is automatic otherwise: 50% price, results within hours) |
 
 Run the book in slices with `--page-range`, or just stop and re-run — resume
 makes that free; no sharding is needed on a single machine.
@@ -124,8 +137,9 @@ valid JSON after retries).
   crop, temperature 0 where the model allows it, with short exponential backoff
   on transient failures (429/5xx/connection). The tune is requested via **forced
   tool use** (a single `record_tune` tool), which guarantees structured JSON
-  with no prose preamble on every model. A `max_tokens` cutoff is surfaced as a
-  clear "raise --max-output-tokens" error.
+  with no prose preamble on every model. A `max_tokens` cutoff is retried
+  automatically at a doubled cap (dense multi-strain grids overflow the
+  default); only a tune that keeps overflowing lands in an error stub.
 - **Validate** ([digitizer/validation.py](digitizer/validation.py)) — the
   per-tune self-check from spec §17. Structural failures trigger a retry;
   exhausting retries writes an `.error.json` stub and the batch continues. A
@@ -150,7 +164,11 @@ python apps/verifier/verify_app.py
 ```
 
 Browses `data/chords/02_raw/`, saves edits to `data/chords/03_wip/`, promotes approved
-tunes to `data/chords/04_verified/`. `raw/` itself is never modified. Spec:
+tunes to `data/chords/04_verified/`. `raw/` itself is never modified. Saving or
+promoting validates the tune server-side (structural checks + every chord run
+through the similarity engine's parser) and rejects with the exact error, so a
+typo can never reach `04_verified` and break a later similarity/displayer
+build. Spec:
 [docs/specs/verification_app_spec.md](../../docs/specs/verification_app_spec.md).
 
 ## Stage 6 — annotate keys (Phase 0 of the similarity spec)
@@ -159,6 +177,7 @@ tunes to `data/chords/04_verified/`. `raw/` itself is never modified. Spec:
 python pipelines/chords/annotate_keys.py                # annotate everything pending
 python pipelines/chords/annotate_keys.py --status       # per-status counts
 python pipelines/chords/annotate_keys.py --set-key <stem> <tonic> <major|minor>
+python pipelines/chords/annotate_keys.py --resume-batch  # fetch an interrupted batch run
 ```
 
 Implements Phase 0 of
@@ -175,6 +194,32 @@ skipped while its annotated file matches the source's sha256; editing a
 verified source demotes it back to the machine statuses. **Never hand-edit
 `05_annotated` files** — corrections go through the app or `--set-key`, which
 recompute the derived fields.
+
+Crash-safe by design: each annotation is written the moment its LLM vote
+arrives, and a Batches-API run persists its batch id to
+`data/chords/key_annotation_batch.json` until the results are fetched — if
+the run is interrupted (Ctrl-C, sleep, network), `--resume-batch` picks the
+batch up where it left off; the id can also be passed explicitly
+(`--resume-batch msgbatch_...`). Each run also removes orphan annotations
+whose `04_verified` source was deleted, so withdrawn tunes drop out of the
+similarity corpus and the displayer at the next annotate pass.
+
+## Stage 8 — similarity engine (Phase 3 of the similarity spec)
+
+```sh
+python -m pipelines.chords.similarity.compute           # full rebuild
+python -m pipelines.chords.similarity.compute --eval    # rebuild + eval harness
+```
+
+Reads `05_annotated` tunes with status `agreed`/`verified` and writes
+`data/chords/06_similarity/` (per-tune top-K neighbours + alignments, the
+compact displayer bundle, `index.json`). The whole directory is **regenerable
+and gitignored** — delete and rebuild at any time; only the displayer's
+`apps/displayer/data/similar_data.js` (written by `build_data.py` from it) is
+committed. The similarity explorer's bundle
+(`apps/similarity_explorer/data/explorer_data.js`) is likewise gitignored —
+rebuild it with `python apps/similarity_explorer/build_data.py` before
+opening the explorer.
 
 ## Stage 7 — verify keys (human review)
 

@@ -119,20 +119,29 @@ def ngram_matrix(sequences: list[tuple]):
     return mat
 
 
-def top_candidates(mat, k: int) -> list[list[tuple[int, float]]]:
-    """Per row: top-k (other_row, cosine) pairs, self excluded."""
-    sims = (mat @ mat.T).tocsr()
+def top_candidates(mat, k: int, block: int = 1024
+                   ) -> list[list[tuple[int, float]]]:
+    """Per row: top-k (other_row, cosine) pairs, self excluded.
+
+    The self-similarity product is taken in row blocks so the full N x N
+    matrix never materializes — at the 1500-tune target the section matrix
+    is thousands of rows and a one-shot product would spike to hundreds of
+    MB while only the per-row top-k is ever kept.
+    """
     out: list[list[tuple[int, float]]] = []
-    for r in range(mat.shape[0]):
-        row = sims.getrow(r)
-        idx, val = row.indices, row.data
-        keep = idx != r
-        idx, val = idx[keep], val[keep]
-        if len(idx) > k:
-            top = np.argpartition(val, -k)[-k:]
-            idx, val = idx[top], val[top]
-        order = np.argsort(-val)
-        out.append([(int(idx[i]), float(val[i])) for i in order])
+    for start in range(0, mat.shape[0], block):
+        sims = (mat[start:start + block] @ mat.T).tocsr()
+        for i in range(sims.shape[0]):
+            r = start + i
+            row = sims.getrow(i)
+            idx, val = row.indices, row.data
+            keep = idx != r
+            idx, val = idx[keep], val[keep]
+            if len(idx) > k:
+                top = np.argpartition(val, -k)[-k:]
+                idx, val = idx[top], val[top]
+            order = np.argsort(-val)
+            out.append([(int(idx[j]), float(val[j])) for j in order])
     return out
 
 
@@ -257,12 +266,20 @@ def run_engine(docs: dict[str, dict], out_dir: Path,
     print(f"stage A: {len(tune_groups)} tune hash groups,"
           f" {len(section_groups)} cross-tune section hash groups")
 
-    # Stage B — retrieval
+    # Stage B — retrieval. The shortlist widens with the corpus (5% of the
+    # entry count, floored at --top-candidates) so recall doesn't erode as
+    # the big families (blues, rhythm changes) outgrow a fixed top-100;
+    # verify with --eval's candidate-recall metric at corpus milestones.
+    def k_for(n_entries: int) -> int:
+        return max(top_candidates_k, math.ceil(n_entries * 0.05))
+
+    tune_k, sec_k = k_for(len(tunes)), k_for(len(sections))
     tune_cands = top_candidates(ngram_matrix([e.tokens for e in tunes]),
-                                top_candidates_k)
+                                tune_k)
     sec_cands = top_candidates(ngram_matrix([e.tokens for e in sections]),
-                               top_candidates_k)
-    print(f"stage B: retrieval done at {time.time() - t0:.1f}s")
+                               sec_k)
+    print(f"stage B: retrieval done at {time.time() - t0:.1f}s"
+          f" (k: tunes {tune_k}, sections {sec_k})")
 
     # Stage C — alignment scoring on retrieval candidates
     def score_all(entries: list[Entry], cands, keep: int):
