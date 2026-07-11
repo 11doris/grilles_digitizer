@@ -22,8 +22,9 @@ into:
 3. **Similarity links** — a local engine finds tunes and sections that share
    harmony (contrafacts, borrowed bridges, common turnarounds).
 4. **A public web app** (the *displayer*, on GitHub Pages) that shows the
-   original scans, the rendered chord grids, melodies, and "similar tunes"
-   suggestions.
+   original scans, the rendered chord grids (switchable between a 4-bars-per-row
+   reading view and a "book layout" that re-creates the printed 8-boxes-per-row
+   grille), melodies, and "similar tunes" suggestions.
 
 Everything is file-based. There is no database; every pipeline stage reads
 one folder and writes the next.

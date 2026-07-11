@@ -288,12 +288,14 @@ Each panel's **content** follows one rule — *render if digitized, else show th
 scan*:
 
 - **Chord panel**: the styled chord grid (§6–§7) when `has_chord_json`;
-  otherwise the chord scan PNG (`chord_image`). When *both* exist, an
-  **"original scan" toggle** swaps the rendered grid for the scan **in place**
-  (default: rendered; no scroll jump). The button sits in a small tools row
-  above the panel content — never overlaid on the image — and shows a photo
-  icon when the rendered form is visible, swapping to the grid icon while the
-  scan is shown (i.e. the icon shows what it switches to).
+  otherwise the chord scan PNG (`chord_image`). A digitized tune carries a
+  **three-way view switch** in a small tools row above the panel content —
+  never overlaid on the image: **chord grid** (4 bars per row, §6.1–6.5) /
+  **book layout** (the printed grille re-created, 8 boxes per row, §6.6) /
+  **original scan** (only offered when `chord_image` exists). Switching swaps
+  the content **in place** (no scroll jump). The choice persists across tunes
+  (`grilles.chordView`); a persisted "scan" renders as the grid on a tune
+  without a scan, without altering the stored preference. Default: chord grid.
 - **Melody panel**: the abcjs lead sheet (rendered from `abc` via
   `ABCJS.renderAbc`, responsive width, theme-aware colors) when
   `has_melody_abc`; otherwise the melody scan PNG (`melody_image`). When *both*
@@ -378,6 +380,37 @@ closes it. (The rendered chord grid is not a scan and has its own zoom, §6.5.)
 - The tune head stacks to a single centered column when the pane is narrow
   (small screen, or the chord panel sharing the row with the melody panel) via a
   container query.
+
+### 6.6 Book layout view
+
+Re-creates the printed grille (the `data/chords/01_crops` scans) from the
+digitized JSON, with the chords written into every box (no "—" repeat dashes):
+
+- **One contiguous lattice** of boxes, like the printed table: rows share their
+  horizontal borders, boxes their vertical ones (single lines, never doubled).
+- **One section per row of up to 8 boxes.** A section longer than 8 bars wraps;
+  a trailing partial row is **right-aligned under the last columns**, as the
+  book prints it (I Got Rhythm's A' bars 9–10 under columns 7–8, Au Privave's
+  bars 9–12 under 5–8). Shorter sections start at column 1.
+- The **section letter** sits in the left margin (same badge style as §6.2) on
+  the section's first row. **Auxiliary sections** (verse/intro/interlude/coda/
+  transition) print as their **own captioned lattice block**, like the book's
+  separate verse grilles.
+- The **form badge** (`form`, e.g. "34 A A B A'") sits in a bordered box on the
+  lattice's top-right, like the book.
+- **Boxes**: one chord — big, centered. Two chords — the book's **diagonal
+  split**: a hairline from bottom-left to top-right, first chord top-left,
+  second bottom-right, both near full size (the diagonal frees the top/bottom
+  strips). Three or more — side by side in the condensed face. A small
+  superscript **beat digit** marks off-default placements (default: lone chord
+  on 1; a pair on 1 and 3), like the book's numerals.
+- **Fit**: em-based like the grid; the grid zoom (§6.5) applies. A JS pass
+  squeezes any chord wider than its box (or its part of the box — diagonal
+  strip, side-by-side slot) with a per-chord font cut, so chords never cross
+  the lattice lines. Multi-chord boxes use the condensed `.tight` treatment
+  (narrow face, tightened accidental/alteration columns).
+- Variants and the transpose control's effect: the box view renders the **base
+  chart** (no variant swaps) but **follows the active transposition**.
 
 ---
 
