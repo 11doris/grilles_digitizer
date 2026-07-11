@@ -395,8 +395,9 @@ digitized JSON, with the chords written into every box (no "—" repeat dashes):
 - **Section shading**: every box carries a subtle tint of its section's color —
   identical for repeats (A, A1, A2 share one shade) and **consistent across
   tunes** (fixed hues for the common letters, a deterministic hash into a fixed
-  pool for other names). A toggle beside the view switch (shown only in this
-  view) hides the shading; the choice persists (`grilles.boxTint`).
+  pool for other names). The shading applies to the 4-bar chord grid's bars
+  too; a droplet toggle in the top bar (next to the theme button) hides it in
+  both views, and the choice persists (`grilles.boxTint`).
 - **One section per row of up to 8 boxes.** A section longer than 8 bars wraps;
   a trailing partial row is **right-aligned under the last columns**, as the
   book prints it (I Got Rhythm's A' bars 9–10 under columns 7–8, Au Privave's

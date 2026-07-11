@@ -112,7 +112,8 @@ body {
 #listToggle,
 #chordFilter,
 #playlistBtn,
-#playlistClear {
+#playlistClear,
+#tintToggle {
   background: none;
   border: 1px solid var(--border);
   border-radius: 0.4rem;
@@ -125,6 +126,12 @@ body {
 /* Digitized-chords filter: lit like the active-playlist button when engaged. */
 #chordFilter { flex: none; }
 #chordFilter.on { border-color: var(--accent); color: var(--accent); }
+
+/* Section-shading toggle (next to the theme button): applies to both chord
+   views via body.tint-off. */
+#tintToggle { flex: none; }
+#tintToggle svg { width: 0.95rem; height: 0.95rem; fill: currentColor; vertical-align: -0.15rem; }
+#tintToggle.on { border-color: var(--accent); color: var(--accent); }
 
 /* The playlist button carries the push-right margin (it sits left of ☾/☀). */
 #playlistBtn {
@@ -372,12 +379,8 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .panel.show-boxes .grid,
 .panel.show-boxes .variants { display: none; }
 
-/* Segmented view switch (grid / book layout / scan) in the panel tools row.
-   The section-shading toggle only applies to (and shows with) the book
-   layout. */
+/* Segmented view switch (grid / book layout / scan) in the panel tools row. */
 .view-seg { display: inline-flex; gap: 0.25rem; }
-.view-seg .tint-btn { display: none; }
-.panel.show-boxes:not(.show-scan) .view-seg .tint-btn { display: inline-flex; }
 
 /* ------------------------------------------ melody lead sheet (abcjs) */
 
@@ -874,28 +877,32 @@ body.list-collapsed #gridZoom { left: 1rem; }
   padding: 0.12em 0.22em;
 }
 
-/* Boxes carry their section's hue (--bxhue, set per row by the renderer),
-   mixed into the theme background — a light wash in light mode, a stronger
-   mix in dark mode where 12% wouldn't show. The ⬤ toggle turns the shading
-   off panel-wide (.tint-off). Boxes inside a four-bar group share single
-   borders: all but the group's first drop their left border and lean on the
-   neighbour's right one. */
+/* Section shading, shared by BOTH chord views: boxes (book layout) and bars
+   (4-bar grid) mix their section's hue (--bxhue, set by the renderer) into
+   the theme background — a light wash in light mode, a stronger mix in dark
+   mode where 12% wouldn't show. The topbar droplet toggles body.tint-off. */
+.bx,
+.section .bar:not(.empty) {
+  --bxtint: color-mix(in srgb, var(--bxhue, transparent) 12%, var(--bg));
+  background-color: var(--bxtint);
+}
+
+:root[data-theme="dark"] .bx,
+:root[data-theme="dark"] .section .bar:not(.empty) {
+  --bxtint: color-mix(in srgb, var(--bxhue, transparent) 26%, var(--bg));
+}
+
+body.tint-off .bx,
+body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
+
 .bx {
   position: relative;
   min-height: 5em;
   min-width: 0;
   border: 0.2em solid var(--line);
-  --bxtint: color-mix(in srgb, var(--bxhue, transparent) 12%, var(--bg));
-  background-color: var(--bxtint);
-}
-
-:root[data-theme="dark"] .bx {
-  --bxtint: color-mix(in srgb, var(--bxhue, transparent) 26%, var(--bg));
 }
 
 .bx.merge-left { border-left: none; }
-
-.panel.tint-off .bx { --bxtint: var(--bg); }
 
 /* Lone chord: big, centred — like the printed box. */
 .bx-solo {
@@ -906,9 +913,10 @@ body.list-collapsed #gridZoom { left: 1rem; }
   padding: 0.1em 0.3em;
 }
 
-/* Solo and main chords fill their room; fitBoxes squeezes real overflows. */
-.bx-solo .chord,
-.bx-main .chord { font-size: 1.15em; }
+/* Solo chords fill their room; the main chord of an inset pair stays a bit
+   smaller so its ink clears the inset quadrant. fitBoxes squeezes overflows. */
+.bx-solo .chord { font-size: 1.15em; }
+.bx-main .chord { font-size: 1.05em; }
 
 /* Two chords: the book's diagonal split — the line runs from the top-right
    corner to the bottom-left one, making the top-left triangle the home of the
@@ -935,7 +943,9 @@ body.list-collapsed #gridZoom { left: 1rem; }
   transform: translate(-50%, -50%);
 }
 
-.bx-a { top: 27%; left: 27%; }
+/* The first chord sits a touch lower than its mirror: a root accidental (♭/♯)
+   adds ink above the chord, which touched the box's top border at 27%. */
+.bx-a { top: 31%; left: 27%; }
 .bx-b { top: 73%; left: 73%; }
 
 /* Uneven two-chord bars (1+4, 1+2, …): the long chord big, the short one in
@@ -949,8 +959,10 @@ body.list-collapsed #gridZoom { left: 1rem; }
   transform: translate(-50%, -50%);
 }
 
-.bx-main.clear-bottom { top: 26%; left: 50%; }
-.bx-main.clear-top { top: 74%; left: 50%; }
+/* 24%/76% (not 25/75) plus the smaller main font keep a root accidental's ink
+   clear of the inset's edge. */
+.bx-main.clear-bottom { top: 24%; left: 50%; }
+.bx-main.clear-top { top: 76%; left: 50%; }
 
 /* The inset is one quadrant of the box (half width × half height); its frame
    is an inside line, much thinner than the frame (0.075em at the 0.8em font =

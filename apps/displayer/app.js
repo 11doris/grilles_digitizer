@@ -156,6 +156,26 @@
     } catch (e) { /* ignore */ }
   });
 
+  /* Section-shading toggle (topbar, next to the theme button): tints every
+     section's boxes/bars in both chord views; body.tint-off turns it off. */
+  const tintBtn = document.getElementById("tintToggle");
+
+  function applyTintToggle() {
+    document.body.classList.toggle("tint-off", !state.boxTint);
+    tintBtn.classList.toggle("on", state.boxTint);
+    tintBtn.setAttribute("aria-pressed", String(state.boxTint));
+    tintBtn.title = state.boxTint ? "Hide section shading" : "Show section shading";
+    tintBtn.setAttribute("aria-label", tintBtn.title);
+  }
+
+  tintBtn.addEventListener("click", () => {
+    state.boxTint = !state.boxTint;
+    try {
+      localStorage.setItem("grilles.boxTint", state.boxTint ? "1" : "0");
+    } catch (e) { /* ignore */ }
+    applyTintToggle();
+  });
+
   /* ----------------------------------------------------- tune list drawer */
 
   function setListOpen(open) {
@@ -364,10 +384,6 @@
     '<svg viewBox="0 0 16 16" aria-hidden="true">' +
     '<path d="M1.2 4.4h13.6M1.2 8h13.6M1.2 11.6h13.6M1.2 4.4v7.2M4.6 4.4v7.2M8 4.4v7.2M11.4 4.4v7.2M14.8 4.4v7.2" ' +
     'fill="none" stroke="currentColor" stroke-width="1.1"/></svg>';
-  /* Paint drop for the section-shading toggle of the book layout. */
-  const ICON_TINT =
-    '<svg viewBox="0 0 16 16" aria-hidden="true">' +
-    '<path d="M8 1.5c2.8 3.4 4.6 5.9 4.6 8.2A4.6 4.6 0 0 1 8 14.3a4.6 4.6 0 0 1-4.6-4.6C3.4 7.4 5.2 4.9 8 1.5z"/></svg>';
 
   function iconCluster(t) {
     const chord = hasChordAsset(t)
@@ -648,6 +664,7 @@
 
   function renderSection(name, bars, beats, isFirst, ts, overrides, renderer) {
     const sec = el("div", "section");
+    sec.style.setProperty("--bxhue", sectionTint(name)); // section shading
     const badge = el("div", "sec-label");
     badge.textContent = displaySectionName(name);
     sec.appendChild(badge);
@@ -1407,26 +1424,6 @@
     });
     /* A persisted "scan" on a scan-less tune renders as the grid. */
     apply(buttons.has(state.chordView) ? state.chordView : "grid");
-    /* Section-shading toggle — only shown while the book layout is up. */
-    const tint = el("button", "scan-toggle tint-btn");
-    tint.type = "button";
-    tint.innerHTML = ICON_TINT;
-    const applyTint = () => {
-      panel.classList.toggle("tint-off", !state.boxTint);
-      tint.classList.toggle("on", state.boxTint);
-      tint.setAttribute("aria-pressed", String(state.boxTint));
-      tint.title = state.boxTint ? "Hide section shading" : "Show section shading";
-      tint.setAttribute("aria-label", tint.title);
-    };
-    tint.addEventListener("click", () => {
-      state.boxTint = !state.boxTint;
-      try {
-        localStorage.setItem("grilles.boxTint", state.boxTint ? "1" : "0");
-      } catch (e) { /* ignore */ }
-      applyTint();
-    });
-    applyTint();
-    seg.appendChild(tint);
     tools.appendChild(seg);
     panel.prepend(tools);
   }
@@ -2444,6 +2441,7 @@
     const cv = localStorage.getItem("grilles.chordView");
     if (cv === "grid" || cv === "boxes" || cv === "scan") state.chordView = cv;
     state.boxTint = localStorage.getItem("grilles.boxTint") !== "0";
+    applyTintToggle();
     state.chordsOnly = localStorage.getItem("grilles.chordsOnly") === "1";
     if (localStorage.getItem("grilles.list") === "0") setListCollapsed(true);
   } catch (e) { /* ignore */ }
