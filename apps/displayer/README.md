@@ -16,6 +16,15 @@ and copies every referenced scan into `crops/` and `melody_crops/` here, so the
 deployed folder is self-contained. Rerun after verifying new tunes or melodies,
 then commit the changes. Open `index.html` directly (file://) to test locally.
 
+## Practice rhythm samples
+
+`data/brush_samples.js` (the swing-brush kit used by the topbar practice
+player) is generated — rerun after tweaking the synthesis and commit:
+
+```sh
+python apps/displayer/render_brush_samples.py
+```
+
 ## Deploy
 
 Pushing to `main` deploys automatically — the GitHub Pages workflow
