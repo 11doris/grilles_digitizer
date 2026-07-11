@@ -318,6 +318,107 @@ per-tune caps; the full data (every kept pair with alignments) stays in
   what tells you if the shortlist or thresholds need widening.
 - **Variants are ignored.** Only the main printed changes are compared.
 
+### Using the similarity explorer
+
+The explorer is your local inspection-and-judgment tool for everything the
+engine produced. Two commands to get it fresh, then just open
+`apps/similarity_explorer/index.html` in a browser (it works from `file://`):
+
+```sh
+python -m pipelines.chords.similarity.compute        # if 06_similarity is stale
+python apps/similarity_explorer/build_data.py        # rebuild the (gitignored) bundle
+```
+
+Three tabs:
+
+- **Tunes / Sections** — browsing. Pick a tune in the sidebar (the search box
+  filters), and you see its top matches with the full score breakdown
+  (cosine, alignment, meter/mode penalties) and both chord grids side by
+  side, aligned bars highlighted. Filters: a minimum-score slider,
+  "same family", and "cross-tune" (sections).
+- **Confirm** — judgment mode, the one that matters long-term. It queues the
+  **candidate pairs** from `data/chords/eval/similarity_groundtruth.json` —
+  machine-proposed relationships awaiting a human verdict — and shows each
+  pair side by side. Press **G** for good ("genuinely related"), **B** for
+  bad, **←/→** to navigate. Judged pairs leave the queue.
+
+**What a rating does — a three-step chain:**
+
+1. **In the browser: nothing yet.** Ratings sit in the browser's
+   localStorage (watch the counter). They are not sent anywhere. Corollary:
+   export before clearing browser data; ratings don't travel between
+   browsers.
+2. **Export.** The Export button downloads `ratings_YYYY-MM-DD.json`. Move
+   it into `data/chords/eval/ratings/` and commit it — `eval/` is the one
+   tier nothing can regenerate.
+3. **Ingest.** `python -m pipelines.chords.similarity.evaluate
+   --ingest-ratings` merges all rating files into the ground truth: a
+   **good** promotes the candidate family to `confirmed` (or creates a new
+   confirmed pair), a **bad** deletes the candidate and records a confirmed
+   *non-match*. Re-ingesting the same file is safe.
+
+**And the important non-effect:** ratings never change similarity scores or
+the displayer's suggestions — the engine is deterministic from the chord
+data. What you are building is the *measuring stick*: the ground truth that
+the eval harness scores the engine against (next subsection). Every G/B
+makes those metrics mean more.
+
+### Measuring quality: `compute --eval` and the harness
+
+```sh
+python -m pipelines.chords.similarity.compute --eval   # rebuild + measure + record
+python -m pipelines.chords.similarity.evaluate         # measure only (no rebuild, no record)
+```
+
+`--eval` rebuilds the engine output and then scores it against the curated
+ground truth in `data/chords/eval/`. It answers one question: **did the
+engine find the relationships a human already knows are true?** Four
+metrics are printed:
+
+- **Tune recall@5 / @10** — for every confirmed family (say, five tunes
+  known to share the blues form), take each member and check what fraction
+  of its family mates appear in its top-5 / top-10 suggestions; average
+  over everyone. `1.0` means the engine never misses a known relative.
+  Reported separately for `confirmed` families (real signal, human-verified)
+  and `candidate` families (machine-proposed, unverified — treat those
+  numbers only as a relative indicator between two engine versions, never as
+  truth).
+- **Section recall@5 / @10** — the same idea for known section families
+  (shared bridges etc.), matched by (tune, section).
+- **Precision@10** — of the suggestion slots in anyone's top-10 that you
+  have rated, what fraction were rated *good*? This is the "how much junk am
+  I showing" number, and it only exists once rating files are in
+  `eval/ratings/` — another reason confirm-mode minutes are well spent.
+- **Non-match violations** — every pair a human marked *not related* that
+  the engine still scores above 0.5. The expected output is `0`; any entry
+  is a regression to investigate, named explicitly.
+
+After the metrics, the harness prints a **delta report** against the
+previous run's numbers (stored in `06_similarity/index.json`), e.g.
+`tune_recall.confirmed.recall@10: 0.89 -> 0.94 (+0.05)` — so an engine
+change shows its effect at a glance. With `--eval` the new metrics are then
+recorded in `index.json` as the next baseline; the standalone
+`evaluate` run measures without moving the baseline (add `--update-index`
+to record explicitly).
+
+**When to run it:**
+
+- after **any change to the engine** (weights, thresholds, normalization) —
+  the house rule from the spec is that a scoring-relevant change lands with
+  its harness run quoted in the commit message;
+- at **corpus milestones** (say every few hundred newly digitized tunes) —
+  this is what tells you whether the retrieval shortlist and display
+  thresholds still hold up at scale;
+- after **ingesting ratings** — more ground truth can move every metric,
+  which is the point.
+
+Interpreting movement: recall dropping on `confirmed` families is the alarm
+that matters. If `candidate` recall drops while `confirmed` holds, it may
+just mean the candidates were wrong — confirm or reject them in the
+explorer first. And a violation appearing means a pair a human explicitly
+rejected is being ranked high — always worth a look at the alignment in the
+explorer before touching any weights.
+
 ## 5. Workflows — "I changed X, what do I run?"
 
 The safe universal answer is: **run the chain downstream of what you
@@ -380,6 +481,13 @@ Just re-run `python pipelines/chords/transcribe.py` — it notices the saved
 harness metrics before/after; rebuild the explorer bundle
 (`python apps/similarity_explorer/build_data.py`) to inspect pairs, and the
 displayer bundle if you want the changes live.
+
+**I judged pairs in the explorer's confirm mode.**
+Export (button in the app) → move the downloaded `ratings_*.json` into
+`data/chords/eval/ratings/` → `python -m pipelines.chords.similarity.evaluate
+--ingest-ratings` → commit both the rating file and the updated ground
+truth. Rebuild the explorer bundle and the judged pairs leave the confirm
+queue. Scores don't change — the eval metrics get more trustworthy.
 
 **I finished a melody (.abc).**
 Drop it in `data/melody/04_verified/` (stem = melody scan stem), rebuild the
