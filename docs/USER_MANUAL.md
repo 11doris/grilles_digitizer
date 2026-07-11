@@ -206,13 +206,78 @@ wrong and the tune matches nonsense.
   similarity picks the ~100 most promising candidates per query. This stage
   exists purely to keep stage C affordable.
 - **Stage C — alignment.** Each candidate pair is scored with a
-  Smith–Waterman **local alignment** — the same algorithm biologists use for
-  DNA — with music-aware substitution scores: an exact chord match scores
-  highest, relative-major/minor and tritone substitutions score nearly as
-  high, unrelated chords penalize, and gaps (inserted/deleted bars) cost an
-  opening plus a per-bar extension. Meter mismatch (3/4 vs 4/4) and mode
-  mismatch (major vs minor) apply mild penalties. The result is a 0–1 score
-  plus the actual matching bar regions, which is what the apps highlight.
+  Smith–Waterman **local alignment** — the same algorithm biologists use to
+  compare DNA — using music-aware substitution scores. This is where the
+  actual similarity number comes from; the next subsection walks through it.
+
+### Inside stage C: the alignment, step by step
+
+**What "local alignment" means.** The engine does not force the two tunes
+into a rigid whole-against-whole comparison. Instead it searches for the
+best-scoring *stretch* of harmony the two share, wherever that stretch sits
+in either tune, and ignores everything outside it. That is the right notion
+for this corpus: one tune may borrow eight bars of another, add an intro,
+drop a tag, or insert a two-bar turnaround — a whole-form comparison would
+punish all of that, a local one finds the shared passage anyway.
+
+**How the search works, intuitively.** Both tunes are already token
+sequences (two half-bar slots per bar, each slot a key-relative
+degree + quality, see above). The algorithm walks the two sequences and, at
+every step, does one of three things:
+
+1. **pair up the current two slots** and add their substitution score
+   (positive for compatible chords, negative for clashes — the table below);
+2. **skip a slot in one tune** (a "gap"): the other tune inserted or removed
+   material there, at a cost;
+3. **cut its losses**: whenever the running score would drop below zero it
+   abandons that stretch and starts fresh — this is what makes the alignment
+   *local*.
+
+Dynamic programming guarantees the result is the best possible stretch over
+all pairings, gaps and starting points, not a greedy guess. The raw score is
+the sum over that best stretch.
+
+**The substitution table** (the musical judgment lives here — a chord pair
+is scored by what a jazz musician would accept as "the same function"):
+
+| Pair of slots | Score | Musical reading |
+|---|---|---|
+| identical degree + quality | **+2.0** | the same chord (`ii min` = `ii min`) |
+| same degree, related quality | **+1.6** | functional near-equivalents on one root: `maj↔dom` (the blues I played as I7), `dom↔sus` (suspended dominant), `min↔m7b5` (the two ii shapes), `m7b5↔dim` (diminished family) |
+| tritone substitution | **+1.4** | two dominants a tritone apart (`Db7` standing in for `G7`) |
+| relative major/minor | **+1.4** | `I maj` against `vi min` and the like — the classic substitute pair (C ↔ Am) |
+| same quality, unrelated degree | **−1.0** | *not* evidence: every jazz tune is full of m7 chords; sharing a quality on the wrong root means nothing |
+| anything else | **−1.5** | a genuine clash |
+| N.C. against N.C. | **+0.5** | two breaks line up — weak positive evidence |
+| N.C. against a chord | **−0.5** | a break against sounding harmony — mild penalty |
+
+Gaps are **affine**: opening one costs 2.0, each further half-bar slot in
+the *same* gap only 0.6. In practice that means one contiguous four-bar
+insertion (an interlude, an extra tag) is cheap-ish — about the cost of two
+clashing chords — while scattering many little one-slot gaps everywhere is
+expensive. The alignment therefore prefers to treat structural differences
+as a few clean insertions rather than shredding the match into confetti,
+which is also how a musician would describe the relationship.
+
+**From raw score to the 0–1 number you see.** The raw sum depends on length
+(a 32-bar match accumulates more points than an 8-bar one), so it is
+normalized by the query's *self-alignment* — the score the query gets
+against itself, i.e. the maximum conceivable. The ratio answers: *what
+fraction of this tune's harmony is recovered in the candidate?* 1.0 means
+wholly contained (contrafact territory); the displayer's suggestion floor
+is 0.25. Two mild multiplicative penalties follow: ×0.95 when the meters
+differ (3/4 vs 4/4) and ×0.9 when the modes differ (major vs minor) — a
+nudge, not a wall, so a minor-ized recasting of a major tune still surfaces,
+just below its same-mode rivals.
+
+**Two implementations, one behavior.** Scoring all ~100 retrieval candidates
+per query uses a vectorized numpy version that computes only the score
+(fast, no memory of *where* the match was). Only for the pairs that are
+actually kept does a second, exact implementation re-run the alignment with
+full traceback, recovering the slot-by-slot path — that path, converted to
+bar numbers on the printed chart, is what the explorer and displayer
+highlight. Unit tests force the two implementations to agree exactly, so
+the number you rank by and the bars you see can never drift apart.
 
 Sections are compared with the same machinery, any section against any
 section, so a borrowed bridge is found even when the rest of the tunes
