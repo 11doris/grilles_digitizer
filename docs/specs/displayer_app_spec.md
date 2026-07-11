@@ -398,12 +398,19 @@ digitized JSON, with the chords written into every box (no "—" repeat dashes):
   separate verse grilles.
 - The **form badge** (`form`, e.g. "34 A A B A'") sits in a bordered box on the
   lattice's top-right, like the book.
-- **Boxes**: one chord — big, centered. Two chords — the book's **diagonal
-  split**: a hairline from bottom-left to top-right, first chord top-left,
-  second bottom-right, both near full size (the diagonal frees the top/bottom
-  strips). Three or more — side by side in the condensed face. A small
-  superscript **beat digit** marks off-default placements (default: lone chord
-  on 1; a pair on 1 and 3), like the book's numerals.
+- **Boxes** (all following the book's conventions): one chord — big, centered.
+  Two chords on the bar's halves (beats 1 and 3 in 4/4) — the **diagonal
+  split**: the line runs from the **top-right corner to the bottom-left** one,
+  making the top-left triangle the home of the first chord and the
+  bottom-right triangle that of the second, both near full size. Two chords of
+  **uneven length** (1+4, 1+2, …) — the long chord big, the short one in a
+  **small framed inset box** in the corner matching its position (bottom-right
+  when late, top-left for a pickup chord). Three or more — the box **halves
+  horizontally** (top strip = the bar's first half, bottom = the second); a
+  half with two chords splits into side-by-side cells (beats 1, 3, 4 → one
+  chord over two; all four beats → 2×2 quadrants). Positions encode the beats,
+  so a small superscript **beat digit** only marks a chord sitting off its
+  position's implied beat.
 - **Fit**: em-based like the grid; the grid zoom (§6.5) applies. A JS pass
   squeezes any chord wider than its box (or its part of the box — diagonal
   strip, side-by-side slot) with a per-chord font cut, so chords never cross

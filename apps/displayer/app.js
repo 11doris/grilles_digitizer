@@ -678,52 +678,69 @@
     return rows;
   }
 
-  /* The book's unmarked beat placements: a lone chord sits on beat 1, a pair on
-     beats 1 and 3 (the bar's two halves). Anything else gets a small beat digit
-     before the chord, like the printed grille's superscript numerals. */
-  function defaultBoxBeats(count, beats) {
-    if (count === 1) return [1];
-    if (count === 2) return [1, Math.floor(beats / 2) + 1];
-    return null;
-  }
-
-  /* One box: solo chord centred; two chords split along a diagonal (top-left /
-     bottom-right, the book's slash convention); three or more side by side in
-     the condensed face. `data-slots` hands the per-chord room to fitBoxes. */
+  /* One box, following the book's conventions:
+     - one chord: big, centred;
+     - two chords on the bar's two halves (beats 1 and 3 in 4/4): the diagonal
+       split — top-right ↔ bottom-left line, first chord in the top-left
+       triangle, second in the bottom-right one;
+     - two chords of uneven length (1+4, 1+2, …): the long chord big, the
+       short one in a small framed inset box in the corner matching its
+       position (bottom-right when late, top-left for a pickup chord);
+     - three or more: the box halves horizontally — top strip = the bar's
+       first half, bottom strip = the second — and a half with several chords
+       splits into side-by-side cells (Eb over Fm7|F#o for beats 1, 3, 4;
+       four chords make the 2×2 quadrants).
+     Positions encode the beats, so a small superscript digit only marks a
+     chord that sits off its position's implied beat. */
   function fillBox(cell, barObj, beats) {
     const entries = Object.entries(barObj.beats || {})
       .map(([k, v]) => [parseInt(k, 10), v])
       .filter(([k]) => Number.isFinite(k) && k >= 1 && k <= beats)
       .sort((a, b) => a[0] - b[0]);
-    const defaults = defaultBoxBeats(entries.length, beats);
-    const chordHtml = ([beat, chord], i) => {
-      const digit = defaults
-        ? beat !== defaults[i] ? `<sup class="bx-beat">${beat}</sup>` : ""
-        : i > 0 ? `<sup class="bx-beat">${beat}</sup>` : "";
-      return digit + renderChord(chord);
-    };
+    const chordHtml = ([beat, chord], expected) =>
+      (beat !== expected ? `<sup class="bx-beat">${beat}</sup>` : "") +
+      renderChord(chord);
     if (!entries.length) return;
+    const mid = Math.floor(beats / 2) + 1; // first beat of the bar's second half
     if (entries.length === 1) {
       const solo = el("div", "bx-solo");
-      solo.innerHTML = chordHtml(entries[0], 0);
+      solo.innerHTML = chordHtml(entries[0], 1);
       cell.appendChild(solo);
-    } else if (entries.length === 2) {
+    } else if (entries.length === 2 && entries[0][0] === 1 && entries[1][0] === mid) {
       cell.classList.add("duo", "tight");
       const a = el("div", "bx-a");
-      a.innerHTML = chordHtml(entries[0], 0);
+      a.innerHTML = chordHtml(entries[0], 1);
       const b = el("div", "bx-b");
-      b.innerHTML = chordHtml(entries[1], 1);
+      b.innerHTML = chordHtml(entries[1], mid);
       cell.append(a, b);
+    } else if (entries.length === 2) {
+      /* Uneven pair: the chord sounding longer is the main one (ties: the
+         first); the other goes into the corner inset. */
+      cell.classList.add("tight");
+      const durs = entries.map(([b], i) =>
+        (i + 1 < entries.length ? entries[i + 1][0] : beats + 1) - b);
+      const mainIdx = durs[0] >= durs[1] ? 0 : 1;
+      const late = mainIdx === 0; // inset chord comes after the main one
+      const main = el("div", "bx-main " + (late ? "clear-bottom" : "clear-top"));
+      main.innerHTML = chordHtml(entries[mainIdx],
+        late ? 1 : entries[1 - mainIdx][0] + 1);
+      const inset = el("div", "bx-inset " + (late ? "inset-late" : "inset-early"));
+      inset.innerHTML = chordHtml(entries[1 - mainIdx], late ? beats : 1);
+      cell.append(main, inset);
     } else {
       cell.classList.add("tight");
-      const multi = el("div", "bx-multi");
-      multi.dataset.slots = String(entries.length);
-      entries.forEach((entry, i) => {
-        const slot = el("div", "bx-slot");
-        slot.innerHTML = chordHtml(entry, i);
-        multi.appendChild(slot);
-      });
-      cell.appendChild(multi);
+      const wrap = el("div", "bx-halves");
+      [entries.filter(([b]) => b < mid), entries.filter(([b]) => b >= mid)]
+        .forEach((half, hi) => {
+          const strip = el("div", "bx-half");
+          half.forEach((entry, ci) => {
+            const c = el("div", "bx-cell");
+            c.innerHTML = chordHtml(entry, (hi === 0 ? 1 : mid) + ci);
+            strip.appendChild(c);
+          });
+          wrap.appendChild(strip);
+        });
+      cell.appendChild(wrap);
     }
   }
 
@@ -2330,11 +2347,12 @@
          leaves almost entirely free — so each chord may take most of the
          width; only true collisions with the line get squeezed. */
       box.querySelectorAll(".bx-a, .bx-b").forEach((p) => parts.push([p, inner * 0.8]));
-      const multi = box.querySelector(".bx-multi");
-      if (multi) {
-        const n = parseInt(multi.dataset.slots, 10) || 1;
-        multi.querySelectorAll(".bx-slot").forEach((p) => parts.push([p, inner / n]));
-      }
+      /* Uneven pair: the main chord keeps clear of the inset's corner box. */
+      box.querySelectorAll(".bx-main").forEach((p) => parts.push([p, inner * 0.85]));
+      box.querySelectorAll(".bx-inset").forEach((p) => parts.push([p, inner * 0.55]));
+      /* Halved box: each cell owns its flex share of the strip. */
+      box.querySelectorAll(".bx-cell").forEach((p) =>
+        parts.push([p, p.clientWidth - 0.3 * fontPx]));
       parts.forEach(([part, avail]) => {
         if (!part.querySelector(".chord")) return;
         part.style.fontSize = "";

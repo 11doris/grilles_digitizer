@@ -888,10 +888,13 @@ body.list-collapsed #gridZoom { left: 1rem; }
   padding: 0.1em 0.3em;
 }
 
-/* Two chords: the book's diagonal split — first chord top-left, second
-   bottom-right, a hairline from bottom-left to top-right between them. */
+/* Two chords: the book's diagonal split — the line runs from the top-right
+   corner to the bottom-left one, making the top-left triangle the home of the
+   first chord and the bottom-right triangle that of the second. (The gradient
+   axis points to the bottom-right corner; the drawn stripe lies perpendicular
+   to it, i.e. along the top-right ↔ bottom-left diagonal.) */
 .bx.duo {
-  background-image: linear-gradient(to top right,
+  background-image: linear-gradient(to bottom right,
     transparent calc(50% - 0.045em),
     var(--line) calc(50% - 0.045em),
     var(--line) calc(50% + 0.045em),
@@ -911,18 +914,63 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .bx-a { top: 0.18em; left: 0.25em; }
 .bx-b { bottom: 0.3em; right: 0.25em; }
 
-/* Three or more chords: side by side across the box, condensed (.tight). */
-.bx-multi {
+/* Uneven two-chord bars (1+4, 1+2, …): the long chord big, the short one in
+   a small framed box in the corner matching its position in the bar. */
+.bx-main {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
-  gap: 0.15em;
-  padding: 0.1em 0.35em;
-  font-size: 0.62em;
+  padding: 0.1em 0.3em;
 }
 
-.bx-slot { min-width: 0; white-space: nowrap; }
+/* Keep the main chord clear of the inset's corner. */
+.bx-main.clear-bottom { padding-bottom: 1.5em; }
+.bx-main.clear-top { padding-top: 1.5em; }
+
+.bx-inset {
+  position: absolute;
+  border: 0.14em solid var(--line);
+  background: var(--bg);
+  font-size: 0.68em;
+  line-height: 1;
+  padding: 0.25em 0.3em 0.35em;
+  white-space: nowrap;
+}
+
+.bx-inset.inset-late { right: 0; bottom: 0; border-right: none; border-bottom: none; }
+.bx-inset.inset-early { left: 0; top: 0; border-left: none; border-top: none; }
+
+/* Three or more chords: the box halves horizontally (top = the bar's first
+   half, bottom = the second); a half with several chords splits into
+   side-by-side cells — four chords make the 2×2 quadrants. */
+.bx-halves {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.bx-half {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  font-size: 0.68em;
+}
+
+/* 0.206em at the halves' 0.68em font = the lattice's 0.14em line. */
+.bx-half + .bx-half { border-top: 0.206em solid var(--line); }
+
+.bx-cell {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.15em;
+  white-space: nowrap;
+}
+
+.bx-cell + .bx-cell { border-left: 0.206em solid var(--line); }
 
 /* Small beat digit before an off-default chord (the book's superscripts). */
 .bx-beat {
