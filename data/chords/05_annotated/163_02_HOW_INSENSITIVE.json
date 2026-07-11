@@ -82,13 +82,13 @@
       {
         "bar": 7,
         "beats": {
-          "1": "G7"
+          "1": "G7/3"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "G7"
+          "1": "G7/3"
         }
       }
     ],
@@ -256,7 +256,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "31f882cfac4fc2aaa474bec075c7a089c6ef0e014738009c32c39492fb16e5f9",
+    "source_sha256": "376192f7e3b58bde0c06f4ae4c50e91e0f0d285b5dd41b0b29dfb5579593a2f5",
     "scorer": {
       "tonic": "D",
       "mode": "minor",
@@ -277,10 +277,10 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "i (Dm) with chromatic descending line: i - bVII°7 (Db°7) - v6/iv (Cm6) - V7 (G7)",
-      "B": "bVI (Bbmaj7) - bII/bII (Ebmaj7) - ii7b5-V7 (Em7b5-A7) into i (Dm7) - Db7 tritone sub",
-      "C": "iv (Cm7) - B°7 - bVI (Bbmaj7) - ii7b5-V7 (Em7b5-A7) - i (Dm7) - V7 (G7)",
-      "D": "iv-bVII (Cm7-F7) - Bm7-E7 - bVI (Bbmaj7) - V7 (A7) - Bb, ending on ii7b5-V7 turnaround back to i"
+      "A": "i (Dm) with chromatic descending bass through Db°7 and Cm6 to G7/3, prolonging tonic minor",
+      "B": "VImaj7 (Bbmaj7) to bIImaj7 (Ebmaj7), then ii-V (Em7b5-A7) into Dm7 and Db7",
+      "C": "Cm7-Bo7-Bbmaj7 descending, then ii-V (Em7b5-A7) to Dm7 and G7",
+      "D": "Cm7-F7 and Bm7-E7 passing ii-Vs to Bbmaj7-A7-Bb, ending on ii-V (Em7b5-A7) turnaround back to i"
     },
     "modulates": false
   }

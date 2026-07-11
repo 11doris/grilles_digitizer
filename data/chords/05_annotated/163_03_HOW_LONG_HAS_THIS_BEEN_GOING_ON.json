@@ -36,7 +36,7 @@
         {
           "bar": 2,
           "beats": {
-            "1": "Am7",
+            "1": "Am7/4",
             "3": "D7"
           }
         },
@@ -329,7 +329,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "abaaeb2cead3bbff3f970efc9b498fc3a039495d405f35334e0c7c9d558a3ff4",
+    "source_sha256": "dcc3ce3663506f87354dc7a6d0a7da1de39444bdd2607ee622aba80a92184c0d",
     "scorer": {
       "tonic": "G",
       "mode": "major",
@@ -345,15 +345,15 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "turnaround-ending",
       "chromatic-descent",
-      "ii-V-chains"
+      "ii-V-chains",
+      "turnaround-ending"
     ],
     "sections": {
-      "A": "V7 vamp (D7) with diminished neighbor, descending line Bm7-Bbo7-Am7-G#o7 leading to ii-V resolving to I (G)",
-      "A1": "Repeat of A: V7 vamp with chromatic descent resolving to I (G)",
-      "B": "IV (Cmaj7) alternating with F7, then chromatic Bm/vi motion with G9#11-F#9, ending on ii-V (Am7-D7)",
-      "A2": "Repeat of A: V7 vamp with chromatic descent resolving to I (G)"
+      "A": "V7/G with chromatic diminished passing motion, descending ii-chords (Bm7-Am7) with chromatic diminished, resolving to I (G)",
+      "A1": "Repeat of A: dominant prep with chromatic descent resolving to I",
+      "B": "IV(Cmaj7)-bVII7(F7) vamp, then Bm with C#m7b5-F#7, closing on ii-V (Am7-D7) back to I",
+      "A2": "Repeat of A resolving to I (G)"
     },
     "modulates": false
   }

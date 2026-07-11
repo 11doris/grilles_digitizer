@@ -59,14 +59,14 @@
       {
         "bar": 7,
         "beats": {
-          "1": "Emaj7",
+          "1": "Ebm",
           "3": "Em7b5"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "A(b9)",
+          "1": "Ab9",
           "3": "Dm7"
         }
       },
@@ -139,14 +139,14 @@
       {
         "bar": 7,
         "beats": {
-          "1": "Ebmaj7",
+          "1": "Ebm",
           "3": "Em7b5"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "A(b9)",
+          "1": "Ab9",
           "3": "Dm7"
         }
       },
@@ -188,7 +188,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Dm7",
+          "1": "Dm7/7",
           "3": "Bm7b5"
         }
       },
@@ -209,7 +209,7 @@
         "bar": 5,
         "beats": {
           "1": "Gm7",
-          "3": "Gm(maj7)"
+          "3": "G7"
         }
       },
       {
@@ -227,7 +227,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "A(b9)"
+          "1": "A7b9"
         }
       },
       {
@@ -254,23 +254,18 @@
     "chord": "Dm"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "f540aa35ae0bb08c323679e0add308dbeb0bc57e31e184b54728c5914a2cdcfa",
+    "status": "agreed",
+    "source_sha256": "42a30d245327bf3ce82f071b61a46deebce32ad85fae879f4cf49587fe069de8",
     "scorer": {
       "tonic": "D",
       "mode": "minor",
-      "margin": 0.7528
+      "margin": 0.2275
     },
     "llm": {
       "tonic": "D",
       "mode": "minor",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "D",
-      "mode": "minor",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -281,9 +276,9 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "i to G9 (IV/V area), ii-V toward F, chromatic bVI7-Emaj7, iiø-V(b9) back to i, chromatic Bb7-A7-Ab7-G7 descent, ends iiø-Eb9 turnaround",
-      "A1": "same as A with Ebmaj7 in bar 7, ends on Eb9 turnaround",
-      "B": "i with maj7 line, iø-Bb7, ii-V, iv with maj7 line, Eb9, A7sus-A(b9) V resolving to i"
+      "A": "i in Dm, moves to IV-area ii-V (Gm7-C13), chromatic descending dominants (Ab7-G7), cadences via Em7b5-Eb9",
+      "A1": "Repeat of A: i-based with descending dominants and Em7b5-Eb9 turnaround",
+      "B": "Minor-line cliche on i (Dm-Dm(maj7)-Dm7-Bm7b5), through Bb7 and ii-Vs to A7b9 resolving to Dm"
     },
     "modulates": false
   }

@@ -89,7 +89,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "G"
+          "1": "G/5"
         }
       },
       {
@@ -145,7 +145,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "G"
+          "1": "G/5"
         }
       },
       {
@@ -252,7 +252,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "G"
+          "1": "G/5"
         }
       },
       {
@@ -301,7 +301,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "d562fca0135e9453d14d5199c0f1609e0083a5fb7b49934437f952211b81744d",
+    "source_sha256": "a14a613434b34638ca70bdfc738c6786c14af7f9ea995b85dd88e113f5bfa15c",
     "scorer": {
       "tonic": "G",
       "mode": "major",
@@ -315,18 +315,18 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "34-bar AABA standard",
+    "family": "34-bar AABA' standard",
     "tags": [
-      "dominant-cycle-bridge",
       "ii-V-chains",
+      "dominant-cycle-bridge",
       "circle-of-fifths",
       "turnaround-ending"
     ],
     "sections": {
-      "A": "Descending dominant cycle (III7-VI7-V7-... with tritone subs) resolving to I in bar 5, then ii-V-I in G",
-      "A1": "Same as A: dominant cycle into I with ii-V tag",
-      "B": "vi (Em) with secondary dominants (C9, A9) over Dm, ii-V (Am7-D7) leading back, ending on V (D7#5)",
-      "A2": "A material extended with chromatic F7-E7 approach and ii-V, final resolution to I (G)"
+      "A": "Descending dominant chain (V/-cycle) into ii-V-I, resolving to I (G)",
+      "A1": "Repeat of A: dominant chain into ii-V-I on G",
+      "B": "vi-based passage (Em, C9, A9) with ii-V motion back to I",
+      "A2": "A with extended tag; ii-V and F7-E7 chromatic move, final cadence to I (G)"
     },
     "modulates": false
   }

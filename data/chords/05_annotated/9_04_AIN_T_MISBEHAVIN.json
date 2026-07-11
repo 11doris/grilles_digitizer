@@ -285,13 +285,13 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Ab7"
+          "1": "Ab7/3"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "F7"
+          "1": "F7/5"
         }
       },
       {
@@ -397,8 +397,8 @@
     "chord": "Eb"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "aab29bfe8c95fe3ea0ffec4f1c9fba1582faf26d4ff32239d10173fcfbc39513",
+    "status": "agreed",
+    "source_sha256": "8cf7fd1509e50f778203c7a9f4dcbdb79ee9dac64d8b4cd8e9733a95cc59b906",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -408,34 +408,23 @@
       "tonic": "Eb",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "bridge (B) centers on Bb (V of Eb) with ii-V of Bb",
-      "section_keys": {
-        "B": {
-          "tonic": "Bb",
-          "mode": "major"
-        }
-      }
-    },
-    "human": {
-      "tonic": "Eb",
-      "mode": "major",
-      "corrected": true
+      "modulation_note": null
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar AABA standard (with 16-bar verse)",
+    "family": "32-bar AABA standard with verse",
     "tags": [
       "ii-V-chains",
       "turnaround-ending",
       "chromatic-descent"
     ],
     "sections": {
-      "verse_A": "I alternating with chromatic B9/E neighbor chords, then ii-V (F7-Bb7) back to I",
-      "verse_A1": "I with chromatic neighbors, then vi-oriented ii-Vs cadencing toward G, ending Bb7 (V)",
-      "A": "I-vi-ii-V, with Ab/Abm plagal move and Gb7, chain of dominants G7-C7-F7-Bb7",
-      "A1": "Same as A but resolves I-IV-I with G7 turnaround",
-      "B": "Cm-Ab7-F7-C7 dominant motion landing on Bb, ii-V of Bb, ending F7-Bb7 back to I",
-      "A2": "Restates A ending on tonic Eb"
+      "verse_A": "I alternating with chromatic upper-neighbor chords, then vi-related ii-V motion cadencing to I",
+      "verse_A1": "Similar chromatic opening then ii-V figures with tonicizations landing on G",
+      "A": "I-vi-ii-V with G7#5, IV to iv chromatic move, then dominant chain G7-C7-F7-Bb7",
+      "A1": "Same A opening, ending with I-IV and I-V7 turnaround",
+      "B": "iv/vi-based bridge over descending dominants, cadencing through ii-V back to I",
+      "A2": "Final A restating I-vi-ii-V figures, resolving firmly to I"
     },
     "modulates": false
   }

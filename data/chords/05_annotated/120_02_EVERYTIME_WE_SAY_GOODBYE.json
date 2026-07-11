@@ -111,14 +111,14 @@
         "bar": 6,
         "beats": {
           "1": "Gbmaj7",
-          "3": "Bb7"
+          "3": "Bb7/5"
         }
       },
       {
         "bar": 7,
         "beats": {
           "1": "Bbm7",
-          "3": "Eb(b9)"
+          "3": "Eb7b9"
         }
       },
       {
@@ -226,14 +226,14 @@
         "bar": 6,
         "beats": {
           "1": "Gbmaj7",
-          "3": "Bb7"
+          "3": "Bb7/5"
         }
       },
       {
         "bar": 7,
         "beats": {
           "1": "Bbm7",
-          "3": "Eb(b9)"
+          "3": "Eb7b9"
         }
       },
       {
@@ -313,7 +313,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "7d7dd401dbdfd54ce39f17254fddea745c55826cae1afd85e0e4bde3f8e1d6db",
+    "source_sha256": "954a1ad394bce972b26117714b8f118c342b1432c614a2151ac92c702547c6ca",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -330,14 +330,14 @@
     "family": "32-bar ABAC standard",
     "tags": [
       "ii-V-chains",
-      "circle-of-fifths",
+      "chromatic-descent",
       "turnaround-ending"
     ],
     "sections": {
-      "A": "I with diatonic ii-iii motion, #io7 passing chord, then Gbmaj7/Bb7 and ii-V figures staying in Eb",
-      "B": "I with passing dim, ii-V, tonicizing IV (Abmaj7) via Abm7-Db7, back to ii-V of Eb",
-      "A1": "Repeat of A: I loop with passing chords and ii-Vs in Eb",
-      "C": "I with dim passing, ii-V, brief IV, then circle-of-fifths Gm7-C7-F7-Bb7 resolving to Eb"
+      "A": "I-centered with ii chords, diminished passing (bar 3), bVI maj7 (Gbmaj7), ending on backdoor ii-V area (Bbm7-Eb7, Abm7-Db9)",
+      "B": "I with diminished, ii-V to IV (Abmaj7), iv ii-V, altered dominant back to Fm7-Bb7",
+      "A1": "Repeat of A: I-centered with chromatic ii-V motion ending on Abm7-Db9",
+      "C": "I with ii-V motions descending to Ab, then Gm7-C7-F7-Bb7 circle resolving to Eb tonic"
     },
     "modulates": false
   }

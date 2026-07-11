@@ -22,7 +22,7 @@
       {
         "bar": 1,
         "beats": {
-          "1": "Db6",
+          "1": "Db6/3",
           "3": "Eo7"
         }
       },
@@ -36,22 +36,20 @@
       {
         "bar": 3,
         "beats": {
-          "1": "Db6",
-          "3": "Eo7"
+          "1": "Db6/3"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Ebm7",
-          "3": "Ab7"
+          "1": "Db6"
         }
       },
       {
         "bar": 5,
         "beats": {
           "1": "Db",
-          "3": "Db7"
+          "3": "Db7/3"
         }
       },
       {
@@ -65,7 +63,7 @@
         "bar": 7,
         "beats": {
           "1": "A7",
-          "3": "Ab(b9)"
+          "3": "Ab7b9"
         }
       },
       {
@@ -79,7 +77,7 @@
       {
         "bar": 1,
         "beats": {
-          "1": "Db6",
+          "1": "Db6/3",
           "3": "Eo7"
         }
       },
@@ -93,22 +91,20 @@
       {
         "bar": 3,
         "beats": {
-          "1": "Db6",
-          "3": "Eo7"
+          "1": "Db6/3"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Ebm7",
-          "3": "Ab7"
+          "1": "Db6"
         }
       },
       {
         "bar": 5,
         "beats": {
           "1": "Db",
-          "3": "Db7"
+          "3": "Db7/3"
         }
       },
       {
@@ -183,11 +179,11 @@
         }
       }
     ],
-    "A3": [
+    "A2": [
       {
         "bar": 1,
         "beats": {
-          "1": "Db6",
+          "1": "Db6/3",
           "3": "Eo7"
         }
       },
@@ -201,22 +197,20 @@
       {
         "bar": 3,
         "beats": {
-          "1": "Db6",
-          "3": "Eo7"
+          "1": "Db6/3"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Ebm7",
-          "3": "Ab7"
+          "1": "Db6"
         }
       },
       {
         "bar": 5,
         "beats": {
           "1": "Db",
-          "3": "Db7"
+          "3": "Db7/3"
         }
       },
       {
@@ -248,15 +242,15 @@
   "opening": {
     "degree": "I",
     "quality": "maj",
-    "chord": "Db6"
+    "chord": "Db6/3"
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "8a434cf0607612b1d46e22da1f308e88a7901f9b61f70df7156b508411d61a79",
+    "source_sha256": "817517a4a94650b6bbb0052335ff320ea7bc9f16c021038bc8bdade05b6f59cb",
     "scorer": {
       "tonic": "Db",
       "mode": "major",
-      "margin": 0.8102
+      "margin": 0.8019
     },
     "llm": {
       "tonic": "Db",
@@ -268,14 +262,14 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "turnaround-ending",
-      "chromatic-descent"
+      "ii-V-chains",
+      "turnaround-ending"
     ],
     "sections": {
-      "A": "I6 with passing dim to ii-V (Ebm7-Ab7), then I-I7 to IV-IVm and A7-Ab7 back to I",
-      "A1": "Same as A, I6 with ii-V motion, IV-IVm, dominant approach resolving to Db6",
-      "B": "Dominant chords A13-D9-Db-Db9 chromatic movement, ending on V (Ab9)",
-      "A3": "Same as A, resolves to Db6"
+      "A": "I6 with #io7, ii-V (Ebm7-Ab7) back to I, IV-iv motion and A7/Ab7b9 approach to I",
+      "A1": "Same as A: I6 with passing dim, ii-V, IV-iv, chromatic dominants to I6",
+      "B": "Dominant sequence A13-D9-Db-Db9 repeated, ending A9-Ab9 (V) back to I",
+      "A2": "Restatement of A with ii-V and IV-iv resolving to I6"
     },
     "modulates": false
   }

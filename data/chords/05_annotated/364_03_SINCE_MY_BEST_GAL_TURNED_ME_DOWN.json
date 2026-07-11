@@ -32,8 +32,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "Bb",
-          "3": "F7"
+          "1": "Bb"
         }
       },
       {
@@ -114,7 +113,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "Cm7"
+          "1": "Cm7/4"
         }
       },
       {
@@ -190,27 +189,27 @@
       {
         "bar": 3,
         "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
           "1": "F7",
           "3": "F7#5"
         }
       },
       {
-        "bar": 5,
+        "bar": 4,
         "beats": {
           "1": "Bb"
         }
       },
       {
-        "bar": 6,
+        "bar": 5,
         "beats": {
           "1": "Bb",
           "3": "F7#5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb"
         }
       },
       {
@@ -222,7 +221,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "D7"
+          "1": "D7/3"
         }
       }
     ],
@@ -337,40 +336,35 @@
     "chord": "Bb"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "2a85caa098bc731b55661dead5bb8b1e7af3bf371b311d4c134f45d322635d53",
+    "status": "agreed",
+    "source_sha256": "38e676d34be964112b4f14741baec8d07c1f0b8ec2f1c50f519cbfe8cb19ea84",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",
-      "margin": 0.7512
+      "margin": 0.7145
     },
     "llm": {
       "tonic": "Bb",
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "Bb",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
-    "family": "verse-plus-32-bar standard (ABAB)",
+    "family": "16-bar verse + 32-bar AB refrain",
     "tags": [
       "circle-of-fifths",
-      "dominant-cycle-bridge",
-      "turnaround-ending",
-      "verse-present"
+      "ii-V-chains",
+      "verse-present",
+      "turnaround-ending"
     ],
     "sections": {
-      "verse_A": "I with F7 (V) oscillation, moving to Bb7 (I7) as a pivot toward IV",
-      "verse_B": "IV (Eb) to I, then G7(VI7)-C7(II7)-Cm7-F7 setting up the dominant cycle back to I",
-      "A": "Extended G7 (VI7) into C7 (II7) — part of the circle-of-fifths chain toward V-I",
-      "B": "F7 (V7) with F7#5 to Bb (I), ending on D7 as turnaround (V/vi back to G7)",
-      "A1": "Repeat of A: G7 (VI7) to C7 (II7) continuing the dominant cycle",
-      "B1": "F7 (V7) to Bb (I) with Gb7 chromatic approach, ending on (D7) turnaround"
+      "verse_A": "I with V7 stabs (bars 1,5), moving to I7 (V7/IV) in bars 7-8",
+      "verse_B": "IV to I, then VI7-II7 dominant motion, ii-V (Cm7-F7) back to I",
+      "A": "Extended VI7 (G7) four bars into II7 (C7) four bars — circle-of-fifths dominant chain",
+      "B": "V7 (F7 with #5) resolving to I (Bb), ending on V/ii (D7)",
+      "A1": "Repeat of A: VI7 (G7) to II7 (C7) dominant cycle",
+      "B1": "V7 (F7) to I (Bb) with bVI7 (Gb7) chromatic passing chord, turnaround toward D7"
     },
     "modulates": false
   }

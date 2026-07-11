@@ -82,13 +82,13 @@
       {
         "bar": 2,
         "beats": {
-          "1": "A7"
+          "1": "A7/3"
         }
       },
       {
         "bar": 3,
         "beats": {
-          "1": "Dm7"
+          "1": "Dm7/7"
         }
       },
       {
@@ -100,13 +100,13 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Dm7"
+          "1": "Dm7/5"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "Dm7",
+          "1": "Dm7/4",
           "3": "G7"
         }
       },
@@ -148,14 +148,15 @@
       {
         "bar": 4,
         "beats": {
-          "1": "C"
+          "1": "C",
+          "3": "C7"
         }
       },
       {
         "bar": 5,
         "beats": {
           "1": "C7(13)",
-          "3": "Bb"
+          "3": "Bb/3"
         }
       },
       {
@@ -173,7 +174,9 @@
       },
       {
         "bar": 8,
-        "beats": {}
+        "beats": {
+          "1": "Dm"
+        }
       }
     ],
     "C": [
@@ -192,8 +195,8 @@
       {
         "bar": 3,
         "beats": {
-          "1": "C",
-          "3": "Bb(b9)"
+          "1": "C/3",
+          "3": "Bb7b9"
         }
       },
       {
@@ -238,37 +241,32 @@
     "chord": "C6"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "59a8840ad50448b0fad8c485e183e12d81fd18b3666668068bffb0e38f18717b",
+    "status": "agreed",
+    "source_sha256": "3fa5a1eb2234e2378e202ef6e9806a0491346776c445dfba6a556d7ef2b4483b",
     "scorer": {
       "tonic": "C",
       "mode": "major",
-      "margin": 0.7548
+      "margin": 0.7499
     },
     "llm": {
       "tonic": "C",
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "C",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABA'C standard",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending",
-      "circle-of-fifths"
+      "circle-of-fifths",
+      "chromatic-descent"
     ],
     "sections": {
-      "A": "I6 with ii-V to I, then V/IV to IV, iimb5-V7 tonicizing ii, resting on Dm (ii)",
-      "B": "Dm-centered (i/ii region) with A7, iiø, returning ii-V-I into C with turnaround ii-V",
-      "A1": "I6 ii-V I, then V/IV chromatic descent (C7-Bb-Ebo7-E7) to F6 (IV)",
-      "C": "iiø-related F#m7b5/Fm6, then chromatic Bb(b9)-A7-D7-G7 circle back to I"
+      "A": "I6-ii-V-I with V/IV to IV, then V/ii (Em7b5-A7) landing on ii (Dm)",
+      "B": "Dm-based passage over ii pedal returning via ii-V; ends I-vi-ii-V in C",
+      "A1": "Restates A opening then chromatic descent (Bb, Ebo7, E7) to IV6 and ii",
+      "C": "F#m7b5-Fm6 chromatic ii, then dominant chain A7-D7-G7 resolving to I"
     },
     "modulates": false
   }

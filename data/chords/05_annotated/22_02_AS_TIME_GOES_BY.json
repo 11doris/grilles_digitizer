@@ -8,18 +8,6 @@
   "title": "AS TIME GOES BY",
   "page": 22,
   "source": "Anthologie des grilles de jazz",
-  "same_chord_changes": "BALLADE (C.Parker, C.Hawkins)",
-  "notation_notes": {
-    "verse_note": "Header prints '12 VERSE'."
-  },
-  "recordings": [
-    "S.Grappelly 75- B.Doggett 54- F.Rich 31",
-    "B.Brookmeyer/B.Evans 59- F.Domino 57",
-    "T.Dorsey 50- B.Berigan 31- T.Glenn 59",
-    "E.Garner 54.65- B.Holiday 44- A.Ross 52",
-    "B.Taylor 55- J.Bushkin 55",
-    "T.Wilson 47.55"
-  ],
   "variants": [
     {
       "applies_to": "Bar 1, 9, 25",
@@ -85,6 +73,18 @@
         }
       ]
     }
+  ],
+  "same_chord_changes": "BALLADE (C.Parker, C.Hawkins)",
+  "notation_notes": {
+    "verse_note": "Header prints '12 VERSE'."
+  },
+  "recordings": [
+    "S.Grappelly 75- B.Doggett 54- F.Rich 31",
+    "B.Brookmeyer/B.Evans 59- F.Domino 57",
+    "T.Dorsey 50- B.Berigan 31- T.Glenn 59",
+    "E.Garner 54.65- B.Holiday 44- A.Ross 52",
+    "B.Taylor 55- J.Bushkin 55",
+    "T.Wilson 47.55"
   ],
   "sections": {
     "A": [
@@ -230,8 +230,8 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Cm",
-          "3": "Cm7"
+          "1": "Cm/5",
+          "3": "Cm7/5"
         }
       },
       {
@@ -324,7 +324,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "1f7fc2972d3b822674813eebd6283727cfe307a6364246d7931c931f8db9a993",
+    "source_sha256": "98112da8debcb8d62dc70a61c1c98f71b05a3509a07cc9dafb18b15f208238e0",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -356,10 +356,10 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "ii-V (Fm7-Bb7) into I (Eb), with V/V (C7) and dominant motion, ends on iv-related Fm7-Eo7",
-      "A1": "Same ii-V-I opening resolving to Eb, closing with Eb-Abm-Eb7 setting up the bridge",
-      "B": "Starts on IV (Ab), moves through Gm7b5-C7 to Fm, diminished passing to Cm-F7, back to Fm7-Eo7",
-      "A2": "ii-V-I opening as before with added diminished passing chords, final cadence resting on Eb"
+      "A": "ii-V (Fm7-Bb7) to I (Eb) in bar 3, then V/V (F7) and G7#5-C9 turnaround, ending Fm7-Eo7",
+      "A1": "Same ii-V to Eb, ending Eb-Abm then Eb-Eb7 (V7/IV setting up the bridge)",
+      "B": "Opens on IV (Ab), Gm7b5-C7 to Fm (ii), F#o7 passing, Cm-F7, returning to Fm7-Eo7",
+      "A2": "ii-V to Eb, V/V and Gm7-C7, Fm7-Bb7 final ii-V resolving to Eb"
     },
     "modulates": false
   }

@@ -34,8 +34,8 @@
         "bar": 2,
         "beats": {
           "1": "Bb",
-          "2": "Cm7",
-          "3": "C#o7",
+          "2": "C#o7",
+          "3": "Cm7",
           "4": "Bb"
         }
       },
@@ -62,7 +62,7 @@
       {
         "bar": 6,
         "beats": {
-          "1": "Eb",
+          "1": "Eb/3",
           "3": "Gb7b5"
         }
       },
@@ -91,8 +91,8 @@
         "bar": 2,
         "beats": {
           "1": "Bb",
-          "2": "Cm7",
-          "3": "C#o7",
+          "2": "C#o7",
+          "3": "Cm7",
           "4": "Bb"
         }
       },
@@ -137,7 +137,7 @@
         }
       }
     ],
-    "A": [
+    "s2_A": [
       {
         "bar": 1,
         "beats": {
@@ -178,7 +178,7 @@
         "bar": 7,
         "beats": {
           "1": "Bb",
-          "3": "Dbo7"
+          "3": "Bbo7"
         }
       },
       {
@@ -189,7 +189,7 @@
         }
       }
     ],
-    "A1": [
+    "s2_A1": [
       {
         "bar": 1,
         "beats": {
@@ -251,8 +251,8 @@
     "chord": "Bb"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "bac90a7f3c4f00bcb43f95140b5e89c53a22f3d8af2af8e21f60c8a8f3d84ad8",
+    "status": "agreed",
+    "source_sha256": "560b7cb5fd1235390dccf70c9ef000e6836748964e8812298e8176991a576056",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",
@@ -263,24 +263,20 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "Bb",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
-    "family": "16-bar tune (AABB)",
+    "family": "16-bar tune (AA)",
     "tags": [
       "circle-of-fifths",
-      "turnaround-ending"
+      "turnaround-ending",
+      "chromatic-descent"
     ],
     "sections": {
-      "s1_A": "I with chromatic passing dim (I-ii-#iio-I), I-V7#5, I-I7-IV-bVII7b5, implied I-V7-I",
-      "s1_A1": "Repeat of s1_A: I with passing diminished, IV motion, resolving back to I",
-      "A": "Circle-of-fifths: I-VI7(D7)-II7(G7)-V7(C7)-I7(F7)... then I-#io7-ii-V7",
-      "A1": "Same circle-of-fifths, closing I-IV-I"
+      "s1_A": "I with chromatic passing dim, IV via subdominant, V7#5, tritone-sub Gb7 approaching I",
+      "s1_A1": "Same as first A: I, chromatic dim, IV, V7#5, turnaround back to I",
+      "s2_A": "Dominant cycle I-V/V(D7)-G7-C7-F7 circle of fifths back to I with ii-V ending",
+      "s2_A1": "Same dominant cycle resolving I-IV-I"
     },
     "modulates": false
   }

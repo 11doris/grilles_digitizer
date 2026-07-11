@@ -8,16 +8,6 @@
   "title": "IF DREAMS COME TRUE",
   "page": 174,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "Jazz Club Mystery Hot Band 45",
-    "A.Persley 70- H.Henderson 40",
-    "OE:Lambert 60- L.Konitz 79",
-    "OE:B.Reff 81- H.O'Malica 44",
-    "N.Powell 84- E.Sampson 88",
-    "B.Goodman 37- J.P.Johnson 39",
-    "B.Hackett 38- C.Webb 34.37",
-    "T.Wilson 38.46"
-  ],
   "variants": [
     {
       "applies_to": "Bar 28",
@@ -32,7 +22,7 @@
           "bar": 1,
           "beats": {
             "1": "Dm",
-            "3": "F7"
+            "3": "F7/5"
           }
         },
         {
@@ -51,6 +41,16 @@
         }
       ]
     }
+  ],
+  "recordings": [
+    "Jazz Club Mystery Hot Band 45",
+    "A.Persley 70- H.Henderson 40",
+    "OE:Lambert 60- L.Konitz 79",
+    "OE:B.Reff 81- H.O'Malica 44",
+    "N.Powell 84- E.Sampson 88",
+    "B.Goodman 37- J.P.Johnson 39",
+    "B.Hackett 38- C.Webb 34.37",
+    "T.Wilson 38.46"
   ],
   "notation_notes": {
     "variant_purpose": "Header prints 'VARIANT Bar 28 for statement of the melody'.",

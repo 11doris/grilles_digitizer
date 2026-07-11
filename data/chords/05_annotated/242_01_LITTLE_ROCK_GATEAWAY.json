@@ -26,21 +26,21 @@
         "bar": 1,
         "beats": {
           "1": "C",
-          "3": "E7"
+          "3": "E7/5"
         }
       },
       {
         "bar": 2,
         "beats": {
           "1": "Am",
-          "3": "C7"
+          "3": "C7/5"
         }
       },
       {
         "bar": 3,
         "beats": {
           "1": "F",
-          "3": "A7"
+          "3": "A7/5"
         }
       },
       {
@@ -84,21 +84,21 @@
         "bar": 1,
         "beats": {
           "1": "C",
-          "3": "E7"
+          "3": "E7/5"
         }
       },
       {
         "bar": 2,
         "beats": {
           "1": "Am",
-          "3": "C7"
+          "3": "C7/5"
         }
       },
       {
         "bar": 3,
         "beats": {
           "1": "F",
-          "3": "A7"
+          "3": "A7/5"
         }
       },
       {
@@ -142,7 +142,7 @@
         "bar": 1,
         "beats": {
           "1": "F",
-          "3": "C7"
+          "3": "C7/5"
         }
       },
       {
@@ -197,21 +197,21 @@
         "bar": 1,
         "beats": {
           "1": "C",
-          "3": "E7"
+          "3": "E7/5"
         }
       },
       {
         "bar": 2,
         "beats": {
           "1": "Am",
-          "3": "C7"
+          "3": "C7/5"
         }
       },
       {
         "bar": 3,
         "beats": {
           "1": "F",
-          "3": "A7"
+          "3": "A7/5"
         }
       },
       {
@@ -261,7 +261,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "49671279f91ff7ed33936357ae4e486bb39f27b369c3dea055440a576a5b9d52",
+    "source_sha256": "5dd9cefd073d3058f963fff58c263dd3c2b305e12d16921e6a7c6a4c8edce085",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -277,15 +277,15 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "turnaround-ending",
       "ii-V-chains",
+      "turnaround-ending",
       "chromatic-descent"
     ],
     "sections": {
-      "A": "I with secondary dominants (V/vi, V/ii), vi and IV, chromatic Ab7 into ii-V, ending on ii-V turnaround",
-      "A1": "Same as A but resolves to I with IV and I-V7 push toward bridge",
-      "B": "IV-V7 with plagal Fm, back to I and I7, then Am7b5-D7 and G7 dominant preparation",
-      "A2": "Restatement of A ending firmly on I via vi-I"
+      "A": "I with secondary dominants (V/vi, V/ii, V/IV) descending, then ii-V turnaround",
+      "A1": "Same I-based descent, resolving to I with IV and V7/IV at the close",
+      "B": "IV-based bridge with C7/V, Fm minor-IV, back to I, then ii7b5-V/V and D7-G7 leading back to I",
+      "A2": "Restatement of A landing on I"
     },
     "modulates": false
   }

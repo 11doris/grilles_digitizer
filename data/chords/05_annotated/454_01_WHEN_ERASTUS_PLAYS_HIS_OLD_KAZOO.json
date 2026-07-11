@@ -76,13 +76,13 @@
       {
         "bar": 5,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -127,13 +127,13 @@
       {
         "bar": 5,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -231,7 +231,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Eb7"
+          "1": "Eb7/5"
         }
       },
       {
@@ -283,7 +283,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Eb7"
+          "1": "Eb7/5"
         }
       },
       {
@@ -384,7 +384,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Eb7"
+          "1": "Eb7/5"
         }
       },
       {
@@ -428,7 +428,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "2b54529247587ecff9262ad81f299244ca86b59c7a3b7d58f0e4bd488efb3964",
+    "source_sha256": "dbaa5229c02ab3377ed81d9f0f586e34a9ab40b74ccf9360b6c512397e479bd1",
     "scorer": {
       "tonic": "Ab",
       "mode": "major",
@@ -450,7 +450,7 @@
       "tonic": "Ab",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "Verse (A/A1) sits in the relative F minor before the verse B and chorus establish Ab major; the chorus is straightforwardly in Ab.",
+      "modulation_note": "Verse opens in the relative minor (F minor) before the chorus settles firmly in Ab major.",
       "section_keys": {
         "verse_A": {
           "tonic": "F",
@@ -464,23 +464,23 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "verse plus 32-bar AABA standard",
+    "family": "Verse plus 32-bar AABA chorus",
     "tags": [
       "dominant-cycle-bridge",
       "circle-of-fifths",
-      "verse-present",
-      "turnaround-ending"
+      "turnaround-ending",
+      "verse-present"
     ],
     "sections": {
-      "verse_A": "i-bVI7 alternation (Fm-Db7) with V7 (C7) and ii7b5-V7 cadence back to i in F minor",
-      "verse_A1": "Same F minor i-bVI7 phrase with a chromatic descending dominant run (Gb9-F9-E9) transitioning out",
-      "verse_B": "Eb9 (V of Ab) to Ab, then Bb7-Eb7 (V/V to V) setting up Ab major",
-      "A": "Tonic Ab with #I dim passing chord, V7 (Eb7), and Bb7-Eb7 turnaround",
-      "A1": "Same Ab tonic phrase resolving firmly to I",
-      "B": "Dominant cycle bridge C7-F7-Bb7-Eb7 circling back to the tonic",
-      "A2": "Final Ab tonic statement with passing dim and V7, ending on I"
+      "verse_A": "i-bVI7 alternation with V7 (C7) tonicizing i, closing ii( b5)-V into F minor",
+      "verse_A1": "Same i-bVI7-V7 pattern in F minor with a chromatic dominant descent (Gb9-F9-E9) at the end",
+      "verse_B": "Eb9(V7)-Ab(I)-Bb7(II7)-Eb7(V7) pivoting into Ab major",
+      "A": "I with passing #i dim, V7 (Eb7), back to I, turnaround Bb7-Eb7",
+      "A1": "I with #i dim, V7, resolving and staying on I",
+      "B": "Dominant cycle C7-F7-Bb7-Eb7 (III7-VI7-II7-V7) driving back to I",
+      "A2": "I with #i dim, V7, cadencing home to Ab"
     },
     "modulates": true,
-    "modulation_note": "Verse (A/A1) sits in the relative F minor before the verse B and chorus establish Ab major; the chorus is straightforwardly in Ab."
+    "modulation_note": "Verse opens in the relative minor (F minor) before the chorus settles firmly in Ab major."
   }
 }

@@ -31,7 +31,7 @@
         "bar": 2,
         "beats": {
           "1": "F",
-          "2": "Bb",
+          "2": "Bb/5",
           "3": "F",
           "4": "C9"
         }
@@ -40,7 +40,7 @@
         "bar": 3,
         "beats": {
           "1": "F",
-          "2": "Bb",
+          "2": "Bb/5",
           "3": "F",
           "4": "C9"
         }
@@ -83,24 +83,26 @@
         "beats": {
           "1": "F"
         }
-      },
+      }
+    ],
+    "verse_A1": [
       {
-        "bar": 9,
+        "bar": 1,
         "beats": {
           "1": "Am",
           "2": "Am(maj7)",
-          "3": "Am",
+          "3": "Am7",
           "4": "Am6"
         }
       },
       {
-        "bar": 10,
+        "bar": 2,
         "beats": {
           "1": "D9"
         }
       },
       {
-        "bar": 11,
+        "bar": 3,
         "beats": {
           "1": "Gm",
           "2": "Gm(maj7)",
@@ -109,7 +111,7 @@
         }
       },
       {
-        "bar": 12,
+        "bar": 4,
         "beats": {
           "1": "Gm7b5",
           "3": "C9"
@@ -137,7 +139,7 @@
         "beats": {
           "1": "Gm7",
           "3": "Am7",
-          "4": "Bbmaj7"
+          "4": "Bbm7"
         }
       },
       {
@@ -198,7 +200,7 @@
         "beats": {
           "1": "Gm7",
           "3": "Am7",
-          "4": "Bbmaj7"
+          "4": "Bbm7"
         }
       },
       {
@@ -278,8 +280,8 @@
       {
         "bar": 6,
         "beats": {
-          "1": "C7",
-          "3": "Fm6"
+          "1": "C7/5",
+          "3": "Fm6/3"
         }
       },
       {
@@ -292,7 +294,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       }
     ],
@@ -317,7 +319,7 @@
         "beats": {
           "1": "Gm7",
           "3": "Am7",
-          "4": "Bbmaj7"
+          "4": "Bbm7"
         }
       },
       {
@@ -371,7 +373,7 @@
         "bar": 11,
         "beats": {
           "1": "Fmaj7",
-          "3": "D(b9)"
+          "3": "D7b9"
         }
       },
       {
@@ -412,11 +414,18 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "2a58cb48e90571ad01c1d6e3bd26a56a36caab2ee3962c3824bd7a83d47a6fe7",
+    "source_sha256": "15ebc05002af8aaab3ff446120485d229d5fb2d2a99b2b05863a00971b4e0bc6",
     "scorer": {
       "tonic": "F",
       "mode": "major",
-      "margin": 0.7308
+      "margin": 0.7308,
+      "section_keys": {
+        "verse_A1": {
+          "tonic": "G",
+          "mode": "minor",
+          "margin": 1.0
+        }
+      }
     },
     "llm": {
       "tonic": "F",
@@ -437,18 +446,20 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "38-bar AABA' standard with verse",
+    "family": "AABA standard with verse",
     "tags": [
       "ii-V-chains",
+      "chromatic-descent",
       "turnaround-ending",
-      "chromatic-descent"
+      "verse-present"
     ],
     "sections": {
-      "verse_A": "I with I-Bb-I-V oscillation, then Am(line cliché)-D9-Gm(line cliché)-iiø-V setting up F",
-      "A": "Imaj7 with stepwise diatonic chords Gm7-Am7-Bbmaj7, ending ii-V (Gm7-C7)",
-      "A1": "Same as A ending on I with bVI6 (Eb6) chromatic touch to F6",
-      "B": "ii-V-I in Db (Ebm7-Ab7-Dbmaj7) then returns to F via F6-F#o7-C7 diminished motion",
-      "A2": "A theme then extended turnaround Am7-D7-G9-Abm9-Db13-Fmaj7 resolving to F6"
+      "verse_A": "I with oscillating IV/I and V motion, cadencing on I",
+      "verse_A1": "vi and ii line-cliché figures (Am, Gm) leading through iiø-V9 back toward I",
+      "A": "Imaj7 with rising ii-iii diatonic motion, IVmaj7, chromatic Am7-Bbm7, ends ii-V",
+      "A1": "same as A but closes I6-bVI6-I6 (Eb6 neighbor)",
+      "B": "opens iiø-V in Db (Ebm7-Ab7 to Dbmaj7), then returns via F6, diminished and V7 back to I",
+      "A2": "A restated then extended: V/V-V, Abm9-Db13 sub, D7b9-Gm7-C9 turnaround resolving to F6"
     },
     "modulates": true,
     "modulation_note": "bridge (B) opens in Db major before returning to F"

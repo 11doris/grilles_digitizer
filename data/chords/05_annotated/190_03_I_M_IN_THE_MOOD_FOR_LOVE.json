@@ -138,7 +138,7 @@
         "bar": 5,
         "beats": {
           "1": "G#m7",
-          "2": "C7"
+          "3": "C7/5"
         }
       },
       {
@@ -405,7 +405,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "ddd08e5e1b04d2b0adb292e781ea88eacf8c10319ff929ebdb105c06de34a51e",
+    "source_sha256": "2d4380e3967e38aec57bc0f15bd87a5c964f267f3b97f51342cdf8841a22bb5d",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -422,17 +422,17 @@
     "family": "32-bar AABA standard with verse",
     "tags": [
       "ii-V-chains",
-      "circle-of-fifths",
+      "verse-present",
       "turnaround-ending",
-      "chromatic-descent"
+      "circle-of-fifths"
     ],
     "sections": {
-      "verse_A": "I with chromatic passing dim, ii-V motion, ends on V7 turnaround",
-      "verse_A1": "I moving through a brief bIII/III (Emaj7) tonicization then a circle-of-fifths descent E7-A7-D7-G7 back to V",
-      "A": "I-vi-ii-V loop with chromatic diminished passing chords, ending on ii-V turnaround",
-      "A1": "same I-vi-ii-V material resolving to I",
-      "B": "ii-V into I, then ii(b5)-V, secondary ii-V to vi (Em), ending on ii-V",
-      "A2": "restated A ending on I"
+      "verse_A": "I with I-#Io7 chromatic, ii-V motion, descending dominants Bbm7b5-A7-Ab7-G7 back to V",
+      "verse_A1": "Opens on I then tonicizes IIImaj (Emaj7/G#m7) before a descending dominant chain D7-G7 leading back to V",
+      "A": "I-vi-ii-V loop with chromatic passing diminished (D#o7, Ebo7) and turnaround",
+      "A1": "Same as A, resolving to I",
+      "B": "ii-V into I, then tonicizes vi (F#m7b5-B7-Em) via minor ii-Vs, ending on ii-V",
+      "A2": "Restatement of A resolving to I"
     },
     "modulates": false
   }

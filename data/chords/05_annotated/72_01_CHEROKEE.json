@@ -3,7 +3,7 @@
   "year": "1938",
   "style": "STANDARD",
   "tempo": "FAST",
-  "form": "64 A A' B A''",
+  "form": "64 A A A' B A'",
   "time_signature": "4/4",
   "title": "CHEROKEE",
   "page": 72,
@@ -11,7 +11,7 @@
   "notation_notes": {
     "verse": "Header prints '32 VERSE'.",
     "title_note": "Title printed 'CHEROKEE (INDIAN LOVE SONG)'.",
-    "form_reading": "Form label reads '64 A A' B A'' (hand-lettered)."
+    "form_reading": "Form label reads '64 A A A' B A'' (hand-lettered)."
   },
   "recordings": [
     "C.Parker (Koko,Warning up a riff) 42.45.46.47",
@@ -74,58 +74,60 @@
         "beats": {
           "1": "Ebm6"
         }
-      },
+      }
+    ],
+    "A1": [
       {
-        "bar": 9,
+        "bar": 1,
         "beats": {
           "1": "Bb"
         }
       },
       {
-        "bar": 10,
+        "bar": 2,
         "beats": {
           "1": "Bb",
           "3": "Bbmaj7"
         }
       },
       {
-        "bar": 11,
+        "bar": 3,
         "beats": {
-          "1": "C7"
+          "1": "C7/3"
         }
       },
       {
-        "bar": 12,
+        "bar": 4,
         "beats": {
-          "1": "C7"
+          "1": "C7/3"
         }
       },
       {
-        "bar": 13,
+        "bar": 5,
         "beats": {
           "1": "Cm"
         }
       },
       {
-        "bar": 14,
+        "bar": 6,
         "beats": {
           "1": "Bo7"
         }
       },
       {
-        "bar": 15,
+        "bar": 7,
         "beats": {
           "1": "Cm7"
         }
       },
       {
-        "bar": 16,
+        "bar": 8,
         "beats": {
           "1": "F7#5"
         }
       }
     ],
-    "A1": [
+    "A2": [
       {
         "bar": 1,
         "beats": {
@@ -174,52 +176,54 @@
         "beats": {
           "1": "Ebm6"
         }
-      },
+      }
+    ],
+    "A3": [
       {
-        "bar": 9,
+        "bar": 1,
         "beats": {
           "1": "Bb"
         }
       },
       {
-        "bar": 10,
+        "bar": 2,
         "beats": {
           "1": "Bb",
           "3": "Bbmaj7"
         }
       },
       {
-        "bar": 11,
+        "bar": 3,
+        "beats": {
+          "1": "C7/5"
+        }
+      },
+      {
+        "bar": 4,
         "beats": {
           "1": "C7"
         }
       },
       {
-        "bar": 12,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 13,
+        "bar": 5,
         "beats": {
           "1": "Cm7"
         }
       },
       {
-        "bar": 14,
+        "bar": 6,
         "beats": {
           "1": "F7"
         }
       },
       {
-        "bar": 15,
+        "bar": 7,
         "beats": {
           "1": "Bb"
         }
       },
       {
-        "bar": 16,
+        "bar": 8,
         "beats": {
           "1": "Bb"
         }
@@ -273,153 +277,55 @@
         "beats": {
           "1": "Amaj7"
         }
-      },
+      }
+    ],
+    "B1": [
       {
-        "bar": 9,
+        "bar": 1,
         "beats": {
           "1": "Am7"
         }
       },
       {
-        "bar": 10,
+        "bar": 2,
         "beats": {
           "1": "D7"
         }
       },
       {
-        "bar": 11,
-        "beats": {
-          "1": "Gmaj7"
-        }
-      },
-      {
-        "bar": 12,
-        "beats": {
-          "1": "Gmaj7"
-        }
-      },
-      {
-        "bar": 13,
-        "beats": {
-          "1": "Gm7"
-        }
-      },
-      {
-        "bar": 14,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 15,
-        "beats": {
-          "1": "Cm7"
-        }
-      },
-      {
-        "bar": 16,
-        "beats": {
-          "1": "F7#5"
-        }
-      }
-    ],
-    "A3": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Bb"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Bb",
-          "3": "F7#5"
-        }
-      },
-      {
         "bar": 3,
         "beats": {
-          "1": "Fm7"
+          "1": "Gmaj7"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "Bb7"
+          "1": "Gmaj7"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "Ebmaj7"
+          "1": "Gm7"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "Ebmaj7"
+          "1": "C7"
         }
       },
       {
         "bar": 7,
         "beats": {
-          "1": "Ebm(maj7)"
+          "1": "Cm7"
         }
       },
       {
         "bar": 8,
         "beats": {
-          "1": "Ebm6"
-        }
-      },
-      {
-        "bar": 9,
-        "beats": {
-          "1": "Bb"
-        }
-      },
-      {
-        "bar": 10,
-        "beats": {
-          "1": "Bb",
-          "3": "Bbmaj7"
-        }
-      },
-      {
-        "bar": 11,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 12,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 13,
-        "beats": {
-          "1": "Cm7"
-        }
-      },
-      {
-        "bar": 14,
-        "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 15,
-        "beats": {
-          "1": "Bb"
-        }
-      },
-      {
-        "bar": 16,
-        "beats": {
-          "1": "Bb"
+          "1": "F7#5"
         }
       }
     ]
@@ -428,12 +334,6 @@
     "tonic": "Bb",
     "mode": "major"
   },
-  "section_keys": {
-    "B": {
-      "tonic": "B",
-      "mode": "major"
-    }
-  },
   "opening": {
     "degree": "I",
     "quality": "maj",
@@ -441,20 +341,46 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "9e014acb94e67296e4f8b8f17cdf49fc48670ec706b9f743b92a72b158ef5780",
+    "source_sha256": "93996c6ef32b040480cb148cfa9c6b54b4af3cdec47ede7a2bdf472f7dd065d4",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",
-      "margin": 0.3408
+      "margin": 0.1029,
+      "section_keys": {
+        "A": {
+          "tonic": "Eb",
+          "mode": "major",
+          "margin": 0.7231
+        },
+        "A2": {
+          "tonic": "Eb",
+          "mode": "major",
+          "margin": 0.7231
+        },
+        "B": {
+          "tonic": "A",
+          "mode": "major",
+          "margin": 1.0
+        },
+        "B1": {
+          "tonic": "G",
+          "mode": "major",
+          "margin": 1.0
+        }
+      }
     },
     "llm": {
       "tonic": "Bb",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "Bridge (B) modulates down by whole steps: ii-V-I in B major, then A major, then G major, before turning back to Bb",
+      "modulation_note": "Bridge modulates away from Bb, descending through B major, A major and G major via a chain of ii-V-I cadences before returning to Bb for the final A section.",
       "section_keys": {
         "B": {
           "tonic": "B",
+          "mode": "major"
+        },
+        "B1": {
+          "tonic": "G",
           "mode": "major"
         }
       }
@@ -462,23 +388,26 @@
     "human": {
       "tonic": "Bb",
       "mode": "major",
-      "corrected": false
+      "corrected": true
     }
   },
   "harmonic_fingerprint": {
     "family": "64-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "circle-of-fifths",
-      "turnaround-ending"
+      "dominant-cycle-bridge",
+      "circle-of-fifths"
     ],
     "sections": {
-      "A": "I with V/ii (F7#5), ii-V into IV (Ebmaj7), iv (Ebm) minor-plaintal, back to I, then V/ii C7, ii-V turnaround ending on V7#5",
-      "A1": "Same as A but resolves cleanly: I, V/ii, ii-V to IV, iv, I, C7 (II7), ii-V (Cm7-F7) back to I",
-      "B": "Descending ii-V-I chains: C#m7-F#7-Bmaj7, Bm7-E7-Amaj7, Am7-D7-Gmaj7, Gm7-C7, then Cm7-F7#5 back to Bb",
-      "A3": "Repeat of A1: I, V/ii, ii-V to IV, iv, I, II7, ii-V resolving to I"
+      "A": "I with V/ii (F7#5) to ii-V of IV, landing on IVmaj7 then IVm6 (Ebmaj7/Ebm)",
+      "A1": "I to Imaj7, then II7/passing dim to ii-V (Cm7-F7#5) turnaround",
+      "A2": "Repeat of A: I, V/ii, ii-V to IVmaj7 then IVm6",
+      "A3": "I, then II7 to ii-V-I (Cm7-F7-Bb) resolving home",
+      "B": "ii-V-I in B major (C#m7-F#7-Bmaj7) then ii-V-I in A major (Bm7-E7-Amaj7)",
+      "B1": "ii-V-I in G major (Am7-D7-Gmaj7) then ii-V of C leading to Bb's ii-V (Cm7-F7#5)"
     },
     "modulates": true,
-    "modulation_note": "Bridge (B) modulates down by whole steps: ii-V-I in B major, then A major, then G major, before turning back to Bb"
+    "modulation_note": "Bridge modulates away from Bb, descending through B major, A major and G major via a chain of ii-V-I cadences before returning to Bb for the final A section.",
+    "stale": true
   }
 }

@@ -8,25 +8,6 @@
   "title": "SWEET LORRAINE",
   "page": 402,
   "source": "Anthologie des grilles de jazz",
-  "recordings": [
-    "B.Goodman 35.47.75",
-    "J.Moore 28.37.42",
-    "K.A.Cole 43.5t",
-    "This is Jazz 47",
-    "E.Hines 65- J.Palmer 76",
-    "R.Eldridge 51- J.P.Johnson 45-",
-    "J.Hodges 40.56- C.Hawkins 43-",
-    "R.Allen 57- G.Shearing 43.79- H.Jones 78",
-    "Metronome All Stars 46- P.Newborn 58",
-    "7.Wilson 35.39.57.59- S.Bechet 40- L.Armstrong 57",
-    "L.Bacon 39- C.Basie 44.60.60- E.Garner 45.45.61",
-    "A.Tatum 38.40.41.44.45.49.51.54.55.56- D.Byas 53",
-    "B.Bygard 6t- b.Carter 58- b.Coleman 57- R.Eldridge 51-",
-    "D.Gillespie 52- L.Hampton 53- J.Hodges 40.56- C.Hawkins 43-",
-    "Coot. Williams 44.59- O.Peterson 46.55- R.Allen 57- G.Shearing 43.79- H.Jones 78",
-    "D.Ellington/E.Hines/D.Taylor- W.Gres 49- Metronome All Stars 46- P.Newborn 58",
-    "J.Rowles 72- T.Ory 56- J.Pass 73."
-  ],
   "variants": [
     {
       "applies_to": "Bar 2, 10 and 26 :",
@@ -64,7 +45,7 @@
           "bar": 3,
           "beats": {
             "1": "C9#11",
-            "3": "B(b9)"
+            "3": "B7b9"
           }
         },
         {
@@ -84,6 +65,25 @@
       ]
     }
   ],
+  "recordings": [
+    "B.Goodman 35.47.75",
+    "J.Moore 28.37.42",
+    "K.A.Cole 43.5t",
+    "This is Jazz 47",
+    "E.Hines 65- J.Palmer 76",
+    "R.Eldridge 51- J.P.Johnson 45-",
+    "J.Hodges 40.56- C.Hawkins 43-",
+    "R.Allen 57- G.Shearing 43.79- H.Jones 78",
+    "Metronome All Stars 46- P.Newborn 58",
+    "7.Wilson 35.39.57.59- S.Bechet 40- L.Armstrong 57",
+    "L.Bacon 39- C.Basie 44.60.60- E.Garner 45.45.61",
+    "A.Tatum 38.40.41.44.45.49.51.54.55.56- D.Byas 53",
+    "B.Bygard 6t- b.Carter 58- b.Coleman 57- R.Eldridge 51-",
+    "D.Gillespie 52- L.Hampton 53- J.Hodges 40.56- C.Hawkins 43-",
+    "Coot. Williams 44.59- O.Peterson 46.55- R.Allen 57- G.Shearing 43.79- H.Jones 78",
+    "D.Ellington/E.Hines/D.Taylor- W.Gres 49- Metronome All Stars 46- P.Newborn 58",
+    "J.Rowles 72- T.Ory 56- J.Pass 73."
+  ],
   "notation_notes": {
     "variant_row6": "Variant box 6 shows only a repeat placeholder; five explicit variant bars transcribed."
   },
@@ -93,7 +93,7 @@
         "bar": 1,
         "beats": {
           "1": "G6",
-          "3": "E(b9)"
+          "3": "E7b9"
         }
       },
       {
@@ -101,7 +101,7 @@
         "beats": {
           "1": "Am7",
           "3": "F#m7b5",
-          "4": "B(b9)"
+          "4": "B7b9"
         }
       },
       {
@@ -152,7 +152,7 @@
         "bar": 1,
         "beats": {
           "1": "G6",
-          "3": "E(b9)"
+          "3": "E7b9"
         }
       },
       {
@@ -160,7 +160,7 @@
         "beats": {
           "1": "Am7",
           "3": "F#m7b5",
-          "4": "B(b9)"
+          "4": "B7b9"
         }
       },
       {
@@ -320,14 +320,14 @@
         "bar": 1,
         "beats": {
           "1": "C6",
-          "3": "E(b9)"
+          "3": "E7b9/5"
         }
       },
       {
         "bar": 2,
         "beats": {
           "1": "Am7",
-          "3": "C7"
+          "3": "C7/5"
         }
       },
       {
@@ -341,7 +341,7 @@
         "bar": 4,
         "beats": {
           "1": "Am7",
-          "3": "C7"
+          "3": "C7/5"
         }
       },
       {
@@ -440,7 +440,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "5f5d58968d4a8b3f3f18feb5452a644e5ccf9e28299e22167f9b75887c9fe37b",
+    "source_sha256": "414aa565f837f247bf48affc3a53bc2fe898dd1109a703bb5026ec28faf006d2",
     "scorer": {
       "tonic": "G",
       "mode": "major",
@@ -468,18 +468,19 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard with 16-bar verse",
     "tags": [
-      "turnaround-ending",
-      "chromatic-descent",
+      "verse-present",
       "ii-V-chains",
-      "circle-of-fifths"
+      "circle-of-fifths",
+      "chromatic-descent",
+      "turnaround-ending"
     ],
     "sections": {
-      "verse_A": "I6 with V/vi, ii-vii-V/iii, dwelling on iii (Em with line-cliché) then ii-V back to I",
-      "verse_A1": "Similar opening, iii tonicized via F#m7b5-B7, ends ii-V (Am7-D7) turnaround",
-      "A": "I with V/vi, V/V-V, iii to bVII9/V(C9)-V/V(B9), then dominant cycle E7-A7-D7, ii-V",
-      "A1": "Same as A but resolves to I6 then Dm7-G7 (ii-V of IV/turnaround)",
-      "B": "IV area (C6) with V/vi, Am7-C7, Fmaj7-E7, chromatic dominant descent F9-E9-Eb9-D9 to V",
-      "A2": "I with dominant-cycle A, ends firmly on I6 via C7 to G6"
+      "verse_A": "I with E7b9 secondary dominants tilting toward vi (Em), ending on ii-V (Am7-D7)",
+      "verse_A1": "Same opening, dwells on Em (vi) via F#m7b5-B7, closing on D7 (V)",
+      "A": "I then a chain of dominants (E7-A7-D7), C9/B9 chromatic move, resolving through ii-V",
+      "A1": "As A but ending G6 then Dm7-G7 leading to the bridge",
+      "B": "Bridge on IV (C6) with E7/Am7, then chromatic descending dominants F9-E9-Eb9-D9 landing on V",
+      "A2": "Final A with dominant chain resolving home to G6, tag C7-G6"
     },
     "modulates": false
   }

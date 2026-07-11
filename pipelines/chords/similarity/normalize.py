@@ -57,7 +57,7 @@ _CORE = re.compile(
     rf"(?P<altw>alt)?"
     rf"(?P<balts>{_ALT}*)"
     rf"(?P<palts>\({_ALT}+\))?"
-    rf"(?P<slash>/{_ROOT})?"
+    rf"(?P<slash>/(?:{_ROOT}|[2-7]))?"  # bass note (F/Bb) or degree in the bass (F/5)
     rf"(?P<unc>\?)?$"
 )
 
@@ -128,12 +128,16 @@ def parse_chord(symbol: str) -> Chord:
         quality = "dom"
 
     bass = m.group("slash")
+    # A numeric slash bass (F/5 = the fifth in the bass) records a scale DEGREE,
+    # not an absolute note, so it has no pitch class — the degree stays in the
+    # `symbol`/`extensions`. A note bass (F/Bb) resolves to a pitch class as before.
+    note_bass = bass is not None and not bass[1].isdigit()
     return Chord(
         symbol=symbol,
         root_pc=pitch_class(m.group("root")),
         quality=quality,
         extensions=core[len(m.group("root")):],
-        bass_pc=pitch_class(bass[1:]) if bass else None,
+        bass_pc=pitch_class(bass[1:]) if note_bass else None,
         parenthesized=parenthesized,
         uncertain=bool(m.group("unc")),
     )

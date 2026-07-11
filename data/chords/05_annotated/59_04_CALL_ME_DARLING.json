@@ -283,13 +283,12 @@
       "tritone-substitution"
     ],
     "sections": {
-      "A": "ii-V-I in F (Gm7-C7-F) repeated with a C7#5 alteration",
-      "B": "iim7b5-V7-i in G minor (Am7b5-D7-Gm), then Dm7-G7 and Gm7-Gm7b5-C7 leading back to F",
-      "A1": "ii-V-I in F then Cm7-F7-Bb (ii-V-I into Bb)",
-      "C": "Db7 tritone-sub, F, then D7-G7-C7-F circle-of-fifths cadence to I"
+      "A": "ii-V-I in F (Gm7-C7-F) stated twice, second cadence via C7#5",
+      "B": "ii-V-i in G minor (Am7b5-D7-Gm), then Dm7-G7-Gm7-Gm7b5-C7 turning back toward F",
+      "A1": "ii-V-I in F then Cm7-F7-Bb tonicizing the IV",
+      "C": "Db7 tritone-sub to F, then D7-G7-C7 dominant cycle resolving to I (F)"
     },
     "modulates": true,
-    "modulation_note": "B section tonicizes G minor; A' cadences to Bb major before C returns to F",
-    "stale": true
+    "modulation_note": "B section is a ii-V-i in G minor (the relative/supertonic minor) before returning via C7 to F"
   }
 }

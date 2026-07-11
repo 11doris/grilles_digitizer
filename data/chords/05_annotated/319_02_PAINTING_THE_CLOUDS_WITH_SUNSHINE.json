@@ -53,7 +53,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -105,7 +105,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -170,7 +170,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "Gm7"
+          "1": "Gm7/4"
         }
       },
       {
@@ -210,7 +210,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -244,7 +244,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "a0caa5df22aab543996272fbb21070fd49fd513faf5e7800ce63cea3252a331e",
+    "source_sha256": "9c037a3728bd16a7746c3ddaeb2e0c6107f03bc87bb6c3986c0fb8eeb6bc21f1",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -260,14 +260,14 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "ii-V-chains",
-      "turnaround-ending"
+      "turnaround-ending",
+      "ii-V-chains"
     ],
     "sections": {
-      "A": "I with IV neighbor, #IVo7 passing to V7 (C7), resolving back to I",
-      "A1": "Same as A: I-IV-I with #IVo7 to V7 back to I",
-      "B": "IV to iv minor, back to I with Db7-C7 approach, then ii-V/ii and ii-V (Dm7-G7b9-Gm7-C7)",
-      "A2": "Repeat of A: I-IV-I with #IVo7 to V7 to I"
+      "A": "I with IV neighbor, #ivo7 passing to V7, back to I",
+      "A1": "Same as A: I-IV, #ivo7-V7-I",
+      "B": "IV to iv minor, back to I with Db7/C7, then ii-V7 (Dm7-G7b9) to Gm7-C7 setting up return",
+      "A2": "Same as A: I-IV, #ivo7-V7-I"
     },
     "modulates": false
   }

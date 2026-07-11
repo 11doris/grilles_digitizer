@@ -29,7 +29,7 @@
         "bar": 2,
         "beats": {
           "1": "G",
-          "3": "B7"
+          "3": "B7/5"
         }
       },
       {
@@ -41,7 +41,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "E7"
+          "1": "E7/5"
         }
       },
       {
@@ -81,7 +81,7 @@
         "bar": 2,
         "beats": {
           "1": "G",
-          "3": "B7"
+          "3": "B7/5"
         }
       },
       {
@@ -93,7 +93,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "E7"
+          "1": "E7/5"
         }
       },
       {
@@ -152,14 +152,14 @@
       {
         "bar": 5,
         "beats": {
-          "1": "D7",
+          "1": "D7/3",
           "3": "(Fm6)"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "A7",
+          "1": "A7/3",
           "3": "D7"
         }
       },
@@ -206,13 +206,13 @@
         "bar": 5,
         "beats": {
           "1": "A7",
-          "3": "(E7)"
+          "3": "(E7/5)"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "A7"
+          "1": "A7/3"
         }
       },
       {
@@ -225,7 +225,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "(D7)"
+          "1": "(D7/5)"
         }
       }
     ],
@@ -259,14 +259,14 @@
       {
         "bar": 5,
         "beats": {
-          "1": "D7",
+          "1": "D7/3",
           "3": "(Fm6)"
         }
       },
       {
         "bar": 6,
         "beats": {
-          "1": "A7",
+          "1": "A7/3",
           "3": "D7"
         }
       },
@@ -316,7 +316,7 @@
         "bar": 5,
         "beats": {
           "1": "Am7",
-          "3": "(Eb7)"
+          "3": "(Eb7/7)"
         }
       },
       {
@@ -350,7 +350,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "0ea02b78805e047ceb10e3f362387fe757e6ba334dfce9561575eeb9ea5dc6f1",
+    "source_sha256": "f8a445f644262e5222323fd623e0d4c0ede356f6c74c3e94b6207108b2b8335d",
     "scorer": {
       "tonic": "G",
       "mode": "major",
@@ -367,17 +367,17 @@
     "family": "32-bar ABAC standard with 16-bar verse",
     "tags": [
       "verse-present",
-      "dominant-cycle-bridge",
       "ii-V-chains",
+      "dominant-cycle-bridge",
       "turnaround-ending"
     ],
     "sections": {
-      "verse_A": "I with V/vi to vi, V/ii, V/V, iv(Cm6)-V motion back to I then V7 turnaround",
-      "verse_A1": "Same as verse_A but ending on sustained V7 turnaround",
-      "A": "I with V/V (A9) resolving via V7, A7-D7 back to I, ending I to bVII7(F7)",
-      "B": "Dominant cycle E7-A7-D7 (V/V/V to V) driving back toward I",
-      "A1": "Repeat of A: I, V/V, V7, A7-D7 to I, ending on F7",
-      "C": "iii-related ii-V (Bm7b5-E7) to Em, then Am7-D7-I authentic cadence"
+      "verse_A": "I with V/vi to vi, then V/V-based motion resolving to I, ending on V",
+      "verse_A1": "Same as verse_A but ends on V7 turnaround (D7)",
+      "A": "I6 with #5 passing, V/V (A9) to V7 and back to I6, ending with bVII7 (F7)",
+      "B": "Dominant cycle III7-VI7(A9)-V7(D9) with diminished passing chord, all functioning back toward I",
+      "A1": "Same as A: I6 with V/V-V motion, ending on bVII7",
+      "C": "ii-V of vi (Bm7b5-E7) to Em, then ii-V (Am7-D7) resolving to I"
     },
     "modulates": false
   }

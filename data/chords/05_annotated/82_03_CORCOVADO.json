@@ -23,7 +23,7 @@
       {
         "bar": 1,
         "beats": {
-          "1": "D9"
+          "1": "D9/5"
         }
       },
       {
@@ -127,7 +127,7 @@
       {
         "bar": 1,
         "beats": {
-          "1": "D9"
+          "1": "D9/5"
         }
       },
       {
@@ -258,43 +258,36 @@
   "opening": {
     "degree": "II",
     "quality": "dom",
-    "chord": "D9"
+    "chord": "D9/5"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "2624b3630c1790c04901a72d2f53d02933e39947e17e386c4850d64aadf21389",
+    "status": "agreed",
+    "source_sha256": "4452608cb46830466af2b70dc418666bc846c62abb709e2dd7107639fe04a340",
     "scorer": {
       "tonic": "C",
       "mode": "major",
       "margin": 0.3043
     },
     "llm": {
-      "tonic": "F",
+      "tonic": "C",
       "mode": "major",
       "confidence": "medium",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "C",
-      "mode": "major",
-      "corrected": true
     }
   },
   "harmonic_fingerprint": {
-    "family": "36-bar A-B-A-C bossa nova standard",
+    "family": "bossa nova standard (ABAC)",
     "tags": [
       "ii-V-chains",
-      "circle-of-fifths",
-      "turnaround-ending",
-      "chromatic-descent"
+      "chromatic-descent",
+      "turnaround-ending"
     ],
     "sections": {
-      "A": "D9 (V/ii) to a passing Abo7, Gm7 (ii) with bII Gbmaj7, resting on Fmaj7/F6 (I) then F7#5",
-      "B": "Fm7-Bb9 (ii-V toward bVII/Eb), Em7-Ab9#5, D9 (V/ii), then Dm7-Dm7b5-G#o7",
-      "A1": "Repeat of A: V/ii, passing dim, ii-bII, cadencing on Fmaj7 (I) then F7#5",
-      "C": "Descending circle-of-fifths ii-V chain (Fm7-Bb9, Em7-Am7, Dm7-G7b9, Em7b5-A9#5, Dm7-G9b5) resolving to C (V) as a turnaround"
+      "A": "Opens on D9 (V/V) through Ab°7 to Gm7-Gbmaj7-Fmaj7, settling on IV with an F7#5 pivot",
+      "B": "Fm7-Bb9 and Em7-Ab9#5 descending ii-V pairs into D9, then Dm7-Dm7b5-G#o7",
+      "A1": "Repeat of A: D9-Ab°7-Gm7-Gbmaj7-Fmaj7 with F7#5 turn",
+      "C": "ii-V pairs (Fm7-Bb9, Em7-Am7, Dm7-G7b9, Em7b5-A9#5) leading Dm7-G9b5 to a full ii-V-I cadence on C"
     },
-    "modulates": false,
-    "stale": true
+    "modulates": false
   }
 }

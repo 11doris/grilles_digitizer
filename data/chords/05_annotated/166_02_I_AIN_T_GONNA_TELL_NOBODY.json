@@ -14,7 +14,7 @@
           "beats": {
             "1": "C",
             "2": "Ebo7",
-            "3": "G7"
+            "3": "G7/5"
           }
         }
       ],
@@ -192,7 +192,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       }
     ],
@@ -230,7 +230,7 @@
       {
         "bar": 6,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
@@ -242,7 +242,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "G7"
+          "1": "G7/5"
         }
       },
       {
@@ -283,7 +283,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "b2a08b6c4eed1a2ba8c4e00d15724160b0d2e6aa86ec78f009daf0bd31c9946c",
+    "source_sha256": "538ffdff504bdb1c5df8d3b87ba153583fed02c414c0a95f6e5f56311052e0ff",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -297,17 +297,16 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "16-bar tune with intro",
+    "family": "16-bar / 20-bar AABA-type standard",
     "tags": [
       "circle-of-fifths",
-      "ii-V-chains",
       "turnaround-ending"
     ],
     "sections": {
-      "intro_A": "I-V alternation then VI7-II7-V7 dominant cycle back to V",
-      "intro_A1": "Repeat: I-V oscillation then VI7-II7-V7 turnaround",
-      "A": "I to VI7-II7-V7 dominant chain, I with #io7 passing, ending on V7 turnaround",
-      "A1": "Dominant-cycle I-VI7-II7 then repeated I-V7-I cadences, resolving firmly to I"
+      "intro_A": "I-V7 alternations then V/V cycle A7-D7 to G7 (V)",
+      "intro_A1": "Identical intro: I-V7 alternation with A7-D7-G7 dominant chain",
+      "A": "I - V/V/V (A7) - V/V (D7) - V7 (G7) - back to I with Ebo7 passing to G7",
+      "A1": "Same opening dominant cycle then repeated I-V7 exchanges cadencing firmly on I"
     },
     "modulates": false
   }

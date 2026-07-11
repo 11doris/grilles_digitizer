@@ -142,13 +142,13 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Fm"
+          "1": "Fm/3"
         }
       },
       {
         "bar": 5,
         "beats": {
-          "1": "Dm7"
+          "1": "Dm7/4"
         }
       },
       {
@@ -260,7 +260,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "Bm7"
+          "1": "Bm7/4"
         }
       },
       {
@@ -487,7 +487,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "44596fb3569bed5c850f6ac992c4998a7ef5ac786a008f7e8acebf4111b14bce",
+    "source_sha256": "2dee28ab9caeb279788f17f6b4a92b1bd3bbf41d26ad1952ba3db4d33605dee2",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -513,21 +513,22 @@
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar standard with verse",
+    "family": "32-bar tune with verse",
     "tags": [
       "circle-of-fifths",
       "ii-V-chains",
-      "verse-present"
+      "verse-present",
+      "turnaround-ending"
     ],
     "sections": {
-      "verse_A": "I-V-I alternation (C, G9, G7b9) then ii-V (Dm7-G7) in C",
-      "verse_B": "vi-area with V7/vi (Dm, A7b9), passing Fm, then ii-V-I to C with C7 leading to IV",
-      "verse_C": "IV-#ivo7-I (F, F#o7, C) with C7, ending on V/ii (A7)",
-      "verse_D": "ii-V-I (Dm7-G7-C) then iii/vi motion to V/vi (Bm7-E7)",
-      "A": "Descending circle of fifths: Am7-Dm7-G7-C7-Fmaj7-Bm7b5-E7-Am(A7)",
-      "B": "Dm with chromatic Fm7, Em7-A7 then ii-V-I to C, ending Bm7b5-E7 turnaround",
-      "A1": "Repeat of descending circle of fifths in C",
-      "B1": "Like B with Em7b5-A7, resolving ii-V-I onto C tonic"
+      "verse_A": "I-V-I-V-I alternation then vi-ii-V in C",
+      "verse_B": "ii tonicized via V/ii (A7b9) then ii-V-I to C with I7 turn to IV",
+      "verse_C": "IV-#ivo7-I-I7 loop, ending on V/vi (A7)",
+      "verse_D": "ii-V-I then ii to vii/vi motion into E7 (V/vi)",
+      "A": "Descending circle of fifths vi-ii-V-I7-IV-viio-V/vi-vi",
+      "B": "ii with chromatic Fm7, then iii-VI7 back to ii-V-I, cadence to V/vi",
+      "A1": "Repeat of A: circle-of-fifths vi-ii-V-I7-IV-viio-V/vi-vi",
+      "B1": "ii chromatic move, iiø-VI7, ii-V-I resolving fully to C"
     },
     "modulates": false
   }

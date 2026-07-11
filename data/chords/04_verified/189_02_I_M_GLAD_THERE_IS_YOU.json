@@ -8,17 +8,6 @@
   "title": "I'M GLAD THERE IS YOU",
   "page": 189,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints '18 VERSE'."
-  },
-  "recordings": [
-    "S.Amoros 62- N.Bailey 45- S.Kenton 55.61",
-    "B.Clarke/F.Boland 69- F.Bailey 62",
-    "KO.Pearson 69- S.Getz 57- J.Gel/Y.Lin 57",
-    "B.Sinatra 47- C.Vaughan 45.55- H.Neff 8",
-    "J.Dorsey 41- C.Adderley 55- C.Baker 55",
-    "B.De Franco 57- E.Fitzgerald 55"
-  ],
   "variants": [
     {
       "applies_to": "Bar 4, 28",
@@ -42,6 +31,17 @@
         }
       ]
     }
+  ],
+  "notation_notes": {
+    "verse": "Header prints '18 VERSE'."
+  },
+  "recordings": [
+    "S.Amoros 62- N.Bailey 45- S.Kenton 55.61",
+    "B.Clarke/F.Boland 69- F.Bailey 62",
+    "KO.Pearson 69- S.Getz 57- J.Gel/Y.Lin 57",
+    "B.Sinatra 47- C.Vaughan 45.55- H.Neff 8",
+    "J.Dorsey 41- C.Adderley 55- C.Baker 55",
+    "B.De Franco 57- E.Fitzgerald 55"
   ],
   "sections": {
     "A": [
@@ -264,14 +264,14 @@
         "bar": 9,
         "beats": {
           "1": "Bb",
-          "3": "F"
+          "3": "F/3"
         }
       },
       {
         "bar": 10,
         "beats": {
           "1": "Gm7",
-          "3": "C(b9)"
+          "3": "C7b9"
         }
       },
       {

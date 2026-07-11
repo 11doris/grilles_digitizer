@@ -101,7 +101,7 @@ const CHORD_CORE_RE = new RegExp(
   '(?<altw>alt)?' +                        // altered dominant, e.g. F7alt (needs a 7th/extension)
   '(?<balts>' + CHORD_ALT + '*)' +         // bare alterations (need a 7th/extension)
   '(?<palts>\\(' + CHORD_ALT + '+\\))?' +  // parenthesised alterations (bare triad)
-  '(?<slash>/' + CHORD_ROOT + ')?' +
+  '(?<slash>/(?:' + CHORD_ROOT + '|[2-7]))?' +  // bass note (F/Bb) or degree in the bass (F/5)
   '(?<unc>\\?)?$'
 );
 
@@ -148,7 +148,8 @@ function chordParseHints(s) {
   if (!hints.length)
     hints.push('Not a recognised chord. Expected: ROOT(A–G, #/b) + quality (m, maj7, m7b5, o7, '
       + 'm(maj7), sus4…) + extension (6, 7, 9, 11, 13, 69) + alterations (b5 #5 b9 #9 #11 b13) '
-      + 'or alt + optional /bass and trailing ? — e.g. Bb7, Fm7b5, C9b5, F7alt, F(#5), D(b9), Fm7/Bb.');
+      + 'or alt + optional /bass (a note Fm7/Bb, or a degree 2–7 in the bass, F/5) and '
+      + 'trailing ? — e.g. Bb7, Fm7b5, C9b5, F7alt, F(#5), D(b9), Fm7/Bb, F/5.');
   return hints;
 }
 
@@ -228,7 +229,7 @@ function normalizeChord(raw) {
   // Peel a trailing "?" then a /bass so the quality stands alone for the test.
   let tail = '';
   if (rest.endsWith('?')) { tail = '?'; rest = rest.slice(0, -1); }
-  const bassM = rest.match(new RegExp('/' + CHORD_ROOT + '$'));
+  const bassM = rest.match(new RegExp('/(?:' + CHORD_ROOT + '|[2-7])$'));
   if (bassM) { tail = bassM[0] + tail; rest = rest.slice(0, bassM.index); }
   if (BARE_FLAT9_RE.test(rest)) rest = '7b9';
   return root + rest + tail;

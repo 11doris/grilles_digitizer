@@ -152,7 +152,7 @@
         "bar": 1,
         "beats": {
           "1": "Ab",
-          "4": "Eb7"
+          "4": "Eb7/5"
         }
       },
       {
@@ -180,7 +180,7 @@
         "bar": 5,
         "beats": {
           "1": "Ab",
-          "4": "Eb7"
+          "4": "Eb7/5"
         }
       },
       {
@@ -193,7 +193,7 @@
       {
         "bar": 7,
         "beats": {
-          "1": "Ab",
+          "1": "Ab/3",
           "3": "Fm7"
         }
       },
@@ -285,7 +285,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "1533376f9a47808fcde0e1c0613c9916aa62abceff4d884288a63f3809bd23ea",
+    "source_sha256": "20aa7debcb8ea5bb142d895ae558ed414ed28a8d907fbdb7212b5997bd7fe039",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -302,7 +302,7 @@
       "tonic": "C",
       "mode": "major",
       "confidence": "high",
-      "modulation_note": "bridge (B) in Ab major before returning via ii-V to C",
+      "modulation_note": "bridge (B) in Ab major, returning via ii-V (Dm7-G7) to C",
       "section_keys": {
         "B": {
           "tonic": "Ab",
@@ -316,15 +316,15 @@
     "tags": [
       "ii-V-chains",
       "turnaround-ending",
-      "circle-of-fifths"
+      "chromatic-descent"
     ],
     "sections": {
-      "A": "I with augmented/6th embellishments moving I-IV via dominants, then Bb6 to A7, ii tonicization, ending on Dm7-G7 (ii-V turnaround)",
-      "A1": "Same as A but resolving Am7-D7-Db7 to I (C)",
-      "B": "IV-based bridge in Ab: I-V7, ii-V7 loops cadencing on Ab, ending on Dm7-G7 (ii-V back to C)",
-      "A2": "Same as A1, ending on tonic C"
+      "A": "I with #5/6/7 embellishment moving to IV, then Bb (bVII) with A7, Dm-Bm7b5-Bb7, ii-V (Am7-D7-Dm7-G7) turnaround",
+      "A1": "Same as A but resolves I with D7-Db7 tritone approach to C",
+      "B": "Ab: I-V/5, ii-V (Bbm7-Eb7) repeated with diminished passing, ending Fm7 then Dm7-G7 back to C",
+      "A2": "Same as A1, resolving to I (C)"
     },
     "modulates": true,
-    "modulation_note": "bridge (B) in Ab major before returning via ii-V to C"
+    "modulation_note": "bridge (B) in Ab major, returning via ii-V (Dm7-G7) to C"
   }
 }

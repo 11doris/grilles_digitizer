@@ -129,8 +129,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "G7",
-          "3": "N.C."
+          "1": "G7"
         }
       }
     ],
@@ -152,7 +151,7 @@
       {
         "bar": 3,
         "beats": {
-          "1": "G7",
+          "1": "G7/5",
           "3": "C#o7"
         }
       },
@@ -186,8 +185,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "G7",
-          "3": "N.C."
+          "1": "(G7/5)"
         }
       }
     ],
@@ -209,7 +207,7 @@
       {
         "bar": 3,
         "beats": {
-          "1": "G7",
+          "1": "G7/5",
           "3": "C#o7"
         }
       },
@@ -298,8 +296,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "G7",
-          "3": "N.C."
+          "1": "(G7/5)"
         }
       }
     ],
@@ -321,7 +318,7 @@
       {
         "bar": 3,
         "beats": {
-          "1": "G7",
+          "1": "G7/5",
           "3": "C#o7"
         }
       },
@@ -370,39 +367,34 @@
     "chord": "C"
   },
   "key_annotation": {
-    "status": "verified",
-    "source_sha256": "6ed40916329f4446e7cde2a5e6c5b5dcc60de6bc728a169ba33f64b189fe613b",
+    "status": "agreed",
+    "source_sha256": "f1d39dcbbc92386dbb36d021a6249b39a9f759305ac8e4b27aca4d43ff784149",
     "scorer": {
       "tonic": "C",
       "mode": "major",
-      "margin": 0.8226
+      "margin": 0.8227
     },
     "llm": {
       "tonic": "C",
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
-    },
-    "human": {
-      "tonic": "C",
-      "mode": "major",
-      "corrected": false
     }
   },
   "harmonic_fingerprint": {
-    "family": "32-bar AABA standard with 16-bar verse",
+    "family": "32-bar AABA standard with verse",
     "tags": [
-      "ii-V-chains",
+      "verse-present",
       "turnaround-ending",
       "chromatic-descent"
     ],
     "sections": {
-      "verse_A": "I with chromatic upper-neighbor (C/B) then III (E major) tonicized by B7#5",
-      "verse_B": "Am9-A9-Dm7 then G/G7 dominant build-up, ending on V7 into the head",
-      "A": "I with G7#5, C#o7 passing diminished, ii-V (Dm7-G7) back to I, turnaround on V7",
-      "A1": "Same A but ends C7-Gm7-C7 as V7/IV to launch the bridge",
-      "B": "IV-iv (F-Fm), Cmaj7/C6, Ebo7, ii-V-I cadence back to C, turnaround on V7",
-      "A2": "A with final plagal Fm-C resolving firmly on tonic I"
+      "verse_A": "I with chromatic upper-neighbor descent, then shifts to a tonicized III (E major) via B7#5",
+      "verse_B": "vi to V7 area, Dm7 to G with chromatic descent landing on sustained G7 (V)",
+      "A": "I with G7#5 and C#o7 passing diminished, Dm7-G7 ii-V, turnaround to V",
+      "A1": "Same A opening, ends C7-Gm7-C7 (V7/IV) setting up the IV section",
+      "B": "IV to iv (F-Fm), back to Cmaj7/C6, Ebo7, ii-V-I turnaround",
+      "A2": "A opening resolving via I-Fm(iv)-I to a final tonic C"
     },
     "modulates": false
   }
