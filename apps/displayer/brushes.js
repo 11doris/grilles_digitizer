@@ -32,11 +32,13 @@
 
   let bpm = 140;
   let pattern = "full"; // "full" (kit) | "taps" (ride pattern only)
+  let source = "synth"; // "synth" (rendered kit) | "loop" (real recording)
   let volume = 0.8;
   try {
     const b = parseInt(localStorage.getItem("grilles.brushBpm"), 10);
     if (Number.isFinite(b)) bpm = Math.min(BPM_MAX, Math.max(BPM_MIN, b));
     if (localStorage.getItem("grilles.brushPattern") === "taps") pattern = "taps";
+    if (localStorage.getItem("grilles.brushSource") === "loop") source = "loop";
     const v = parseFloat(localStorage.getItem("grilles.brushVol"));
     if (Number.isFinite(v) && v >= 0 && v <= 1) volume = v;
   } catch (e) { /* ignore */ }
@@ -59,20 +61,24 @@
     return bytes.buffer;
   }
 
-  /* The sample bundle is ~400 kB, so it is injected lazily on first play
-     rather than loaded with the page (script tag: fetch() is unavailable on
-     file://, where the app must keep working). */
-  function loadSampleScript() {
+  /* The audio bundles are hundreds of kB, so they are injected lazily on
+     first use rather than loaded with the page (script tag: fetch() is
+     unavailable on file://, where the app must keep working). */
+  function loadScriptOnce(src, globalName, hint) {
     return new Promise((resolve, reject) => {
-      if (window.BRUSH_SAMPLES) return resolve(window.BRUSH_SAMPLES);
+      if (window[globalName]) return resolve(window[globalName]);
       const s = document.createElement("script");
-      s.src = "data/brush_samples.js";
-      s.onload = () => (window.BRUSH_SAMPLES ? resolve(window.BRUSH_SAMPLES)
-        : reject(new Error("brush_samples.js loaded but defined nothing")));
-      s.onerror = () =>
-        reject(new Error("data/brush_samples.js missing — run apps/displayer/render_brush_samples.py"));
+      s.src = src;
+      s.onload = () => (window[globalName] ? resolve(window[globalName])
+        : reject(new Error(src + " loaded but defined nothing")));
+      s.onerror = () => reject(new Error(src + " missing — run " + hint));
       document.head.appendChild(s);
     });
+  }
+
+  function loadSampleScript() {
+    return loadScriptOnce("data/brush_samples.js", "BRUSH_SAMPLES",
+      "apps/displayer/render_brush_samples.py");
   }
 
   function decode(b64) {
@@ -102,6 +108,80 @@
       }));
     }
     return loadPromise;
+  }
+
+  /* ----------------------------------------------------------- real loops
+   *
+   * data/brush_loops.js (embed_brush_loops.py) ships CC0 recordings with
+   * their native BPM/meter. One loop per meter, rate-stretched to the chosen
+   * tempo and restarted at every form top so chart alignment never drifts.
+   * Meters without a loop (e.g. 3/4) silently fall back to the synth kit.
+   */
+  let loopMeta = null; // metadata list, available before any AudioContext
+  let loopBuffers = null; // same order as loopMeta
+  let loopLoadPromise = null;
+  let loopSrc = null;
+  let loopGain = null;
+
+  function ensureLoopMeta() {
+    return loadScriptOnce("data/brush_loops.js", "BRUSH_LOOPS",
+      "apps/displayer/embed_brush_loops.py").then((L) => { loopMeta = L; return L; });
+  }
+
+  function ensureLoops() {
+    if (!loopLoadPromise) {
+      loopLoadPromise = ensureLoopMeta()
+        .then((L) => Promise.all(L.map((l) => decode(l.ogg))))
+        .then((bufs) => { loopBuffers = bufs; });
+    }
+    return loopLoadPromise;
+  }
+
+  function loopForBeats(n) {
+    if (!loopMeta || !loopBuffers) return null;
+    const i = loopMeta.findIndex((l) => l.beatsPerBar === n);
+    return i >= 0 ? { meta: loopMeta[i], buffer: loopBuffers[i] } : null;
+  }
+
+  /* Start (or seamlessly restart, 15 ms crossfade) the loop at time t.
+     `beatsIn` is how far into the form we join — nonzero when the source is
+     switched mid-take — mapped to the same spot in the recording. */
+  function startLoopAt(loop, t, beatsIn) {
+    const rate = bpm / loop.meta.bpm;
+    const old = loopSrc;
+    const oldGain = loopGain;
+    loopGain = ctx.createGain();
+    loopGain.gain.setValueAtTime(0, t);
+    loopGain.gain.linearRampToValueAtTime(1, t + 0.015);
+    loopGain.connect(master);
+    loopSrc = ctx.createBufferSource();
+    loopSrc.buffer = loop.buffer;
+    loopSrc.loop = true;
+    loopSrc.playbackRate.value = rate;
+    loopSrc.connect(loopGain);
+    const offset = (beatsIn * 60 / loop.meta.bpm) % loop.buffer.duration;
+    loopSrc.start(Math.max(t, ctx.currentTime), offset);
+    if (old) {
+      oldGain.gain.setValueAtTime(1, t);
+      oldGain.gain.linearRampToValueAtTime(0, t + 0.015);
+      old.stop(t + 0.05);
+    }
+  }
+
+  function stopLoop(t) {
+    if (!loopSrc) return;
+    loopGain.gain.setTargetAtTime(0, t, 0.02);
+    loopSrc.stop(t + 0.2);
+    loopSrc = null;
+    loopGain = null;
+  }
+
+  function scheduleLoopBeat(loop, t, beat) {
+    if (!loopSrc || (beat === 1 && barIdx === 0)) {
+      startLoopAt(loop, t, loopSrc ? 0 : barIdx * beats + (beat - 1));
+    } else {
+      loopSrc.playbackRate.setValueAtTime(bpm / loop.meta.bpm, t);
+    }
   }
 
   /* ------------------------------------------------- tune + playhead cells */
@@ -195,25 +275,30 @@
     if (swishGain) swishGain.gain.setValueAtTime(0.02, t);
   }
 
-  /* Sweep swell target at each beat; linearRamp from the previous point turns
-     these into the circular-sweep rise into the backbeats. */
+  /* Sweep swell target at each beat; linearRamp from the previous point makes
+     the circular sweep rise with the skip pair into each accent (1 & 3 in
+     4/4, the bar start in 3/4), reinforcing the long-short-short anchoring. */
   function swishTarget(beat) {
-    if (beats === 4) return beat === 2 || beat === 4 ? 1 : 0.3;
-    if (beats === 3) return [0, 0.35, 1, 0.55][beat];
+    if (beats === 4) return beat === 1 || beat === 3 ? 1 : 0.3;
+    if (beats === 3) return [0, 1, 0.4, 0.7][beat];
     return beat === 1 ? 0.9 : 0.4;
   }
 
   function scheduleBeat(t, beat, dur) {
     const full = pattern === "full";
     if (beats === 4) {
-      /* Spang-a-lang: quarters with accents on 2 & 4 and the swing skip
-         note after each backbeat. */
-      const back = beat === 2 || beat === 4;
-      hit(back ? pick(buffers.accents) : pick(buffers.taps), t, back ? 0.95 : 0.68);
-      if (back) hit(pick(buffers.taps), t + dur * swingRatio(), 0.42);
-      if (full && back) hit(pick(buffers.hats), t, 0.7);
+      /* Long-short-short cells anchored on the accents (owner, 2026-07): the
+         accent (with hat chick and sweep peak) opens each 2-beat cell on 1 &
+         3, a full beat follows (long), then the swing skip after 2 & 4 is the
+         short-short pair leading back into the next accent. Anchored on the
+         accent the ear hears LONG-short-short, not short-short-long. */
+      const strong = beat === 1 || beat === 3;
+      hit(strong ? pick(buffers.accents) : pick(buffers.taps), t, strong ? 0.95 : 0.68);
+      if (!strong) hit(pick(buffers.taps), t + dur * swingRatio(), 0.42);
+      if (full && strong) hit(pick(buffers.hats), t, 0.7);
     } else if (beats === 3) {
-      /* Jazz waltz: accent on 1, skip after 2, hat on 2. */
+      /* Jazz waltz, same anchoring per bar: accent opens the bar (long to 2),
+         skip after 2 is the short-short pair leading back into 1. */
       hit(beat === 1 ? pick(buffers.accents) : pick(buffers.taps), t, beat === 1 ? 0.9 : 0.62);
       if (beat === 2) {
         hit(pick(buffers.taps), t + dur * swingRatio(), 0.4);
@@ -238,7 +323,12 @@
           beatInBar = 1;
         }
       } else {
-        scheduleBeat(nextTime, beatInBar, dur);
+        const loop = source === "loop" ? loopForBeats(beats) : null;
+        if (loop) scheduleLoopBeat(loop, nextTime, beatInBar);
+        else {
+          if (loopSrc) stopLoop(nextTime); // source switched (or meter lost its loop)
+          scheduleBeat(nextTime, beatInBar, dur);
+        }
         visualQueue.push({ time: nextTime, barIdx, beat: beatInBar, beats });
         beatInBar++;
         if (beatInBar > beats) {
@@ -301,7 +391,16 @@
 
   function start() {
     playBtn.disabled = true;
-    ensureAudio().then(() => {
+    const wanted = [ensureAudio()];
+    /* A failing loop bundle falls back to the synth kit rather than blocking
+       playback. */
+    if (source === "loop") {
+      wanted.push(ensureLoops().catch((err) => {
+        console.error(err);
+        applySource("synth");
+      }));
+    }
+    Promise.all(wanted).then(() => {
       playBtn.disabled = false;
       if (playing) return;
       if (ctx.state === "suspended") ctx.resume();
@@ -352,6 +451,7 @@
     if (swishSrc) swishSrc.stop(ctx.currentTime + 0.2);
     swishSrc = null;
     swishGain = null;
+    stopLoop(ctx.currentTime);
     clearPlayhead();
     setDots(null);
     playBtn.textContent = "▶";
@@ -402,13 +502,66 @@
     persist("grilles.brushBpm", bpm);
     bpmBtn.textContent = "♩=" + bpm;
     if (sliderEl && !fromSlider) sliderEl.value = String(bpm);
-    if (numEl) numEl.value = String(bpm);
+    if (numEl) {
+      numEl.value = String(bpm);
+      /* A recording only stretches so far: flag tempos more than ~15% from
+         the loop's native BPM (the synth kit has no such limit). */
+      const native = source === "loop" && loopMeta && loopMeta[0] ? loopMeta[0].bpm : 0;
+      numEl.classList.toggle("warn",
+        !!native && (bpm < native * 0.85 || bpm > native * 1.18));
+    }
+  }
+
+  let sourceHintEl = null;
+  function updateSourceHint() {
+    if (!sourceHintEl) return;
+    if (source === "loop" && loopMeta && loopMeta[0]) {
+      const l = loopMeta[0];
+      sourceHintEl.innerHTML =
+        `<a href="${l.page}" target="_blank" rel="noopener">${l.title}</a>` +
+        ` — ${l.author} (${l.license}), sounds best near ${l.bpm} BPM.` +
+        " 3/4 tunes use the synth waltz.";
+      sourceHintEl.hidden = false;
+    } else {
+      sourceHintEl.hidden = true;
+    }
+  }
+
+  function applySource(s) {
+    source = s === "loop" ? "loop" : "synth";
+    persist("grilles.brushSource", source);
+    menu.querySelectorAll(".brush-src button").forEach((b) => {
+      b.classList.toggle("on", b.dataset.s === source);
+      b.setAttribute("aria-pressed", String(b.dataset.s === source));
+    });
+    /* The kit/taps pattern choice only applies to the synth source. */
+    menu.querySelectorAll(".brush-seg:not(.brush-src) button").forEach((b) => {
+      b.disabled = source === "loop";
+    });
+    if (source === "loop") {
+      /* Metadata (not audio) is enough for the hint + tempo range; a missing
+         bundle reverts the choice. */
+      ensureLoopMeta().then(() => {
+        updateSourceHint();
+        applyBpm(bpm);
+      }).catch((err) => {
+        console.error(err);
+        applySource("synth");
+      });
+      /* Mid-take switch: the sweep's last swell would otherwise hold forever. */
+      if (playing && swishGain) {
+        swishGain.gain.cancelScheduledValues(ctx.currentTime);
+        swishGain.gain.setTargetAtTime(0, ctx.currentTime, 0.05);
+      }
+    }
+    updateSourceHint();
+    applyBpm(bpm);
   }
 
   function applyPattern(p) {
     pattern = p === "taps" ? "taps" : "full";
     persist("grilles.brushPattern", pattern);
-    menu.querySelectorAll(".brush-seg button").forEach((b) => {
+    menu.querySelectorAll(".brush-seg:not(.brush-src) button").forEach((b) => {
       b.classList.toggle("on", b.dataset.p === pattern);
       b.setAttribute("aria-pressed", String(b.dataset.p === pattern));
     });
@@ -473,6 +626,16 @@
     dotNodes = [];
     setDots(null);
 
+    const srcRow = row("brush-seg brush-src");
+    [["synth", "Synth kit"], ["loop", "Real loop"]].forEach(([s, label]) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.dataset.s = s;
+      b.textContent = label;
+      b.addEventListener("click", () => applySource(s));
+      srcRow.appendChild(b);
+    });
+
     const segRow = row("brush-seg");
     [["full", "Brush kit"], ["taps", "Taps only"]].forEach(([p, label]) => {
       const b = document.createElement("button");
@@ -482,6 +645,9 @@
       b.addEventListener("click", () => applyPattern(p));
       segRow.appendChild(b);
     });
+
+    sourceHintEl = row("brush-hint");
+    sourceHintEl.hidden = true;
 
     const volRow = row();
     volRow.insertAdjacentHTML("beforeend", '<span class="brush-lab">Volume</span>');
@@ -499,6 +665,7 @@
     volRow.appendChild(vol);
 
     applyPattern(pattern);
+    applySource(source);
   }
 
   function positionMenu() {
