@@ -693,11 +693,12 @@
   };
   const TINT_POOL = ["#8a8fa3", "#b08a5e", "#7da3a0", "#a3869a", "#96a36b", "#7f8fc4"];
 
+  /* Returns the section's hue; the CSS mixes it into the theme background
+     (--bxtint), stronger in dark mode where a light wash wouldn't show. */
   function sectionTint(name) {
     const key = String(name || "").replace(/\d+$/, ""); // A1 → A, verse_A1 → verse_A
     const hash = [...key].reduce((s, c) => (s * 31 + c.charCodeAt(0)) >>> 0, 0);
-    const base = TINT_TABLE[key] || TINT_POOL[hash % TINT_POOL.length];
-    return `color-mix(in srgb, ${base} 12%, transparent)`;
+    return TINT_TABLE[key] || TINT_POOL[hash % TINT_POOL.length];
   }
 
   /* One box, following the book's conventions:
@@ -787,7 +788,7 @@
         /* Shared borders within a group of 4: only a run's first box and the
            box after the mid gap draw their own left border. */
         if (i > 0 && col !== 5) cell.classList.add("merge-left");
-        if (row.tint) cell.style.setProperty("--bxtint", row.tint);
+        if (row.tint) cell.style.setProperty("--bxhue", row.tint);
         fillBox(cell, bar, row.beats);
         rowEl.appendChild(cell);
       });

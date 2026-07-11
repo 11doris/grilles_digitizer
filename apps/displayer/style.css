@@ -853,7 +853,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
    borders via .merge-left), the narrow middle track parts the groups. */
 .bx-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) 0.6em repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr) 0.3em repeat(4, 1fr);
   position: relative; /* anchors the section letter in the gutter */
 }
 
@@ -874,21 +874,28 @@ body.list-collapsed #gridZoom { left: 1rem; }
   padding: 0.12em 0.22em;
 }
 
-/* Boxes carry their section's tint (--bxtint, set per row by the renderer);
-   the ⬤ toggle turns the shading off panel-wide (.tint-off). Boxes inside a
-   four-bar group share single borders: all but the group's first drop their
-   left border and lean on the neighbour's right one. */
+/* Boxes carry their section's hue (--bxhue, set per row by the renderer),
+   mixed into the theme background — a light wash in light mode, a stronger
+   mix in dark mode where 12% wouldn't show. The ⬤ toggle turns the shading
+   off panel-wide (.tint-off). Boxes inside a four-bar group share single
+   borders: all but the group's first drop their left border and lean on the
+   neighbour's right one. */
 .bx {
   position: relative;
   min-height: 5em;
   min-width: 0;
   border: 0.2em solid var(--line);
-  background-color: var(--bxtint, transparent);
+  --bxtint: color-mix(in srgb, var(--bxhue, transparent) 12%, var(--bg));
+  background-color: var(--bxtint);
+}
+
+:root[data-theme="dark"] .bx {
+  --bxtint: color-mix(in srgb, var(--bxhue, transparent) 26%, var(--bg));
 }
 
 .bx.merge-left { border-left: none; }
 
-.panel.tint-off .bx { background-color: transparent; }
+.panel.tint-off .bx { --bxtint: var(--bg); }
 
 /* Lone chord: big, centred — like the printed box. */
 .bx-solo {
@@ -954,16 +961,13 @@ body.list-collapsed #gridZoom { left: 1rem; }
   align-items: center;
   justify-content: center;
   border: 0.075em solid var(--line);
-  /* Opaque page base (masks the main chord underneath) + the section tint on
-     top, so the inset matches its box's shade. */
-  background-color: var(--bg);
-  background-image: linear-gradient(var(--bxtint, transparent), var(--bxtint, transparent));
+  /* The box's own opaque tint (masks the main chord underneath); follows the
+     .tint-off override through --bxtint. */
+  background-color: var(--bxtint, var(--bg));
   font-size: 0.8em;
   line-height: 1;
   white-space: nowrap;
 }
-
-.panel.tint-off .bx-inset { background-image: none; }
 
 .bx-inset .bx-beat { align-self: flex-start; padding-top: 0.2em; }
 
