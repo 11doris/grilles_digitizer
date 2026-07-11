@@ -2387,13 +2387,13 @@
       /* region width per chord container inside this box */
       const parts = [];
       box.querySelectorAll(".bx-solo").forEach((p) => parts.push([p, inner]));
-      /* Diagonal halves ride the box's top/bottom strip, which the diagonal
-         leaves almost entirely free — so each chord may take most of the
-         width; only true collisions with the line get squeezed. */
-      box.querySelectorAll(".bx-a, .bx-b").forEach((p) => parts.push([p, inner * 0.85]));
-      /* Uneven pair: the main chord sits in the half the inset leaves free,
-         with the full box width to itself; the inset owns its quadrant. */
-      box.querySelectorAll(".bx-main").forEach((p) => parts.push([p, inner * 0.92]));
+      /* Triangle chords are centred on their centroid (⅓ resp. ⅔ of the box);
+         growing symmetrically from there, they meet the diagonal at about 60%
+         of the box width. */
+      box.querySelectorAll(".bx-a, .bx-b").forEach((p) => parts.push([p, inner * 0.6]));
+      /* Uneven pair: the main chord is centred on the free L-shape's centroid;
+         its room ends where the inset's quadrant begins. */
+      box.querySelectorAll(".bx-main").forEach((p) => parts.push([p, inner * 0.75]));
       box.querySelectorAll(".bx-inset").forEach((p) => parts.push([p, inner * 0.46]));
       /* Halved box: each cell owns its flex share of the strip. */
       box.querySelectorAll(".bx-cell").forEach((p) =>

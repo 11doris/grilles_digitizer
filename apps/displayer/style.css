@@ -923,32 +923,32 @@ body.list-collapsed #gridZoom { left: 1rem; }
     transparent calc(50% + 0.03em));
 }
 
-/* The book writes both chords nearly full-size: the diagonal frees the top
-   strip for the first chord and the bottom strip for the second, so each may
-   run well past the middle of the box (fitBoxes squeezes real collisions). */
+/* Each chord sits at the centre of gravity of its triangle: a right triangle's
+   centroid lies a third of the way in from its right-angle corner — (⅓, ⅓) of
+   the box for the top-left triangle, (⅔, ⅔) for the bottom-right one. */
 .bx-a,
 .bx-b {
   position: absolute;
   font-size: 1.05em;
   white-space: nowrap;
+  transform: translate(-50%, -50%);
 }
 
-.bx-a { top: 0.18em; left: 0.25em; }
-.bx-b { bottom: 0.3em; right: 0.25em; }
+.bx-a { top: 33%; left: 34%; }
+.bx-b { top: 67%; left: 67%; }
 
 /* Uneven two-chord bars (1+4, 1+2, …): the long chord big, the short one in
-   a small framed box in the corner matching its position in the bar. */
+   a small framed box in the corner matching its position in the bar. The main
+   chord sits at the centre of gravity of the L-shape the inset leaves free —
+   5/12 (≈42%) of the box toward the corner opposite the inset. */
 .bx-main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  padding: 0.1em 0.3em;
+  position: absolute;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
 }
 
-/* Keep the main chord vertically clear of the inset's half of the box. */
-.bx-main.clear-bottom { padding-bottom: 2.5em; }
-.bx-main.clear-top { padding-top: 2.5em; }
+.bx-main.clear-bottom { top: 41.7%; left: 41.7%; }
+.bx-main.clear-top { top: 58.3%; left: 58.3%; }
 
 /* The inset is one quadrant of the box (half width × half height); its frame
    is an inside line, much thinner than the frame (0.075em at the 0.8em font =
