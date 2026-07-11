@@ -737,6 +737,23 @@ Changes to `apps/displayer/`:
    search/filtering; tunes without annotation (no `opening`) appear under an "unknown" bucket
    rather than vanishing. Also show the opening degree as a small badge on the tune view next to
    the key.
+2b. **Key / form / tag filters** in the top bar, next to the "starts on" dropdown, all built the
+   same way (populated from the bundled data, combinable with search, playlist and each other;
+   un-annotated tunes land in an "unknown" bucket):
+   - **Key**: a dropdown over the annotated `key` ("F major", "D minor", …), sorted chromatically
+     by tonic, each option carrying its tune count.
+   - **Form**: a dropdown over `harmonic_fingerprint.family` ("32-bar AABA standard", "12-bar
+     blues", …). The family strings are free text with a long tail — families carried by a single
+     tune collapse into an "other" bucket, mirroring the rare-degree handling of 2a.
+   - **Tags**: a "Tags" button opening a **multi-check** dropdown over
+     `harmonic_fingerprint.tags` ("ii-V-chains", "chromatic-descent", "turnaround-ending", …),
+     each with its tune count. Checked tags combine with **AND** (a tune must carry every checked
+     tag); the menu stays open while checking so several tags can be combined, closes on
+     outside-click or Escape, and becomes a bottom sheet on phones (same `positionDropdown`
+     mechanics as the playlist menu). The button shows the number of active checks ("Tags · 2")
+     and lights up while any are set.
+   None of these persist across reloads (session-only, like "starts on"). On narrow screens the
+   top bar wraps so the filter controls form their own row(s).
 3. **Comparison view**: selecting a suggestion shows the current tune and the suggestion side by
    side (stacked on narrow screens), aligned bars highlighted from the bar-mapping, with a
    **three-way display switch**: *original keys* / *transposed* (suggestion rendered in the current

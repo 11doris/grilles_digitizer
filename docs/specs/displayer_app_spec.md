@@ -489,6 +489,7 @@ The root's own accidental also renders as `♯`/`♭`.
   no external index is needed.
 - Empty query shows the full list. Zero matches shows a "No tunes found" message in the sidebar.
 - **Digitized-chords filter**: a toggle button (▦) in the top bar, beside the search box. When engaged it restricts the list to tunes carrying chord JSON (`has_chord_json`), applied on top of the search query and any active playlist. The button lights (accent colour) while on, is `aria-pressed`, and its state persists in `localStorage` under `grilles.chordsOnly`.
+- **Harmonic filters**: dropdowns for opening degree ("starts on"), key and form family, plus a multi-check tag menu — all over the annotation/fingerprint data, all combinable with search, the ▦ toggle and playlists. Specified in the similarity spec (`tune_similarity_spec.md` §8 items 2a/2b).
 
 ---
 

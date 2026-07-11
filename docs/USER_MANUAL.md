@@ -24,7 +24,10 @@ into:
 4. **A public web app** (the *displayer*, on GitHub Pages) that shows the
    original scans, the rendered chord grids (switchable between a 4-bars-per-row
    reading view and a "book layout" that re-creates the printed 8-boxes-per-row
-   grille), melodies, and "similar tunes" suggestions.
+   grille), melodies, and "similar tunes" suggestions. The top bar can filter
+   the tune list by opening degree, key, form family ("32-bar AABA standard",
+   …) and harmonic tags (multi-check: "ii-V-chains" + "chromatic-descent"
+   shows tunes carrying both).
 
 Everything is file-based. There is no database; every pipeline stage reads
 one folder and writes the next.

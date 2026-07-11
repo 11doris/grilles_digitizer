@@ -75,6 +75,9 @@
     boxTint: true, // book layout: section shading on/off (persisted)
     chordsOnly: false, // list filter: only tunes with digitized chords (persisted)
     startsOn: "", // list filter: opening degree ("" = any, "unknown", "other", or a degree; §8.2a)
+    keyFilter: "", // list filter: annotated key ("" = any, "unknown", or "F major" etc.; §8.2b)
+    formFilter: "", // list filter: fingerprint family ("" = any, "unknown", "other", or a family; §8.2b)
+    tagFilter: new Set(), // list filter: fingerprint tags — a tune must carry every checked tag (§8.2b)
     showSuggest: null, // open suggestions group: null | "tunes" | "sections"; per-tune
     compare: null, // {otherId, mode: original|transposed|roman, bars} — comparison view (§8.3); per-tune
   };
@@ -271,7 +274,41 @@
         return deg === state.startsOn;
       });
     }
+    /* Harmonic filters (§8.2b) — over the key annotation and the fingerprint;
+       tunes without one land in the "unknown" bucket rather than vanishing. */
+    if (state.keyFilter) {
+      list = list.filter((t) => {
+        const label = keyLabelOf(t);
+        return state.keyFilter === "unknown" ? !label : label === state.keyFilter;
+      });
+    }
+    if (state.formFilter) {
+      list = list.filter((t) => {
+        const fam = familyOf(t);
+        if (state.formFilter === "unknown") return !fam;
+        if (state.formFilter === "other") return fam !== null && rareFamilies.has(fam);
+        return fam === state.formFilter;
+      });
+    }
+    if (state.tagFilter.size) {
+      list = list.filter((t) => {
+        const tags = (meta(t).harmonic_fingerprint || {}).tags || [];
+        return [...state.tagFilter].every((tag) => tags.includes(tag));
+      });
+    }
     return list;
+  }
+
+  /* Re-filter after a topbar filter changed; reveal the narrowed list like
+     the digitized-chords toggle does (drawer on phones, un-collapse on desktop). */
+  function refilterList(reveal) {
+    state.filtered = filterTunes(searchEl.value);
+    state.activeIndex = state.filtered.length ? 0 : -1;
+    renderList();
+    if (reveal) {
+      if (narrowMq.matches) setListOpen(true);
+      else if (state.listCollapsed) setListCollapsed(false);
+    }
   }
 
   /* --------------------------------------------- "starts on" filter (§8.2a) */
@@ -327,6 +364,155 @@
         if (narrowMq.matches) setListOpen(true);
         else if (state.listCollapsed) setListCollapsed(false);
       }
+    });
+  }
+
+  /* ------------------------------------- key / form / tag filters (§8.2b) */
+
+  const keyFilterEl = document.getElementById("keyFilter");
+  const formFilterEl = document.getElementById("formFilter");
+  const tagFilterBtn = document.getElementById("tagFilterBtn");
+  const tagFilterMenu = document.getElementById("tagFilterMenu");
+
+  /* "F major" from the key annotation, or null when the tune has none. */
+  function keyLabelOf(t) {
+    const k = meta(t).key;
+    return k && k.tonic ? k.tonic + " " + (k.mode || "major") : null;
+  }
+
+  function familyOf(t) {
+    return (meta(t).harmonic_fingerprint || {}).family || null;
+  }
+
+  let rareFamilies = new Set();
+
+  /* Keys sorted chromatically (majors interleaved with minors per tonic). */
+  const TONIC_ORDER = ["C", "C#", "Db", "D", "D#", "Eb", "E", "F", "F#", "Gb",
+    "G", "G#", "Ab", "A", "A#", "Bb", "B"];
+
+  function initKeyFilter() {
+    if (!keyFilterEl) return;
+    const counts = new Map();
+    let unknown = 0;
+    TUNES.forEach((t) => {
+      const label = keyLabelOf(t);
+      if (label) counts.set(label, (counts.get(label) || 0) + 1);
+      else unknown++;
+    });
+    if (!counts.size) {
+      keyFilterEl.hidden = true;
+      return;
+    }
+    const labels = [...counts.keys()].sort((a, b) => {
+      const ta = TONIC_ORDER.indexOf(a.split(" ")[0]);
+      const tb = TONIC_ORDER.indexOf(b.split(" ")[0]);
+      if (ta !== tb) return ta - tb;
+      return a.localeCompare(b); // major before minor on the same tonic
+    });
+    const opts = ['<option value="">Key…</option>'];
+    labels.forEach((l) => {
+      opts.push(`<option value="${escapeHtml(l)}">${escapeHtml(l)} (${counts.get(l)})</option>`);
+    });
+    if (unknown) opts.push(`<option value="unknown">unknown (${unknown})</option>`);
+    keyFilterEl.innerHTML = opts.join("");
+    keyFilterEl.addEventListener("change", () => {
+      state.keyFilter = keyFilterEl.value;
+      keyFilterEl.classList.toggle("on", Boolean(state.keyFilter));
+      refilterList(Boolean(state.keyFilter));
+    });
+  }
+
+  /* Fingerprint families are free text with a long tail — families carried by
+     a single tune collapse into an "other" bucket to keep the dropdown short. */
+  function initFormFilter() {
+    if (!formFilterEl) return;
+    const counts = new Map();
+    let unknown = 0;
+    TUNES.forEach((t) => {
+      const fam = familyOf(t);
+      if (fam) counts.set(fam, (counts.get(fam) || 0) + 1);
+      else unknown++;
+    });
+    if (!counts.size) {
+      formFilterEl.hidden = true;
+      return;
+    }
+    const families = [...counts.keys()].sort((a, b) =>
+      counts.get(b) - counts.get(a) || a.localeCompare(b));
+    rareFamilies = new Set(families.filter((f) => counts.get(f) < 2));
+    const opts = ['<option value="">Form…</option>'];
+    families.filter((f) => !rareFamilies.has(f)).forEach((f) => {
+      opts.push(`<option value="${escapeHtml(f)}">${escapeHtml(f)} (${counts.get(f)})</option>`);
+    });
+    if (rareFamilies.size) {
+      const n = [...rareFamilies].reduce((s, f) => s + counts.get(f), 0);
+      opts.push(`<option value="other">other (${n})</option>`);
+    }
+    if (unknown) opts.push(`<option value="unknown">unknown (${unknown})</option>`);
+    formFilterEl.innerHTML = opts.join("");
+    formFilterEl.addEventListener("change", () => {
+      state.formFilter = formFilterEl.value;
+      formFilterEl.classList.toggle("on", Boolean(state.formFilter));
+      refilterList(Boolean(state.formFilter));
+    });
+  }
+
+  /* Tag filter: a dropdown of checkboxes (multi-check). Checked tags combine
+     with AND — each additional check narrows the list further. */
+  let tagCounts = [];
+
+  function tagFilterLabel() {
+    tagFilterBtn.textContent = state.tagFilter.size ? `Tags · ${state.tagFilter.size}` : "Tags";
+    tagFilterBtn.classList.toggle("on", state.tagFilter.size > 0);
+  }
+
+  function renderTagMenu() {
+    tagFilterMenu.innerHTML =
+      '<div class="tag-hint">Show tunes carrying every checked tag</div>' +
+      tagCounts.map(([tag, count]) =>
+        `<label class="tag-row"><input type="checkbox" value="${escapeHtml(tag)}"` +
+        (state.tagFilter.has(tag) ? " checked" : "") +
+        `><span class="tag-name">${escapeHtml(tag)}</span>` +
+        `<span class="tag-count">${count}</span></label>`).join("");
+  }
+
+  function closeTagMenu() {
+    if (tagFilterMenu.hidden) return false;
+    tagFilterMenu.hidden = true;
+    tagFilterBtn.setAttribute("aria-expanded", "false");
+    return true;
+  }
+
+  function initTagFilter() {
+    if (!tagFilterBtn || !tagFilterMenu) return;
+    const counts = new Map();
+    TUNES.forEach((t) => {
+      ((meta(t).harmonic_fingerprint || {}).tags || []).forEach((tag) => {
+        counts.set(tag, (counts.get(tag) || 0) + 1);
+      });
+    });
+    if (!counts.size) return; // button stays hidden
+    tagCounts = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    tagFilterBtn.hidden = false;
+    tagFilterBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // keep the outside-click closer from firing
+      if (tagFilterMenu.hidden) {
+        renderTagMenu();
+        tagFilterMenu.hidden = false;
+        tagFilterBtn.setAttribute("aria-expanded", "true");
+        positionDropdown(tagFilterMenu, tagFilterBtn);
+      } else {
+        closeTagMenu();
+      }
+    });
+    /* Checking keeps the menu open so several tags can be combined. */
+    tagFilterMenu.addEventListener("change", (e) => {
+      const cb = e.target.closest('input[type="checkbox"]');
+      if (!cb) return;
+      if (cb.checked) state.tagFilter.add(cb.value);
+      else state.tagFilter.delete(cb.value);
+      tagFilterLabel();
+      refilterList(state.tagFilter.size > 0);
     });
   }
 
@@ -501,6 +687,7 @@
       if (closeOverlay()) return;
       if (closePopover()) return;
       if (closeMenu()) return;
+      if (closeTagMenu()) return;
       if (document.body.classList.contains("list-open")) {
         setListOpen(false);
         return;
@@ -1782,6 +1969,10 @@
         !playlistBtn.contains(e.target)) {
       closeMenu();
     }
+    if (!tagFilterMenu.hidden && !tagFilterMenu.contains(e.target) &&
+        !tagFilterBtn.contains(e.target)) {
+      closeTagMenu();
+    }
   });
 
   /* ----------------------------------- similar tunes & comparison (§8.2/§8.3) */
@@ -2452,6 +2643,9 @@
   if (storedPl && PL.byId(storedPl)) state.activePl = storedPl;
   updateTopbar();
   initStartsOnFilter();
+  initKeyFilter();
+  initFormFilter();
+  initTagFilter();
   state.filtered = filterTunes("");
   renderList();
   searchEl.focus();
