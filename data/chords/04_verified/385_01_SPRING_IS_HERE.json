@@ -1,0 +1,284 @@
+{
+  "composer": "Richard RODGERS – Lorenz HART",
+  "year": "1938",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "32 A B A C",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 9",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Abmaj7",
+            "3": "Cm7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Fm7",
+            "3": "Ebm7",
+            "4": "Dm9#11"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "Dbmaj7"
+          }
+        },
+        {
+          "bar": 4,
+          "beats": {
+            "1": "G7#5b9",
+            "3": "C9"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "B",
+          "bar": 1
+        }
+      ]
+    }
+  ],
+  "title": "SPRING IS HERE",
+  "page": 385,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '12 VERSE'."
+  },
+  "recordings": [
+    "M.Sullivan 28- C.Adderley 57- C.Byrd57",
+    "J.Coltrane 58- M.Davis 61- S.Kenton 56",
+    "K.Dorham 59- M.Ferguson 60- J.Raney 54",
+    "E.Garner 50- L.Hampton 62- B.Powell 55",
+    "O.Peterson 55- A.Jamal 55- S.Manne 55",
+    "R.Braff/O.Barnes 75- B.Evans 59.62",
+    "C.Williamson 55- D.Brubeck 50",
+    "S.Getz 53"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bbm7b5",
+          "3": "Eb7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Bbm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7#5b9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7",
+          "3": "Fm(maj7)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bm7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bbm7b5",
+          "3": "Eb7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Bbm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bm7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm9",
+          "3": "Dbm9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7b9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab6"
+        }
+      }
+    ]
+  }
+}

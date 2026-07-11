@@ -1,0 +1,262 @@
+{
+  "composer": "Gigi GRYCE",
+  "year": "1953",
+  "style": "HARD BOP (INSTRUMENTAL)",
+  "tempo": "FAST",
+  "form": "32 A B A B",
+  "time_signature": "4/4",
+  "title": "MINORITY",
+  "page": 267,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Pepper 56- C.Tjader 54",
+    "Adderley 58- B.Evans 58",
+    "Blakey 54- J.Feltser 61",
+    ".Brown 55- B.Sidran 57",
+    "Byrd/G.Gryce 57"
+  ],
+  "notation_notes": {
+    "coda": "Printed below grid: 'CODA AD LIB on Fm.'"
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm(maj7)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7b5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7b9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm(maj7)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gbm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm(maj7)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7b5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7b9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm(maj7)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "B1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gbm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "minor"
+  },
+  "opening": {
+    "degree": "i",
+    "quality": "min",
+    "chord": "Fm(maj7)"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "1ea827fc4113699b3d4a97a62bcb19751a479045646c53f0f69ccecd276be9b6",
+    "scorer": {
+      "tonic": "F",
+      "mode": "minor",
+      "margin": 0.5403
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "minor",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAB standard",
+    "tags": [
+      "ii-V-chains",
+      "minor-key",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "Fm tonic (im(maj7)-im6) with iiø7-V7b9 back to i, ending on ii-V (Cm7-F7) of bVI",
+      "B": "Descending ii-V chain (Bbm7-Eb7, Abm7-Db7, Gbm7-Cb7) resolving via Gm7-C7 back to Fm",
+      "A1": "Repeat of A: Fm tonic with iiø7-V7b9 and ii-V tag",
+      "B1": "Repeat of B: descending ii-V chain returning via ii-V to Fm"
+    },
+    "modulates": false
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "composer": "Saul CHAPLIN – Alberta NICHOLS – Sammy CAHN – Mann HOLINER – L.E. FREEMAN",
+  "year": "1936",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A' B A'",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 3, 11 and 27",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Ebmaj7",
+            "3": "A7b9"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Gm7",
+            "3": "C9"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "A",
+          "bar": 3
+        },
+        {
+          "section": "A1",
+          "bar": 3
+        },
+        {
+          "section": "A2",
+          "bar": 3
+        }
+      ]
+    },
+    {
+      "applies_to": "Bar 6",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Bb7",
+            "3": "Bo7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Cm7",
+            "3": "F7"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "UNTIL THE REAL THING COMES ALONG",
+  "page": 438,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '12 VERSE'."
+  },
+  "recordings": [
+    "B.Holiday 42- F.Waller 36.36- E.Fitzgerald 54",
+    "Mills Blue Rhythm Band 36- A.Kirk 36- C.Auld 55",
+    "K.Burrel 60- A.Franklin 63- S.Kenton 46.54",
+    "D.Gordon 62- C.Hawkins 58- E.Garner 49.51.57",
+    "O.Peterson 51- Valaida 36- J.Moody 52- S.Criss 56",
+    "G.Ammons 51"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb7#5"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb",
+          "3": "Gbo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb7#5"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb6",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7b5",
+          "3": "D7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gmaj7",
+          "3": "G#o7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am7",
+          "3": "D13"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G6",
+          "3": "Bbo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Am7",
+          "3": "D9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gmaj7",
+          "3": "G#o7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D13"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G6",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb7#5"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb",
+          "3": "Gbo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "G",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Eb"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "c3ea76a289d6c499a9eac8fbacde2e23f1bd2f0f46f89dfbd8d27d93b0167f0a",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.4179,
+      "section_keys": {
+        "B": {
+          "tonic": "G",
+          "mode": "major",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge (B) moves to G major before returning via ii-V to Eb",
+      "section_keys": {
+        "B": {
+          "tonic": "G",
+          "mode": "major"
+        }
+      }
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "chromatic-passing-diminished"
+    ],
+    "sections": {
+      "A": "I-V7#5-I with ii-V/ii (Gm7-C9), then Fm7-Bb7 (ii-V) back to I with passing dim, ending ii-V",
+      "A1": "Same as A but bar 7-8 turns to ii-V of vi (Am7b5-D7) setting up bridge",
+      "B": "Imaj7-#io7-ii-V loop in G major, ending Fm7-Bb7 (ii-V back to Eb)",
+      "A2": "I-V7#5-I with ii-V patterns resolving to I (Eb6) final"
+    },
+    "modulates": true,
+    "modulation_note": "bridge (B) moves to G major before returning via ii-V to Eb"
+  }
+}

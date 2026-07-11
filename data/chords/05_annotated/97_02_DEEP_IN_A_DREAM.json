@@ -1,0 +1,330 @@
+{
+  "composer": "Jimmy VAN HEUSEN – Eddie DE LANGE",
+  "year": "1938",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "32 A A' B A'",
+  "time_signature": "4/4",
+  "title": "DEEP IN A DREAM",
+  "page": 97,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'.",
+    "A1_expansion": "A' (2nd printed row) is a leading-arrow row copying section A positionally; empty/dash boxes take the same-position bar from A, with explicit overrides in bars 7-8.",
+    "A2_expansion": "Final A' (4th printed row) is a leading-arrow row copying the B row positionally (physically above), all bars empty/dash - but per form it repeats A'; dashes take same-position bars from A1."
+  },
+  "recordings": [
+    "C.Calloway 38- V.Feldman 55",
+    "A.Shaw 38- J.Jackson/Q.Jones 59",
+    "C.Barnet 39- E.Herr 54-",
+    "C.Boyell 39- R.Hamilez 47-",
+    "J.Hall 57- Ch.Baker 59- S.Clark",
+    "61- C.Laine 55- B.Cooper 55",
+    "Bob Crosby 38- A.Colole 55"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "C(#5)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C6",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F",
+          "3": "F(#5)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F6",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "2": "Bb(#5)",
+          "3": "Bb6",
+          "4": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm",
+          "2": "Dm7",
+          "3": "Bm7b5",
+          "4": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "C(#5)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C6",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F",
+          "3": "F(#5)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F6",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "2": "Bb(#5)",
+          "3": "Bb6",
+          "4": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm",
+          "2": "Dm7",
+          "3": "Bm7b5",
+          "4": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am7",
+          "3": "D7",
+          "4": "Db7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab",
+          "4": "Eb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm7",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab",
+          "4": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "C(#5)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C6",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F",
+          "3": "F(#5)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F6",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "2": "Bb(#5)",
+          "3": "Bb6",
+          "4": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm",
+          "2": "Dm7",
+          "3": "Bm7b5",
+          "4": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am7",
+          "3": "D7",
+          "4": "Db7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "C",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "Ab",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "C"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "1533376f9a47808fcde0e1c0613c9916aa62abceff4d884288a63f3809bd23ea",
+    "scorer": {
+      "tonic": "C",
+      "mode": "major",
+      "margin": 0.21,
+      "section_keys": {
+        "B": {
+          "tonic": "Ab",
+          "mode": "major",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "C",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge (B) in Ab major before returning via ii-V to C",
+      "section_keys": {
+        "B": {
+          "tonic": "Ab",
+          "mode": "major"
+        }
+      }
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "A": "I with augmented/6th embellishments moving I-IV via dominants, then Bb6 to A7, ii tonicization, ending on Dm7-G7 (ii-V turnaround)",
+      "A1": "Same as A but resolving Am7-D7-Db7 to I (C)",
+      "B": "IV-based bridge in Ab: I-V7, ii-V7 loops cadencing on Ab, ending on Dm7-G7 (ii-V back to C)",
+      "A2": "Same as A1, ending on tonic C"
+    },
+    "modulates": true,
+    "modulation_note": "bridge (B) in Ab major before returning via ii-V to C"
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "composer": "Lew POLLACK – Jack YELLEN",
+  "year": "1925",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 5",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "G",
+            "3": "Bbo7",
+            "4": "D7"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "CHEATING ON ME",
+  "page": 71,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '12 VERSE'.",
+    "variant_truncated": "The VARIANTE box ('for Statement of the Melody') is cut off at the bottom crop edge; only 'G' and a partly-legible 'Bb #5 D?' box are visible. Applies to Bar 5 (marked *)."
+  },
+  "recordings": [
+    "ButterField 41- B.ButterField 46",
+    "Oliver 50- J.Lunceford 39- 0.C.lark 25",
+    "Proctor 39- B.Hirges 25- F.Hayne 47",
+    "alifornia Ramblers 25- Varsity Eight 26",
+    "eg.Jones 25- F.Waller 40- B.Bernie 25"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G",
+          "2": "F6",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "B7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Em"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G",
+          "2": "F6",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "G",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "G"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "d9ef270766b4e08d0154d7ba52e62db5a5bcc59fc552b0dab89fbd6cc2af95db",
+    "scorer": {
+      "tonic": "G",
+      "mode": "major",
+      "margin": 0.4128,
+      "section_keys": {
+        "A1": {
+          "tonic": "C",
+          "mode": "major",
+          "margin": 0.64
+        }
+      }
+    },
+    "llm": {
+      "tonic": "G",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "G",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAC standard",
+    "tags": [
+      "circle-of-fifths",
+      "chromatic-descent"
+    ],
+    "sections": {
+      "A": "I - V7/IV - IV, then I with chromatic F6-E7(V/V/V) into A7(V/V)-D7(V)",
+      "B": "I to B7(V/vi)-Em(vi), then A7(V/V)-D7(V) dominant approach",
+      "A1": "V7/IV - IV, then A7(V/V)-D7(V) turnaround",
+      "C": "I - V7/IV - IV - Eb7 chromatic, back to I with F6-E7, A7-D7 resolving to I"
+    },
+    "modulates": false
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "composer": "Dizzy GILLESPIE",
+  "year": "1943",
+  "style": "BE BOP (LATIN)",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "WOODY'N YOU",
+  "page": 470,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "<partial - right margin credits cut off>"
+  ],
+  "notation_notes": {
+    "recordings_truncated": "Right-margin performer/year credits are heavily cut off and illegible in this crop."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm7b5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7#5#9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7b5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7#5#9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebm7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab7#5#9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm7b5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7#5#9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7b5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7#5#9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebm7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab7#5#9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abm7",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Abm7",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abm7",
+          "3": "G9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gbmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbm7",
+          "3": "A9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm7b5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7#5#9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7b5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7#5#9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebm7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab7#5#9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Db",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "#iv",
+    "quality": "m7b5",
+    "chord": "Gm7b5"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "743d124b8cf902f8d4a37afdaa3a9ab33d9892509e49f4d26212cb2d749adb69",
+    "scorer": {
+      "tonic": "Db",
+      "mode": "major",
+      "margin": 0.6384
+    },
+    "llm": {
+      "tonic": "Db",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge tonicizes Gb major (ii-V-I) then returns via Ab7 (V) to Db"
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "altered-dominants"
+    ],
+    "sections": {
+      "A": "Descending ii(m7b5)-V(7alt) chains: iv-of relations landing on Dbmaj7 (I)",
+      "A1": "Repeat of A: m7b5-7#5#9 chain resolving to Dbmaj7 (I)",
+      "B": "ii-V-I in Gb (Abm7-Db7-Gbmaj7) then Bbm7-Eb7 leading to Ab7 (V of Db)",
+      "A2": "Repeat of A: m7b5-7#5#9 chain resolving to Dbmaj7 (I)"
+    },
+    "modulates": true,
+    "modulation_note": "bridge tonicizes Gb major (ii-V-I) then returns via Ab7 (V) to Db"
+  }
+}

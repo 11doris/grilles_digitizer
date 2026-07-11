@@ -1,0 +1,292 @@
+{
+  "composer": "Johnny GREEN – E.Y. HARBURG",
+  "year": "1930",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "I'M YOURS",
+  "page": 194,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "F.Flanagan 47- B.Holiday 44",
+    "Bennie Sisters 30- R.Norvo 60",
+    "L.Rossi 46- S.Kenton 45",
+    "N.Elzman 39- C.Hawkins 44.57",
+    "G.Lion 37- F.Rich 30-",
+    "A.Shaw 37- B.Doggett 59"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "dash_rows": "Rows 2 (A1) and 4 (A2) are leading-arrow rows copying the same-letter reference positionally; empty/dash boxes take the same-position bar, and explicit boxes override."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7",
+          "3": "Gbo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm7b5",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7",
+          "2": "C7",
+          "3": "Fm7",
+          "4": "Bb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7",
+          "3": "Gbo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm7b5",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb",
+          "3": "C7#5"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb",
+          "3": "Gbo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7#5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm",
+          "2": "Fm7",
+          "3": "Dm7b5",
+          "4": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7",
+          "3": "Gbo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm7b5",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Eb"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "c9f78281c902999b60ca3a17e771efa1b71d9975b8b311027ab149a7a1e54b94",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.7384
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I with diminished passing chords, ii-V (Fm7-Bb7) motion and iii-#iio, ending on iii-VI-ii-V turnaround",
+      "A1": "Same as A but resolving to I then a C7#5 (V/vi) turnaround",
+      "B": "ii-V-I in Eb with passing dim, then Dm7b5-G7 to Cm (vi), F7-Bb7 back to tonic",
+      "A2": "Same A material resolving cleanly to I (Eb)"
+    },
+    "modulates": false
+  }
+}

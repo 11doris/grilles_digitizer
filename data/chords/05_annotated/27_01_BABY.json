@@ -1,0 +1,394 @@
+{
+  "style": "TRADITIONAL",
+  "tempo": "MEDIUM",
+  "form": "16 A A' | 32 A A B A",
+  "time_signature": "4/4",
+  "title": "BABY",
+  "page": 27,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Mills Musical Clowns 28- N.O.R.K.25- P.Lee 44",
+    "J.Peltzer 61- C.Barber 55- Cl.Brown 53",
+    "E.Fitzgerald 54- M.Album 58- J.Mc Hugh 28",
+    "L.O.Christian 28- B.Ellington 33- A.Kahn 32",
+    "S.Grappelly 39- Ad.Mall 28.33"
+  ],
+  "notation_notes": {
+    "strain_note": "Top strain is a 16-bar verse-style section (labelled '16 A A''); bottom strain is the 32-bar chorus '32 A A B A'. Both printed only partially and expanded per their form labels."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb",
+          "3": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb",
+          "3": "Ab7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7",
+          "3": "F7#5"
+        }
+      }
+    ],
+    "verse_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb",
+          "3": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb",
+          "3": "Dbo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7",
+          "3": "C7b5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb",
+          "3": "Ebm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb",
+          "3": "Gm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7",
+          "3": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb",
+          "3": "Ebm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7",
+          "3": "F7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7b5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb",
+          "3": "Ebm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb",
+          "3": "Bb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bb"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "2f8c04ea8ce1156debca1c2a39f813bae68d617656b47e960c1efc8ac1799744",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.7833
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard with 16-bar verse",
+    "tags": [
+      "verse-present",
+      "dominant-cycle-bridge",
+      "circle-of-fifths",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "verse_A": "I-Imaj7 / I7-IV6 / I with passing dim / ii-V, tonic then ii-V motion cadencing toward V",
+      "verse_A1": "Same as verse_A opening but ends on V7 (F7) via C7 (V/V)",
+      "A": "I with IV-iv plagal color, chromatic dim passing chords, ii-V (C7-F7) turnarounds",
+      "A1": "Same as A with I-vi motion, ending on II7-V7",
+      "B": "Dominant cycle III7-VI7-II7 then ii(b5)-V7 back to tonic",
+      "A2": "A restated, resolving firmly to I"
+    },
+    "modulates": false
+  }
+}

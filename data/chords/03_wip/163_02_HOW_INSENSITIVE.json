@@ -1,0 +1,248 @@
+{
+  "composer": "Antonio Carlos JOBIM – Vinicius de MORAES – Norman GIMBEL",
+  "year": "1963",
+  "style": "BOSSA NOVA",
+  "tempo": "MEDIUM",
+  "form": "32 A B C D",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 31",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Dm"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Dm"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "D",
+          "bar": 7
+        }
+      ]
+    }
+  ],
+  "title": "HOW INSENSITIVE",
+  "page": 163,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "J.J.Johnson 65- C.Fisher 64- S.Getz 63",
+    "L.Shifrin 62- C.Byrd 63- A.Jamal 68",
+    "K.Doldinger 64- A.Gilberto 65"
+  ],
+  "notation_notes": {
+    "ending": "Header prints 'ENDING Bar 31 :' with an alternate ending: Dm | (dash). Recorded as a variant applying to Bar 31."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dbo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dbo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm6"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Em7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Em7b5",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "D": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "(Em7b5)",
+          "3": "(A7)"
+        }
+      }
+    ]
+  }
+}

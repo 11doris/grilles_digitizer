@@ -1,0 +1,272 @@
+{
+  "composer": "Hoagy CARMICHAEL",
+  "year": "1939",
+  "style": "STANDARD",
+  "tempo": "SLOW",
+  "form": "24 A B A'",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 21",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Fm7",
+            "3": "Am7b5",
+            "4": "D7b9"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "A1",
+          "bar": 5
+        }
+      ]
+    },
+    {
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Bm7",
+            "3": "E7"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "B",
+          "bar": 8
+        }
+      ]
+    }
+  ],
+  "title": "BLUE ORCHIDS",
+  "page": 45,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '4 VERSE'.",
+    "form_note": "Header form printed as '25 or 24 A B A'."
+  },
+  "recordings": [
+    "...ler 39- G.Torner 49- B.Vaughan 63",
+    "...osby 39- T.Dorsey 39- J.Frigo 57",
+    "Portland 58"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7b9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb",
+          "3": "Gbo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb",
+          "3": "Gm7",
+          "4": "Gb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7b9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G",
+          "2": "Em7",
+          "3": "Am7",
+          "4": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G",
+          "3": "Fm7",
+          "4": "Bb7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dm7b5",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm",
+          "3": "F9#11"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7b9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb",
+          "3": "Gbo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7",
+          "3": "Abm6"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "ii",
+    "quality": "min",
+    "chord": "Fm7"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "4d02fd4c089a03e6fe6aa3a93bfdc93a573c172d0a9aba59582614d6a9616f50",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.8128
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "24-bar ABA' standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "Repeated ii-V-I (Fm7-Bb7-Eb) with a Gbo7 passing chord; bars 7-8 briefly tonicize VI (G major) via Em7-Am7-D7 before returning to ii-V",
+      "B": "ii-V to vi (Dm7b5-G7-Cm), then F9#11 (V/V) back into Fm7-Bb7-Eb, closing on F9-Bb7",
+      "A1": "Opening ii-V-I restated, then G7-C7 secondary dominants, chromatic Abm6 and Gm7-C7 leading to a final ii-V-I cadence on Eb"
+    },
+    "modulates": false
+  }
+}

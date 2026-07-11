@@ -1,0 +1,387 @@
+{
+  "composer": "Vincent YOUMANS – William ROSE – Edward ELISCU",
+  "year": "1929",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "56 A A B A",
+  "time_signature": "4/4",
+  "title": "WITHOUT A SONG",
+  "page": 469,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "T.Dorsey 41- J.Bylton 30- B.Carter 46- J.Henderson 67",
+    "R.V.Lohn 29- R.Stewart 40- C.Basie/T.Bennet 58- R.Charles 63",
+    "R.Stewart/C.Bolling 48- W.B.Davis 52- B.Kirstin 46",
+    "D.Ellington 33.53- U.Green 66- A.Tatum 53.56- S.Getz 55",
+    "O.Peterson 53.59- P.Whiteman 29- S.Turrentine 63",
+    "S.Rollins 62- L.Armstrong 65- S.Hughes- F.Hubbard 64",
+    "A.Pepper 58- C.Walton 74"
+  ],
+  "notation_notes": {
+    "B_bar8": "Section B bar 8 lower-right region reads 'Bb7' with a superscript aug-5th mark, transcribed as Bb7#5.",
+    "A2_bar16": "Final bar (A2 bar 16) is printed as a dash; as a trailing bar-repeat it copies the preceding bar (Eb6)."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7#11"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db9"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Gb7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 13,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 14,
+        "beats": {
+          "1": "Ab",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 15,
+        "beats": {
+          "1": "Eb6",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 16,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7#5"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7#11"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db9"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Gb7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 13,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 14,
+        "beats": {
+          "1": "Ab",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 15,
+        "beats": {
+          "1": "Eb6"
+        }
+      },
+      {
+        "bar": 16,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7b5",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "Gbo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7#5"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7#11"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db9"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Gb7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 13,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 14,
+        "beats": {
+          "1": "Ab",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 15,
+        "beats": {
+          "1": "Eb6"
+        }
+      },
+      {
+        "bar": 16,
+        "beats": {
+          "1": "Eb6"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,414 @@
+{
+  "composer": "Hoagy CARMICHAEL – Stuart GORRELL – Reginald CONNELLY",
+  "year": "1930",
+  "style": "STANDARD",
+  "tempo": "SLOW",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 3, 11, 27",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 3
+        },
+        {
+          "section": "A1",
+          "bar": 3
+        },
+        {
+          "section": "A2",
+          "bar": 3
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Dm",
+            "3": "F7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "G7",
+            "3": "Bbm6"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "Fmaj7",
+            "3": "D7#5"
+          }
+        }
+      ]
+    },
+    {
+      "applies_to": "Bar 23 for statement of the melody",
+      "targets": [
+        {
+          "section": "B",
+          "bar": 7
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Am",
+            "2": "Am7",
+            "3": "F#o7",
+            "4": "Bb7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Am",
+            "3": "C7"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "GEORGIA ON MY MIND",
+  "page": 134,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "O.Peterson 62- F.Waller 82- L.Armstrong 37.41.55",
+    "E.Hines 57- J.Smith 63- A.Tatum 40- E.Fitzgerald 62",
+    "J.McPartland 55- G.Ammons 62- B.Goodman 51",
+    "R.Charles 60- E.Garner 49- Quintette HCF 38",
+    "L.Hampton 57- Mound City Blue Blowers 31",
+    "Et.Waters 39- S.Bechet 29- L.Armstrong 31.55",
+    "M.Bailey 31- H.Carmichael 30.55- B.Coleman 35",
+    "B.Holiday 41- D.Byas 51"
+  ],
+  "notation_notes": {
+    "verse": "Header prints 'VERSE' with a 16 A A grid above the chorus; the verse row is transcribed as verse_A/verse_A1."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F",
+          "3": "C7#5"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb",
+          "3": "Bbm6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7#5"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb",
+          "3": "Bbm6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "Bbm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "A7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dm",
+          "3": "Gm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm",
+          "3": "Gm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm",
+          "3": "Gm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb",
+          "3": "Bbm6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "1c0f593b769c20a009a549f2bd6ed1f1dbb274df96cad33b031e904b73db5591",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.8082
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "verse-present"
+    ],
+    "sections": {
+      "verse_A": "I with V/ii, V/V, ii-V motion cycling back to I, ending on altered dominant",
+      "A": "I-V/ii-ii with bIV borrowed chord, Fmaj7-E7-Gm7-C7 ii-V turnaround",
+      "A1": "Same as A but closes with F-Bbm-A7 leading toward the bridge",
+      "B": "vi (Dm) center oscillating with iv/ii chords, resolving via Gm7-C7 back to I",
+      "A2": "Final A restated resolving firmly to I"
+    },
+    "modulates": false
+  }
+}

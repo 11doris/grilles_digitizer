@@ -1,0 +1,319 @@
+{
+  "composer": "Johnny GREEN – Ed HEYMAN",
+  "year": "1933",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 2, 10 and 26",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Cm7",
+            "3": "F7"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "A",
+          "bar": 2
+        },
+        {
+          "section": "A1",
+          "bar": 2
+        },
+        {
+          "section": "A2",
+          "bar": 2
+        }
+      ]
+    }
+  ],
+  "title": "YOU'RE MINE YOU",
+  "page": 481,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "recordings": [
+    "E.Hines 68- J.J.Johnson 55- S.Kenton 55.61",
+    "L.Morgan 57- C.Shavers 55- S.Vaughan 49.62",
+    "B.Byers 55- A.Shaw 50- B.Green 56- H.Roach",
+    "A.Tatum 54.54(B.Carter).56(B.DeFrance)",
+    "B.Taylor 61- B.Webster 54- T.Wilson 52",
+    "H.Henderson 40- B.Golson 57- Z.Elman 39",
+    "Ch.Baker 65- G.Niesen 33"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Dbm6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "Bbm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7b9"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Dbm6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab6",
+          "3": "Dbm6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab6",
+          "3": "Cm7",
+          "4": "Bm7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "Fm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm7b5",
+          "3": "Eb7b9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Dm7",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "E7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "F7b9"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Dbm6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab6",
+          "3": "Dbm6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Ab",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "ii",
+    "quality": "min",
+    "chord": "Bbm7"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "ddcbcd7be111e6e00bda0c7d50b036bab14909c1fc670b765524d4480e890f20",
+    "scorer": {
+      "tonic": "Ab",
+      "mode": "major",
+      "margin": 0.6765
+    },
+    "llm": {
+      "tonic": "Ab",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "Repeated ii-V (Bbm7-Eb7) with iv-color (Dbm6), Cm7-Bo7 passing, resolving to I (Abmaj7) then ii-V (Cm7b5-F7b9) turnaround",
+      "A1": "Same ii-V opening resolving to I (Ab6) with iv (Dbm6), ending on I with chromatic Cm7-Bm7 lead-in",
+      "B": "ii-V chains: Bbm7-Eb7, Cm7-Fm7, ii-V to Abmaj7, then Cm7-F7, Dm7-Gm7, E7-Eb7 into Abmaj7-F7b9",
+      "A2": "ii-V opening resolving to I (Ab6) with iv (Dbm6), closing on tonic Ab6"
+    },
+    "modulates": false
+  }
+}

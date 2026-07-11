@@ -1,0 +1,299 @@
+{
+  "composer": "Al GOODHART – Maurice SIGLER – Al HOFFMAN",
+  "year": "1934",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "I SAW STARS",
+  "page": 201,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "A_bar3_4": "Section A bars 3-4 show a two-bar repeat sign; copies bars 1-2."
+  },
+  "recordings": [
+    "Carroll 54",
+    "Butterfield 57",
+    "Jones 78- Patrick 34",
+    "Raymar 46",
+    "Grappelli 72",
+    "Disley 58",
+    "Whiteman 34",
+    "Isbetts KCP 34",
+    "Williams 34",
+    "Alba 67- T.King 34"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "3": "Fm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "3": "Fm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Em"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "B7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em",
+          "3": "B7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Em",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dm",
+          "3": "G7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "3": "Fm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "C",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "C"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "1e0606daa83578edd2815a881a9f90a61bc70625f44d0da490ac323ae4bcb0ce",
+    "scorer": {
+      "tonic": "C",
+      "mode": "major",
+      "margin": 0.7655,
+      "section_keys": {
+        "B": {
+          "tonic": "D",
+          "mode": "minor",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "C",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "turnaround-ending",
+      "chromatic-descent",
+      "ii-V-chains"
+    ],
+    "sections": {
+      "A": "I with #io7 passing chord to V7, then I-I7-IV-iv-I-V7#5-I",
+      "A1": "Same as A: I-#io7-V7 alternation with IV-iv plagal move and V7#5 back to I",
+      "B": "iii-V7/iii then ii-V7/ii vamps (Em/B7, Dm/A7) ending Dm-G7 back to I",
+      "A2": "Restatement of A: I-#io7-V7, I7-IV-iv, V7#5-I"
+    },
+    "modulates": false
+  }
+}

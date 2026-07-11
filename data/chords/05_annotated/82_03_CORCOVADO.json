@@ -1,0 +1,300 @@
+{
+  "composer": "Antonio Carlos JOBIM – Gene LEES",
+  "year": "1962",
+  "style": "BOSSA NOVA",
+  "tempo": "MEDIUM",
+  "form": "36 A B A C",
+  "time_signature": "4/4",
+  "title": "CORCOVADO",
+  "page": 82,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "S.Vaughan 64- S.Getz/A.Gilberto 64",
+    "S.Getz 63- E.Davis 74- R.Lewis 65",
+    "L.Almeida 62- M.King 64-",
+    "C.Adderley 62"
+  ],
+  "notation_notes": {
+    "chorus_note": "Below the grid is printed 'CHORUSES MAY START HERE.' with a marker at bar C1.",
+    "B_bar8": "Section B bar 8 reads Dm7 upper / G#o7 lower (Dm7b5? printed 'Dm7 6b'? read as Dm7 over G#o), transcribed as Dm7 / G#o7."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Abo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "Gbmaj7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "F6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "F7#5"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab9#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dm7b5",
+          "3": "G#o7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Abo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Abo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "Gbmaj7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "F6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "F7#5"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Am7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7b9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Em7b5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "A9#5"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "G9b5"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "C",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "II",
+    "quality": "dom",
+    "chord": "D9"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "2624b3630c1790c04901a72d2f53d02933e39947e17e386c4850d64aadf21389",
+    "scorer": {
+      "tonic": "C",
+      "mode": "major",
+      "margin": 0.3043
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "medium",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": true
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "36-bar A-B-A-C bossa nova standard",
+    "tags": [
+      "ii-V-chains",
+      "circle-of-fifths",
+      "turnaround-ending",
+      "chromatic-descent"
+    ],
+    "sections": {
+      "A": "D9 (V/ii) to a passing Abo7, Gm7 (ii) with bII Gbmaj7, resting on Fmaj7/F6 (I) then F7#5",
+      "B": "Fm7-Bb9 (ii-V toward bVII/Eb), Em7-Ab9#5, D9 (V/ii), then Dm7-Dm7b5-G#o7",
+      "A1": "Repeat of A: V/ii, passing dim, ii-bII, cadencing on Fmaj7 (I) then F7#5",
+      "C": "Descending circle-of-fifths ii-V chain (Fm7-Bb9, Em7-Am7, Dm7-G7b9, Em7b5-A9#5, Dm7-G9b5) resolving to C (V) as a turnaround"
+    },
+    "modulates": false,
+    "stale": true
+  }
+}

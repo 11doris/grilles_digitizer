@@ -1,0 +1,216 @@
+{
+  "composer": "Thomas Fats WALLER – Irving MILLS",
+  "year": "1929",
+  "style": "TRADITIONAL JAZZ",
+  "tempo": "MEDIUM",
+  "form": "16 A A",
+  "time_signature": "4/4",
+  "title": "SIX OR SEVEN TIMES",
+  "page": 366,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "C.Calloway 31?- D.Ellington 29",
+    "Little Chocolate Dandies 29",
+    "F.Johnson 58-",
+    "Downtown Jass Band 54",
+    "Orpheum Celesta"
+  ],
+  "notation_notes": {
+    "one_oclock_jump": "Below the grid printed verbatim: 'The most famous riff of \"One o'clock jump\" is based on the introduction of \"six or seven times\".'",
+    "arrow_row": "Section A1 (2nd printed row) is a leading-arrow row copying section A positionally; empty/dash boxes take the same-position bar from A; explicit final bar overrides."
+  },
+  "sections": {
+    "intro": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "Ab"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb",
+          "3": "Ab"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb",
+          "3": "Bb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Eb"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "3516de6b0a62ddba8b2b25e134be207a57d5a6daf7775f709b3601f690aca5e5",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.7749
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "16-bar tune (AA)",
+    "tags": [
+      "turnaround-ending",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "intro": "I with plagal IV motion and repeated I-V7 (Eb-Ab-Eb / Eb-Bb7-Eb)",
+      "A": "I to V/V (F7) to V (Bb7) resolving back to I, with V7 turnaround",
+      "A1": "Same I - V/V - V - I but ending on tonic"
+    },
+    "modulates": false
+  }
+}

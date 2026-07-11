@@ -1,0 +1,247 @@
+{
+  "composer": "Billy HILL",
+  "year": "1936",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "GLORY OF LOVE, THE",
+  "page": 139,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "G.Lewis 57.65- B.Goodman 36",
+    "C.Basie 37- K.Ory 50- L.Davis 51",
+    "Dukes of Dixieland 51- J.Hill",
+    "W.Bryant 38- L.Donalson 61",
+    "W.Herman 51- P.Lee 57"
+  ],
+  "notation_notes": {
+    "arrow_rows": "Rows 2 (A1) and 4 (A2) are leading-arrow rows copying positionally from the same-letter A row; empty/dash boxes take the same-position bar from the referenced A row, explicit boxes override."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G",
+          "3": "Em7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G",
+          "3": "Em7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G",
+          "3": "Bbo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G",
+          "3": "Em7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G",
+          "3": "Em7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G",
+          "3": "C"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G",
+          "3": "G7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G",
+          "3": "Go7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G",
+          "3": "Em7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G",
+          "3": "Em7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G",
+          "3": "Bbo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ]
+  }
+}

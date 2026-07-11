@@ -1,0 +1,289 @@
+{
+  "composer": "Gerry MULLIGAN",
+  "year": "1952",
+  "style": "COOL JAZZ (INSTRUMENTAL)",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "LINE FOR LYONS",
+  "page": 239,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "C.Fjeder 57- C.Baker 54.59",
+    "C.Williamson 58- N.Faleb55",
+    "Bud.Banks 54- P.Desmond 56",
+    "R.Mancini 57- V.Lewis 54",
+    "Ph.Urso 58- E.Intra 58",
+    "C.Baker/G.Mulligan 74",
+    "G.Mulligan 52.54.57.77"
+  ],
+  "notation_notes": {
+    "A1_arrow": "2nd printed row (A1) is a leading-arrow/dash row copying section A positionally; empty/dash boxes take same-position bar from A, with bar 7 explicitly overriding to G.",
+    "A2_arrow": "4th printed row (A2) is a leading-arrow/dash row copying the same-letter row A1 positionally."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G",
+          "3": "G7b9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bm7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G",
+          "3": "E7b9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7b9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G",
+          "3": "G7b9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bm7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G",
+          "3": "E7b9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7b9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#7b9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "E7b9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7b9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gmaj7",
+          "3": "G#o7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G",
+          "3": "G7b9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bm7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G",
+          "3": "E7b9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7b9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "G",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "G"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "daa72b10929ba971cd732c2f84ea2303e8aa5ebcf688b5925c59e018f85c2ce2",
+    "scorer": {
+      "tonic": "G",
+      "mode": "major",
+      "margin": 0.6568
+    },
+    "llm": {
+      "tonic": "G",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "A": "I with descending ii-V chain (Cm7-F7, Bm7-E7, Am7-D7) resolving back to I, ending on ii-V turnaround",
+      "A1": "Same as A, I with descending ii-V chain ending on ii-V turnaround",
+      "B": "IV going through backdoor/secondary dominants (F#7-Bm7-E7-Am7-D7) circle back to I with passing #Io7, ending ii-V",
+      "A2": "Same as A, I with descending ii-V chain ending on ii-V turnaround"
+    },
+    "modulates": false
+  }
+}

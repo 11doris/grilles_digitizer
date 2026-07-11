@@ -1,0 +1,236 @@
+{
+  "composer": "Arthur JOHNSTON – John BURKE",
+  "year": "1936",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "title": "PENNIES FROM HEAVEN",
+  "page": 323,
+  "source": "Anthologie des grilles de jazz",
+  "same_chord_changes": "Almost the same chord changes as \"I CAN'T GIVE YOU ANYTHING BUT LOVE\"",
+  "notation_notes": {
+    "verse": "Header prints '24 VERSE'.",
+    "same_changes_form": "Printed note below grid: 'BASED ON \"I CAN'T GIVE YOU ANYTHING BUT LOVE\" CHORD CHANGES.'"
+  },
+  "recordings": [
+    "Po.....55- P.Newborn 71- A.Hall 49",
+    "C.Wilson 56- A.Bechet 47- J.Raney 45",
+    "J.Clayton 59- H.Edison 55- D.Byrd 58",
+    "B.Scott 55- A.Bryan 55- M.Davis 58",
+    "D.Gillespie 55- F.T.Johnson 55",
+    "B.Peterson 55- N.DeVillers/M.Fossett57",
+    "O.Rushing 55- H.Ammons 49.57",
+    "J.Coleman 55- C.Shavers 59",
+    "E.Hines 54- J.Rushing50- S.Oliver(?)"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Em7",
+          "3": "Ebo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Em7",
+          "3": "Ebo7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Em7",
+          "3": "Ebo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cmaj7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  }
+}

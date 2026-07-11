@@ -1,0 +1,342 @@
+{
+  "composer": "Hughie CANNON",
+  "style": "REVIVAL",
+  "tempo": "MEDIUM",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "title": "BILL BAILEY",
+  "page": 38,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "B.Heckett 62- C.Adderley 63- R.Allen 60- E.Blake 58",
+    "L.Armstrong 58.59.65- C.Barber 58- D.Simon 54",
+    "K.Ory 45.53- T.Parenti 58- Jon.Jones 58.63-",
+    "B.B.Broonzy 51.55- E.Fitzgerald 62- B.Goodman 60",
+    "Kings of Dixieland 59- J.Handy 65- R.Baubc 57",
+    "E.Hines/M.Spanier 57- E.Hines 61- 9.Beshes 50",
+    "A.Hodes 59- N.Honce 58"
+  ],
+  "notation_notes": {
+    "verse_partial": "A partial verse grid is printed above the main chorus (labelled 'VERSE', '12'); its two printed rows are recorded as verse_A and verse_A1."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F",
+          "3": "F(#5)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F6",
+          "3": "F(#5)"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dm",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7",
+          "3": "C7#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "c0e31d717af94710dfa5603bb6b5dc489393c0b7165913fab1ea4dc910b74cb2",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.7617
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "Dixieland standard with verse",
+    "tags": [
+      "verse-present",
+      "circle-of-fifths",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "verse_A": "Sustained I with augmented passing, V/ii (A7) to ii and F#o7, then V7-I cadence",
+      "A": "Extended I moving to V7",
+      "B": "Dominant V7 pedal resolving to I",
+      "A1": "I turning into I7 (V/IV) to IV (Bb)",
+      "C": "IV-#IVo7-I then D7-G7-C7-F circle-of-fifths cadence"
+    },
+    "modulates": false
+  }
+}

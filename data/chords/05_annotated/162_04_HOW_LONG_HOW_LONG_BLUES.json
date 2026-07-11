@@ -1,0 +1,118 @@
+{
+  "composer": "Leroy CARR",
+  "year": "1928",
+  "style": "TRADITIONAL",
+  "tempo": "MEDIUM",
+  "form": "8 BLUES",
+  "time_signature": "4/4",
+  "title": "HOW LONG, HOW LONG BLUES",
+  "page": 162,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "...ven 40",
+    "...N.Jackson 87",
+    "...ld 63",
+    "...ppoon 47.56",
+    "...1.59.42",
+    "...IB- R.Allen 60",
+    "...19.43",
+    "...3",
+    "...31",
+    "26",
+    "55",
+    "59",
+    "54",
+    "...38"
+  ],
+  "notation_notes": {
+    "recordings_partial": "Right and lower margins hold vertically-printed performer/year credits that are heavily cropped and hard to read; transcribed as best possible.",
+    "composer_header": "Header prints '(Leroy CARR - L.C. 1928)'."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "C",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "C"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "443a4fcd33e7a3f008df4739ae356557e98a459b8917295a26bce6923738f19b",
+    "scorer": {
+      "tonic": "C",
+      "mode": "major",
+      "margin": 0.6311
+    },
+    "llm": {
+      "tonic": "C",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "8-bar blues",
+    "tags": [
+      "blues-form"
+    ],
+    "sections": {
+      "A": "I to I7, IV to iv (minor-IV), back to I, V7, then I-IV-I cadence"
+    },
+    "modulates": false
+  }
+}

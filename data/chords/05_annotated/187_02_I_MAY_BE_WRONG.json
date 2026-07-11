@@ -264,7 +264,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "Bb7"
+          "1": "Eb"
         }
       }
     ]
@@ -280,11 +280,11 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "28af5082acbfe98ceee8cd277ca404920b146b9d9ee462169c09e8dc50540e86",
+    "source_sha256": "a98babecd7760f6816eab285d61392414bc82879fb420964f53b8384b39f4766",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
-      "margin": 0.4885
+      "margin": 0.6621
     },
     "llm": {
       "tonic": "Eb",
@@ -300,10 +300,10 @@
       "ii-V-chains"
     ],
     "sections": {
-      "A": "I-Imaj7-I7 to IV-iv, back to I with V/V (F7)-V(Bb7)-I",
-      "A1": "Repeat of A: I to IV-iv, then F7-Bb7-I cadence",
-      "B": "ii-V-I in Eb, then Fm6-D7 to Gm-Cm-F7-Bb7 dominant approach",
-      "A2": "Final A ending on Bb7 (V) as turnaround"
+      "A": "I-Imaj7-I7 to IV-iv, then I with V/V-V-I cadence",
+      "A1": "Repeat of A: I to IV-iv, then II7-V-I",
+      "B": "ii-V-I, then Fm6-D7, Gm-Cm-F7-Bb7 leading back to I",
+      "A2": "Final A: I to IV-iv, II7-V-I resolving home"
     },
     "modulates": false
   }

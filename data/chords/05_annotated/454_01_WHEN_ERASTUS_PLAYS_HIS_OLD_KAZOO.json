@@ -1,0 +1,486 @@
+{
+  "composer": "Sam COSLOW – Sammy FAIN – Larry SPIER",
+  "year": "1927",
+  "style": "EARLY JAZZ",
+  "tempo": "MEDIUM FAST",
+  "form": "24 A A B | 32 A A B A",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 4, 12 and 28",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Db7",
+            "3": "Ab",
+            "4": "Ao7"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "A",
+          "bar": 4
+        },
+        {
+          "section": "A1",
+          "bar": 4
+        },
+        {
+          "section": "A2",
+          "bar": 4
+        }
+      ]
+    }
+  ],
+  "title": "WHEN ERASTUS PLAYS HIS OLD KAZOO",
+  "page": 454,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Casa Loma - Lambert 27- J.Jacobs 27- Al.Jackson 27- Savoy Orpheans :",
+    "C.Kerber 51- S.Dawson 54- Dixieland Rhythm Kings 55- Papa Benny 58",
+    "Piccadilly Revels Band 27- Garden Dancing Palace Orchestra 28",
+    "A.Nicholas 55"
+  ],
+  "notation_notes": {
+    "verse_note": "First grid row is labelled 'VERSE'.",
+    "variant_note": "VARIANTE labelled 'For statement of the melody'."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Db7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7b5",
+          "3": "C7"
+        }
+      }
+    ],
+    "verse_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Db7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7b5",
+          "2": "Gb9",
+          "3": "F9",
+          "4": "E9"
+        }
+      }
+    ],
+    "verse_B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Ab",
+    "mode": "major"
+  },
+  "section_keys": {
+    "verse_A": {
+      "tonic": "F",
+      "mode": "minor"
+    },
+    "verse_A1": {
+      "tonic": "F",
+      "mode": "minor"
+    }
+  },
+  "opening": {
+    "degree": "vi",
+    "quality": "min",
+    "chord": "Fm"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "2b54529247587ecff9262ad81f299244ca86b59c7a3b7d58f0e4bd488efb3964",
+    "scorer": {
+      "tonic": "Ab",
+      "mode": "major",
+      "margin": 0.4149,
+      "section_keys": {
+        "verse_A": {
+          "tonic": "F",
+          "mode": "minor",
+          "margin": 1.0
+        },
+        "verse_A1": {
+          "tonic": "F",
+          "mode": "minor",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "Ab",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "Verse (A/A1) sits in the relative F minor before the verse B and chorus establish Ab major; the chorus is straightforwardly in Ab.",
+      "section_keys": {
+        "verse_A": {
+          "tonic": "F",
+          "mode": "minor"
+        },
+        "verse_A1": {
+          "tonic": "F",
+          "mode": "minor"
+        }
+      }
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "verse plus 32-bar AABA standard",
+    "tags": [
+      "dominant-cycle-bridge",
+      "circle-of-fifths",
+      "verse-present",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "verse_A": "i-bVI7 alternation (Fm-Db7) with V7 (C7) and ii7b5-V7 cadence back to i in F minor",
+      "verse_A1": "Same F minor i-bVI7 phrase with a chromatic descending dominant run (Gb9-F9-E9) transitioning out",
+      "verse_B": "Eb9 (V of Ab) to Ab, then Bb7-Eb7 (V/V to V) setting up Ab major",
+      "A": "Tonic Ab with #I dim passing chord, V7 (Eb7), and Bb7-Eb7 turnaround",
+      "A1": "Same Ab tonic phrase resolving firmly to I",
+      "B": "Dominant cycle bridge C7-F7-Bb7-Eb7 circling back to the tonic",
+      "A2": "Final Ab tonic statement with passing dim and V7, ending on I"
+    },
+    "modulates": true,
+    "modulation_note": "Verse (A/A1) sits in the relative F minor before the verse B and chorus establish Ab major; the chorus is straightforwardly in Ab."
+  }
+}

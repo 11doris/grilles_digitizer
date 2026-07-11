@@ -1,0 +1,283 @@
+{
+  "composer": "Richard RODGERS – Lorenz HART",
+  "year": "1938",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A B A B'",
+  "time_signature": "4/4",
+  "title": "FALLING IN LOVE WITH LOVE",
+  "page": 121,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '52 VERSE'.",
+    "A2_arrow": "Third printed row (A2) is a leading-arrow/dash row copying section A positionally; each dash box takes the same-position bar from A."
+  },
+  "recordings": [
+    "A.Jamal 61- J.Bushkin 56",
+    "E.Hope 55- S.Rollins 57- M.Le-",
+    "grand 62- T.Thielemans 62",
+    "G.Ammons/O.Memphrees 62",
+    "R.Garland 62- Budd Johnson 60",
+    "H.Jones 62- W.Montgomery 59",
+    "H.Mobley 57- O.Peterson 62",
+    "C.Adderley 55- K.Dorham 62",
+    "Cl.Brown 53- T.Curson 62",
+    "S.Davis 61- T.Dorsey 53"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7b9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Bb6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Am7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm",
+          "3": "Gm(maj7)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7b9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Bb6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      }
+    ],
+    "B1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dm7b5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7b9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb6",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "B7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bbmaj7"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "2b909478396564ac874197dc929d1640cbebe2904b8ddce0d4f55fb961112b53",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.733
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAB' standard",
+    "tags": [
+      "ii-V-chains",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "A": "I-ii-iii-VI7 then repeated ii-V (Cm7-F7) resolving to I, ending on ii-V turnaround",
+      "B": "I with vi tonicization (Am7-D7 to Gm), then ii-V of IV and back to home ii-V",
+      "A1": "Same as A: I-ii-iii-VI7, ii-V loops to I, ends ii-V",
+      "B1": "I then iidim-V7, IV6-iii-ii with B7 chromatic approach resolving firmly to I"
+    },
+    "modulates": false
+  }
+}

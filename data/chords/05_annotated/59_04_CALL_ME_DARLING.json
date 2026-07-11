@@ -1,0 +1,295 @@
+{
+  "composer": "Bert REISFELD – Mart FRYBERG – Rolf MARBOT – Dorothy DICK – Richard SCHAER",
+  "year": "1931",
+  "style": "STANDARD (GERMAN SONG)",
+  "tempo": "MEDIUM",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "title": "CALL ME DARLING",
+  "page": 59,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "recordings": [
+    "Lou.Johnson 83- Bet.Carter 83",
+    "Golden Terrace Dance Orchestra 31",
+    "Cavaliers 31- Ted Buckner 47",
+    "L.Morias 31- J.Noone 37- F.Rich 31",
+    "C.Basie 44.68- P.Lee 60",
+    "M.Lux Lewis 55"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7",
+          "3": "C7#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Am7b5"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "Gm7b5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Db7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Db7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "G",
+      "mode": "minor"
+    }
+  },
+  "opening": {
+    "degree": "ii",
+    "quality": "min",
+    "chord": "Gm7"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "3f85d1953173128a01a584a9ee4cf73344d41fa670837e7c7f2d690704cd64b8",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.6957,
+      "section_keys": {
+        "B": {
+          "tonic": "G",
+          "mode": "minor",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "B section tonicizes G minor; A' cadences to Bb major before C returns to F",
+      "section_keys": {
+        "B": {
+          "tonic": "G",
+          "mode": "minor"
+        },
+        "A1": {
+          "tonic": "Bb",
+          "mode": "major"
+        }
+      }
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": true
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAC standard",
+    "tags": [
+      "ii-V-chains",
+      "circle-of-fifths",
+      "tritone-substitution"
+    ],
+    "sections": {
+      "A": "ii-V-I in F (Gm7-C7-F) repeated with a C7#5 alteration",
+      "B": "iim7b5-V7-i in G minor (Am7b5-D7-Gm), then Dm7-G7 and Gm7-Gm7b5-C7 leading back to F",
+      "A1": "ii-V-I in F then Cm7-F7-Bb (ii-V-I into Bb)",
+      "C": "Db7 tritone-sub, F, then D7-G7-C7-F circle-of-fifths cadence to I"
+    },
+    "modulates": true,
+    "modulation_note": "B section tonicizes G minor; A' cadences to Bb major before C returns to F",
+    "stale": true
+  }
+}

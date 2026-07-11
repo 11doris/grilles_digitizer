@@ -1,0 +1,303 @@
+{
+  "composer": "John REDMOND – Lee DAVID",
+  "year": "1937",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "WHERE IS THE SUN ?",
+  "page": 459,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "T.Hill 37- B.Holiday 37- F.Waller 37",
+    "St.Smith 37- Valaida 37"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "(Eo7)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb7",
+          "4": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb9#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb9#5"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "(Eo7)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb7",
+          "4": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb9#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb",
+          "3": "D7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G",
+          "3": "G#o7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am7",
+          "3": "D7#5"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G",
+          "3": "D7#5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G",
+          "3": "D7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G",
+          "3": "G#o7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G",
+          "3": "D7#5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G",
+          "3": "Bb7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "(Eo7)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb7",
+          "4": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Db7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb9#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "G",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Eb"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "6447a41769712d2b4b30be6c078c6ddb5ed6c83da2785e8428cab11bc15195bb",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.3712,
+      "section_keys": {
+        "B": {
+          "tonic": "G",
+          "mode": "major",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge (B) moves to G major",
+      "section_keys": {
+        "B": {
+          "tonic": "G",
+          "mode": "major"
+        }
+      }
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "chromatic-descent",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I with passing dim, ii-V, then chromatic descent Eb7-D7-Db7-C7 into II7(F9)-V(Bb9#5)-I, ends on V",
+      "A1": "Same as A, ends on I with D7 turnaround",
+      "B": "I-#Io7-ii-V7 loop sustained in G major, ends on I to Bb7 (V of Eb)",
+      "A2": "Same A material resolving firmly to I"
+    },
+    "modulates": true,
+    "modulation_note": "bridge (B) moves to G major"
+  }
+}

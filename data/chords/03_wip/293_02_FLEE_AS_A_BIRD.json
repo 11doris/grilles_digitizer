@@ -1,0 +1,234 @@
+{
+  "style": "NEW ORLEANS",
+  "tempo": "AD LIB VERY SLOW",
+  "composer": "Mrs Mary S.B. DANA",
+  "year": "1857",
+  "form": "32 A A' B A'",
+  "time_signature": "4/4",
+  "title": "NEW ORLEANS FUNCTION (FLEE AS A BIRD)",
+  "page": 293,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "G.Lewis 54.- M.Laferrière 70",
+    "K.Ory 45.56- T.Buckner 55",
+    "Roman N.O.Jazz Band 53",
+    "Armstrong 47.52.54.56"
+  ],
+  "notation_notes": {
+    "context": "Header prints 'NEW ORLEANS FUNCTION - 2 Tunes often played together for funeral parades - the 1st, played before the funerals, is sad - the 2nd, played after, ends with rhythm and joy.'",
+    "title_note": "This grid is 'FLEE AS A BIRD (words written and adapted to a spanish melody by Mrs Mary S.B. DANA 1857)'.",
+    "dash_expansion": "A' rows (2nd and 4th printed rows) are leading-arrow rows copying section A positionally; empty/dash boxes take the same-position bar from A."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm",
+          "3": "Bbm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm6",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "4": "Bo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm",
+          "3": "Bbm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7",
+          "3": "Bo7",
+          "4": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ab",
+          "3": "Db"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm",
+          "3": "Bbm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7",
+          "3": "Bo7",
+          "4": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ]
+  }
+}

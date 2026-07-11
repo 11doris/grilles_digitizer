@@ -1,0 +1,397 @@
+{
+  "composer": "Peter DE ROSE – Joe TRENT",
+  "year": "1928",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "16 A B | 32 A A B A",
+  "time_signature": "4/4",
+  "title": "CAUSE I FEEL LOWDOWN",
+  "page": 65,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Picadilly Dance Band 28- A.Hershaw 28",
+    "California Ramblers 28- S.Stewart 28",
+    "F.Rich 28- Cl.Bleck 28"
+  ],
+  "notation_notes": {
+    "verse_strain": "Top grid labelled 'VERSE' with printed label '16 A B'; recorded as verse_A / verse_B. Lower grid is the 32-bar chorus labelled '32 A A B A'.",
+    "two_bar_repeat": "verse_B bar 3-4 shows a two-bar repeat sign straddling the barline; copies verse_B bars 1-2 (F, Bb7)."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F",
+          "3": "Dbo7",
+          "4": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "Dbo7",
+          "4": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F",
+          "3": "C7"
+        }
+      }
+    ],
+    "verse_B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "Bb",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "c85ed49a284c0bfd0e8e2d99220611355906806a2a2482c9c7a224725bf61fce",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.5583
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge (B) sits in Bb major before returning via C7",
+      "section_keys": {
+        "B": {
+          "tonic": "Bb",
+          "mode": "major"
+        }
+      }
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "verse + 32-bar AABA standard",
+    "tags": [
+      "verse-present",
+      "ii-V-chains",
+      "chromatic-descent"
+    ],
+    "sections": {
+      "verse_A": "I-IV-I loop with bIV diminished passing chord into V (F-Bb7-F/Dbo7-C7)",
+      "verse_B": "Alternating V-I (C7-F), then IV and V/V-V, ending on V7 (C7) into the chorus",
+      "A": "V7 dominant into iv (Fm), passing F#o7, resolving to I with IV7 (F-Bb7-F)",
+      "A1": "Repeat of A: V7-iv-V7-I with diminished passing chord",
+      "B": "Bridge in Bb: V7/Bb-C7-F7 alternating with Bb tonic, ending Bb-G7-C7 back to V of F",
+      "A2": "Final A: V7-iv-V7-I resolving to tonic F"
+    },
+    "modulates": true,
+    "modulation_note": "bridge (B) sits in Bb major before returning via C7"
+  }
+}

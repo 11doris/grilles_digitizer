@@ -1,0 +1,432 @@
+{
+  "composer": "Thomas Fats WALLER – Andy RAZAF",
+  "year": "1929",
+  "style": "STANDARD",
+  "form": "32 A A' B A'",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 5, 13, 29",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 5
+        },
+        {
+          "section": "A1",
+          "bar": 5
+        },
+        {
+          "section": "A2",
+          "bar": 5
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "F",
+            "3": "F7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Bb",
+            "3": "C7"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "HONEYSUCKLE ROSE",
+  "page": 158,
+  "source": "Anthologie des grilles de jazz",
+  "same_chord_changes": "Marmaduke (C.Parker) / Cloudy (C.Hawkins) / Nice thing (C.Basie)",
+  "recordings": [
+    "C.Basie 37.58- H.Chittison 34- Dorsey Bros.34- B.Goodman 39.46",
+    "T.Noone 41- C.Hawkins 34.37.64- F.Henderson 32- H.Henderson 40",
+    "E.Hines 35.44.47.49.58.65- McKinney 31- Quintette HCF 38",
+    "J.Reinhardt 49.50- F.Waller 34.35.35.37.38.41- E.Garner 51",
+    "L.Armstrong 51.55- Armstrong/Wilson 37.44.50",
+    "E.Fitzgerald 63(Basie).64- N.Cole 47- B.Brookmeyer 57",
+    "B.Gillespie 40.51- C.Cole 51- S.Bechet 49.53- T.Monk 56- S.Getz 58",
+    "O.Smith 62- N.Hampton 34.59- P.Johnson 44- J.Turner 55.74",
+    "B.Armstrong 40- A.Tatum 44- 5.Pride 43?.45.46?.53",
+    "Cost.Williams 40- Cl.Jackson 62- N.the Lion Smith 65- A.Casey 60",
+    "B.Bigard/C.Luter 50- H.Jones 78- L.Roberts"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '12 VERSE'. The verse grid is printed and transcribed as verse_ sections.",
+    "chorus_form_label": "Chorus grid labelled '32 A A' B A''."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F",
+          "2": "Dm7",
+          "3": "Gm7",
+          "4": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7",
+          "3": "Gm7",
+          "4": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F",
+          "2": "Bb",
+          "3": "F"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm",
+          "2": "D7",
+          "3": "Gm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Am7b5",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "Gm",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "C7",
+          "3": "F#o7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "Abo7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F",
+          "3": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "fab59e625e6615586c50faec6b3b45554854cd9233a52d4b82e0f8b077d5034b",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.5586,
+      "section_keys": {
+        "verse_A": {
+          "tonic": "G",
+          "mode": "minor",
+          "margin": 0.5841
+        }
+      }
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "dominant-cycle-bridge",
+      "turnaround-ending",
+      "verse-present"
+    ],
+    "sections": {
+      "verse_A": "I with secondary dominants, moving through vi/D7 and repeated ii-V (Gm7-C7) back toward I, diminished passing chord",
+      "A": "Repeated ii-V (Gm7-C7) then I-vi-V/V-V resolving to I with passing diminished",
+      "A1": "Repeated ii-V (Gm7-C7) then I-vi-V-I with IV plagal touch, resting on I",
+      "B": "I7 (V7/IV) to IV, then V/V to V — dominant cycle bridge",
+      "A2": "Repeated ii-V (Gm7-C7) then I-vi-V-I cadencing on tonic"
+    },
+    "modulates": false
+  }
+}

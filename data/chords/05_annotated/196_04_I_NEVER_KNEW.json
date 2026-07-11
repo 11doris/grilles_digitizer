@@ -1,0 +1,295 @@
+{
+  "composer": "Ted FIORITO – Gus KAHN",
+  "year": "1925",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "I NEVER KNEW",
+  "page": 196,
+  "source": "Anthologie des grilles de jazz",
+  "same_chord_changes": "\"I never knew (I could love anybody)\" : SEE PAGE 198",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "dash_expansion": "Row 2 (A1) is a leading-arrow row copying section A positionally; empty/dash boxes take the same-position bar from A. The final dash after the explicit turnaround copies the preceding bar."
+  },
+  "recordings": [
+    "K.Burrell 58- G.Van Eps 56",
+    "E.Berger 61- C.Hawkins 40",
+    "H.Nelson 57- T.Wilson 40",
+    "L.Young 44- N.Adderley 60",
+    "Rhythm Makers 32- B.Stitt 78",
+    "Ex.Cellett 41- H.Nichols 65",
+    "Ex.Cellett 46- H.Nichols 65",
+    "L.Armstrong 33.42- Chocolate",
+    "Dandies 32- C.Basie 40.47",
+    "T.Dorsey 38.47",
+    "G.T.Booker 38.47"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Am"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Am"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "B7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      }
+    ],
+    "A3": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm6"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "A",
+      "mode": "minor"
+    }
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "4e915c75d958e8cf9e07c0911adb54511a9fec54daea306609485addc7832ab3",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.7997,
+      "section_keys": {
+        "B": {
+          "tonic": "A",
+          "mode": "minor",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge dwells on A minor before ii-V back to F",
+      "section_keys": {
+        "B": {
+          "tonic": "A",
+          "mode": "minor"
+        }
+      }
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I with borrowed iv6 (Bbm6) oscillation, ii-V-I cadence in bars 6-7",
+      "A1": "Repeat of A: I with iv6, ii-V-I cadence",
+      "B": "i-V7 oscillation in A minor, then V/V (B7)-V7-i, ending on ii-V back to F",
+      "A3": "Repeat of A: I with iv6, ii-V-I cadence"
+    },
+    "modulates": true,
+    "modulation_note": "bridge dwells on A minor before ii-V back to F"
+  }
+}

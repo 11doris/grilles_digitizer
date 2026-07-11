@@ -1,0 +1,271 @@
+{
+  "composer": "Jerome KERN – Oscar HAMMERSTEIN II",
+  "year": "1927",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A B A C",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 12",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Em7",
+            "3": "A7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Dm7b5",
+            "3": "G7"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "Cm7",
+            "3": "F7"
+          }
+        },
+        {
+          "bar": 4,
+          "beats": {
+            "1": "Bb7"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "B",
+          "bar": 4
+        }
+      ]
+    }
+  ],
+  "title": "WHY DO I LOVE YOU ?",
+  "page": 463,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '24 VERSE'.",
+    "A2_arrow": "Third printed row is a leading-arrow row (A2) with all dashes/empty boxes; it copies section A positionally."
+  },
+  "recordings": [
+    "R.Sinele 28- P.Whiteman 33- B.Booker 53",
+    "D.Brubeck 53.54- D.Gillespie 47- P.Joly 55",
+    "M.Davis 48- S.Stitt 52- I.Dorham 60",
+    "R.DeFrancesco51- T.Dorsey 45- L.Thompson 62",
+    "J.C.Heard 45- L.Morgan 58- C.Parker 51",
+    "A.Fratellini"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "B7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ab7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dbmaj7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gb9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Abmaj7",
+          "3": "F7b9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbm7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ab6"
+        }
+      }
+    ]
+  }
+}

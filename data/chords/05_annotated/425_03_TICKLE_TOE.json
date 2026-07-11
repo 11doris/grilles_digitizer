@@ -1,0 +1,283 @@
+{
+  "composer": "Lester YOUNG",
+  "year": "1940",
+  "style": "SWING",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A B A C",
+  "time_signature": "4/4",
+  "title": "TICKLE TOE",
+  "page": 425,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "C.Basie 40.58.60- Z.Davis 55- Double Six 61",
+    "J.Jones 55- G.Krupa 64- Z.Sims 50- S.Rodgers",
+    "A.Pepper 54- L.Konitz 67- H.McPartland 54",
+    "Bob Cooper 57- E.Ericson 52- M.Zwerin 78",
+    "C.Stobart/J.Temperley 76- N.Travis 54"
+  ],
+  "notation_notes": {
+    "other_tune": "Below grid prints: 'Another different \"Tickle Toe\" by L.A. Hirsh - O. Harbach 1918.'"
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebm",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ebm",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ebm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ebm"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ebm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ab7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbm",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbm",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebm",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ebm",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ebm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ebm"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Go7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Db"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Db",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "vi",
+    "quality": "min",
+    "chord": "Bbm"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "cc434dd0f3391cba7867cfea2211eff176fe56561b8ba154339e44706f043bb7",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "minor",
+      "margin": 0.0746,
+      "section_keys": {
+        "C": {
+          "tonic": "Db",
+          "mode": "major",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "Db",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Db",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAC standard",
+    "tags": [
+      "ii-V-chains",
+      "circle-of-fifths",
+      "dominant-cycle-bridge"
+    ],
+    "sections": {
+      "A": "Alternates vi (Bbm) with F7 then ii (Ebm) with Bb7, hovering on chords of Db without resolving",
+      "B": "ii-V-I into Db (Ebm7-Ab7-Db), then dominant cycle Bb7-Eb7-Ab7 to ii-V (Cm7b5-F7)",
+      "A1": "Repeat of A: vi-F7 and ii-Bb7 vamp in Db",
+      "C": "IV (Gb)-dim-I (Db), then Bb7-Eb7-Ab7 dominant cycle resolving to I (Db)"
+    },
+    "modulates": false
+  }
+}

@@ -1,0 +1,339 @@
+{
+  "composer": "Harry WARREN – Al DUBIN",
+  "year": "1935",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 17 (Bridge) for statement of the melody",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Ab",
+            "3": "Gm",
+            "4": "Fm"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Eb"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "Ab",
+            "3": "Gm",
+            "4": "Fm"
+          }
+        },
+        {
+          "bar": 4,
+          "beats": {
+            "1": "Eb"
+          }
+        },
+        {
+          "bar": 5,
+          "beats": {
+            "1": "Ab",
+            "3": "Gm",
+            "4": "Fm"
+          }
+        },
+        {
+          "bar": 6,
+          "beats": {
+            "1": "Gm7",
+            "3": "C7"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "B",
+          "bar": 1
+        }
+      ]
+    },
+    {
+      "applies_to": "Bar 3, 11, 27",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "C7",
+            "3": "F7"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "A",
+          "bar": 3
+        },
+        {
+          "section": "A1",
+          "bar": 3
+        },
+        {
+          "section": "A2",
+          "bar": 3
+        }
+      ]
+    }
+  ],
+  "title": "LULU'S BACK IN TOWN",
+  "page": 251,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Georgia Washboard Stompers 35",
+    "J.Turner 74- B.Goodman 51",
+    "A.Tatum 34- Jim.Smith 62",
+    "E.Hines 56- A.Nicholas 59",
+    "Dutch Swing College 54",
+    "G.Wein 62- P.W.Russel 53",
+    "L.Bellson 59- D.Ewell 57",
+    "B.Brubeck 52- E.Garner 64",
+    "D.Howard 55- W.Manone 35",
+    "F.Waller 35"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "B_bars34": "Section B bars 3-4 show a two-bar repeat sign restating bars 1-2 (Ab/Ao7 then Eb/Eb7).",
+    "variant_bar2": "First VARIANT (Bar 17) bars 2-3 show a two-bar repeat; bar 2 Eb and bar 3 restated as Eb."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab",
+          "3": "Abm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab",
+          "3": "Abm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Eb",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab",
+          "3": "Abm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  }
+}

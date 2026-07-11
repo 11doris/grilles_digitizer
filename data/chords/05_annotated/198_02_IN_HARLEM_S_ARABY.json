@@ -1,0 +1,428 @@
+{
+  "composer": "Thomas Fats WALLER – Jo TRENT",
+  "year": "1924",
+  "style": "TRADITIONAL",
+  "tempo": "MEDIUM",
+  "form": "32 A A' B A''",
+  "time_signature": "4/4",
+  "title": "IN HARLEM'S ARABY",
+  "page": 198,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Memphis Jazzers 25-",
+    "Dublin's Dandies 20",
+    "Porter Grainger 24- Leroy Smith 24",
+    "Metropolitan Dance Players 25- Bar Happy Band 25"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '16 A B' verse grid above the chorus; the verse is transcribed as verse_A / verse_B.",
+    "A1_arrow": "A' (2nd chorus row) begins with a leading-arrow/dash span copying section A positionally for bars 1-4."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ab7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm"
+        }
+      }
+    ],
+    "verse_B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eb7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ab"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ab",
+          "3": "Abm6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ao7",
+          "4": "G7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Cm",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ab",
+          "3": "Ao7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "section_keys": {
+    "verse_A": {
+      "tonic": "C",
+      "mode": "minor"
+    },
+    "verse_B": {
+      "tonic": "C",
+      "mode": "minor"
+    },
+    "B": {
+      "tonic": "Ab",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "vi",
+    "quality": "min",
+    "chord": "Cm"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "d2cffc74034a5f3e7726ab9b19960d2967645b10f9fd0c2a411aba9e2e9fb47b",
+    "scorer": {
+      "tonic": "G",
+      "mode": "major",
+      "margin": 0.0408,
+      "section_keys": {
+        "verse_A": {
+          "tonic": "C",
+          "mode": "minor",
+          "margin": 0.9583
+        },
+        "B": {
+          "tonic": "Ab",
+          "mode": "major",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "medium",
+      "modulation_note": "Verse and the openings of the A sections sit in the relative minor (C minor); the bridge is in the subdominant, Ab major, before the A sections cadence back to Eb.",
+      "section_keys": {
+        "verse_A": {
+          "tonic": "C",
+          "mode": "minor"
+        },
+        "verse_B": {
+          "tonic": "C",
+          "mode": "minor"
+        },
+        "B": {
+          "tonic": "Ab",
+          "mode": "major"
+        }
+      }
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard with verse",
+    "tags": [
+      "verse-present",
+      "circle-of-fifths",
+      "turnaround-ending",
+      "dominant-cycle-bridge"
+    ],
+    "sections": {
+      "verse_A": "i-bVI7-i-V-i loop in C minor (Cm, Ab7, G7)",
+      "verse_B": "bVI (Ab) to i (Cm), tonicizing G with D7 then G7 to set up the head",
+      "A": "opens vi/i (Cm) with D7-G7, then a circle-of-fifths C7-F7-Bb7 cadencing to Eb (I)",
+      "A1": "same opening then ii-V (Cm7-F7) and Bb7-Eb7 turnaround into the bridge",
+      "B": "sustained IV (Ab) alternating with its dominant Eb7, Abm6 and Ao7-G7 leading back",
+      "A2": "Cm-D7-G7 opening then Ab-Ao7-Eb with F7-Bb7 resolving firmly to Eb (I)"
+    },
+    "modulates": true,
+    "modulation_note": "Verse and the openings of the A sections sit in the relative minor (C minor); the bridge is in the subdominant, Ab major, before the A sections cadence back to Eb."
+  }
+}

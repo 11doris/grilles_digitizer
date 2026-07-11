@@ -1,0 +1,287 @@
+{
+  "composer": "Antonio Carlos JOBIM – Vinicius de MORAES – Norman GIMBEL",
+  "year": "1963",
+  "style": "BOSSA NOVA",
+  "tempo": "MEDIUM",
+  "form": "32 A B C D",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 31",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Dm"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Dm"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "D",
+          "bar": 7
+        }
+      ]
+    }
+  ],
+  "title": "HOW INSENSITIVE",
+  "page": 163,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "J.J.Johnson 65- C.Fisher 64- S.Getz 63",
+    "L.Shifrin 62- C.Byrd 63- A.Jamal 68",
+    "K.Doldinger 64- A.Gilberto 65"
+  ],
+  "notation_notes": {
+    "ending": "Header prints 'ENDING Bar 31 :' with an alternate ending: Dm | (dash). Recorded as a variant applying to Bar 31."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Dbo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Dbo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm6"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Em7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Db7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Em7b5",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "D": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "(Em7b5)",
+          "3": "(A7)"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "D",
+    "mode": "minor"
+  },
+  "opening": {
+    "degree": "i",
+    "quality": "min",
+    "chord": "Dm"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "31f882cfac4fc2aaa474bec075c7a089c6ef0e014738009c32c39492fb16e5f9",
+    "scorer": {
+      "tonic": "D",
+      "mode": "minor",
+      "margin": 0.6464
+    },
+    "llm": {
+      "tonic": "D",
+      "mode": "minor",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABCD bossa nova standard",
+    "tags": [
+      "chromatic-descent",
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "i (Dm) with chromatic descending line: i - bVII°7 (Db°7) - v6/iv (Cm6) - V7 (G7)",
+      "B": "bVI (Bbmaj7) - bII/bII (Ebmaj7) - ii7b5-V7 (Em7b5-A7) into i (Dm7) - Db7 tritone sub",
+      "C": "iv (Cm7) - B°7 - bVI (Bbmaj7) - ii7b5-V7 (Em7b5-A7) - i (Dm7) - V7 (G7)",
+      "D": "iv-bVII (Cm7-F7) - Bm7-E7 - bVI (Bbmaj7) - V7 (A7) - Bb, ending on ii7b5-V7 turnaround back to i"
+    },
+    "modulates": false
+  }
+}

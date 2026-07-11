@@ -1,0 +1,299 @@
+{
+  "composer": "Frank MELROSE",
+  "year": "1929",
+  "style": "TRADITIONAL (INSTRUMENTAL)",
+  "tempo": "FAST",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "title": "FORTY AND TIGHT FOUR",
+  "page": 128,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "S.Lewis 61- Cy Laurie 54- Papa Barry 58",
+    "Beale Street Washboard Band 29",
+    "Fr.Johnson 30"
+  ],
+  "notation_notes": {
+    "year_uncertain": "Header prints 'Frank MELROSE 1929 ?'.",
+    "introduction": "An INTRODUCTION row of 4 bars is printed above the grid."
+  },
+  "sections": {
+    "intro": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "(F)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "(F7)"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "II",
+    "quality": "dom",
+    "chord": "C7"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "0abae06120d362c30b5d3c505258ea1a5a46e7a67cbd4723381d0328ae1019f1",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.454,
+      "section_keys": {
+        "B": {
+          "tonic": "F",
+          "mode": "major",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "multi-strain 32-bar stomp (A B A' C)",
+    "tags": [
+      "circle-of-fifths",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "intro": "V/V-V-I into Bb (C7-F7-Bb)",
+      "A": "Repeated C7-F7-Bb: V/V - V - I",
+      "B": "D7 (V/vi) to Gm (vi), then F (V) - C7 (V/V) - back to F/F7 as dominant prep",
+      "A1": "C7-F7-Bb then Bb7 (I7) to Eb (IV)",
+      "C": "Eb-Eo7-Bb, then G7-C7-F7-Bb circle of fifths cadence to I"
+    },
+    "modulates": false
+  }
+}

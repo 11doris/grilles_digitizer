@@ -1,0 +1,320 @@
+{
+  "composer": "Richard RODGERS – Lorenz HART",
+  "year": "1937",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A' B A\"",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 1, 9, 25",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 1
+        },
+        {
+          "section": "A1",
+          "bar": 1
+        },
+        {
+          "section": "A2",
+          "bar": 1
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Fmaj7",
+            "3": "Bb9b5"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Am7b5",
+            "3": "D7"
+          }
+        }
+      ]
+    },
+    {
+      "applies_to": "Bar 5, 13",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 5
+        },
+        {
+          "section": "A1",
+          "bar": 5
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Cm7",
+            "3": "F7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Dm7",
+            "3": "G7"
+          }
+        }
+      ]
+    },
+    {
+      "applies_to": "Bar 15",
+      "targets": [
+        {
+          "section": "A1",
+          "bar": 7
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Gm7",
+            "3": "C7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Cm7",
+            "3": "F7"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "HAVE YOU MET MISS JONES",
+  "page": 151,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '12 VERSE'."
+  },
+  "recordings": [
+    "C.Basie 60- J.Pass 73- T.Farlow 54.56",
+    "C.Jones 65- M.Coy Tyner 62- I.Jacquet 57",
+    "C.Hawkins 56- A.Jamal 68- E.Fitzgerald 56",
+    "A.Tatum 53.56(B.Webster)- L.Armstrong 57",
+    "J.Raney 54- R.Eldridge 57- W.Ferguson 60",
+    "R.Norvo 50- Cee Loss 37- G.Shearing 47",
+    "B.De Franco 57- B.Brookmeyer 54- S.Getz 53",
+    "H.Perian 75- W.Bradley 55- B.Leighton 46"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Db9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Abm7",
+          "3": "Db7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7",
+          "3": "Abo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  }
+}

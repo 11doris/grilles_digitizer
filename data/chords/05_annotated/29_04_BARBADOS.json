@@ -1,0 +1,138 @@
+{
+  "composer": "Charlie PARKER",
+  "year": "1948",
+  "style": "BE BOP (INSTRUMENTAL)",
+  "tempo": "MEDIUM",
+  "form": "12 BLUES",
+  "time_signature": "4/4",
+  "title": "BARBADOS",
+  "page": 29,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Ch.Parker 48.49",
+    "C.Baker 62- A.Dean 49",
+    "T.Flanagan 77- K.Gra-",
+    "ham 52- P.Newborn 56",
+    "Montgomery Bros. 61",
+    "J.J.Johnson 57"
+  ],
+  "notation_notes": {
+    "C_bar12": "Section A bar 12 is printed parenthesised '(C7)', an optional/passing chord; kept as printed."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7b9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fmaj7",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "D7b9"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "C7b9"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "Fmaj7"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "(C7)"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "F"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "ed143c161923de7ab17c48a1972b744cab42294ab4c69d2e8d110da253865169",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.696
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "12-bar blues",
+    "tags": [
+      "blues-form",
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "F blues: I with ii-V in bar 2, IV in bar 5-6, ii-V turnarounds leading to I, ending on V7 turnaround"
+    },
+    "modulates": false
+  }
+}

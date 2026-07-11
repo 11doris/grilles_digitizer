@@ -1,0 +1,268 @@
+{
+  "composer": "Isham JONES – Marty SYMES",
+  "year": "1936",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW → MEDIUM FAST",
+  "form": "32 A A' B A'",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 2, 10 and 26",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Eb13"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "D7",
+            "3": "Ab7"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "A",
+          "bar": 2
+        },
+        {
+          "section": "A1",
+          "bar": 2
+        },
+        {
+          "section": "A2",
+          "bar": 2
+        }
+      ]
+    }
+  ],
+  "title": "THERE IS NO GREATER LOVE",
+  "page": 418,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "recordings": [
+    "H.Edison 60.75- Circle 71- E.Hines70",
+    "B.Ervin 64- T.Farlow 56- S.Jones 60",
+    "S.Kenton 47- A.Jamal 55- R.Hanna 73",
+    "A.Franklin 62.65- E.Garner 50.53",
+    "V.Norman 47.57- J.Rodges 52.61",
+    "D.Gillespie 59- G.Ammons 61- M.Davis 55.64",
+    "C.Hawkins 60- B.Holiday 47- J.Hamilton 61",
+    "McCoy Tyner 62- S.Rollins 57- J.Rowles 78",
+    "O.Peterson 62- B.Webster 55- P.Chambers 59"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Eb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Eb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb6",
+          "3": "Ebm6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb6"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Eb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb6",
+          "3": "Ebm6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb6"
+        }
+      }
+    ]
+  }
+}

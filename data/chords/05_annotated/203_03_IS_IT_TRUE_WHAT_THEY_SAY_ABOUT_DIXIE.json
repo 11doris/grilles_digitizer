@@ -1,0 +1,284 @@
+{
+  "composer": "Gerald MARKS – Irving CAESAR – Sammy LERNER",
+  "year": "1936",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "A' Bar 7",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "C",
+            "3": "G7"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "IS IT TRUE WHAT THEY SAY ABOUT DIXIE",
+  "page": 203,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "K.Dorham 57- P.Fountain 61",
+    "D.Roberson 36- W.Manone 36",
+    "H.Blons 56- Dixie Double Cats 59",
+    "H.Mann 57- W.Bryant 36",
+    "J.Dorsey 36- O.Nelson 36",
+    "Swing Rhythm Boys 36"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "A_prime_arrow": "A' (3rd printed row) is a leading-arrow row copying section A positionally; empty/dash boxes take the same-position bar from A; explicitly written bars override."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bbo7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Am7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "B7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Em"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "G7#5"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C",
+          "3": "G7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G",
+          "3": "F9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "E9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "G",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "G"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "f00eeabbf2580d7e550f304cf33f58f26e1fe65bb0d3e3e055f47f5698e11f96",
+    "scorer": {
+      "tonic": "G",
+      "mode": "major",
+      "margin": 0.6586
+    },
+    "llm": {
+      "tonic": "G",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAC standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "chromatic-descent"
+    ],
+    "sections": {
+      "A": "I with chromatic F#7 lower-neighbor dominant, V7 in bar 4, diminished passing chord (bIIIo7) to vi with V/vi, resting on vi",
+      "B": "ii-V in G, V/vi to vi (B7-Em), V/V (A7), back to ii-V",
+      "A1": "I with F#7 neighbor, V7, then I7 to IV (C) with G7#5/G7 turnaround toward IV",
+      "C": "IV, Eb7 (bVI7), I to F9/E9 chromatic, V/V-V (A7-D7), resolving home to I"
+    },
+    "modulates": false
+  }
+}

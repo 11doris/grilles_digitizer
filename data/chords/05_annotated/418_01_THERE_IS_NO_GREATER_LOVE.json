@@ -1,0 +1,326 @@
+{
+  "composer": "Isham JONES – Marty SYMES",
+  "year": "1936",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW → MEDIUM FAST",
+  "form": "32 A A' B A'",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 2, 10 and 26",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Eb13"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "D7",
+            "3": "Ab7"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "A",
+          "bar": 2
+        },
+        {
+          "section": "A1",
+          "bar": 2
+        },
+        {
+          "section": "A2",
+          "bar": 2
+        }
+      ]
+    }
+  ],
+  "title": "THERE IS NO GREATER LOVE",
+  "page": 418,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "recordings": [
+    "H.Edison 60.75- Circle 71- E.Hines70",
+    "B.Ervin 64- T.Farlow 56- S.Jones 60",
+    "S.Kenton 47- A.Jamal 55- R.Hanna 73",
+    "A.Franklin 62.65- E.Garner 50.53",
+    "V.Norman 47.57- J.Rodges 52.61",
+    "D.Gillespie 59- G.Ammons 61- M.Davis 55.64",
+    "C.Hawkins 60- B.Holiday 47- J.Hamilton 61",
+    "McCoy Tyner 62- S.Rollins 57- J.Rowles 78",
+    "O.Peterson 62- B.Webster 55- P.Chambers 59"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Eb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Eb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb6",
+          "3": "Ebm6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb6"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Eb6"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb6",
+          "3": "Ebm6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "G",
+      "mode": "minor"
+    }
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bb6"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "b70306f7d7af79096ee3b98b76ab0a8920d54dbd93fe65332283925ad0d02a46",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.8012,
+      "section_keys": {
+        "B": {
+          "tonic": "G",
+          "mode": "minor",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge tonicizes the relative minor (G minor) before returning via ii-V",
+      "section_keys": {
+        "B": {
+          "tonic": "G",
+          "mode": "minor"
+        }
+      }
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I to IV, then vi's V (D7)-V/V-V-ii-V setup, ending on ii-V (Cm7-F7)",
+      "A1": "I-IV-D7-G7-C7-Cm7/F7 resolving to I with plagal Ebm6",
+      "B": "V7-i alternation in G minor (D7-Gm) then ii-V back to home key",
+      "A2": "Same as A1: I-IV-secondary dominants-ii-V resolving to I"
+    },
+    "modulates": true,
+    "modulation_note": "bridge tonicizes the relative minor (G minor) before returning via ii-V"
+  }
+}

@@ -1,0 +1,522 @@
+{
+  "composer": "Jerome KERN – Dorothy FIELDS",
+  "year": "1936",
+  "style": "STANDARD",
+  "tempo": "FAST",
+  "form": "64 A A B A + Coda",
+  "time_signature": "4/4",
+  "title": "THE WAY YOU LOOK TONIGHT",
+  "page": 446,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "A.Blakey 54- D.Brubeck 50.53- B.DeFranco 52- C.Hawkins 47.63",
+    "G.Lafitte 76- A.Pepper 54- M.Waldron 57- B.Goodman 42- D.Byas 62",
+    "T.Nilsen 36- C.Adderley 57- E.Bostic 58- D.Gillespie 46.53",
+    "B.Brookmeyer 58- B.Butterfield 54- E.Condon 46- R.Eldridge 59",
+    "E.Davis 55- E.Dolphy 61- M.Ferguson 54- S.Getz 52- L.Hampton 54",
+    "E.Fitzgerald 64- E.Garner 49.51.63- J.McLean 55- S.Rollins 54",
+    "A.Tatum 3- O.Peterson 53.59- F.Astaire 36.52- Keynoters 46",
+    "C.Parker 46- M.Solal 54- J.Raney 76- J.Sullivan- B.Clayton"
+  ],
+  "notation_notes": {
+    "coda_note": "Below the grid: '- sometimes the coda is played as a tail for the statement of the melody.'",
+    "key": "Header prints key 'Eb'."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7b9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "Bb6",
+          "3": "(D7)"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 13,
+        "beats": {
+          "1": "F6",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 14,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 15,
+        "beats": {
+          "1": "F6",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 16,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7b9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "Bb6",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 13,
+        "beats": {
+          "1": "F6",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 14,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 15,
+        "beats": {
+          "1": "F6",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 16,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ao7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Bo7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "Ao7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "Bbm7"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 13,
+        "beats": {
+          "1": "Abmaj7"
+        }
+      },
+      {
+        "bar": 14,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 15,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 16,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fmaj7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7b5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7b9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "Bb6",
+          "3": "(D7)"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 13,
+        "beats": {
+          "1": "F6",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 14,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 15,
+        "beats": {
+          "1": "F6",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 16,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      }
+    ],
+    "coda": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb6",
+          "3": "(D7)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F6"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "Ab",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Fmaj7"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "3ce6089209a3a2d37d3933f862bf367285bb52224242f7c8505466b08c1e7a54",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.6391
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "bridge (B) moves to Ab major before returning via ii-V to F",
+      "section_keys": {
+        "B": {
+          "tonic": "Ab",
+          "mode": "major"
+        }
+      }
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "64-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I-vi-ii-V then iv-related Cm7-F7 to bVI (Bb6), settling into repeated I-vi ii-V loops",
+      "A1": "Same as A: Imaj7, ii-V chains, Cm7-F7 to Bb6, I-vi ii-V loops",
+      "B": "Imaj7-#Io7-ii-V cadences in Ab, ending with Fm7-Gm7-C7 to lead back to F",
+      "A2": "Restatement of A: I-vi-ii-V and ii-V loops in F",
+      "coda": "bVI (Bb6)-ii-V resolving to I (F6)"
+    },
+    "modulates": true,
+    "modulation_note": "bridge (B) moves to Ab major before returning via ii-V to F"
+  }
+}

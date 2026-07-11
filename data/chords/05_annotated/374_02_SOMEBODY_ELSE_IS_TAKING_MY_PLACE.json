@@ -1,0 +1,259 @@
+{
+  "composer": "Bob ELLSWORTH",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A B A B'",
+  "time_signature": "4/4",
+  "title": "SOMEBODY ELSE IS TAKING MY PLACE",
+  "page": 374,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "B.Goodman 41-",
+    "Berigan 42- B.Goodman 41-"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "dash_expansion": "3rd printed row is a leading-arrow row (A) copying section A positionally; empty/dash boxes take the same-position bar from A.",
+    "recordings_truncated": "Right-margin credits partly cut off at crop edge."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ],
+    "B1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bb"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "b6468327ec08aa7319192a38bce97a9d650542c6fdca16a2a5cc77f8c9867c39",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.651
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAB' standard",
+    "tags": [
+      "circle-of-fifths",
+      "ii-V-chains"
+    ],
+    "sections": {
+      "A": "I - VI7 - II7 - II7 - V7 - V7 - I - I, extended dominant chain of fifths resolving to tonic",
+      "B": "IV - IV - I - VI7 - II7 - II7 - V7, moving to subdominant then circling back through dominants",
+      "A1": "Repeat of A: I - VI7 - II7 - V7 - I dominant cycle",
+      "B1": "IV - IV - I - VI7 - II7 - V7 - I - I, subdominant open resolving cleanly to tonic"
+    },
+    "modulates": false
+  }
+}

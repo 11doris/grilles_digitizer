@@ -1,0 +1,230 @@
+{
+  "composer": "Charlie PARKER",
+  "year": "1946",
+  "style": "BE BOP",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "YARDBIRD SUITE",
+  "page": 472,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "C.Parker 46- T.Jefferson 59",
+    "H.Byas 51- L.Kohn 65- L.Kohn 58",
+    "C.Thornhill 47- Jazz Messengers 60",
+    "B.Perkins 56- S.Rich 58- F.Foster 62",
+    "J.Moody 55- M.Allison 59- D.Pomeroy 57",
+    "L.Almeira 76- L.Kohn 77- L.Kohn 73"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7",
+          "3": "Bb13"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Em7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Dm7",
+          "3": "G7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7",
+          "3": "Bb13"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C6",
+          "3": "F6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C6"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Em"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#m7b5",
+          "3": "B7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Em7b5",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C6"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7",
+          "3": "Bb13"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C6",
+          "3": "F6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C6"
+        }
+      }
+    ]
+  }
+}

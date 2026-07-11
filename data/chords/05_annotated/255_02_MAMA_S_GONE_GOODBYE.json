@@ -1,0 +1,445 @@
+{
+  "composer": "Peter BOCAGE – Armand J. PIRON",
+  "year": "1923",
+  "style": "TRADITIONAL JAZZ",
+  "tempo": "MEDIUM FAST",
+  "form": "16 A B A C | 32 A B A' C",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 3, 19",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "A7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "A7"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "A",
+          "bar": 3
+        },
+        {
+          "section": "A1",
+          "bar": 3
+        }
+      ]
+    }
+  ],
+  "title": "MAMA'S GONE GOODBYE",
+  "page": 255,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "Th.Terry 28- C.Gibbons 25- N.O.Ragtime Orchestra 74",
+    "G.Lombardo 24- St.J.Lewis V.McCoy 24- Bunk Johnson 44",
+    "S.Wallace 24- Mid.Williams 37- P.Bocage 61- Bob Crosby 40",
+    "B.Hackett 37- R.Nichols 56- R.Miller 24",
+    "V.Manone 41- Cl.Smith 24",
+    "A.Piron 23"
+  ],
+  "same_chord_changes": "ALSO PLAYED IN Ab.",
+  "notation_notes": {
+    "also_played": "Right of grid prints 'ALSO PLAYED IN Ab.'",
+    "verse": "First grid labelled 'VERSE'; form '16 A B A C'.",
+    "dash_expansion": "Verse second row is a leading-arrow row copying the verse first row positionally; empty/dash boxes take the same-position bar from the row above."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm",
+          "2": "Eb7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm",
+          "2": "Eb7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D",
+          "3": "D7"
+        }
+      }
+    ],
+    "verse_B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm",
+          "2": "Eb7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm",
+          "2": "Eb7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F",
+          "3": "F7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Eo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gb7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "section_keys": {
+    "verse_A": {
+      "tonic": "G",
+      "mode": "minor"
+    },
+    "verse_B": {
+      "tonic": "G",
+      "mode": "minor"
+    }
+  },
+  "opening": {
+    "degree": "vi",
+    "quality": "min",
+    "chord": "Gm"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "dd8a5499fbd47ecc278d93c16f792cb880ad3328d813b307753515fd05c98a22",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.1251,
+      "section_keys": {
+        "verse_B": {
+          "tonic": "F",
+          "mode": "major",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "Opening 16-bar verse sits in the relative G minor region (verse_A tonicizes its dominant D, verse_B cadences toward F); the 32-bar chorus is firmly in Bb major.",
+      "section_keys": {
+        "verse_A": {
+          "tonic": "G",
+          "mode": "minor"
+        },
+        "verse_B": {
+          "tonic": "G",
+          "mode": "minor"
+        }
+      }
+    },
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "16-bar verse + 32-bar chorus (multi-strain)",
+    "tags": [
+      "verse-present",
+      "circle-of-fifths",
+      "tritone-sub",
+      "relative-minor-verse"
+    ],
+    "sections": {
+      "verse_A": "i with bVI7-V (Gm/Eb7/D7) for four bars, then A7-D (V/V to the dominant) as a half-cadence gesture",
+      "verse_B": "Same Gm i-bVI7-V opening, then F-C7-F (V-I in F) with F7 pivoting toward the chorus",
+      "A": "I (Bb) - bVI7 (Gb7 tritone sub) - V7 (F7) - I, ending on I7 to pivot",
+      "B": "IV (Eb) - iv (Ebm) - I - VI7(G7) - II7(C7) - V7(F7): circle-of-fifths drive back to V",
+      "A1": "As A but the last two bars turn to D7 (V/Gm) to set up the C strain",
+      "C": "VI7-II7-V7-related (G7-C7-Eo7) resolving Bb with Gb7/F7 tag back to I"
+    },
+    "modulates": true,
+    "modulation_note": "Opening 16-bar verse sits in the relative G minor region (verse_A tonicizes its dominant D, verse_B cadences toward F); the 32-bar chorus is firmly in Bb major."
+  }
+}

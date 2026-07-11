@@ -1,0 +1,384 @@
+{
+  "composer": "Isham JONES – Gus KAHN",
+  "year": "1923",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "16 A A' | 32 A B A C",
+  "time_signature": "4/4",
+  "title": "SWINGIN' DOWN THE LANE",
+  "page": 405,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "C.Hopkins 37- S.Lanin 23- This is Jazz 47",
+    "C.Marnat 52- Don.Lambert 61- F.Sinatra 56",
+    "C.Thornhill 50- Coot.Williams 38- Ish.Jones 31"
+  ],
+  "notation_notes": {
+    "verse_note": "The first grid (16 A A') is labelled 'VERSE'.",
+    "verse_A1": "Verse A' is a leading-arrow row copying verse_A positionally; empty/dash boxes take the same-position bar from verse_A."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G",
+          "3": "B7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm6",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "verse_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G",
+          "3": "B7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Cm6",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G6",
+          "3": "G(#5)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G",
+          "3": "(Em)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7",
+          "3": "(Fm6)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G6",
+          "3": "F7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "A7",
+          "3": "(E7)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D9",
+          "3": "(G#o7)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "(D7)"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "G6",
+          "3": "G(#5)"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G",
+          "3": "(Em)"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7",
+          "3": "(Fm6)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G6",
+          "3": "F7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bm7b5",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bm7b5",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "B7",
+          "3": "(D#o7)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Em"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7",
+          "3": "(Eb7)"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "G",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "G"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "0ea02b78805e047ceb10e3f362387fe757e6ba334dfce9561575eeb9ea5dc6f1",
+    "scorer": {
+      "tonic": "G",
+      "mode": "major",
+      "margin": 0.4218
+    },
+    "llm": {
+      "tonic": "G",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAC standard with 16-bar verse",
+    "tags": [
+      "verse-present",
+      "dominant-cycle-bridge",
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "verse_A": "I with V/vi to vi, V/ii, V/V, iv(Cm6)-V motion back to I then V7 turnaround",
+      "verse_A1": "Same as verse_A but ending on sustained V7 turnaround",
+      "A": "I with V/V (A9) resolving via V7, A7-D7 back to I, ending I to bVII7(F7)",
+      "B": "Dominant cycle E7-A7-D7 (V/V/V to V) driving back toward I",
+      "A1": "Repeat of A: I, V/V, V7, A7-D7 to I, ending on F7",
+      "C": "iii-related ii-V (Bm7b5-E7) to Em, then Am7-D7-I authentic cadence"
+    },
+    "modulates": false
+  }
+}

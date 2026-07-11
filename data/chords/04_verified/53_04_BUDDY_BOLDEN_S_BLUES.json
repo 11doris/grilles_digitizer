@@ -1,0 +1,145 @@
+{
+  "composer": "Ferdinand \"Jelly Roll\" MORTON",
+  "year": "1923",
+  "style": "NEW ORLEANS",
+  "tempo": "SLOW",
+  "form": "16 A A'",
+  "time_signature": "4/4",
+  "title": "BUDDY BOLDEN'S BLUES",
+  "page": 53,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "B.Hackett 66- A.Hodes 47- B.Sonkey 59",
+    "R.Allen 55- B.Dodds",
+    "48- J.J.McKarton 39",
+    "D.Hyman 73- H.Hall",
+    "69- S.Bechet 49-",
+    "C.Barber 52",
+    "C.Bolling 57"
+  ],
+  "notation_notes": {
+    "also_played_note": "Below the grid prints 'ALSO PLAYED IN Eb'.",
+    "A1_arrow": "A' (2nd printed row) is a leading-arrow row copying section A positionally; empty/dash boxes take the same-position bar from A, with explicit overrides in the last bars."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F",
+          "3": "Abo7",
+          "4": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "2": "Ab7",
+          "3": "D7",
+          "4": "G7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C",
+          "3": "C7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "F",
+          "3": "Abo7",
+          "4": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bb",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  }
+}

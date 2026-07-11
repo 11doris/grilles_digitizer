@@ -1,0 +1,333 @@
+{
+  "composer": "Allie WRUBEL – Herb MAGIDSON",
+  "year": "1937",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A B A C",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 5, 21",
+      "targets": [
+        {
+          "section": "A",
+          "bar": 5
+        },
+        {
+          "section": "A1",
+          "bar": 5
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "C#m7b5",
+            "3": "Co7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Bm7",
+            "3": "Bb9"
+          }
+        }
+      ]
+    },
+    {
+      "applies_to": "Bar 30",
+      "targets": [
+        {
+          "section": "C",
+          "bar": 6
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Db9#11",
+            "3": "Eb9#11"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "GONE WITH THE WIND",
+  "page": 141,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '8 VERSE'.",
+    "A2_arrow": "The 3rd printed row is a leading-arrow row (all dashes) copying section A positionally."
+  },
+  "recordings": [
+    "J.Raney 55- B.Strayhorn 59- B.Green 55",
+    "T.Akiyoshi 54- B.Holiday 55- A.Cohn 55",
+    "J.J.Johnson 57- B.Kessel 55- A.Held 54",
+    "W.Montgomery 60- E.Fitzgerald 59.60",
+    "A.Tatum 37.53.55(B.Webster)- E.Hines 54",
+    "P.Hodges 59- B.Carter 52- T.Dameron 47",
+    "Esquire 46- A.Farmer 54- D.Brubeck 54",
+    "Cl.Brown 54- A.Jamal 58- H.Jones 55.76",
+    "C.Thornhill 37- B.DeFranco 52-",
+    "S.Getz 50- W.Powell 55- R.Callender 54"
+  ],
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G",
+          "3": "Bbo7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bm7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gbo7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7b5",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb9#11",
+          "3": "Bb7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Cm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G",
+          "3": "Bbo7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bm7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F9",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Eb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Eb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "ii",
+    "quality": "min",
+    "chord": "Fm7"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "a855f194be3cb311b3ac105fe4bac7e4392d0093a05c5f27f853cc3ba16cdc19",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.6474
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAC standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "ii-V-I in Eb (Fm7-Bb7-Ebmaj7), then tonicizes G via Am7-D7-G before landing on Bm7",
+      "B": "Gm7-Gbo7-Fm7-Bb7 descent into Ebmaj7, then ii-V (Gm7b5-C7) and Fm7-Bb7 back to dominant",
+      "A1": "Same as A: ii-V-I in Eb then G tonicization ending on Bm7",
+      "C": "Fm7-Cm7-Fm7-Bb7 with Gm7-C7, resolving through F9-Bb7 to Eb tonic"
+    },
+    "modulates": false
+  }
+}

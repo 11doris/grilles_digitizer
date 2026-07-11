@@ -1,0 +1,420 @@
+{
+  "composer": "Henry BUSSE – Henry LANGE – Lou DAVIS",
+  "year": "1922",
+  "style": "TRADITIONAL",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "title": "HOT LIPS",
+  "page": 160,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "P.W.Bizouarn",
+    "P.Whiteman 22",
+    "Y.Lando 65",
+    "R.Nichols 36",
+    "pacht 22-",
+    "ton pickers 22- L.Miles 23-",
+    "Jones 81- Quincetto MCF 23-",
+    "uma 34- D.Disley 58- T.Lewis 22-",
+    "e Paris 55- Firehouse 5-2: 54",
+    "Byrco Jazz Band 22"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '16 A A'' for the VERSE grid (stacked above the chorus).",
+    "verse_layout": "Verse grid is 8 bars wide per row shown across the page."
+  },
+  "sections": {
+    "verse_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ],
+    "verse_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "D"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb",
+          "2": "F7#5"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F",
+          "3": "C(#5)"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F",
+          "3": "Abo7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7",
+          "3": "C#o7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "section_keys": {
+    "verse_A": {
+      "tonic": "G",
+      "mode": "major"
+    },
+    "verse_A1": {
+      "tonic": "G",
+      "mode": "major"
+    },
+    "B": {
+      "tonic": "F",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "IV",
+    "quality": "dom",
+    "chord": "Eb7"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "3959fb5bec2d51be36b5cd9aacabd2c0dadf106ac24ae39c713347e1b52eccb6",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.8013,
+      "section_keys": {
+        "verse_A": {
+          "tonic": "G",
+          "mode": "major",
+          "margin": 1.0
+        },
+        "B": {
+          "tonic": "F",
+          "mode": "major",
+          "margin": 0.5068
+        }
+      }
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "verse is in G major; the chorus (A B A' C) settles firmly in Bb major",
+      "section_keys": {
+        "verse_A": {
+          "tonic": "G",
+          "mode": "major"
+        },
+        "verse_A1": {
+          "tonic": "G",
+          "mode": "major"
+        },
+        "B": {
+          "tonic": "F",
+          "mode": "major"
+        }
+      }
+    },
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "verse-and-chorus standard (32-bar A B A' C chorus)",
+    "tags": [
+      "verse-present",
+      "turnaround-ending",
+      "secondary-dominants"
+    ],
+    "sections": {
+      "verse_A": "bVI7 then V7-I cadence establishing G major (Eb7 | G | D7 | G)",
+      "verse_A1": "opens in G, sequences up (A7-D), then F7 as V7 preparing Bb",
+      "A": "I-V7-I in Bb with F7#5 turnaround at the end",
+      "B": "tonicizes IV (F) with its own dominant (C7) and Abo7, then F7 back to home",
+      "A1": "I-V7-I moving to I7 (Bb7) to launch next section",
+      "C": "I-V/vi-vi-V7-I turnaround cadence in Bb (Bb-D7-Gm-C7-F7-Bb)"
+    },
+    "modulates": true,
+    "modulation_note": "verse is in G major; the chorus (A B A' C) settles firmly in Bb major"
+  }
+}

@@ -1,0 +1,389 @@
+{
+  "composer": "Joseph MYROW – Mack GORDON",
+  "year": "1946",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "40 A A B A' C",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 37",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Cm",
+            "3": "Do7",
+            "4": "Cm"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "C7",
+            "3": "F7"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "C",
+          "bar": 5
+        }
+      ]
+    },
+    {
+      "applies_to": "Bar 23",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Cm",
+            "2": "Do7",
+            "3": "Cm",
+            "4": "C7"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "B",
+          "bar": 7
+        }
+      ]
+    }
+  ],
+  "title": "YOU MAKE ME FEEL SO YOUNG",
+  "page": 478,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "V.Feldman 60- E.Fitzgerald 59- L.Alexandria 57",
+    "F.Sinatra 56.64(Basie)- O.Peterson 59",
+    "B.Taylor 57- B.Pfeiffer 58- T.Gibbs 58"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '12 VERSE'."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "G7b9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7",
+          "3": "E9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Eb6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "G7b9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb7",
+          "3": "E9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Eb6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7",
+          "3": "Gm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb7",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm7",
+          "3": "F#o7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7",
+          "3": "Eo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm7b5",
+          "3": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7b5",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "G7b9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Cm7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Bo7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm7b5",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bb6",
+          "2": "Bb7#5"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ebmaj7",
+          "3": "Ebm6"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Dm7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "C": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D9#5",
+          "3": "Ab13"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7b9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7",
+          "3": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb6"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb6"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "Bb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bbmaj7"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "a828fb147781b7eb0a1d3dcb47783ac8fdf7014188c892e39898e96a5c28644b",
+    "scorer": {
+      "tonic": "Bb",
+      "mode": "major",
+      "margin": 0.8217
+    },
+    "llm": {
+      "tonic": "Bb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "40-bar extended AABA'C standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "A": "I with V/vi, ii-V, I-#io7, iio7b5-V7, then V7/IV to IV, iii-vi, ii-V",
+      "A1": "Repeat of A: I, ii-V motion, IV region via bVII7, ending ii-V",
+      "B": "Bridge over V7/IV and diminished passing chords, iv motion, then ii-V chain (Am7b5-D7, Gm7-C7) back to ii-V of I",
+      "A2": "A variant ending on V7 (G7) turnaround",
+      "C": "ii-V, altered dominants (D9#5-Ab13-G7b9), back to ii-V resolving to I"
+    },
+    "modulates": false
+  }
+}

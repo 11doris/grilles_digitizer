@@ -1,0 +1,282 @@
+{
+  "composer": "Thomas Fats WALLER – Andy RAZAF",
+  "year": "1934",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "HOW CAN YOU FALL ME",
+  "page": 162,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "L.Lambert 80- N.Jaffe ?",
+    "Soprano Summit 77",
+    "Horsey Bros. 34",
+    "T.Baker 57- C.McLean 3E",
+    "F.Waller 34.35t"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "composer_header": "Header prints '(Thomas 'Fats' Waller - Andy Razaf 1934)'."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#m7b5",
+          "3": "B7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7",
+          "3": "F",
+          "4": "Fm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#m7b5",
+          "3": "B7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7",
+          "3": "F",
+          "4": "Fm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "G7",
+          "3": "Go7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "F#m7b5",
+          "3": "B7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "E7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7",
+          "3": "F",
+          "4": "Fm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "C",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "C"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "d769664c167e097e2d340a43c062874d716aee42b67a2a28846d4bf9857ff809",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.3048
+    },
+    "llm": {
+      "tonic": "C",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "circle-of-fifths",
+      "ii-V-chains",
+      "dominant-cycle-bridge"
+    ],
+    "sections": {
+      "A": "I then a cycle-of-fifths chain (vii/V-B7-E7-A7-D7-G7) resolving through I7-IV-iv back to I",
+      "A1": "Repeat of A: I with circle-of-fifths dominants resolving to I",
+      "B": "ii-V to IV (Gm7-C7 to F), then ii-V to V (Am7-D7 to G7) ending on V dominant",
+      "A2": "Repeat of A: I with circle-of-fifths dominants resolving to I"
+    },
+    "modulates": false
+  }
+}

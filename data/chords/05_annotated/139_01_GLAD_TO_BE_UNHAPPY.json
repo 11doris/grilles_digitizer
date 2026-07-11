@@ -1,0 +1,231 @@
+{
+  "composer": "Richard RODGERS – Lorenz HART",
+  "year": "1936",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "24 A B A'",
+  "time_signature": "4/4",
+  "title": "GLAD TO BE UNHAPPY",
+  "page": 139,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "C.Fisher 83- T.Flanagan 77",
+    "R.Katz 55- E.Dolphy 60.61",
+    "W.Jenkins 54- F.Sibberg 55",
+    "S.Vaughan 82- C.Connor 59",
+    "L.Wiley 54.40- T.Scott 55",
+    "L.Horne 46- B.Holiday 58",
+    "P.Desmond 64- B.Rich 55",
+    "S.Davis Jr 54"
+  ],
+  "notation_notes": {
+    "A1_bar5": "Section A1 bar 5 upper-left reads Am7b5, lower-right reads D7#5b9 (superscript '65' read as b5 on Am7, and '5+ b9' on Db/D7).",
+    "A1_bar6": "Section A1 bar 6 upper G9, lower-right Gb9#5 (superscript '9 5+').",
+    "A_bar4": "Bar 4 (and A1 bar 4) print a bar-repeat sign, copying the preceding Gm9 bar."
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Gm9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Eb9"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F",
+          "3": "Cm7",
+          "4": "F7#5"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bbmaj7",
+          "3": "Bb9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Am7",
+          "3": "Dm7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Cm9",
+          "3": "F7#5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Bm7b5",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Gm9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Eb9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Gm7",
+          "3": "C7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Am7b5",
+          "3": "D7#5b9"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G9",
+          "3": "Gb9#5"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "F"
+        }
+      }
+    ]
+  },
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "ii",
+    "quality": "min",
+    "chord": "Gm9"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "be7b8c24685bc429be9235a6e372c7d5e08baee9c6a5585656f2ddd7d967e12b",
+    "scorer": {
+      "tonic": "F",
+      "mode": "major",
+      "margin": 0.6139
+    },
+    "llm": {
+      "tonic": "F",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "24-bar ABA' standard",
+    "tags": [
+      "ii-V-chains",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "A": "ii (Gm) with bVII9 (Eb9) color, repeated ii-V (Gm7-C7) resolving to I (F) at bar 8",
+      "B": "IV (Bbmaj7) then descending ii-Vs (Am7-Dm7, Gm7-C7, Bm7b5-E7, Am7-D7) circling back to I (F)",
+      "A1": "opening ii-bVII motion, then iiø-V of iii and chromatic dominants (G9-Gb9) landing on I (F)"
+    },
+    "modulates": false
+  }
+}

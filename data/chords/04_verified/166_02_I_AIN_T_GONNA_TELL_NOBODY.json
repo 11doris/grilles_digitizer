@@ -1,0 +1,275 @@
+{
+  "composer": "Richard M. JONES",
+  "year": "1923",
+  "style": "NEW ORLEANS",
+  "tempo": "MEDIUM FAST",
+  "form": "16 A A | 20 A A'",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 14, 18",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "C",
+            "2": "Ebo7",
+            "3": "G7"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "A1",
+          "bar": 6
+        },
+        {
+          "section": "A1",
+          "bar": 8
+        }
+      ]
+    }
+  ],
+  "title": "I AIN'T GONNA TELL NOBODY",
+  "page": 166,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "D.Emell 62- B.Lane 62- R.M.Jones 23",
+    "Hot Peppers 66- K.Oliver 23"
+  ],
+  "notation_notes": {
+    "intro": "Header prints 'INTRODUCTION : Last four bars of Theme' with marker '2'.",
+    "double_tag": "Below the grid: 'DOUBLE TAG ENDING.'",
+    "two_strain": "Top strain labelled '16 A A' and second strain '20 A A''."
+  },
+  "sections": {
+    "intro_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "intro_A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "A7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C",
+          "3": "Ebo7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "D7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "C"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "A7"
+        }
+      },
+      {
+        "bar": 11,
+        "beats": {
+          "1": "D7",
+          "3": "G7"
+        }
+      },
+      {
+        "bar": 12,
+        "beats": {
+          "1": "C"
+        }
+      }
+    ]
+  }
+}

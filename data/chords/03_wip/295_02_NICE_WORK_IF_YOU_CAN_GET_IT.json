@@ -1,0 +1,293 @@
+{
+  "composer": "George GERSHWIN – Ira GERSHWIN",
+  "year": "1937",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "34 A A B A'",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 4, 12, 28",
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "A9",
+            "3": "A#o7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Bm7",
+            "3": "Em7"
+          }
+        }
+      ],
+      "targets": [
+        {
+          "section": "A",
+          "bar": 4
+        },
+        {
+          "section": "A1",
+          "bar": 4
+        },
+        {
+          "section": "A2",
+          "bar": 4
+        }
+      ]
+    }
+  ],
+  "title": "NICE WORK IF YOU CAN GET IT",
+  "page": 295,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "V.Soldi 75- T.Monk 47.64.71- D.Bell",
+    "Astaire 37.52- B.Holiday 55.57",
+    "Vaughan 50- J.Turner 76- K.Allen 63",
+    "Hines 56.67- F.Sinatra 62- Basie 62",
+    "Peterson 59- A.Tatum 55- W.Davis",
+    "Fitzgerald 59- J.Smith 62- A.Bechet",
+    "Dickenson 54- Bob Crosby 39- J.Byas",
+    "Dorsey 37- M.Sullivan 37- ?"
+  ],
+  "notation_notes": {
+    "also_played": "Below the grid: 'Also played in 32 bars AABA or even in 33 bars (by cutting the last one).'"
+  },
+  "sections": {
+    "A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "B7#5",
+          "3": "E9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7#5",
+          "3": "D9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7(13)",
+          "3": "C9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9",
+          "3": "A7b9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am7",
+          "3": "D7sus4"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ],
+    "A1": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "B7#5",
+          "3": "E9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7#5",
+          "3": "D9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7(13)",
+          "3": "C9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9",
+          "3": "A7b9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am7",
+          "3": "D7sus4"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ],
+    "B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Em"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "C9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Em7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Dm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Em7",
+          "3": "A7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Am7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "D7#5"
+        }
+      }
+    ],
+    "A2": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "B7#5",
+          "3": "E9"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "A7#5",
+          "3": "D9"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "G7(13)",
+          "3": "C9"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "A9",
+          "3": "A7b9"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "F7",
+          "3": "E7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Am7",
+          "3": "D7"
+        }
+      },
+      {
+        "bar": 9,
+        "beats": {
+          "1": "G"
+        }
+      },
+      {
+        "bar": 10,
+        "beats": {
+          "1": "G"
+        }
+      }
+    ]
+  }
+}
