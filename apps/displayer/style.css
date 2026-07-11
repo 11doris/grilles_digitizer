@@ -813,7 +813,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
   max-width: 58em;
   margin: 0 auto;
   padding-left: 1.6em; /* gutter for the section letters */
-  font-size: clamp(8px, 2.2cqw, 13px);
+  font-size: clamp(9px, 2.6cqw, 16px);
 }
 
 /* Form badge, top-right above the lattice, like the book's "34 A A B A'". */
@@ -888,6 +888,10 @@ body.list-collapsed #gridZoom { left: 1rem; }
   padding: 0.1em 0.3em;
 }
 
+/* Solo and main chords fill their room; fitBoxes squeezes real overflows. */
+.bx-solo .chord,
+.bx-main .chord { font-size: 1.15em; }
+
 /* Two chords: the book's diagonal split — the line runs from the top-right
    corner to the bottom-left one, making the top-left triangle the home of the
    first chord and the bottom-right triangle that of the second. (The gradient
@@ -895,10 +899,10 @@ body.list-collapsed #gridZoom { left: 1rem; }
    to it, i.e. along the top-right ↔ bottom-left diagonal.) */
 .bx.duo {
   background-image: linear-gradient(to bottom right,
-    transparent calc(50% - 0.07em),
-    var(--line) calc(50% - 0.07em),
-    var(--line) calc(50% + 0.07em),
-    transparent calc(50% + 0.07em));
+    transparent calc(50% - 0.05em),
+    var(--line) calc(50% - 0.05em),
+    var(--line) calc(50% + 0.05em),
+    transparent calc(50% + 0.05em));
 }
 
 /* The book writes both chords nearly full-size: the diagonal frees the top
@@ -907,7 +911,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .bx-a,
 .bx-b {
   position: absolute;
-  font-size: 1em;
+  font-size: 1.05em;
   white-space: nowrap;
 }
 
@@ -924,19 +928,28 @@ body.list-collapsed #gridZoom { left: 1rem; }
   padding: 0.1em 0.3em;
 }
 
-/* Keep the main chord clear of the inset's corner. */
-.bx-main.clear-bottom { padding-bottom: 1.5em; }
-.bx-main.clear-top { padding-top: 1.5em; }
+/* Keep the main chord vertically clear of the inset's half of the box. */
+.bx-main.clear-bottom { padding-bottom: 2.5em; }
+.bx-main.clear-top { padding-top: 2.5em; }
 
+/* The inset is one quadrant of the box (half width × half height); its frame
+   is an inside line, thinner than the lattice (0.125em at the 0.8em font =
+   0.1em at the box scale). */
 .bx-inset {
   position: absolute;
-  border: 0.2em solid var(--line);
+  width: 50%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.125em solid var(--line);
   background: var(--bg);
-  font-size: 0.68em;
+  font-size: 0.8em;
   line-height: 1;
-  padding: 0.25em 0.3em 0.35em;
   white-space: nowrap;
 }
+
+.bx-inset .bx-beat { align-self: flex-start; padding-top: 0.2em; }
 
 .bx-inset.inset-late { right: 0; bottom: 0; border-right: none; border-bottom: none; }
 .bx-inset.inset-early { left: 0; top: 0; border-left: none; border-top: none; }
@@ -954,11 +967,12 @@ body.list-collapsed #gridZoom { left: 1rem; }
   flex: 1;
   min-height: 0;
   display: flex;
-  font-size: 0.68em;
+  font-size: 0.8em;
 }
 
-/* 0.294em at the halves' 0.68em font = the lattice's 0.2em line. */
-.bx-half + .bx-half { border-top: 0.294em solid var(--line); }
+/* Inside lines, thinner than the lattice: 0.125em at the halves' 0.8em font
+   = 0.1em at the box scale. */
+.bx-half + .bx-half { border-top: 0.125em solid var(--line); }
 
 .bx-cell {
   flex: 1;
@@ -970,7 +984,7 @@ body.list-collapsed #gridZoom { left: 1rem; }
   white-space: nowrap;
 }
 
-.bx-cell + .bx-cell { border-left: 0.294em solid var(--line); }
+.bx-cell + .bx-cell { border-left: 0.125em solid var(--line); }
 
 /* Small beat digit before an off-default chord (the book's superscripts). */
 .bx-beat {

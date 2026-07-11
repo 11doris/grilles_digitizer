@@ -2346,10 +2346,11 @@
       /* Diagonal halves ride the box's top/bottom strip, which the diagonal
          leaves almost entirely free — so each chord may take most of the
          width; only true collisions with the line get squeezed. */
-      box.querySelectorAll(".bx-a, .bx-b").forEach((p) => parts.push([p, inner * 0.8]));
-      /* Uneven pair: the main chord keeps clear of the inset's corner box. */
-      box.querySelectorAll(".bx-main").forEach((p) => parts.push([p, inner * 0.85]));
-      box.querySelectorAll(".bx-inset").forEach((p) => parts.push([p, inner * 0.55]));
+      box.querySelectorAll(".bx-a, .bx-b").forEach((p) => parts.push([p, inner * 0.85]));
+      /* Uneven pair: the main chord sits in the half the inset leaves free,
+         with the full box width to itself; the inset owns its quadrant. */
+      box.querySelectorAll(".bx-main").forEach((p) => parts.push([p, inner * 0.92]));
+      box.querySelectorAll(".bx-inset").forEach((p) => parts.push([p, inner * 0.46]));
       /* Halved box: each cell owns its flex share of the strip. */
       box.querySelectorAll(".bx-cell").forEach((p) =>
         parts.push([p, p.clientWidth - 0.3 * fontPx]));
