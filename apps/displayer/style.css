@@ -296,8 +296,11 @@ body.list-collapsed #gridZoom { left: 1rem; }
   /* A lone chord panel (no melody sheet) still occupies about half the
      container — the same footprint it has beside the melody — so the grid
      fills a readable half-width column instead of stranding the chords in a
-     wide, sparse one. On phones/portrait (< 900px) panels stack full width. */
+     wide, sparse one. On phones/portrait (< 900px) panels stack full width.
+     The book-layout view is the exception: its 8-boxes-per-row lattice gets
+     the full pane (the lattice itself caps at 58em and centres). */
   .panels:not(.dual) .panel.chords { width: 50%; align-self: center; }
+  .panels:not(.dual) .panel.chords.show-boxes:not(.show-scan) { width: 100%; }
 }
 
 .panel img.scan {
