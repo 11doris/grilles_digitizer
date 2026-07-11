@@ -8,17 +8,6 @@
   "title": "TIME WAS",
   "page": 428,
   "source": "Anthologie des grilles de jazz",
-  "notation_notes": {
-    "verse": "Header prints 'B VERSE'.",
-    "B_bar7_optional": "Section B bar 7 lower region prints parenthesised optional chord '(Gb9)'; kept as printed."
-  },
-  "recordings": [
-    "J.Dorsey 41- J.Coltrane 57- D.Staton 59",
-    "B.Powell 54.56- M.Torme 57- D.Garcia 55",
-    "J.Christy 62- J.Davis 55- A.Haven 66",
-    "J.Hawkworth 63- T.Mayers 56.58-",
-    "J.Hoffman 57"
-  ],
   "variants": [
     {
       "applies_to": "Bar 3, 11, 27",
@@ -61,6 +50,17 @@
       ]
     }
   ],
+  "notation_notes": {
+    "verse": "Header prints 'B VERSE'.",
+    "B_bar7_optional": "Section B bar 7 lower region prints parenthesised optional chord '(Gb9)'; kept as printed."
+  },
+  "recordings": [
+    "J.Dorsey 41- J.Coltrane 57- D.Staton 59",
+    "B.Powell 54.56- M.Torme 57- D.Garcia 55",
+    "J.Christy 62- J.Davis 55- A.Haven 66",
+    "J.Hawkworth 63- T.Mayers 56.58-",
+    "J.Hoffman 57"
+  ],
   "sections": {
     "A": [
       {
@@ -74,7 +74,7 @@
         "bar": 2,
         "beats": {
           "1": "Bbm7",
-          "3": "Eb(b9)"
+          "3": "Eb7b9"
         }
       },
       {
@@ -94,7 +94,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Ab6",
+          "1": "Ab6/3",
           "3": "Bo7"
         }
       },
@@ -132,7 +132,7 @@
         "bar": 2,
         "beats": {
           "1": "Bbm7",
-          "3": "Eb(b9)"
+          "3": "Eb7b9"
         }
       },
       {
@@ -152,7 +152,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Ab6",
+          "1": "Ab6/3",
           "3": "Bo7"
         }
       },
@@ -218,7 +218,7 @@
         "bar": 6,
         "beats": {
           "1": "Gm7",
-          "3": "Bb7"
+          "3": "Bb7/5"
         }
       },
       {
@@ -231,7 +231,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "Bbm7",
+          "1": "Bbm7/4",
           "3": "Eb7"
         }
       }
@@ -248,7 +248,7 @@
         "bar": 2,
         "beats": {
           "1": "Bbm7",
-          "3": "Eb(b9)"
+          "3": "Eb7b9"
         }
       },
       {
@@ -268,7 +268,7 @@
       {
         "bar": 5,
         "beats": {
-          "1": "Ab6",
+          "1": "Ab6/3",
           "3": "Bo7"
         }
       },

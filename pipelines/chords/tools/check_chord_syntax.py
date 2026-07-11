@@ -21,7 +21,8 @@ ALTERATIONS & PARENTHESES, EXTENSIONS, SUS/SLASH/NO-CHORD):
                 - parenthesised on a bare triad: F(#5), D(b9), A(#5#9)
                 - EXCEPTION: #5 on a bare minor triad is bare: Bbm#5, never Bbm(#5)
                 - never both, never "9b" — flat-nine is always spelled "(b9)"
-  slash      := "/" root                            # slash bass, e.g. Fm7/Bb
+  slash      := "/" (root | [2-7])                  # slash bass: a note (Fm7/Bb) or
+                                                    # a scale degree in the bass (F/5 = fifth)
   o7         := lowercase "o" + "7" (the only allowed diminished spelling)
   alt        := printed "alt" -> literal suffix "alt" (F7alt); requires a
                 7th/extension and excludes explicit alterations
@@ -64,7 +65,7 @@ CORE = re.compile(
     rf"(?P<altw>alt)?"
     rf"(?P<balts>{ALT}*)"
     rf"(?P<palts>\({ALT}+\))?"
-    rf"(?P<slash>/{ROOT})?"
+    rf"(?P<slash>/(?:{ROOT}|[2-7]))?"
     rf"(?P<unc>\?)?$"
 )
 

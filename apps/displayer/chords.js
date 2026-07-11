@@ -45,14 +45,18 @@
     if (!rootMatch) return null;
     let rest = s.slice(rootMatch[0].length);
 
-    // A "/" only introduces a bass note when followed by a note letter at the
-    // end of the token — "Am7/Eb" is a bass note. (Six-nine chords are written
-    // slashless as F69, so no quality contains a "/".)
+    // A "/" only introduces a bass at the end of the token: either a note letter
+    // ("Am7/Eb") or a lone scale degree 2–7 ("F/5" = the fifth in the bass). (Six-
+    // nine chords are written slashless as F69, so no quality contains a "/".)
     let bass = null;
     const bassMatch = rest.match(/\/([A-G])(#|b)?$/);
+    const degMatch = rest.match(/\/([2-7])$/);
     if (bassMatch) {
       bass = { letter: bassMatch[1], acc: bassMatch[2] || null };
       rest = rest.slice(0, bassMatch.index);
+    } else if (degMatch) {
+      bass = { degree: degMatch[1] };
+      rest = rest.slice(0, degMatch.index);
     }
 
     // A bare "(b9)" on a root is shorthand for a dominant flat-nine — render it
@@ -172,7 +176,10 @@
     }
     let html = `<span class="box">${box}</span>`;
     if (c.bass) {
-      html += `<span class="bass">${withFlats("/" + c.bass.letter + displayAccidental(c.bass.acc))}</span>`;
+      const bassText = c.bass.degree
+        ? "/" + c.bass.degree
+        : "/" + c.bass.letter + displayAccidental(c.bass.acc);
+      html += `<span class="bass">${withFlats(bassText)}</span>`;
     }
     return `<span class="${cls}">${open}${html}${close}</span>`;
   }
@@ -253,7 +260,7 @@
     "(alt)?" +                              // 'alt'
     "((?:b5|#5|b9|#9|#11|b13)*)" +          // bare alterations
     "(\\((?:b5|#5|b9|#9|#11|b13)+\\))?" +   // parenthesised alterations
-    "(/[A-G](?:#|b)?)?" +                   // slash bass
+    "(/(?:[A-G](?:#|b)?|[2-7]))?" +         // slash bass: note or scale degree 2–7
     "(\\?)?$"                               // uncertainty marker
   );
 
