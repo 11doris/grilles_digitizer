@@ -993,6 +993,7 @@
            box after the mid gap draw their own left border. */
         if (i > 0 && col !== 5) cell.classList.add("merge-left");
         if (row.tint) cell.style.setProperty("--bxhue", row.tint);
+        if (bar.swap) cell.classList.add("variant-swap");
         fillBox(cell, bar, row.beats);
         rowEl.appendChild(cell);
       });
@@ -1003,8 +1004,10 @@
 
   /* The whole book-layout view for a tune: the form badge, then one block for
      the chorus sections and a separately captioned block per auxiliary section
-     (verse/intro/coda print as their own grille in the book). */
-  function renderBoxGrid(tune) {
+     (verse/intro/coda print as their own grille in the book). `overrides` is
+     the same merged {section: {barIdx: variantBar}} map the grid view uses, so
+     applied variants swap into the lattice too. */
+  function renderBoxGrid(tune, overrides) {
     const wrap = el("div", "boxgrid");
     const beats = beatsPerBar(tune);
     if (tune.form) {
@@ -1032,7 +1035,15 @@
       }
       const rows = [];
       blk.sections.forEach((name) => {
-        boxRowsOf(blk.aux ? null : name, tune.sections[name] || []).forEach((r) => {
+        const secOv = overrides && overrides[name];
+        let bars = tune.sections[name] || [];
+        // An active variant swaps its beats into the matching bar, like the
+        // grid view; `swap` flags the box (.variant-swap hook, no styling).
+        if (secOv) {
+          bars = bars.map((bar, idx) => (secOv[idx]
+            ? { bar: bar.bar, beats: secOv[idx].beats, swap: true } : bar));
+        }
+        boxRowsOf(blk.aux ? null : name, bars).forEach((r) => {
           r.beats = beats;
           r.tint = sectionTint(name);
           rows.push(r);
@@ -1040,6 +1051,26 @@
       });
       wrap.appendChild(renderBoxBlock(rows));
     });
+    /* Variants print below the lattice as small captioned box rows, clickable
+       to swap into the lattice exactly like the grid view's variants block. */
+    if (Array.isArray(tune.variants) && tune.variants.length) {
+      const cap = el("div", "bx-caption bx-variants-title");
+      cap.textContent = tune.variants.length > 1 ? "Variants" : "Variant";
+      wrap.appendChild(cap);
+      tune.variants.forEach((variant, vi) => {
+        const v = el("div", "bx-variant");
+        wireVariantToggle(v, tune, variant, vi);
+        if (variant.applies_to) {
+          const c = el("div", "variant-caption");
+          c.textContent = variant.applies_to;
+          v.appendChild(c);
+        }
+        const rows = boxRowsOf(null, variant.bars || []);
+        rows.forEach((r) => { r.beats = beats; });
+        v.appendChild(renderBoxBlock(rows));
+        wrap.appendChild(v);
+      });
+    }
     return wrap;
   }
 
@@ -1321,6 +1352,43 @@
      overrides are merged). Variants that compete for the same bar are mutually
      exclusive: applying one drops any active variant it overlaps, so the grid
      never shows two conflicting alternatives for one bar. */
+  /* Make an element toggle variant `vi` on click/Enter/Space — shared by the
+     grid view's .variant blocks and the book layout's .bx-variant blocks.
+     No-op (not clickable) when the variant's anchors map to no real bar. */
+  function wireVariantToggle(v, tune, variant, vi) {
+    if (variantOverrides(tune, variant).count === 0) return;
+    const active = state.activeVariants.has(vi);
+    v.classList.add("clickable");
+    v.setAttribute("role", "button");
+    v.tabIndex = 0;
+    v.setAttribute("aria-pressed", active ? "true" : "false");
+    v.title = active
+      ? "Applied to the grid — click to restore the original bars"
+      : "Click to swap these bars into the grid";
+    if (active) v.classList.add("active");
+    const toggle = () => {
+      if (state.activeVariants.has(vi)) {
+        state.activeVariants.delete(vi);
+      } else {
+        // Exclusive within a bar: drop any active variant that competes for
+        // one of the bars this one overrides.
+        state.activeVariants.forEach((other) => {
+          if (other !== vi && tune.variants[other] &&
+              variantsConflict(tune, variant, tune.variants[other])) {
+            state.activeVariants.delete(other);
+          }
+        });
+        state.activeVariants.add(vi);
+      }
+      saveActiveVariants(state.currentId); // persist per tune
+      renderTune(state.currentId); // same tune → keeps zoom/scroll/transpose
+    };
+    v.addEventListener("click", toggle);
+    v.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+    });
+  }
+
   function renderVariants(tune, beats) {
     if (!Array.isArray(tune.variants) || !tune.variants.length) return null;
     const wrap = el("div", "variants");
@@ -1329,40 +1397,7 @@
     wrap.appendChild(title);
     tune.variants.forEach((variant, vi) => {
       const v = el("div", "variant");
-      // Clickable only when we can map its anchors to real grid bars.
-      const canApply = variantOverrides(tune, variant).count > 0;
-      const active = state.activeVariants.has(vi);
-      if (canApply) {
-        v.classList.add("clickable");
-        v.setAttribute("role", "button");
-        v.tabIndex = 0;
-        v.setAttribute("aria-pressed", active ? "true" : "false");
-        v.title = active
-          ? "Applied to the grid — click to restore the original bars"
-          : "Click to swap these bars into the grid";
-        if (active) v.classList.add("active");
-        const toggle = () => {
-          if (state.activeVariants.has(vi)) {
-            state.activeVariants.delete(vi);
-          } else {
-            // Exclusive within a bar: drop any active variant that competes for
-            // one of the bars this one overrides.
-            state.activeVariants.forEach((other) => {
-              if (other !== vi && tune.variants[other] &&
-                  variantsConflict(tune, variant, tune.variants[other])) {
-                state.activeVariants.delete(other);
-              }
-            });
-            state.activeVariants.add(vi);
-          }
-          saveActiveVariants(state.currentId); // persist per tune
-          renderTune(state.currentId); // same tune → keeps zoom/scroll/transpose
-        };
-        v.addEventListener("click", toggle);
-        v.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
-        });
-      }
+      wireVariantToggle(v, tune, variant, vi);
       if (variant.applies_to) {
         const cap = el("div", "variant-caption");
         cap.textContent = variant.applies_to;
@@ -2360,7 +2395,7 @@
             i === 0, tune.time_signature, overrides[name]));
         });
         panel.appendChild(grid);
-        panel.appendChild(renderBoxGrid(tune)); // book layout (hidden unless chosen)
+        panel.appendChild(renderBoxGrid(tune, overrides)); // book layout (hidden unless chosen)
         const variants = renderVariants(tune, beats);
         if (variants) panel.appendChild(variants);
         const extras = renderExtras(tune, beats);

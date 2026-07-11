@@ -426,8 +426,15 @@ digitized JSON, with the chords written into every box (no "—" repeat dashes):
   strip, side-by-side slot) with a per-chord font cut, so chords never cross
   the lattice lines. Multi-chord boxes use the condensed `.tight` treatment
   (narrow face, tightened accidental/alteration columns).
-- Variants and the transpose control's effect: the box view renders the **base
-  chart** (no variant swaps) but **follows the active transposition**.
+- **Variants** print below the lattice as small captioned box rows (rendered
+  with the same box conventions, un-tinted) and behave exactly like the grid
+  view's variants block (§9 item 2): clickable when their anchors resolve,
+  applying **swaps the variant's bars into the lattice** (flagged with the
+  same internal `.variant-swap` hook), independent/exclusive toggling and the
+  per-tune persistence are shared state with the grid view — a variant applied
+  in one view shows applied in the other. The active block carries an accent
+  border and a "✓ applied" caption tag.
+- The box view **follows the active transposition**.
 
 ---
 

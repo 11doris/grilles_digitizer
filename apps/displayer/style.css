@@ -843,6 +843,27 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .bx-block + .bx-block,
 .bx-caption { margin-top: 1.2em; }
 
+/* Book-layout variants: captioned box rows below the lattice, clickable to
+   swap into it — same states/behavior as the grid view's .variant blocks. */
+.bx-variants-title { margin-top: 1.4em; }
+.bx-variant {
+  margin: 0.5em 0 0.9em;
+  border: 1px solid transparent;
+  border-radius: 0.5em;
+  padding: 0.4em 0.5em;
+}
+.bx-variant .variant-caption { margin: 0 0 0.35em; }
+.bx-variant .bx-block { margin-top: 0; }
+.bx-variant.clickable { cursor: pointer; transition: background 0.12s, border-color 0.12s; }
+.bx-variant.clickable:hover { background: var(--panel); border-color: var(--border); }
+.bx-variant.clickable:focus-visible { outline: 2px solid var(--muted); outline-offset: 2px; }
+.bx-variant.clickable.active { border-color: var(--accent); background: var(--chip-bg); }
+.bx-variant.clickable.active .variant-caption::after {
+  content: " ✓ applied";
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
 .bx-caption {
   font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
