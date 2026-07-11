@@ -1655,19 +1655,6 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   cursor: pointer;
 }
 .brush-seg button.on { border-color: var(--accent); color: var(--accent); }
-.brush-seg button:disabled { opacity: 0.45; cursor: default; }
-
-/* Loop attribution + stretch-range hint; BPM field flags tempos a real
-   recording can't stretch to gracefully. */
-.brush-hint {
-  color: var(--muted);
-  font-size: 0.78rem;
-  line-height: 1.35;
-  display: block;
-}
-.brush-hint a { color: inherit; text-decoration: underline; }
-.brush-hint[hidden] { display: none; }
-#brushBpmNum.warn { border-color: #d99a2b; color: #d99a2b; }
 
 /* Beat dots: live 1-2-3-4 pulse; amber during the count-in bar. */
 .brush-dots {

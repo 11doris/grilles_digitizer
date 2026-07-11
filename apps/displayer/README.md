@@ -18,22 +18,12 @@ then commit the changes. Open `index.html` directly (file://) to test locally.
 
 ## Practice rhythm samples
 
-`data/brush_samples.js` (the synthesized swing-brush kit used by the topbar
-practice player) is generated — rerun after tweaking the synthesis and commit:
+`data/brush_samples.js` (the swing-brush kit used by the topbar practice
+player) is generated — rerun after tweaking the synthesis and commit:
 
 ```sh
 python apps/displayer/render_brush_samples.py
 ```
-
-`data/brush_loops.js` (the player's "Real loop" source) embeds CC0 recordings,
-trimmed to whole bars and re-encoded; regenerating needs ffmpeg on PATH:
-
-```sh
-python apps/displayer/embed_brush_loops.py
-```
-
-Embedded recordings: "Jazz Drum Loop – Swing Chicago Style 120 bpm" by
-bassimat (freesound.org sound 853456, CC0).
 
 ## Deploy
 
