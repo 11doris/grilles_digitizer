@@ -71,8 +71,13 @@
     activePl: null, // active playlist id (persisted, §11.4)
     transpose: null, // {shift, spell, targetPc, mode} or null (original key); per-tune
     activeVariants: new Set(), // indices of variants swapped into the grid (independent, but exclusive among variants sharing a bar); per-tune
+    chordView: "grid", // chords panel: "grid" (4 bars/row) | "boxes" (book layout) | "scan" (persisted)
+    boxTint: true, // book layout: section shading on/off (persisted)
     chordsOnly: false, // list filter: only tunes with digitized chords (persisted)
     startsOn: "", // list filter: opening degree ("" = any, "unknown", "other", or a degree; §8.2a)
+    keyFilter: "", // list filter: annotated key ("" = any, "unknown", or "F major" etc.; §8.2b)
+    formFilter: "", // list filter: fingerprint family ("" = any, "unknown", "other", or a family; §8.2b)
+    tagFilter: new Set(), // list filter: fingerprint tags — a tune must carry every checked tag (§8.2b)
     showSuggest: null, // open suggestions group: null | "tunes" | "sections"; per-tune
     compare: null, // {otherId, mode: original|transposed|roman, bars} — comparison view (§8.3); per-tune
   };
@@ -152,6 +157,26 @@
     try {
       localStorage.setItem("grilles.theme", next);
     } catch (e) { /* ignore */ }
+  });
+
+  /* Section-shading toggle (topbar, next to the theme button): tints every
+     section's boxes/bars in both chord views; body.tint-off turns it off. */
+  const tintBtn = document.getElementById("tintToggle");
+
+  function applyTintToggle() {
+    document.body.classList.toggle("tint-off", !state.boxTint);
+    tintBtn.classList.toggle("on", state.boxTint);
+    tintBtn.setAttribute("aria-pressed", String(state.boxTint));
+    tintBtn.title = state.boxTint ? "Hide section shading" : "Show section shading";
+    tintBtn.setAttribute("aria-label", tintBtn.title);
+  }
+
+  tintBtn.addEventListener("click", () => {
+    state.boxTint = !state.boxTint;
+    try {
+      localStorage.setItem("grilles.boxTint", state.boxTint ? "1" : "0");
+    } catch (e) { /* ignore */ }
+    applyTintToggle();
   });
 
   /* ----------------------------------------------------- tune list drawer */
@@ -249,7 +274,41 @@
         return deg === state.startsOn;
       });
     }
+    /* Harmonic filters (§8.2b) — over the key annotation and the fingerprint;
+       tunes without one land in the "unknown" bucket rather than vanishing. */
+    if (state.keyFilter) {
+      list = list.filter((t) => {
+        const label = keyLabelOf(t);
+        return state.keyFilter === "unknown" ? !label : label === state.keyFilter;
+      });
+    }
+    if (state.formFilter) {
+      list = list.filter((t) => {
+        const fam = familyOf(t);
+        if (state.formFilter === "unknown") return !fam;
+        if (state.formFilter === "other") return fam !== null && rareFamilies.has(fam);
+        return fam === state.formFilter;
+      });
+    }
+    if (state.tagFilter.size) {
+      list = list.filter((t) => {
+        const tags = (meta(t).harmonic_fingerprint || {}).tags || [];
+        return [...state.tagFilter].every((tag) => tags.includes(tag));
+      });
+    }
     return list;
+  }
+
+  /* Re-filter after a topbar filter changed; reveal the narrowed list like
+     the digitized-chords toggle does (drawer on phones, un-collapse on desktop). */
+  function refilterList(reveal) {
+    state.filtered = filterTunes(searchEl.value);
+    state.activeIndex = state.filtered.length ? 0 : -1;
+    renderList();
+    if (reveal) {
+      if (narrowMq.matches) setListOpen(true);
+      else if (state.listCollapsed) setListCollapsed(false);
+    }
   }
 
   /* --------------------------------------------- "starts on" filter (§8.2a) */
@@ -308,6 +367,155 @@
     });
   }
 
+  /* ------------------------------------- key / form / tag filters (§8.2b) */
+
+  const keyFilterEl = document.getElementById("keyFilter");
+  const formFilterEl = document.getElementById("formFilter");
+  const tagFilterBtn = document.getElementById("tagFilterBtn");
+  const tagFilterMenu = document.getElementById("tagFilterMenu");
+
+  /* "F major" from the key annotation, or null when the tune has none. */
+  function keyLabelOf(t) {
+    const k = meta(t).key;
+    return k && k.tonic ? k.tonic + " " + (k.mode || "major") : null;
+  }
+
+  function familyOf(t) {
+    return (meta(t).harmonic_fingerprint || {}).family || null;
+  }
+
+  let rareFamilies = new Set();
+
+  /* Keys sorted chromatically (majors interleaved with minors per tonic). */
+  const TONIC_ORDER = ["C", "C#", "Db", "D", "D#", "Eb", "E", "F", "F#", "Gb",
+    "G", "G#", "Ab", "A", "A#", "Bb", "B"];
+
+  function initKeyFilter() {
+    if (!keyFilterEl) return;
+    const counts = new Map();
+    let unknown = 0;
+    TUNES.forEach((t) => {
+      const label = keyLabelOf(t);
+      if (label) counts.set(label, (counts.get(label) || 0) + 1);
+      else unknown++;
+    });
+    if (!counts.size) {
+      keyFilterEl.hidden = true;
+      return;
+    }
+    const labels = [...counts.keys()].sort((a, b) => {
+      const ta = TONIC_ORDER.indexOf(a.split(" ")[0]);
+      const tb = TONIC_ORDER.indexOf(b.split(" ")[0]);
+      if (ta !== tb) return ta - tb;
+      return a.localeCompare(b); // major before minor on the same tonic
+    });
+    const opts = ['<option value="">Key…</option>'];
+    labels.forEach((l) => {
+      opts.push(`<option value="${escapeHtml(l)}">${escapeHtml(l)} (${counts.get(l)})</option>`);
+    });
+    if (unknown) opts.push(`<option value="unknown">unknown (${unknown})</option>`);
+    keyFilterEl.innerHTML = opts.join("");
+    keyFilterEl.addEventListener("change", () => {
+      state.keyFilter = keyFilterEl.value;
+      keyFilterEl.classList.toggle("on", Boolean(state.keyFilter));
+      refilterList(Boolean(state.keyFilter));
+    });
+  }
+
+  /* Fingerprint families are free text with a long tail — families carried by
+     a single tune collapse into an "other" bucket to keep the dropdown short. */
+  function initFormFilter() {
+    if (!formFilterEl) return;
+    const counts = new Map();
+    let unknown = 0;
+    TUNES.forEach((t) => {
+      const fam = familyOf(t);
+      if (fam) counts.set(fam, (counts.get(fam) || 0) + 1);
+      else unknown++;
+    });
+    if (!counts.size) {
+      formFilterEl.hidden = true;
+      return;
+    }
+    const families = [...counts.keys()].sort((a, b) =>
+      counts.get(b) - counts.get(a) || a.localeCompare(b));
+    rareFamilies = new Set(families.filter((f) => counts.get(f) < 2));
+    const opts = ['<option value="">Form…</option>'];
+    families.filter((f) => !rareFamilies.has(f)).forEach((f) => {
+      opts.push(`<option value="${escapeHtml(f)}">${escapeHtml(f)} (${counts.get(f)})</option>`);
+    });
+    if (rareFamilies.size) {
+      const n = [...rareFamilies].reduce((s, f) => s + counts.get(f), 0);
+      opts.push(`<option value="other">other (${n})</option>`);
+    }
+    if (unknown) opts.push(`<option value="unknown">unknown (${unknown})</option>`);
+    formFilterEl.innerHTML = opts.join("");
+    formFilterEl.addEventListener("change", () => {
+      state.formFilter = formFilterEl.value;
+      formFilterEl.classList.toggle("on", Boolean(state.formFilter));
+      refilterList(Boolean(state.formFilter));
+    });
+  }
+
+  /* Tag filter: a dropdown of checkboxes (multi-check). Checked tags combine
+     with AND — each additional check narrows the list further. */
+  let tagCounts = [];
+
+  function tagFilterLabel() {
+    tagFilterBtn.textContent = state.tagFilter.size ? `Tags · ${state.tagFilter.size}` : "Tags";
+    tagFilterBtn.classList.toggle("on", state.tagFilter.size > 0);
+  }
+
+  function renderTagMenu() {
+    tagFilterMenu.innerHTML =
+      '<div class="tag-hint">Show tunes carrying every checked tag</div>' +
+      tagCounts.map(([tag, count]) =>
+        `<label class="tag-row"><input type="checkbox" value="${escapeHtml(tag)}"` +
+        (state.tagFilter.has(tag) ? " checked" : "") +
+        `><span class="tag-name">${escapeHtml(tag)}</span>` +
+        `<span class="tag-count">${count}</span></label>`).join("");
+  }
+
+  function closeTagMenu() {
+    if (tagFilterMenu.hidden) return false;
+    tagFilterMenu.hidden = true;
+    tagFilterBtn.setAttribute("aria-expanded", "false");
+    return true;
+  }
+
+  function initTagFilter() {
+    if (!tagFilterBtn || !tagFilterMenu) return;
+    const counts = new Map();
+    TUNES.forEach((t) => {
+      ((meta(t).harmonic_fingerprint || {}).tags || []).forEach((tag) => {
+        counts.set(tag, (counts.get(tag) || 0) + 1);
+      });
+    });
+    if (!counts.size) return; // button stays hidden
+    tagCounts = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    tagFilterBtn.hidden = false;
+    tagFilterBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // keep the outside-click closer from firing
+      if (tagFilterMenu.hidden) {
+        renderTagMenu();
+        tagFilterMenu.hidden = false;
+        tagFilterBtn.setAttribute("aria-expanded", "true");
+        positionDropdown(tagFilterMenu, tagFilterBtn);
+      } else {
+        closeTagMenu();
+      }
+    });
+    /* Checking keeps the menu open so several tags can be combined. */
+    tagFilterMenu.addEventListener("change", (e) => {
+      const cb = e.target.closest('input[type="checkbox"]');
+      if (!cb) return;
+      if (cb.checked) state.tagFilter.add(cb.value);
+      else state.tagFilter.delete(cb.value);
+      tagFilterLabel();
+      refilterList(state.tagFilter.size > 0);
+    });
+  }
+
   searchEl.addEventListener("input", () => {
     state.filtered = filterTunes(searchEl.value);
     state.activeIndex = state.filtered.length ? 0 : -1;
@@ -356,6 +564,12 @@
     '<rect x="1.7" y="2.7" width="12.6" height="10.6" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.4"/>' +
     '<circle cx="5.6" cy="6.4" r="1.25"/>' +
     '<path d="M3 12.2l3.4-4 2.7 3 2-2.4 2.6 3.4z"/></svg>';
+  /* Dense 4×2 lattice for the "book layout" view (8 boxes per row, like the
+     printed grille). */
+  const ICON_BOXES =
+    '<svg viewBox="0 0 16 16" aria-hidden="true">' +
+    '<path d="M1.2 4.4h13.6M1.2 8h13.6M1.2 11.6h13.6M1.2 4.4v7.2M4.6 4.4v7.2M8 4.4v7.2M11.4 4.4v7.2M14.8 4.4v7.2" ' +
+    'fill="none" stroke="currentColor" stroke-width="1.1"/></svg>';
 
   function iconCluster(t) {
     const chord = hasChordAsset(t)
@@ -473,6 +687,7 @@
       if (closeOverlay()) return;
       if (closePopover()) return;
       if (closeMenu()) return;
+      if (closeTagMenu()) return;
       if (document.body.classList.contains("list-open")) {
         setListOpen(false);
         return;
@@ -636,12 +851,227 @@
 
   function renderSection(name, bars, beats, isFirst, ts, overrides, renderer) {
     const sec = el("div", "section");
+    sec.style.setProperty("--bxhue", sectionTint(name)); // section shading
     const badge = el("div", "sec-label");
     badge.textContent = displaySectionName(name);
     sec.appendChild(badge);
     sec.appendChild(renderGrid(bars, beats,
       { double: true, timesig: isFirst ? ts : null, overrides, renderChord: renderer }));
     return sec;
+  }
+
+  /* --------------------------------------- book layout ("boxes") rendering */
+
+  /* Re-creation of the printed grille (data/chords/01_crops): one contiguous
+     lattice of boxes, a section per row of (up to) 8 boxes, the section letter
+     in the left margin and the form badge top-right. Unlike the book we write
+     the chords into every box instead of the "—" repeat dashes. */
+  const BOXES_PER_ROW = 8;
+
+  /* Split a section's bars into lattice rows. The book right-aligns a trailing
+     partial row under the last columns (I Got Rhythm's A' bars 9–10 sit under
+     columns 7–8; Au Privave's bars 9–12 under 5–8); a section that fits one row
+     starts at column 1. */
+  function boxRowsOf(name, bars) {
+    const rows = [];
+    for (let i = 0; i < bars.length; i += BOXES_PER_ROW) {
+      const slice = bars.slice(i, i + BOXES_PER_ROW);
+      const trailing = i > 0 && slice.length < BOXES_PER_ROW;
+      rows.push({
+        section: i === 0 ? name : null,
+        start: trailing ? BOXES_PER_ROW - slice.length + 1 : 1,
+        bars: slice,
+      });
+    }
+    if (!rows.length) rows.push({ section: name, start: 1, bars: [] });
+    return rows;
+  }
+
+  /* Section tints: subtle shades, identical for repeats of a section (A, A1,
+     A2 share one tint) and CONSISTENT ACROSS TUNES — the common letters map to
+     fixed hues; anything else (verse_A, interlude, …) hashes into a fixed pool
+     so the same name always lands on the same shade everywhere. */
+  const TINT_TABLE = {
+    A: "#5b8dd6", B: "#d9a441", C: "#5fae7d", D: "#a97fd1",
+    E: "#d97b7b", F: "#5bbcd6",
+  };
+  const TINT_POOL = ["#8a8fa3", "#b08a5e", "#7da3a0", "#a3869a", "#96a36b", "#7f8fc4"];
+
+  /* Returns the section's hue; the CSS mixes it into the theme background
+     (--bxtint), stronger in dark mode where a light wash wouldn't show. */
+  function sectionTint(name) {
+    const key = String(name || "").replace(/\d+$/, ""); // A1 → A, verse_A1 → verse_A
+    const hash = [...key].reduce((s, c) => (s * 31 + c.charCodeAt(0)) >>> 0, 0);
+    return TINT_TABLE[key] || TINT_POOL[hash % TINT_POOL.length];
+  }
+
+  /* One box, following the book's conventions:
+     - one chord: big, centred;
+     - two chords on the bar's two halves (beats 1 and 3 in 4/4): the diagonal
+       split — top-right ↔ bottom-left line, first chord in the top-left
+       triangle, second in the bottom-right one;
+     - two chords of uneven length (1+4, 1+2, …): the long chord big, the
+       short one in a small framed inset box in the corner matching its
+       position (bottom-right when late, top-left for a pickup chord);
+     - three or more: the box halves horizontally — top strip = the bar's
+       first half, bottom strip = the second — and a half with several chords
+       splits into side-by-side cells (Eb over Fm7|F#o for beats 1, 3, 4;
+       four chords make the 2×2 quadrants).
+     Positions encode the beats, so a small superscript digit only marks a
+     chord that sits off its position's implied beat. */
+  function fillBox(cell, barObj, beats) {
+    const entries = Object.entries(barObj.beats || {})
+      .map(([k, v]) => [parseInt(k, 10), v])
+      .filter(([k]) => Number.isFinite(k) && k >= 1 && k <= beats)
+      .sort((a, b) => a[0] - b[0]);
+    const chordHtml = ([beat, chord], expected) =>
+      (beat !== expected ? `<sup class="bx-beat">${beat}</sup>` : "") +
+      renderChord(chord);
+    if (!entries.length) return;
+    const mid = Math.floor(beats / 2) + 1; // first beat of the bar's second half
+    if (entries.length === 1) {
+      const solo = el("div", "bx-solo");
+      solo.innerHTML = chordHtml(entries[0], 1);
+      cell.appendChild(solo);
+    } else if (entries.length === 2 && entries[0][0] === 1 && entries[1][0] === mid) {
+      cell.classList.add("duo", "tight");
+      const a = el("div", "bx-a");
+      a.innerHTML = chordHtml(entries[0], 1);
+      const b = el("div", "bx-b");
+      b.innerHTML = chordHtml(entries[1], mid);
+      cell.append(a, b);
+    } else if (entries.length === 2) {
+      /* Uneven pair: the chord sounding longer is the main one (ties: the
+         first); the other goes into the corner inset. */
+      cell.classList.add("tight");
+      const durs = entries.map(([b], i) =>
+        (i + 1 < entries.length ? entries[i + 1][0] : beats + 1) - b);
+      const mainIdx = durs[0] >= durs[1] ? 0 : 1;
+      const late = mainIdx === 0; // inset chord comes after the main one
+      const main = el("div", "bx-main " + (late ? "clear-bottom" : "clear-top"));
+      main.innerHTML = chordHtml(entries[mainIdx],
+        late ? 1 : entries[1 - mainIdx][0] + 1);
+      const inset = el("div", "bx-inset " + (late ? "inset-late" : "inset-early"));
+      inset.innerHTML = chordHtml(entries[1 - mainIdx], late ? beats : 1);
+      cell.append(main, inset);
+    } else {
+      cell.classList.add("tight");
+      const wrap = el("div", "bx-halves");
+      [entries.filter(([b]) => b < mid), entries.filter(([b]) => b >= mid)]
+        .forEach((half, hi) => {
+          const strip = el("div", "bx-half");
+          half.forEach((entry, ci) => {
+            const c = el("div", "bx-cell");
+            c.innerHTML = chordHtml(entry, (hi === 0 ? 1 : mid) + ci);
+            strip.appendChild(c);
+          });
+          wrap.appendChild(strip);
+        });
+      cell.appendChild(wrap);
+    }
+  }
+
+  /* One block of box rows. The 8 columns read as two four-bar phrases: bars
+     within a group of 4 share single borders (no gap), a small gap track
+     separates columns 4 and 5, rows keep their own spacing. Each box carries
+     its section's tint via the --bxtint custom property. */
+  function renderBoxBlock(rows) {
+    const block = el("div", "bx-block");
+    rows.forEach((row) => {
+      const rowEl = el("div", "bx-row");
+      if (row.section) {
+        const label = el("div", "bx-seclabel");
+        label.textContent = displaySectionName(row.section);
+        rowEl.appendChild(label);
+      }
+      row.bars.forEach((bar, i) => {
+        const col = row.start + i;
+        const cell = el("div", "bx");
+        /* Track 5 is the mid-row gap: columns 5–8 sit in tracks 6–9. */
+        cell.style.gridColumn = String(col > 4 ? col + 1 : col);
+        /* Shared borders within a group of 4: only a run's first box and the
+           box after the mid gap draw their own left border. */
+        if (i > 0 && col !== 5) cell.classList.add("merge-left");
+        if (row.tint) cell.style.setProperty("--bxhue", row.tint);
+        if (bar.swap) cell.classList.add("variant-swap");
+        fillBox(cell, bar, row.beats);
+        rowEl.appendChild(cell);
+      });
+      block.appendChild(rowEl);
+    });
+    return block;
+  }
+
+  /* The whole book-layout view for a tune: the form badge, then one block for
+     the chorus sections and a separately captioned block per auxiliary section
+     (verse/intro/coda print as their own grille in the book). `overrides` is
+     the same merged {section: {barIdx: variantBar}} map the grid view uses, so
+     applied variants swap into the lattice too. */
+  function renderBoxGrid(tune, overrides) {
+    const wrap = el("div", "boxgrid");
+    const beats = beatsPerBar(tune);
+    if (tune.form) {
+      const formRow = el("div", "bx-formrow");
+      const badge = el("div", "bx-form");
+      badge.textContent = tune.form;
+      formRow.appendChild(badge);
+      wrap.appendChild(formRow);
+    }
+    let sectionNames = Object.keys(tune.sections || {});
+    if (!state.showVerses) sectionNames = sectionNames.filter((n) => !VERSE_SECTION.test(n));
+    /* Group into blocks: consecutive chorus sections share one lattice. */
+    const blocks = [];
+    sectionNames.forEach((name) => {
+      const aux = AUX_SECTION.test(name);
+      const last = blocks[blocks.length - 1];
+      if (aux || !last || last.aux) blocks.push({ aux, sections: [name] });
+      else last.sections.push(name);
+    });
+    blocks.forEach((blk) => {
+      if (blk.aux) {
+        const cap = el("div", "bx-caption");
+        cap.textContent = displaySectionName(blk.sections[0]);
+        wrap.appendChild(cap);
+      }
+      const rows = [];
+      blk.sections.forEach((name) => {
+        const secOv = overrides && overrides[name];
+        let bars = tune.sections[name] || [];
+        // An active variant swaps its beats into the matching bar, like the
+        // grid view; `swap` flags the box (.variant-swap hook, no styling).
+        if (secOv) {
+          bars = bars.map((bar, idx) => (secOv[idx]
+            ? { bar: bar.bar, beats: secOv[idx].beats, swap: true } : bar));
+        }
+        boxRowsOf(blk.aux ? null : name, bars).forEach((r) => {
+          r.beats = beats;
+          r.tint = sectionTint(name);
+          rows.push(r);
+        });
+      });
+      wrap.appendChild(renderBoxBlock(rows));
+    });
+    /* Variants print below the lattice as small captioned box rows, clickable
+       to swap into the lattice exactly like the grid view's variants block. */
+    if (Array.isArray(tune.variants) && tune.variants.length) {
+      const cap = el("div", "bx-caption bx-variants-title");
+      cap.textContent = tune.variants.length > 1 ? "Variants" : "Variant";
+      wrap.appendChild(cap);
+      tune.variants.forEach((variant, vi) => {
+        const v = el("div", "bx-variant");
+        wireVariantToggle(v, tune, variant, vi);
+        if (variant.applies_to) {
+          const c = el("div", "variant-caption");
+          c.textContent = variant.applies_to;
+          v.appendChild(c);
+        }
+        const rows = boxRowsOf(null, variant.bars || []);
+        rows.forEach((r) => { r.beats = beats; });
+        v.appendChild(renderBoxBlock(rows));
+        wrap.appendChild(v);
+      });
+    }
+    return wrap;
   }
 
   /* ------------------------------------------------------------ tune head */
@@ -922,6 +1352,43 @@
      overrides are merged). Variants that compete for the same bar are mutually
      exclusive: applying one drops any active variant it overlaps, so the grid
      never shows two conflicting alternatives for one bar. */
+  /* Make an element toggle variant `vi` on click/Enter/Space — shared by the
+     grid view's .variant blocks and the book layout's .bx-variant blocks.
+     No-op (not clickable) when the variant's anchors map to no real bar. */
+  function wireVariantToggle(v, tune, variant, vi) {
+    if (variantOverrides(tune, variant).count === 0) return;
+    const active = state.activeVariants.has(vi);
+    v.classList.add("clickable");
+    v.setAttribute("role", "button");
+    v.tabIndex = 0;
+    v.setAttribute("aria-pressed", active ? "true" : "false");
+    v.title = active
+      ? "Applied to the grid — click to restore the original bars"
+      : "Click to swap these bars into the grid";
+    if (active) v.classList.add("active");
+    const toggle = () => {
+      if (state.activeVariants.has(vi)) {
+        state.activeVariants.delete(vi);
+      } else {
+        // Exclusive within a bar: drop any active variant that competes for
+        // one of the bars this one overrides.
+        state.activeVariants.forEach((other) => {
+          if (other !== vi && tune.variants[other] &&
+              variantsConflict(tune, variant, tune.variants[other])) {
+            state.activeVariants.delete(other);
+          }
+        });
+        state.activeVariants.add(vi);
+      }
+      saveActiveVariants(state.currentId); // persist per tune
+      renderTune(state.currentId); // same tune → keeps zoom/scroll/transpose
+    };
+    v.addEventListener("click", toggle);
+    v.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+    });
+  }
+
   function renderVariants(tune, beats) {
     if (!Array.isArray(tune.variants) || !tune.variants.length) return null;
     const wrap = el("div", "variants");
@@ -930,40 +1397,7 @@
     wrap.appendChild(title);
     tune.variants.forEach((variant, vi) => {
       const v = el("div", "variant");
-      // Clickable only when we can map its anchors to real grid bars.
-      const canApply = variantOverrides(tune, variant).count > 0;
-      const active = state.activeVariants.has(vi);
-      if (canApply) {
-        v.classList.add("clickable");
-        v.setAttribute("role", "button");
-        v.tabIndex = 0;
-        v.setAttribute("aria-pressed", active ? "true" : "false");
-        v.title = active
-          ? "Applied to the grid — click to restore the original bars"
-          : "Click to swap these bars into the grid";
-        if (active) v.classList.add("active");
-        const toggle = () => {
-          if (state.activeVariants.has(vi)) {
-            state.activeVariants.delete(vi);
-          } else {
-            // Exclusive within a bar: drop any active variant that competes for
-            // one of the bars this one overrides.
-            state.activeVariants.forEach((other) => {
-              if (other !== vi && tune.variants[other] &&
-                  variantsConflict(tune, variant, tune.variants[other])) {
-                state.activeVariants.delete(other);
-              }
-            });
-            state.activeVariants.add(vi);
-          }
-          saveActiveVariants(state.currentId); // persist per tune
-          renderTune(state.currentId); // same tune → keeps zoom/scroll/transpose
-        };
-        v.addEventListener("click", toggle);
-        v.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
-        });
-      }
+      wireVariantToggle(v, tune, variant, vi);
       if (variant.applies_to) {
         const cap = el("div", "variant-caption");
         cap.textContent = variant.applies_to;
@@ -1157,6 +1591,63 @@
     tools.appendChild(toggle);
     panel.prepend(tools);
     panel._setScan = apply; // lets the ABC error fallback flip to the scan
+  }
+
+  /* Three-way view switch on the chords panel of a digitized tune: rendered
+     grid (4 bars/row) ⇄ book layout (8 boxes/row, like the printed grille) ⇄
+     original scan. The choice persists across tunes; a tune without a scan
+     falls back to the grid for the scan choice without overwriting it. */
+  function addChordViewSwitch(panel, t, alt) {
+    panel.classList.add("has-render");
+    const views = [
+      ["grid", ICON_GRID, "Chord grid (4 bars per row)"],
+      ["boxes", ICON_BOXES, "Book layout (8 boxes per row)"],
+    ];
+    if (t.chord_image) {
+      [].concat(t.chord_image).forEach((src) => panel.appendChild(scanImg(src, alt)));
+      views.push(["scan", ICON_IMAGE, "Original scan"]);
+    }
+    const tools = el("div", "panel-tools");
+    const seg = el("div", "view-seg");
+    const buttons = new Map();
+    const apply = (view) => {
+      panel.classList.toggle("show-boxes", view === "boxes");
+      panel.classList.toggle("show-scan", view === "scan");
+      buttons.forEach((btn, v) => {
+        btn.classList.toggle("on", v === view);
+        btn.setAttribute("aria-pressed", String(v === view));
+      });
+    };
+    views.forEach(([view, icon, title]) => {
+      const btn = el("button", "scan-toggle");
+      btn.type = "button";
+      btn.innerHTML = icon;
+      btn.title = title;
+      btn.setAttribute("aria-label", title);
+      btn.addEventListener("click", () => {
+        if (state.chordView === view) return;
+        state.chordView = view;
+        try {
+          localStorage.setItem("grilles.chordView", view);
+        } catch (e) { /* ignore */ }
+        const scroll = viewEl.scrollTop;
+        apply(view);
+        requestAnimationFrame(fitAll); // the fit passes preserve the scroll
+        /* If a scan hasn't finished loading, the panel is briefly short and
+           the browser clamps the scroll — put it back once each image is in. */
+        panel.querySelectorAll("img.scan").forEach((img) => {
+          if (!img.complete) {
+            img.addEventListener("load", () => { viewEl.scrollTop = scroll; }, { once: true });
+          }
+        });
+      });
+      buttons.set(view, btn);
+      seg.appendChild(btn);
+    });
+    /* A persisted "scan" on a scan-less tune renders as the grid. */
+    apply(buttons.has(state.chordView) ? state.chordView : "grid");
+    tools.appendChild(seg);
+    panel.prepend(tools);
   }
 
   /* Melody lead sheet from the embedded ABC (spec §5.4). Never crashes the
@@ -1512,6 +2003,10 @@
     if (!playlistMenu.hidden && !playlistMenu.contains(e.target) &&
         !playlistBtn.contains(e.target)) {
       closeMenu();
+    }
+    if (!tagFilterMenu.hidden && !tagFilterMenu.contains(e.target) &&
+        !tagFilterBtn.contains(e.target)) {
+      closeTagMenu();
     }
   });
 
@@ -1900,15 +2395,12 @@
             i === 0, tune.time_signature, overrides[name]));
         });
         panel.appendChild(grid);
+        panel.appendChild(renderBoxGrid(tune, overrides)); // book layout (hidden unless chosen)
         const variants = renderVariants(tune, beats);
         if (variants) panel.appendChild(variants);
         const extras = renderExtras(tune, beats);
         if (extras) panel.appendChild(extras);
-        if (t.chord_image) {
-          addScanToggle(panel, t.chord_image, `${t.title || id} — original chord scan`, ICON_GRID);
-        } else {
-          panel.classList.add("has-render");
-        }
+        addChordViewSwitch(panel, t, `${t.title || id} — original chord scan`);
       } else {
         panel.appendChild(scanImg(t.chord_image, `${t.title || id} — chord scan`));
       }
@@ -1958,7 +2450,7 @@
   const MIN_GRID_FONT = 8; // px — floor for the width-crowding shrink in fitGridWidth
 
   function fitGrid() {
-    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid:not(.variant-grid)");
+    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan):not(.show-boxes) .grid:not(.variant-grid)");
     if (!grid) return;
     grid.style.fontSize = ""; // back to the CSS width-based size
     if (state.gridZoom !== 1) {
@@ -1991,7 +2483,7 @@
   const MAX_MOBILE_FONT = 20; // px — ceiling for the grow-to-fill pass on phones/portrait
 
   function fitGridWidth() {
-    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan) .grid:not(.variant-grid)");
+    const grid = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan):not(.show-boxes) .grid:not(.variant-grid)");
     if (!grid) return;
     grid.style.maxWidth = "";
 
@@ -2075,7 +2567,7 @@
      the same centred pixel width — so every variant barline lines up with the
      main grid's columns above it (spec §6). Runs after the main grid is fitted. */
   function syncVariantGrids() {
-    const panel = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan)");
+    const panel = paneEl.querySelector(".panel.chords:not([hidden]):not(.show-scan):not(.show-boxes)");
     if (!panel) return;
     const main = panel.querySelector(".grid:not(.variant-grid)");
     if (!main) return;
@@ -2092,10 +2584,62 @@
     });
   }
 
+  /* Book-layout view: apply the user's zoom to the lattice font, then squeeze
+     each chord into its box (or its part of the box — a diagonal half, a
+     side-by-side slot): any chord wider than its region gets a per-chord
+     font-size cut so it fits, instead of overflowing across the lattice line.
+     Regions are measured fresh each pass (inline sizes reset first), so
+     resize / zoom / transpose all re-fit correctly. */
+  const BOX_PAD_EM = 0.35; // breathing room kept inside a box, per side
+  const MIN_BOX_CHORD_PX = 6; // px floor for the per-chord squeeze
+
+  function fitBoxes() {
+    const bg = paneEl.querySelector(
+      ".panel.chords:not([hidden]).show-boxes:not(.show-scan) .boxgrid");
+    if (!bg) return;
+    bg.style.fontSize = "";
+    if (state.gridZoom !== 1) {
+      const base = parseFloat(getComputedStyle(bg).fontSize);
+      bg.style.fontSize = Math.max(6, base * state.gridZoom).toFixed(2) + "px";
+    }
+    const fontPx = parseFloat(getComputedStyle(bg).fontSize);
+    const padPx = BOX_PAD_EM * fontPx;
+    bg.querySelectorAll(".bx").forEach((box) => {
+      const inner = box.clientWidth - 2 * padPx;
+      if (inner <= 0) return;
+      /* region width per chord container inside this box */
+      const parts = [];
+      box.querySelectorAll(".bx-solo").forEach((p) => parts.push([p, inner]));
+      /* Triangle chords centre near their centroid, backed off the diagonal;
+         growing symmetrically from 27%, they may take about 55% of the width
+         before touching the line. */
+      box.querySelectorAll(".bx-a, .bx-b").forEach((p) => parts.push([p, inner * 0.55]));
+      /* Uneven pair: the main chord centres in the half-strip opposite the
+         inset, with nearly the whole box width to itself. */
+      box.querySelectorAll(".bx-main").forEach((p) => parts.push([p, inner * 0.9]));
+      box.querySelectorAll(".bx-inset").forEach((p) => parts.push([p, inner * 0.46]));
+      /* Halved box: each cell owns its flex share of the strip. */
+      box.querySelectorAll(".bx-cell").forEach((p) =>
+        parts.push([p, p.clientWidth - 0.3 * fontPx]));
+      parts.forEach(([part, avail]) => {
+        if (!part.querySelector(".chord")) return;
+        part.style.fontSize = "";
+        /* Content width, not the container's: .bx-solo spans its whole box. */
+        const w = Array.from(part.children)
+          .reduce((s, c) => s + c.getBoundingClientRect().width, 0);
+        if (w <= avail) return;
+        const cur = parseFloat(getComputedStyle(part).fontSize);
+        part.style.fontSize =
+          Math.max(MIN_BOX_CHORD_PX, cur * (avail / w)).toFixed(2) + "px";
+      });
+    });
+  }
+
   function fitAll() {
     fitGrid();
     fitGridWidth();
     syncVariantGrids();
+    fitBoxes();
   }
 
   let resizeTimer = null;
@@ -2120,6 +2664,10 @@
     state.showChords = c === null ? true : c === "1";
     state.showMelody = m === null ? true : m === "1";
     state.showVerses = v === null ? true : v === "1";
+    const cv = localStorage.getItem("grilles.chordView");
+    if (cv === "grid" || cv === "boxes" || cv === "scan") state.chordView = cv;
+    state.boxTint = localStorage.getItem("grilles.boxTint") !== "0";
+    applyTintToggle();
     state.chordsOnly = localStorage.getItem("grilles.chordsOnly") === "1";
     if (localStorage.getItem("grilles.list") === "0") setListCollapsed(true);
   } catch (e) { /* ignore */ }
@@ -2130,6 +2678,9 @@
   if (storedPl && PL.byId(storedPl)) state.activePl = storedPl;
   updateTopbar();
   initStartsOnFilter();
+  initKeyFilter();
+  initFormFilter();
+  initTagFilter();
   state.filtered = filterTunes("");
   renderList();
   searchEl.focus();

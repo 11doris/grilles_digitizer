@@ -288,12 +288,14 @@ Each panel's **content** follows one rule — *render if digitized, else show th
 scan*:
 
 - **Chord panel**: the styled chord grid (§6–§7) when `has_chord_json`;
-  otherwise the chord scan PNG (`chord_image`). When *both* exist, an
-  **"original scan" toggle** swaps the rendered grid for the scan **in place**
-  (default: rendered; no scroll jump). The button sits in a small tools row
-  above the panel content — never overlaid on the image — and shows a photo
-  icon when the rendered form is visible, swapping to the grid icon while the
-  scan is shown (i.e. the icon shows what it switches to).
+  otherwise the chord scan PNG (`chord_image`). A digitized tune carries a
+  **three-way view switch** in a small tools row above the panel content —
+  never overlaid on the image: **chord grid** (4 bars per row, §6.1–6.5) /
+  **book layout** (the printed grille re-created, 8 boxes per row, §6.6) /
+  **original scan** (only offered when `chord_image` exists). Switching swaps
+  the content **in place** (no scroll jump). The choice persists across tunes
+  (`grilles.chordView`); a persisted "scan" renders as the grid on a tune
+  without a scan, without altering the stored preference. Default: chord grid.
 - **Melody panel**: the abcjs lead sheet (rendered from `abc` via
   `ABCJS.renderAbc`, responsive width, theme-aware colors) when
   `has_melody_abc`; otherwise the melody scan PNG (`melody_image`). When *both*
@@ -379,6 +381,61 @@ closes it. (The rendered chord grid is not a scan and has its own zoom, §6.5.)
   (small screen, or the chord panel sharing the row with the melody panel) via a
   container query.
 
+### 6.6 Book layout view
+
+Re-creates the printed grille (the `data/chords/01_crops` scans) from the
+digitized JSON, with the chords written into every box (no "—" repeat dashes):
+
+- **A grid of framed boxes in two four-bar phrases per row.** Deliberate
+  deviation from the print: bars within a group of 4 touch and share single
+  borders, a narrow gap parts the groups after bar 4, and rows sit clearly
+  apart — so the bars and phrases are easy to tell apart. Inside lines (the
+  two-chord diagonal, the half/cell dividers, the inset frames) are much
+  thinner than the box frames.
+- **Section shading**: every box carries a subtle tint of its section's color —
+  identical for repeats (A, A1, A2 share one shade) and **consistent across
+  tunes** (fixed hues for the common letters, a deterministic hash into a fixed
+  pool for other names). The shading applies to the 4-bar chord grid's bars
+  too; a droplet toggle in the top bar (next to the theme button) hides it in
+  both views, and the choice persists (`grilles.boxTint`).
+- **One section per row of up to 8 boxes.** A section longer than 8 bars wraps;
+  a trailing partial row is **right-aligned under the last columns**, as the
+  book prints it (I Got Rhythm's A' bars 9–10 under columns 7–8, Au Privave's
+  bars 9–12 under 5–8). Shorter sections start at column 1.
+- The **section letter** sits in the left margin (same badge style as §6.2) on
+  the section's first row. **Auxiliary sections** (verse/intro/interlude/coda/
+  transition) print as their **own captioned lattice block**, like the book's
+  separate verse grilles.
+- The **form badge** (`form`, e.g. "34 A A B A'") sits in a bordered box on the
+  lattice's top-right, like the book.
+- **Boxes** (all following the book's conventions): one chord — big, centered.
+  Two chords on the bar's halves (beats 1 and 3 in 4/4) — the **diagonal
+  split**: the line runs from the **top-right corner to the bottom-left** one,
+  making the top-left triangle the home of the first chord and the
+  bottom-right triangle that of the second, both near full size. Two chords of
+  **uneven length** (1+4, 1+2, …) — the long chord big, the short one in a
+  **small framed inset box** in the corner matching its position (bottom-right
+  when late, top-left for a pickup chord). Three or more — the box **halves
+  horizontally** (top strip = the bar's first half, bottom = the second); a
+  half with two chords splits into side-by-side cells (beats 1, 3, 4 → one
+  chord over two; all four beats → 2×2 quadrants). Positions encode the beats,
+  so a small superscript **beat digit** only marks a chord sitting off its
+  position's implied beat.
+- **Fit**: em-based like the grid; the grid zoom (§6.5) applies. A JS pass
+  squeezes any chord wider than its box (or its part of the box — diagonal
+  strip, side-by-side slot) with a per-chord font cut, so chords never cross
+  the lattice lines. Multi-chord boxes use the condensed `.tight` treatment
+  (narrow face, tightened accidental/alteration columns).
+- **Variants** print below the lattice as small captioned box rows (rendered
+  with the same box conventions, un-tinted) and behave exactly like the grid
+  view's variants block (§9 item 2): clickable when their anchors resolve,
+  applying **swaps the variant's bars into the lattice** (flagged with the
+  same internal `.variant-swap` hook), independent/exclusive toggling and the
+  per-tune persistence are shared state with the grid view — a variant applied
+  in one view shows applied in the other. The active block carries an accent
+  border and a "✓ applied" caption tag.
+- The box view **follows the active transposition**.
+
 ---
 
 ## 7. Chord Symbol Styling
@@ -439,6 +496,7 @@ The root's own accidental also renders as `♯`/`♭`.
   no external index is needed.
 - Empty query shows the full list. Zero matches shows a "No tunes found" message in the sidebar.
 - **Digitized-chords filter**: a toggle button (▦) in the top bar, beside the search box. When engaged it restricts the list to tunes carrying chord JSON (`has_chord_json`), applied on top of the search query and any active playlist. The button lights (accent colour) while on, is `aria-pressed`, and its state persists in `localStorage` under `grilles.chordsOnly`.
+- **Harmonic filters**: dropdowns for opening degree ("starts on"), key and form family, plus a multi-check tag menu — all over the annotation/fingerprint data, all combinable with search, the ▦ toggle and playlists. Specified in the similarity spec (`tune_similarity_spec.md` §8 items 2a/2b).
 
 ---
 

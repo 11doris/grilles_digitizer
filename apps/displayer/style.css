@@ -112,7 +112,8 @@ body {
 #listToggle,
 #chordFilter,
 #playlistBtn,
-#playlistClear {
+#playlistClear,
+#tintToggle {
   background: none;
   border: 1px solid var(--border);
   border-radius: 0.4rem;
@@ -125,6 +126,12 @@ body {
 /* Digitized-chords filter: lit like the active-playlist button when engaged. */
 #chordFilter { flex: none; }
 #chordFilter.on { border-color: var(--accent); color: var(--accent); }
+
+/* Section-shading toggle (next to the theme button): applies to both chord
+   views via body.tint-off. */
+#tintToggle { flex: none; }
+#tintToggle svg { width: 0.95rem; height: 0.95rem; fill: currentColor; vertical-align: -0.15rem; }
+#tintToggle.on { border-color: var(--accent); color: var(--accent); }
 
 /* The playlist button carries the push-right margin (it sits left of ☾/☀). */
 #playlistBtn {
@@ -296,8 +303,11 @@ body.list-collapsed #gridZoom { left: 1rem; }
   /* A lone chord panel (no melody sheet) still occupies about half the
      container — the same footprint it has beside the melody — so the grid
      fills a readable half-width column instead of stranding the chords in a
-     wide, sparse one. On phones/portrait (< 900px) panels stack full width. */
+     wide, sparse one. On phones/portrait (< 900px) panels stack full width.
+     The book-layout view is the exception: its 8-boxes-per-row lattice gets
+     the full pane (the lattice itself caps at 58em and centres). */
   .panels:not(.dual) .panel.chords { width: 50%; align-self: center; }
+  .panels:not(.dual) .panel.chords.show-boxes:not(.show-scan) { width: 100%; }
 }
 
 .panel img.scan {
@@ -361,6 +371,16 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .panel.show-scan .variants,
 .panel.show-scan .extras,
 .panel.show-scan .abc-sheet { display: none; }
+
+/* Book-layout view (.show-boxes): the 8-boxes-per-row lattice replaces the
+   4-bar grid and its variants; the extras stay. Scan view wins over it. */
+.panel .boxgrid { display: none; }
+.panel.show-boxes:not(.show-scan) .boxgrid { display: block; }
+.panel.show-boxes .grid,
+.panel.show-boxes .variants { display: none; }
+
+/* Segmented view switch (grid / book layout / scan) in the panel tools row. */
+.view-seg { display: inline-flex; gap: 0.25rem; }
 
 /* ------------------------------------------ melody lead sheet (abcjs) */
 
@@ -766,20 +786,272 @@ body.list-collapsed #gridZoom { left: 1rem; }
 /* Crowded bars (3+ chords, tagged .tight in fillBar) render their chords in a
    much narrower face and pack the columns tighter, so a single busy bar can't
    force the whole grid's font down — the rest of the grid stays large while the
-   dense bar simply gets condensed (see fitGridWidth). */
-.bar.tight .chord {
+   dense bar simply gets condensed (see fitGridWidth). The same treatment
+   squeezes multi-chord boxes of the book-layout view (.bx.tight). */
+.bar.tight .chord,
+.bx.tight .chord {
   font-family: "Sofia Sans Extra Condensed", "Barlow Condensed", "Arial Narrow", sans-serif;
   letter-spacing: -0.03em;
 }
 /* Narrow the middle/right columns (never the root, so the ground line and the
    root's height stay consistent with the roomy bars) and pull the columns in
    tight, so a dense bar's chords are horizontally compact but still full-height. */
-.bar.tight .chord .qual { font-size: 1.3em; margin-left: 0.01em; }
-.bar.tight .chord .acc { margin-left: 0.01em; }
-.bar.tight .chord .acc.flat { font-size: 1.55em; }
-.bar.tight .chord .acc.sharp { font-size: 1.35em; }
+.bar.tight .chord .qual,
+.bx.tight .chord .qual { font-size: 1.3em; margin-left: 0.01em; }
+.bar.tight .chord .acc,
+.bx.tight .chord .acc { margin-left: 0.01em; }
+.bar.tight .chord .acc.flat,
+.bx.tight .chord .acc.flat { font-size: 1.55em; }
+.bar.tight .chord .acc.sharp,
+.bx.tight .chord .acc.sharp { font-size: 1.35em; }
 .bar.tight .chord .alt-up,
-.bar.tight .chord .alt-down { font-size: 1.2em; margin-left: 0em; letter-spacing: -0.04em; }
+.bar.tight .chord .alt-down,
+.bx.tight .chord .alt-up,
+.bx.tight .chord .alt-down { font-size: 1.2em; margin-left: 0em; letter-spacing: -0.04em; }
+
+/* ------------------------------------------- book layout ("boxes") view */
+
+/* Re-creation of the printed grille: one contiguous lattice, (up to) 8 boxes
+   per row, one section per row, the section letter in the left margin. All
+   dimensions are em-based so fitBoxes can zoom the whole lattice through this
+   one font-size; individual chords get a per-chord squeeze when they'd
+   overflow their box (or their half/slot of it). */
+.boxgrid {
+  max-width: 58em;
+  margin: 0 auto;
+  padding-left: 1.6em; /* gutter for the section letters */
+  font-size: clamp(9px, 2.6cqw, 16px);
+}
+
+/* Form badge, top-right above the lattice, like the book's "34 A A B A'". */
+.bx-formrow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bx-form {
+  border: 0.2em solid var(--line);
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.1em;
+  letter-spacing: 0.1em;
+  padding: 0.15em 0.5em 0.1em;
+  margin-bottom: 0.4em;
+  text-transform: uppercase;
+}
+
+/* Auxiliary blocks (verse/intro/coda) print as their own grille. */
+.bx-block + .bx-block,
+.bx-caption { margin-top: 1.2em; }
+
+/* Book-layout variants: captioned box rows below the lattice, clickable to
+   swap into it — same states/behavior as the grid view's .variant blocks. */
+.bx-variants-title { margin-top: 1.4em; }
+.bx-variant {
+  margin: 0.5em 0 0.9em;
+  border: 1px solid transparent;
+  border-radius: 0.5em;
+  padding: 0.4em 0.5em;
+}
+.bx-variant .variant-caption { margin: 0 0 0.35em; }
+.bx-variant .bx-block { margin-top: 0; }
+.bx-variant.clickable { cursor: pointer; transition: background 0.12s, border-color 0.12s; }
+.bx-variant.clickable:hover { background: var(--panel); border-color: var(--border); }
+.bx-variant.clickable:focus-visible { outline: 2px solid var(--muted); outline-offset: 2px; }
+.bx-variant.clickable.active { border-color: var(--accent); background: var(--chip-bg); }
+.bx-variant.clickable.active .variant-caption::after {
+  content: " ✓ applied";
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+.bx-caption {
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.15em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.25em;
+}
+
+/* Two four-bar phrases per row: bars within a group of 4 touch (shared single
+   borders via .merge-left), the narrow middle track parts the groups. */
+.bx-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 0.18em repeat(4, 1fr);
+  position: relative; /* anchors the section letter in the gutter */
+}
+
+/* Air between the rows. */
+.bx-row + .bx-row { margin-top: 0.55em; }
+
+/* Section letter in the left margin, centred on its section's first row. */
+.bx-seclabel {
+  position: absolute;
+  left: -1.6em;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--fg);
+  color: var(--bg);
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.0em;
+  line-height: 1;
+  padding: 0.12em 0.22em;
+}
+
+/* Section shading, shared by BOTH chord views: boxes (book layout) and bars
+   (4-bar grid) mix their section's hue (--bxhue, set by the renderer) into
+   the theme background — a light wash in light mode, a stronger mix in dark
+   mode where 12% wouldn't show. The topbar droplet toggles body.tint-off. */
+.bx,
+.section .bar:not(.empty) {
+  --bxtint: color-mix(in srgb, var(--bxhue, transparent) 12%, var(--bg));
+  background-color: var(--bxtint);
+}
+
+:root[data-theme="dark"] .bx,
+:root[data-theme="dark"] .section .bar:not(.empty) {
+  --bxtint: color-mix(in srgb, var(--bxhue, transparent) 26%, var(--bg));
+}
+
+body.tint-off .bx,
+body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
+
+.bx {
+  position: relative;
+  min-height: 5em;
+  min-width: 0;
+  border: 0.2em solid var(--line);
+}
+
+.bx.merge-left { border-left: none; }
+
+/* Lone chord: big, centred — like the printed box. */
+.bx-solo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0.1em 0.3em;
+}
+
+/* Solo chords fill their room; the main chord of an inset pair stays a bit
+   smaller so its ink clears the inset quadrant. fitBoxes squeezes overflows. */
+.bx-solo .chord { font-size: 1.15em; }
+.bx-main .chord { font-size: 1.05em; }
+
+/* Two chords: the book's diagonal split — the line runs from the top-right
+   corner to the bottom-left one, making the top-left triangle the home of the
+   first chord and the bottom-right triangle that of the second. (The gradient
+   axis points to the bottom-right corner; the drawn stripe lies perpendicular
+   to it, i.e. along the top-right ↔ bottom-left diagonal.) */
+.bx.duo {
+  background-image: linear-gradient(to bottom right,
+    transparent calc(50% - 0.03em),
+    var(--line) calc(50% - 0.03em),
+    var(--line) calc(50% + 0.03em),
+    transparent calc(50% + 0.03em));
+}
+
+/* Each chord sits by the centre of gravity of its triangle — the centroid is a
+   third in from the right-angle corner (33%) — backed off a little further
+   from the diagonal (to 27% resp. 73%) so the symbols keep clear air to the
+   line. */
+.bx-a,
+.bx-b {
+  position: absolute;
+  font-size: 1.05em;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+
+/* The first chord sits a touch lower than its mirror: a root accidental (♭/♯)
+   adds ink above the chord, which touched the box's top border at 27%. */
+.bx-a { top: 31%; left: 27%; }
+.bx-b { top: 73%; left: 73%; }
+
+/* Uneven two-chord bars (1+4, 1+2, …): the long chord big, the short one in
+   a small framed box in the corner matching its position in the bar. The main
+   chord centres in the half-strip opposite the inset — the free region's
+   dominant rectangle, which the opaque quadrant can never cover (a wide chord
+   at the L-shape's true centroid would run underneath the inset). */
+.bx-main {
+  position: absolute;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+
+/* 24%/76% (not 25/75) plus the smaller main font keep a root accidental's ink
+   clear of the inset's edge. */
+.bx-main.clear-bottom { top: 24%; left: 50%; }
+.bx-main.clear-top { top: 76%; left: 50%; }
+
+/* The inset is one quadrant of the box (half width × half height); its frame
+   is an inside line, much thinner than the frame (0.075em at the 0.8em font =
+   0.06em at the box scale). */
+.bx-inset {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.075em solid var(--line);
+  /* The box's own opaque tint (masks the main chord underneath); follows the
+     .tint-off override through --bxtint. */
+  background-color: var(--bxtint, var(--bg));
+  font-size: 0.8em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.bx-inset .bx-beat { align-self: flex-start; padding-top: 0.2em; }
+
+.bx-inset.inset-late { right: 0; bottom: 0; border-right: none; border-bottom: none; }
+.bx-inset.inset-early { left: 0; top: 0; border-left: none; border-top: none; }
+
+/* Three or more chords: the box halves horizontally (top = the bar's first
+   half, bottom = the second); a half with several chords splits into
+   side-by-side cells — four chords make the 2×2 quadrants. */
+.bx-halves {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.bx-half {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  font-size: 0.8em;
+}
+
+/* Inside lines, much thinner than the box frame: 0.075em at the halves'
+   0.8em font = 0.06em at the box scale. */
+.bx-half + .bx-half { border-top: 0.075em solid var(--line); }
+
+.bx-cell {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.15em;
+  white-space: nowrap;
+}
+
+.bx-cell + .bx-cell { border-left: 0.075em solid var(--line); }
+
+/* Small beat digit before an off-default chord (the book's superscripts). */
+.bx-beat {
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.9em;
+  line-height: 1;
+  margin-right: 0.1em;
+  vertical-align: 1.1em;
+}
+
+/* In the flex containers the sup is a flex item: lift it to the top edge. */
+.bx-solo .bx-beat { align-self: flex-start; padding-top: 0.35em; }
 
 /* -------------------------------------------------------- chord symbols */
 
@@ -1183,7 +1455,11 @@ body.list-collapsed #gridZoom { left: 1rem; }
 /* Phones, short landscape, and portrait tablets below the 900px desktop seam.
    Keep this list in sync with narrowMq in app.js. */
 @media (max-width: 700px), (max-height: 500px), (max-width: 899px) and (orientation: portrait) {
-  .topbar { gap: 0.5rem; padding: 0.5rem 0.7rem; }
+  /* With the harmonic filters aboard the bar no longer fits one row on
+     phones — let it wrap; the filters form a second row. */
+  .topbar { gap: 0.5rem; padding: 0.5rem 0.7rem; flex-wrap: wrap; }
+  #search { min-width: 10rem; }
+  #playlistBtn { margin-left: 0; } /* no push-right — let wrapped rows pack */
 
   /* The drawer is driven by .list-open only; a desktop collapse choice
      (.list-collapsed) must not keep it hidden here. */
@@ -1227,8 +1503,10 @@ body.list-collapsed #gridZoom { left: 1rem; }
 
 /* ───────────────────────── Similar tunes & comparison (spec §8.2/§8.3) ── */
 
-/* "Starts on" filter dropdown in the top bar (§8.2a). */
-#startsOnFilter {
+/* Harmonic filter dropdowns in the top bar (§8.2a/§8.2b). */
+#startsOnFilter,
+#keyFilter,
+#formFilter {
   flex: none;
   background: var(--panel);
   border: 1px solid var(--border);
@@ -1238,7 +1516,71 @@ body.list-collapsed #gridZoom { left: 1rem; }
   padding: 0.3rem 0.4rem;
   max-width: 10rem;
 }
-#startsOnFilter.on { border-color: var(--accent); color: var(--accent-ink); }
+#startsOnFilter.on,
+#keyFilter.on,
+#formFilter.on { border-color: var(--accent); color: var(--accent-ink); }
+#formFilter { max-width: 12rem; }
+
+/* Tag filter (§8.2b): button opens a checkbox dropdown; checks AND together. */
+#tagFilterBtn {
+  flex: none;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  color: var(--fg);
+  font-size: 0.85rem;
+  padding: 0.3rem 0.55rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+#tagFilterBtn.on { border-color: var(--accent); color: var(--accent-ink); }
+
+#tagFilterMenu {
+  position: fixed;
+  z-index: 60;
+  min-width: 16rem;
+  max-height: min(70vh, 28rem);
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  padding: 0.4rem;
+  font-size: 0.9rem;
+}
+#tagFilterMenu[hidden] { display: none; }
+#tagFilterMenu.sheet {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: auto;
+  border-radius: 0.8rem 0.8rem 0 0;
+}
+
+.tag-hint {
+  color: var(--muted);
+  font-size: 0.78rem;
+  padding: 0.2rem 0.4rem 0.4rem;
+}
+
+.tag-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.22rem 0.4rem;
+  border-radius: 0.35rem;
+  cursor: pointer;
+}
+.tag-row:hover { background: var(--chip-bg); }
+.tag-row input { accent-color: var(--accent); }
+.tag-name { flex: 1; }
+.tag-count { color: var(--muted); font-size: 0.8rem; }
+
+/* Narrow screens (keep in sync with narrowMq): shorter form dropdown so the
+   wrapped filter row packs tighter. */
+@media (max-width: 700px), (max-height: 500px), (max-width: 899px) and (orientation: portrait) {
+  #formFilter { max-width: 8rem; }
+}
 
 /* Opening-degree chip next to the key chip. */
 .harm-chip.opening { background: var(--chip-bg); }

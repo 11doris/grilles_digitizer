@@ -13,8 +13,12 @@
     <input id="search" type="search" placeholder="Search title or composer…" autocomplete="off" spellcheck="false">
     <button id="chordFilter" type="button" title="Show only tunes with digitized chords" aria-label="Filter: digitized chords only" aria-pressed="false">▦</button>
     <select id="startsOnFilter" title="Filter by opening degree" aria-label="Filter by opening degree"></select>
+    <select id="keyFilter" title="Filter by key" aria-label="Filter by key"></select>
+    <select id="formFilter" title="Filter by form" aria-label="Filter by form"></select>
+    <button id="tagFilterBtn" type="button" title="Filter by harmonic tags" aria-label="Filter by harmonic tags" aria-haspopup="true" aria-expanded="false" hidden>Tags</button>
     <button id="playlistBtn" type="button" title="Playlists">Playlists</button>
     <button id="playlistClear" type="button" title="Show all tunes" aria-label="Deactivate playlist" hidden>✕</button>
+    <button id="tintToggle" type="button" title="Toggle section shading" aria-label="Toggle section shading" aria-pressed="true"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c2.8 3.4 4.6 5.9 4.6 8.2A4.6 4.6 0 0 1 8 14.3a4.6 4.6 0 0 1-4.6-4.6C3.4 7.4 5.2 4.9 8 1.5z"/></svg></button>
     <button id="themeToggle" type="button" title="Toggle theme">☀</button>
   </header>
   <div class="layout">
@@ -34,6 +38,7 @@
     <button id="zoomIn" type="button" title="Zoom grid in" aria-label="Zoom grid in">+</button>
   </div>
   <div id="playlistMenu" hidden></div>
+  <div id="tagFilterMenu" hidden></div>
   <div id="plPopover" hidden></div>
   <input id="plImportFile" type="file" accept=".json,application/json" hidden>
   <script src="data/tunes_data.js"></script>
