@@ -386,11 +386,17 @@ closes it. (The rendered chord grid is not a scan and has its own zoom, §6.5.)
 Re-creates the printed grille (the `data/chords/01_crops` scans) from the
 digitized JSON, with the chords written into every box (no "—" repeat dashes):
 
-- **A grid of framed boxes.** Deliberate deviation from the print (which runs
-  the boxes together as one lattice): every box draws its own full frame,
-  separated by a small gap — a little wider between rows — so the bars are
-  easy to tell apart. Inside lines (the two-chord diagonal, the half/cell
-  dividers, the inset frames) are much thinner than the box frames.
+- **A grid of framed boxes in two four-bar phrases per row.** Deliberate
+  deviation from the print: bars within a group of 4 touch and share single
+  borders, a narrow gap parts the groups after bar 4, and rows sit clearly
+  apart — so the bars and phrases are easy to tell apart. Inside lines (the
+  two-chord diagonal, the half/cell dividers, the inset frames) are much
+  thinner than the box frames.
+- **Section shading**: every box carries a subtle tint of its section's color —
+  identical for repeats (A, A1, A2 share one shade) and **consistent across
+  tunes** (fixed hues for the common letters, a deterministic hash into a fixed
+  pool for other names). A toggle beside the view switch (shown only in this
+  view) hides the shading; the choice persists (`grilles.boxTint`).
 - **One section per row of up to 8 boxes.** A section longer than 8 bars wraps;
   a trailing partial row is **right-aligned under the last columns**, as the
   book prints it (I Got Rhythm's A' bars 9–10 under columns 7–8, Au Privave's

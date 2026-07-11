@@ -372,8 +372,12 @@ body.list-collapsed #gridZoom { left: 1rem; }
 .panel.show-boxes .grid,
 .panel.show-boxes .variants { display: none; }
 
-/* Segmented view switch (grid / book layout / scan) in the panel tools row. */
+/* Segmented view switch (grid / book layout / scan) in the panel tools row.
+   The section-shading toggle only applies to (and shows with) the book
+   layout. */
 .view-seg { display: inline-flex; gap: 0.25rem; }
+.view-seg .tint-btn { display: none; }
+.panel.show-boxes:not(.show-scan) .view-seg .tint-btn { display: inline-flex; }
 
 /* ------------------------------------------ melody lead sheet (abcjs) */
 
@@ -845,14 +849,15 @@ body.list-collapsed #gridZoom { left: 1rem; }
   margin-bottom: 0.25em;
 }
 
+/* Two four-bar phrases per row: bars within a group of 4 touch (shared single
+   borders via .merge-left), the narrow middle track parts the groups. */
 .bx-row {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  column-gap: 0.3em; /* deviation from the print: air between the bars */
+  grid-template-columns: repeat(4, 1fr) 0.6em repeat(4, 1fr);
   position: relative; /* anchors the section letter in the gutter */
 }
 
-/* A little more air between rows than between the bars of a row. */
+/* Air between the rows. */
 .bx-row + .bx-row { margin-top: 0.55em; }
 
 /* Section letter in the left margin, centred on its section's first row. */
@@ -869,13 +874,21 @@ body.list-collapsed #gridZoom { left: 1rem; }
   padding: 0.12em 0.22em;
 }
 
-/* Every box draws its own full frame (the gaps above keep them apart). */
+/* Boxes carry their section's tint (--bxtint, set per row by the renderer);
+   the ⬤ toggle turns the shading off panel-wide (.tint-off). Boxes inside a
+   four-bar group share single borders: all but the group's first drop their
+   left border and lean on the neighbour's right one. */
 .bx {
   position: relative;
   min-height: 5em;
   min-width: 0;
   border: 0.2em solid var(--line);
+  background-color: var(--bxtint, transparent);
 }
+
+.bx.merge-left { border-left: none; }
+
+.panel.tint-off .bx { background-color: transparent; }
 
 /* Lone chord: big, centred — like the printed box. */
 .bx-solo {
@@ -941,11 +954,16 @@ body.list-collapsed #gridZoom { left: 1rem; }
   align-items: center;
   justify-content: center;
   border: 0.075em solid var(--line);
-  background: var(--bg);
+  /* Opaque page base (masks the main chord underneath) + the section tint on
+     top, so the inset matches its box's shade. */
+  background-color: var(--bg);
+  background-image: linear-gradient(var(--bxtint, transparent), var(--bxtint, transparent));
   font-size: 0.8em;
   line-height: 1;
   white-space: nowrap;
 }
+
+.panel.tint-off .bx-inset { background-image: none; }
 
 .bx-inset .bx-beat { align-self: flex-start; padding-top: 0.2em; }
 

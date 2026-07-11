@@ -72,6 +72,7 @@
     transpose: null, // {shift, spell, targetPc, mode} or null (original key); per-tune
     activeVariants: new Set(), // indices of variants swapped into the grid (independent, but exclusive among variants sharing a bar); per-tune
     chordView: "grid", // chords panel: "grid" (4 bars/row) | "boxes" (book layout) | "scan" (persisted)
+    boxTint: true, // book layout: section shading on/off (persisted)
     chordsOnly: false, // list filter: only tunes with digitized chords (persisted)
     startsOn: "", // list filter: opening degree ("" = any, "unknown", "other", or a degree; §8.2a)
     showSuggest: null, // open suggestions group: null | "tunes" | "sections"; per-tune
@@ -363,6 +364,10 @@
     '<svg viewBox="0 0 16 16" aria-hidden="true">' +
     '<path d="M1.2 4.4h13.6M1.2 8h13.6M1.2 11.6h13.6M1.2 4.4v7.2M4.6 4.4v7.2M8 4.4v7.2M11.4 4.4v7.2M14.8 4.4v7.2" ' +
     'fill="none" stroke="currentColor" stroke-width="1.1"/></svg>';
+  /* Paint drop for the section-shading toggle of the book layout. */
+  const ICON_TINT =
+    '<svg viewBox="0 0 16 16" aria-hidden="true">' +
+    '<path d="M8 1.5c2.8 3.4 4.6 5.9 4.6 8.2A4.6 4.6 0 0 1 8 14.3a4.6 4.6 0 0 1-4.6-4.6C3.4 7.4 5.2 4.9 8 1.5z"/></svg>';
 
   function iconCluster(t) {
     const chord = hasChordAsset(t)
@@ -678,6 +683,23 @@
     return rows;
   }
 
+  /* Section tints: subtle shades, identical for repeats of a section (A, A1,
+     A2 share one tint) and CONSISTENT ACROSS TUNES — the common letters map to
+     fixed hues; anything else (verse_A, interlude, …) hashes into a fixed pool
+     so the same name always lands on the same shade everywhere. */
+  const TINT_TABLE = {
+    A: "#5b8dd6", B: "#d9a441", C: "#5fae7d", D: "#a97fd1",
+    E: "#d97b7b", F: "#5bbcd6",
+  };
+  const TINT_POOL = ["#8a8fa3", "#b08a5e", "#7da3a0", "#a3869a", "#96a36b", "#7f8fc4"];
+
+  function sectionTint(name) {
+    const key = String(name || "").replace(/\d+$/, ""); // A1 → A, verse_A1 → verse_A
+    const hash = [...key].reduce((s, c) => (s * 31 + c.charCodeAt(0)) >>> 0, 0);
+    const base = TINT_TABLE[key] || TINT_POOL[hash % TINT_POOL.length];
+    return `color-mix(in srgb, ${base} 12%, transparent)`;
+  }
+
   /* One box, following the book's conventions:
      - one chord: big, centred;
      - two chords on the bar's two halves (beats 1 and 3 in 4/4): the diagonal
@@ -744,9 +766,10 @@
     }
   }
 
-  /* One block of box rows. Deliberate deviation from the print: the boxes
-     don't share borders — each draws its own full frame, separated by small
-     gaps (a little wider between rows), so the bars read apart. */
+  /* One block of box rows. The 8 columns read as two four-bar phrases: bars
+     within a group of 4 share single borders (no gap), a small gap track
+     separates columns 4 and 5, rows keep their own spacing. Each box carries
+     its section's tint via the --bxtint custom property. */
   function renderBoxBlock(rows) {
     const block = el("div", "bx-block");
     rows.forEach((row) => {
@@ -757,8 +780,14 @@
         rowEl.appendChild(label);
       }
       row.bars.forEach((bar, i) => {
+        const col = row.start + i;
         const cell = el("div", "bx");
-        cell.style.gridColumn = String(row.start + i);
+        /* Track 5 is the mid-row gap: columns 5–8 sit in tracks 6–9. */
+        cell.style.gridColumn = String(col > 4 ? col + 1 : col);
+        /* Shared borders within a group of 4: only a run's first box and the
+           box after the mid gap draw their own left border. */
+        if (i > 0 && col !== 5) cell.classList.add("merge-left");
+        if (row.tint) cell.style.setProperty("--bxtint", row.tint);
         fillBox(cell, bar, row.beats);
         rowEl.appendChild(cell);
       });
@@ -800,6 +829,7 @@
       blk.sections.forEach((name) => {
         boxRowsOf(blk.aux ? null : name, tune.sections[name] || []).forEach((r) => {
           r.beats = beats;
+          r.tint = sectionTint(name);
           rows.push(r);
         });
       });
@@ -1376,6 +1406,26 @@
     });
     /* A persisted "scan" on a scan-less tune renders as the grid. */
     apply(buttons.has(state.chordView) ? state.chordView : "grid");
+    /* Section-shading toggle — only shown while the book layout is up. */
+    const tint = el("button", "scan-toggle tint-btn");
+    tint.type = "button";
+    tint.innerHTML = ICON_TINT;
+    const applyTint = () => {
+      panel.classList.toggle("tint-off", !state.boxTint);
+      tint.classList.toggle("on", state.boxTint);
+      tint.setAttribute("aria-pressed", String(state.boxTint));
+      tint.title = state.boxTint ? "Hide section shading" : "Show section shading";
+      tint.setAttribute("aria-label", tint.title);
+    };
+    tint.addEventListener("click", () => {
+      state.boxTint = !state.boxTint;
+      try {
+        localStorage.setItem("grilles.boxTint", state.boxTint ? "1" : "0");
+      } catch (e) { /* ignore */ }
+      applyTint();
+    });
+    applyTint();
+    seg.appendChild(tint);
     tools.appendChild(seg);
     panel.prepend(tools);
   }
@@ -2392,6 +2442,7 @@
     state.showVerses = v === null ? true : v === "1";
     const cv = localStorage.getItem("grilles.chordView");
     if (cv === "grid" || cv === "boxes" || cv === "scan") state.chordView = cv;
+    state.boxTint = localStorage.getItem("grilles.boxTint") !== "0";
     state.chordsOnly = localStorage.getItem("grilles.chordsOnly") === "1";
     if (localStorage.getItem("grilles.list") === "0") setListCollapsed(true);
   } catch (e) { /* ignore */ }
