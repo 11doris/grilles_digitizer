@@ -27,7 +27,7 @@ class TestParseChord(unittest.TestCase):
             "Fm": "min", "Fm7": "min", "Fm6": "min", "Fm(maj7)": "min",
             "Bbm#5": "min",
             "F7": "dom", "F13": "dom", "F7b5": "dom", "F7#5": "dom",
-            "F7alt": "dom", "F(b9)": "dom", "A(#5#9)": "dom", "Ab7(13)": "dom",
+            "F7alt": "dom", "F(b9)": "dom", "A(#9#5)": "dom", "Ab7(13)": "dom",
             "Fm7b5": "m7b5",
             "Fo7": "dim",
             "F(#5)": "aug",

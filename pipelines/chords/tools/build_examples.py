@@ -68,14 +68,14 @@ DEMONSTRATES = {
         "Demonstrates a **`VERSE` header note** (`form` `32 A A B A`, with "
         "`notation_notes.verse` recording the `4 VERSE` header) and "
         "**extended/altered chords**: `m11` (`Fm11`, `Em11`), stacked alterations on "
-        "bare triads (`Bb(#5#9)`, `A(#5#9)`, `E(b5b9)`), a triad + b9 (`F(b9)`), and "
+        "bare triads (`Bb(#9#5)`, `A(#9#5)`, `E(b5b9)`), a triad + b9 (`F(b9)`), and "
         "`9b5` (`E9b5`). One **variant** (Bar 2, 10 and 26) plus a full `recordings` "
         "list."
     ),
     "120_02_EVERYTIME_WE_SAY_GOODBYE": (
         "Demonstrates **`32 A B A C`** (the repeated A is keyed `A1`, no prime). **Two "
         "variants** (Bar 27 and Bar 14). Shows `9b5` "
-        "(`C9b5`), triads + parenthesised alterations (`Bb(#5b9)`, `Eb(b9)`), and "
+        "(`C9b5`), triads + parenthesised alterations (`Bb(b9#5)`, `Eb(b9)`), and "
         "beat-`\"2\"` chords in split bars (`B` bar 2 `Fm7`/`Bb7`)."
     ),
     "340_03_ROBBINS_NEST": (

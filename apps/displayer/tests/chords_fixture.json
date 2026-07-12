@@ -1,18 +1,25 @@
 {
  "cases": [
   {
-   "symbol": "(A(b9))",
+   "symbol": "(A7)",
    "quality": "dom",
    "degree_from_c": "VI",
-   "up3_flat": "(C(b9))",
-   "up7_sharp": "(E(b9))"
+   "up3_flat": "(C7)",
+   "up7_sharp": "(E7)"
   },
   {
-   "symbol": "(Am)",
+   "symbol": "(A7b9)",
+   "quality": "dom",
+   "degree_from_c": "VI",
+   "up3_flat": "(C7b9)",
+   "up7_sharp": "(E7b9)"
+  },
+  {
+   "symbol": "(Am/3)",
    "quality": "min",
    "degree_from_c": "vi",
-   "up3_flat": "(Cm)",
-   "up7_sharp": "(Em)"
+   "up3_flat": "(Cm/3)",
+   "up7_sharp": "(Em/3)"
   },
   {
    "symbol": "(Am7b5)",
@@ -29,6 +36,13 @@
    "up7_sharp": "(F)"
   },
   {
+   "symbol": "(Bb/2)",
+   "quality": "maj",
+   "degree_from_c": "bVII",
+   "up3_flat": "(Db/2)",
+   "up7_sharp": "(F/2)"
+  },
+  {
    "symbol": "(Bb7)",
    "quality": "dom",
    "degree_from_c": "bVII",
@@ -36,11 +50,39 @@
    "up7_sharp": "(F7)"
   },
   {
+   "symbol": "(Bb7b9)",
+   "quality": "dom",
+   "degree_from_c": "bVII",
+   "up3_flat": "(Db7b9)",
+   "up7_sharp": "(F7b9)"
+  },
+  {
+   "symbol": "(C7)",
+   "quality": "dom",
+   "degree_from_c": "I",
+   "up3_flat": "(Eb7)",
+   "up7_sharp": "(G7)"
+  },
+  {
+   "symbol": "(D#o7)",
+   "quality": "dim",
+   "degree_from_c": "biii",
+   "up3_flat": "(Gbo7)",
+   "up7_sharp": "(A#o7)"
+  },
+  {
    "symbol": "(D7)",
    "quality": "dom",
    "degree_from_c": "II",
    "up3_flat": "(F7)",
    "up7_sharp": "(A7)"
+  },
+  {
+   "symbol": "(D7/5)",
+   "quality": "dom",
+   "degree_from_c": "II",
+   "up3_flat": "(F7/5)",
+   "up7_sharp": "(A7/5)"
   },
   {
    "symbol": "(Db7b5)",
@@ -57,11 +99,39 @@
    "up7_sharp": "(Am7)"
   },
   {
-   "symbol": "(Eb7)",
+   "symbol": "(E7/5)",
+   "quality": "dom",
+   "degree_from_c": "III",
+   "up3_flat": "(G7/5)",
+   "up7_sharp": "(B7/5)"
+  },
+  {
+   "symbol": "(Eb7/7)",
    "quality": "dom",
    "degree_from_c": "bIII",
-   "up3_flat": "(Gb7)",
-   "up7_sharp": "(A#7)"
+   "up3_flat": "(Gb7/7)",
+   "up7_sharp": "(A#7/7)"
+  },
+  {
+   "symbol": "(Em)",
+   "quality": "min",
+   "degree_from_c": "iii",
+   "up3_flat": "(Gm)",
+   "up7_sharp": "(Bm)"
+  },
+  {
+   "symbol": "(Em7b5)",
+   "quality": "m7b5",
+   "degree_from_c": "iii",
+   "up3_flat": "(Gm7b5)",
+   "up7_sharp": "(Bm7b5)"
+  },
+  {
+   "symbol": "(Eo7)",
+   "quality": "dim",
+   "degree_from_c": "iii",
+   "up3_flat": "(Go7)",
+   "up7_sharp": "(Bo7)"
   },
   {
    "symbol": "(F)",
@@ -78,11 +148,32 @@
    "up7_sharp": "(C7)"
   },
   {
+   "symbol": "(Fm6)",
+   "quality": "min",
+   "degree_from_c": "iv",
+   "up3_flat": "(Abm6)",
+   "up7_sharp": "(Cm6)"
+  },
+  {
+   "symbol": "(G#o7)",
+   "quality": "dim",
+   "degree_from_c": "bvi",
+   "up3_flat": "(Bo7)",
+   "up7_sharp": "(D#o7)"
+  },
+  {
    "symbol": "(G7)",
    "quality": "dom",
    "degree_from_c": "V",
    "up3_flat": "(Bb7)",
    "up7_sharp": "(D7)"
+  },
+  {
+   "symbol": "(G7/5)",
+   "quality": "dom",
+   "degree_from_c": "V",
+   "up3_flat": "(Bb7/5)",
+   "up7_sharp": "(D7/5)"
   },
   {
    "symbol": "(G9)",
@@ -106,6 +197,13 @@
    "up7_sharp": "(C#7)"
   },
   {
+   "symbol": "(Gm7)",
+   "quality": "min",
+   "degree_from_c": "v",
+   "up3_flat": "(Bbm7)",
+   "up7_sharp": "(Dm7)"
+  },
+  {
    "symbol": "A",
    "quality": "maj",
    "degree_from_c": "VI",
@@ -120,11 +218,11 @@
    "up7_sharp": "Fo7"
   },
   {
-   "symbol": "A(#5#9)",
+   "symbol": "A(#9#5)",
    "quality": "dom",
    "degree_from_c": "VI",
-   "up3_flat": "C(#5#9)",
-   "up7_sharp": "E(#5#9)"
+   "up3_flat": "C(#9#5)",
+   "up7_sharp": "E(#9#5)"
   },
   {
    "symbol": "A(b9)",
@@ -155,11 +253,32 @@
    "up7_sharp": "E7"
   },
   {
+   "symbol": "A7#11",
+   "quality": "dom",
+   "degree_from_c": "VI",
+   "up3_flat": "C7#11",
+   "up7_sharp": "E7#11"
+  },
+  {
    "symbol": "A7#5",
    "quality": "dom",
    "degree_from_c": "VI",
    "up3_flat": "C7#5",
    "up7_sharp": "E7#5"
+  },
+  {
+   "symbol": "A7/3",
+   "quality": "dom",
+   "degree_from_c": "VI",
+   "up3_flat": "C7/3",
+   "up7_sharp": "E7/3"
+  },
+  {
+   "symbol": "A7/5",
+   "quality": "dom",
+   "degree_from_c": "VI",
+   "up3_flat": "C7/5",
+   "up7_sharp": "E7/5"
   },
   {
    "symbol": "A7b9",
@@ -183,6 +302,13 @@
    "up7_sharp": "E9"
   },
   {
+   "symbol": "A9#5",
+   "quality": "dom",
+   "degree_from_c": "VI",
+   "up3_flat": "C9#5",
+   "up7_sharp": "E9#5"
+  },
+  {
    "symbol": "Ab",
    "quality": "maj",
    "degree_from_c": "bVI",
@@ -197,11 +323,11 @@
    "up7_sharp": "D#(#5)"
   },
   {
-   "symbol": "Ab(b9)",
-   "quality": "dom",
+   "symbol": "Ab/3",
+   "quality": "maj",
    "degree_from_c": "bVI",
-   "up3_flat": "B(b9)",
-   "up7_sharp": "D#(b9)"
+   "up3_flat": "B/3",
+   "up7_sharp": "D#/3"
   },
   {
    "symbol": "Ab13",
@@ -218,11 +344,39 @@
    "up7_sharp": "D#6"
   },
   {
+   "symbol": "Ab6/3",
+   "quality": "maj",
+   "degree_from_c": "bVI",
+   "up3_flat": "B6/3",
+   "up7_sharp": "D#6/3"
+  },
+  {
+   "symbol": "Ab69",
+   "quality": "maj",
+   "degree_from_c": "bVI",
+   "up3_flat": "B69",
+   "up7_sharp": "D#69"
+  },
+  {
    "symbol": "Ab7",
    "quality": "dom",
    "degree_from_c": "bVI",
    "up3_flat": "B7",
    "up7_sharp": "D#7"
+  },
+  {
+   "symbol": "Ab7#5",
+   "quality": "dom",
+   "degree_from_c": "bVI",
+   "up3_flat": "B7#5",
+   "up7_sharp": "D#7#5"
+  },
+  {
+   "symbol": "Ab7#9#5",
+   "quality": "dom",
+   "degree_from_c": "bVI",
+   "up3_flat": "B7#9#5",
+   "up7_sharp": "D#7#9#5"
   },
   {
    "symbol": "Ab7(13)",
@@ -232,11 +386,53 @@
    "up7_sharp": "D#7(13)"
   },
   {
+   "symbol": "Ab7/3",
+   "quality": "dom",
+   "degree_from_c": "bVI",
+   "up3_flat": "B7/3",
+   "up7_sharp": "D#7/3"
+  },
+  {
+   "symbol": "Ab7/5",
+   "quality": "dom",
+   "degree_from_c": "bVI",
+   "up3_flat": "B7/5",
+   "up7_sharp": "D#7/5"
+  },
+  {
+   "symbol": "Ab7b5",
+   "quality": "dom",
+   "degree_from_c": "bVI",
+   "up3_flat": "B7b5",
+   "up7_sharp": "D#7b5"
+  },
+  {
+   "symbol": "Ab7b9",
+   "quality": "dom",
+   "degree_from_c": "bVI",
+   "up3_flat": "B7b9",
+   "up7_sharp": "D#7b9"
+  },
+  {
    "symbol": "Ab9",
    "quality": "dom",
    "degree_from_c": "bVI",
    "up3_flat": "B9",
    "up7_sharp": "D#9"
+  },
+  {
+   "symbol": "Ab9#11",
+   "quality": "dom",
+   "degree_from_c": "bVI",
+   "up3_flat": "B9#11",
+   "up7_sharp": "D#9#11"
+  },
+  {
+   "symbol": "Ab9#5",
+   "quality": "dom",
+   "degree_from_c": "bVI",
+   "up3_flat": "B9#5",
+   "up7_sharp": "D#9#5"
   },
   {
    "symbol": "Ab9b5",
@@ -251,6 +447,13 @@
    "degree_from_c": "bvi",
    "up3_flat": "Bm",
    "up7_sharp": "D#m"
+  },
+  {
+   "symbol": "Abm/3",
+   "quality": "min",
+   "degree_from_c": "bvi",
+   "up3_flat": "Bm/3",
+   "up7_sharp": "D#m/3"
   },
   {
    "symbol": "Abm6",
@@ -279,6 +482,13 @@
    "degree_from_c": "bVI",
    "up3_flat": "Bmaj7",
    "up7_sharp": "D#maj7"
+  },
+  {
+   "symbol": "Abmaj7/3",
+   "quality": "maj",
+   "degree_from_c": "bVI",
+   "up3_flat": "Bmaj7/3",
+   "up7_sharp": "D#maj7/3"
   },
   {
    "symbol": "Abo7",
@@ -314,6 +524,13 @@
    "degree_from_c": "vi",
    "up3_flat": "Cm7",
    "up7_sharp": "Em7"
+  },
+  {
+   "symbol": "Am7/4",
+   "quality": "min",
+   "degree_from_c": "vi",
+   "up3_flat": "Cm7/4",
+   "up7_sharp": "Em7/4"
   },
   {
    "symbol": "Am7b5",
@@ -386,11 +603,32 @@
    "up7_sharp": "F#7#5"
   },
   {
+   "symbol": "B7/5",
+   "quality": "dom",
+   "degree_from_c": "VII",
+   "up3_flat": "D7/5",
+   "up7_sharp": "F#7/5"
+  },
+  {
+   "symbol": "B7/7",
+   "quality": "dom",
+   "degree_from_c": "VII",
+   "up3_flat": "D7/7",
+   "up7_sharp": "F#7/7"
+  },
+  {
    "symbol": "B7b5",
    "quality": "dom",
    "degree_from_c": "VII",
    "up3_flat": "D7b5",
    "up7_sharp": "F#7b5"
+  },
+  {
+   "symbol": "B7b9",
+   "quality": "dom",
+   "degree_from_c": "VII",
+   "up3_flat": "D7b9",
+   "up7_sharp": "F#7b9"
   },
   {
    "symbol": "B9",
@@ -421,18 +659,25 @@
    "up7_sharp": "F"
   },
   {
-   "symbol": "Bb(#5#9)",
-   "quality": "dom",
+   "symbol": "Bb(#5)",
+   "quality": "aug",
    "degree_from_c": "bVII",
-   "up3_flat": "Db(#5#9)",
-   "up7_sharp": "F(#5#9)"
+   "up3_flat": "Db(#5)",
+   "up7_sharp": "F(#5)"
   },
   {
-   "symbol": "Bb(#5b9)",
+   "symbol": "Bb(#9#5)",
    "quality": "dom",
    "degree_from_c": "bVII",
-   "up3_flat": "Db(#5b9)",
-   "up7_sharp": "F(#5b9)"
+   "up3_flat": "Db(#9#5)",
+   "up7_sharp": "F(#9#5)"
+  },
+  {
+   "symbol": "Bb(b9#5)",
+   "quality": "dom",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db(b9#5)",
+   "up7_sharp": "F(b9#5)"
   },
   {
    "symbol": "Bb(b9)",
@@ -442,11 +687,39 @@
    "up7_sharp": "F(b9)"
   },
   {
+   "symbol": "Bb/3",
+   "quality": "maj",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db/3",
+   "up7_sharp": "F/3"
+  },
+  {
+   "symbol": "Bb/5",
+   "quality": "maj",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db/5",
+   "up7_sharp": "F/5"
+  },
+  {
    "symbol": "Bb13",
    "quality": "dom",
    "degree_from_c": "bVII",
    "up3_flat": "Db13",
    "up7_sharp": "F13"
+  },
+  {
+   "symbol": "Bb13b9",
+   "quality": "dom",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db13b9",
+   "up7_sharp": "F13b9"
+  },
+  {
+   "symbol": "Bb13b9/4",
+   "quality": "dom",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db13b9/4",
+   "up7_sharp": "F13b9/4"
   },
   {
    "symbol": "Bb6",
@@ -477,6 +750,13 @@
    "up7_sharp": "F7#5"
   },
   {
+   "symbol": "Bb7#9#5",
+   "quality": "dom",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db7#9#5",
+   "up7_sharp": "F7#9#5"
+  },
+  {
    "symbol": "Bb7(13)",
    "quality": "dom",
    "degree_from_c": "bVII",
@@ -484,11 +764,67 @@
    "up7_sharp": "F7(13)"
   },
   {
+   "symbol": "Bb7/3",
+   "quality": "dom",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db7/3",
+   "up7_sharp": "F7/3"
+  },
+  {
+   "symbol": "Bb7/5",
+   "quality": "dom",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db7/5",
+   "up7_sharp": "F7/5"
+  },
+  {
+   "symbol": "Bb7b5",
+   "quality": "dom",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db7b5",
+   "up7_sharp": "F7b5"
+  },
+  {
+   "symbol": "Bb7b9",
+   "quality": "dom",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db7b9",
+   "up7_sharp": "F7b9"
+  },
+  {
+   "symbol": "Bb7b9#5",
+   "quality": "dom",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db7b9#5",
+   "up7_sharp": "F7b9#5"
+  },
+  {
    "symbol": "Bb9",
    "quality": "dom",
    "degree_from_c": "bVII",
    "up3_flat": "Db9",
    "up7_sharp": "F9"
+  },
+  {
+   "symbol": "Bb9#11",
+   "quality": "dom",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db9#11",
+   "up7_sharp": "F9#11"
+  },
+  {
+   "symbol": "Bb9#5",
+   "quality": "dom",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db9#5",
+   "up7_sharp": "F9#5"
+  },
+  {
+   "symbol": "Bb9b5",
+   "quality": "dom",
+   "degree_from_c": "bVII",
+   "up3_flat": "Db9b5",
+   "up7_sharp": "F9b5"
   },
   {
    "symbol": "Bbm",
@@ -519,11 +855,25 @@
    "up7_sharp": "Fm7"
   },
   {
+   "symbol": "Bbm7/4",
+   "quality": "min",
+   "degree_from_c": "bvii",
+   "up3_flat": "Dbm7/4",
+   "up7_sharp": "Fm7/4"
+  },
+  {
    "symbol": "Bbm7b5",
    "quality": "m7b5",
    "degree_from_c": "bvii",
    "up3_flat": "Dbm7b5",
    "up7_sharp": "Fm7b5"
+  },
+  {
+   "symbol": "Bbm9",
+   "quality": "min",
+   "degree_from_c": "bvii",
+   "up3_flat": "Dbm9",
+   "up7_sharp": "Fm9"
   },
   {
    "symbol": "Bbm9b5",
@@ -559,6 +909,13 @@
    "degree_from_c": "vii",
    "up3_flat": "Dm7",
    "up7_sharp": "F#m7"
+  },
+  {
+   "symbol": "Bm7/4",
+   "quality": "min",
+   "degree_from_c": "vii",
+   "up3_flat": "Dm7/4",
+   "up7_sharp": "F#m7/4"
   },
   {
    "symbol": "Bm7b5",
@@ -631,6 +988,20 @@
    "up7_sharp": "G(b9b13)"
   },
   {
+   "symbol": "C/3",
+   "quality": "maj",
+   "degree_from_c": "I",
+   "up3_flat": "Eb/3",
+   "up7_sharp": "G/3"
+  },
+  {
+   "symbol": "C/5",
+   "quality": "maj",
+   "degree_from_c": "I",
+   "up3_flat": "Eb/5",
+   "up7_sharp": "G/5"
+  },
+  {
    "symbol": "C13",
    "quality": "dom",
    "degree_from_c": "I",
@@ -666,6 +1037,13 @@
    "up7_sharp": "G7#5"
   },
   {
+   "symbol": "C7#9#5",
+   "quality": "dom",
+   "degree_from_c": "I",
+   "up3_flat": "Eb7#9#5",
+   "up7_sharp": "G7#9#5"
+  },
+  {
    "symbol": "C7(13)",
    "quality": "dom",
    "degree_from_c": "I",
@@ -673,11 +1051,53 @@
    "up7_sharp": "G7(13)"
   },
   {
+   "symbol": "C7/3",
+   "quality": "dom",
+   "degree_from_c": "I",
+   "up3_flat": "Eb7/3",
+   "up7_sharp": "G7/3"
+  },
+  {
+   "symbol": "C7/5",
+   "quality": "dom",
+   "degree_from_c": "I",
+   "up3_flat": "Eb7/5",
+   "up7_sharp": "G7/5"
+  },
+  {
    "symbol": "C7b5",
    "quality": "dom",
    "degree_from_c": "I",
    "up3_flat": "Eb7b5",
    "up7_sharp": "G7b5"
+  },
+  {
+   "symbol": "C7b9",
+   "quality": "dom",
+   "degree_from_c": "I",
+   "up3_flat": "Eb7b9",
+   "up7_sharp": "G7b9"
+  },
+  {
+   "symbol": "C7b9#5",
+   "quality": "dom",
+   "degree_from_c": "I",
+   "up3_flat": "Eb7b9#5",
+   "up7_sharp": "G7b9#5"
+  },
+  {
+   "symbol": "C7b9/3",
+   "quality": "dom",
+   "degree_from_c": "I",
+   "up3_flat": "Eb7b9/3",
+   "up7_sharp": "G7b9/3"
+  },
+  {
+   "symbol": "C7sus4",
+   "quality": "sus",
+   "degree_from_c": "I",
+   "up3_flat": "Eb7sus4",
+   "up7_sharp": "G7sus4"
   },
   {
    "symbol": "C9",
@@ -715,6 +1135,13 @@
    "up7_sharp": "G9sus4"
   },
   {
+   "symbol": "Cb7",
+   "quality": "dom",
+   "degree_from_c": "VII",
+   "up3_flat": "D7",
+   "up7_sharp": "F#7"
+  },
+  {
    "symbol": "Cm",
    "quality": "min",
    "degree_from_c": "i",
@@ -736,11 +1163,32 @@
    "up7_sharp": "Gm(maj7)"
   },
   {
+   "symbol": "Cm(maj7)/4",
+   "quality": "min",
+   "degree_from_c": "i",
+   "up3_flat": "Ebm(maj7)/4",
+   "up7_sharp": "Gm(maj7)/4"
+  },
+  {
+   "symbol": "Cm/5",
+   "quality": "min",
+   "degree_from_c": "i",
+   "up3_flat": "Ebm/5",
+   "up7_sharp": "Gm/5"
+  },
+  {
    "symbol": "Cm6",
    "quality": "min",
    "degree_from_c": "i",
    "up3_flat": "Ebm6",
    "up7_sharp": "Gm6"
+  },
+  {
+   "symbol": "Cm6/3",
+   "quality": "min",
+   "degree_from_c": "i",
+   "up3_flat": "Ebm6/3",
+   "up7_sharp": "Gm6/3"
   },
   {
    "symbol": "Cm7",
@@ -750,6 +1198,20 @@
    "up7_sharp": "Gm7"
   },
   {
+   "symbol": "Cm7/4",
+   "quality": "min",
+   "degree_from_c": "i",
+   "up3_flat": "Ebm7/4",
+   "up7_sharp": "Gm7/4"
+  },
+  {
+   "symbol": "Cm7/5",
+   "quality": "min",
+   "degree_from_c": "i",
+   "up3_flat": "Ebm7/5",
+   "up7_sharp": "Gm7/5"
+  },
+  {
    "symbol": "Cm7b5",
    "quality": "m7b5",
    "degree_from_c": "i",
@@ -757,11 +1219,25 @@
    "up7_sharp": "Gm7b5"
   },
   {
+   "symbol": "Cm9",
+   "quality": "min",
+   "degree_from_c": "i",
+   "up3_flat": "Ebm9",
+   "up7_sharp": "Gm9"
+  },
+  {
    "symbol": "Cmaj7",
    "quality": "maj",
    "degree_from_c": "I",
    "up3_flat": "Ebmaj7",
    "up7_sharp": "Gmaj7"
+  },
+  {
+   "symbol": "Cmaj7/5",
+   "quality": "maj",
+   "degree_from_c": "I",
+   "up3_flat": "Ebmaj7/5",
+   "up7_sharp": "Gmaj7/5"
   },
   {
    "symbol": "Co7",
@@ -792,6 +1268,20 @@
    "up7_sharp": "A(b9)"
   },
   {
+   "symbol": "D/5",
+   "quality": "maj",
+   "degree_from_c": "II",
+   "up3_flat": "F/5",
+   "up7_sharp": "A/5"
+  },
+  {
+   "symbol": "D13",
+   "quality": "dom",
+   "degree_from_c": "II",
+   "up3_flat": "F13",
+   "up7_sharp": "A13"
+  },
+  {
    "symbol": "D6",
    "quality": "maj",
    "degree_from_c": "II",
@@ -820,13 +1310,6 @@
    "up7_sharp": "A7#5"
   },
   {
-   "symbol": "D7#5b9",
-   "quality": "dom",
-   "degree_from_c": "II",
-   "up3_flat": "F7#5b9",
-   "up7_sharp": "A7#5b9"
-  },
-  {
    "symbol": "D7(13)",
    "quality": "dom",
    "degree_from_c": "II",
@@ -834,11 +1317,53 @@
    "up7_sharp": "A7(13)"
   },
   {
+   "symbol": "D7/3",
+   "quality": "dom",
+   "degree_from_c": "II",
+   "up3_flat": "F7/3",
+   "up7_sharp": "A7/3"
+  },
+  {
+   "symbol": "D7/5",
+   "quality": "dom",
+   "degree_from_c": "II",
+   "up3_flat": "F7/5",
+   "up7_sharp": "A7/5"
+  },
+  {
+   "symbol": "D7/7",
+   "quality": "dom",
+   "degree_from_c": "II",
+   "up3_flat": "F7/7",
+   "up7_sharp": "A7/7"
+  },
+  {
+   "symbol": "D7b5",
+   "quality": "dom",
+   "degree_from_c": "II",
+   "up3_flat": "F7b5",
+   "up7_sharp": "A7b5"
+  },
+  {
    "symbol": "D7b9",
    "quality": "dom",
    "degree_from_c": "II",
    "up3_flat": "F7b9",
    "up7_sharp": "A7b9"
+  },
+  {
+   "symbol": "D7b9#5",
+   "quality": "dom",
+   "degree_from_c": "II",
+   "up3_flat": "F7b9#5",
+   "up7_sharp": "A7b9#5"
+  },
+  {
+   "symbol": "D7sus4",
+   "quality": "sus",
+   "degree_from_c": "II",
+   "up3_flat": "F7sus4",
+   "up7_sharp": "A7sus4"
   },
   {
    "symbol": "D9",
@@ -869,6 +1394,13 @@
    "up7_sharp": "A9(13)"
   },
   {
+   "symbol": "D9/5",
+   "quality": "dom",
+   "degree_from_c": "II",
+   "up3_flat": "F9/5",
+   "up7_sharp": "A9/5"
+  },
+  {
    "symbol": "D9b5",
    "quality": "dom",
    "degree_from_c": "II",
@@ -890,6 +1422,13 @@
    "up7_sharp": "G#(#9)"
   },
   {
+   "symbol": "Db/5",
+   "quality": "maj",
+   "degree_from_c": "bII",
+   "up3_flat": "E/5",
+   "up7_sharp": "G#/5"
+  },
+  {
    "symbol": "Db13",
    "quality": "dom",
    "degree_from_c": "bII",
@@ -902,6 +1441,13 @@
    "degree_from_c": "bII",
    "up3_flat": "E6",
    "up7_sharp": "G#6"
+  },
+  {
+   "symbol": "Db6/3",
+   "quality": "maj",
+   "degree_from_c": "bII",
+   "up3_flat": "E6/3",
+   "up7_sharp": "G#6/3"
   },
   {
    "symbol": "Db69",
@@ -918,6 +1464,20 @@
    "up7_sharp": "G#7"
   },
   {
+   "symbol": "Db7/3",
+   "quality": "dom",
+   "degree_from_c": "bII",
+   "up3_flat": "E7/3",
+   "up7_sharp": "G#7/3"
+  },
+  {
+   "symbol": "Db7/5",
+   "quality": "dom",
+   "degree_from_c": "bII",
+   "up3_flat": "E7/5",
+   "up7_sharp": "G#7/5"
+  },
+  {
    "symbol": "Db9",
    "quality": "dom",
    "degree_from_c": "bII",
@@ -932,11 +1492,11 @@
    "up7_sharp": "G#9#11"
   },
   {
-   "symbol": "Dbm",
+   "symbol": "Dbm/3",
    "quality": "min",
    "degree_from_c": "bii",
-   "up3_flat": "Em",
-   "up7_sharp": "G#m"
+   "up3_flat": "Em/3",
+   "up7_sharp": "G#m/3"
   },
   {
    "symbol": "Dbm6",
@@ -951,6 +1511,13 @@
    "degree_from_c": "bii",
    "up3_flat": "Em7",
    "up7_sharp": "G#m7"
+  },
+  {
+   "symbol": "Dbm9",
+   "quality": "min",
+   "degree_from_c": "bii",
+   "up3_flat": "Em9",
+   "up7_sharp": "G#m9"
   },
   {
    "symbol": "Dbmaj7",
@@ -981,6 +1548,27 @@
    "up7_sharp": "Am(maj7)"
   },
   {
+   "symbol": "Dm(maj7)/7",
+   "quality": "min",
+   "degree_from_c": "ii",
+   "up3_flat": "Fm(maj7)/7",
+   "up7_sharp": "Am(maj7)/7"
+  },
+  {
+   "symbol": "Dm/3",
+   "quality": "min",
+   "degree_from_c": "ii",
+   "up3_flat": "Fm/3",
+   "up7_sharp": "Am/3"
+  },
+  {
+   "symbol": "Dm/5",
+   "quality": "min",
+   "degree_from_c": "ii",
+   "up3_flat": "Fm/5",
+   "up7_sharp": "Am/5"
+  },
+  {
    "symbol": "Dm6",
    "quality": "min",
    "degree_from_c": "ii",
@@ -988,11 +1576,39 @@
    "up7_sharp": "Am6"
   },
   {
+   "symbol": "Dm6/6",
+   "quality": "min",
+   "degree_from_c": "ii",
+   "up3_flat": "Fm6/6",
+   "up7_sharp": "Am6/6"
+  },
+  {
    "symbol": "Dm7",
    "quality": "min",
    "degree_from_c": "ii",
    "up3_flat": "Fm7",
    "up7_sharp": "Am7"
+  },
+  {
+   "symbol": "Dm7/4",
+   "quality": "min",
+   "degree_from_c": "ii",
+   "up3_flat": "Fm7/4",
+   "up7_sharp": "Am7/4"
+  },
+  {
+   "symbol": "Dm7/5",
+   "quality": "min",
+   "degree_from_c": "ii",
+   "up3_flat": "Fm7/5",
+   "up7_sharp": "Am7/5"
+  },
+  {
+   "symbol": "Dm7/7",
+   "quality": "min",
+   "degree_from_c": "ii",
+   "up3_flat": "Fm7/7",
+   "up7_sharp": "Am7/7"
   },
   {
    "symbol": "Dm7b5",
@@ -1007,6 +1623,20 @@
    "degree_from_c": "ii",
    "up3_flat": "Fm9",
    "up7_sharp": "Am9"
+  },
+  {
+   "symbol": "Dm9#11",
+   "quality": "min",
+   "degree_from_c": "ii",
+   "up3_flat": "Fm9#11",
+   "up7_sharp": "Am9#11"
+  },
+  {
+   "symbol": "Dm9/4",
+   "quality": "min",
+   "degree_from_c": "ii",
+   "up3_flat": "Fm9/4",
+   "up7_sharp": "Am9/4"
   },
   {
    "symbol": "Dmaj7",
@@ -1037,6 +1667,13 @@
    "up7_sharp": "B(b9)"
   },
   {
+   "symbol": "E/3",
+   "quality": "maj",
+   "degree_from_c": "III",
+   "up3_flat": "G/3",
+   "up7_sharp": "B/3"
+  },
+  {
    "symbol": "E6",
    "quality": "maj",
    "degree_from_c": "III",
@@ -1056,6 +1693,27 @@
    "degree_from_c": "III",
    "up3_flat": "G7#5",
    "up7_sharp": "B7#5"
+  },
+  {
+   "symbol": "E7/5",
+   "quality": "dom",
+   "degree_from_c": "III",
+   "up3_flat": "G7/5",
+   "up7_sharp": "B7/5"
+  },
+  {
+   "symbol": "E7b9",
+   "quality": "dom",
+   "degree_from_c": "III",
+   "up3_flat": "G7b9",
+   "up7_sharp": "B7b9"
+  },
+  {
+   "symbol": "E7b9/5",
+   "quality": "dom",
+   "degree_from_c": "III",
+   "up3_flat": "G7b9/5",
+   "up7_sharp": "B7b9/5"
   },
   {
    "symbol": "E9",
@@ -1100,11 +1758,46 @@
    "up7_sharp": "A#(b9)"
   },
   {
+   "symbol": "Eb/3",
+   "quality": "maj",
+   "degree_from_c": "bIII",
+   "up3_flat": "Gb/3",
+   "up7_sharp": "A#/3"
+  },
+  {
+   "symbol": "Eb/5",
+   "quality": "maj",
+   "degree_from_c": "bIII",
+   "up3_flat": "Gb/5",
+   "up7_sharp": "A#/5"
+  },
+  {
+   "symbol": "Eb13",
+   "quality": "dom",
+   "degree_from_c": "bIII",
+   "up3_flat": "Gb13",
+   "up7_sharp": "A#13"
+  },
+  {
    "symbol": "Eb6",
    "quality": "maj",
    "degree_from_c": "bIII",
    "up3_flat": "Gb6",
    "up7_sharp": "A#6"
+  },
+  {
+   "symbol": "Eb6/5",
+   "quality": "maj",
+   "degree_from_c": "bIII",
+   "up3_flat": "Gb6/5",
+   "up7_sharp": "A#6/5"
+  },
+  {
+   "symbol": "Eb69",
+   "quality": "maj",
+   "degree_from_c": "bIII",
+   "up3_flat": "Gb69",
+   "up7_sharp": "A#69"
   },
   {
    "symbol": "Eb7",
@@ -1119,6 +1812,20 @@
    "degree_from_c": "bIII",
    "up3_flat": "Gb7#11",
    "up7_sharp": "A#7#11"
+  },
+  {
+   "symbol": "Eb7/5",
+   "quality": "dom",
+   "degree_from_c": "bIII",
+   "up3_flat": "Gb7/5",
+   "up7_sharp": "A#7/5"
+  },
+  {
+   "symbol": "Eb7b9",
+   "quality": "dom",
+   "degree_from_c": "bIII",
+   "up3_flat": "Gb7b9",
+   "up7_sharp": "A#7b9"
   },
   {
    "symbol": "Eb7sus4",
@@ -1163,6 +1870,13 @@
    "up7_sharp": "A#m(maj7)"
   },
   {
+   "symbol": "Ebm/3",
+   "quality": "min",
+   "degree_from_c": "biii",
+   "up3_flat": "Gbm/3",
+   "up7_sharp": "A#m/3"
+  },
+  {
    "symbol": "Ebm6",
    "quality": "min",
    "degree_from_c": "biii",
@@ -1170,11 +1884,25 @@
    "up7_sharp": "A#m6"
   },
   {
+   "symbol": "Ebm6/3",
+   "quality": "min",
+   "degree_from_c": "biii",
+   "up3_flat": "Gbm6/3",
+   "up7_sharp": "A#m6/3"
+  },
+  {
    "symbol": "Ebm7",
    "quality": "min",
    "degree_from_c": "biii",
    "up3_flat": "Gbm7",
    "up7_sharp": "A#m7"
+  },
+  {
+   "symbol": "Ebm7b5",
+   "quality": "m7b5",
+   "degree_from_c": "biii",
+   "up3_flat": "Gbm7b5",
+   "up7_sharp": "A#m7b5"
   },
   {
    "symbol": "Ebmaj7",
@@ -1203,6 +1931,13 @@
    "degree_from_c": "iii",
    "up3_flat": "Gm(maj7)",
    "up7_sharp": "Bm(maj7)"
+  },
+  {
+   "symbol": "Em/3",
+   "quality": "min",
+   "degree_from_c": "iii",
+   "up3_flat": "Gm/3",
+   "up7_sharp": "Bm/3"
   },
   {
    "symbol": "Em11",
@@ -1254,6 +1989,13 @@
    "up7_sharp": "Bo7"
   },
   {
+   "symbol": "Eo7/5",
+   "quality": "dim",
+   "degree_from_c": "iii",
+   "up3_flat": "Go7/5",
+   "up7_sharp": "Bo7/5"
+  },
+  {
    "symbol": "F",
    "quality": "maj",
    "degree_from_c": "IV",
@@ -1275,11 +2017,32 @@
    "up7_sharp": "C#7"
   },
   {
+   "symbol": "F#7/5",
+   "quality": "dom",
+   "degree_from_c": "#IV",
+   "up3_flat": "A7/5",
+   "up7_sharp": "C#7/5"
+  },
+  {
+   "symbol": "F#7b9",
+   "quality": "dom",
+   "degree_from_c": "#IV",
+   "up3_flat": "A7b9",
+   "up7_sharp": "C#7b9"
+  },
+  {
    "symbol": "F#9",
    "quality": "dom",
    "degree_from_c": "#IV",
    "up3_flat": "A9",
    "up7_sharp": "C#9"
+  },
+  {
+   "symbol": "F#9b5",
+   "quality": "dom",
+   "degree_from_c": "#IV",
+   "up3_flat": "A9b5",
+   "up7_sharp": "C#9b5"
   },
   {
    "symbol": "F#m7",
@@ -1317,11 +2080,32 @@
    "up7_sharp": "C(b9)"
   },
   {
+   "symbol": "F/3",
+   "quality": "maj",
+   "degree_from_c": "IV",
+   "up3_flat": "Ab/3",
+   "up7_sharp": "C/3"
+  },
+  {
+   "symbol": "F/5",
+   "quality": "maj",
+   "degree_from_c": "IV",
+   "up3_flat": "Ab/5",
+   "up7_sharp": "C/5"
+  },
+  {
    "symbol": "F6",
    "quality": "maj",
    "degree_from_c": "IV",
    "up3_flat": "Ab6",
    "up7_sharp": "C6"
+  },
+  {
+   "symbol": "F6/5",
+   "quality": "maj",
+   "degree_from_c": "IV",
+   "up3_flat": "Ab6/5",
+   "up7_sharp": "C6/5"
   },
   {
    "symbol": "F69",
@@ -1345,6 +2129,20 @@
    "up7_sharp": "C7#5"
   },
   {
+   "symbol": "F7/3",
+   "quality": "dom",
+   "degree_from_c": "IV",
+   "up3_flat": "Ab7/3",
+   "up7_sharp": "C7/3"
+  },
+  {
+   "symbol": "F7/5",
+   "quality": "dom",
+   "degree_from_c": "IV",
+   "up3_flat": "Ab7/5",
+   "up7_sharp": "C7/5"
+  },
+  {
    "symbol": "F7alt",
    "quality": "dom",
    "degree_from_c": "IV",
@@ -1352,11 +2150,25 @@
    "up7_sharp": "C7alt"
   },
   {
+   "symbol": "F7b9",
+   "quality": "dom",
+   "degree_from_c": "IV",
+   "up3_flat": "Ab7b9",
+   "up7_sharp": "C7b9"
+  },
+  {
    "symbol": "F9",
    "quality": "dom",
    "degree_from_c": "IV",
    "up3_flat": "Ab9",
    "up7_sharp": "C9"
+  },
+  {
+   "symbol": "F9#11",
+   "quality": "dom",
+   "degree_from_c": "IV",
+   "up3_flat": "Ab9#11",
+   "up7_sharp": "C9#11"
   },
   {
    "symbol": "F9b5",
@@ -1380,6 +2192,13 @@
    "up7_sharp": "Cm(maj7)"
   },
   {
+   "symbol": "Fm/3",
+   "quality": "min",
+   "degree_from_c": "iv",
+   "up3_flat": "Abm/3",
+   "up7_sharp": "Cm/3"
+  },
+  {
    "symbol": "Fm11",
    "quality": "min",
    "degree_from_c": "iv",
@@ -1394,11 +2213,32 @@
    "up7_sharp": "Cm6"
   },
   {
+   "symbol": "Fm6/3",
+   "quality": "min",
+   "degree_from_c": "iv",
+   "up3_flat": "Abm6/3",
+   "up7_sharp": "Cm6/3"
+  },
+  {
    "symbol": "Fm7",
    "quality": "min",
    "degree_from_c": "iv",
    "up3_flat": "Abm7",
    "up7_sharp": "Cm7"
+  },
+  {
+   "symbol": "Fm7/4",
+   "quality": "min",
+   "degree_from_c": "iv",
+   "up3_flat": "Abm7/4",
+   "up7_sharp": "Cm7/4"
+  },
+  {
+   "symbol": "Fm7/7",
+   "quality": "min",
+   "degree_from_c": "iv",
+   "up3_flat": "Abm7/7",
+   "up7_sharp": "Cm7/7"
   },
   {
    "symbol": "Fm7b5",
@@ -1436,11 +2276,25 @@
    "up7_sharp": "D"
   },
   {
+   "symbol": "G#m7",
+   "quality": "min",
+   "degree_from_c": "bvi",
+   "up3_flat": "Bm7",
+   "up7_sharp": "D#m7"
+  },
+  {
    "symbol": "G#m7b5",
    "quality": "m7b5",
    "degree_from_c": "bvi",
    "up3_flat": "Bm7b5",
    "up7_sharp": "D#m7b5"
+  },
+  {
+   "symbol": "G#maj7",
+   "quality": "maj",
+   "degree_from_c": "bVI",
+   "up3_flat": "Bmaj7",
+   "up7_sharp": "D#maj7"
   },
   {
    "symbol": "G#o7",
@@ -1450,11 +2304,25 @@
    "up7_sharp": "D#o7"
   },
   {
+   "symbol": "G(#5)",
+   "quality": "aug",
+   "degree_from_c": "V",
+   "up3_flat": "Bb(#5)",
+   "up7_sharp": "D(#5)"
+  },
+  {
    "symbol": "G(b9)",
    "quality": "dom",
    "degree_from_c": "V",
    "up3_flat": "Bb(b9)",
    "up7_sharp": "D(b9)"
+  },
+  {
+   "symbol": "G/5",
+   "quality": "maj",
+   "degree_from_c": "V",
+   "up3_flat": "Bb/5",
+   "up7_sharp": "D/5"
   },
   {
    "symbol": "G13",
@@ -1464,11 +2332,25 @@
    "up7_sharp": "D13"
   },
   {
+   "symbol": "G13b9",
+   "quality": "dom",
+   "degree_from_c": "V",
+   "up3_flat": "Bb13b9",
+   "up7_sharp": "D13b9"
+  },
+  {
    "symbol": "G6",
    "quality": "maj",
    "degree_from_c": "V",
    "up3_flat": "Bb6",
    "up7_sharp": "D6"
+  },
+  {
+   "symbol": "G6/3",
+   "quality": "maj",
+   "degree_from_c": "V",
+   "up3_flat": "Bb6/3",
+   "up7_sharp": "D6/3"
   },
   {
    "symbol": "G7",
@@ -1485,11 +2367,32 @@
    "up7_sharp": "D7#5"
   },
   {
-   "symbol": "G7#5b9",
+   "symbol": "G7(13)",
    "quality": "dom",
    "degree_from_c": "V",
-   "up3_flat": "Bb7#5b9",
-   "up7_sharp": "D7#5b9"
+   "up3_flat": "Bb7(13)",
+   "up7_sharp": "D7(13)"
+  },
+  {
+   "symbol": "G7/3",
+   "quality": "dom",
+   "degree_from_c": "V",
+   "up3_flat": "Bb7/3",
+   "up7_sharp": "D7/3"
+  },
+  {
+   "symbol": "G7/5",
+   "quality": "dom",
+   "degree_from_c": "V",
+   "up3_flat": "Bb7/5",
+   "up7_sharp": "D7/5"
+  },
+  {
+   "symbol": "G7/7",
+   "quality": "dom",
+   "degree_from_c": "V",
+   "up3_flat": "Bb7/7",
+   "up7_sharp": "D7/7"
   },
   {
    "symbol": "G7b5",
@@ -1497,6 +2400,20 @@
    "degree_from_c": "V",
    "up3_flat": "Bb7b5",
    "up7_sharp": "D7b5"
+  },
+  {
+   "symbol": "G7b9",
+   "quality": "dom",
+   "degree_from_c": "V",
+   "up3_flat": "Bb7b9",
+   "up7_sharp": "D7b9"
+  },
+  {
+   "symbol": "G7b9#5",
+   "quality": "dom",
+   "degree_from_c": "V",
+   "up3_flat": "Bb7b9#5",
+   "up7_sharp": "D7b9#5"
   },
   {
    "symbol": "G9",
@@ -1518,6 +2435,13 @@
    "degree_from_c": "V",
    "up3_flat": "Bb9(13)",
    "up7_sharp": "D9(13)"
+  },
+  {
+   "symbol": "G9b5",
+   "quality": "dom",
+   "degree_from_c": "V",
+   "up3_flat": "Bb9b5",
+   "up7_sharp": "D9b5"
   },
   {
    "symbol": "Gb",
@@ -1555,6 +2479,13 @@
    "up7_sharp": "C#7#5"
   },
   {
+   "symbol": "Gb7/5",
+   "quality": "dom",
+   "degree_from_c": "#IV",
+   "up3_flat": "A7/5",
+   "up7_sharp": "C#7/5"
+  },
+  {
    "symbol": "Gb7b5",
    "quality": "dom",
    "degree_from_c": "#IV",
@@ -1569,11 +2500,25 @@
    "up7_sharp": "C#9"
   },
   {
+   "symbol": "Gb9#5",
+   "quality": "dom",
+   "degree_from_c": "#IV",
+   "up3_flat": "A9#5",
+   "up7_sharp": "C#9#5"
+  },
+  {
    "symbol": "Gbm",
    "quality": "min",
    "degree_from_c": "#iv",
    "up3_flat": "Am",
    "up7_sharp": "C#m"
+  },
+  {
+   "symbol": "Gbm7",
+   "quality": "min",
+   "degree_from_c": "#iv",
+   "up3_flat": "Am7",
+   "up7_sharp": "C#m7"
   },
   {
    "symbol": "Gbmaj7",
@@ -1611,6 +2556,13 @@
    "up7_sharp": "Dm(maj7)"
   },
   {
+   "symbol": "Gm/3",
+   "quality": "min",
+   "degree_from_c": "v",
+   "up3_flat": "Bbm/3",
+   "up7_sharp": "Dm/3"
+  },
+  {
    "symbol": "Gm6",
    "quality": "min",
    "degree_from_c": "v",
@@ -1625,6 +2577,20 @@
    "up7_sharp": "Dm7"
   },
   {
+   "symbol": "Gm7(11)",
+   "quality": "min",
+   "degree_from_c": "v",
+   "up3_flat": "Bbm7(11)",
+   "up7_sharp": "Dm7(11)"
+  },
+  {
+   "symbol": "Gm7/4",
+   "quality": "min",
+   "degree_from_c": "v",
+   "up3_flat": "Bbm7/4",
+   "up7_sharp": "Dm7/4"
+  },
+  {
    "symbol": "Gm7b5",
    "quality": "m7b5",
    "degree_from_c": "v",
@@ -1632,11 +2598,25 @@
    "up7_sharp": "Dm7b5"
   },
   {
+   "symbol": "Gm7b5/4",
+   "quality": "m7b5",
+   "degree_from_c": "v",
+   "up3_flat": "Bbm7b5/4",
+   "up7_sharp": "Dm7b5/4"
+  },
+  {
    "symbol": "Gm9",
    "quality": "min",
    "degree_from_c": "v",
    "up3_flat": "Bbm9",
    "up7_sharp": "Dm9"
+  },
+  {
+   "symbol": "Gm9/4",
+   "quality": "min",
+   "degree_from_c": "v",
+   "up3_flat": "Bbm9/4",
+   "up7_sharp": "Dm9/4"
   },
   {
    "symbol": "Gmaj7",

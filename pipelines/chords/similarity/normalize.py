@@ -113,7 +113,7 @@ def parse_chord(symbol: str) -> Chord:
     alts = (m.group("balts") or "") + (m.group("palts") or "").strip("()")
 
     # Alteration-driven reclassification of bare triads:
-    #   F(#5)/F+ style  -> aug; F(b9), D(b9), A(#5#9) -> implied dominant.
+    #   F(#5)/F+ style  -> aug; F(b9), D(b9), A(#9#5) -> implied dominant.
     if quality == "maj" and stem == "" and not m.group("pext"):
         if re.search(r"b9|#9|#11|b13", alts):
             quality = "dom"

@@ -25,7 +25,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "C7#5#9"
+          "1": "C7#9#5"
         }
       },
       {
@@ -37,7 +37,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Bb7#5#9"
+          "1": "Bb7#9#5"
         }
       },
       {
@@ -49,7 +49,7 @@
       {
         "bar": 6,
         "beats": {
-          "1": "Ab7#5#9"
+          "1": "Ab7#9#5"
         }
       },
       {
@@ -75,7 +75,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "C7#5#9"
+          "1": "C7#9#5"
         }
       },
       {
@@ -87,7 +87,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Bb7#5#9"
+          "1": "Bb7#9#5"
         }
       },
       {
@@ -99,7 +99,7 @@
       {
         "bar": 6,
         "beats": {
-          "1": "Ab7#5#9"
+          "1": "Ab7#9#5"
         }
       },
       {
@@ -181,7 +181,7 @@
       {
         "bar": 2,
         "beats": {
-          "1": "C7#5#9"
+          "1": "C7#9#5"
         }
       },
       {
@@ -193,7 +193,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "Bb7#5#9"
+          "1": "Bb7#9#5"
         }
       },
       {
@@ -205,7 +205,7 @@
       {
         "bar": 6,
         "beats": {
-          "1": "Ab7#5#9"
+          "1": "Ab7#9#5"
         }
       },
       {
@@ -255,9 +255,9 @@
     ],
     "sections": {
       "A": "Descending ii(m7b5)-V(7alt) chains: iv-of relations landing on Dbmaj7 (I)",
-      "A1": "Repeat of A: m7b5-7#5#9 chain resolving to Dbmaj7 (I)",
+      "A1": "Repeat of A: m7b5-7#9#5 chain resolving to Dbmaj7 (I)",
       "B": "ii-V-I in Gb (Abm7-Db7-Gbmaj7) then Bbm7-Eb7 leading to Ab7 (V of Db)",
-      "A2": "Repeat of A: m7b5-7#5#9 chain resolving to Dbmaj7 (I)"
+      "A2": "Repeat of A: m7b5-7#9#5 chain resolving to Dbmaj7 (I)"
     },
     "modulates": true,
     "modulation_note": "bridge tonicizes Gb major (ii-V-I) then returns via Ab7 (V) to Db"
