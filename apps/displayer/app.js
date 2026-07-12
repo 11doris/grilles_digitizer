@@ -997,6 +997,15 @@
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
+  /* The printed section label (primes kept) from the tune's derived
+     `section_labels` — so an A' repeat reads "A'" and an exact repeat reads
+     "A", instead of the bare-letter collapse. Falls back to the letter when a
+     tune predates the label backfill. */
+  function sectionLabelOf(tune, name) {
+    const labels = tune && tune.section_labels;
+    return (labels && labels[name] != null) ? labels[name] : displaySectionName(name);
+  }
+
   /* A bar is a fixed grid of `beats` equal columns (one per beat). Each chord is
      anchored to its beat's column line and left-aligned there, spanning to the
      next chord's beat, so a beat sits at the same fraction of every bar's width
@@ -1069,11 +1078,11 @@
     return frag;
   }
 
-  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer, form) {
+  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer, form, label) {
     const sec = el("div", "section");
     sec.style.setProperty("--bxhue", sectionTint(name)); // section shading
     const badge = el("div", "sec-label");
-    badge.textContent = displaySectionName(name);
+    badge.textContent = label != null ? label : displaySectionName(name);
     if (form) {
       // First section: section letter left, form badge right, on one row.
       const head = el("div", "sec-head");
@@ -1271,7 +1280,7 @@
     blocks.forEach((blk) => {
       if (blk.kind === "aux") {
         const cap = el("div", "bx-caption");
-        cap.textContent = displaySectionName(blk.sections[0]);
+        cap.textContent = sectionLabelOf(tune, blk.sections[0]);
         wrap.appendChild(cap);
       } else if (blk.kind === "verse") {
         const cap = el("div", "bx-caption");
@@ -1298,9 +1307,10 @@
         // row); verse rows carry the letter after "verse_" (verse_A → A,
         // verse_A1 → A1); plain aux blocks stay unlabeled under their caption.
         const secRows = boxRowsOf(blk.kind === "chorus" ? name : null, bars);
-        if (blk.kind === "verse" && secRows.length) {
-          const letter = String(name).replace(/^verse_?/i, "");
-          if (letter) secRows[0].label = letter;
+        // Chorus and verse rows carry the printed label (primes kept) on their
+        // first lattice row; aux blocks stay unlabeled under their caption.
+        if (blk.kind !== "aux" && secRows.length) {
+          secRows[0].label = sectionLabelOf(tune, name);
         }
         secRows.forEach((r) => {
           r.beats = beats;
@@ -1401,7 +1411,7 @@
     Object.keys(sectionKeys).forEach((name) => {
       const label = displayKey(sectionKeys[name]);
       if (!label) return;
-      const shown = displaySectionName(name);
+      const shown = sectionLabelOf(tune, name);
       const dedupeKey = shown + "\u0000" + label;
       if (seenSection.has(dedupeKey)) return;
       seenSection.add(dedupeKey);
@@ -1742,7 +1752,7 @@
         const dl = el("dl", "harm-sections");
         for (const [name, desc] of Object.entries(fp.sections)) {
           const dt = el("dt");
-          dt.textContent = displaySectionName(name);
+          dt.textContent = sectionLabelOf(tune, name);
           const dd = el("dd");
           dd.textContent = desc;
           dl.append(dt, dd);
@@ -2474,7 +2484,7 @@
         row.innerHTML =
           scoreBadge(m.score) +
           `<span class="sim-title">${escapeHtml(
-            `${displaySectionName(m.section)} ≈ ${displaySectionName(m.other_section)}` +
+            `${sectionLabelOf(meta(t), m.section)} ≈ ${sectionLabelOf(meta(other), m.other_section)}` +
             ` of ${other.title || m.other}`)}</span>` +
           (local ? `<span class="sim-family">${escapeHtml(local)}</span>` : "");
         row.title = "open side-by-side comparison";
@@ -2541,7 +2551,8 @@
         return;
       }
       const secEl = renderSection(sec, bars, beats,
-        first, tune.time_signature, null, renderer);
+        first, tune.time_signature, null, renderer, undefined,
+        sectionLabelOf(tune, sec));
       /* Comparisons never use section shading (it would fight the accent
          highlight on the matched bars, PR #24); clear the hue so every bar
          sits on the plain background and only .sim-hl is tinted. */
@@ -2728,7 +2739,7 @@
              view. */
           grid.appendChild(renderSection(name, tune.sections[name], beats,
             i === 0, tune.time_signature, overrides[name], undefined,
-            i === 0 ? tune.form : null));
+            i === 0 ? tune.form : null, sectionLabelOf(tune, name)));
         });
         panel.appendChild(grid);
         panel.appendChild(renderBoxGrid(tune, overrides)); // book layout (hidden unless chosen)
