@@ -30,15 +30,17 @@
 
   /* ---------------------------------------------------- persisted settings */
 
-  let bpm = 140;
-  let pattern = "full"; // "full" (kit) | "taps" (ride pattern only)
+  let bpm = 110;
+  let pattern = "taps"; // "taps" (ride pattern only, default) | "full" (kit)
   let source = "synth"; // "synth" (rendered kit) | "loop" (real recording)
   let volume = 0.8;
+  let playhead = true; // moving cursor + bar highlight over the chord layout
   try {
     const b = parseInt(localStorage.getItem("grilles.brushBpm"), 10);
     if (Number.isFinite(b)) bpm = Math.min(BPM_MAX, Math.max(BPM_MIN, b));
-    if (localStorage.getItem("grilles.brushPattern") === "taps") pattern = "taps";
+    if (localStorage.getItem("grilles.brushPattern") === "full") pattern = "full";
     if (localStorage.getItem("grilles.brushSource") === "loop") source = "loop";
+    if (localStorage.getItem("grilles.brushPlayhead") === "off") playhead = false;
     const v = parseFloat(localStorage.getItem("grilles.brushVol"));
     if (Number.isFinite(v) && v >= 0 && v <= 1) volume = v;
   } catch (e) { /* ignore */ }
@@ -357,7 +359,9 @@
 
   function applyVisual(ev) {
     setDots(ev);
-    if (ev.count) {
+    /* The menu's beat dots keep pulsing; only the chord-layout cursor and bar
+       highlight are suppressed when the playhead is switched off. */
+    if (ev.count || !playhead) {
       clearPlayhead();
       return;
     }
@@ -477,6 +481,18 @@
   let dotNodes = [];
   let sliderEl = null;
   let numEl = null;
+  let playheadBtn = null;
+
+  function applyPlayhead(on) {
+    playhead = !!on;
+    persist("grilles.brushPlayhead", playhead ? "on" : "off");
+    if (playheadBtn) {
+      playheadBtn.classList.toggle("on", playhead);
+      playheadBtn.setAttribute("aria-pressed", String(playhead));
+      playheadBtn.textContent = playhead ? "On" : "Off";
+    }
+    if (!playhead) clearPlayhead(); // drop any current highlight right away
+  }
 
   function setDots(ev) {
     if (!dotsEl || menu.hidden) return;
@@ -649,6 +665,15 @@
     sourceHintEl = row("brush-hint");
     sourceHintEl.hidden = true;
 
+    const phRow = row();
+    phRow.insertAdjacentHTML("beforeend", '<span class="brush-lab">Playhead</span>');
+    playheadBtn = document.createElement("button");
+    playheadBtn.type = "button";
+    playheadBtn.className = "brush-toggle";
+    playheadBtn.setAttribute("aria-label", "Toggle the playhead indicator");
+    playheadBtn.addEventListener("click", () => applyPlayhead(!playhead));
+    phRow.appendChild(playheadBtn);
+
     const volRow = row();
     volRow.insertAdjacentHTML("beforeend", '<span class="brush-lab">Volume</span>');
     const vol = document.createElement("input");
@@ -666,6 +691,7 @@
 
     applyPattern(pattern);
     applySource(source);
+    applyPlayhead(playhead);
   }
 
   function positionMenu() {
@@ -676,8 +702,14 @@
     }
     menu.classList.remove("sheet");
     const r = bpmBtn.getBoundingClientRect();
-    menu.style.top = r.bottom + 6 + "px";
     const w = menu.offsetWidth;
+    const h = menu.offsetHeight;
+    /* The transport lives in the bottom footer, so drop the popover below the
+       button only when it fits; otherwise open it upward (it would fall off
+       the bottom of the viewport). */
+    const below = r.bottom + 6;
+    const top = below + h <= window.innerHeight - 8 ? below : r.top - 6 - h;
+    menu.style.top = Math.max(8, top) + "px";
     menu.style.left = Math.max(8, Math.min(r.right - w, window.innerWidth - w - 8)) + "px";
   }
 
