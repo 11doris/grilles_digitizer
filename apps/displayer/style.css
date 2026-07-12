@@ -2201,9 +2201,16 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 /* The comparison grids size themselves (no fit pass): a fixed readable font. */
 .grid.cmp-grid { font-size: 12px; max-width: none; }
 
-/* Aligned-bar highlighting from the engine's bar mapping. */
-.bar.sim-hl { background: color-mix(in srgb, var(--accent) 22%, transparent); }
-.bar.sim-hl-active { background: color-mix(in srgb, var(--accent) 55%, transparent); }
+/* Aligned-bar highlighting from the engine's bar mapping. No section shading in
+   comparisons — the accent-tinted matched bars carry the meaning — so these must
+   outweigh the `.section .bar:not(.empty)` background-color rule (incl. its dark
+   override), hence the deliberately specific selectors. */
+.cmp-grid .section .bar.sim-hl:not(.empty) {
+  background-color: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.cmp-grid .section .bar.sim-hl-active:not(.empty) {
+  background-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
 
 /* Roman-degree cells in the comparison's Degrees mode. */
 .chord.degree { font-weight: 400; letter-spacing: 0.02em; font-size: 2.1em;}

@@ -2358,6 +2358,10 @@
       }
       const secEl = renderSection(sec, bars, beats,
         first, tune.time_signature, null, renderer);
+      /* Comparisons never use section shading (it would fight the accent
+         highlight on the matched bars, PR #24); clear the hue so every bar
+         sits on the plain background and only .sim-hl is tinted. */
+      secEl.style.setProperty("--bxhue", "transparent");
       first = false;
       secEl.querySelectorAll(".bar:not(.empty)").forEach((cell) => {
         fbar++;
