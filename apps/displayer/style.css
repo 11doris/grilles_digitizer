@@ -113,6 +113,8 @@ body {
 #chordFilter,
 #playlistBtn,
 #playlistClear,
+#brushPlay,
+#brushBtn,
 #tintToggle {
   background: none;
   border: 1px solid var(--border);
@@ -132,6 +134,16 @@ body {
 #tintToggle { flex: none; }
 #tintToggle svg { width: 0.95rem; height: 0.95rem; fill: currentColor; vertical-align: -0.15rem; }
 #tintToggle.on { border-color: var(--accent); color: var(--accent); }
+
+/* Swing-brush practice transport (brushes.js): play/stop + ♩=BPM popover. */
+#brushPlay { flex: none; }
+#brushPlay.on { border-color: var(--accent); color: var(--accent); }
+#brushBtn {
+  flex: none;
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
 
 /* The playlist button carries the push-right margin (it sits left of ☾/☀). */
 #playlistBtn {
@@ -1580,6 +1592,106 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 .tag-row input { accent-color: var(--accent); }
 .tag-name { flex: 1; }
 .tag-count { color: var(--muted); font-size: 0.8rem; }
+
+/* Brush transport popover (brushes.js): tempo slider + BPM, tap tempo with
+   beat dots, pattern segment, volume. Same shell as the tag-filter menu. */
+#brushMenu {
+  position: fixed;
+  z-index: 60;
+  min-width: 17rem;
+  max-width: 22rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  padding: 0.5rem;
+}
+#brushMenu[hidden] { display: none; }
+#brushMenu.sheet {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: auto;
+  max-width: none;
+  border-radius: 0.8rem 0.8rem 0 0;
+}
+
+.brush-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.28rem 0.3rem;
+}
+.brush-lab {
+  color: var(--muted);
+  font-size: 0.8rem;
+  width: 3.4rem;
+  flex: none;
+}
+.brush-row input[type="range"] {
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--accent);
+}
+#brushBpmNum {
+  width: 3.8rem;
+  flex: none;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  color: var(--fg);
+  padding: 0.15rem 0.3rem;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+#brushTap,
+.brush-seg button {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  color: var(--fg);
+  font-size: 0.85rem;
+  padding: 0.25rem 0.7rem;
+  cursor: pointer;
+}
+.brush-seg button.on { border-color: var(--accent); color: var(--accent); }
+
+/* Beat dots: live 1-2-3-4 pulse; amber during the count-in bar. */
+.brush-dots {
+  display: flex;
+  gap: 0.4rem;
+  margin-left: auto;
+  padding-right: 0.2rem;
+}
+.brush-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--chip-bg);
+  border: 1px solid var(--border);
+}
+.brush-dot.on { background: var(--accent); border-color: var(--accent); }
+.brush-dot.count { background: #d99a2b; border-color: #d99a2b; }
+
+/* Playhead: the sounding bar is outlined in both chord layouts, with the
+   cursor underlining the current beat's column span. */
+.bar.brush-now,
+.bx.brush-now {
+  position: relative;
+  box-shadow: inset 0 0 0 2px var(--accent);
+  border-radius: 2px;
+}
+.brush-cursor {
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  opacity: 0.85;
+  pointer-events: none;
+  transition: left 80ms linear, width 80ms linear;
+}
 
 /* Narrow screens (keep in sync with narrowMq): shorter form dropdown so the
    wrapped filter row packs tighter. */
