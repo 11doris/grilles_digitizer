@@ -16,9 +16,11 @@ ALTERATIONS & PARENTHESES, EXTENSIONS, SUS/SLASH/NO-CHORD):
               | m6 | m7 | m9 | m11 | m13 | m69 | m7b5 | o7 | m(maj7)
               | sus4 | sus2 | 7sus4 | 9sus4         # bare printed "sus" -> sus4
   paren_ext  := "(13)" etc. — parenthesised superscript extension, kept literal
-  alts       := (b5|#5|b9|#9|#11|b13)+ in ascending-degree order
+  alts       := (b5|#5|b9|#9|#11|b13)+ in tension order b5 b9 #9 #11 #5 b13
+                (the augmented fifth #5 sounds as the flat-13 tension, so it sorts
+                after the 9th/11th alterations: G7b9#5, not G7#5b9)
                 - bare when a 7th/extension number is present (F7#5, C9b5)
-                - parenthesised on a bare triad: F(#5), D(b9), A(#5#9)
+                - parenthesised on a bare triad: F(#5), D(b9), A(#9#5)
                 - EXCEPTION: #5 on a bare minor triad is bare: Bbm#5, never Bbm(#5)
                 - never both, never "9b" — flat-nine is always spelled "(b9)"
   slash      := "/" (root | [2-7])                  # slash bass: a note (Fm7/Bb) or
@@ -69,7 +71,7 @@ CORE = re.compile(
     rf"(?P<unc>\?)?$"
 )
 
-DEGREE = {"b5": 5.0, "#5": 5.5, "b9": 9.0, "#9": 9.5, "#11": 11.0, "b13": 13.0}
+DEGREE = {"b5": 5.0, "b9": 9.0, "#9": 9.5, "#11": 11.0, "#5": 12.5, "b13": 13.0}
 
 
 def check_core(s: str) -> list[str]:
@@ -102,7 +104,7 @@ def check_core(s: str) -> list[str]:
         alts = re.findall(ALT, group)
         degs = [DEGREE[a] for a in alts]
         if degs != sorted(degs):
-            errs.append(f"alterations not in ascending-degree order: {alts}")
+            errs.append(f"alterations not in canonical order b5 b9 #9 #11 #5 b13: {alts}")
         if len(alts) != len(set(alts)):
             errs.append(f"duplicate alteration: {alts}")
     return errs

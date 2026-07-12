@@ -106,7 +106,7 @@ const CHORD_CORE_RE = new RegExp(
 );
 
 const CHORD_HAS_EXT = /(?:6|7|9|11|13)/;
-const CHORD_ALT_DEGREE = { b5: 5.0, '#5': 5.5, b9: 9.0, '#9': 9.5, '#11': 11.0, b13: 13.0 };
+const CHORD_ALT_DEGREE = { b5: 5.0, b9: 9.0, '#9': 9.5, '#11': 11.0, '#5': 12.5, b13: 13.0 };
 
 // A bare-triad flat-nine as the WHOLE quality — the canonical "(b9)", plus the
 // raw printed spellings "(9b)" and "9b" — denotes a dominant flat-nine, so the
@@ -147,7 +147,7 @@ function chordParseHints(s) {
     hints.push('Minor-major 7th needs parens: m(maj7), e.g. Dm(maj7) — never "Dmmaj7".');
   if (!hints.length)
     hints.push('Not a recognised chord. Expected: ROOT(A–G, #/b) + quality (m, maj7, m7b5, o7, '
-      + 'm(maj7), sus4…) + extension (6, 7, 9, 11, 13, 69) + alterations (b5 #5 b9 #9 #11 b13) '
+      + 'm(maj7), sus4…) + extension (6, 7, 9, 11, 13, 69) + alterations (b5 b9 #9 #11 #5 b13) '
       + 'or alt + optional /bass (a note Fm7/Bb, or a degree 2–7 in the bass, F/5) and '
       + 'trailing ? — e.g. Bb7, Fm7b5, C9b5, F7alt, F(#5), D(b9), Fm7/Bb, F/5.');
   return hints;
@@ -179,7 +179,7 @@ function chordCoreErrors(s) {
     const alts = group.match(new RegExp(CHORD_ALT, 'g')) || [];
     const degs = alts.map(a => CHORD_ALT_DEGREE[a]);
     if (degs.some((d, i) => i > 0 && d < degs[i - 1]))
-      errs.push(`Alterations must be in ascending-degree order (b5 #5 b9 #9 #11 b13): ${alts.join(' ')}.`);
+      errs.push(`Alterations must be in canonical order (b5 b9 #9 #11 #5 b13): ${alts.join(' ')}.`);
     if (new Set(alts).size !== alts.length)
       errs.push(`Duplicate alteration: ${alts.join(' ')}.`);
   }

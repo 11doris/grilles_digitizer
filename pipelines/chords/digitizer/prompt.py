@@ -208,8 +208,11 @@ Dm(maj7), NEVER the fused "Dmmaj7" or "Dmmaj9".
 
 SYMBOL ORDER: build every chord in this fixed order, no spaces:
   ROOT -> quality (m / maj7 / o7 / m7b5 / sus4 ...) -> highest extension number
-  (6, 7, 9, 11, 13) -> alteration suffixes in ascending-degree order (b5 #5 b9 #9 #11 b13).
-  Examples: Dm7, Ebmaj7, C13, Ab7(13), F7#5, B7#11, C9b5, Eb7#5b9, Gm11.
+  (6, 7, 9, 11, 13) -> alteration suffixes ordered low-to-high as tensions above the
+  7th: b5 b9 #9 #11 #5 b13. The augmented fifth #5 sounds as the flat-13 tension, so it
+  is written AFTER the 9th/11th alterations (G7b9#5, C7#9#5), NEVER before them (never
+  G7#5b9). A lone diminished fifth b5 keeps its literal degree-5 slot (C9b5, C7b5).
+  Examples: Dm7, Ebmaj7, C13, Ab7(13), F7#5, B7#11, C9b5, Eb7b9#5, Gm11.
   A number NEVER sits between the root and the quality: a minor 7th is Gm7, never
   "G6m7"; if you seem to see a digit wedged there it is a misread — drop it. Every
   chord string you emit must follow this order; malformed spellings are always wrong.
@@ -230,8 +233,8 @@ printed symbol. (This applies only to a parenthesised superscript number; a plai
 
 ALTERATIONS & PARENTHESES: an alteration is an accidental degree (b5, #5, b9, #9, #11,
 b13, ...). Attach it BARE, to the right of the chord, WHENEVER a 7th or an extension
-number is present: F7#5, Ab7b9, C9b5, C9#5, C13#5, B7#11, Eb7#5b9. Wrap it in parentheses ONLY on a
-bare triad that has NO 7th/extension: F(#5) [= augmented triad], Ab(b9), A(#5#9). Rule of
+number is present: F7#5, Ab7b9, C9b5, C9#5, C13#5, B7#11, Eb7b9#5. Wrap it in parentheses ONLY on a
+bare triad that has NO 7th/extension: F(#5) [= augmented triad], Ab(b9), A(#9#5). Rule of
 thumb: 7th or number present -> no parens; bare triad -> parens. EXCEPTION: on a bare
 MINOR triad a #5 attaches bare — Bbm#5, never Bbm(#5) — because the m already separates
 it from the root. NEVER add a 7th or
@@ -302,7 +305,7 @@ SUS / SLASH / NO-CHORD:
 - A WHOLE chord printed in parentheses — e.g. "(G7)" — is an optional/passing chord:
   KEEP it exactly as printed, parentheses included ("(G7)"), as that bar's chord. You
   may also record it in a notation_notes entry. (Bare-triad alterations also use
-  parentheses — F(#5), D(b9), Bb(#5b9) — so parentheses appear in output both ways.)
+  parentheses — F(#5), D(b9), Bb(b9#5) — so parentheses appear in output both ways.)
 
 CONVERSIONS from the book to canonical:
 - 7M, M7, Δ (major 7) -> maj7  (Eb7M -> Ebmaj7)

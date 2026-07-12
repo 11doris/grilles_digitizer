@@ -19,7 +19,7 @@
     "S.Davis Jr 54"
   ],
   "notation_notes": {
-    "A1_bar5": "Section A1 bar 5 upper-left reads Am7b5, lower-right reads D7#5b9 (superscript '65' read as b5 on Am7, and '5+ b9' on Db/D7).",
+    "A1_bar5": "Section A1 bar 5 upper-left reads Am7b5, lower-right reads D7b9#5 (superscript '65' read as b5 on Am7, and '5+ b9' on Db/D7).",
     "A1_bar6": "Section A1 bar 6 upper G9, lower-right Gb9#5 (superscript '9 5+').",
     "A_bar4": "Bar 4 (and A1 bar 4) print a bar-repeat sign, copying the preceding Gm9 bar."
   },
@@ -167,7 +167,7 @@
         "bar": 5,
         "beats": {
           "1": "Am7b5",
-          "3": "D7#5b9"
+          "3": "D7b9#5"
         }
       },
       {

@@ -27,7 +27,7 @@ class TestParseChord(unittest.TestCase):
             "Fm": "min", "Fm7": "min", "Fm6": "min", "Fm(maj7)": "min",
             "Bbm#5": "min",
             "F7": "dom", "F13": "dom", "F7b5": "dom", "F7#5": "dom",
-            "F7alt": "dom", "F(b9)": "dom", "A(#5#9)": "dom", "Ab7(13)": "dom",
+            "F7alt": "dom", "F(b9)": "dom", "A(#9#5)": "dom", "Ab7(13)": "dom",
             "Fm7b5": "m7b5",
             "Fo7": "dim",
             "F(#5)": "aug",
@@ -68,12 +68,20 @@ class TestExpansion(unittest.TestCase):
         self.assertEqual([s.chord.symbol for s in slots[0:2]], ["F", "D(b9)"])
 
     def test_continuation_bar_repeats_previous_chord(self):
-        # 23_03_AT_LONG_LAST_LOVE has an empty-beats bar (A1 bar 8)
-        tune = json.loads((_VERIFIED / "23_03_AT_LONG_LAST_LOVE.json").read_text("utf-8"))
-        slots = expand_tune(tune)["A1"]
-        bar7 = [s.chord.symbol for s in slots if s.bar == 7]
-        bar8 = [s.chord.symbol for s in slots if s.bar == 8]
-        self.assertEqual(bar8[0], bar7[-1])
+        # An empty-beats bar carries the previous bar's chord into BOTH slots.
+        # A beat-4 chord is dropped from its own bar's grid but carried out, so
+        # here bar 2's continuation repeats that beat-4 A7, not bar 1's C6.
+        # (Self-contained: no live corpus tune currently has an empty-beats bar.)
+        tune = {"sections": {"A": [
+            {"bar": 1, "beats": {"1": "C6", "4": "A7"}},
+            {"bar": 2, "beats": {}},
+            {"bar": 3, "beats": {"1": "Dm7", "3": "G7"}},
+        ]}}
+        slots = expand_tune(tune)["A"]
+        bar1 = [s.chord.symbol for s in slots if s.bar == 1]
+        bar2 = [s.chord.symbol for s in slots if s.bar == 2]
+        self.assertEqual(bar1, ["C6", "C6"])      # beat-4 A7 dropped from the grid
+        self.assertEqual(bar2, ["A7", "A7"])      # ...but carried into the empty bar
 
     def test_beat4_chord_dropped_but_carried(self):
         # CON_ALMA A bar 4: beats 1=Ebmaj7, 3=Ebm7, 4=D7 -> grid keeps 1 and 3
