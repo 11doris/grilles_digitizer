@@ -7,43 +7,136 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <button id="listToggle" type="button" title="Show tune list" aria-label="Toggle tune list">☰</button>
-    <span class="appname">Grilles</span>
-    <input id="search" type="search" placeholder="Search title or composer…" autocomplete="off" spellcheck="false">
-    <button id="chordFilter" type="button" title="Show only tunes with digitized chords" aria-label="Filter: digitized chords only" aria-pressed="false">▦</button>
-    <select id="startsOnFilter" title="Filter by opening degree" aria-label="Filter by opening degree"></select>
-    <select id="keyFilter" title="Filter by key" aria-label="Filter by key"></select>
-    <select id="formFilter" title="Filter by form" aria-label="Filter by form"></select>
-    <button id="tagFilterBtn" type="button" title="Filter by harmonic tags" aria-label="Filter by harmonic tags" aria-haspopup="true" aria-expanded="false" hidden>Tags</button>
-    <button id="playlistBtn" type="button" title="Playlists">Playlists</button>
-    <button id="playlistClear" type="button" title="Show all tunes" aria-label="Deactivate playlist" hidden>✕</button>
-    <button id="brushPlay" type="button" title="Play practice rhythm" aria-label="Play practice rhythm" aria-pressed="false">▶</button>
-    <button id="brushBtn" type="button" title="Practice rhythm: tempo and pattern" aria-label="Practice rhythm settings" aria-haspopup="true" aria-expanded="false">♩=140</button>
-    <button id="tintToggle" type="button" title="Toggle section shading" aria-label="Toggle section shading" aria-pressed="true"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c2.8 3.4 4.6 5.9 4.6 8.2A4.6 4.6 0 0 1 8 14.3a4.6 4.6 0 0 1-4.6-4.6C3.4 7.4 5.2 4.9 8 1.5z"/></svg></button>
-    <button id="themeToggle" type="button" title="Toggle theme">☀</button>
-  </header>
-  <div class="layout">
-    <nav id="tuneList" aria-label="Tunes"></nav>
-    <div id="listBackdrop"></div>
-    <main id="tuneView">
-      <button id="addPlBtn" type="button" title="Add current tune to playlist" aria-label="Add current tune to playlist">＋</button>
-      <div id="tunePane"></div>
+  <div class="shell">
+    <!-- ===================================================== LIST PANE ===== -->
+    <aside id="listPane" aria-label="Tunes">
+      <div class="list-head">
+        <div class="list-head-top">
+          <div class="brand-wrap">
+            <button id="listToggle" class="icon-btn" type="button" title="Collapse list" aria-label="Collapse tune list">☰</button>
+            <span class="appname">Grilles</span>
+          </div>
+          <div class="list-head-actions">
+            <button id="filtersBtn" class="icon-btn" type="button" title="Filters" aria-label="Filters" aria-haspopup="true">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 2.5h13M3.5 8h9M6 13.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>
+              <span id="filterBadge" class="badge" hidden>0</span>
+            </button>
+            <button id="settingsBtn" class="icon-btn" type="button" title="Settings" aria-label="Settings" aria-haspopup="true">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2.1" stroke="currentColor" stroke-width="1.3" fill="none"/><path d="M8 1.6v1.8M8 12.6v1.8M14.4 8h-1.8M3.4 8H1.6M12.4 3.6l-1.3 1.3M4.9 11.1l-1.3 1.3M12.4 12.4l-1.3-1.3M4.9 4.9 3.6 3.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/></svg>
+            </button>
+          </div>
+        </div>
+        <input id="search" type="search" placeholder="Search title or composer…" autocomplete="off" spellcheck="false">
+        <div id="activePlChip" class="active-pl-chip" hidden>
+          <button id="playlistBtn" type="button" title="Active playlist">Playlists</button>
+          <button id="playlistClear" type="button" title="Show all tunes" aria-label="Deactivate playlist">clear</button>
+        </div>
+      </div>
+      <nav id="tuneList" aria-label="Tune list"></nav>
+    </aside>
+
+    <!-- =================================================== DETAIL PANE ===== -->
+    <main id="detailPane">
+      <div class="detail-head">
+        <button id="backBtn" class="icon-btn" type="button" title="Back to list" aria-label="Back to tune list">‹</button>
+        <button id="sidebarOpenBtn" class="icon-btn" type="button" title="Show tune list" aria-label="Show tune list">☰</button>
+        <div id="detailTitle" class="detail-title">
+          <span class="dt-title"></span>
+          <span class="dt-composer"></span>
+        </div>
+        <button id="moreBtn" class="icon-btn" type="button" title="Tune options" aria-label="Tune options" aria-haspopup="true">⋯</button>
+      </div>
+      <div id="detailTabs" class="detail-tabs" hidden>
+        <button id="tabChords" type="button" class="tab">Chords</button>
+        <button id="tabMelody" type="button" class="tab">Melody</button>
+      </div>
+      <div id="tuneView">
+        <div id="tunePane"></div>
+      </div>
+      <div id="detailFooter" hidden>
+        <div id="footerChips" class="footer-chips"></div>
+        <div class="footer-controls">
+          <div id="gridZoom">
+            <button id="zoomOut" type="button" title="Zoom grid out" aria-label="Zoom grid out">−</button>
+            <button id="zoomIn" type="button" title="Zoom grid in" aria-label="Zoom grid in">+</button>
+          </div>
+          <span id="footerTranspose" class="footer-transpose"></span>
+          <button id="brushPlay" type="button" title="Play practice rhythm" aria-label="Play practice rhythm" aria-pressed="false">▶</button>
+          <button id="brushBtn" type="button" title="Practice rhythm: tempo and pattern" aria-label="Practice rhythm settings" aria-haspopup="true" aria-expanded="false">♩=140</button>
+          <span id="footerNav" class="footer-nav">
+            <button id="stepPrev" class="step-btn" type="button">‹ Prev</button>
+            <button id="stepNext" class="step-btn" type="button">Next ›</button>
+          </span>
+        </div>
+      </div>
     </main>
+
+    <!-- ===================================================== SHEETS ======== -->
+    <div id="sheetBackdrop" hidden></div>
+
+    <div id="filtersSheet" class="sheet-panel" hidden>
+      <div class="sheet-grip"></div>
+      <div class="sheet-title">Filters</div>
+      <div class="sheet-row">
+        <span class="sheet-row-label">Digitized chords only</span>
+        <button id="chordFilter" type="button" class="toggle-btn" title="Show only tunes with digitized chords" aria-label="Filter: digitized chords only" aria-pressed="false"><span class="knob"></span></button>
+      </div>
+      <div class="sheet-field">
+        <label class="sheet-field-label" for="startsOnFilter">Starts on</label>
+        <select id="startsOnFilter" title="Filter by opening degree" aria-label="Filter by opening degree"></select>
+      </div>
+      <div class="sheet-field">
+        <label class="sheet-field-label" for="keyFilter">Key</label>
+        <select id="keyFilter" title="Filter by key" aria-label="Filter by key"></select>
+      </div>
+      <div class="sheet-field">
+        <label class="sheet-field-label" for="formFilter">Form</label>
+        <select id="formFilter" title="Filter by form" aria-label="Filter by form"></select>
+      </div>
+      <div class="sheet-field">
+        <button id="tagFilterBtn" type="button" title="Filter by harmonic tags" aria-label="Filter by harmonic tags" aria-haspopup="true" aria-expanded="false" hidden>Tags</button>
+      </div>
+    </div>
+
+    <div id="settingsSheet" class="sheet-panel" hidden>
+      <div class="sheet-grip"></div>
+      <div class="sheet-title">Settings</div>
+      <div class="sheet-field">
+        <div class="sheet-field-label">Appearance</div>
+        <div class="seg-group" id="themeSeg">
+          <button type="button" class="seg-btn" data-theme-choice="dark">Dark</button>
+          <button type="button" class="seg-btn" data-theme-choice="light">Light</button>
+          <button type="button" class="seg-btn" data-theme-choice="system">System</button>
+        </div>
+      </div>
+      <div class="sheet-row">
+        <span class="sheet-row-label">Section shading</span>
+        <button id="tintToggle" type="button" class="toggle-btn" title="Toggle section shading" aria-label="Toggle section shading" aria-pressed="true"><span class="knob"></span></button>
+      </div>
+      <div class="sheet-field">
+        <div class="sheet-field-label">Playlists</div>
+        <button id="managePlBtn" type="button" class="sheet-action">Manage playlists…</button>
+      </div>
+    </div>
+
+    <div id="tuneSheet" class="sheet-panel" hidden>
+      <div class="sheet-grip"></div>
+      <div class="sheet-title" id="tuneSheetTitle">Tune options</div>
+      <div id="tuneSheetBody"></div>
+    </div>
   </div>
+
+  <!-- ================================================== OVERLAYS / MENUS === -->
   <div id="scanOverlay" hidden>
     <button id="overlayClose" type="button" aria-label="Close scan">✕</button>
     <img id="overlayImg" alt="">
-  </div>
-  <div id="gridZoom">
-    <button id="zoomOut" type="button" title="Zoom grid out" aria-label="Zoom grid out">−</button>
-    <button id="zoomIn" type="button" title="Zoom grid in" aria-label="Zoom grid in">+</button>
   </div>
   <div id="playlistMenu" hidden></div>
   <div id="tagFilterMenu" hidden></div>
   <div id="brushMenu" hidden></div>
   <div id="plPopover" hidden></div>
   <input id="plImportFile" type="file" accept=".json,application/json" hidden>
+
   <script src="data/tunes_data.js"></script>
   <script src="data/similar_data.js"></script>
   <script src="vendor/abcjs-basic-min.js"></script>
