@@ -286,43 +286,254 @@ def tonic_relative(annotated: dict) -> TuneSequences:
 
 
 # ---------------------------------------------------------------------------
-# Form-string cross-check (spec §4.2 / §4.4)
+# Form parsing, strain splitting and per-section labels (spec §4.2 / §4.4)
 # ---------------------------------------------------------------------------
+#
+# The printed `form` string carries prime information the mechanical section
+# keys throw away: "32 A A' B A" means theme / variation-of-theme / bridge /
+# exact-repeat, but the keys are just A, A1, B, A2. We recover the printed
+# label for each key by aligning the form's per-strain token sequences against
+# the section groups (verse_* keys ↔ the verse strain, sN_* ↔ strain sN, plain
+# letters ↔ the chorus). The result is `section_labels` (key -> printed label,
+# primes kept) plus a structured, split-per-strain `form` object.
 
-# Section names that don't appear in the printed form string.
-_UNCOUNTED_SECTIONS = ("intro", "coda")
+# Section names that are auxiliary connectors, not counted by any form strain.
+_UNCOUNTED_SECTIONS = ("intro", "coda", "interlude")
+# Form-string words that are auxiliary too (e.g. a "+ Coda" tail).
+_UNCOUNTED_FORM_WORDS = {"coda", "intro", "interlude"}
+
+_STRAIN_PREFIX = re.compile(r"^(?P<prefix>s\d+|[a-z][a-z0-9]*)_(?P<sid>.+)$")
+_LETTER_LABEL = re.compile(r"[A-Z]'*")
+# A plain chorus key is a single capital letter with an optional counter (A, B1).
+_CHORUS_KEY = re.compile(r"^[A-Z]\d*$")
+# Strains are separated by "|" OR a spaced hyphen ("16 A B - 12 BLUES").
+_STRAIN_SEP = re.compile(r"\s*\|\s*|\s+-\s+")
+# In a verse note, a bar count that may be followed by single-letter labels.
+_PROSE_NUM = re.compile(r"(\d+)\s+(.*)")
 
 
-def _declared_sections(form: str) -> int:
-    """Sections declared by a form string like "16 A A' | 32 A A B A'".
+def form_printed(form) -> str:
+    """The verbatim printed form string, whether `form` is the raw string or
+    the structured object (which keeps it under "printed")."""
+    if isinstance(form, dict):
+        return (form.get("printed") or "").strip()
+    return (form or "").strip()
 
-    Each segment is <bars> <letters...>; a letter (with primes) is one
-    section, a word like BLUES or PATTER counts as one. Jammed tokens
-    ("A'C") contribute one section per capital letter.
+
+def _segment_labels(segment: str) -> tuple[int | None, list[str]]:
+    """One form segment ("32 A A B A'") -> (bar count, ordered printed labels).
+
+    A leading integer is the bar count. Letter tokens (with primes, possibly
+    jammed like "A'C") each yield one label; an all-letters word (BLUES,
+    PATTER, VERSE) is one label; "+" and auxiliary words (Coda) are skipped.
     """
-    count = 0
-    for segment in form.split("|"):
-        for tok in segment.split():
-            if tok.replace("'", "").isdigit() or not any(c.isalpha() for c in tok):
-                continue
-            letters = sum(1 for c in tok if c.isupper())
-            count += 1 if len(tok.replace("'", "")) > 2 else max(letters, 1)
-    return count
+    bars: int | None = None
+    labels: list[str] = []
+    for tok in segment.split():
+        if tok == "+":
+            continue
+        if tok.isdigit():
+            if bars is None:
+                bars = int(tok)
+            continue
+        if re.fullmatch(r"[A-Za-z]{2,}", tok):  # a spelled-out word
+            if tok.lower() not in _UNCOUNTED_FORM_WORDS:
+                labels.append(tok)
+            continue
+        labels.extend(_LETTER_LABEL.findall(tok))
+    return bars, labels
+
+
+def parse_form(form) -> list[dict]:
+    """Split a printed form string into its strains, in printed order.
+
+    Returns one dict per strain: {"bars", "labels"}. Strains are separated by
+    "|" or a spaced hyphen. The strain's role (verse/chorus/sN) is not decided
+    here — that needs the section keys and is resolved in `derive_labels`.
+    """
+    printed = form_printed(form)
+    if not printed:
+        return []
+    strains = []
+    for segment in _STRAIN_SEP.split(printed):
+        bars, labels = _segment_labels(segment)
+        if bars is None and not labels:
+            continue
+        strains.append({"bars": bars, "labels": labels})
+    return strains
+
+
+def _verse_form_from_notes(tune: dict) -> dict | None:
+    """Recover a verse strain {"bars", "labels"} from the free-text
+    notation_notes.verse (e.g. "…a 16 A A grid above the chorus…" -> 16 [A, A]).
+    Returns None when the note carries no parseable letter sequence."""
+    notes = tune.get("notation_notes") or {}
+    text = notes.get("verse") if isinstance(notes, dict) else None
+    if not text:
+        return None
+    for m in _PROSE_NUM.finditer(text):
+        labels = []
+        for tok in m.group(2).split():
+            # Strip surrounding quotes/punctuation, then keep only a *whole*
+            # single-letter label (so "VERSE'" and "grid" end the run, but the
+            # closing quote on "A''" — a prime plus quote — is tolerated).
+            clean = re.sub(r"^[^A-Za-z]+|[^A-Za-z']+$", "", tok)
+            if _LETTER_LABEL.fullmatch(clean):
+                labels.append(clean)
+            else:
+                break
+        if labels:
+            # Verse notes usually quote the form ('16 A A'), so a trailing
+            # apostrophe on the last label is the closing quote, not a prime.
+            if ("'" in text[:m.start()] or "’" in text[:m.start()]) \
+                    and labels[-1].endswith("'"):
+                labels[-1] = labels[-1][:-1]
+            return {"bars": int(m.group(1)), "labels": labels,
+                    "source": "notation_notes"}
+    return None
+
+
+def _strain_of_key(key: str) -> str | None:
+    """The strain a section key belongs to: "verse", "sN", a named prefix, or
+    "chorus" for a plain letter key. Auxiliary sections (intro/coda/interlude,
+    and capitalised named keys like "Transition") return None."""
+    m = _STRAIN_PREFIX.match(key)
+    if m:
+        return m.group("prefix")
+    if _CHORUS_KEY.match(key):
+        return "chorus"
+    return None  # intro/coda/interlude/Transition/… — an aux connector
+
+
+def section_groups(sections: dict) -> "OrderedDict[str, list[str]]":
+    """Group section keys by strain, in document (= printed) order. Auxiliary
+    sections (intro/coda/interlude/named connectors) are excluded."""
+    from collections import OrderedDict
+    groups: "OrderedDict[str, list[str]]" = OrderedDict()
+    for key in sections:
+        strain = _strain_of_key(key)
+        if strain is None:
+            continue
+        groups.setdefault(strain, []).append(key)
+    return groups
+
+
+def _key_fallback_label(key: str) -> str:
+    """Printed label recovered from the key alone (no prime info): strip a
+    strain prefix and the trailing counter — verse_A1 -> A, B1 -> B."""
+    m = _STRAIN_PREFIX.match(key)
+    sid = m.group("sid") if m else key
+    return re.sub(r"\d+$", "", sid) or sid
+
+
+# Warning severity: HARD failures should block (real count mismatches,
+# unstored repeats, missing strains); SOFT ones are review notes (a verse form
+# only recoverable from prose, or not recoverable at all).
+HARD, SOFT = "hard", "soft"
+
+
+def derive_labels(tune: dict) -> tuple[dict, dict, list[tuple[str, str]]]:
+    """Align the printed form against the section groups.
+
+    Returns (structured_form, section_labels, warnings):
+      * structured_form: {"printed", <strain>: {"bars", "labels"[, "source"]}}
+      * section_labels: {section_key: printed label} for every section
+      * warnings: (level, message) pairs; level is HARD or SOFT, empty when clean
+    """
+    sections = tune.get("sections") or {}
+    printed = form_printed(tune.get("form"))
+    groups = section_groups(sections)
+    strains = parse_form(printed)
+
+    warnings: list[tuple[str, str]] = []
+    labels: dict[str, str] = {}
+    # Auxiliary sections carry a title-cased label straight from their key.
+    for key in sections:
+        if _strain_of_key(key) is None:
+            labels[key] = key[:1].upper() + key[1:]
+
+    group_items = list(groups.items())
+    structured: dict = {"printed": printed} if printed else {}
+
+    if not printed:
+        warnings.append((HARD, f"no form string ({len(sections)} sections)"))
+
+    # Verse is dropped from the form when only the chorus is printed, so pair
+    # the LAST strains with the LAST groups; a leading unmatched group (verse)
+    # is recovered from prose or key-derived, a leading unmatched strain (an
+    # unstored repeat) is flagged.
+    n = min(len(strains), len(group_items))
+    matched_strains = strains[len(strains) - n:]
+    matched_groups = group_items[len(group_items) - n:]
+
+    for strain in strains[:len(strains) - n]:
+        seq = " ".join(strain["labels"])
+        warnings.append((HARD, f"form strain '{seq}' has no matching section "
+                               "group (repeated strain not stored as sections?)"))
+
+    for (strain_id, keys), strain in zip(matched_groups, matched_strains):
+        toks = strain["labels"]
+        structured[strain_id] = {"bars": strain["bars"], "labels": toks}
+        if len(toks) == len(keys):
+            for key, tok in zip(keys, toks):
+                labels[key] = tok
+        else:
+            warnings.append((HARD,
+                f"strain {strain_id}: form declares {len(toks)} labels "
+                f"{toks}, section group has {len(keys)}: {', '.join(keys)}"))
+            for key in keys:
+                labels[key] = _key_fallback_label(key)
+
+    for strain_id, keys in group_items[:len(group_items) - n]:
+        # Group with no form strain. For a verse, try prose recovery first.
+        recovered = _verse_form_from_notes(tune) if strain_id == "verse" else None
+        if recovered and len(recovered["labels"]) == len(keys):
+            structured[strain_id] = recovered
+            for key, tok in zip(keys, recovered["labels"]):
+                labels[key] = tok
+            warnings.append((SOFT, "verse form recovered from notation_notes "
+                                   f"prose ({recovered['bars']} "
+                                   f"{' '.join(recovered['labels'])}) — review"))
+            continue
+        for key in keys:
+            labels[key] = _key_fallback_label(key)
+        if strain_id == "verse":
+            warnings.append((SOFT, "verse sections present but no verse form in "
+                                   "the form string or notation_notes (labels "
+                                   "derived from keys)"))
+        else:
+            warnings.append((HARD, f"section group {strain_id} "
+                             f"({', '.join(keys)}) has no matching form strain"))
+
+    return structured, labels, warnings
+
+
+def strains_from_labels(tune: dict) -> dict:
+    """Build `form_strains` from a tune's (possibly hand-edited) section_labels
+    and its section grouping — the inverse view of section_labels, grouped per
+    strain with an actual bar count. Deterministic; independent of the printed
+    `form` string, so it honours manual label edits made in the verifier.
+    """
+    sections = tune.get("sections") or {}
+    labels = tune.get("section_labels") or {}
+    out: dict = {}
+    for strain_id, keys in section_groups(sections).items():
+        out[strain_id] = {
+            "bars": sum(len(sections.get(k) or []) for k in keys),
+            "labels": [labels.get(k) or _key_fallback_label(k) for k in keys],
+        }
+    return out
 
 
 def form_warnings(tune: dict) -> list[str]:
-    """Cross-check the section count against the `form` string; returns
-    human-readable warnings (empty when the form checks out)."""
-    form = (tune.get("form") or "").strip()
-    names = [n for n in (tune.get("sections") or {})
-             if n not in _UNCOUNTED_SECTIONS]
-    if not form:
-        return [f"no form string ({len(names)} sections)"]
-    declared = _declared_sections(form)
-    if declared != len(names):
-        return [f"form {form!r} declares {declared} sections,"
-                f" tune has {len(names)}: {', '.join(names)}"]
-    return []
+    """All form cross-check messages (hard and soft), empty when clean."""
+    return [msg for _level, msg in derive_labels(tune)[2]]
+
+
+def form_hard_warnings(tune: dict) -> list[str]:
+    """Only the blocking form problems — real count mismatches, unstored
+    repeats and missing strains (excludes soft verse-form review notes)."""
+    return [msg for level, msg in derive_labels(tune)[2] if level == HARD]
 
 
 # ---------------------------------------------------------------------------

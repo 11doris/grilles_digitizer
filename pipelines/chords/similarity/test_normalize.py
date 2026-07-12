@@ -6,8 +6,9 @@ import unittest
 from pathlib import Path
 
 from pipelines.chords.similarity.normalize import (
-    Chord, compute_opening, degree_name, expand_tune, flatten, form_warnings,
-    parse_chord, pitch_class, reference_pc, tonic_relative,
+    Chord, HARD, compute_opening, degree_name, derive_labels, expand_tune,
+    flatten, form_hard_warnings, form_warnings, parse_chord, parse_form,
+    pitch_class, reference_pc, section_groups, tonic_relative,
 )
 
 _REPO = Path(__file__).resolve().parents[3]
@@ -203,6 +204,113 @@ class TestFormValidation(unittest.TestCase):
             tune = json.loads(path.read_text("utf-8"))
             warnings = form_warnings(tune)
             self.assertIsInstance(warnings, list, path.name)
+
+
+class TestFormStrains(unittest.TestCase):
+    def test_parse_form_splits_strains(self):
+        # verse | chorus, each with its own bar count and label sequence
+        strains = parse_form("8 A A' | 32 A A B A")
+        self.assertEqual(strains, [
+            {"bars": 8, "labels": ["A", "A'"]},
+            {"bars": 32, "labels": ["A", "A", "B", "A"]},
+        ])
+
+    def test_parse_form_hyphen_and_jammed_and_coda(self):
+        # a spaced hyphen also separates strains; "A'C" is jammed (two labels);
+        # a "+ Coda" tail is auxiliary and contributes no label
+        self.assertEqual(parse_form("16 A B - 12 BLUES"),
+                         [{"bars": 16, "labels": ["A", "B"]},
+                          {"bars": 12, "labels": ["BLUES"]}])
+        self.assertEqual(parse_form("32 A B A'C")[0]["labels"],
+                         ["A", "B", "A'", "C"])
+        self.assertEqual(parse_form("64 A A B A + Coda")[0]["labels"],
+                         ["A", "A", "B", "A"])
+
+    def test_section_groups_split_verse_chorus_and_aux(self):
+        groups = section_groups({"verse_A": [], "verse_A1": [], "A": [],
+                                 "A1": [], "B": [], "A2": [], "coda": [],
+                                 "Transition": []})
+        # verse_* -> verse strain, plain letters -> chorus; coda and a
+        # capitalised named key are aux (excluded)
+        self.assertEqual(list(groups), ["verse", "chorus"])
+        self.assertEqual(groups["verse"], ["verse_A", "verse_A1"])
+        self.assertEqual(groups["chorus"], ["A", "A1", "B", "A2"])
+
+
+class TestSectionLabels(unittest.TestCase):
+    def test_prime_recovered_from_form(self):
+        # "32 A A' B A" -> A1 is the primed variation, A2 an exact repeat
+        _, labels, warn = derive_labels(
+            {"form": "32 A A' B A",
+             "sections": {"A": [], "A1": [], "B": [], "A2": []}})
+        self.assertEqual(labels, {"A": "A", "A1": "A'", "B": "B", "A2": "A"})
+        self.assertEqual([m for lv, m in warn if lv == HARD], [])
+
+    def test_verse_chorus_joined_form(self):
+        _, labels, warn = derive_labels(
+            {"form": "8 A A' | 32 A A B A",
+             "sections": {"verse_A": [], "verse_A1": [], "A": [], "A1": [],
+                          "B": [], "A2": []}})
+        self.assertEqual(labels["verse_A1"], "A'")
+        self.assertEqual(labels["A1"], "A")
+        self.assertFalse([m for lv, m in warn if lv == HARD])
+
+    def test_verse_form_recovered_from_prose(self):
+        # chorus-only form string; the verse letters live in the note
+        struct, labels, warn = derive_labels({
+            "form": "32 A A B A",
+            "sections": {"verse_A": [], "verse_A1": [], "A": [], "A1": [],
+                         "B": [], "A2": []},
+            "notation_notes": {"verse": "A 16 A A grid sits above the chorus."},
+        })
+        self.assertEqual(struct["verse"]["labels"], ["A", "A"])
+        self.assertEqual(struct["verse"]["source"], "notation_notes")
+        self.assertEqual(labels["verse_A"], "A")
+        self.assertFalse([m for lv, m in warn if lv == HARD])  # soft note only
+
+    def test_aux_section_labelled_from_key(self):
+        _, labels, _ = derive_labels(
+            {"form": "32 A A B A''",
+             "sections": {"A": [], "A1": [], "B": [], "A2": [], "coda": []}})
+        self.assertEqual(labels["coda"], "Coda")
+        self.assertEqual(labels["A2"], "A''")
+
+    def test_count_mismatch_is_hard(self):
+        hard = form_hard_warnings(
+            {"form": "64 A A A' B A'",
+             "sections": {"A": [], "A1": [], "A2": [], "A3": [], "B": [],
+                          "B1": []}})
+        self.assertTrue(hard)
+
+
+# Tunes whose printed form genuinely disagrees with their stored sections
+# (missing/duplicated rows, unstored strain repeats). Pinned so no NEW tune
+# regresses into a hard form mismatch; shrink this set as the data is fixed.
+KNOWN_FORM_DEFECTS = {
+    "101_01_DIRTY_DOZENS", "107_03_DOWN_BY_THE_RIVERSIDE",
+    "162_02_HOW_COULD_I_BE_BLUE", "255_02_MAMA_S_GONE_GOODBYE",
+    "268_01_MINOR_SWING", "394_03_STRUT_MISS_LIZZIE", "425_01_THOU_SWELL",
+    "457_03_WHEN_THE_SAINTS_GO_MARCHING_IN", "72_01_CHEROKEE",
+    "99_03_DIGA_DIGA_DOO",
+}
+
+
+class TestCorpusFormIntegrity(unittest.TestCase):
+    def test_no_new_hard_form_mismatch(self):
+        """Every verified tune outside KNOWN_FORM_DEFECTS aligns cleanly; every
+        pinned defect still mismatches (so the set stays honest and shrinks)."""
+        offenders, stale = set(), set()
+        for path in sorted(_VERIFIED.glob("*.json")):
+            if path.stem in {"verification_state", "run_report", "run_state"}:
+                continue
+            tune = json.loads(path.read_text("utf-8"))
+            has_hard = bool(form_hard_warnings(tune))
+            if has_hard and path.stem not in KNOWN_FORM_DEFECTS:
+                offenders.add(path.stem)
+            if not has_hard and path.stem in KNOWN_FORM_DEFECTS:
+                stale.add(path.stem)
+        self.assertFalse(offenders, f"new hard form mismatches: {offenders}")
+        self.assertFalse(stale, f"fixed — drop from KNOWN_FORM_DEFECTS: {stale}")
 
 
 if __name__ == "__main__":
