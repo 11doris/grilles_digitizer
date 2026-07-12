@@ -37,7 +37,7 @@ sys.path.insert(0, str(_REPO))
 from pipelines.chords.digitizer.validation import (  # noqa: E402
     ValidationError, _check_chord, _check_section_keys, _iter_chords)
 from pipelines.chords.similarity.normalize import (  # noqa: E402
-    ChordParseError, expand_tune)
+    ChordParseError, HARD, derive_labels, expand_tune, strains_from_labels)
 TUNES_DIR = (_REPO / "data" / "chords" / "02_raw").resolve()
 CROPS_DIR = (_REPO / "data" / "chords" / "01_crops").resolve()
 VERIFIED_DIR = (_REPO / "data" / "chords" / "04_verified").resolve()
@@ -255,6 +255,41 @@ def api_get(tune_id: str):
     })
 
 
+def _with_form_strains(body: dict) -> dict:
+    """Return `body` with a freshly derived `form_strains` (from its
+    section_labels + grouping) placed right after `form`; `section_labels` is
+    kept as submitted (hand-editable). Key order is otherwise preserved."""
+    strains = strains_from_labels(body)
+    out: dict = {}
+    for key, val in body.items():
+        if key == "form_strains":
+            continue  # re-inserted after `form` below
+        out[key] = val
+        if key == "form":
+            out["form_strains"] = strains
+    if "form" not in body:
+        out["form_strains"] = strains
+    return out
+
+
+@app.route("/api/derive", methods=["POST"])
+def api_derive():
+    """Suggest section_labels + form_strains for the posted tune by aligning its
+    `form` string against its sections (the auto-fill the verifier offers). Also
+    returns the hard/soft warnings so the editor can surface mismatches."""
+    body = request.get_json(silent=True)
+    if not isinstance(body, dict):
+        return jsonify({"error": "Invalid JSON body"}), 400
+    structured, labels, warnings = derive_labels(body)
+    structured.pop("printed", None)
+    return jsonify({
+        "section_labels": labels,
+        "form_strains": structured,
+        "warnings": [{"level": lv, "message": m} for lv, m in warnings],
+        "hard": any(lv == HARD for lv, _ in warnings),
+    })
+
+
 @app.route("/api/tunes/<tune_id>", methods=["PUT"])
 def api_save(tune_id: str):
     if not _safe_id(tune_id):
@@ -269,6 +304,7 @@ def api_save(tune_id: str):
     error = _validate_tune(body)
     if error:
         return jsonify({"error": f"Validation failed: {error}"}), 400
+    body = _with_form_strains(body)
     WIP_DIR.mkdir(exist_ok=True)
     _wip_path(tune_id).write_text(
         json.dumps(body, indent=2, ensure_ascii=False), "utf-8"

@@ -40,6 +40,12 @@ const KNOWN_META = [
   'tempo', 'form', 'time_signature', 'page', 'source',
 ];
 
+// `form_strains` is fully derived server-side from `section_labels` + the
+// section grouping on every save; it is never shown or hand-edited here.
+// `section_labels` IS hand-editable, but through its own dedicated editor
+// (renderSectionLabels) rather than the raw-JSON extras list.
+const DERIVED_META = ['form_strains', 'section_labels'];
+
 // ─── Beat count ───────────────────────────────────────────────────────────────
 function getBeatCount() {
   const ts = S.data?.time_signature || '4/4';
@@ -424,9 +430,10 @@ function collectMeta() {
     }
   });
 
-  // Extra fields (preserve JSON types via JSON.parse round-trip). `sections`
-  // and `variants` have their own editors, so they never appear here.
-  const knownSet = new Set([...KNOWN_META, 'sections', 'variants']);
+  // Extra fields (preserve JSON types via JSON.parse round-trip). `sections`,
+  // `variants` and the derived form fields have their own editors, so they
+  // never appear here.
+  const knownSet = new Set([...KNOWN_META, ...DERIVED_META, 'sections', 'variants']);
   const oldExtras = Object.keys(S.data).filter(k => !knownSet.has(k));
   const newExtras = {};
   qsa('[data-extra-key]').forEach(el => {
@@ -499,6 +506,7 @@ function collectVariants() {
 
 function collectFromDOM() {
   collectMeta();
+  collectSectionLabels();
   collectSections();
   collectVariants();
 }
@@ -518,6 +526,8 @@ function buildSavePayload() {
   Object.keys(S.data).forEach(k => {
     if (k === 'sections' || S.data[k] === undefined) return;
     if (k === 'variants' && (!Array.isArray(S.data[k]) || !S.data[k].length)) return;
+    if (k === 'form_strains') return;  // derived: recomputed server-side on save
+    if (k === 'section_labels' && !Object.keys(S.data[k] || {}).length) return;
     out[k] = S.data[k];
   });
   out.sections = sectionsToObject(S.data.sections);
@@ -541,8 +551,8 @@ function renderMeta() {
     `;
   }).join('');
 
-  // Extra fields (sections and variants have dedicated editors)
-  const knownSet  = new Set([...KNOWN_META, 'sections', 'variants']);
+  // Extra fields (sections, variants and derived form fields have dedicated editors)
+  const knownSet  = new Set([...KNOWN_META, ...DERIVED_META, 'sections', 'variants']);
   const extraKeys = Object.keys(S.data).filter(k => !knownSet.has(k));
 
   if (extraKeys.length) {
@@ -571,6 +581,84 @@ function renderMeta() {
   }
 }
 
+// ─── Section labels (printed labels per section, primes kept) ─────────────────
+// The section KEY (A, A1, verse_A) is a mechanical id; its printed LABEL (A, A',
+// …) is what the book shows and what the displayer renders. Edit them here;
+// `form_strains` is recomputed from them server-side on save.
+function strainOfKey(name) {
+  const m = /^(s\d+|[a-z][a-z0-9]*)_/.exec(name);
+  if (m) return m[1];
+  if (/^[A-Z]\d*$/.test(name)) return 'chorus';
+  return 'aux';
+}
+function labelPlaceholder(name) {
+  const m = /^([A-Z])\d*$/.exec(name.replace(/^(s\d+|[a-z][a-z0-9]*)_/, ''));
+  return m ? m[1] : name;
+}
+
+function renderSectionLabels() {
+  const area = qs('#section-labels-area');
+  if (!area) return;
+  const secs = S.data.sections || [];
+  if (!secs.length) { area.innerHTML = ''; return; }
+  const labels = S.data.section_labels || {};
+  let lastStrain = null;
+  const rows = secs.map(sec => {
+    const name = sec.name;
+    const strain = strainOfKey(name);
+    const head = strain !== lastStrain
+      ? `<div class="seclabel-strain">${esc(strain)}</div>` : '';
+    lastStrain = strain;
+    const val = labels[name] != null ? String(labels[name]) : '';
+    return head + `
+      <div class="seclabel-row">
+        <span class="seclabel-key">${esc(name)}</span>
+        <input class="seclabel-inp" data-section="${esc(name)}"
+               value="${esc(val)}" placeholder="${esc(labelPlaceholder(name))}" />
+      </div>`;
+  }).join('');
+  area.innerHTML = `
+    <div class="extra-section-label">Section labels
+      <button type="button" id="autofill-labels" class="btn-mini"
+              title="Align the form string against the sections">Auto-fill from form</button>
+    </div>
+    <div id="section-labels-container">${rows}</div>
+    <div id="section-labels-warn" class="seclabel-warn"></div>`;
+}
+
+function collectSectionLabels() {
+  if (!qs('#section-labels-container')) return;
+  const map = {};
+  qsa('#section-labels-container .seclabel-inp').forEach(el => {
+    const v = el.value.trim();
+    if (v) map[el.dataset.section] = v;
+  });
+  S.data.section_labels = map;
+}
+
+async function autofillSectionLabels() {
+  collectFromDOM();
+  const payload = buildSavePayload();
+  try {
+    const resp = await apiFetch('/api/derive', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    S.data.section_labels = resp.section_labels || {};
+    renderSectionLabels();
+    const warn = qs('#section-labels-warn');
+    if (warn) {
+      warn.innerHTML = (resp.warnings || []).map(w =>
+        `<div class="seclabel-warn-${w.level}">${esc(w.message)}</div>`).join('');
+    }
+    setDirty();
+    toast(resp.hard ? 'Auto-filled — form/sections mismatch, check flags' : 'Auto-filled labels', resp.hard ? 'warn' : 'ok');
+  } catch (err) {
+    toast(`Auto-fill failed: ${err.message}`, 'error');
+  }
+}
+
 // ─── Render sections ─────────────────────────────────────────────────────────
 function renderSections() {
   const bc        = getBeatCount();
@@ -583,6 +671,10 @@ function renderSections() {
 
   refreshDuplicateFlags();
   validateAllChords();
+  // Keep the section-labels editor in step with the current section set,
+  // preserving any labels already typed.
+  collectSectionLabels();
+  renderSectionLabels();
 }
 
 /** Flag section cards whose (live) name collides with another section's. */
@@ -1262,6 +1354,12 @@ function wireEvents() {
   // ── Meta: dirty on input
   qs('#meta-grid').addEventListener('input', () => setDirty());
   qs('#extra-fields').addEventListener('input', () => setDirty());
+
+  // ── Section labels: dirty on input, auto-fill button
+  qs('#section-labels-area').addEventListener('input', () => setDirty());
+  qs('#section-labels-area').addEventListener('click', e => {
+    if (e.target.closest('#autofill-labels')) autofillSectionLabels();
+  });
 
   // ── Meta: delete field button
   qs('#meta-grid').addEventListener('click', e => {
