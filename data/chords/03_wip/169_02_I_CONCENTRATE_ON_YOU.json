@@ -4,6 +4,24 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "64 A A' B C + Coda",
+  "form_strains": {
+    "chorus": {
+      "bars": 64,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "coda": "Coda",
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "I CONCENTRATE ON YOU",
   "page": 169,

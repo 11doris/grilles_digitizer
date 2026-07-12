@@ -4,6 +4,17 @@
   "style": "SWING",
   "tempo": "MEDIUM",
   "form": "12 BLUES",
+  "form_strains": {
+    "chorus": {
+      "bars": 12,
+      "labels": [
+        "BLUES"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "BLUES"
+  },
   "time_signature": "4/4",
   "title": "HEY LAWDY MAMA",
   "page": 156,

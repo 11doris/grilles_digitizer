@@ -4,6 +4,25 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "38 A A B A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 38,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A'",
+    "verse_A": "A",
+    "verse_A1": "A"
+  },
   "time_signature": "4/4",
   "title": "THERE'S A LULL IN MY LIFE",
   "page": 418,

@@ -4,6 +4,21 @@
   "style": "STANDARD",
   "tempo": "MEDIUM SLOW",
   "form": "24 A B A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 24,
+      "labels": [
+        "A",
+        "B",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A'"
+  },
   "time_signature": "4/4",
   "title": "GLAD TO BE UNHAPPY",
   "page": 139,

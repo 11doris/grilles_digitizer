@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM SLOW",
   "form": "36 A B C A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 36,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "A1": "A'"
+  },
   "time_signature": "4/4",
   "title": "I'M GLAD THERE IS YOU",
   "page": 189,

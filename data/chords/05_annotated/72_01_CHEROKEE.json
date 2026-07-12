@@ -4,6 +4,26 @@
   "style": "STANDARD",
   "tempo": "FAST",
   "form": "64 A A A' B A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 64,
+      "labels": [
+        "A",
+        "A",
+        "A'",
+        "B",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "A2": "A",
+    "A3": "A",
+    "B": "B",
+    "B1": "B"
+  },
   "time_signature": "4/4",
   "title": "CHEROKEE",
   "page": 72,

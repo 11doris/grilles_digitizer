@@ -4,6 +4,20 @@
   "style": "HARD BOP",
   "tempo": "MEDIUM WALTZ",
   "form": "16 A B",
+  "form_strains": {
+    "chorus": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ]
+    }
+  },
+  "section_labels": {
+    "intro": "Intro",
+    "A": "A",
+    "B": "B"
+  },
   "time_signature": "3/4",
   "variants": [
     {

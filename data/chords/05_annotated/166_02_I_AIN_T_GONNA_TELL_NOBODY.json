@@ -4,6 +4,28 @@
   "style": "NEW ORLEANS",
   "tempo": "MEDIUM FAST",
   "form": "16 A A | 20 A A'",
+  "form_strains": {
+    "intro": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    },
+    "chorus": {
+      "bars": 20,
+      "labels": [
+        "A",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "intro_A": "A",
+    "intro_A1": "A",
+    "A": "A",
+    "A1": "A'"
+  },
   "time_signature": "4/4",
   "variants": [
     {

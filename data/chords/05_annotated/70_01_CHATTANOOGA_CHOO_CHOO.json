@@ -4,6 +4,28 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "50 A A' B B' A C",
+  "form_strains": {
+    "chorus": {
+      "bars": 50,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "B'",
+        "A",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "Transition": "Transition",
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "B1": "B'",
+    "A2": "A",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "CHATTANOOGA CHOO CHOO",
   "page": 70,

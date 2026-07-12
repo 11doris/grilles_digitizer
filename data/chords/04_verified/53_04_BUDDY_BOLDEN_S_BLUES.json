@@ -4,6 +4,19 @@
   "style": "NEW ORLEANS",
   "tempo": "SLOW",
   "form": "16 A A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A'"
+  },
   "time_signature": "4/4",
   "title": "BUDDY BOLDEN'S BLUES",
   "page": 53,

@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "28 A A B C",
+  "form_strains": {
+    "chorus": {
+      "bars": 28,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "TRAV'LIN' ALL ALONE",
   "page": 433,

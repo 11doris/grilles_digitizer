@@ -4,6 +4,21 @@
   "style": "STANDARD",
   "tempo": "MEDIUM SLOW",
   "form": "34 A A B",
+  "form_strains": {
+    "chorus": {
+      "bars": 34,
+      "labels": [
+        "A",
+        "A",
+        "B"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B"
+  },
   "time_signature": "4/4",
   "title": "THRILL IS GONE, THE",
   "page": 424,

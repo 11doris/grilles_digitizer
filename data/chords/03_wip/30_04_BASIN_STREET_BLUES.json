@@ -4,6 +4,28 @@
   "style": "STANDARD TRADITIONAL",
   "tempo": "MEDIUM SLOW",
   "form": "16 A A | 16 A A",
+  "form_strains": {
+    "s1": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    },
+    "s2": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "s1_A": "A",
+    "s1_A1": "A",
+    "s2_A": "A",
+    "s2_A1": "A"
+  },
   "time_signature": "4/4",
   "title": "BASIN' STREET BLUES",
   "page": 30,

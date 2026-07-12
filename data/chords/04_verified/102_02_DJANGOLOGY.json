@@ -4,6 +4,23 @@
   "style": "SWING",
   "tempo": "MEDIUM",
   "form": "28 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 28,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "DJANGOLOGY",
   "page": 102,

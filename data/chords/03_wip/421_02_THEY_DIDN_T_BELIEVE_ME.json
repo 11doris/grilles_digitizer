@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A B C D",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  },
   "time_signature": "4/4",
   "title": "THEY DIDN'T BELIEVE ME",
   "page": 421,

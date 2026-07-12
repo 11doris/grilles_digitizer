@@ -4,6 +4,26 @@
   "style": "STANDARD",
   "tempo": "MEDIUM SLOW",
   "form": "36 A A' B A' C",
+  "form_strains": {
+    "chorus": {
+      "bars": 36,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "A'",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "A2": "A'",
+    "C": "C",
+    "verse_A": "A"
+  },
   "time_signature": "4/4",
   "title": "SMALL FRY",
   "page": 369,

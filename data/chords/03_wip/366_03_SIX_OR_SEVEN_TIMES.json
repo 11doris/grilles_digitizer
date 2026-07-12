@@ -4,6 +4,20 @@
   "style": "TRADITIONAL JAZZ",
   "tempo": "MEDIUM",
   "form": "16 A A",
+  "form_strains": {
+    "chorus": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "intro": "Intro",
+    "A": "A",
+    "A1": "A"
+  },
   "time_signature": "4/4",
   "title": "SIX OR SEVEN TIMES",
   "page": 366,

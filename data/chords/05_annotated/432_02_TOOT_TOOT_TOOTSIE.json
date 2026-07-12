@@ -4,6 +4,25 @@
   "style": "STANDARD (EARLY JAZZ)",
   "tempo": "MEDIUM FAST",
   "form": "40 A B A' C A",
+  "form_strains": {
+    "chorus": {
+      "bars": 40,
+      "labels": [
+        "A",
+        "B",
+        "A'",
+        "C",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A'",
+    "C": "C",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "TOOT-TOOT-TOOTSIE",
   "page": 432,

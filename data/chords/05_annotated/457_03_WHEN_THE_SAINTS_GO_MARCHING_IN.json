@@ -3,6 +3,19 @@
   "style": "NEW ORLEANS REVIVAL",
   "tempo": "MEDIUM FAST",
   "form": "16 A B | 16 A B",
+  "form_strains": {
+    "chorus": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B"
+  },
   "time_signature": "4/4",
   "title": "WHEN THE SAINTS GO MARCHING IN",
   "page": 457,

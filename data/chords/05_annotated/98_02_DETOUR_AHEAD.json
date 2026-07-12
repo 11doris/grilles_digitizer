@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "SLOW",
   "form": "34 A A' B A''",
+  "form_strains": {
+    "chorus": {
+      "bars": 34,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "A''"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "A2": "A''"
+  },
   "time_signature": "4/4",
   "title": "DETOUR AHEAD",
   "page": 98,

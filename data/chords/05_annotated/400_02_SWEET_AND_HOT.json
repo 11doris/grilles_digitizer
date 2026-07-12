@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM FAST",
   "form": "42 A A' B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 42,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "SWEET AND HOT",
   "page": 400,

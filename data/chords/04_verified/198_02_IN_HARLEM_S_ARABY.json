@@ -4,6 +4,33 @@
   "style": "TRADITIONAL",
   "tempo": "MEDIUM",
   "form": "32 A A' B A''",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "A''"
+      ]
+    },
+    "verse": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ],
+      "source": "notation_notes"
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "A2": "A''",
+    "verse_A": "A",
+    "verse_B": "B"
+  },
   "time_signature": "4/4",
   "title": "IN HARLEM'S ARABY",
   "page": 198,

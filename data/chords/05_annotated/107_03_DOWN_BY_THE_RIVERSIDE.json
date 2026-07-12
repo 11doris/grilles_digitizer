@@ -3,6 +3,21 @@
   "style": "TRADITIONAL JAZZ",
   "tempo": "MEDIUM FAST",
   "form": "16 A A",
+  "form_strains": {
+    "s2": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "s2_A": "A",
+    "s2_A1": "A",
+    "s1_A": "A",
+    "s1_A1": "A"
+  },
   "time_signature": "4/4",
   "title": "DOWN BY THE RIVERSIDE",
   "page": 107,

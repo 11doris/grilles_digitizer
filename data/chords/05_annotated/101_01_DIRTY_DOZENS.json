@@ -3,6 +3,18 @@
   "style": "BOOGIE WOOGIE",
   "tempo": "MEDIUM",
   "form": "16 BLUES",
+  "form_strains": {
+    "chorus": {
+      "bars": 16,
+      "labels": [
+        "BLUES"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B"
+  },
   "time_signature": "4/4",
   "title": "DIRTY DOZENS",
   "page": 101,

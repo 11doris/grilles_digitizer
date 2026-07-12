@@ -4,6 +4,28 @@
   "style": "SWING (INSTRUMENTAL)",
   "tempo": "MEDIUM FAST",
   "form": "16 A A | 16 A A | 16 A B",
+  "form_strains": {
+    "intro": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    },
+    "chorus": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ]
+    }
+  },
+  "section_labels": {
+    "intro": "Intro",
+    "intro_2": "2",
+    "A": "A",
+    "B": "B"
+  },
   "time_signature": "4/4",
   "title": "MINOR SWING",
   "page": 268,

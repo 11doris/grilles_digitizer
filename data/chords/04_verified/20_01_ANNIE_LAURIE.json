@@ -3,6 +3,23 @@
   "style": "OLD SCOTCH SONG",
   "tempo": "MEDIUM",
   "form": "32 A A' B C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "ANNIE LAURIE",
   "page": 20,

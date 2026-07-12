@@ -4,6 +4,25 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "40 A A B B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 40,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "B1": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "I CAN'T STOP LOVING YOU",
   "page": 169,

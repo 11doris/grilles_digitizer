@@ -4,6 +4,24 @@
   "style": "STANDARD",
   "tempo": "FAST",
   "form": "64 A A B A + Coda",
+  "form_strains": {
+    "chorus": {
+      "bars": 64,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "coda": "Coda",
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "THE WAY YOU LOOK TONIGHT",
   "page": 446,
