@@ -596,44 +596,83 @@ function labelPlaceholder(name) {
   return m ? m[1] : name;
 }
 
+function labelRowHTML(name, val, orphan) {
+  return `
+    <div class="seclabel-row${orphan ? ' orphan' : ''}">
+      <span class="seclabel-key">${esc(name)}</span>
+      <input class="seclabel-inp" data-section="${esc(name)}"
+             value="${esc(val)}" placeholder="${esc(labelPlaceholder(name))}" />
+      <button class="btn-icon danger" data-label-del="${esc(name)}"
+              title="Remove label">×</button>
+    </div>`;
+}
+
 function renderSectionLabels() {
   const area = qs('#section-labels-area');
   if (!area) return;
   const secs = S.data.sections || [];
-  if (!secs.length) { area.innerHTML = ''; return; }
   const labels = S.data.section_labels || {};
+  const named = new Set(secs.map(s => s.name));
+  const rows = [];
+  // One row per labelled section, in section order, grouped by strain.
   let lastStrain = null;
-  const rows = secs.map(sec => {
+  secs.forEach(sec => {
     const name = sec.name;
+    if (!(name in labels)) return;
     const strain = strainOfKey(name);
-    const head = strain !== lastStrain
-      ? `<div class="seclabel-strain">${esc(strain)}</div>` : '';
-    lastStrain = strain;
-    const val = labels[name] != null ? String(labels[name]) : '';
-    return head + `
-      <div class="seclabel-row">
-        <span class="seclabel-key">${esc(name)}</span>
-        <input class="seclabel-inp" data-section="${esc(name)}"
-               value="${esc(val)}" placeholder="${esc(labelPlaceholder(name))}" />
-      </div>`;
-  }).join('');
+    if (strain !== lastStrain) {
+      rows.push(`<div class="seclabel-strain">${esc(strain)}</div>`);
+      lastStrain = strain;
+    }
+    rows.push(labelRowHTML(name, String(labels[name] ?? '')));
+  });
+  // Orphan labels (key no longer matches a section) so they can be cleaned up.
+  const orphans = Object.keys(labels).filter(k => !named.has(k));
+  if (orphans.length) {
+    rows.push('<div class="seclabel-strain">unmatched</div>');
+    orphans.forEach(k => rows.push(labelRowHTML(k, String(labels[k] ?? ''), true)));
+  }
+  const canAdd = secs.some(s => !(s.name in labels));
   area.innerHTML = `
     <div class="extra-section-label">Section labels
       <button type="button" id="autofill-labels" class="btn-mini"
               title="Align the form string against the sections">Auto-fill from form</button>
     </div>
-    <div id="section-labels-container">${rows}</div>
-    <div id="section-labels-warn" class="seclabel-warn"></div>`;
+    <div id="section-labels-container">${rows.join('')}</div>
+    <div id="section-labels-warn" class="seclabel-warn"></div>
+    <button type="button" id="add-label" class="btn btn-sm btn-outline"
+            ${canAdd ? '' : 'disabled'}>+ Add label</button>`;
 }
 
+// Reads the label inputs into S.data.section_labels. Empty values are KEPT
+// (so a freshly added, not-yet-typed row survives a re-render); they are
+// stripped when the save payload is built.
 function collectSectionLabels() {
   if (!qs('#section-labels-container')) return;
   const map = {};
   qsa('#section-labels-container .seclabel-inp').forEach(el => {
-    const v = el.value.trim();
-    if (v) map[el.dataset.section] = v;
+    map[el.dataset.section] = el.value.trim();
   });
   S.data.section_labels = map;
+}
+
+// + Add label: bring the next unlabelled section into the editor.
+function addSectionLabel() {
+  collectSectionLabels();
+  const labels = (S.data.section_labels ||= {});
+  const next = (S.data.sections || []).map(s => s.name).find(n => !(n in labels));
+  if (!next) { toast('All sections already have a label', 'info'); return; }
+  labels[next] = '';
+  renderSectionLabels();
+  qs(`#section-labels-container .seclabel-inp[data-section="${cssEsc(next)}"]`)?.focus();
+  setDirty();
+}
+
+function deleteSectionLabel(name) {
+  collectSectionLabels();
+  delete S.data.section_labels[name];
+  renderSectionLabels();
+  setDirty();
 }
 
 async function autofillSectionLabels() {
@@ -1292,6 +1331,10 @@ function renderEditor() {
   qs('#editor-title').textContent = S.data?.title || S.currentId;
 
   renderMeta();
+  // Clear the previous tune's label inputs BEFORE renderSections runs, so the
+  // collect-then-render inside it can't clobber this tune's loaded
+  // section_labels with the outgoing tune's stale DOM values.
+  qs('#section-labels-area').innerHTML = '';
   renderSections();
   renderVariants();
   updateActionButtons();
