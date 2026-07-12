@@ -97,6 +97,8 @@
     startsOn: "", // list filter: opening degree ("" = any, "unknown", "other", or a degree; §8.2a)
     keyFilter: "", // list filter: annotated key ("" = any, "unknown", or "F major" etc.; §8.2b)
     formFilter: "", // list filter: fingerprint family ("" = any, "unknown", "other", or a family; §8.2b)
+    styleFilter: "", // list filter: grouped style bucket ("" = any, "unknown", or a bucket key)
+    yearFilter: "", // list filter: decade bucket ("" = any, "unknown", or "1930" etc.)
     tagFilter: new Set(), // list filter: fingerprint tags — a tune must carry every checked tag (§8.2b)
     showSuggest: null, // open suggestions group: null | "tunes" | "sections"; per-tune
     compare: null, // {otherId, mode: original|transposed|roman, bars} — comparison view (§8.3); per-tune
@@ -227,6 +229,25 @@
     applyTintToggle();
   });
 
+  /* Global "Show verses" toggle (Settings): on by default, persisted per browser.
+     Mirrors the per-tune verses switch in the tune-options block — both drive
+     state.showVerses / grilles.showVerses, so they stay in sync. */
+  const versesBtn = document.getElementById("versesToggle");
+
+  function applyVersesToggle() {
+    versesBtn.classList.toggle("on", state.showVerses);
+    versesBtn.setAttribute("aria-pressed", String(state.showVerses));
+    versesBtn.title = state.showVerses ? "Hide verse sections" : "Show verse sections";
+    versesBtn.setAttribute("aria-label", versesBtn.title);
+  }
+
+  versesBtn.addEventListener("click", () => {
+    state.showVerses = !state.showVerses;
+    saveSwitch("grilles.showVerses", state.showVerses);
+    applyVersesToggle();
+    if (state.currentId) renderTune(state.currentId);
+  });
+
   /* ----------------------------------------------------- tune list drawer */
 
   /* Narrow single-screen switch: reveal the detail pane over the list, or go
@@ -297,7 +318,8 @@
   /* Count badge on the Filters button: how many list filters are engaged. */
   function updateFilterBadge() {
     const n = (state.chordsOnly ? 1 : 0) + (state.startsOn ? 1 : 0) +
-      (state.keyFilter ? 1 : 0) + (state.formFilter ? 1 : 0) + state.tagFilter.size;
+      (state.keyFilter ? 1 : 0) + (state.formFilter ? 1 : 0) +
+      (state.styleFilter ? 1 : 0) + (state.yearFilter ? 1 : 0) + state.tagFilter.size;
     filterBadge.textContent = String(n);
     filterBadge.hidden = n === 0;
     filtersBtn.classList.toggle("on", n > 0);
@@ -389,6 +411,18 @@
         return fam === state.formFilter;
       });
     }
+    if (state.styleFilter) {
+      list = list.filter((t) => {
+        const b = styleBucketOf(t);
+        return state.styleFilter === "unknown" ? !b : b === state.styleFilter;
+      });
+    }
+    if (state.yearFilter) {
+      list = list.filter((t) => {
+        const d = yearDecadeOf(t);
+        return state.yearFilter === "unknown" ? d === null : String(d) === state.yearFilter;
+      });
+    }
     if (state.tagFilter.size) {
       list = list.filter((t) => {
         const tags = (meta(t).harmonic_fingerprint || {}).tags || [];
@@ -464,6 +498,8 @@
 
   const keyFilterEl = document.getElementById("keyFilter");
   const formFilterEl = document.getElementById("formFilter");
+  const styleFilterEl = document.getElementById("styleFilter");
+  const yearFilterEl = document.getElementById("yearFilter");
   const tagFilterBtn = document.getElementById("tagFilterBtn");
   const tagFilterMenu = document.getElementById("tagFilterMenu");
 
@@ -475,6 +511,41 @@
 
   function familyOf(t) {
     return (meta(t).harmonic_fingerprint || {}).family || null;
+  }
+
+  /* Style buckets (§ "Standard" filter): the raw `style` strings are a long,
+     messy tail (STANDARD, SWING STANDARD, STANDARD TRADITIONAL, …), so collapse
+     each to one primary category. Order matters — the more specific genres win
+     over the generic "Standard" (e.g. "SWING STANDARD" → Swing). */
+  const STYLE_BUCKETS = [
+    ["bossa", "Bossa Nova", /BOSSA/],
+    ["bebop", "Bebop", /BE ?BOP|BEBOP/],
+    ["neworleans", "New Orleans", /NEW ORLEANS/],
+    ["ellington", "Ellingtonia", /ELLINGTON/],
+    ["swing", "Swing", /SWING/],
+    ["traditional", "Traditional", /TRADITIONAL/],
+    ["standard", "Standard", /STANDARD/],
+  ];
+  const STYLE_LABELS = new Map(STYLE_BUCKETS.map(([k, label]) => [k, label]));
+
+  /* Bucket key for a tune's style, or null when the tune has no style at all.
+     Recognised genres collapse to a primary category; anything unrecognised is
+     kept as its own entry (keyed by the raw uppercased style) rather than lumped
+     into a single "other" bucket. */
+  function styleBucketOf(t) {
+    const s = meta(t).style;
+    if (!s) return null;
+    const up = String(s).toUpperCase();
+    for (const [key, , re] of STYLE_BUCKETS) {
+      if (re.test(up)) return key;
+    }
+    return up;
+  }
+
+  /* Decade (e.g. 1930) for a tune's year, or null when it has none. */
+  function yearDecadeOf(t) {
+    const y = parseInt(meta(t).year, 10);
+    return Number.isFinite(y) ? Math.floor(y / 10) * 10 : null;
   }
 
   let rareFamilies = new Set();
@@ -547,6 +618,59 @@
       state.formFilter = formFilterEl.value;
       formFilterEl.classList.toggle("on", Boolean(state.formFilter));
       refilterList(Boolean(state.formFilter));
+    });
+  }
+
+  /* Style filter ("Standard" etc.): grouped buckets, ordered by count. */
+  function initStyleFilter() {
+    if (!styleFilterEl) return;
+    const counts = new Map();
+    let unknown = 0;
+    TUNES.forEach((t) => {
+      const b = styleBucketOf(t);
+      if (b) counts.set(b, (counts.get(b) || 0) + 1);
+      else unknown++;
+    });
+    if (!counts.size) { styleFilterEl.hidden = true; return; }
+    /* Recognised buckets first (by count), then the unrecognised styles kept
+       separate (also by count) — each labelled by its own title-cased name. */
+    const keys = [...counts.keys()].sort((a, b) => counts.get(b) - counts.get(a));
+    const opts = ['<option value="">Style…</option>'];
+    keys.forEach((k) => {
+      const label = STYLE_LABELS.get(k) || titleCase(k);
+      opts.push(`<option value="${escapeHtml(k)}">${escapeHtml(label)} (${counts.get(k)})</option>`);
+    });
+    if (unknown) opts.push(`<option value="unknown">unknown (${unknown})</option>`);
+    styleFilterEl.innerHTML = opts.join("");
+    styleFilterEl.addEventListener("change", () => {
+      state.styleFilter = styleFilterEl.value;
+      styleFilterEl.classList.toggle("on", Boolean(state.styleFilter));
+      refilterList(Boolean(state.styleFilter));
+    });
+  }
+
+  /* Year filter: decade buckets (1910s … 1960s), chronological. */
+  function initYearFilter() {
+    if (!yearFilterEl) return;
+    const counts = new Map();
+    let unknown = 0;
+    TUNES.forEach((t) => {
+      const d = yearDecadeOf(t);
+      if (d !== null) counts.set(d, (counts.get(d) || 0) + 1);
+      else unknown++;
+    });
+    if (!counts.size) { yearFilterEl.hidden = true; return; }
+    const decades = [...counts.keys()].sort((a, b) => a - b);
+    const opts = ['<option value="">Year…</option>'];
+    decades.forEach((d) => {
+      opts.push(`<option value="${d}">${d}s (${counts.get(d)})</option>`);
+    });
+    if (unknown) opts.push(`<option value="unknown">unknown (${unknown})</option>`);
+    yearFilterEl.innerHTML = opts.join("");
+    yearFilterEl.addEventListener("change", () => {
+      state.yearFilter = yearFilterEl.value;
+      yearFilterEl.classList.toggle("on", Boolean(state.yearFilter));
+      refilterList(Boolean(state.yearFilter));
     });
   }
 
@@ -944,12 +1068,22 @@
     return frag;
   }
 
-  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer) {
+  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer, form) {
     const sec = el("div", "section");
     sec.style.setProperty("--bxhue", sectionTint(name)); // section shading
     const badge = el("div", "sec-label");
     badge.textContent = displaySectionName(name);
-    sec.appendChild(badge);
+    if (form) {
+      // First section: section letter left, form badge right, on one row.
+      const head = el("div", "sec-head");
+      head.appendChild(badge);
+      const formBadge = el("div", "grid-form");
+      formBadge.textContent = form;
+      head.appendChild(formBadge);
+      sec.appendChild(head);
+    } else {
+      sec.appendChild(badge);
+    }
     sec.appendChild(renderGrid(bars, beats,
       { double: true, timesig: isFirst ? ts : null, overrides, renderChord: renderer }));
     return sec;
@@ -1209,22 +1343,16 @@
     return chip;
   }
 
-  /* Key + section keys (row 1) and harmonic-fingerprint family + tags (row 2),
-     from the annotated JSON (data/chords/05_annotated). Compact wrapping chip
-     rows so the block stays readable on phone and desktop alike; the prose
-     per-section analysis lives in the collapsible extras below the grid. */
-  function renderHarmony(tune) {
-    const keys = el("div", "harm-row harm-keys");
-    const mainKey = displayKey(tune.key);
-    if (mainKey) {
-      const chip = harmChip("key", "Key", mainKey);
-      if (state.transpose && state.transpose.shift && tune.key) {
-        chip.title = "Transposed from " + keyLabel(tune.key);
-      }
-      keys.appendChild(chip);
-    }
+  /* Harmonic chips for the collapsible "Tags" section below the grid: the
+     opening degree + section-key modulations on one row, the fingerprint family
+     + tags on another. Returns an array of chip rows (empty when the tune has no
+     harmonic annotation). The MAIN key is intentionally omitted — it lives in
+     the footer's transpose control now, not in this block. */
+  function harmonyRows(tune) {
+    const rows = [];
 
-    /* Opening-degree badge next to the key (§8.2a) — degrees are
+    const keys = el("div", "harm-row harm-keys");
+    /* Opening-degree badge (§8.2a) — degrees are
        key-relative, so the chip is transposition-invariant. */
     if (tune.opening && tune.opening.degree) {
       const chip = harmChip("opening", "starts on", tune.opening.degree);
@@ -1249,6 +1377,7 @@
       seenSection.add(dedupeKey);
       keys.appendChild(harmChip("section", shown, label));
     });
+    if (keys.childElementCount) rows.push(keys);
 
     const tags = el("div", "harm-row harm-tags");
     const fp = tune.harmonic_fingerprint || {};
@@ -1256,39 +1385,17 @@
     (fp.tags || []).forEach((tag) => {
       tags.appendChild(harmChip("tag", null, tag));
     });
+    if (tags.childElementCount) rows.push(tags);
 
-    if (!keys.childElementCount && !tags.childElementCount) return null;
-    const wrap = el("div", "harmony");
-    if (keys.childElementCount) wrap.appendChild(keys);
-    if (tags.childElementCount) wrap.appendChild(tags);
-    return wrap;
+    return rows;
   }
 
-  /* Non-digitized tunes only have a title (spec §5.3). */
-  /* The detail-pane header carries the title/composer; the footer carries the
-     playlist step buttons. renderHead now only builds the in-pane summary block
-     (metadata line + harmonic fingerprint), or null when a tune has neither. */
-  function renderHead(t) {
-    const info = meta(t);
-    const head = el("div", "tune-head");
-
-    const parts = [];
-    if (info.style) parts.push(escapeHtml(info.style));
-    if (info.year) parts.push(escapeHtml(info.year));
-    if (info.form) parts.push(escapeHtml(info.form));
-    if (info.page != null) parts.push(`p. ${escapeHtml(info.page)}`);
-    if (parts.length) {
-      const meta_ = el("div", "meta");
-      meta_.innerHTML = parts.join(" · ");
-      head.appendChild(meta_);
-    }
-
-    /* Key / section keys / harmonic fingerprint (annotated tunes only). */
-    const harmony = renderHarmony(info);
-    if (harmony) head.appendChild(harmony);
-
-    return head.childElementCount ? head : null;
-  }
+  /* The always-visible in-pane summary block (metadata line + harmonic chips)
+     that used to sit below the grid has been retired: the style/year/page and
+     the harmonic tags now live in the collapsible "Details" / "Tags" sections
+     (renderExtras), and the key lives in the footer's transpose control. Kept as
+     a no-op so the render / comparison call sites stay simple. */
+  function renderHead() { return null; }
 
   /* Detail-pane header title/composer for the current tune. */
   function setDetailHeader(t) {
@@ -1367,6 +1474,7 @@
       btn.addEventListener("click", () => {
         state.showVerses = !state.showVerses;
         saveSwitch("grilles.showVerses", state.showVerses);
+        applyVersesToggle(); // keep the global Settings toggle in sync
         renderTune(state.currentId);
       });
       row.append(label, btn);
@@ -1655,6 +1763,37 @@
       extras.appendChild(block);
     }
 
+    /* Collapsed "Tags" section (relocated from the old summary block): the
+       harmonic tags + opening degree + section-key modulations. */
+    const harmRows = harmonyRows(tune);
+    if (harmRows.length) {
+      const block = detailsBlock("Tags");
+      const wrap = el("div", "extras-harmony");
+      harmRows.forEach((r) => wrap.appendChild(r));
+      block.appendChild(wrap);
+      extras.appendChild(block);
+    }
+
+    /* Collapsed "Details" section: style ("standard"), form, year, page. */
+    const detailPairs = [];
+    if (tune.style) detailPairs.push(["Style", titleCase(tune.style)]);
+    if (tune.form) detailPairs.push(["Form", tune.form]);
+    if (tune.year) detailPairs.push(["Year", String(tune.year)]);
+    if (tune.page != null) detailPairs.push(["Page", String(tune.page)]);
+    if (detailPairs.length) {
+      const block = detailsBlock("Details");
+      const dl = el("dl", "detail-list");
+      detailPairs.forEach(([k, v]) => {
+        const dt = el("dt");
+        dt.textContent = k;
+        const dd = el("dd");
+        dd.textContent = v;
+        dl.append(dt, dd);
+      });
+      block.appendChild(dl);
+      extras.appendChild(block);
+    }
+
     return extras.childElementCount ? extras : null;
   }
 
@@ -1694,8 +1833,6 @@
 
     const wrap = el("label", "transpose");
     wrap.title = "Transpose — original key " + noteGlyph(key.tonic) + " " + mode;
-    const text = el("span", "transpose-label");
-    text.textContent = "Key";
     const sel = document.createElement("select");
     sel.className = "key-select";
     const selectedPc = state.transpose ? state.transpose.targetPc : sourcePc;
@@ -1716,7 +1853,7 @@
       }
       renderTune(state.currentId); // same tune → keeps zoom/scroll (see renderTune)
     });
-    wrap.append(text, sel);
+    wrap.append(sel);
     return wrap;
   }
 
@@ -1860,8 +1997,18 @@
     }
   }
 
-  /* Wide: show every available panel (chords + melody side by side via .dual).
-     Narrow: one asset at a time, chosen by the detail-pane tab. */
+  /* Desktop melody show/hide toggle (persisted per browser). */
+  function setShowMelody(on) {
+    state.showMelody = on;
+    saveSwitch("grilles.showMelody", on);
+    const t = tuneById(state.currentId);
+    if (t) applyPanels(t);
+  }
+
+  /* Wide: show every available panel (chords + melody side by side via .dual),
+     unless the user hid the melody (state.showMelody) — then the chords centre.
+     Narrow: one asset at a time, chosen by the detail-pane tab (showMelody does
+     not apply; the tabs govern which asset is visible). */
   function applyPanels(t) {
     const panels = paneEl.querySelector(".panels");
     if (!panels) return;
@@ -1870,7 +2017,10 @@
     const hasC = Boolean(chordPanel), hasM = Boolean(melodyPanel);
     let visC, visM;
     if (isWide()) {
-      visC = hasC; visM = hasM;
+      visC = hasC;
+      /* Melody-only tunes always show the melody; when chords exist the
+         desktop toggle may hide it so the chords centre. */
+      visM = hasM && (!hasC || state.showMelody);
     } else {
       const tab = (state.tab === "melody" && hasM) || !hasC ? "melody" : "chords";
       visC = hasC && tab === "chords";
@@ -1879,6 +2029,9 @@
     if (chordPanel) chordPanel.hidden = !visC;
     if (melodyPanel) melodyPanel.hidden = !visM;
     panels.classList.toggle("dual", visC && visM);
+    /* Melody hidden by the desktop toggle (chords present): reveals the "Show
+       melody" button and lets the lone chords panel centre (CSS). */
+    panels.classList.toggle("melody-off", isWide() && hasC && hasM && !visM);
     updateTabs(hasC, hasM);
     requestAnimationFrame(fitAll);
   }
@@ -2272,10 +2425,11 @@
         const other = tuneById(s.id);
         const row = el("button", "suggest-row");
         row.type = "button";
+        /* The form/family line ("32-bar AABA …") is intentionally omitted here —
+           it cluttered the list; the full form is available on the tune itself. */
         row.innerHTML =
           scoreBadge(s.score) +
-          `<span class="sim-title">${escapeHtml(other.title || s.id)}</span>` +
-          (s.family ? `<span class="sim-family">${escapeHtml(s.family)}</span>` : "");
+          `<span class="sim-title">${escapeHtml(other.title || s.id)}</span>`;
         row.title = "open side-by-side comparison";
         row.addEventListener("click", () => openComparison(s.id, s.bars));
         list.appendChild(row);
@@ -2358,6 +2512,10 @@
       }
       const secEl = renderSection(sec, bars, beats,
         first, tune.time_signature, null, renderer);
+      /* Comparisons never use section shading (it would fight the accent
+         highlight on the matched bars, PR #24); clear the hue so every bar
+         sits on the plain background and only .sim-hl is tinted. */
+      secEl.style.setProperty("--bxhue", "transparent");
       first = false;
       secEl.querySelectorAll(".bar:not(.empty)").forEach((cell) => {
         fbar++;
@@ -2534,8 +2692,13 @@
         let sectionNames = Object.keys(tune.sections || {});
         if (!state.showVerses) sectionNames = sectionNames.filter((n) => !VERSE_SECTION.test(n));
         sectionNames.forEach((name, i) => {
+          /* Form badge ("32 A A B A") rides on the first section's label row,
+             top-right — same style as the book layout's badge. It lives inside
+             .grid so it inherits the grid's fitted font and hides in book/scan
+             view. */
           grid.appendChild(renderSection(name, tune.sections[name], beats,
-            i === 0, tune.time_signature, overrides[name]));
+            i === 0, tune.time_signature, overrides[name], undefined,
+            i === 0 ? tune.form : null));
         });
         panel.appendChild(grid);
         panel.appendChild(renderBoxGrid(tune, overrides)); // book layout (hidden unless chosen)
@@ -2576,10 +2739,45 @@
       panels.appendChild(panel);
     }
 
+    /* Desktop melody show/hide: a small toggle on top of the melody png hides it
+       (so the chords centre); a matching button in the chords tools row brings it
+       back. Only meaningful when the tune carries BOTH a chord grid and a melody;
+       on phones the Chords/Melody tabs already switch between them (CSS keeps
+       these buttons desktop-only). */
+    if (hasChordAsset(t) && hasMelodyAsset(t)) {
+      const mPanel = panels.querySelector(".panel.melody");
+      const cPanel = panels.querySelector(".panel.chords");
+      if (mPanel && cPanel) {
+        let mTools = mPanel.querySelector(".panel-tools");
+        if (!mTools) { mTools = el("div", "panel-tools"); mPanel.prepend(mTools); }
+        const hideBtn = el("button", "melody-toggle hide");
+        hideBtn.type = "button";
+        hideBtn.title = "Hide the melody and centre the chords";
+        hideBtn.setAttribute("aria-label", "Hide melody");
+        hideBtn.innerHTML = `${ICON_NOTES}<span>Hide melody</span>`;
+        hideBtn.addEventListener("click", () => setShowMelody(false));
+        mTools.appendChild(hideBtn);
+
+        let cTools = cPanel.querySelector(".panel-tools");
+        if (!cTools) { cTools = el("div", "panel-tools"); cPanel.prepend(cTools); }
+        const showBtn = el("button", "melody-toggle show");
+        showBtn.type = "button";
+        showBtn.title = "Show the melody again";
+        showBtn.setAttribute("aria-label", "Show melody");
+        showBtn.innerHTML = `${ICON_NOTES}<span>Show melody</span>`;
+        showBtn.addEventListener("click", () => setShowMelody(true));
+        cTools.appendChild(showBtn);
+      }
+    }
+
     paneEl.appendChild(panels);
-    /* Melody-only (or no-asset) tunes have no grid to sit under — keep the
-       summary block at the top. */
-    if (head && !headPlaced) paneEl.insertBefore(head, panels);
+    /* Tunes without a digitized chord grid (melody-only or scan-only) don't get
+       the collapsible Details/Tags block from the chord panel, so append it here
+       — the old always-visible summary block was retired for every tune. */
+    if (!t.has_chord_json) {
+      const ex = renderExtras(meta(t));
+      if (ex) paneEl.appendChild(ex);
+    }
     /* abcjs measures the container, so render after the panel is in the DOM.
        The melody moves with the chords: same semitone shift via visualTranspose. */
     if (melodyPanel) renderAbcSheet(melodyPanel, t, state.transpose ? state.transpose.shift : 0);
@@ -2834,6 +3032,7 @@
     if (cv === "grid" || cv === "boxes" || cv === "scan") state.chordView = cv;
     state.boxTint = localStorage.getItem("grilles.boxTint") !== "0";
     applyTintToggle();
+    applyVersesToggle();
     state.chordsOnly = localStorage.getItem("grilles.chordsOnly") === "1";
     if (localStorage.getItem("grilles.list") === "0") setListCollapsed(true);
   } catch (e) { /* ignore */ }
@@ -2846,6 +3045,8 @@
   initStartsOnFilter();
   initKeyFilter();
   initFormFilter();
+  initStyleFilter();
+  initYearFilter();
   initTagFilter();
   state.filtered = filterTunes("");
   renderList();
