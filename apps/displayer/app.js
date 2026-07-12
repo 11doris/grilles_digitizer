@@ -37,26 +37,46 @@
   const listEl = document.getElementById("tuneList");
   const viewEl = document.getElementById("tuneView");
   const paneEl = document.getElementById("tunePane");
-  const themeBtn = document.getElementById("themeToggle");
   const listToggle = document.getElementById("listToggle");
-  const listBackdrop = document.getElementById("listBackdrop");
   const overlayEl = document.getElementById("scanOverlay");
   const overlayImg = document.getElementById("overlayImg");
   const overlayClose = document.getElementById("overlayClose");
   const zoomInBtn = document.getElementById("zoomIn");
   const zoomOutBtn = document.getElementById("zoomOut");
   const playlistBtn = document.getElementById("playlistBtn");
-  const addPlBtn = document.getElementById("addPlBtn");
   const playlistClear = document.getElementById("playlistClear");
   const playlistMenu = document.getElementById("playlistMenu");
   const plPopover = document.getElementById("plPopover");
   const plImportFile = document.getElementById("plImportFile");
+  /* Two-pane chrome (2026-07 layout redesign): list-pane header, detail-pane
+     header + tabs, persistent footer, and the three bottom/card sheets. */
+  const filtersBtn = document.getElementById("filtersBtn");
+  const settingsBtn = document.getElementById("settingsBtn");
+  const filterBadge = document.getElementById("filterBadge");
+  const backBtn = document.getElementById("backBtn");
+  const sidebarOpenBtn = document.getElementById("sidebarOpenBtn");
+  const detailTitleEl = document.getElementById("detailTitle");
+  const detailTabsEl = document.getElementById("detailTabs");
+  const tabChordsBtn = document.getElementById("tabChords");
+  const tabMelodyBtn = document.getElementById("tabMelody");
+  const detailFooter = document.getElementById("detailFooter");
+  const footerChips = document.getElementById("footerChips");
+  const footerTranspose = document.getElementById("footerTranspose");
+  const footerNav = document.getElementById("footerNav");
+  const stepPrevBtn = document.getElementById("stepPrev");
+  const stepNextBtn = document.getElementById("stepNext");
+  const activePlChip = document.getElementById("activePlChip");
+  const sheetBackdrop = document.getElementById("sheetBackdrop");
+  const filtersSheet = document.getElementById("filtersSheet");
+  const settingsSheet = document.getElementById("settingsSheet");
+  const tuneOptions = document.getElementById("tuneOptions");
+  const managePlBtn = document.getElementById("managePlBtn");
+  const themeSeg = document.getElementById("themeSeg");
 
-  /* Phones (narrow, or short in landscape) and portrait tablets up to the 900px
-     desktop seam get the mobile treatment: the list is a drawer; from 900px wide
-     the visible panels sit side by side. Keep in sync with style.css. */
-  const narrowMq = window.matchMedia(
-    "(max-width: 700px), (max-height: 500px), (max-width: 899px) and (orientation: portrait)");
+  /* Below the 860px seam the list and detail panes become a single-screen
+     switch and the sheets anchor to the bottom; from 860px up both panes sit
+     side by side. Keep in sync with style.css. */
+  const narrowMq = window.matchMedia("(max-width: 859px)");
 
   const state = {
     filtered: TUNES,
@@ -71,7 +91,7 @@
     activePl: null, // active playlist id (persisted, §11.4)
     transpose: null, // {shift, spell, targetPc, mode} or null (original key); per-tune
     activeVariants: new Set(), // indices of variants swapped into the grid (independent, but exclusive among variants sharing a bar); per-tune
-    chordView: "grid", // chords panel: "grid" (4 bars/row) | "boxes" (book layout) | "scan" (persisted)
+    chordView: "boxes", // chords panel default: "boxes" (book layout) | "grid" (4 bars/row) | "scan" (persisted)
     boxTint: true, // book layout: section shading on/off (persisted)
     chordsOnly: false, // list filter: only tunes with digitized chords (persisted)
     startsOn: "", // list filter: opening degree ("" = any, "unknown", "other", or a degree; §8.2a)
@@ -80,7 +100,13 @@
     tagFilter: new Set(), // list filter: fingerprint tags — a tune must carry every checked tag (§8.2b)
     showSuggest: null, // open suggestions group: null | "tunes" | "sections"; per-tune
     compare: null, // {otherId, mode: original|transposed|roman, bars} — comparison view (§8.3); per-tune
+    tab: "chords", // narrow-screen detail tab: "chords" | "melody" (wide shows both side by side)
+    themeChoice: "system", // "dark" | "light" | "system" (persisted)
   };
+
+  /* True from 860px up: both panes visible, detail shows chords+melody side by
+     side. Narrow: single-screen switch, one asset tab at a time. */
+  function isWide() { return !narrowMq.matches; }
 
   /* ------------------------------------------------------------- helpers */
 
@@ -135,29 +161,51 @@
 
   /* ---------------------------------------------------------------- theme */
 
-  function applyTheme(theme) {
-    document.documentElement.dataset.theme = theme;
-    themeBtn.textContent = theme === "dark" ? "☀" : "☾";
+  const themeMql = window.matchMedia("(prefers-color-scheme: light)");
+
+  function resolvedTheme() {
+    if (state.themeChoice === "system") return themeMql.matches ? "light" : "dark";
+    return state.themeChoice;
+  }
+
+  /* Apply the resolved dark/light theme and light the chosen segment button. */
+  function applyTheme() {
+    document.documentElement.dataset.theme = resolvedTheme();
+    if (themeSeg) {
+      themeSeg.querySelectorAll(".seg-btn").forEach((b) => {
+        b.classList.toggle("active", b.dataset.themeChoice === state.themeChoice);
+      });
+    }
   }
 
   function initTheme() {
-    let theme = null;
+    let choice = null;
     try {
-      theme = localStorage.getItem("grilles.theme");
+      choice = localStorage.getItem("grilles.theme");
     } catch (e) { /* storage unavailable (e.g. some file:// contexts) */ }
-    if (theme !== "dark" && theme !== "light") {
-      theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-    }
-    applyTheme(theme);
+    /* Migrate the old dark/light-only value; default to following the OS. */
+    if (choice !== "dark" && choice !== "light" && choice !== "system") choice = "system";
+    state.themeChoice = choice;
+    applyTheme();
   }
 
-  themeBtn.addEventListener("click", () => {
-    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    applyTheme(next);
-    try {
-      localStorage.setItem("grilles.theme", next);
-    } catch (e) { /* ignore */ }
-  });
+  /* Re-resolve when the OS flips while the choice is "System". */
+  const onSystemTheme = () => { if (state.themeChoice === "system") applyTheme(); };
+  if (themeMql.addEventListener) themeMql.addEventListener("change", onSystemTheme);
+  else if (themeMql.addListener) themeMql.addListener(onSystemTheme);
+
+  function setThemeChoice(choice) {
+    state.themeChoice = choice;
+    try { localStorage.setItem("grilles.theme", choice); } catch (e) { /* ignore */ }
+    applyTheme();
+  }
+
+  if (themeSeg) {
+    themeSeg.addEventListener("click", (e) => {
+      const btn = e.target.closest(".seg-btn");
+      if (btn) setThemeChoice(btn.dataset.themeChoice);
+    });
+  }
 
   /* Section-shading toggle (topbar, next to the theme button): tints every
      section's boxes/bars in both chord views; body.tint-off turns it off. */
@@ -181,12 +229,13 @@
 
   /* ----------------------------------------------------- tune list drawer */
 
-  function setListOpen(open) {
-    document.body.classList.toggle("list-open", open);
-    listToggle.setAttribute("aria-expanded", String(open));
+  /* Narrow single-screen switch: reveal the detail pane over the list, or go
+     back to the list. Inert on wide screens (both panes always visible). */
+  function setShowDetail(show) {
+    document.body.classList.toggle("show-detail", show);
   }
 
-  /* Desktop: ☰ collapses the docked sidebar instead (full-width tune view). */
+  /* Desktop: ☰ collapses the docked list pane (full-width detail). */
   function setListCollapsed(collapsed) {
     state.listCollapsed = collapsed;
     document.body.classList.toggle("list-collapsed", collapsed);
@@ -197,12 +246,62 @@
     requestAnimationFrame(fitAll); // pane width changed
   }
 
-  listToggle.addEventListener("click", () => {
-    if (narrowMq.matches) setListOpen(!document.body.classList.contains("list-open"));
-    else setListCollapsed(!state.listCollapsed);
+  /* Bring the list into view after a filter/search narrows it: the list screen
+     on narrow, the un-collapsed sidebar on wide. */
+  function revealList() {
+    if (narrowMq.matches) setShowDetail(false);
+    else if (state.listCollapsed) setListCollapsed(false);
+  }
+
+  listToggle.addEventListener("click", () => setListCollapsed(!state.listCollapsed));
+  backBtn.addEventListener("click", () => setShowDetail(false));
+  sidebarOpenBtn.addEventListener("click", () => setListCollapsed(false));
+
+  /* --------------------------------------------------------------- sheets */
+
+  /* The Filters and Settings sheets: bottom sheets on narrow, top-right cards on
+     wide (all via CSS). The Settings sheet also carries the current tune's
+     options (view / verses / add-to-playlist / similar). Only one open at a time. */
+  const SHEETS = { filters: filtersSheet, settings: settingsSheet };
+  let openSheetName = null;
+
+  function openSheet(name) {
+    if (openSheetName === name) { closeSheet(); return; }
+    closeSheet();
+    const sheet = SHEETS[name];
+    if (!sheet) return;
+    if (name === "settings") renderTuneOptions();
+    sheet.hidden = false;
+    sheetBackdrop.hidden = false;
+    openSheetName = name;
+  }
+
+  function closeSheet() {
+    if (!openSheetName) return false;
+    SHEETS[openSheetName].hidden = true;
+    sheetBackdrop.hidden = true;
+    openSheetName = null;
+    return true;
+  }
+
+  filtersBtn.addEventListener("click", () => openSheet("filters"));
+  settingsBtn.addEventListener("click", () => openSheet("settings"));
+  sheetBackdrop.addEventListener("click", () => closeSheet());
+
+  /* "Manage playlists…" in Settings opens the existing playlist menu. */
+  managePlBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    openMenu();
   });
 
-  listBackdrop.addEventListener("click", () => setListOpen(false));
+  /* Count badge on the Filters button: how many list filters are engaged. */
+  function updateFilterBadge() {
+    const n = (state.chordsOnly ? 1 : 0) + (state.startsOn ? 1 : 0) +
+      (state.keyFilter ? 1 : 0) + (state.formFilter ? 1 : 0) + state.tagFilter.size;
+    filterBadge.textContent = String(n);
+    filterBadge.hidden = n === 0;
+    filtersBtn.classList.toggle("on", n > 0);
+  }
 
   /* --------------------------------------------- fullscreen scan overlay */
 
@@ -305,10 +404,7 @@
     state.filtered = filterTunes(searchEl.value);
     state.activeIndex = state.filtered.length ? 0 : -1;
     renderList();
-    if (reveal) {
-      if (narrowMq.matches) setListOpen(true);
-      else if (state.listCollapsed) setListCollapsed(false);
-    }
+    if (reveal) revealList();
   }
 
   /* --------------------------------------------- "starts on" filter (§8.2a) */
@@ -360,10 +456,7 @@
       state.activeIndex = state.filtered.length ? 0 : -1;
       renderList();
       /* Reveal the narrowed list, like the digitized-chords toggle. */
-      if (state.startsOn) {
-        if (narrowMq.matches) setListOpen(true);
-        else if (state.listCollapsed) setListCollapsed(false);
-      }
+      if (state.startsOn) revealList();
     });
   }
 
@@ -521,10 +614,7 @@
     state.activeIndex = state.filtered.length ? 0 : -1;
     renderList();
     /* Searching only makes sense with the list visible — reveal it. */
-    if (searchEl.value) {
-      if (narrowMq.matches) setListOpen(true);
-      else if (state.listCollapsed) setListCollapsed(false);
-    }
+    if (searchEl.value) revealList();
   });
 
   /* Reflect the digitized-chords filter on the button and re-filter the list. */
@@ -543,8 +633,7 @@
     } catch (e) { /* ignore */ }
     applyChordFilter();
     /* Reveal the list so the narrowed result is visible on phones/collapsed. */
-    if (narrowMq.matches) setListOpen(true);
-    else if (state.listCollapsed) setListCollapsed(false);
+    revealList();
   });
 
   /* ------------------------------------------------------------ tune list */
@@ -609,12 +698,17 @@
         const cls = "tune-item" +
           (t.id === state.currentId ? " current" : "") +
           (i === state.activeIndex ? " active" : "");
+        const keyLabel = keyLabelOf(t);
+        const keyChip = keyLabel
+          ? `<span class="row-key">${escapeHtml(noteGlyph(keyLabel.split(" ")[0]) + " " + keyLabel.split(" ").slice(1).join(" "))}</span>`
+          : "";
         return `<div class="${cls}" data-id="${escapeHtml(t.id)}">${iconCluster(t)}` +
           `<span class="txt"><span class="t">${escapeHtml(t.title || t.id)}</span>` +
           (composer ? `<span class="c">${escapeHtml(composer)}</span>` : "") +
-          "</span>" + tools + "</div>";
+          "</span>" + keyChip + tools + "</div>";
       })
       .join("");
+    updateFilterBadge();
   }
 
   listEl.addEventListener("click", (e) => {
@@ -688,8 +782,9 @@
       if (closePopover()) return;
       if (closeMenu()) return;
       if (closeTagMenu()) return;
-      if (document.body.classList.contains("list-open")) {
-        setListOpen(false);
+      if (closeSheet()) return;
+      if (narrowMq.matches && document.body.classList.contains("show-detail")) {
+        setShowDetail(false);
         return;
       }
       if (searchEl.value) {
@@ -1170,18 +1265,12 @@
   }
 
   /* Non-digitized tunes only have a title (spec §5.3). */
+  /* The detail-pane header carries the title/composer; the footer carries the
+     playlist step buttons. renderHead now only builds the in-pane summary block
+     (metadata line + harmonic fingerprint), or null when a tune has neither. */
   function renderHead(t) {
     const info = meta(t);
     const head = el("div", "tune-head");
-    const top = el("div", "head-top");
-    const tempo = el("span", "tempo");
-    if (info.tempo) tempo.textContent = `(${titleCase(info.tempo)})`;
-    const title = el("h2", "title");
-    title.textContent = t.title || t.id;
-    const composer = el("span", "composer");
-    composer.textContent = info.composer || "";
-    top.append(tempo, title, composer);
-    head.appendChild(top);
 
     const parts = [];
     if (info.style) parts.push(escapeHtml(info.style));
@@ -1198,22 +1287,112 @@
     const harmony = renderHarmony(info);
     if (harmony) head.appendChild(harmony);
 
-    /* Playlist controls (§5.3, §11.2, §11.4): Prev/Next only while a playlist
-       is active (set by updateStepButtons). "Add to playlist" sits in the tune
-       view's top-right corner and acts on the current tune (see addPlBtn). */
-    const actions = el("div", "head-actions");
-    const prev = el("button", "step-btn step-prev");
-    prev.type = "button";
-    prev.textContent = "‹ Prev";
-    prev.addEventListener("click", () => playlistStep(-1));
-    const next = el("button", "step-btn step-next");
-    next.type = "button";
-    next.textContent = "Next ›";
-    next.addEventListener("click", () => playlistStep(1));
-    actions.append(prev, next);
-    head.appendChild(actions);
+    return head.childElementCount ? head : null;
+  }
 
-    return head;
+  /* Detail-pane header title/composer for the current tune. */
+  function setDetailHeader(t) {
+    const info = meta(t);
+    detailTitleEl.querySelector(".dt-title").textContent = t.title || t.id;
+    detailTitleEl.querySelector(".dt-composer").textContent = info.composer || "";
+  }
+
+  /* Persistent footer bar: harmony chips + transpose control (brush transport
+     and playlist step buttons are static in the markup). */
+  function buildFooter(t) {
+    const info = meta(t);
+    const chips = [];
+    const kl = keyLabelOf(t);
+    if (kl) {
+      const parts = kl.split(" ");
+      chips.push(`<span class="fchip key">${escapeHtml(noteGlyph(parts[0]) + " " + parts.slice(1).join(" "))}</span>`);
+    }
+    if (info.tempo) chips.push(`<span class="fchip">${escapeHtml("(" + titleCase(info.tempo) + ")")}</span>`);
+    const fam = familyOf(t);
+    if (fam) chips.push(`<span class="fchip">${escapeHtml(fam)}</span>`);
+    const deg = (info.opening || {}).degree;
+    if (deg) chips.push(`<span class="fchip">starts on ${escapeHtml(deg)}</span>`);
+    footerChips.innerHTML = chips.join("");
+
+    footerTranspose.innerHTML = "";
+    const transpose = makeTransposeControl(t);
+    if (transpose) footerTranspose.appendChild(transpose);
+
+    detailFooter.hidden = false;
+  }
+
+  /* Detail-pane Chords/Melody tabs: only meaningful on narrow screens with both
+     assets present (wide screens show both panels side by side). */
+  function updateTabs(hasChord, hasMelody) {
+    const showTabs = narrowMq.matches && hasChord && hasMelody;
+    detailTabsEl.hidden = !showTabs;
+    if (!showTabs) return;
+    tabChordsBtn.classList.toggle("active", state.tab !== "melody");
+    tabMelodyBtn.classList.toggle("active", state.tab === "melody");
+  }
+
+  tabChordsBtn.addEventListener("click", () => {
+    state.tab = "chords";
+    const t = tuneById(state.currentId);
+    if (t) applyPanels(t);
+  });
+  tabMelodyBtn.addEventListener("click", () => {
+    state.tab = "melody";
+    const t = tuneById(state.currentId);
+    if (t) applyPanels(t);
+  });
+
+  /* Current-tune options at the top of the Settings sheet: view, verses,
+     add-to-playlist, similar tunes. Transpose + practice ride in the footer. */
+  function renderTuneOptions() {
+    tuneOptions.innerHTML = "";
+    const t = tuneById(state.currentId);
+    if (!t) return;
+
+    const heading = el("div", "sheet-field-label sheet-section-head");
+    heading.textContent = t.title || t.id;
+    tuneOptions.appendChild(heading);
+
+    /* (The grid / book / scan view switch lives inline above the chord grid,
+       not here.) */
+
+    /* Verses toggle (chord tunes that carry a verse section). */
+    if (t.has_chord_json && hasVerseSection(t)) {
+      const row = el("div", "sheet-row");
+      const label = el("span", "sheet-row-label");
+      label.textContent = "Show verses";
+      const btn = el("button", "toggle-btn" + (state.showVerses ? " on" : ""));
+      btn.type = "button";
+      btn.innerHTML = '<span class="knob"></span>';
+      btn.addEventListener("click", () => {
+        state.showVerses = !state.showVerses;
+        saveSwitch("grilles.showVerses", state.showVerses);
+        renderTune(state.currentId);
+      });
+      row.append(label, btn);
+      tuneOptions.appendChild(row);
+    }
+
+    /* Add to playlist. */
+    const plField = el("div", "sheet-field");
+    const plLab = el("div", "sheet-field-label");
+    plLab.textContent = "Add to playlist";
+    const addBtn = el("button", "sheet-action");
+    addBtn.type = "button";
+    addBtn.textContent = "＋ Add to playlist…";
+    addBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (plPopover.hidden) openPopover(addBtn, t);
+      else closePopover();
+    });
+    plField.append(plLab, addBtn);
+    tuneOptions.appendChild(plField);
+
+    /* Similar tunes / sections (§8) — clicking a row opens the comparison. */
+    ["tunes", "sections"].forEach((kind) => {
+      const panel = renderSuggestPanel(t, kind);
+      if (panel) tuneOptions.appendChild(panel);
+    });
   }
 
   /* --------------------------------------------------------------- extras */
@@ -1681,28 +1860,39 @@
     }
   }
 
-  /* Show/hide panels per the switches; side-by-side handled by CSS (.dual). */
+  /* Wide: show every available panel (chords + melody side by side via .dual).
+     Narrow: one asset at a time, chosen by the detail-pane tab. */
   function applyPanels(t) {
     const panels = paneEl.querySelector(".panels");
     if (!panels) return;
     const chordPanel = panels.querySelector(".panel.chords");
     const melodyPanel = panels.querySelector(".panel.melody");
-    const visC = Boolean(chordPanel) && state.showChords;
-    const visM = Boolean(melodyPanel) && state.showMelody;
+    const hasC = Boolean(chordPanel), hasM = Boolean(melodyPanel);
+    let visC, visM;
+    if (isWide()) {
+      visC = hasC; visM = hasM;
+    } else {
+      const tab = (state.tab === "melody" && hasM) || !hasC ? "melody" : "chords";
+      visC = hasC && tab === "chords";
+      visM = hasM && tab === "melody";
+    }
     if (chordPanel) chordPanel.hidden = !visC;
     if (melodyPanel) melodyPanel.hidden = !visM;
     panels.classList.toggle("dual", visC && visM);
+    updateTabs(hasC, hasM);
     requestAnimationFrame(fitAll);
   }
 
   /* ------------------------------------------------------------ playlists */
 
+  /* Active-playlist chip in the list header: shown only while a playlist is on. */
   function updateTopbar() {
     const pl = activePlaylist();
-    playlistBtn.textContent = pl ? pl.name : "Playlists";
-    playlistBtn.classList.toggle("pl-active", Boolean(pl));
-    playlistBtn.title = pl ? `Active playlist: ${pl.name}` : "Playlists";
-    playlistClear.hidden = !pl;
+    activePlChip.hidden = !pl;
+    if (pl) {
+      playlistBtn.textContent = pl.name;
+      playlistBtn.title = `Active playlist: ${pl.name}`;
+    }
   }
 
   function refreshList() {
@@ -1737,17 +1927,18 @@
     if (target) openTune(target);
   }
 
+  stepPrevBtn.addEventListener("click", () => playlistStep(-1));
+  stepNextBtn.addEventListener("click", () => playlistStep(1));
+
+  /* Footer Prev/Next: present only while a playlist is active. */
   function updateStepButtons() {
-    const prev = paneEl.querySelector(".step-prev");
-    const next = paneEl.querySelector(".step-next");
-    if (!prev || !next) return;
     const pl = activePlaylist();
-    prev.hidden = next.hidden = !pl;
+    footerNav.hidden = !pl;
     if (!pl) return;
     const seq = pl.tuneIds.filter((id) => tuneById(id));
     const idx = seq.indexOf(state.currentId);
-    prev.disabled = idx <= 0;
-    next.disabled = idx === -1 ? !seq.length : idx >= seq.length - 1;
+    stepPrevBtn.disabled = idx <= 0;
+    stepNextBtn.disabled = idx === -1 ? !seq.length : idx >= seq.length - 1;
   }
 
   /* Dropdown under its anchor on desktop; a bottom sheet on phones (§11.6). */
@@ -1894,16 +2085,8 @@
     else closeMenu();
   });
 
-  /* Tune-view "＋" (top-right corner): add the currently displayed tune to a
-     playlist (§11.2). The popover drops from the button on desktop, becomes a
-     bottom sheet on phones. */
-  addPlBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // keep the outside-click closer from firing
-    const t = tuneById(state.currentId);
-    if (!t) return;
-    if (plPopover.hidden) openPopover(addPlBtn, t);
-    else closePopover();
-  });
+  /* "Add to playlist" now lives in the Settings sheet's tune-options section
+     (see renderTuneOptions); the popover anchors to that sheet button. */
 
   /* --- Export / import (§11.5). */
 
@@ -2029,6 +2212,7 @@
   }
 
   function openComparison(otherId, bars) {
+    closeSheet(); // the comparison replaces the detail; don't leave a sheet over it
     state.compare = { otherId, mode: "original", bars: bars || null };
     renderTune(state.currentId);
   }
@@ -2299,73 +2483,32 @@
     document.title = `${t.title || id} — Grilles`;
 
     paneEl.innerHTML = "";
-    paneEl.appendChild(renderHead(t));
+    setDetailHeader(t);
+    const head = renderHead(t);
 
-    /* Comparison view (§8.3) replaces the normal panels until Back. */
+    /* Comparison view (§8.3) replaces the normal panels until Back. The summary
+       block stays on top here (no grid to sit under). */
     if (state.compare) {
+      if (head) paneEl.appendChild(head);
       paneEl.appendChild(renderComparison(t));
+      detailFooter.hidden = true;
+      updateTabs(false, false);
       if (isNewTune) viewEl.scrollTop = 0;
-      if (narrowMq.matches) setListOpen(false);
+      if (narrowMq.matches) setShowDetail(true);
       updateListHighlight();
       updateStepButtons();
       closePopover();
       return;
     }
 
-    /* Switch toolbar (spec §5.4) — one switch per available asset. */
-    const bar = el("div", "panel-bar");
-    if (hasChordAsset(t)) {
-      bar.appendChild(makeSwitch("Chords", state.showChords, (on) => {
-        state.showChords = on;
-        saveSwitch("grilles.showChords", on);
-        applyPanels(t);
-      }));
-    }
-    if (hasMelodyAsset(t)) {
-      bar.appendChild(makeSwitch("Melody", state.showMelody, (on) => {
-        state.showMelody = on;
-        saveSwitch("grilles.showMelody", on);
-        applyPanels(t);
-      }));
-    }
-    /* Only offered when the tune has a verse — the grid rebuilds on toggle, and
-       re-rendering the same tune keeps zoom/scroll/transpose/variants. */
-    if (t.has_chord_json && hasVerseSection(t)) {
-      bar.appendChild(makeSwitch("Verses", state.showVerses, (on) => {
-        state.showVerses = on;
-        saveSwitch("grilles.showVerses", on);
-        renderTune(state.currentId);
-      }));
-    }
-    const transpose = makeTransposeControl(t);
-    if (transpose) bar.appendChild(transpose);
-    /* Suggestion buttons (§8.2) — one per kind the engine produced,
-       colored by the best match's quality band. */
-    const kinds = suggestKinds(t);
-    [["tunes", "Similar tunes"], ["sections", "Similar sections"]]
-      .forEach(([kind, label]) => {
-        const items = kinds[kind];
-        if (!items.length) return;
-        const best = Math.max(...items.map((x) => x.score));
-        const [, cls, bandLabel] = qualityBand(best);
-        const on = state.showSuggest === kind;
-        const btn = el("button", `suggest-btn ${cls}` + (on ? " on" : ""));
-        btn.type = "button";
-        btn.textContent = label;
-        btn.title = `best match: ${bandLabel} (${Math.round(best * 100)}/100)`;
-        btn.setAttribute("aria-pressed", String(on));
-        btn.addEventListener("click", () => {
-          state.showSuggest = on ? null : kind;
-          renderTune(state.currentId); // same tune → keeps zoom/scroll/transpose
-        });
-        bar.appendChild(btn);
-      });
-    if (bar.childElementCount) paneEl.appendChild(bar);
+    /* Chords/Melody are chosen by the detail-pane tabs (narrow) or shown side by
+       side (wide). Transpose + practice ride in the footer; view / verses /
+       similar tunes / add-to-playlist live in the ⋯ tune-options sheet.
 
-    if (state.showSuggest) {
-      const suggest = renderSuggestPanel(t, state.showSuggest);
-      if (suggest) paneEl.appendChild(suggest);
-    }
+       The metadata + harmonic-fingerprint summary (renderHead) sits BELOW the
+       chord grid, before the variants; headPlaced tracks whether a chords panel
+       took it (a melody-only tune falls back to placing it on top). */
+    let headPlaced = false;
 
     const panels = el("div", "panels");
 
@@ -2396,6 +2539,7 @@
         });
         panel.appendChild(grid);
         panel.appendChild(renderBoxGrid(tune, overrides)); // book layout (hidden unless chosen)
+        if (head) { panel.appendChild(head); headPlaced = true; } // info below the grid
         const variants = renderVariants(tune, beats);
         if (variants) panel.appendChild(variants);
         const extras = renderExtras(tune, beats);
@@ -2403,6 +2547,7 @@
         addChordViewSwitch(panel, t, `${t.title || id} — original chord scan`);
       } else {
         panel.appendChild(scanImg(t.chord_image, `${t.title || id} — chord scan`));
+        if (head) { panel.appendChild(head); headPlaced = true; }
       }
       panels.appendChild(panel);
     }
@@ -2422,17 +2567,28 @@
       } else {
         scans.forEach((src) => panel.appendChild(scanImg(src, `${t.title || id} — melody scan`)));
       }
+      /* Desktop dual view: the chords panel carries a view-switch tools row, so
+         a toolless melody panel gets a matching spacer to align its top (the
+         melody png/sheet) with the start of the chord grid. Hidden on phones. */
+      if (!panel.querySelector(".panel-tools")) {
+        panel.prepend(el("div", "panel-tools tools-spacer"));
+      }
       panels.appendChild(panel);
     }
 
     paneEl.appendChild(panels);
+    /* Melody-only (or no-asset) tunes have no grid to sit under — keep the
+       summary block at the top. */
+    if (head && !headPlaced) paneEl.insertBefore(head, panels);
     /* abcjs measures the container, so render after the panel is in the DOM.
        The melody moves with the chords: same semitone shift via visualTranspose. */
     if (melodyPanel) renderAbcSheet(melodyPanel, t, state.transpose ? state.transpose.shift : 0);
     applyPanels(t);
+    buildFooter(t);
+    if (openSheetName === "settings") renderTuneOptions(); // keep an open sheet current
 
     if (isNewTune) viewEl.scrollTop = 0;
-    if (narrowMq.matches) setListOpen(false);
+    if (narrowMq.matches) setShowDetail(true);
     updateListHighlight();
     updateStepButtons();
     closePopover(); // an open add-popover belongs to the previous tune
@@ -2648,6 +2804,16 @@
     resizeTimer = setTimeout(fitAll, 150);
   });
 
+  /* Crossing the 860px seam swaps the detail pane between tabbed (narrow) and
+     side-by-side (wide) layouts, so re-apply the panels for the current tune. */
+  const onSeamChange = () => {
+    const t = tuneById(state.currentId);
+    if (t && !state.compare) applyPanels(t);
+    else updateTabs(false, false);
+  };
+  if (narrowMq.addEventListener) narrowMq.addEventListener("change", onSeamChange);
+  else if (narrowMq.addListener) narrowMq.addListener(onSeamChange);
+
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(() => requestAnimationFrame(fitAll));
   }
@@ -2686,7 +2852,8 @@
   searchEl.focus();
 
   const initialId = decodeURIComponent(location.hash.slice(1));
-  if (tuneById(initialId)) {
+  const deepLinked = Boolean(tuneById(initialId));
+  if (deepLinked) {
     renderTune(initialId);
   } else if (TUNES.length) {
     history.replaceState(null, "", "#" + encodeURIComponent(TUNES[0].id));
@@ -2694,4 +2861,6 @@
   } else {
     paneEl.innerHTML = '<div class="list-empty">No tunes found. Run build_data.py first.</div>';
   }
+  /* On phones, open on the list unless the URL deep-links a specific tune. */
+  if (narrowMq.matches && !deepLinked) setShowDetail(false);
 })();
