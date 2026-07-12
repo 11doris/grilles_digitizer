@@ -97,13 +97,17 @@ body {
 
 body.list-collapsed #listPane { width: 0; border-right: none; }
 
+/* The whole pane is the scroller: the header + tabs ride at the top of the flow
+   and scroll away with the chords (the title row is never pinned), while only
+   the footer control bar stays stuck to the bottom of the viewport. */
 #detailPane {
   flex: 1 1 auto;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  position: relative; /* anchors #gridZoom */
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
 }
 
 /* --------------------------------------------------- icon / pill buttons */
@@ -332,9 +336,11 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 }
 
 #tuneView {
-  flex: 1;
+  /* Grow to fill the pane so a short tune still pushes the footer to the bottom,
+     but let a tall tune overflow and drive the pane's scroll (not a nested one). */
+  flex: 1 0 auto;
   min-height: 0;
-  overflow-y: auto;
+  overflow-y: visible;
   padding: 0.6rem 1.4rem 2rem;
   position: relative;
 }
@@ -350,6 +356,10 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
    chips + transpose + practice transport + playlist step buttons. */
 #detailFooter {
   flex: none;
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  background: var(--bg);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -1852,20 +1862,8 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   #listToggle { display: none; } /* list is full-screen; nothing to collapse */
   body.show-detail #backBtn { display: inline-flex; } /* back to the list */
 
-  /* Phones: the detail header scrolls away with the content so the chords get
-     the full screen height. The whole pane becomes the scroller (instead of a
-     nested #tuneView scroll), the header/tabs ride at the top of that flow, and
-     only the footer control bar stays pinned to the bottom of the viewport. */
-  #detailPane { overflow-y: auto; overflow-x: hidden; }
-  /* grow to fill the pane so a short tune still pushes the footer to the bottom,
-     but let a tall tune overflow (and scroll) instead of shrinking. */
-  #tuneView { flex: 1 0 auto; overflow-y: visible; min-height: 0; }
-  #detailFooter {
-    position: sticky;
-    bottom: 0;
-    z-index: 20;
-    background: var(--bg);
-  }
+  /* The pane-is-the-scroller model (header scrolls away, footer pinned) now lives
+     in the base rules and applies at every width; phones only tighten padding. */
 
   /* One panel shows at a time on phones, so the desktop alignment spacer would
      just leave an empty bar above the melody — drop it. */
@@ -2032,6 +2030,7 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   font-variant-numeric: tabular-nums;
 }
 #brushTap,
+.brush-toggle,
 .brush-seg button {
   background: none;
   border: 1px solid var(--border);
@@ -2041,7 +2040,9 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   padding: 0.25rem 0.7rem;
   cursor: pointer;
 }
-.brush-seg button.on { border-color: var(--accent); color: var(--accent); }
+.brush-toggle { margin-left: auto; min-width: 3rem; }
+.brush-seg button.on,
+.brush-toggle.on { border-color: var(--accent); color: var(--accent); }
 
 /* Beat dots: live 1-2-3-4 pulse; amber during the count-in bar. */
 .brush-dots {

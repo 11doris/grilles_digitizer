@@ -36,6 +36,7 @@
   const chordFilterBtn = document.getElementById("chordFilter");
   const listEl = document.getElementById("tuneList");
   const viewEl = document.getElementById("tuneView");
+  const detailPaneEl = document.getElementById("detailPane"); // the detail scroller
   const paneEl = document.getElementById("tunePane");
   const listToggle = document.getElementById("listToggle");
   const overlayEl = document.getElementById("scanOverlay");
@@ -1208,9 +1209,11 @@
     const block = el("div", "bx-block");
     rows.forEach((row) => {
       const rowEl = el("div", "bx-row");
-      if (row.section) {
+      /* `row.label` (verse rows: A, A1) overrides the derived letter; otherwise
+         the section name collapses to its letter (displaySectionName). */
+      if (row.label != null || row.section) {
         const label = el("div", "bx-seclabel");
-        label.textContent = displaySectionName(row.section);
+        label.textContent = row.label != null ? row.label : displaySectionName(row.section);
         rowEl.appendChild(label);
       }
       row.bars.forEach((bar, i) => {
@@ -1232,9 +1235,11 @@
   }
 
   /* The whole book-layout view for a tune: the form badge, then one block for
-     the chorus sections and a separately captioned block per auxiliary section
-     (verse/intro/coda print as their own grille in the book). `overrides` is
-     the same merged {section: {barIdx: variantBar}} map the grid view uses, so
+     the chorus sections, one captioned VERSE block for the verse sections (each
+     row keyed by its letter), and a separately captioned block per other
+     auxiliary section (intro/coda print as their own grille in the book). When a
+     verse is shown, the choruses get a CHORUS caption too. `overrides` is the
+     same merged {section: {barIdx: variantBar}} map the grid view uses, so
      applied variants swap into the lattice too. */
   function renderBoxGrid(tune, overrides) {
     const wrap = el("div", "boxgrid");
@@ -1248,19 +1253,36 @@
     }
     let sectionNames = Object.keys(tune.sections || {});
     if (!state.showVerses) sectionNames = sectionNames.filter((n) => !VERSE_SECTION.test(n));
-    /* Group into blocks: consecutive chorus sections share one lattice. */
+    const hasVerse = sectionNames.some((n) => VERSE_SECTION.test(n));
+    /* Group into blocks: consecutive chorus sections share one lattice, and so
+       do the verse sections (one VERSE grille, each row keyed by its letter);
+       every other auxiliary section (intro/coda/…) prints as its own captioned
+       grille. */
+    const kindOf = (name) => (VERSE_SECTION.test(name) ? "verse"
+      : AUX_SECTION.test(name) ? "aux" : "chorus");
     const blocks = [];
     sectionNames.forEach((name) => {
-      const aux = AUX_SECTION.test(name);
+      const kind = kindOf(name);
       const last = blocks[blocks.length - 1];
-      if (aux || !last || last.aux) blocks.push({ aux, sections: [name] });
+      if (kind === "aux" || !last || last.kind !== kind) blocks.push({ kind, sections: [name] });
       else last.sections.push(name);
     });
+    let chorusLabeled = false;
     blocks.forEach((blk) => {
-      if (blk.aux) {
+      if (blk.kind === "aux") {
         const cap = el("div", "bx-caption");
         cap.textContent = displaySectionName(blk.sections[0]);
         wrap.appendChild(cap);
+      } else if (blk.kind === "verse") {
+        const cap = el("div", "bx-caption");
+        cap.textContent = "Verse";
+        wrap.appendChild(cap);
+      } else if (hasVerse && !chorusLabeled) {
+        /* A visible verse means the choruses need naming too; label the first. */
+        const cap = el("div", "bx-caption");
+        cap.textContent = "Chorus";
+        wrap.appendChild(cap);
+        chorusLabeled = true;
       }
       const rows = [];
       blk.sections.forEach((name) => {
@@ -1272,7 +1294,15 @@
           bars = bars.map((bar, idx) => (secOv[idx]
             ? { bar: bar.bar, beats: secOv[idx].beats, swap: true } : bar));
         }
-        boxRowsOf(blk.aux ? null : name, bars).forEach((r) => {
+        // Chorus rows key off the section letter (boxRowsOf labels the first
+        // row); verse rows carry the letter after "verse_" (verse_A → A,
+        // verse_A1 → A1); plain aux blocks stay unlabeled under their caption.
+        const secRows = boxRowsOf(blk.kind === "chorus" ? name : null, bars);
+        if (blk.kind === "verse" && secRows.length) {
+          const letter = String(name).replace(/^verse_?/i, "");
+          if (letter) secRows[0].label = letter;
+        }
+        secRows.forEach((r) => {
           r.beats = beats;
           r.tint = sectionTint(name);
           rows.push(r);
@@ -1892,14 +1922,14 @@
       toggle.setAttribute("aria-label", toggle.title);
     };
     toggle.addEventListener("click", () => {
-      const scroll = viewEl.scrollTop;
+      const scroll = detailPaneEl.scrollTop;
       apply(!panel.classList.contains("show-scan"));
       requestAnimationFrame(fitAll); // fitGrid preserves the scroll position
       /* If a scan hasn't finished loading, the panel is briefly short and
          the browser clamps the scroll — put it back once each image is in. */
       panel.querySelectorAll("img.scan").forEach((img) => {
         if (!img.complete) {
-          img.addEventListener("load", () => { viewEl.scrollTop = scroll; }, { once: true });
+          img.addEventListener("load", () => { detailPaneEl.scrollTop = scroll; }, { once: true });
         }
       });
     });
@@ -1946,14 +1976,14 @@
         try {
           localStorage.setItem("grilles.chordView", view);
         } catch (e) { /* ignore */ }
-        const scroll = viewEl.scrollTop;
+        const scroll = detailPaneEl.scrollTop;
         apply(view);
         requestAnimationFrame(fitAll); // the fit passes preserve the scroll
         /* If a scan hasn't finished loading, the panel is briefly short and
            the browser clamps the scroll — put it back once each image is in. */
         panel.querySelectorAll("img.scan").forEach((img) => {
           if (!img.complete) {
-            img.addEventListener("load", () => { viewEl.scrollTop = scroll; }, { once: true });
+            img.addEventListener("load", () => { detailPaneEl.scrollTop = scroll; }, { once: true });
           }
         });
       });
@@ -2651,7 +2681,7 @@
       paneEl.appendChild(renderComparison(t));
       detailFooter.hidden = true;
       updateTabs(false, false);
-      if (isNewTune) viewEl.scrollTop = 0;
+      if (isNewTune) detailPaneEl.scrollTop = 0;
       if (narrowMq.matches) setShowDetail(true);
       updateListHighlight();
       updateStepButtons();
@@ -2785,7 +2815,7 @@
     buildFooter(t);
     if (openSheetName === "settings") renderTuneOptions(); // keep an open sheet current
 
-    if (isNewTune) viewEl.scrollTop = 0;
+    if (isNewTune) detailPaneEl.scrollTop = 0;
     if (narrowMq.matches) setShowDetail(true);
     updateListHighlight();
     updateStepButtons();

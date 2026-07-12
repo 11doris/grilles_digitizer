@@ -30,6 +30,9 @@ import numpy as np
 SR = 44100
 OUT = Path(__file__).resolve().parent / "data" / "brush_samples.js"
 
+# Global downward pitch shift of every noise band (< 1.0 = darker/lower).
+PITCH = 0.78
+
 
 def shaped_noise(rng: np.random.Generator, dur: float,
                  bands: list[tuple[float, float, float]],
@@ -45,7 +48,7 @@ def shaped_noise(rng: np.random.Generator, dur: float,
     shape = np.zeros_like(f)
     safe_f = np.maximum(f, 1.0)
     for fc, octaves, gain in bands:
-        shape += gain * np.exp(-0.5 * (np.log2(safe_f / fc) / octaves) ** 2)
+        shape += gain * np.exp(-0.5 * (np.log2(safe_f / (fc * PITCH)) / octaves) ** 2)
     if tilt:
         shape *= (np.maximum(f, 20.0) / 1000.0) ** tilt
     shape[0] = 0.0  # no DC
