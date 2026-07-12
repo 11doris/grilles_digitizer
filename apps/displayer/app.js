@@ -528,8 +528,10 @@
   ];
   const STYLE_LABELS = new Map(STYLE_BUCKETS.map(([k, label]) => [k, label]));
 
-  /* Bucket key for a tune's style, "other" for an unrecognised non-empty style,
-     or null when the tune has no style at all. */
+  /* Bucket key for a tune's style, or null when the tune has no style at all.
+     Recognised genres collapse to a primary category; anything unrecognised is
+     kept as its own entry (keyed by the raw uppercased style) rather than lumped
+     into a single "other" bucket. */
   function styleBucketOf(t) {
     const s = meta(t).style;
     if (!s) return null;
@@ -537,7 +539,7 @@
     for (const [key, , re] of STYLE_BUCKETS) {
       if (re.test(up)) return key;
     }
-    return "other";
+    return up;
   }
 
   /* Decade (e.g. 1930) for a tune's year, or null when it has none. */
@@ -630,10 +632,12 @@
       else unknown++;
     });
     if (!counts.size) { styleFilterEl.hidden = true; return; }
+    /* Recognised buckets first (by count), then the unrecognised styles kept
+       separate (also by count) — each labelled by its own title-cased name. */
     const keys = [...counts.keys()].sort((a, b) => counts.get(b) - counts.get(a));
     const opts = ['<option value="">Style…</option>'];
     keys.forEach((k) => {
-      const label = STYLE_LABELS.get(k) || "Other";
+      const label = STYLE_LABELS.get(k) || titleCase(k);
       opts.push(`<option value="${escapeHtml(k)}">${escapeHtml(label)} (${counts.get(k)})</option>`);
     });
     if (unknown) opts.push(`<option value="unknown">unknown (${unknown})</option>`);
@@ -1064,12 +1068,22 @@
     return frag;
   }
 
-  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer) {
+  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer, form) {
     const sec = el("div", "section");
     sec.style.setProperty("--bxhue", sectionTint(name)); // section shading
     const badge = el("div", "sec-label");
     badge.textContent = displaySectionName(name);
-    sec.appendChild(badge);
+    if (form) {
+      // First section: section letter left, form badge right, on one row.
+      const head = el("div", "sec-head");
+      head.appendChild(badge);
+      const formBadge = el("div", "grid-form");
+      formBadge.textContent = form;
+      head.appendChild(formBadge);
+      sec.appendChild(head);
+    } else {
+      sec.appendChild(badge);
+    }
     sec.appendChild(renderGrid(bars, beats,
       { double: true, timesig: isFirst ? ts : null, overrides, renderChord: renderer }));
     return sec;
@@ -2411,10 +2425,11 @@
         const other = tuneById(s.id);
         const row = el("button", "suggest-row");
         row.type = "button";
+        /* The form/family line ("32-bar AABA …") is intentionally omitted here —
+           it cluttered the list; the full form is available on the tune itself. */
         row.innerHTML =
           scoreBadge(s.score) +
-          `<span class="sim-title">${escapeHtml(other.title || s.id)}</span>` +
-          (s.family ? `<span class="sim-family">${escapeHtml(s.family)}</span>` : "");
+          `<span class="sim-title">${escapeHtml(other.title || s.id)}</span>`;
         row.title = "open side-by-side comparison";
         row.addEventListener("click", () => openComparison(s.id, s.bars));
         list.appendChild(row);
@@ -2677,8 +2692,13 @@
         let sectionNames = Object.keys(tune.sections || {});
         if (!state.showVerses) sectionNames = sectionNames.filter((n) => !VERSE_SECTION.test(n));
         sectionNames.forEach((name, i) => {
+          /* Form badge ("32 A A B A") rides on the first section's label row,
+             top-right — same style as the book layout's badge. It lives inside
+             .grid so it inherits the grid's fitted font and hides in book/scan
+             view. */
           grid.appendChild(renderSection(name, tune.sections[name], beats,
-            i === 0, tune.time_signature, overrides[name]));
+            i === 0, tune.time_signature, overrides[name], undefined,
+            i === 0 ? tune.form : null));
         });
         panel.appendChild(grid);
         panel.appendChild(renderBoxGrid(tune, overrides)); // book layout (hidden unless chosen)

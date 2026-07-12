@@ -1,37 +1,28 @@
 /* Grilles Displayer — themes, layout, chord grid, chord symbols. */
 
-/* Barlow Condensed (Google Fonts), bundled locally so file:// works offline.
-   The music glyphs ♯ ♭ Δ fall back to the system font. */
+/* Saira Extra Condensed (Google Fonts), bundled locally so file:// works
+   offline. Trial replacement for Barlow Condensed — the barlow-condensed-*.woff2
+   files are kept in fonts/ so switching back is just a family-name swap. The
+   music glyphs ♯ ♭ Δ fall back to the system font. */
 @font-face {
-  font-family: "Barlow Condensed";
+  font-family: "Saira Extra Condensed";
   font-style: normal;
   font-weight: 400;
-  src: url("fonts/barlow-condensed-400.woff2") format("woff2");
+  src: url("fonts/saira-extra-condensed-400.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Barlow Condensed";
+  font-family: "Saira Extra Condensed";
   font-style: normal;
   font-weight: 500;
-  src: url("fonts/barlow-condensed-500.woff2") format("woff2");
+  src: url("fonts/saira-extra-condensed-500.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Barlow Condensed";
+  font-family: "Saira Extra Condensed";
   font-style: normal;
   font-weight: 700;
-  src: url("fonts/barlow-condensed-700.woff2") format("woff2");
-}
-
-/* Sofia Sans Extra Condensed (Google Fonts, latin subset, variable) — a much
-   narrower face used for the crowded .bar.tight chords (so 3–4 chords fit a
-   single bar without forcing the whole grid's font down) and the time
-   signature. ♯ ♭ Δ fall back to the system font, same as Barlow Condensed. */
-@font-face {
-  font-family: "Sofia Sans Extra Condensed";
-  font-style: normal;
-  font-weight: 400 500;
-  src: url("fonts/sofia-sans-extra-condensed.woff2") format("woff2");
+  src: url("fonts/saira-extra-condensed-700.woff2") format("woff2");
 }
 
 :root[data-theme="dark"] {
@@ -75,7 +66,8 @@ body {
   background: var(--bg);
   color: var(--fg);
   /* UI chrome uses Inter where available, falling back to the platform sans.
-     Titles and chord symbols keep Barlow Condensed (bundled). */
+     Titles and chord symbols use the bundled condensed face (Saira Extra
+     Condensed on trial, formerly Barlow Condensed). */
   font-family: "Inter", system-ui, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -202,7 +194,7 @@ body.list-collapsed #listPane { width: 0; border-right: none; }
 .list-head-actions { display: flex; gap: 0.5rem; flex: none; }
 
 .appname {
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   font-size: 1.6rem;
   letter-spacing: 0.02em;
@@ -297,7 +289,7 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
   gap: 0.05rem;
 }
 .detail-title .dt-title {
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   font-size: 1.3rem;
   letter-spacing: 0.01em;
@@ -453,7 +445,7 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 .sheet-grip { display: none; }
 
 .sheet-title {
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   font-size: 1.2rem;
   margin-bottom: 0.8rem;
@@ -989,7 +981,7 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 .harm-sections dt {
   font-weight: 700;
   color: var(--fg);
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
 }
 
 .harm-sections dd { margin: 0; }
@@ -1019,13 +1011,34 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
   font-size: clamp(10px, 2.6cqw, 15px);
 }
 
+/* Form badge on the first section's label row — section letter left, form
+   badge right — mirroring the book layout's .bx-form. Sits inside .grid so it
+   scales with the fitted grid font. */
+.sec-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+/* Equal bottom margins so the two badges' borders sit on the same line and the
+   row keeps the section label's usual 0.3em gap to the grid below. */
+.sec-head .grid-form { margin-bottom: 0.3em; }
+.grid-form {
+  border: 0.1em solid var(--line);
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.1em;
+  letter-spacing: 0.1em;
+  padding: 0.15em 0.5em 0.1em;
+  margin-bottom: 0.4em;
+  text-transform: uppercase;
+}
+
 .section { margin-bottom: 0.0em; }
 
 .sec-label {
   display: inline-block;
   background: var(--fg);
   color: var(--bg);
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
   font-size: 1.0em;
   line-height: 1;
@@ -1049,7 +1062,7 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Sofia Sans Extra Condensed", "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", sans-serif;
   font-weight: 500;
   font-size: 1.4em;
   line-height: 1;
@@ -1124,7 +1137,7 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
    squeezes multi-chord boxes of the book-layout view (.bx.tight). */
 .bar.tight .chord,
 .bx.tight .chord {
-  font-family: "Sofia Sans Extra Condensed", "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", sans-serif;
   letter-spacing: -0.03em;
 }
 /* Narrow the middle/right columns (never the root, so the ground line and the
@@ -1164,8 +1177,8 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 }
 
 .bx-form {
-  border: 0.2em solid var(--line);
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  border: 0.1em solid var(--line);
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-size: 1.1em;
   letter-spacing: 0.1em;
   padding: 0.15em 0.5em 0.1em;
@@ -1199,7 +1212,7 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 }
 
 .bx-caption {
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   font-size: 1.15em;
   letter-spacing: 0.08em;
@@ -1226,7 +1239,7 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
   transform: translateY(-50%);
   background: var(--fg);
   color: var(--bg);
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-size: 1.0em;
   line-height: 1;
   padding: 0.12em 0.22em;
@@ -1377,7 +1390,7 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 
 /* Small beat digit before an off-default chord (the book's superscripts). */
 .bx-beat {
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-size: 0.9em;
   line-height: 1;
   margin-right: 0.1em;
@@ -1394,7 +1407,7 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 .chord {
   display: inline-flex;
   align-items: center;
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
   line-height: 1;
   white-space: nowrap;
@@ -1554,7 +1567,7 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 }
 
 .variants-title {
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   font-size: 1.15rem;
   letter-spacing: 0.04em;
@@ -1860,7 +1873,7 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 
   #tuneView { padding: 0.55rem 0.4rem 1.4rem; }
   /* Tight left gutter so the grid runs nearly edge-to-edge; just wide enough to
-     hold the first row's (narrow Sofia) time signature. The section badge and
+     hold the first row's (narrow condensed) time signature. The section badge and
      timesig ride in this gutter, their offsets trimmed to match. */
   .grid { padding-left: 0.5em; }
   .sec-label { margin-left: -0.5em; }
