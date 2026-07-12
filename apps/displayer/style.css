@@ -368,7 +368,10 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 }
 #detailFooter[hidden] { display: none; }
 
-.footer-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+/* The footer summary chips (key/tempo/family/starts-on) are retired: that info
+   now lives in the collapsible Details/Tags sections and the Key is the centre
+   dropdown below. The bottom bar is a clean three-zone control strip. */
+#footerChips { display: none; }
 .footer-chips .fchip {
   font-size: 0.75rem;
   color: var(--muted);
@@ -380,7 +383,18 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 }
 .footer-chips .fchip.key { color: var(--accent-ink); border-color: var(--accent-ink); }
 
-.footer-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+/* Three zones: zoom (− +) pinned bottom-left, the Key transpose dropdown
+   centred, the practice transport (play + tempo + playlist step) bottom-right. */
+.footer-controls {
+  flex: 1 1 100%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.5rem;
+}
+.fc-left { justify-self: start; display: flex; align-items: center; gap: 0.5rem; }
+.fc-center { justify-self: center; display: flex; align-items: center; min-width: 0; }
+.fc-right { justify-self: end; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
 
 #brushPlay {
   flex: none;
@@ -594,8 +608,6 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
   user-select: none;
 }
 
-.transpose-label { color: var(--fg); }
-
 .key-select {
   font: inherit;
   font-size: 0.85rem;
@@ -713,6 +725,33 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 
 /* Segmented view switch (grid / book layout / scan) in the panel tools row. */
 .view-seg { display: inline-flex; gap: 0.25rem; }
+
+/* Desktop melody show/hide toggle (renderTune): a small pill in a panel's tools
+   row. Hidden on phones — the Chords/Melody tabs handle switching there. The
+   "hide" button rides on the melody panel (top-right, over the sheet/png); the
+   "show" button rides on the chords tools row and only appears once the melody
+   has been hidden (.panels.melody-off), when the lone chords panel centres. */
+.melody-toggle { display: none; }
+.melody-toggle svg { width: 0.95rem; height: 0.95rem; fill: currentColor; }
+@media (min-width: 860px) {
+  .melody-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 0.4rem;
+    color: var(--muted);
+    font-size: 0.72rem;
+    line-height: 1.2;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .melody-toggle:hover { color: var(--fg); border-color: var(--accent); }
+  .melody-toggle.show { display: none; }
+  .panels.melody-off .melody-toggle.show { display: inline-flex; }
+}
 
 /* ------------------------------------------ melody lead sheet (abcjs) */
 
@@ -873,50 +912,11 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
   font-size: 0.9rem;
 }
 
-/* ----------------------------------------------------------- tune head */
+/* --------------------------------------------------- harmonic chips */
 
-.tune-head {
-  max-width: 640px;
-  margin: 0 auto 1rem;
-}
-
-.head-top {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: baseline;
-  gap: 0.75rem;
-}
-
-.head-top .title {
-  margin: 0;
-  text-align: center;
-  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-}
-
-.head-top .tempo { text-align: left; color: var(--fg); font-size: 1rem; }
-.head-top .composer { text-align: right; font-size: 1rem; }
-
-.tune-head .meta {
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.82rem;
-  margin-top: 0.35rem;
-}
-
-/* Harmonic summary (annotated tunes): key + section keys on the first row,
-   fingerprint family + tags on the second. Chips wrap, so the block reflows
-   from a single line on desktop to a few lines on a phone. */
-.harmony {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 0.6rem;
-}
-
+/* Chip rows for the collapsible "Tags" section (opening degree + section-key
+   modulations, fingerprint family + tags). The old always-visible summary
+   block that centred these below the grid has been retired. */
 .harm-row {
   display: flex;
   flex-wrap: wrap;
@@ -995,14 +995,6 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 .harm-sections dd { margin: 0; }
 
 .harm-modnote { color: var(--fg); }
-
-/* Stack the tune head when the pane is narrow (small screen or docked scan).
-   Must come after the .head-top rules above: same specificity, last wins. */
-@container (max-width: 560px) {
-  .head-top { grid-template-columns: 1fr; gap: 0.15rem; }
-  .head-top .title { font-size: 1.5rem; }
-  .head-top .tempo, .head-top .composer { text-align: center; }
-}
 
 /* ---------------------------------------------------------- chord grid */
 
@@ -1530,6 +1522,29 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 .extras ul { margin: 0.5rem 0 0.25rem; padding-left: 1.4rem; }
 .extras p { margin: 0.4rem 0; }
 
+/* Collapsed "Tags" section: the harmonic chip rows, left-aligned here (the
+   retired summary block centred them). */
+.extras-harmony { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.5rem; }
+.extras-harmony .harm-row { justify-content: flex-start; }
+
+/* Collapsed "Details" section: a compact label / value list (style, form,
+   year, page). */
+.detail-list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 0.9rem;
+  margin: 0.5rem 0 0.25rem;
+}
+.detail-list dt {
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  align-self: baseline;
+}
+.detail-list dd { margin: 0; color: var(--fg); }
+
 /* Variants block: shown below the chord grid, always visible (not collapsed). */
 /* Full-width container so each .variant-grid centres within the panel exactly
    like the main grid; syncVariantGrids pins their widths to match, so the bars
@@ -1824,10 +1839,20 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   #listToggle { display: none; } /* list is full-screen; nothing to collapse */
   body.show-detail #backBtn { display: inline-flex; } /* back to the list */
 
-  /* The summary chips already appear in the info block below the grid, so drop
-     the duplicate row from the sticky footer on phones (keep the controls). */
-  #footerChips { display: none; }
-  #detailFooter { justify-content: flex-end; }
+  /* Phones: the detail header scrolls away with the content so the chords get
+     the full screen height. The whole pane becomes the scroller (instead of a
+     nested #tuneView scroll), the header/tabs ride at the top of that flow, and
+     only the footer control bar stays pinned to the bottom of the viewport. */
+  #detailPane { overflow-y: auto; overflow-x: hidden; }
+  /* grow to fill the pane so a short tune still pushes the footer to the bottom,
+     but let a tall tune overflow (and scroll) instead of shrinking. */
+  #tuneView { flex: 1 0 auto; overflow-y: visible; min-height: 0; }
+  #detailFooter {
+    position: sticky;
+    bottom: 0;
+    z-index: 20;
+    background: var(--bg);
+  }
 
   /* One panel shows at a time on phones, so the desktop alignment spacer would
      just leave an empty bar above the melody — drop it. */
@@ -1868,7 +1893,9 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 /* Harmonic filter dropdowns in the top bar (§8.2a/§8.2b). */
 #startsOnFilter,
 #keyFilter,
-#formFilter {
+#formFilter,
+#styleFilter,
+#yearFilter {
   flex: none;
   background: var(--panel);
   border: 1px solid var(--border);
@@ -1880,7 +1907,9 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 }
 #startsOnFilter.on,
 #keyFilter.on,
-#formFilter.on { border-color: var(--accent); color: var(--accent-ink); }
+#formFilter.on,
+#styleFilter.on,
+#yearFilter.on { border-color: var(--accent); color: var(--accent-ink); }
 #formFilter { max-width: 12rem; }
 
 /* Tag filter (§8.2b): button opens a checkbox dropdown; checks AND together. */

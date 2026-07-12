@@ -59,17 +59,23 @@
       <div id="detailFooter" hidden>
         <div id="footerChips" class="footer-chips"></div>
         <div class="footer-controls">
-          <div id="gridZoom">
-            <button id="zoomOut" type="button" title="Zoom grid out" aria-label="Zoom grid out">−</button>
-            <button id="zoomIn" type="button" title="Zoom grid in" aria-label="Zoom grid in">+</button>
+          <div class="fc-left">
+            <div id="gridZoom">
+              <button id="zoomOut" type="button" title="Zoom grid out" aria-label="Zoom grid out">−</button>
+              <button id="zoomIn" type="button" title="Zoom grid in" aria-label="Zoom grid in">+</button>
+            </div>
           </div>
-          <span id="footerTranspose" class="footer-transpose"></span>
-          <button id="brushPlay" type="button" title="Play practice rhythm" aria-label="Play practice rhythm" aria-pressed="false">▶</button>
-          <button id="brushBtn" type="button" title="Practice rhythm: tempo and pattern" aria-label="Practice rhythm settings" aria-haspopup="true" aria-expanded="false">♩=140</button>
-          <span id="footerNav" class="footer-nav">
-            <button id="stepPrev" class="step-btn" type="button">‹ Prev</button>
-            <button id="stepNext" class="step-btn" type="button">Next ›</button>
-          </span>
+          <div class="fc-center">
+            <span id="footerTranspose" class="footer-transpose"></span>
+          </div>
+          <div class="fc-right">
+            <button id="brushPlay" type="button" title="Play practice rhythm" aria-label="Play practice rhythm" aria-pressed="false">▶</button>
+            <button id="brushBtn" type="button" title="Practice rhythm: tempo and pattern" aria-label="Practice rhythm settings" aria-haspopup="true" aria-expanded="false">♩=140</button>
+            <span id="footerNav" class="footer-nav">
+              <button id="stepPrev" class="step-btn" type="button">‹ Prev</button>
+              <button id="stepNext" class="step-btn" type="button">Next ›</button>
+            </span>
+          </div>
         </div>
       </div>
     </main>
@@ -97,6 +103,14 @@
         <select id="formFilter" title="Filter by form" aria-label="Filter by form"></select>
       </div>
       <div class="sheet-field">
+        <label class="sheet-field-label" for="styleFilter">Style</label>
+        <select id="styleFilter" title="Filter by style" aria-label="Filter by style"></select>
+      </div>
+      <div class="sheet-field">
+        <label class="sheet-field-label" for="yearFilter">Year</label>
+        <select id="yearFilter" title="Filter by decade" aria-label="Filter by decade"></select>
+      </div>
+      <div class="sheet-field">
         <button id="tagFilterBtn" type="button" title="Filter by harmonic tags" aria-label="Filter by harmonic tags" aria-haspopup="true" aria-expanded="false" hidden>Tags</button>
       </div>
     </div>
@@ -121,6 +135,10 @@
       <div class="sheet-row">
         <span class="sheet-row-label">Section shading</span>
         <button id="tintToggle" type="button" class="toggle-btn" title="Toggle section shading" aria-label="Toggle section shading" aria-pressed="true"><span class="knob"></span></button>
+      </div>
+      <div class="sheet-row">
+        <span class="sheet-row-label">Show verses</span>
+        <button id="versesToggle" type="button" class="toggle-btn" title="Show verse sections in the grid" aria-label="Toggle verse sections" aria-pressed="true"><span class="knob"></span></button>
       </div>
       <div class="sheet-field">
         <div class="sheet-field-label">Playlists</div>
