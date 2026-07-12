@@ -272,6 +272,15 @@ body.list-collapsed #listPane { width: 0; border-right: none; }
   padding: 0.6rem 0.6rem 0.4rem;
 }
 
+/* Fixed-width gutters on both sides keep the title centered whether or not a
+   back / sidebar button is present. */
+.dh-side {
+  flex: none;
+  width: 2.25rem;
+  display: flex;
+  align-items: center;
+}
+
 /* Back (mobile) and sidebar-open (desktop, collapsed) are shown by JS via
    body classes; hidden by default. */
 #backBtn, #sidebarOpenBtn { display: none; font-size: 1.3rem; }
@@ -444,6 +453,23 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
   padding: 0.5rem 0.1rem;
 }
 .sheet-row-label { font-size: 0.92rem; }
+
+/* Divider between the current-tune options and the global settings. */
+.sheet-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0.9rem 0 0.2rem;
+}
+
+/* The current tune's title, heading its options block in the Settings sheet. */
+.sheet-section-head {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--fg);
+  margin-bottom: 0.6rem;
+}
 
 .sheet-field { margin-top: 0.7rem; }
 .sheet-field-label {

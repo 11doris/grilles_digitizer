@@ -55,7 +55,6 @@
   const filterBadge = document.getElementById("filterBadge");
   const backBtn = document.getElementById("backBtn");
   const sidebarOpenBtn = document.getElementById("sidebarOpenBtn");
-  const moreBtn = document.getElementById("moreBtn");
   const detailTitleEl = document.getElementById("detailTitle");
   const detailTabsEl = document.getElementById("detailTabs");
   const tabChordsBtn = document.getElementById("tabChords");
@@ -70,9 +69,7 @@
   const sheetBackdrop = document.getElementById("sheetBackdrop");
   const filtersSheet = document.getElementById("filtersSheet");
   const settingsSheet = document.getElementById("settingsSheet");
-  const tuneSheet = document.getElementById("tuneSheet");
-  const tuneSheetBody = document.getElementById("tuneSheetBody");
-  const tuneSheetTitle = document.getElementById("tuneSheetTitle");
+  const tuneOptions = document.getElementById("tuneOptions");
   const managePlBtn = document.getElementById("managePlBtn");
   const themeSeg = document.getElementById("themeSeg");
 
@@ -262,9 +259,10 @@
 
   /* --------------------------------------------------------------- sheets */
 
-  /* The Filters / Settings / Tune-options sheets: bottom sheets on narrow,
-     top-right cards on wide (all via CSS). Only one is open at a time. */
-  const SHEETS = { filters: filtersSheet, settings: settingsSheet, tune: tuneSheet };
+  /* The Filters and Settings sheets: bottom sheets on narrow, top-right cards on
+     wide (all via CSS). The Settings sheet also carries the current tune's
+     options (view / verses / add-to-playlist / similar). Only one open at a time. */
+  const SHEETS = { filters: filtersSheet, settings: settingsSheet };
   let openSheetName = null;
 
   function openSheet(name) {
@@ -272,7 +270,7 @@
     closeSheet();
     const sheet = SHEETS[name];
     if (!sheet) return;
-    if (name === "tune") renderTuneSheet();
+    if (name === "settings") renderTuneOptions();
     sheet.hidden = false;
     sheetBackdrop.hidden = false;
     openSheetName = name;
@@ -288,7 +286,6 @@
 
   filtersBtn.addEventListener("click", () => openSheet("filters"));
   settingsBtn.addEventListener("click", () => openSheet("settings"));
-  moreBtn.addEventListener("click", () => { if (state.currentId) openSheet("tune"); });
   sheetBackdrop.addEventListener("click", () => closeSheet());
 
   /* "Manage playlists…" in Settings opens the existing playlist menu. */
@@ -1298,7 +1295,6 @@
     const info = meta(t);
     detailTitleEl.querySelector(".dt-title").textContent = t.title || t.id;
     detailTitleEl.querySelector(".dt-composer").textContent = info.composer || "";
-    moreBtn.disabled = false;
   }
 
   /* Persistent footer bar: harmony chips + transpose control (brush transport
@@ -1346,37 +1342,19 @@
     if (t) applyPanels(t);
   });
 
-  /* ⋯ tune-options sheet for the current tune: view, verses, add-to-playlist,
-     similar tunes. Transpose + practice ride in the footer. */
-  function renderTuneSheet() {
+  /* Current-tune options at the top of the Settings sheet: view, verses,
+     add-to-playlist, similar tunes. Transpose + practice ride in the footer. */
+  function renderTuneOptions() {
+    tuneOptions.innerHTML = "";
     const t = tuneById(state.currentId);
     if (!t) return;
-    tuneSheetTitle.textContent = t.title || t.id;
-    tuneSheetBody.innerHTML = "";
 
-    /* View (grid / book layout / scan) — re-renders to apply the choice. */
-    if (t.has_chord_json) {
-      const field = el("div", "sheet-field");
-      const lab = el("div", "sheet-field-label");
-      lab.textContent = "View";
-      const group = el("div", "seg-group");
-      const views = [["grid", "Grid"], ["boxes", "Book"]];
-      if (t.chord_image) views.push(["scan", "Scan"]);
-      views.forEach(([v, label]) => {
-        const b = el("button", "seg-btn" + (state.chordView === v ? " active" : ""));
-        b.type = "button";
-        b.textContent = label;
-        b.addEventListener("click", () => {
-          if (state.chordView === v) return;
-          state.chordView = v;
-          try { localStorage.setItem("grilles.chordView", v); } catch (e) { /* ignore */ }
-          renderTune(state.currentId);
-        });
-        group.appendChild(b);
-      });
-      field.append(lab, group);
-      tuneSheetBody.appendChild(field);
-    }
+    const heading = el("div", "sheet-field-label sheet-section-head");
+    heading.textContent = t.title || t.id;
+    tuneOptions.appendChild(heading);
+
+    /* (The grid / book / scan view switch lives inline above the chord grid,
+       not here.) */
 
     /* Verses toggle (chord tunes that carry a verse section). */
     if (t.has_chord_json && hasVerseSection(t)) {
@@ -1392,13 +1370,13 @@
         renderTune(state.currentId);
       });
       row.append(label, btn);
-      tuneSheetBody.appendChild(row);
+      tuneOptions.appendChild(row);
     }
 
     /* Add to playlist. */
     const plField = el("div", "sheet-field");
     const plLab = el("div", "sheet-field-label");
-    plLab.textContent = "Playlists";
+    plLab.textContent = "Add to playlist";
     const addBtn = el("button", "sheet-action");
     addBtn.type = "button";
     addBtn.textContent = "＋ Add to playlist…";
@@ -1408,12 +1386,12 @@
       else closePopover();
     });
     plField.append(plLab, addBtn);
-    tuneSheetBody.appendChild(plField);
+    tuneOptions.appendChild(plField);
 
     /* Similar tunes / sections (§8) — clicking a row opens the comparison. */
     ["tunes", "sections"].forEach((kind) => {
       const panel = renderSuggestPanel(t, kind);
-      if (panel) tuneSheetBody.appendChild(panel);
+      if (panel) tuneOptions.appendChild(panel);
     });
   }
 
@@ -2107,8 +2085,8 @@
     else closeMenu();
   });
 
-  /* "Add to playlist" now lives in the ⋯ tune-options sheet (see
-     renderTuneSheet); the popover anchors to that sheet button. */
+  /* "Add to playlist" now lives in the Settings sheet's tune-options section
+     (see renderTuneOptions); the popover anchors to that sheet button. */
 
   /* --- Export / import (§11.5). */
 
@@ -2607,7 +2585,7 @@
     if (melodyPanel) renderAbcSheet(melodyPanel, t, state.transpose ? state.transpose.shift : 0);
     applyPanels(t);
     buildFooter(t);
-    if (openSheetName === "tune") renderTuneSheet(); // keep an open sheet current
+    if (openSheetName === "settings") renderTuneOptions(); // keep an open sheet current
 
     if (isNewTune) viewEl.scrollTop = 0;
     if (narrowMq.matches) setShowDetail(true);
