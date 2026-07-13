@@ -1006,6 +1006,26 @@
     return (labels && labels[name] != null) ? labels[name] : displaySectionName(name);
   }
 
+  /* The strain a section belongs to, for grouping and captions: "verse", a
+     lowercase prefix (impro, intro, thema, s1, …), "chorus" for a plain letter
+     key, or the bare name itself for a named connector (coda, interlude). */
+  function strainOf(name) {
+    if (VERSE_SECTION.test(name)) return "verse";
+    const m = /^([a-z][a-z0-9]*)_/.exec(name);
+    if (m) return m[1];
+    if (/^[A-Z]\d*$/.test(name)) return "chorus";
+    return name;
+  }
+  const titleWord = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
+
+  /* Grid-view badge: a strain-prefixed section reads "Impro A" / "Verse A";
+     a plain chorus letter stays just its label ("A", "A'", "B"). */
+  function sectionBadgeOf(tune, name) {
+    const label = sectionLabelOf(tune, name);
+    const m = /^([a-z][a-z0-9]*)_/.exec(name);
+    return m ? `${titleWord(m[1])} ${label}` : label;
+  }
+
   /* A bar is a fixed grid of `beats` equal columns (one per beat). Each chord is
      anchored to its beat's column line and left-aligned there, spanning to the
      next chord's beat, so a beat sits at the same fraction of every bar's width
@@ -1263,35 +1283,26 @@
     let sectionNames = Object.keys(tune.sections || {});
     if (!state.showVerses) sectionNames = sectionNames.filter((n) => !VERSE_SECTION.test(n));
     const hasVerse = sectionNames.some((n) => VERSE_SECTION.test(n));
-    /* Group into blocks: consecutive chorus sections share one lattice, and so
-       do the verse sections (one VERSE grille, each row keyed by its letter);
-       every other auxiliary section (intro/coda/…) prints as its own captioned
-       grille. */
-    const kindOf = (name) => (VERSE_SECTION.test(name) ? "verse"
-      : AUX_SECTION.test(name) ? "aux" : "chorus");
+    /* Group into blocks by strain, in document order: consecutive sections of
+       the same strain share one lattice (the chorus, one VERSE grille, one
+       IMPRO grille, …). Each non-chorus strain is captioned by its name; the
+       chorus is captioned only when a verse is also shown. */
     const blocks = [];
     sectionNames.forEach((name) => {
-      const kind = kindOf(name);
+      const strain = strainOf(name);
       const last = blocks[blocks.length - 1];
-      if (kind === "aux" || !last || last.kind !== kind) blocks.push({ kind, sections: [name] });
+      if (!last || last.strain !== strain) blocks.push({ strain, sections: [name] });
       else last.sections.push(name);
     });
-    let chorusLabeled = false;
     blocks.forEach((blk) => {
-      if (blk.kind === "aux") {
+      const caption = blk.strain === "chorus"
+        ? (hasVerse ? "Chorus" : null)   // name the chorus only against a verse
+        : blk.strain === "verse" ? "Verse"
+        : titleWord(blk.strain);         // Intro, Impro, Thema, Coda, …
+      if (caption) {
         const cap = el("div", "bx-caption");
-        cap.textContent = sectionLabelOf(tune, blk.sections[0]);
+        cap.textContent = caption;
         wrap.appendChild(cap);
-      } else if (blk.kind === "verse") {
-        const cap = el("div", "bx-caption");
-        cap.textContent = "Verse";
-        wrap.appendChild(cap);
-      } else if (hasVerse && !chorusLabeled) {
-        /* A visible verse means the choruses need naming too; label the first. */
-        const cap = el("div", "bx-caption");
-        cap.textContent = "Chorus";
-        wrap.appendChild(cap);
-        chorusLabeled = true;
       }
       const rows = [];
       blk.sections.forEach((name) => {
@@ -1303,15 +1314,13 @@
           bars = bars.map((bar, idx) => (secOv[idx]
             ? { bar: bar.bar, beats: secOv[idx].beats, swap: true } : bar));
         }
-        // Chorus rows key off the section letter (boxRowsOf labels the first
-        // row); verse rows carry the letter after "verse_" (verse_A → A,
-        // verse_A1 → A1); plain aux blocks stay unlabeled under their caption.
-        const secRows = boxRowsOf(blk.kind === "chorus" ? name : null, bars);
-        // Chorus and verse rows carry the printed label (primes kept) on their
-        // first lattice row; aux blocks stay unlabeled under their caption.
-        if (blk.kind !== "aux" && secRows.length) {
-          secRows[0].label = sectionLabelOf(tune, name);
-        }
+        // Every section's first lattice row carries its printed label (primes
+        // kept); the strain caption above supplies the verse/impro/… context.
+        // A bare named section (interlude/coda) whose label equals the caption
+        // stays unlabeled so the name isn't printed twice.
+        const rowLabel = sectionLabelOf(tune, name);
+        const secRows = boxRowsOf(null, bars);
+        if (secRows.length && rowLabel !== caption) secRows[0].label = rowLabel;
         secRows.forEach((r) => {
           r.beats = beats;
           r.tint = sectionTint(name);
@@ -2552,7 +2561,7 @@
       }
       const secEl = renderSection(sec, bars, beats,
         first, tune.time_signature, null, renderer, undefined,
-        sectionLabelOf(tune, sec));
+        sectionBadgeOf(tune, sec));
       /* Comparisons never use section shading (it would fight the accent
          highlight on the matched bars, PR #24); clear the hue so every bar
          sits on the plain background and only .sim-hl is tinted. */
@@ -2739,7 +2748,7 @@
              view. */
           grid.appendChild(renderSection(name, tune.sections[name], beats,
             i === 0, tune.time_signature, overrides[name], undefined,
-            i === 0 ? tune.form : null, sectionLabelOf(tune, name)));
+            i === 0 ? tune.form : null, sectionBadgeOf(tune, name)));
         });
         panel.appendChild(grid);
         panel.appendChild(renderBoxGrid(tune, overrides)); // book layout (hidden unless chosen)
