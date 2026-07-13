@@ -462,27 +462,47 @@ def derive_labels(tune: dict) -> tuple[dict, dict, list[tuple[str, str]]]:
     # the LAST strains with the LAST groups; a leading unmatched group (verse)
     # is recovered from prose or key-derived, a leading unmatched strain (an
     # unstored repeat) is flagged.
-    n = min(len(strains), len(group_items))
-    matched_strains = strains[len(strains) - n:]
-    matched_groups = group_items[len(group_items) - n:]
-
-    for strain in strains[:len(strains) - n]:
-        seq = " ".join(strain["labels"])
-        warnings.append((HARD, f"form strain '{seq}' has no matching section "
-                               "group (repeated strain not stored as sections?)"))
-
-    for (strain_id, keys), strain in zip(matched_groups, matched_strains):
+    def _assign(strain_id: str, keys: list[str], strain: dict) -> None:
         toks = strain["labels"]
         structured[strain_id] = {"bars": strain["bars"], "labels": toks}
         if len(toks) == len(keys):
             for key, tok in zip(keys, toks):
                 labels[key] = tok
+        elif len(keys) == 1 and len(set(toks)) == 1:
+            # A strain of identical parts stored once — the repeat is shortened
+            # in the grid (e.g. "16 A A" kept in the form, one A row stored).
+            # form_strains still carries the full repeated labels above.
+            labels[keys[0]] = toks[0]
         else:
             warnings.append((HARD,
                 f"strain {strain_id}: form declares {len(toks)} labels "
                 f"{toks}, section group has {len(keys)}: {', '.join(keys)}"))
             for key in keys:
                 labels[key] = _key_fallback_label(key)
+
+    n = min(len(strains), len(group_items))
+    matched_strains = strains[len(strains) - n:]
+    matched_groups = group_items[len(group_items) - n:]
+
+    # Leading form strains beyond the lettered groups: a multi-strain piece can
+    # name single-row strains as bare sections (Minor Swing's intro / thema).
+    # Promote the leading bare-named (auxiliary) sections, in document order, to
+    # absorb them; anything still left over is a genuinely unstored strain. A
+    # bare section is only promoted when the form actually has a spare strain
+    # for it, so a real intro/coda connector (no extra strain) stays auxiliary.
+    leading = strains[:len(strains) - n]
+    aux_keys = [k for k in sections if _strain_of_key(k) is None]
+    if leading and len(aux_keys) >= len(leading):
+        for aux_key, strain in zip(aux_keys, leading):
+            _assign(aux_key, [aux_key], strain)
+    else:
+        for strain in leading:
+            seq = " ".join(strain["labels"])
+            warnings.append((HARD, f"form strain '{seq}' has no matching section "
+                                   "group (repeated strain not stored as sections?)"))
+
+    for (strain_id, keys), strain in zip(matched_groups, matched_strains):
+        _assign(strain_id, keys, strain)
 
     for strain_id, keys in group_items[:len(group_items) - n]:
         # Group with no form strain. For a verse, try prose recovery first.

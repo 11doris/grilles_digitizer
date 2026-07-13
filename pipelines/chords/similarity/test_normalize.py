@@ -275,6 +275,51 @@ class TestSectionLabels(unittest.TestCase):
         self.assertEqual(labels["coda"], "Coda")
         self.assertEqual(labels["A2"], "A''")
 
+    def test_identical_parts_strain_stored_once(self):
+        # "16 A A" (a strain of identical parts) may store ONE A row; the form
+        # keeps the repeat, form_strains carries it, no hard warning. Modelled
+        # here as a three-strain piece (intro / theme / improv) like Minor Swing.
+        tune = {
+            "form": "16 A A | 16 A A | 16 A B",
+            "sections": {"intro_A": [], "theme_A": [], "A": [], "B": []},
+        }
+        struct, labels, warn = derive_labels(tune)
+        self.assertFalse([m for lv, m in warn if lv == HARD])
+        self.assertEqual(labels, {"intro_A": "A", "theme_A": "A",
+                                  "A": "A", "B": "B"})
+        # the shortened strains keep their full "A A" label sequence
+        self.assertEqual(struct["intro"]["labels"], ["A", "A"])
+        self.assertEqual(struct["theme"]["labels"], ["A", "A"])
+        self.assertEqual(struct["chorus"]["labels"], ["A", "B"])
+
+    def test_bare_named_sections_absorb_extra_strains(self):
+        # Minor Swing: three-strain form where the two "16 A A" strains are named
+        # by bare sections (intro / thema) storing one row each. They are
+        # promoted to strains because the form has spare strains for them.
+        tune = {
+            "form": "16 A A | 16 A A | 16 A B",
+            "sections": {"intro": [], "thema": [], "impro_A": [], "impro_B": []},
+        }
+        _struct, labels, warn = derive_labels(tune)
+        self.assertFalse([m for lv, m in warn if lv == HARD])
+        self.assertEqual(labels, {"intro": "A", "thema": "A",
+                                  "impro_A": "A", "impro_B": "B"})
+
+    def test_bare_intro_without_spare_strain_stays_aux(self):
+        # A genuine intro connector (form has no extra strain) is NOT promoted.
+        _struct, labels, warn = derive_labels(
+            {"form": "32 A A B A",
+             "sections": {"intro": [], "A": [], "A1": [], "B": [], "A2": []}})
+        self.assertFalse([m for lv, m in warn if lv == HARD])
+        self.assertEqual(labels["intro"], "Intro")  # stayed auxiliary
+
+    def test_mixed_repeat_stays_hard(self):
+        # A repeat that is NOT all-identical (A A B -> 2 rows) is ambiguous and
+        # must stay hard, not silently collapse.
+        hard = form_hard_warnings(
+            {"form": "24 A A B", "sections": {"verse_A": [], "verse_A1": []}})
+        self.assertTrue(hard)
+
     def test_count_mismatch_is_hard(self):
         hard = form_hard_warnings(
             {"form": "64 A A A' B A'",
@@ -287,11 +332,8 @@ class TestSectionLabels(unittest.TestCase):
 # (missing/duplicated rows, unstored strain repeats). Pinned so no NEW tune
 # regresses into a hard form mismatch; shrink this set as the data is fixed.
 KNOWN_FORM_DEFECTS = {
-    "101_01_DIRTY_DOZENS", "107_03_DOWN_BY_THE_RIVERSIDE",
-    "162_02_HOW_COULD_I_BE_BLUE", "255_02_MAMA_S_GONE_GOODBYE",
-    "268_01_MINOR_SWING", "394_03_STRUT_MISS_LIZZIE", "425_01_THOU_SWELL",
-    "457_03_WHEN_THE_SAINTS_GO_MARCHING_IN", "72_01_CHEROKEE",
-    "99_03_DIGA_DIGA_DOO",
+    "394_03_STRUT_MISS_LIZZIE", "425_01_THOU_SWELL",
+    "457_03_WHEN_THE_SAINTS_GO_MARCHING_IN", "99_03_DIGA_DIGA_DOO",
 }
 
 

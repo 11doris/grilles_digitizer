@@ -37,7 +37,7 @@ sys.path.insert(0, str(_REPO))
 from pipelines.chords.digitizer.validation import (  # noqa: E402
     ValidationError, _check_chord, _check_section_keys, _iter_chords)
 from pipelines.chords.similarity.normalize import (  # noqa: E402
-    ChordParseError, HARD, derive_labels, expand_tune, strains_from_labels)
+    ChordParseError, HARD, derive_labels, expand_tune)
 TUNES_DIR = (_REPO / "data" / "chords" / "02_raw").resolve()
 CROPS_DIR = (_REPO / "data" / "chords" / "01_crops").resolve()
 VERIFIED_DIR = (_REPO / "data" / "chords" / "04_verified").resolve()
@@ -256,10 +256,16 @@ def api_get(tune_id: str):
 
 
 def _with_form_strains(body: dict) -> dict:
-    """Return `body` with a freshly derived `form_strains` (from its
-    section_labels + grouping) placed right after `form`; `section_labels` is
-    kept as submitted (hand-editable). Key order is otherwise preserved."""
-    strains = strains_from_labels(body)
+    """Return `body` with a freshly derived `form_strains` placed right after
+    `form`; `section_labels` is kept as submitted (hand-editable). Key order is
+    otherwise preserved.
+
+    form_strains comes from aligning the `form` STRING against the sections, so
+    it mirrors the printed arrangement — including shortened identical repeats
+    like "16 A A" (which strains_from_labels, working from the single stored
+    row, could not reconstruct)."""
+    strains, _labels, _warn = derive_labels(body)
+    strains.pop("printed", None)
     out: dict = {}
     for key, val in body.items():
         if key == "form_strains":

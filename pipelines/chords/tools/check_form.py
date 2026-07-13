@@ -44,30 +44,42 @@ def main() -> int:
     any_hard = False
     for dirname in dirs:
         print(f"===== {dirname} =====")
-        n_files = hard_files = soft_files = 0
+        n_files = 0
+        flagged = []  # (has_hard, name, printed, hard, soft, labels)
         for p in sorted(Path(dirname).glob("*.json")):
             if p.stem in IGNORED_STEMS or p.stem.endswith("_opus"):
                 continue
             n_files += 1
             tune = json.loads(p.read_text("utf-8"))
             _struct, labels, warnings = derive_labels(tune)
-            hard = [m for lv, m in warnings if lv == HARD]
-            soft = [m for lv, m in warnings if lv != HARD]
             if not warnings:
                 continue
+            hard = [m for lv, m in warnings if lv == HARD]
+            soft = [m for lv, m in warnings if lv != HARD]
             printed = tune.get("form")
             printed = printed.get("printed") if isinstance(printed, dict) else printed
-            print(f"{p.name}  form={printed!r}")
+            flagged.append((bool(hard), p.name, printed, hard, soft, labels))
+
+        # Hard cases first, then soft-only; each group alphabetical by name.
+        flagged.sort(key=lambda f: (not f[0], f[1]))
+        hard_files = sum(1 for f in flagged if f[0])
+        soft_files = len(flagged) - hard_files
+        last_group = None
+        for has_hard, name, printed, hard, soft, labels in flagged:
+            group = "HARD" if has_hard else "SOFT"
+            if group != last_group:
+                print(f"\n----- {group} "
+                      f"({hard_files if has_hard else soft_files}) -----")
+                last_group = group
+            print(f"{name}  form={printed!r}")
             for m in hard:
                 print(f"    HARD  {m}")
             for m in soft:
                 print(f"    soft  {m}")
             print(f"    labels: {labels}")
-            hard_files += bool(hard)
-            soft_files += bool(soft) and not hard
         if hard_files:
             any_hard = True
-        print(f"  ({n_files} files scanned; {hard_files} hard, "
+        print(f"\n  ({n_files} files scanned; {hard_files} hard, "
               f"{soft_files} soft-only)")
     return 1 if any_hard else 0
 
