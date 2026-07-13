@@ -5,6 +5,12 @@
   "tempo": "SLOW",
   "form": "32 A A B A",
   "form_strains": {
+    "verse": {
+      "bars": 8,
+      "labels": [
+        "A"
+      ]
+    },
     "chorus": {
       "bars": 32,
       "labels": [
@@ -16,11 +22,11 @@
     }
   },
   "section_labels": {
+    "verse_A": "A",
     "A": "A",
     "A1": "A",
     "B": "B",
-    "A2": "A",
-    "verse_A": "A"
+    "A2": "A"
   },
   "time_signature": "4/4",
   "variants": [

@@ -4,6 +4,12 @@
   "style": "STANDARD TRADITIONAL",
   "form": "32 A B A B'",
   "form_strains": {
+    "verse": {
+      "bars": 8,
+      "labels": [
+        "A"
+      ]
+    },
     "chorus": {
       "bars": 32,
       "labels": [
@@ -15,11 +21,11 @@
     }
   },
   "section_labels": {
-    "A 1": "A 1",
+    "verse_A": "A",
     "A": "A",
     "B": "B",
-    "B1": "B",
-    "verse_A": "A"
+    "A1": "A",
+    "B1": "B'"
   },
   "time_signature": "4/4",
   "title": "HOW COULD I BE BLUE",
@@ -200,7 +206,7 @@
         }
       }
     ],
-    "A 1": [
+    "A1": [
       {
         "bar": 1,
         "beats": {

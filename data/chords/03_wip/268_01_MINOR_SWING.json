@@ -5,14 +5,7 @@
   "tempo": "MEDIUM FAST",
   "form": "16 A A | 16 A A | 16 A B",
   "form_strains": {
-    "intro": {
-      "bars": 16,
-      "labels": [
-        "A",
-        "A"
-      ]
-    },
-    "chorus": {
+    "impro": {
       "bars": 16,
       "labels": [
         "A",
@@ -22,9 +15,9 @@
   },
   "section_labels": {
     "intro": "Intro",
-    "intro_2": "2",
-    "A": "A",
-    "B": "B"
+    "thema": "Thema",
+    "impro_A": "A",
+    "impro_B": "B"
   },
   "time_signature": "4/4",
   "title": "MINOR SWING",
@@ -92,7 +85,7 @@
         }
       }
     ],
-    "intro_2": [
+    "thema": [
       {
         "bar": 1,
         "beats": {
@@ -142,7 +135,7 @@
         }
       }
     ],
-    "A": [
+    "impro_A": [
       {
         "bar": 1,
         "beats": {
@@ -192,7 +185,7 @@
         }
       }
     ],
-    "B": [
+    "impro_B": [
       {
         "bar": 1,
         "beats": {

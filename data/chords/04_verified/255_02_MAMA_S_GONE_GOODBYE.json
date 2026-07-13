@@ -3,15 +3,13 @@
   "year": "1923",
   "style": "TRADITIONAL JAZZ",
   "tempo": "MEDIUM FAST",
-  "form": "16 A B A C | 32 A B A' C",
+  "form": "32 A B A' C",
   "form_strains": {
     "verse": {
       "bars": 16,
       "labels": [
         "A",
-        "B",
-        "A",
-        "C"
+        "B"
       ]
     },
     "chorus": {
