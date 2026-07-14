@@ -5,14 +5,14 @@
   "tempo": "MEDIUM SLOW",
   "form": "16 A A | 16 A A",
   "form_strains": {
-    "s1": {
+    "part1": {
       "bars": 16,
       "labels": [
         "A",
         "A"
       ]
     },
-    "s2": {
+    "part2": {
       "bars": 16,
       "labels": [
         "A",
@@ -21,10 +21,10 @@
     }
   },
   "section_labels": {
-    "s1_A": "A",
-    "s1_A1": "A",
-    "s2_A": "A",
-    "s2_A1": "A"
+    "part1_A": "A",
+    "part1_A1": "A",
+    "part2_A": "A",
+    "part2_A1": "A"
   },
   "time_signature": "4/4",
   "title": "BASIN' STREET BLUES",
@@ -45,7 +45,7 @@
     "theme2": "Second strain header prints 'Theme 2 based on Liebestraum by F.Liszt'."
   },
   "sections": {
-    "s1_A": [
+    "part1_A": [
       {
         "bar": 1,
         "beats": {
@@ -102,7 +102,7 @@
         }
       }
     ],
-    "s1_A1": [
+    "part1_A1": [
       {
         "bar": 1,
         "beats": {
@@ -159,7 +159,7 @@
         }
       }
     ],
-    "s2_A": [
+    "part2_A": [
       {
         "bar": 1,
         "beats": {
@@ -211,7 +211,7 @@
         }
       }
     ],
-    "s2_A1": [
+    "part2_A1": [
       {
         "bar": 1,
         "beats": {

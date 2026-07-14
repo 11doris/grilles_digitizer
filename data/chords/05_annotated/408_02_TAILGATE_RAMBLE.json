@@ -5,14 +5,14 @@
   "tempo": "MEDIUM",
   "form": "16 A A' | 16 A A",
   "form_strains": {
-    "s1": {
+    "part1": {
       "bars": 16,
       "labels": [
         "A",
         "A'"
       ]
     },
-    "s2": {
+    "part2": {
       "bars": 16,
       "labels": [
         "A",
@@ -20,16 +20,16 @@
       ]
     }
   },
-  "section_labels": {
-    "s1_A": "A",
-    "s1_A1": "A'",
-    "s2_A": "A",
-    "s2_A1": "A"
-  },
   "time_signature": "4/4",
   "title": "TAILGATE RAMBLE",
   "page": 408,
   "source": "Anthologie des grilles de jazz",
+  "section_labels": {
+    "part1_A": "A",
+    "part1_A1": "A'",
+    "part2_A": "A",
+    "part2_A1": "A"
+  },
   "recordings": [
     "S.Bechet 49",
     "T.Buckner 55",
@@ -45,7 +45,7 @@
     "structure": "Two stacked strains, each labelled '16 A A' (first) and '16 A A' (second). First strain: A row plus arrow/dash A' row. Second strain: A row plus a leading-arrow A row of empty placeholders copying the same-position bars of its A row."
   },
   "sections": {
-    "s1_A": [
+    "part1_A": [
       {
         "bar": 1,
         "beats": {
@@ -95,7 +95,7 @@
         }
       }
     ],
-    "s1_A1": [
+    "part1_A1": [
       {
         "bar": 1,
         "beats": {
@@ -146,7 +146,7 @@
         }
       }
     ],
-    "s2_A": [
+    "part2_A": [
       {
         "bar": 1,
         "beats": {
@@ -196,7 +196,7 @@
         }
       }
     ],
-    "s2_A1": [
+    "part2_A1": [
       {
         "bar": 1,
         "beats": {
@@ -258,7 +258,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "0e1ba48b65992274758caaf2441917241e4fdfd4fec373d2f546bc87ab5d2f00",
+    "source_sha256": "5d8deabccd4ee198b6424c26fcd270b97d720f8dec46e4429c174d9bb3efda1c",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",

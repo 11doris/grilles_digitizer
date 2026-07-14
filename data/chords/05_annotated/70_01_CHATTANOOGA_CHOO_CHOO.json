@@ -3,7 +3,7 @@
   "year": "1941",
   "style": "STANDARD",
   "tempo": "MEDIUM",
-  "form": "50 A A' B B' A C",
+  "form": "50 A A' B B' T A C",
   "form_strains": {
     "chorus": {
       "bars": 50,
@@ -12,31 +12,32 @@
         "A'",
         "B",
         "B'",
+        "T",
         "A",
         "C"
       ]
     }
   },
-  "section_labels": {
-    "Transition": "Transition",
-    "A": "A",
-    "A1": "A'",
-    "B": "B",
-    "B1": "B'",
-    "A2": "A",
-    "C": "C"
-  },
   "time_signature": "4/4",
   "title": "CHATTANOOGA CHOO CHOO",
   "page": 70,
   "source": "Anthologie des grilles de jazz",
+  "section_labels": {
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "B1": "B'",
+    "T": "T",
+    "A2": "A",
+    "C": "C"
+  },
   "recordings": [
     "B.Miller 41- M.Alben 61- Ch.Jackson 58- J.Bevitt 41",
     "C.Calloway 41- C.Thornhill 41- R.Charles 60",
     "K.Winding 58- O.Peterson 54.59"
   ],
   "notation_notes": {
-    "single_bar_row": "Between B' and A there is a short row containing only the trailing bars 'C', transcribed as section Transition."
+    "single_bar_row": "Between B' and A there is a short row containing only the trailing bars 'C' / dash (bar 7-8 continuation of B'), transcribed within section B1."
   },
   "sections": {
     "A": [
@@ -139,7 +140,8 @@
       {
         "bar": 8,
         "beats": {
-          "1": "C7"
+          "1": "C",
+          "3": "C7"
         }
       }
     ],
@@ -195,7 +197,7 @@
       {
         "bar": 8,
         "beats": {
-          "1": "G(b9)",
+          "1": "Gb9",
           "3": "C7"
         }
       }
@@ -252,14 +254,14 @@
       {
         "bar": 8,
         "beats": {
-          "1": "G(b9)",
+          "1": "Gb9",
           "2": "C7",
           "3": "F",
           "4": "G7"
         }
       }
     ],
-    "Transition": [
+    "T": [
       {
         "bar": 1,
         "beats": {
@@ -329,50 +331,44 @@
       {
         "bar": 1,
         "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
           "1": "C",
           "3": "C7"
         }
       },
       {
-        "bar": 3,
+        "bar": 2,
         "beats": {
           "1": "F"
         }
       },
       {
-        "bar": 4,
+        "bar": 3,
         "beats": {
           "1": "Ab7"
         }
       },
       {
-        "bar": 5,
+        "bar": 4,
         "beats": {
           "1": "C",
           "3": "Am7"
         }
       },
       {
-        "bar": 6,
+        "bar": 5,
         "beats": {
           "1": "D7",
           "3": "G7"
         }
       },
       {
-        "bar": 7,
+        "bar": 6,
         "beats": {
           "1": "C"
         }
       },
       {
-        "bar": 8,
+        "bar": 7,
         "beats": {
           "1": "C"
         }
@@ -400,7 +396,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "3ba353fb7d1251b321c19173e5720b7d9bdc548146d9396d994ac99219c237ec",
+    "source_sha256": "c8ee8f2a00638558858a45d3d6e228b7f42f251d4f63d9415577f93c911c4ad3",
     "scorer": {
       "tonic": "C",
       "mode": "major",

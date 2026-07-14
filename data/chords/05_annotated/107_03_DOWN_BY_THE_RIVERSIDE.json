@@ -4,14 +4,14 @@
   "tempo": "MEDIUM FAST",
   "form": "16 A A | 16 A A",
   "form_strains": {
-    "s1": {
+    "part1": {
       "bars": 16,
       "labels": [
         "A",
         "A"
       ]
     },
-    "s2": {
+    "part2": {
       "bars": 16,
       "labels": [
         "A",
@@ -20,10 +20,10 @@
     }
   },
   "section_labels": {
-    "s1_A": "A",
-    "s1_A1": "A",
-    "s2_A": "A",
-    "s2_A1": "A"
+    "part1_A": "A",
+    "part1_A1": "A",
+    "part2_A": "A",
+    "part2_A1": "A"
   },
   "time_signature": "4/4",
   "title": "DOWN BY THE RIVERSIDE",
@@ -40,7 +40,7 @@
     "composer_note": "Header prints '(TRADITIONAL)'."
   },
   "sections": {
-    "s1_A": [
+    "part1_A": [
       {
         "bar": 1,
         "beats": {
@@ -91,7 +91,7 @@
         }
       }
     ],
-    "s1_A1": [
+    "part1_A1": [
       {
         "bar": 1,
         "beats": {
@@ -142,7 +142,7 @@
         }
       }
     ],
-    "s2_A": [
+    "part2_A": [
       {
         "bar": 1,
         "beats": {
@@ -192,7 +192,7 @@
         }
       }
     ],
-    "s2_A1": [
+    "part2_A1": [
       {
         "bar": 1,
         "beats": {
@@ -254,7 +254,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "e8e02490619e149b7b5ce7c5a10e7c13aab4ac794c5009e6e5573c65870de2a7",
+    "source_sha256": "46d129080e1009323f772b44f7a6f2e18bd094463d1e125e4e1b6b69aaab6cba",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",
