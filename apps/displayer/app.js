@@ -1168,22 +1168,40 @@
     return rows;
   }
 
-  /* Section tints: subtle shades, identical for repeats of a section (A, A1,
-     A2 share one tint) and CONSISTENT ACROSS TUNES — the common letters map to
-     fixed hues; anything else (verse_A, interlude, …) hashes into a fixed pool
-     so the same name always lands on the same shade everywhere. */
+  /* Section tints: subtle shades, CONSISTENT ACROSS TUNES. Shading is keyed by
+     STRAIN, so every section of a strain shares one colour — the whole Verse is
+     one shade (verse_A/verse_B/… alike), the whole Impro another — rather than
+     borrowing per-letter hues. The chorus is the exception: its plain letters
+     keep the fixed per-letter hues (A blue, B orange, repeats A/A1 alike) so the
+     chorus's A B A B structure still reads. Anything without a table entry
+     hashes into a fixed pool so the same strain lands on the same shade. */
   const TINT_TABLE = {
     A: "#5b8dd6", B: "#d9a441", C: "#5fae7d", D: "#a97fd1",
     E: "#d97b7b", F: "#5bbcd6",
   };
+  // Fixed hues for the common named strains, so each is distinct within a tune
+  // (no pool collisions between, say, thema and impro) and stable across tunes.
+  const STRAIN_TINT = {
+    verse: "#a3869a", intro: "#96a36b", thema: "#7da3a0",
+    impro: "#b08a5e", interlude: "#8a8fa3", coda: "#7f8fc4",
+    part1: "#7b9e8a", part2: "#9e7b8f", s1: "#7b8fb0", s2: "#b09a7b",
+  };
   const TINT_POOL = ["#8a8fa3", "#b08a5e", "#7da3a0", "#a3869a", "#96a36b", "#7f8fc4"];
+
+  const hashHue = (key) =>
+    TINT_POOL[[...key].reduce((s, c) => (s * 31 + c.charCodeAt(0)) >>> 0, 0)
+      % TINT_POOL.length];
 
   /* Returns the section's hue; the CSS mixes it into the theme background
      (--bxtint), stronger in dark mode where a light wash wouldn't show. */
   function sectionTint(name) {
-    const key = String(name || "").replace(/\d+$/, ""); // A1 → A, verse_A1 → verse_A
-    const hash = [...key].reduce((s, c) => (s * 31 + c.charCodeAt(0)) >>> 0, 0);
-    return TINT_TABLE[key] || TINT_POOL[hash % TINT_POOL.length];
+    const strain = strainOf(name);
+    // Non-chorus strains take one uniform colour across all their sections,
+    // keyed by the strain (a fixed hue for the known names, else hashed).
+    if (strain !== "chorus") return STRAIN_TINT[strain] || hashHue(strain);
+    // The chorus keeps its per-letter hue (A1 → A) so its A B A B reads.
+    const key = String(name || "").replace(/\d+$/, "");
+    return TINT_TABLE[key] || hashHue(key);
   }
 
   /* One box, following the book's conventions:

@@ -591,6 +591,36 @@ function strainOfKey(name) {
   if (/^[A-Z]\d*$/.test(name)) return 'chorus';
   return 'aux';
 }
+
+// Named strains the displayers colour consistently (mirror of normalize.py's
+// NAMED_STRAINS / the displayers' STRAIN_TINT). Section keys may use only these
+// or a plain chorus letter; extend all three together to add a strain.
+const NAMED_STRAINS = ['verse', 'intro', 'thema', 'impro', 'interlude', 'coda',
+                       'part1', 'part2', 's1', 's2'];
+// The disallowed strain a section key carries, or '' when allowed. Plain chorus
+// cells (A, B1, T) pass; a named strain (prefix `verse_A` or bare `coda`) must
+// be in NAMED_STRAINS.
+function unknownStrain(name) {
+  const key = String(name || '').trim();
+  if (/^[A-Z]\d*$/.test(key)) return '';
+  const m = /^([A-Za-z][A-Za-z0-9]*)_/.exec(key);
+  const strain = m ? m[1] : key;
+  return NAMED_STRAINS.includes(strain) ? '' : strain;
+}
+// A save-blocking message when any section key uses a disallowed strain, else ''.
+function strainPolicyError(sectionNames) {
+  const bad = {};
+  sectionNames.forEach(n => {
+    const s = unknownStrain(n);
+    if (s) (bad[s] ||= []).push(n);
+  });
+  const strains = Object.keys(bad);
+  if (!strains.length) return '';
+  const detail = strains.map(s => `${s} (${bad[s].join(', ')})`).join('; ');
+  return `Unknown strain(s): ${detail}. Allowed: ${NAMED_STRAINS.join(', ')} `
+    + `— or a plain chorus letter (A, B, …). Rename the section, or add the `
+    + `strain in code.`;
+}
 function labelPlaceholder(name) {
   const m = /^([A-Z])\d*$/.exec(name.replace(/^(s\d+|[a-z][a-z0-9]*)_/, ''));
   return m ? m[1] : name;
@@ -910,6 +940,12 @@ function addBar(si) {
 function addSection() {
   const name = prompt('New section name:', 'C');
   if (name === null) return;
+  const bad = unknownStrain(name.trim() || 'C');
+  if (bad) {
+    toast(`Strain "${bad}" not allowed. Use a plain letter (A, B, …) or a `
+      + `${NAMED_STRAINS.join('/')} strain (e.g. verse_A).`, 'error');
+    return;
+  }
   collectFromDOM();
   S.data.sections.push({
     name:  name.trim() || 'C',
@@ -1187,6 +1223,8 @@ async function doSave() {
   if (!S.currentId) return;
   try {
     const payload = buildSavePayload();
+    const strainErr = strainPolicyError(Object.keys(payload.sections || {}));
+    if (strainErr) { toast(strainErr, 'error'); return; }
     await apiFetch(`/api/tunes/${encodeURIComponent(S.currentId)}`, {
       method:  'PUT',
       headers: { 'Content-Type': 'application/json' },

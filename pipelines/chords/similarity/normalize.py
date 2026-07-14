@@ -405,6 +405,28 @@ def _strain_of_key(key: str) -> str | None:
     return None  # intro/coda/interlude/Transition/… — an aux connector
 
 
+# Named strains the displayers colour consistently (mirror of the displayer's
+# STRAIN_TINT keys). The verifier restricts section keys to these — extend both
+# together to introduce a new strain. NOT enforced in the digitizer pipeline
+# (spec §8.5 lets raw output name arbitrary strains); this is a display policy.
+NAMED_STRAINS = frozenset({"verse", "intro", "thema", "impro", "interlude",
+                           "coda", "part1", "part2", "s1", "s2"})
+# Any leading token before an underscore, however cased — for reporting the
+# offending strain of a non-canonical key (Part1_A -> "Part1", s1_A -> "s1").
+_ANY_PREFIX = re.compile(r"^([A-Za-z][A-Za-z0-9]*)_")
+
+
+def unknown_strain(key: str) -> str | None:
+    """The disallowed strain a section key carries, or None when it is allowed.
+    Plain chorus cells (A, B1, T) pass; a named strain — whether a prefix
+    ("verse_A") or a bare connector ("coda") — must be in NAMED_STRAINS."""
+    if _CHORUS_KEY.match(key):
+        return None
+    m = _ANY_PREFIX.match(key)
+    strain = m.group(1) if m else key
+    return None if strain in NAMED_STRAINS else strain
+
+
 def section_groups(sections: dict) -> "OrderedDict[str, list[str]]":
     """Group section keys by strain, in document (= printed) order. Auxiliary
     sections (intro/coda/interlude/named connectors) are excluded."""

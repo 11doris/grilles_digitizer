@@ -37,7 +37,8 @@ sys.path.insert(0, str(_REPO))
 from pipelines.chords.digitizer.validation import (  # noqa: E402
     ValidationError, _check_chord, _check_section_keys, _iter_chords)
 from pipelines.chords.similarity.normalize import (  # noqa: E402
-    ChordParseError, HARD, derive_labels, expand_tune)
+    ChordParseError, HARD, NAMED_STRAINS, derive_labels, expand_tune,
+    unknown_strain)
 TUNES_DIR = (_REPO / "data" / "chords" / "02_raw").resolve()
 CROPS_DIR = (_REPO / "data" / "chords" / "01_crops").resolve()
 VERIFIED_DIR = (_REPO / "data" / "chords" / "04_verified").resolve()
@@ -88,6 +89,28 @@ def _is_tune(p: Path) -> bool:
         and not p.stem.endswith("_opus")
         and p.stem not in _IGNORED_STEMS
     )
+
+
+def _strain_policy_error(sections: dict) -> str | None:
+    """Verifier policy: section keys may use only the named strains the
+    displayers colour consistently (normalize.NAMED_STRAINS) or a plain chorus
+    letter — so section shading/labels stay consistent. Returns a message
+    naming the offending keys, or None. To add a strain, extend NAMED_STRAINS
+    and the displayers' STRAIN_TINT together."""
+    if not isinstance(sections, dict):
+        return None
+    bad: dict[str, list[str]] = {}
+    for key in sections:
+        strain = unknown_strain(key)
+        if strain:
+            bad.setdefault(strain, []).append(key)
+    if not bad:
+        return None
+    detail = "; ".join(f"{s} ({', '.join(keys)})" for s, keys in bad.items())
+    allowed = ", ".join(sorted(NAMED_STRAINS))
+    return (f"unknown strain(s): {detail}. Allowed: {allowed} — or a plain "
+            f"chorus letter (A, B, …). Rename the section, or add the strain "
+            f"in code (NAMED_STRAINS + the displayers' STRAIN_TINT).")
 
 
 def _validate_tune(data: dict) -> str | None:
@@ -288,6 +311,10 @@ def api_derive():
         return jsonify({"error": "Invalid JSON body"}), 400
     structured, labels, warnings = derive_labels(body)
     structured.pop("printed", None)
+    warnings = list(warnings)
+    strain_error = _strain_policy_error(body.get("sections"))
+    if strain_error:
+        warnings.append((HARD, strain_error))
     return jsonify({
         "section_labels": labels,
         "form_strains": structured,
@@ -310,6 +337,9 @@ def api_save(tune_id: str):
     error = _validate_tune(body)
     if error:
         return jsonify({"error": f"Validation failed: {error}"}), 400
+    strain_error = _strain_policy_error(body.get("sections"))
+    if strain_error:
+        return jsonify({"error": f"Validation failed: {strain_error}"}), 400
     body = _with_form_strains(body)
     WIP_DIR.mkdir(exist_ok=True)
     _wip_path(tune_id).write_text(

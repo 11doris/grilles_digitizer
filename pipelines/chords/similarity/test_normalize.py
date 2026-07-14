@@ -6,9 +6,10 @@ import unittest
 from pathlib import Path
 
 from pipelines.chords.similarity.normalize import (
-    Chord, HARD, compute_opening, degree_name, derive_labels, expand_tune,
-    flatten, form_hard_warnings, form_warnings, parse_chord, parse_form,
-    pitch_class, reference_pc, section_groups, tonic_relative,
+    Chord, HARD, NAMED_STRAINS, compute_opening, degree_name, derive_labels,
+    expand_tune, flatten, form_hard_warnings, form_warnings, parse_chord,
+    parse_form, pitch_class, reference_pc, section_groups, tonic_relative,
+    unknown_strain,
 )
 
 _REPO = Path(__file__).resolve().parents[3]
@@ -206,6 +207,30 @@ class TestFormValidation(unittest.TestCase):
             self.assertIsInstance(warnings, list, path.name)
 
 
+class TestStrainPolicy(unittest.TestCase):
+    """Verifier policy: only the coloured named strains (NAMED_STRAINS) or a
+    plain chorus letter are allowed as section keys."""
+
+    def test_allowed_keys_pass(self):
+        for key in ("A", "B1", "T", "verse_A", "coda", "interlude",
+                    "intro_A", "thema_A", "impro_B",
+                    "part1_A", "part2_A", "s1_A", "s2_B"):
+            self.assertIsNone(unknown_strain(key), key)
+
+    def test_disallowed_keys_report_their_strain(self):
+        self.assertEqual(unknown_strain("Part1_A"), "Part1")   # capitalised
+        self.assertEqual(unknown_strain("s3_A"), "s3")         # only s1/s2 listed
+        self.assertEqual(unknown_strain("bridge"), "bridge")
+        self.assertEqual(unknown_strain("outro_A"), "outro")
+        self.assertEqual(unknown_strain("transition"), "transition")  # use T
+
+    def test_named_strains_match_displayer_palette(self):
+        self.assertEqual(NAMED_STRAINS,
+                         frozenset({"verse", "intro", "thema", "impro",
+                                    "interlude", "coda",
+                                    "part1", "part2", "s1", "s2"}))
+
+
 class TestFormStrains(unittest.TestCase):
     def test_parse_form_splits_strains(self):
         # verse | chorus, each with its own bar count and label sequence
@@ -333,7 +358,7 @@ class TestSectionLabels(unittest.TestCase):
 # regresses into a hard form mismatch; shrink this set as the data is fixed.
 KNOWN_FORM_DEFECTS = {
     "394_03_STRUT_MISS_LIZZIE", "425_01_THOU_SWELL",
-    "457_03_WHEN_THE_SAINTS_GO_MARCHING_IN", "99_03_DIGA_DIGA_DOO",
+    "457_03_WHEN_THE_SAINTS_GO_MARCHING_IN",
 }
 
 
