@@ -12,13 +12,13 @@
       ]
     }
   },
-  "section_labels": {
-    "A": "BLUES"
-  },
   "time_signature": "4/4",
   "title": "AU PRIVAVE",
   "page": 23,
   "source": "Anthologie des grilles de jazz",
+  "section_labels": {
+    "A": "BLUES"
+  },
   "recordings": [
     ".Woods 57- C.Parker 51",
     "Xpressens Ellitor-",
@@ -38,7 +38,7 @@
         "bar": 1,
         "beats": {
           "1": "F",
-          "3": "D(b9)"
+          "3": "D7b9"
         }
       },
       {
@@ -103,14 +103,13 @@
         "bar": 11,
         "beats": {
           "1": "F",
-          "3": "D(b9)"
+          "3": "D7b9"
         }
       },
       {
         "bar": 12,
         "beats": {
-          "1": "Gm7",
-          "3": "C7"
+          "1": "Gm7"
         }
       }
     ]
@@ -126,7 +125,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "2a12f2eab1e40d311fd9a621f18247ae0f53ee542ee591721a2a527520bcf772",
+    "source_sha256": "2f5c7bbcecf955e867be7103bdc7ffcc7be23616cb5079965a9db2d7931f398b",
     "scorer": {
       "tonic": "F",
       "mode": "major",
