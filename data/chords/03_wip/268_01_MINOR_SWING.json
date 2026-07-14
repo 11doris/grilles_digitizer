@@ -5,6 +5,20 @@
   "tempo": "MEDIUM FAST",
   "form": "16 A A | 16 A A | 16 A B",
   "form_strains": {
+    "intro": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    },
+    "thema": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    },
     "impro": {
       "bars": 16,
       "labels": [
@@ -14,8 +28,8 @@
     }
   },
   "section_labels": {
-    "intro": "Intro",
-    "thema": "Thema",
+    "intro": "A",
+    "thema": "A",
     "impro_A": "A",
     "impro_B": "B"
   },
