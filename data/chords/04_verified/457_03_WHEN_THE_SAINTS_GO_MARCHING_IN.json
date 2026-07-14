@@ -4,7 +4,14 @@
   "tempo": "MEDIUM FAST",
   "form": "16 A B | 16 A B",
   "form_strains": {
-    "chorus": {
+    "part1": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ]
+    },
+    "part2": {
       "bars": 16,
       "labels": [
         "A",
@@ -12,14 +19,16 @@
       ]
     }
   },
-  "section_labels": {
-    "A": "A",
-    "B": "B"
-  },
   "time_signature": "4/4",
   "title": "WHEN THE SAINTS GO MARCHING IN",
   "page": 457,
   "source": "Anthologie des grilles de jazz",
+  "section_labels": {
+    "part1_A": "A",
+    "part1_B": "B",
+    "part2_A": "A",
+    "part2_B": "B"
+  },
   "same_chord_changes": "\"Mama Don't Allow\", \"You Rascal You\", \"Walk Through The Streets Of The City\".",
   "notation_notes": {
     "verse": "Header prints '8 VERSE'.",
@@ -36,7 +45,7 @@
     "...b. Ward"
   ],
   "sections": {
-    "A": [
+    "part1_A": [
       {
         "bar": 1,
         "beats": {
@@ -86,7 +95,7 @@
         }
       }
     ],
-    "B": [
+    "part1_B": [
       {
         "bar": 1,
         "beats": {
@@ -135,6 +144,106 @@
         "bar": 8,
         "beats": {
           "1": "F"
+        }
+      }
+    ],
+    "part2_A": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "C7"
+        }
+      }
+    ],
+    "part2_B": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Bbm"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bbm"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "C7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Fm"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Fm"
         }
       }
     ]

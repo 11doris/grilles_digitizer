@@ -3,7 +3,7 @@
   "year": "1927",
   "style": "STANDARD",
   "tempo": "MEDIUM FAST",
-  "form": "32 A B A B' | 32 A B A B'",
+  "form": "32 A B A B'",
   "form_strains": {
     "chorus": {
       "bars": 32,
@@ -273,7 +273,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "be5102b3fc46ef3c6e7a8e7aff77ad17b458ebbd5cfeee95339f662b5015b8fa",
+    "source_sha256": "1fba274c402f4593aeb41e32cad1296080f96c60a3ffb5d8634482077d6d8bc5",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",

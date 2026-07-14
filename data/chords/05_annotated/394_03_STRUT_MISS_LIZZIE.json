@@ -3,7 +3,7 @@
   "year": "1921",
   "style": "STANDARD",
   "tempo": "MEDIUM",
-  "form": "16 PATTER | 16 A B | 20 A A'",
+  "form": "16 A B | 20 A A'",
   "form_strains": {
     "verse": {
       "bars": 16,
@@ -291,7 +291,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "4afc14837a5259b8995a9e4082af4f93898a44149951ef9d9959f2ff0309cced",
+    "source_sha256": "416c660265e62a2175ae5ecd9a563a36aec95a4ba413ae0d6c77af2dc9563be7",
     "scorer": {
       "tonic": "F",
       "mode": "major",
