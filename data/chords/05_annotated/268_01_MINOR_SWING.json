@@ -28,8 +28,8 @@
     }
   },
   "section_labels": {
-    "intro": "A",
-    "thema": "A",
+    "intro_A": "A",
+    "thema_A": "A",
     "impro_A": "A",
     "impro_B": "B"
   },
@@ -49,7 +49,7 @@
     "B_bar5": "B bar 5 shows E7 with a parenthesised optional (Bb7); kept as printed."
   },
   "sections": {
-    "intro": [
+    "intro_A": [
       {
         "bar": 1,
         "beats": {
@@ -99,7 +99,7 @@
         }
       }
     ],
-    "thema": [
+    "thema_A": [
       {
         "bar": 1,
         "beats": {
@@ -261,7 +261,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "ede59daf09f9c30bf51d5c62caf2da05f9f1bf5db473234e1826d27440a26fdc",
+    "source_sha256": "fa63869b9b2bf7d78e5c1086469a445edb00be783c7707b3d1a8130630f24413",
     "scorer": {
       "tonic": "A",
       "mode": "minor",

@@ -28,8 +28,8 @@
     }
   },
   "section_labels": {
-    "intro": "A",
-    "thema": "A",
+    "intro_A": "A",
+    "thema_A": "A",
     "impro_A": "A",
     "impro_B": "B"
   },
@@ -49,7 +49,7 @@
     "B_bar5": "B bar 5 shows E7 with a parenthesised optional (Bb7); kept as printed."
   },
   "sections": {
-    "intro": [
+    "intro_A": [
       {
         "bar": 1,
         "beats": {
@@ -99,7 +99,7 @@
         }
       }
     ],
-    "thema": [
+    "thema_A": [
       {
         "bar": 1,
         "beats": {
