@@ -3,7 +3,27 @@
   "year": "1923",
   "style": "TRADITIONAL",
   "tempo": "SLOW",
-  "form": "16 A B - 12 BLUES",
+  "form": "16 A B | 12 BLUES",
+  "form_strains": {
+    "verse": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ]
+    },
+    "blues": {
+      "bars": 12,
+      "labels": [
+        "BLUES"
+      ]
+    }
+  },
+  "section_labels": {
+    "verse_A": "A",
+    "verse_B": "B",
+    "blues_A": "BLUES"
+  },
   "time_signature": "4/4",
   "title": "GULF COAST BLUES",
   "page": 146,
@@ -130,7 +150,7 @@
         }
       }
     ],
-    "A": [
+    "blues_A": [
       {
         "bar": 1,
         "beats": {

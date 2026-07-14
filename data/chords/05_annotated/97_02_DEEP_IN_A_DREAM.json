@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM SLOW",
   "form": "32 A A' B A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "A2": "A'"
+  },
   "time_signature": "4/4",
   "title": "DEEP IN A DREAM",
   "page": 97,
@@ -285,7 +302,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "20aa7debcb8ea5bb142d895ae558ed414ed28a8d907fbdb7212b5997bd7fe039",
+    "source_sha256": "9a1691104949d57ea6a1a59b9fbdc1084ce1cdab5982969dbcacdcf75b82bbad",
     "scorer": {
       "tonic": "C",
       "mode": "major",

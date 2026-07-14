@@ -40,6 +40,12 @@ const KNOWN_META = [
   'tempo', 'form', 'time_signature', 'page', 'source',
 ];
 
+// `form_strains` is fully derived server-side from `section_labels` + the
+// section grouping on every save; it is never shown or hand-edited here.
+// `section_labels` IS hand-editable, but through its own dedicated editor
+// (renderSectionLabels) rather than the raw-JSON extras list.
+const DERIVED_META = ['form_strains', 'section_labels'];
+
 // ─── Beat count ───────────────────────────────────────────────────────────────
 function getBeatCount() {
   const ts = S.data?.time_signature || '4/4';
@@ -424,9 +430,10 @@ function collectMeta() {
     }
   });
 
-  // Extra fields (preserve JSON types via JSON.parse round-trip). `sections`
-  // and `variants` have their own editors, so they never appear here.
-  const knownSet = new Set([...KNOWN_META, 'sections', 'variants']);
+  // Extra fields (preserve JSON types via JSON.parse round-trip). `sections`,
+  // `variants` and the derived form fields have their own editors, so they
+  // never appear here.
+  const knownSet = new Set([...KNOWN_META, ...DERIVED_META, 'sections', 'variants']);
   const oldExtras = Object.keys(S.data).filter(k => !knownSet.has(k));
   const newExtras = {};
   qsa('[data-extra-key]').forEach(el => {
@@ -499,6 +506,7 @@ function collectVariants() {
 
 function collectFromDOM() {
   collectMeta();
+  collectSectionLabels();
   collectSections();
   collectVariants();
 }
@@ -518,6 +526,8 @@ function buildSavePayload() {
   Object.keys(S.data).forEach(k => {
     if (k === 'sections' || S.data[k] === undefined) return;
     if (k === 'variants' && (!Array.isArray(S.data[k]) || !S.data[k].length)) return;
+    if (k === 'form_strains') return;  // derived: recomputed server-side on save
+    if (k === 'section_labels' && !Object.keys(S.data[k] || {}).length) return;
     out[k] = S.data[k];
   });
   out.sections = sectionsToObject(S.data.sections);
@@ -541,8 +551,8 @@ function renderMeta() {
     `;
   }).join('');
 
-  // Extra fields (sections and variants have dedicated editors)
-  const knownSet  = new Set([...KNOWN_META, 'sections', 'variants']);
+  // Extra fields (sections, variants and derived form fields have dedicated editors)
+  const knownSet  = new Set([...KNOWN_META, ...DERIVED_META, 'sections', 'variants']);
   const extraKeys = Object.keys(S.data).filter(k => !knownSet.has(k));
 
   if (extraKeys.length) {
@@ -571,6 +581,153 @@ function renderMeta() {
   }
 }
 
+// ─── Section labels (printed labels per section, primes kept) ─────────────────
+// The section KEY (A, A1, verse_A) is a mechanical id; its printed LABEL (A, A',
+// …) is what the book shows and what the displayer renders. Edit them here;
+// `form_strains` is recomputed from them server-side on save.
+function strainOfKey(name) {
+  const m = /^(s\d+|[a-z][a-z0-9]*)_/.exec(name);
+  if (m) return m[1];
+  if (/^[A-Z]\d*$/.test(name)) return 'chorus';
+  return 'aux';
+}
+
+// Named strains the displayers colour consistently (mirror of normalize.py's
+// NAMED_STRAINS / the displayers' STRAIN_TINT). Section keys may use only these
+// or a plain chorus letter; extend all three together to add a strain.
+const NAMED_STRAINS = ['verse', 'intro', 'thema', 'impro', 'interlude', 'coda',
+                       'part1', 'part2', 's1', 's2', 'blues'];
+// The disallowed strain a section key carries, or '' when allowed. Plain chorus
+// cells (A, B1, T) pass; a named strain (prefix `verse_A` or bare `coda`) must
+// be in NAMED_STRAINS.
+function unknownStrain(name) {
+  const key = String(name || '').trim();
+  if (/^[A-Z]\d*$/.test(key)) return '';
+  const m = /^([A-Za-z][A-Za-z0-9]*)_/.exec(key);
+  const strain = m ? m[1] : key;
+  return NAMED_STRAINS.includes(strain) ? '' : strain;
+}
+// A save-blocking message when any section key uses a disallowed strain, else ''.
+function strainPolicyError(sectionNames) {
+  const bad = {};
+  sectionNames.forEach(n => {
+    const s = unknownStrain(n);
+    if (s) (bad[s] ||= []).push(n);
+  });
+  const strains = Object.keys(bad);
+  if (!strains.length) return '';
+  const detail = strains.map(s => `${s} (${bad[s].join(', ')})`).join('; ');
+  return `Unknown strain(s): ${detail}. Allowed: ${NAMED_STRAINS.join(', ')} `
+    + `— or a plain chorus letter (A, B, …). Rename the section, or add the `
+    + `strain in code.`;
+}
+function labelPlaceholder(name) {
+  const m = /^([A-Z])\d*$/.exec(name.replace(/^(s\d+|[a-z][a-z0-9]*)_/, ''));
+  return m ? m[1] : name;
+}
+
+function labelRowHTML(name, val, orphan) {
+  return `
+    <div class="seclabel-row${orphan ? ' orphan' : ''}">
+      <span class="seclabel-key">${esc(name)}</span>
+      <input class="seclabel-inp" data-section="${esc(name)}"
+             value="${esc(val)}" placeholder="${esc(labelPlaceholder(name))}" />
+      <button class="btn-icon danger" data-label-del="${esc(name)}"
+              title="Remove label">×</button>
+    </div>`;
+}
+
+function renderSectionLabels() {
+  const area = qs('#section-labels-area');
+  if (!area) return;
+  const secs = S.data.sections || [];
+  const labels = S.data.section_labels || {};
+  const named = new Set(secs.map(s => s.name));
+  const rows = [];
+  // One row per labelled section, in section order, grouped by strain.
+  let lastStrain = null;
+  secs.forEach(sec => {
+    const name = sec.name;
+    if (!(name in labels)) return;
+    const strain = strainOfKey(name);
+    if (strain !== lastStrain) {
+      rows.push(`<div class="seclabel-strain">${esc(strain)}</div>`);
+      lastStrain = strain;
+    }
+    rows.push(labelRowHTML(name, String(labels[name] ?? '')));
+  });
+  // Orphan labels (key no longer matches a section) so they can be cleaned up.
+  const orphans = Object.keys(labels).filter(k => !named.has(k));
+  if (orphans.length) {
+    rows.push('<div class="seclabel-strain">unmatched</div>');
+    orphans.forEach(k => rows.push(labelRowHTML(k, String(labels[k] ?? ''), true)));
+  }
+  const canAdd = secs.some(s => !(s.name in labels));
+  area.innerHTML = `
+    <div class="extra-section-label">Section labels
+      <button type="button" id="autofill-labels" class="btn-mini"
+              title="Align the form string against the sections">Auto-fill from form</button>
+    </div>
+    <div id="section-labels-container">${rows.join('')}</div>
+    <div id="section-labels-warn" class="seclabel-warn"></div>
+    <button type="button" id="add-label" class="btn btn-sm btn-outline"
+            ${canAdd ? '' : 'disabled'}>+ Add label</button>`;
+}
+
+// Reads the label inputs into S.data.section_labels. Empty values are KEPT
+// (so a freshly added, not-yet-typed row survives a re-render); they are
+// stripped when the save payload is built.
+function collectSectionLabels() {
+  if (!qs('#section-labels-container')) return;
+  const map = {};
+  qsa('#section-labels-container .seclabel-inp').forEach(el => {
+    map[el.dataset.section] = el.value.trim();
+  });
+  S.data.section_labels = map;
+}
+
+// + Add label: bring the next unlabelled section into the editor.
+function addSectionLabel() {
+  collectSectionLabels();
+  const labels = (S.data.section_labels ||= {});
+  const next = (S.data.sections || []).map(s => s.name).find(n => !(n in labels));
+  if (!next) { toast('All sections already have a label', 'info'); return; }
+  labels[next] = '';
+  renderSectionLabels();
+  qs(`#section-labels-container .seclabel-inp[data-section="${cssEsc(next)}"]`)?.focus();
+  setDirty();
+}
+
+function deleteSectionLabel(name) {
+  collectSectionLabels();
+  delete S.data.section_labels[name];
+  renderSectionLabels();
+  setDirty();
+}
+
+async function autofillSectionLabels() {
+  collectFromDOM();
+  const payload = buildSavePayload();
+  try {
+    const resp = await apiFetch('/api/derive', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    S.data.section_labels = resp.section_labels || {};
+    renderSectionLabels();
+    const warn = qs('#section-labels-warn');
+    if (warn) {
+      warn.innerHTML = (resp.warnings || []).map(w =>
+        `<div class="seclabel-warn-${w.level}">${esc(w.message)}</div>`).join('');
+    }
+    setDirty();
+    toast(resp.hard ? 'Auto-filled — form/sections mismatch, check flags' : 'Auto-filled labels', resp.hard ? 'warn' : 'ok');
+  } catch (err) {
+    toast(`Auto-fill failed: ${err.message}`, 'error');
+  }
+}
+
 // ─── Render sections ─────────────────────────────────────────────────────────
 function renderSections() {
   const bc        = getBeatCount();
@@ -583,6 +740,10 @@ function renderSections() {
 
   refreshDuplicateFlags();
   validateAllChords();
+  // Keep the section-labels editor in step with the current section set,
+  // preserving any labels already typed.
+  collectSectionLabels();
+  renderSectionLabels();
 }
 
 /** Flag section cards whose (live) name collides with another section's. */
@@ -779,6 +940,12 @@ function addBar(si) {
 function addSection() {
   const name = prompt('New section name:', 'C');
   if (name === null) return;
+  const bad = unknownStrain(name.trim() || 'C');
+  if (bad) {
+    toast(`Strain "${bad}" not allowed. Use a plain letter (A, B, …) or a `
+      + `${NAMED_STRAINS.join('/')} strain (e.g. verse_A).`, 'error');
+    return;
+  }
   collectFromDOM();
   S.data.sections.push({
     name:  name.trim() || 'C',
@@ -1056,6 +1223,8 @@ async function doSave() {
   if (!S.currentId) return;
   try {
     const payload = buildSavePayload();
+    const strainErr = strainPolicyError(Object.keys(payload.sections || {}));
+    if (strainErr) { toast(strainErr, 'error'); return; }
     await apiFetch(`/api/tunes/${encodeURIComponent(S.currentId)}`, {
       method:  'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -1200,6 +1369,10 @@ function renderEditor() {
   qs('#editor-title').textContent = S.data?.title || S.currentId;
 
   renderMeta();
+  // Clear the previous tune's label inputs BEFORE renderSections runs, so the
+  // collect-then-render inside it can't clobber this tune's loaded
+  // section_labels with the outgoing tune's stale DOM values.
+  qs('#section-labels-area').innerHTML = '';
   renderSections();
   renderVariants();
   updateActionButtons();
@@ -1262,6 +1435,12 @@ function wireEvents() {
   // ── Meta: dirty on input
   qs('#meta-grid').addEventListener('input', () => setDirty());
   qs('#extra-fields').addEventListener('input', () => setDirty());
+
+  // ── Section labels: dirty on input, auto-fill button
+  qs('#section-labels-area').addEventListener('input', () => setDirty());
+  qs('#section-labels-area').addEventListener('click', e => {
+    if (e.target.closest('#autofill-labels')) autofillSectionLabels();
+  });
 
   // ── Meta: delete field button
   qs('#meta-grid').addEventListener('click', e => {

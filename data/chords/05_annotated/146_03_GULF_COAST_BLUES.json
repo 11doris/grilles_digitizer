@@ -4,6 +4,26 @@
   "style": "TRADITIONAL",
   "tempo": "SLOW",
   "form": "16 A B - 12 BLUES",
+  "form_strains": {
+    "verse": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ]
+    },
+    "chorus": {
+      "bars": 12,
+      "labels": [
+        "BLUES"
+      ]
+    }
+  },
+  "section_labels": {
+    "verse_A": "A",
+    "verse_B": "B",
+    "A": "BLUES"
+  },
   "time_signature": "4/4",
   "title": "GULF COAST BLUES",
   "page": 146,
@@ -220,7 +240,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "b9a58ecf96f177515bb496cbac1c90657a194aebc738a4f53d1e337e12b9aa17",
+    "source_sha256": "a520b21216b270cefd67de6e8a4d122fab4440038fbcf7bf693652dd62a79ec8",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",

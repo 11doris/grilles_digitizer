@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A B A C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "CAROLINA IN THE MORNING",
   "page": 64,
@@ -247,7 +264,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "5c3d23c1ac1e7f02c6f84c5ece50a887593205cd89295133b202f2ad2dc30fba",
+    "source_sha256": "3101f6317b552ed864692036b59a263d1ef6d4da007d44d45d88883a70263337",
     "scorer": {
       "tonic": "C",
       "mode": "major",

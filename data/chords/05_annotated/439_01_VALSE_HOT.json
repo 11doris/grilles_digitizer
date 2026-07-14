@@ -4,6 +4,20 @@
   "style": "HARD BOP",
   "tempo": "MEDIUM WALTZ",
   "form": "16 A B",
+  "form_strains": {
+    "chorus": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ]
+    }
+  },
+  "section_labels": {
+    "intro": "Intro",
+    "A": "A",
+    "B": "B"
+  },
   "time_signature": "3/4",
   "variants": [
     {
@@ -210,7 +224,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "b27dc78dded843fae41d23bfb185d4a6d5c502e9dc494622b6dd2ed3b2cd6142",
+    "source_sha256": "a93c8c070fb1ba4eb8fd8a695e20a612318b9026843821b27e9f56a5e8680325",
     "scorer": {
       "tonic": "Ab",
       "mode": "major",

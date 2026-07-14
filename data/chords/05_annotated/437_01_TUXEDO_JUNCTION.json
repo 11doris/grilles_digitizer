@@ -4,6 +4,23 @@
   "style": "SWING",
   "tempo": "MEDIUM",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "TUXEDO JUNCTION",
   "page": 437,
@@ -260,7 +277,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "bd7e3d458d1d4aecea16ebf9be4403fd76c04543b4f626c560a6156ac781da20",
+    "source_sha256": "a6f462e4ae20de9fc2e8ade43247d124f3aec1fa5c3b1644abe5ba282d8dd959",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",

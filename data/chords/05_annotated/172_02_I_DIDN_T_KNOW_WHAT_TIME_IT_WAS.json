@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A A B A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A'"
+  },
   "time_signature": "4/4",
   "title": "I DIDN'T KNOW WHAT TIME IT WAS",
   "page": 172,
@@ -261,7 +278,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "b8868daac172d10d79c7faebf500ddb01c966d8f016f7042ce1abce976053acd",
+    "source_sha256": "844f16989369cc1670e674b003ac5846bb4f3c717f0aa7eb37d0951c08865a2d",
     "scorer": {
       "tonic": "D",
       "mode": "minor",

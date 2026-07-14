@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "56 A A B A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 56,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A'"
+  },
   "time_signature": "4/4",
   "title": "CHANGE PARTNERS",
   "page": 67,
@@ -384,7 +401,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "3970ba5c056aeac9f77f16bc7527441c9aeb8006fb2d05b56fb90fdcc71883cd",
+    "source_sha256": "07c0666f2c61fd08321c13562281f6660c75d915eb86a8b4470f74895a55496c",
     "scorer": {
       "tonic": "F",
       "mode": "major",

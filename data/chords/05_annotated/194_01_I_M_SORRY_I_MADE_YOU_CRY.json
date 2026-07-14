@@ -4,6 +4,23 @@
   "style": "STANDARD (TRADITIONAL)",
   "tempo": "MEDIUM FAST",
   "form": "32 A B A' C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A'",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A'",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "I'M SORRY I MADE YOU CRY",
   "page": 194,
@@ -234,7 +251,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "ed72e9c9f9451dc0473f8bd43de0331912cce00a4c878e1db865b86f10c18704",
+    "source_sha256": "4793667861f2a1a261281aa2f48bec50ab13b3b4db45e771333d28f0110e51d7",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",

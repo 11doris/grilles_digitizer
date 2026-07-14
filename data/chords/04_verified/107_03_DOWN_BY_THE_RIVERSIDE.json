@@ -2,7 +2,29 @@
   "composer": "TRADITIONAL",
   "style": "TRADITIONAL JAZZ",
   "tempo": "MEDIUM FAST",
-  "form": "16 A A",
+  "form": "16 A A | 16 A A",
+  "form_strains": {
+    "part1": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    },
+    "part2": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "part1_A": "A",
+    "part1_A1": "A",
+    "part2_A": "A",
+    "part2_A1": "A"
+  },
   "time_signature": "4/4",
   "title": "DOWN BY THE RIVERSIDE",
   "page": 107,
@@ -18,7 +40,7 @@
     "composer_note": "Header prints '(TRADITIONAL)'."
   },
   "sections": {
-    "s1_A": [
+    "part1_A": [
       {
         "bar": 1,
         "beats": {
@@ -69,7 +91,7 @@
         }
       }
     ],
-    "s1_A1": [
+    "part1_A1": [
       {
         "bar": 1,
         "beats": {
@@ -120,7 +142,7 @@
         }
       }
     ],
-    "s2_A": [
+    "part2_A": [
       {
         "bar": 1,
         "beats": {
@@ -170,7 +192,7 @@
         }
       }
     ],
-    "s2_A1": [
+    "part2_A1": [
       {
         "bar": 1,
         "beats": {

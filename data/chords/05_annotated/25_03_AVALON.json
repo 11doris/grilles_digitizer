@@ -4,6 +4,23 @@
   "style": "TRADITIONAL",
   "tempo": "FAST",
   "form": "32 A A' B C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "AVALON",
   "page": 25,
@@ -241,7 +258,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "29e32264d3d52a5546ebb6200aced0fc037d9547195a1f2922c025355eb70f09",
+    "source_sha256": "0e7d2cad617d759871cfdcc2e30b745afc2e09e17bf415fd35b1013438cb878e",
     "scorer": {
       "tonic": "F",
       "mode": "major",

@@ -4,6 +4,32 @@
   "style": "STANDARD",
   "tempo": "MEDIUM SLOW",
   "form": "16 A B | 32 A A' B A\"",
+  "form_strains": {
+    "verse": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ]
+    },
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "verse_A": "A",
+    "verse_B": "B",
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "COCKTAILS FOR TWO",
   "page": 78,
@@ -368,7 +394,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "f1d39dcbbc92386dbb36d021a6249b39a9f759305ac8e4b27aca4d43ff784149",
+    "source_sha256": "64ea29b0b1fefdf631e436044e1fcf4dea5cec217472e70e42aa6cdbffed8a42",
     "scorer": {
       "tonic": "C",
       "mode": "major",

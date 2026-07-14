@@ -4,6 +4,23 @@
   "style": "BE BOP (INSTRUMENTAL)",
   "tempo": "MEDIUM FAST",
   "form": "32 A A' B A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "A2": "A'"
+  },
   "time_signature": "4/4",
   "title": "CONFIRMATION",
   "page": 80,
@@ -258,7 +275,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "15834594d40f6b09923258854991f0538041e013ea8146f40170fd9523c36e14",
+    "source_sha256": "914bf639b29ec8394ace7ca95300f35daf0bed25a5ce1c82c5787eb0ffe2af31",
     "scorer": {
       "tonic": "F",
       "mode": "major",

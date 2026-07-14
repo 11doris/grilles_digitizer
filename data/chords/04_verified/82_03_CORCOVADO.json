@@ -4,6 +4,23 @@
   "style": "BOSSA NOVA",
   "tempo": "MEDIUM",
   "form": "36 A B A C",
+  "form_strains": {
+    "chorus": {
+      "bars": 36,
+      "labels": [
+        "A",
+        "B",
+        "A",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "CORCOVADO",
   "page": 82,

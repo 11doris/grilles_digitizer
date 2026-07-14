@@ -4,6 +4,32 @@
   "style": "STANDARD",
   "tempo": "MEDIUM FAST",
   "form": "16 A A | 32 A A B A",
+  "form_strains": {
+    "verse": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    },
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "verse_A": "A",
+    "verse_A1": "A",
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "YOU'RE DRIVING ME CRAZY",
   "page": 480,
@@ -356,7 +382,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "09e50d5cda5ea52376b46950b277107c37fa2ea31812eaf55dbba42548b03c07",
+    "source_sha256": "1d427c2202c84a3362a47708679678b7ee139b84906343e78c0f8dd2cc88f772",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",

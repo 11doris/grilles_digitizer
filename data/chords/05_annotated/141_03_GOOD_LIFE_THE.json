@@ -4,6 +4,23 @@
   "style": "FRENCH SONG",
   "tempo": "SLOW",
   "form": "32 A B A B'",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A",
+        "B'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A2": "A",
+    "B1": "B'"
+  },
   "time_signature": "4/4",
   "title": "THE GOOD LIFE",
   "page": 141,
@@ -248,7 +265,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "4551c0427185a207fd08134cf642d6e0951f50adce55212b71ba706fe911de44",
+    "source_sha256": "51051b9abaeb1ef7de131218dd7d748dd18ed0d19a2ee7d6f8195e17f5a2b8d2",
     "scorer": {
       "tonic": "Ab",
       "mode": "major",

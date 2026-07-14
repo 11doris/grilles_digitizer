@@ -4,6 +4,32 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "16 A B | 32 A A B A",
+  "form_strains": {
+    "verse": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ]
+    },
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "verse_A": "A",
+    "verse_B": "B",
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "YOU'RE LUCKY TO ME",
   "page": 481,
@@ -342,7 +368,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "48c4aacfb36b5e4998352cf3aae4078b7f40b7eede1297c69b725298d8772009",
+    "source_sha256": "0e49518892e596d686acb2f91fe56b32ba4448800ab1182da396396c1ba48b67",
     "scorer": {
       "tonic": "F",
       "mode": "major",

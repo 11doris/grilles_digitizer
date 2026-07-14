@@ -3,6 +3,19 @@
   "composer": "TRADITIONAL",
   "tempo": "MEDIUM",
   "form": "16 A B",
+  "form_strains": {
+    "chorus": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B"
+  },
   "time_signature": "4/4",
   "variants": [
     {

@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM SLOW",
   "form": "32 A B A C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "EVERYTIME WE SAY GOODBYE",
   "page": 120,
@@ -313,7 +330,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "954a1ad394bce972b26117714b8f118c342b1432c614a2151ac92c702547c6ca",
+    "source_sha256": "8787058a3c3ac720208043426e491f7b0ac0f42168e9ba128c6257070e95d6ea",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",

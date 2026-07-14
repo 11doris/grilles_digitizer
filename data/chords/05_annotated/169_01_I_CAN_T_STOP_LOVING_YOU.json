@@ -4,6 +4,25 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "40 A A B B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 40,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "B1": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "I CAN'T STOP LOVING YOU",
   "page": 169,
@@ -284,7 +303,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "71c48db741f8e20143e65dbc093f37fa69db68dfc2b21c4c7dc1fbdd634f7595",
+    "source_sha256": "3de9721150dd1c6583f4a055a34c8d53b7470c00252412dba62ea99ec68c053c",
     "scorer": {
       "tonic": "C",
       "mode": "major",

@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM FAST",
   "form": "32 A B A B'",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A",
+        "B'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A",
+    "B1": "B'"
+  },
   "time_signature": "4/4",
   "title": "YOURS AND MINE",
   "page": 483,
@@ -236,7 +253,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "0bb6936bafce75f9e2961e59b7b8c23c5a161cda702a52b3bc6f5e92b77d8d43",
+    "source_sha256": "f1ea723afe70846ec8ee0efc688449b6e244f8b9e0ede4a5ba3731321b4b8605",
     "scorer": {
       "tonic": "C",
       "mode": "major",

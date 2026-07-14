@@ -4,6 +4,23 @@
   "style": "BE BOP",
   "tempo": "FAST",
   "form": "32 A B A' C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A'",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A'",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "DONNA LEE",
   "page": 103,
@@ -238,7 +255,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "705b43bd085afd027a977ef888430e7585c03c207049f1d88a0ed42c3155511a",
+    "source_sha256": "463639c174fc212a60db19669625f9d221d9f8c4620cb35b81464b8faa26e28d",
     "scorer": {
       "tonic": "Ab",
       "mode": "major",

@@ -4,6 +4,28 @@
   "style": "NEW ORLEANS",
   "tempo": "MEDIUM FAST",
   "form": "16 A A | 20 A A'",
+  "form_strains": {
+    "intro": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    },
+    "chorus": {
+      "bars": 20,
+      "labels": [
+        "A",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "intro_A": "A",
+    "intro_A1": "A",
+    "A": "A",
+    "A1": "A'"
+  },
   "time_signature": "4/4",
   "variants": [
     {
@@ -283,7 +305,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "538ffdff504bdb1c5df8d3b87ba153583fed02c414c0a95f6e5f56311052e0ff",
+    "source_sha256": "52e869cc2fdfb66a41d2be9fb6288c46fd8cff460eaffd3d8eba6a21709a33da",
     "scorer": {
       "tonic": "C",
       "mode": "major",

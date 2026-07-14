@@ -4,6 +4,23 @@
   "style": "STANDARD SWING",
   "tempo": "MEDIUM",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "HIT THAT JIVE JACK",
   "page": 158,
@@ -256,7 +273,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "ca2273bec29507f81381a02803448aea9012e074b30ae98a530501625bb39c27",
+    "source_sha256": "be09d8f451dc22286ce9ceb86b2425a79a0639c18355c82026e3637e5efffdbe",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",

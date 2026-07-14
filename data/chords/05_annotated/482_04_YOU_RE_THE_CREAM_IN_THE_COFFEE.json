@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM FAST",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "YOU'RE THE CREAM IN THE COFFEE",
   "page": 482,
@@ -239,7 +256,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "c46e37a9cffebcfb5eb79a570956703eaf5cf9e413844bbbf097f64d61cd3ec0",
+    "source_sha256": "f27e2570dc858f237252cfc48778c210537c10a20e74244b6210388870564128",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",

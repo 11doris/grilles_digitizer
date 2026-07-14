@@ -4,6 +4,17 @@
   "style": "TRADITIONAL",
   "tempo": "MEDIUM",
   "form": "8 BLUES",
+  "form_strains": {
+    "blues": {
+      "bars": 8,
+      "labels": [
+        "BLUES"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "BLUES"
+  },
   "time_signature": "4/4",
   "title": "HOW LONG, HOW LONG BLUES",
   "page": 162,
@@ -29,7 +40,7 @@
     "composer_header": "Header prints '(Leroy CARR - L.C. 1928)'."
   },
   "sections": {
-    "A": [
+    "blues_A": [
       {
         "bar": 1,
         "beats": {

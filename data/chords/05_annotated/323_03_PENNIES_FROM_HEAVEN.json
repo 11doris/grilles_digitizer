@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM FAST",
   "form": "32 A B A' C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A'",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A'",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "PENNIES FROM HEAVEN",
   "page": 323,
@@ -244,7 +261,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "f02a9ccb23a5e794d2eda86edad591b79048a13194799bb5d5ef77708c93f9f6",
+    "source_sha256": "31f911d2fd55d97ac9d8303f853ba8641dd95f210789b0fa159baeea6ae58898",
     "scorer": {
       "tonic": "C",
       "mode": "major",

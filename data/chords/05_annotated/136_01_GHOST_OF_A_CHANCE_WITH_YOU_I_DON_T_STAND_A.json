@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM SLOW",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "GHOST OF A CHANCE WITH YOU, I DON'T STAND A",
   "page": 136,
@@ -255,7 +272,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "2cbba957510b0dc83af0cc78ee1040a9dcfcacd415bc7fbc844518f1fec421ec",
+    "source_sha256": "c94107a67db01a52b367e50cefa0e278563aad16c3167db86de5a322b7d8252d",
     "scorer": {
       "tonic": "C",
       "mode": "major",

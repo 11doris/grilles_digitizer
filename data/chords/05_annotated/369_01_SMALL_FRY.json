@@ -4,6 +4,26 @@
   "style": "STANDARD",
   "tempo": "MEDIUM SLOW",
   "form": "36 A A' B A' C",
+  "form_strains": {
+    "chorus": {
+      "bars": 36,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "A'",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "A2": "A'",
+    "C": "C",
+    "verse_A": "A"
+  },
   "time_signature": "4/4",
   "title": "SMALL FRY",
   "page": 369,
@@ -339,7 +359,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "f800cc895d0b13838f8715f810a2111f52b3dc9a654204ad3c64cd901e66ac53",
+    "source_sha256": "1e80f6b2e6952443a022436694ce7dcc4a84ef3781b370d9392c722a5eed64c8",
     "scorer": {
       "tonic": "C",
       "mode": "major",

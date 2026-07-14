@@ -3,6 +3,24 @@
   "style": "REVIVAL",
   "tempo": "MEDIUM",
   "form": "32 A B A' C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A'",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A'",
+    "C": "C",
+    "verse_A": "A"
+  },
   "time_signature": "4/4",
   "title": "BILL BAILEY",
   "page": 38,
@@ -310,7 +328,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "948ab5e3430cc20840f6a1d3fa4ca2527b5a2253e640dbab53585a751857c864",
+    "source_sha256": "c922aff251964d1dbdbdc3feb24d08ffad5e46db0bd46004f6116d7fc938c5f5",
     "scorer": {
       "tonic": "F",
       "mode": "major",

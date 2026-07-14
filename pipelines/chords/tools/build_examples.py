@@ -28,6 +28,11 @@ OUT = ROOT / "pipelines" / "chords" / "digitizer" / "examples.py"
 # MODEL's output shape, which is what the few-shot should teach.
 RUNNER_FIELDS = ("title", "page", "source")
 
+# Fields DERIVED after verification (form_strains, section_labels — added by
+# pipelines/chords/tools/migrate_form_labels.py). They are not model output, so
+# they must never leak into the few-shot examples.
+DERIVED_FIELDS = ("form_strains", "section_labels")
+
 # One short blurb per verified tune (keyed by file stem) describing what few-shot
 # lesson it carries. Kept in sync by hand with the chords actually in data/chords/04_verified/.
 # Insertion order here is the order examples appear in the output.
@@ -103,7 +108,7 @@ def main() -> None:
             raise SystemExit(f"verified tune not found: {path}")
         tune = json.loads(path.read_text(encoding="utf-8"))
         title = tune.get("title", stem)
-        for key in RUNNER_FIELDS:
+        for key in RUNNER_FIELDS + DERIVED_FIELDS:
             tune.pop(key, None)
         # Optional fields are OMITTED when empty (spec optional-field policy) — the
         # verifier may leave an empty "" / {} behind, so drop it here.

@@ -3,6 +3,30 @@
   "year": "1926",
   "style": "STANDARD TRADITIONAL",
   "form": "32 A B A B'",
+  "form_strains": {
+    "verse": {
+      "bars": 8,
+      "labels": [
+        "A"
+      ]
+    },
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A",
+        "B'"
+      ]
+    }
+  },
+  "section_labels": {
+    "verse_A": "A",
+    "A": "A",
+    "B": "B",
+    "A1": "A",
+    "B1": "B'"
+  },
   "time_signature": "4/4",
   "title": "HOW COULD I BE BLUE",
   "page": 162,
@@ -182,7 +206,7 @@
         }
       }
     ],
-    "A 1": [
+    "A1": [
       {
         "bar": 1,
         "beats": {
@@ -304,7 +328,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "497cd30f5d4ab8dc35c40973e4e68b9c6643199d33de1d2a51166c70aaabdbd7",
+    "source_sha256": "cfb9a7bfd090bd67871db267c7e2130d8c78120c2eed82f12a8273d95dbbf6f6",
     "scorer": {
       "tonic": "C",
       "mode": "major",

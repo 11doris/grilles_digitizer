@@ -4,10 +4,21 @@
   "style": "BE BOP (INSTRUMENTAL)",
   "tempo": "MEDIUM",
   "form": "12 BLUES",
+  "form_strains": {
+    "chorus": {
+      "bars": 12,
+      "labels": [
+        "BLUES"
+      ]
+    }
+  },
   "time_signature": "4/4",
   "title": "AU PRIVAVE",
   "page": 23,
   "source": "Anthologie des grilles de jazz",
+  "section_labels": {
+    "A": "BLUES"
+  },
   "recordings": [
     ".Woods 57- C.Parker 51",
     "Xpressens Ellitor-",
@@ -27,7 +38,7 @@
         "bar": 1,
         "beats": {
           "1": "F",
-          "3": "D(b9)"
+          "3": "D7b9"
         }
       },
       {
@@ -92,14 +103,13 @@
         "bar": 11,
         "beats": {
           "1": "F",
-          "3": "D(b9)"
+          "3": "D7b9"
         }
       },
       {
         "bar": 12,
         "beats": {
-          "1": "Gm7",
-          "3": "C7"
+          "1": "Gm7"
         }
       }
     ]

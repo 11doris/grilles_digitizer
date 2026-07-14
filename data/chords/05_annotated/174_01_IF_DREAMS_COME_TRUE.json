@@ -4,6 +4,23 @@
   "style": "SWING",
   "tempo": "MEDIUM FAST",
   "form": "32 A B A B'",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A",
+        "B'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A",
+    "B1": "B'"
+  },
   "time_signature": "4/4",
   "title": "IF DREAMS COME TRUE",
   "page": 174,
@@ -278,7 +295,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "011689f99ad224efccc3a36cd5c2e4c946fd23f3fa35dd9cb4ab2579b44d2580",
+    "source_sha256": "b6e0de9df4eba5b9c941b9bb25195d6daec85c520914218d4a6e1157dd14a545",
     "scorer": {
       "tonic": "F",
       "mode": "major",

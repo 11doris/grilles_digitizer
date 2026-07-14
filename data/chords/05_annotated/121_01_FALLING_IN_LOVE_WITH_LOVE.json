@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A B A B'",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A",
+        "B'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A",
+    "B1": "B'"
+  },
   "time_signature": "4/4",
   "title": "FALLING IN LOVE WITH LOVE",
   "page": 121,
@@ -253,7 +270,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "2b909478396564ac874197dc929d1640cbebe2904b8ddce0d4f55fb961112b53",
+    "source_sha256": "900141cd7ee1b6b31fa6f49a7f57c248ded068bc50f0ce81a69e3cbf9e02db5f",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",

@@ -4,6 +4,23 @@
   "style": "STANDARD (GERMAN SONG)",
   "tempo": "MEDIUM",
   "form": "32 A B A' C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A'",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A'",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "CALL ME DARLING",
   "page": 59,
@@ -240,7 +257,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "3f85d1953173128a01a584a9ee4cf73344d41fa670837e7c7f2d690704cd64b8",
+    "source_sha256": "50140fa4e9cc48245cc31826782cb5d7e01b2b00563a457cf2fe6053a0e8beda",
     "scorer": {
       "tonic": "F",
       "mode": "major",

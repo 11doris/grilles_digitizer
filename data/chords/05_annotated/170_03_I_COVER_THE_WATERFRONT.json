@@ -4,6 +4,33 @@
   "style": "STANDARD",
   "tempo": "SLOW",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    },
+    "verse": {
+      "bars": 12,
+      "labels": [
+        "A",
+        "A"
+      ],
+      "source": "notation_notes"
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A",
+    "verse_A": "A",
+    "verse_A1": "A"
+  },
   "time_signature": "4/4",
   "variants": [
     {
@@ -408,7 +435,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "090c0f4fce4a2ecd94330ce7d28b737711f3316034efc8aeeef8694d1db57b2c",
+    "source_sha256": "0e079f6a568cd763a431425320ab05695a6e2b8d7c9f33e7aa560051b26744f8",
     "scorer": {
       "tonic": "F",
       "mode": "major",

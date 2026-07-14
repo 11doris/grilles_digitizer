@@ -4,6 +4,24 @@
   "style": "POST BOP (LATIN INSTRUMENTAL)",
   "tempo": "MEDIUM",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "interlude": "Interlude",
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "CON ALMA",
   "page": 79,
@@ -316,7 +334,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "335cb946cb8847eb14b052f63b983451d25c990676b58eab4111acf7023f3024",
+    "source_sha256": "ae988cf68773546b07287a2c080744eecf66923f5ac6ac02f7ca252bbcaee5b4",
     "scorer": {
       "tonic": "E",
       "mode": "major",

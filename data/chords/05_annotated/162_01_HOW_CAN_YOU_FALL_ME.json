@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM FAST",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "HOW CAN YOU FALL ME",
   "page": 162,
@@ -246,7 +263,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "d769664c167e097e2d340a43c062874d716aee42b67a2a28846d4bf9857ff809",
+    "source_sha256": "1d55b8d2f53840e18c15897a2a62b2f67a8f74d1a2e1b9ef5695c36dda662288",
     "scorer": {
       "tonic": "F",
       "mode": "major",

@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A B C D",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  },
   "time_signature": "4/4",
   "notation_notes": {
     "verse": "Header prints '16 VERSE'."
@@ -234,7 +251,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "b5616c6f9d733e1ac53948336d4215ed89107fb3036ffe5ea107263b45a07d06",
+    "source_sha256": "3e5ebe2ee2d0b0d0375d45d734d2ebf85cc8a2ae071eada6a4c7facb42a58c4c",
     "scorer": {
       "tonic": "F",
       "mode": "major",

@@ -6,6 +6,9 @@ Usage
     python pipelines/chords/annotate_keys.py                 # annotate everything pending
     python pipelines/chords/annotate_keys.py --status        # per-status counts, no work
     python pipelines/chords/annotate_keys.py --scorer-only   # skip the LLM voter (dev/offline)
+    python pipelines/chords/annotate_keys.py --reuse-annotation  # refresh 05 from an
+        # edited 04_verified without re-voting: carry each existing key
+        # decision forward, skip tunes that have no annotation yet
     python pipelines/chords/annotate_keys.py --set-key <stem> <tonic> <major|minor>
     python pipelines/chords/annotate_keys.py --resume-batch [BATCH_ID]  # pick up an
         # interrupted Batches-API run (id read from data/chords/key_annotation_batch.json
@@ -198,6 +201,46 @@ def cmd_annotate(verified_dir: Path, annotated_dir: Path, *,
     return 0
 
 
+def cmd_reuse(verified_dir: Path, annotated_dir: Path, *,
+              limit: int | None) -> int:
+    """Refresh 05_annotated from 04_verified without re-running the LLM.
+
+    For every tune whose annotated copy is out of date with its (edited)
+    source, rebuild the annotated file from the new source while carrying the
+    existing key decision forward — no scorer vote, no paid LLM call. Tunes
+    with no annotation yet are skipped: they need a real annotation run.
+    """
+    sweep_orphans(verified_dir, annotated_dir)
+    paths = _tune_paths(verified_dir)
+    pending = [p for p in paths if core.is_pending(p, annotated_dir / p.name)]
+    print(f"{len(paths)} tunes in {verified_dir.name}; {len(pending)} out of date")
+    reused = skipped = 0
+    for path in pending:
+        if limit is not None and reused >= limit:
+            break
+        ann_path = annotated_dir / path.name
+        if not ann_path.exists():
+            print(f"  {path.stem:55s} [skipped — no annotation yet]")
+            skipped += 1
+            continue
+        old = core.read_json(ann_path)
+        if "key" not in old or "key_annotation" not in old:
+            print(f"  {path.stem:55s} [skipped — annotation incomplete]")
+            skipped += 1
+            continue
+        source = core.read_json(path)
+        annotated = core.carry_annotation(source, old, core.source_sha256(path))
+        core.write_annotated(ann_path, annotated)
+        reused += 1
+        key = annotated["key"]
+        status = annotated["key_annotation"].get("status", "?")
+        print(f"  {path.stem:55s} {key['tonic']:>2s} {key['mode']:5s} "
+              f"[{status}, reused]")
+    print(f"done: {reused} refreshed from existing annotation, "
+          f"{skipped} skipped (no annotation yet)")
+    return 0
+
+
 def cmd_resume_batch(verified_dir: Path, annotated_dir: Path,
                      batch_id: str) -> int:
     """Fetch (polling first if still running) a previously submitted batch
@@ -277,6 +320,11 @@ def main() -> int:
     parser.add_argument("--scorer-only", action="store_true",
                         help="skip the LLM voter; tunes land in needs_review "
                              "and are retried on the next full run")
+    parser.add_argument("--reuse-annotation", action="store_true",
+                        help="refresh 05_annotated from an edited 04_verified "
+                             "without re-running the voters — carry each "
+                             "existing key decision forward and skip tunes "
+                             "with no annotation yet")
     parser.add_argument("--interactive", action="store_true",
                         help="force interactive messages.create calls even at "
                              ">= 50 pending tunes (skips the Batches API)")
@@ -309,6 +357,8 @@ def main() -> int:
         return cmd_status(verified_dir, annotated_dir)
     if args.resume_batch is not None:
         return cmd_resume_batch(verified_dir, annotated_dir, args.resume_batch)
+    if args.reuse_annotation:
+        return cmd_reuse(verified_dir, annotated_dir, limit=args.limit)
     workers = args.workers if args.workers else (4 if args.interactive else 1)
     return cmd_annotate(verified_dir, annotated_dir,
                         scorer_only=args.scorer_only, limit=args.limit,

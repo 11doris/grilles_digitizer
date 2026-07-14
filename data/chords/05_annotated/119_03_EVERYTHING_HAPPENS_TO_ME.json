@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "SLOW",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "EVERYTHING HAPPENS TO ME",
   "page": 119,
@@ -302,7 +319,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "b028686e6fed4e15d2e0f193e7fdcfa2548323342b80561e4545c90709c661bc",
+    "source_sha256": "63f58b718c771e359338908c4e94db4324c0967f3a9315b17d09794e2ef24f8e",
     "scorer": {
       "tonic": "C",
       "mode": "minor",

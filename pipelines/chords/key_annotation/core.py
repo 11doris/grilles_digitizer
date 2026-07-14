@@ -154,6 +154,34 @@ def build_annotation(source: dict, sha256: str, scorer: KeyVote,
     return annotated
 
 
+def carry_annotation(source: dict, old_annotated: dict, sha256: str) -> dict:
+    """Rebuild a 05_annotated document from an updated 04_verified source,
+    reusing the existing key decision instead of re-running the voters.
+
+    Source fields are taken verbatim from `source`, so edits made in
+    04_verified (form/section labels, spelling, …) flow through. `key`,
+    `section_keys`, `key_annotation` and `harmonic_fingerprint` are carried
+    over from `old_annotated` — no scorer, no LLM. `opening` and the
+    section-key spelling are recomputed deterministically under the carried
+    key, and `source_sha256` is bumped to the new hash so the file stops being
+    pending. Used by `annotate_keys.py --reuse-annotation`.
+    """
+    key = dict(old_annotated["key"])
+    annotated = dict(source)  # verbatim copy, annotation fields appended
+    annotated["key"] = key
+    section_keys = _clean_section_keys(old_annotated.get("section_keys"), key)
+    if section_keys:
+        annotated["section_keys"] = section_keys
+    annotated["opening"] = compute_opening(source, key["tonic"], key["mode"])
+    annotation = dict(old_annotated["key_annotation"])
+    annotation["source_sha256"] = sha256
+    annotated["key_annotation"] = annotation
+    fingerprint = old_annotated.get("harmonic_fingerprint")
+    if fingerprint is not None:
+        annotated["harmonic_fingerprint"] = fingerprint
+    return annotated
+
+
 # ---------------------------------------------------------------------------
 # Shared update routine — the only legal way to change an annotated file
 # (used by the key verifier app's save and by `annotate_keys.py --set-key`).

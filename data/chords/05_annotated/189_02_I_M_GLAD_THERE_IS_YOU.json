@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM SLOW",
   "form": "36 A B C A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 36,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "A1": "A'"
+  },
   "time_signature": "4/4",
   "title": "I'M GLAD THERE IS YOU",
   "page": 189,
@@ -299,7 +316,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "3cdafcd354f2951583ee6c553f6b594b3b1c8b8f9d7138222c6ce4bf33a48fb5",
+    "source_sha256": "6b7b0b48c704ac4755b5285355ee60191ac2562a67a2e295b4aefc7b988a8e02",
     "scorer": {
       "tonic": "F",
       "mode": "major",

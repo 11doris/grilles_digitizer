@@ -4,6 +4,17 @@
   "style": "BE BOP (INSTRUMENTAL)",
   "tempo": "MEDIUM",
   "form": "12 BLUES",
+  "form_strains": {
+    "chorus": {
+      "bars": 12,
+      "labels": [
+        "BLUES"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "BLUES"
+  },
   "time_signature": "4/4",
   "title": "AU PRIVAVE",
   "page": 23,
@@ -115,7 +126,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "bc722e229c50ba157daac2abb833e2a9f86dfe17673badf5faa07673706dd12c",
+    "source_sha256": "2a12f2eab1e40d311fd9a621f18247ae0f53ee542ee591721a2a527520bcf772",
     "scorer": {
       "tonic": "F",
       "mode": "major",

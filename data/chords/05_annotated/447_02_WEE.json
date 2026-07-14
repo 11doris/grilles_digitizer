@@ -3,6 +3,23 @@
   "style": "Be BOP",
   "tempo": "FAST",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "WEE",
   "page": 447,
@@ -257,7 +274,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "3b39e59fd89e407ddbb1e199361463bb86cd02ef2e0821a8fe322cc79f13147a",
+    "source_sha256": "43adaca983cfe1af9536665e8046a0f4c81fc404e3d33139ec721413effe805f",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",

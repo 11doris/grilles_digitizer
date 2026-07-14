@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "ON THE SUNNY SIDE OF THE STREET",
   "page": 312,
@@ -246,7 +263,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "f1f3a39d283f9f1d637b640d66f7684a1d38ce4651a58de20a9ae68fa6f12ad6",
+    "source_sha256": "6420c94a04cf873cd0cad9343a530a3a40b5a8862ea29593039c4f19a3978136",
     "scorer": {
       "tonic": "C",
       "mode": "major",

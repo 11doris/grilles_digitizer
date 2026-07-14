@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "FAST",
   "form": "32 A B A C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "ROSE OF THE RIO GRANDE",
   "page": 344,
@@ -235,7 +252,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "bc05344b6c844561a6bbd7e2cf55e6c7488d0e0411dfb10c724769d68cfcf1ac",
+    "source_sha256": "8dc1d0c62cdfbf57de08bb073cdd5550c836a75586c533f1f2d819427ca02884",
     "scorer": {
       "tonic": "C",
       "mode": "major",

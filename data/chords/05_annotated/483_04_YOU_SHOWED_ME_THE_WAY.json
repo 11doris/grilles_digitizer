@@ -4,6 +4,23 @@
   "style": "SWING",
   "tempo": "MEDIUM",
   "form": "34 A A B A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 34,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A'"
+  },
   "time_signature": "4/4",
   "title": "YOU SHOWED ME THE WAY",
   "page": 483,
@@ -246,7 +263,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "f6035859036a6b26abac963bcb0d7cf916e8a040d1ea9c152745e0ad88a43818",
+    "source_sha256": "caac1958589fe393268517ce9d6c6a831a039d340c6152a69ab418bee3ac562a",
     "scorer": {
       "tonic": "Ab",
       "mode": "major",

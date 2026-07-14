@@ -492,6 +492,59 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
   padding: 10px 16px 14px;
 }
 
+/* ── Section labels editor ── */
+#section-labels-area { padding: 0 16px; }
+.extra-section-label .btn-mini {
+  float: right;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+.extra-section-label .btn-mini:hover { border-color: var(--accent); }
+.seclabel-strain {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin: 8px 0 3px;
+}
+.seclabel-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.seclabel-key {
+  min-width: 120px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-family: "Courier New", monospace;
+}
+.seclabel-inp {
+  width: 90px;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: "Courier New", monospace;
+  background: var(--surface);
+  color: var(--text);
+}
+.seclabel-inp:focus { outline: none; border-color: var(--accent); }
+.seclabel-warn { margin: 6px 0 2px; font-size: 11px; }
+.seclabel-warn-hard { color: #f87171; }
+.seclabel-warn-soft { color: var(--text-muted); }
+
 /* ═══════════════════════════════════════════════════════════════════════════
    Sections
    ══════════════════════════════════════════════════════════════════════════ */

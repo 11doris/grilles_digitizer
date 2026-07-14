@@ -4,6 +4,28 @@
   "style": "TRADITIONAL",
   "tempo": "MEDIUM",
   "form": "16 A A | 16 A A'",
+  "form_strains": {
+    "verse": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    },
+    "chorus": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "verse_A": "A",
+    "verse_A1": "A",
+    "A": "A",
+    "B": "A'"
+  },
   "time_signature": "4/4",
   "title": "BALLIN' THE JACK",
   "page": 29,
@@ -253,7 +275,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "f83ff8e66c182170a77b7d49089e6723a4d85fd96b85ba053168d5b28855497f",
+    "source_sha256": "dbf77fa19611f81f521dbe2ce6d55c8a1d711b66553a98f6deee7e467ac27612",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",

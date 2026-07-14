@@ -4,6 +4,25 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "38 A A B A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 38,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A'",
+    "verse_A": "A",
+    "verse_A1": "A"
+  },
   "time_signature": "4/4",
   "title": "THERE'S A LULL IN MY LIFE",
   "page": 418,
@@ -414,7 +433,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "15ebc05002af8aaab3ff446120485d229d5fb2d2a99b2b05863a00971b4e0bc6",
+    "source_sha256": "136ada296e37e3b58a5512c07694f56763a233356af1ba79770d768b56413560",
     "scorer": {
       "tonic": "F",
       "mode": "major",

@@ -3,10 +3,21 @@
   "style": "BOOGIE WOOGIE",
   "tempo": "MEDIUM",
   "form": "16 BLUES",
+  "form_strains": {
+    "blues": {
+      "bars": 16,
+      "labels": [
+        "BLUES"
+      ]
+    }
+  },
   "time_signature": "4/4",
   "title": "DIRTY DOZENS",
   "page": 101,
   "source": "Anthologie des grilles de jazz",
+  "section_labels": {
+    "blues_A": "BLUES"
+  },
   "recordings": [
     "S.Price",
     "C.Berley",
@@ -17,7 +28,7 @@
     "J.Davenport 29"
   ],
   "sections": {
-    "A": [
+    "blues_A": [
       {
         "bar": 1,
         "beats": {
@@ -65,54 +76,52 @@
         "beats": {
           "1": "F7"
         }
-      }
-    ],
-    "B": [
+      },
       {
-        "bar": 1,
+        "bar": 9,
         "beats": {
           "1": "Bb"
         }
       },
       {
-        "bar": 2,
+        "bar": 10,
         "beats": {
           "1": "Bb"
         }
       },
       {
-        "bar": 3,
+        "bar": 11,
         "beats": {
           "1": "F"
         }
       },
       {
-        "bar": 4,
+        "bar": 12,
         "beats": {
           "1": "F"
         }
       },
       {
-        "bar": 5,
+        "bar": 13,
         "beats": {
           "1": "C7"
         }
       },
       {
-        "bar": 6,
+        "bar": 14,
         "beats": {
           "1": "C7"
         }
       },
       {
-        "bar": 7,
+        "bar": 15,
         "beats": {
           "1": "F",
           "3": "Bb"
         }
       },
       {
-        "bar": 8,
+        "bar": 16,
         "beats": {
           "1": "F"
         }

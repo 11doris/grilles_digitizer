@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "I SAW STARS",
   "page": 201,
@@ -256,7 +273,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "76b905366d549f79e2e7ab2d1051aaff8533ec14ac3a15116aa144be4bd413df",
+    "source_sha256": "0960817c376eced4e48e4ab9800ed2a9812742482c650ab2789d91df1e0097b2",
     "scorer": {
       "tonic": "C",
       "mode": "major",

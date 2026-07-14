@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "SLOW",
   "form": "32 A B A' C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A'",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A'",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "AUTUMN IN NEW YORK",
   "page": 25,
@@ -269,7 +286,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "bc375292a3c192ccefd8ab78119aa8b340a3e22351bf2061bb0f74ecbf3335ff",
+    "source_sha256": "a212718ad7e1c5e5d2fac6263bbb04b3dee405b23cf4abfb2da4fd68ccce98ff",
     "scorer": {
       "tonic": "G",
       "mode": "minor",

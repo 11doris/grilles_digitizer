@@ -4,6 +4,32 @@
   "style": "TRADITIONAL",
   "tempo": "MEDIUM",
   "form": "16 A A' | 32 A A B A",
+  "form_strains": {
+    "verse": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A'"
+      ]
+    },
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "verse_A": "A",
+    "verse_A1": "A'",
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "I'M MORE THAN SATISFIED",
   "page": 192,
@@ -344,7 +370,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "b701e669dc01d2c0c6e349b70bf472a2e644f328dc9ddcfe75165608da5bb5fd",
+    "source_sha256": "d6cf5fef515f7ae6bec8207f02dd5b5ddc93c551deeead960a0670a740cc4813",
     "scorer": {
       "tonic": "F",
       "mode": "major",

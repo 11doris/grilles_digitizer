@@ -4,6 +4,36 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A B A B'",
+  "form_strains": {
+    "verse": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A",
+        "B'"
+      ]
+    }
+  },
+  "section_labels": {
+    "verse_A": "A",
+    "verse_B": "B",
+    "verse_C": "C",
+    "verse_D": "D",
+    "A": "A",
+    "B": "B",
+    "A1": "A",
+    "B1": "B'"
+  },
   "time_signature": "4/4",
   "variants": [
     {

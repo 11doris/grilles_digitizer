@@ -4,6 +4,23 @@
   "style": "BOSSA NOVA",
   "tempo": "MEDIUM",
   "form": "32 A B C D",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D"
+  },
   "time_signature": "4/4",
   "variants": [
     {
@@ -256,7 +273,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "376192f7e3b58bde0c06f4ae4c50e91e0f0d285b5dd41b0b29dfb5579593a2f5",
+    "source_sha256": "90acfe5afd797f433d40ee89d63b690424a3b0c929a9e4baeafaa83537749797",
     "scorer": {
       "tonic": "D",
       "mode": "minor",

@@ -3,7 +3,29 @@
   "year": "1921",
   "style": "STANDARD",
   "tempo": "MEDIUM",
-  "form": "16 PATTER | 16 A B | 20 A A'",
+  "form": "16 A B | 20 A A'",
+  "form_strains": {
+    "verse": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ]
+    },
+    "chorus": {
+      "bars": 20,
+      "labels": [
+        "A",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "verse_A": "A",
+    "verse_B": "B",
+    "A": "A",
+    "A1": "A'"
+  },
   "time_signature": "4/4",
   "title": "STRUT MISS LIZZIE",
   "page": 394,
@@ -269,7 +291,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "836bacdb01e211f0741680ff776d89a41a5505d0b654a0aa5a855e852ff6e427",
+    "source_sha256": "416c660265e62a2175ae5ecd9a563a36aec95a4ba413ae0d6c77af2dc9563be7",
     "scorer": {
       "tonic": "F",
       "mode": "major",

@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A B A C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "I'LL NEVER SMILE AGAIN",
   "page": 183,
@@ -257,7 +274,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "b3af22e4dc8ab3c77d0848bed5c919fd846a6bf58306c38904af5c8c8f9cb90e",
+    "source_sha256": "0cedfbf8e589cef6fa4d0ffd7a03a420da319d4c6ec5ad414b3b5f3a6a81ac97",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",

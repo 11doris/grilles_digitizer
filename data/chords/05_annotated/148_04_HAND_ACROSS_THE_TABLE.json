@@ -4,6 +4,19 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "16 A A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A'"
+  },
   "time_signature": "4/4",
   "title": "HAND ACROSS THE TABLE",
   "page": 148,
@@ -139,7 +152,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "5723221d0967e03ba911d0c61cc5b1d47bdaab925df374a45592d2af27cc8191",
+    "source_sha256": "5b93c8fb1679bc60ae394d366271204abfaac71b4941e3c2930e727dcfda66b9",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",

@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM FAST",
   "form": "42 A A' B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 42,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "SWEET AND HOT",
   "page": 400,
@@ -333,7 +350,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "2946c60faa0c5be001a74cf713b6590623eb3447e4ccb08921cd2c6ca8da4be8",
+    "source_sha256": "1e6d76ab290a05c1c3d5d769ef71c92a5dc72bb9efcb08a58c0e00da68017fb0",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",

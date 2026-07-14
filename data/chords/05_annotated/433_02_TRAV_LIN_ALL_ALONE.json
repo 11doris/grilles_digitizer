@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "28 A A B C",
+  "form_strains": {
+    "chorus": {
+      "bars": 28,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "TRAV'LIN' ALL ALONE",
   "page": 433,
@@ -277,7 +294,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "ecbe8bbc9f7ffc4786c2522c5a619a318ea1d64921bf83b4de3ecf295f91e0c0",
+    "source_sha256": "a50d23e37a9ba2e4a31d11bd0fad487c84e3b923ee6aab0e866cfbaf69f933c2",
     "scorer": {
       "tonic": "Ab",
       "mode": "major",

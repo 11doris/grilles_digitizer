@@ -4,6 +4,32 @@
   "style": "STANDARD",
   "tempo": "MEDIUM FAST",
   "form": "16 A A' | 32 A B A' C",
+  "form_strains": {
+    "verse": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A'"
+      ]
+    },
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A'",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "verse_A": "A",
+    "verse_A1": "A'",
+    "A": "A",
+    "B": "B",
+    "A1": "A'",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "JUNE NIGHT",
   "page": 226,
@@ -352,7 +378,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "70fa08d90163627bf04b1905e385c403f02ff4eaaf094106247e6f9dba46e254",
+    "source_sha256": "16af79c9971e8b3b1adea667b345dad37a8f9bf6525629a24d96824515d31ab4",
     "scorer": {
       "tonic": "C",
       "mode": "major",

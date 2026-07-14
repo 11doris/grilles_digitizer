@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "GLORY OF LOVE, THE",
   "page": 139,
@@ -255,7 +272,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "59a831485ba1e3d875b4bc55346c769d87156e22808b52385e5b42fb645e9aaf",
+    "source_sha256": "ca98261a8fbd4c4ccebed765cf8f280de87ce8992a3bfc171866211c3f534f3c",
     "scorer": {
       "tonic": "G",
       "mode": "major",

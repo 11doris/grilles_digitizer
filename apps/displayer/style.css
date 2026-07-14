@@ -1036,8 +1036,9 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
   border: 0.1em solid var(--line);
   font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-size: 1.1em;
+  line-height: 1;
   letter-spacing: 0.1em;
-  padding: 0.15em 0.5em 0.1em;
+  padding: 0.12em 0.5em;
   margin-bottom: 0.4em;
   text-transform: uppercase;
 }
@@ -1055,6 +1056,26 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
   padding: 0.1em 0.2em;
   margin-bottom: 0.3em;
   margin-left: -1.0em; /* nudge the badge left, closer to the barline gutter */
+}
+
+/* Grid label row: strain name ("Impro") and section letter ("A") as two
+   separate texts — the strain reads as lighter context, the letter as the
+   filled badge. Plain chorus letters render the badge alone (no .sec-labels). */
+.sec-labels {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35em;
+  margin-left: -1.0em; /* match the lone badge's gutter nudge */
+}
+.sec-labels .sec-label { margin-left: 0; }
+.sec-strain {
+  font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.0em;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.7;
 }
 
 .row {
@@ -1180,18 +1201,24 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
   font-size: clamp(9px, 2.6cqw, 16px);
 }
 
-/* Form badge, top-right above the lattice, like the book's "34 A A B A'". */
-.bx-formrow {
+/* Strain head above each lattice: caption ("Impro") on the left, that
+   strain's form label ("16 A B") right — one per strain. */
+.bx-blockhead {
   display: flex;
-  justify-content: flex-end;
+  align-items: baseline;
+  margin-top: 1.2em;
 }
+.boxgrid > .bx-blockhead:first-child { margin-top: 0; }
+.bx-blockhead .bx-caption { margin-top: 0; }
+.bx-blockhead .bx-form { margin-left: auto; }
 
 .bx-form {
   border: 0.1em solid var(--line);
   font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-size: 1.1em;
+  line-height: 1;
   letter-spacing: 0.1em;
-  padding: 0.15em 0.5em 0.1em;
+  padding: 0.12em 0.5em;
   margin-bottom: 0.4em;
   text-transform: uppercase;
 }
@@ -1222,12 +1249,16 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 }
 
 .bx-caption {
+  /* Match the chord grid's .sec-strain so the strain name reads the same in
+     both views (size, spacing and lighter weight). */
   font-family: "Saira Extra Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
-  font-size: 1.15em;
-  letter-spacing: 0.08em;
+  font-size: 1.0em;
+  line-height: 1;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 0.25em;
+  opacity: 0.7;
+  margin-bottom: 0.0em;
 }
 
 /* Two four-bar phrases per row: bars within a group of 4 touch (shared single

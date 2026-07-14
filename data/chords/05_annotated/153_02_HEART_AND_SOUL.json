@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A A B A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A'"
+  },
   "time_signature": "4/4",
   "title": "HEART AND SOUL",
   "page": 153,
@@ -282,7 +299,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "b70730d75863c7ef7cf21439c67e72ec69cc56f26afd25a378f7d33902b69ddc",
+    "source_sha256": "cb3296ed0d7e9c3648766e2964288be2cb9fbe8986392be798de166f5c3b13d0",
     "scorer": {
       "tonic": "F",
       "mode": "major",

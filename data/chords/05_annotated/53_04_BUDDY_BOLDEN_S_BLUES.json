@@ -4,6 +4,19 @@
   "style": "NEW ORLEANS",
   "tempo": "SLOW",
   "form": "16 A A'",
+  "form_strains": {
+    "chorus": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A'"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A'"
+  },
   "time_signature": "4/4",
   "title": "BUDDY BOLDEN'S BLUES",
   "page": 53,
@@ -153,7 +166,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "0fb3c2bbbbc56d785b2b6d05c997d8067b10da2780aded07fce45dafe251ca46",
+    "source_sha256": "eefc7e9fafdde5c900839616ce0157487771171d9b22d8cf0b4c366c1a02dbc0",
     "scorer": {
       "tonic": "F",
       "mode": "major",

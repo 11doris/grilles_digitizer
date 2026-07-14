@@ -4,6 +4,23 @@
   "style": "SWING",
   "tempo": "MEDIUM",
   "form": "28 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 28,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "DJANGOLOGY",
   "page": 102,
@@ -212,7 +229,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "1d521bc8109cbc89d869ab6875c15497c3c82bde4a3ab8812a0d39f707498266",
+    "source_sha256": "84c1cded315caff26b692415c931fe7d514c147687b313101df1cf6951d28ff5",
     "scorer": {
       "tonic": "G",
       "mode": "major",

@@ -4,6 +4,33 @@
   "style": "DIXIELAND",
   "tempo": "MEDIUM FAST",
   "form": "16 A B | 32 A A' B A",
+  "form_strains": {
+    "verse": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ]
+    },
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A'",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "intro": "Intro",
+    "verse_A": "A",
+    "verse_B": "B",
+    "A": "A",
+    "A1": "A'",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "I NEVER KNEW WHAT A GAL COULD DO",
   "page": 197,
@@ -392,7 +419,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "98338f36ef8ff48271f708d2dde9ad57178148c2d8c17d905965369e02d2a679",
+    "source_sha256": "aa6678b77cc4b9dd93a4784598b0e563c717898d3e4b61fbb612a475eaefa1f9",
     "scorer": {
       "tonic": "C",
       "mode": "major",

@@ -4,6 +4,34 @@
   "style": "STANDARD (FRENCH SONG)",
   "tempo": "MEDIUM",
   "form": "24 A A' B | 32 A A B C",
+  "form_strains": {
+    "verse": {
+      "bars": 24,
+      "labels": [
+        "A",
+        "A'",
+        "B"
+      ]
+    },
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "verse_A": "A",
+    "verse_A1": "A'",
+    "verse_B": "B",
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "AUTUMN LEAVES",
   "page": 25,
@@ -427,7 +455,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "9768b7f1b29f5656e7a3e3df209ce55cda09582581ce87d366413f5209ec001b",
+    "source_sha256": "894b9b963a042984c1dd1151ab7c42b728fe51250477a53a76d03306c7e0eb6c",
     "scorer": {
       "tonic": "G",
       "mode": "minor",

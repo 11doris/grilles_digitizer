@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM FAST",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A3": "A"
+  },
   "time_signature": "4/4",
   "title": "I NEVER KNEW",
   "page": 196,
@@ -251,7 +268,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "4e915c75d958e8cf9e07c0911adb54511a9fec54daea306609485addc7832ab3",
+    "source_sha256": "b07d413461b385e515e43cde42686203e753fd8b8c1122d5c0cfd53f8845bb42",
     "scorer": {
       "tonic": "F",
       "mode": "major",

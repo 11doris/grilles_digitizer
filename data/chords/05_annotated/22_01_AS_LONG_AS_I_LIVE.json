@@ -2,6 +2,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "AS LONG AS I LIVE",
   "page": 22,
@@ -266,7 +283,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "f2fc70ea45de008a928c2efedfb6e95a7a729c90cfd41969e988a2039b41e5a7",
+    "source_sha256": "4ac3dd9015d2d3d1df3deba5079f039ab2410e256ac165db067495364449d323",
     "scorer": {
       "tonic": "F",
       "mode": "major",

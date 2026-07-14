@@ -4,6 +4,33 @@
   "style": "TRADITIONAL STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A B A' C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A'",
+        "C"
+      ]
+    },
+    "verse": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ],
+      "source": "notation_notes"
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A'",
+    "C": "C",
+    "verse_A": "A",
+    "verse_A1": "A"
+  },
   "time_signature": "4/4",
   "title": "CHICAGO",
   "page": 72,
@@ -342,7 +369,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "e4e3c0e911c7c2570644a3b2436e4ce8c32739c6da1f5efaa26373f664291c4c",
+    "source_sha256": "31fcf997211d36d2744e00e1e75333e3030133ab4ca5292d9eaabfeb0b77e2c1",
     "scorer": {
       "tonic": "F",
       "mode": "major",

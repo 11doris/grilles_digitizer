@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM SLOW",
   "form": "32 A A B A",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "A",
+        "B",
+        "A"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "A1": "A",
+    "B": "B",
+    "A2": "A"
+  },
   "time_signature": "4/4",
   "title": "SHOE SHINE BOY",
   "page": 361,
@@ -262,7 +279,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "f0c76fbca10f152f66677f7c7955565ddc33370c8a2743495dc3ce9a512a9311",
+    "source_sha256": "026a65b57abada3b7a51f0bf9518ccd36b6d947aae98715ce5c8a7dc96b6ecf6",
     "scorer": {
       "tonic": "F",
       "mode": "major",

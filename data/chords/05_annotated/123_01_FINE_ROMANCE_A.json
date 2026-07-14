@@ -4,6 +4,23 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "32 A B A C",
+  "form_strains": {
+    "chorus": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "A",
+        "C"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B",
+    "A1": "A",
+    "C": "C"
+  },
   "time_signature": "4/4",
   "title": "A FINE ROMANCE",
   "page": 123,
@@ -236,7 +253,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "e578f23391f5a774deea4f33b518c55839ceea60f4e750fe34c9ad70eac9c2fc",
+    "source_sha256": "ff36ac8d11ab8142fce6b6d76a65ba51536577cc8224b03cde5298446ad6909c",
     "scorer": {
       "tonic": "C",
       "mode": "major",

@@ -3,6 +3,19 @@
   "composer": "TRADITIONAL",
   "tempo": "MEDIUM",
   "form": "16 A B",
+  "form_strains": {
+    "chorus": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "B"
+      ]
+    }
+  },
+  "section_labels": {
+    "A": "A",
+    "B": "B"
+  },
   "time_signature": "4/4",
   "variants": [
     {
@@ -156,7 +169,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "843f11ded8bdce8d98edef9e833a4027683b49f4f1d3d9f7aa6ab6cc8bafa397",
+    "source_sha256": "124e8383e1e9259d1ec0953436b083130ef7687788a84d1ec0f2361dd14c13d5",
     "scorer": {
       "tonic": "G",
       "mode": "major",
