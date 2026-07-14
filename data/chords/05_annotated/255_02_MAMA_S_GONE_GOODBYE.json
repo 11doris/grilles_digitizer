@@ -3,15 +3,13 @@
   "year": "1923",
   "style": "TRADITIONAL JAZZ",
   "tempo": "MEDIUM FAST",
-  "form": "16 A B A C | 32 A B A' C",
+  "form": "32 A B A' C",
   "form_strains": {
     "verse": {
       "bars": 16,
       "labels": [
         "A",
-        "B",
-        "A",
-        "C"
+        "B"
       ]
     },
     "chorus": {
@@ -416,7 +414,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "dd8a5499fbd47ecc278d93c16f792cb880ad3328d813b307753515fd05c98a22",
+    "source_sha256": "38180b5420552e21fb9ca0d525ca4a5ab15af18a84221ccac91f91b73fb5eae0",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",

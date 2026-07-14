@@ -5,6 +5,12 @@
   "tempo": "SLOW",
   "form": "32 A A B A",
   "form_strains": {
+    "verse": {
+      "bars": 8,
+      "labels": [
+        "A"
+      ]
+    },
     "chorus": {
       "bars": 32,
       "labels": [
@@ -16,11 +22,11 @@
     }
   },
   "section_labels": {
+    "verse_A": "A",
     "A": "A",
     "A1": "A",
     "B": "B",
-    "A2": "A",
-    "verse_A": "A"
+    "A2": "A"
   },
   "time_signature": "4/4",
   "variants": [
@@ -400,7 +406,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "1c0f593b769c20a009a549f2bd6ed1f1dbb274df96cad33b031e904b73db5591",
+    "source_sha256": "4525199be432712ab10d696da1ea0e7cf69e14088c276320cb17e76f2e4e2fcc",
     "scorer": {
       "tonic": "F",
       "mode": "major",

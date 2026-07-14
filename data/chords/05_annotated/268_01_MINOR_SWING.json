@@ -12,7 +12,14 @@
         "A"
       ]
     },
-    "chorus": {
+    "thema": {
+      "bars": 16,
+      "labels": [
+        "A",
+        "A"
+      ]
+    },
+    "impro": {
       "bars": 16,
       "labels": [
         "A",
@@ -21,10 +28,10 @@
     }
   },
   "section_labels": {
-    "intro": "Intro",
-    "intro_2": "2",
-    "A": "A",
-    "B": "B"
+    "intro": "A",
+    "thema": "A",
+    "impro_A": "A",
+    "impro_B": "B"
   },
   "time_signature": "4/4",
   "title": "MINOR SWING",
@@ -92,7 +99,7 @@
         }
       }
     ],
-    "intro_2": [
+    "thema": [
       {
         "bar": 1,
         "beats": {
@@ -142,7 +149,7 @@
         }
       }
     ],
-    "A": [
+    "impro_A": [
       {
         "bar": 1,
         "beats": {
@@ -192,7 +199,7 @@
         }
       }
     ],
-    "B": [
+    "impro_B": [
       {
         "bar": 1,
         "beats": {
@@ -254,7 +261,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "4a2be7631b190e82e07abf9840d76d54c1c5b8f62e9c075140ef55f4eca7fe7d",
+    "source_sha256": "ede59daf09f9c30bf51d5c62caf2da05f9f1bf5db473234e1826d27440a26fdc",
     "scorer": {
       "tonic": "A",
       "mode": "minor",

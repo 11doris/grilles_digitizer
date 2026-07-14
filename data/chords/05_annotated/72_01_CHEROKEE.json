@@ -3,7 +3,7 @@
   "year": "1938",
   "style": "STANDARD",
   "tempo": "FAST",
-  "form": "64 A A A' B A'",
+  "form": "64 A A A' A' B B A' A'",
   "form_strains": {
     "chorus": {
       "bars": 64,
@@ -11,7 +11,10 @@
         "A",
         "A",
         "A'",
+        "A'",
         "B",
+        "B",
+        "A",
         "A'"
       ]
     }
@@ -19,10 +22,12 @@
   "section_labels": {
     "A": "A",
     "A1": "A",
-    "A2": "A",
-    "A3": "A",
+    "A2": "A'",
+    "A3": "A'",
     "B": "B",
-    "B1": "B"
+    "B1": "B",
+    "A5": "A'",
+    "A6": "A'"
   },
   "time_signature": "4/4",
   "title": "CHEROKEE",
@@ -113,13 +118,13 @@
       {
         "bar": 3,
         "beats": {
-          "1": "C7/3"
+          "1": "C7/5"
         }
       },
       {
         "bar": 4,
         "beats": {
-          "1": "C7/3"
+          "1": "C7/5"
         }
       },
       {
@@ -221,7 +226,7 @@
       {
         "bar": 4,
         "beats": {
-          "1": "C7"
+          "1": "C7/5"
         }
       },
       {
@@ -348,6 +353,108 @@
           "1": "F7#5"
         }
       }
+    ],
+    "A4": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb",
+          "3": "F7#5"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "Fm7"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "Bb7"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "Ebmaj7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Ebm(maj7)"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Ebm6"
+        }
+      }
+    ],
+    "A5": [
+      {
+        "bar": 1,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 2,
+        "beats": {
+          "1": "Bb",
+          "3": "Bbmaj7"
+        }
+      },
+      {
+        "bar": 3,
+        "beats": {
+          "1": "C7/5"
+        }
+      },
+      {
+        "bar": 4,
+        "beats": {
+          "1": "C7/5"
+        }
+      },
+      {
+        "bar": 5,
+        "beats": {
+          "1": "Cm7"
+        }
+      },
+      {
+        "bar": 6,
+        "beats": {
+          "1": "F7"
+        }
+      },
+      {
+        "bar": 7,
+        "beats": {
+          "1": "Bb"
+        }
+      },
+      {
+        "bar": 8,
+        "beats": {
+          "1": "Bb"
+        }
+      }
     ]
   },
   "key": {
@@ -361,7 +468,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "93996c6ef32b040480cb148cfa9c6b54b4af3cdec47ede7a2bdf472f7dd065d4",
+    "source_sha256": "a82a471e2dd385de36a8a12d86c29c8b0062c07c0fdf06f7116fff7d2dac55c7",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",

@@ -5,6 +5,15 @@
   "tempo": "MEDIUM",
   "form": "32 A B A B'",
   "form_strains": {
+    "verse": {
+      "bars": 32,
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
     "chorus": {
       "bars": 32,
       "labels": [
@@ -13,27 +22,17 @@
         "A",
         "B'"
       ]
-    },
-    "verse": {
-      "bars": 32,
-      "labels": [
-        "A",
-        "B",
-        "C",
-        "D"
-      ],
-      "source": "notation_notes"
     }
   },
   "section_labels": {
-    "A": "A",
-    "B": "B",
-    "A1": "A",
-    "B1": "B'",
     "verse_A": "A",
     "verse_B": "B",
     "verse_C": "C",
-    "verse_D": "D"
+    "verse_D": "D",
+    "A": "A",
+    "B": "B",
+    "A1": "A",
+    "B1": "B'"
   },
   "time_signature": "4/4",
   "variants": [
@@ -518,7 +517,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "2dee28ab9caeb279788f17f6b4a92b1bd3bbf41d26ad1952ba3db4d33605dee2",
+    "source_sha256": "2cafd52ff7be20249cd38255749e4bffc0400531a48ff2e6a594bfd2a3ddb6dd",
     "scorer": {
       "tonic": "C",
       "mode": "major",
