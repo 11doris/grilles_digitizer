@@ -4,7 +4,7 @@
   "tempo": "MEDIUM",
   "form": "16 BLUES",
   "form_strains": {
-    "blues": {
+    "chorus": {
       "bars": 16,
       "labels": [
         "BLUES"
@@ -16,7 +16,7 @@
   "page": 101,
   "source": "Anthologie des grilles de jazz",
   "section_labels": {
-    "blues_A": "BLUES"
+    "A": "BLUES"
   },
   "recordings": [
     "S.Price",
@@ -28,7 +28,7 @@
     "J.Davenport 29"
   ],
   "sections": {
-    "blues_A": [
+    "A": [
       {
         "bar": 1,
         "beats": {

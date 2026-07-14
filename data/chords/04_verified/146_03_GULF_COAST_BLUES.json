@@ -12,7 +12,7 @@
         "B"
       ]
     },
-    "blues": {
+    "chorus": {
       "bars": 12,
       "labels": [
         "BLUES"
@@ -22,7 +22,7 @@
   "section_labels": {
     "verse_A": "A",
     "verse_B": "B",
-    "blues_A": "BLUES"
+    "A": "BLUES"
   },
   "time_signature": "4/4",
   "title": "GULF COAST BLUES",
@@ -150,7 +150,7 @@
         }
       }
     ],
-    "blues_A": [
+    "A": [
       {
         "bar": 1,
         "beats": {

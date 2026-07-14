@@ -3,7 +3,7 @@
   "year": "1923",
   "style": "TRADITIONAL",
   "tempo": "SLOW",
-  "form": "16 A B - 12 BLUES",
+  "form": "16 A B | 12 BLUES",
   "form_strains": {
     "verse": {
       "bars": 16,
@@ -240,7 +240,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "a520b21216b270cefd67de6e8a4d122fab4440038fbcf7bf693652dd62a79ec8",
+    "source_sha256": "7dbe26170c9a9cdd0dcb60c2b9d78390b540392dbb3025e8153da404d32b0a76",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",

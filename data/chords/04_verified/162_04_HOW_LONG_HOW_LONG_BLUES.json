@@ -5,7 +5,7 @@
   "tempo": "MEDIUM",
   "form": "8 BLUES",
   "form_strains": {
-    "blues": {
+    "chorus": {
       "bars": 8,
       "labels": [
         "BLUES"
@@ -40,7 +40,7 @@
     "composer_header": "Header prints '(Leroy CARR - L.C. 1928)'."
   },
   "sections": {
-    "blues_A": [
+    "A": [
       {
         "bar": 1,
         "beats": {
