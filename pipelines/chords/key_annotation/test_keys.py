@@ -230,5 +230,56 @@ class TestIdempotence(unittest.TestCase):
             self.assertFalse(core.is_pending(src, ann_path))
 
 
+class TestCarryAnnotation(unittest.TestCase):
+    """--reuse-annotation: rebuild 05 from an edited 04 without re-voting."""
+
+    def _annotated(self):
+        source = _load("23_04_AU_PRIVAVE")
+        llm = {"tonic": "F", "mode": "major", "confidence": "high",
+               "modulation_note": None,
+               "fingerprint": {"family": "bebop blues", "tags": ["blues-form"],
+                               "sections": [{"name": "A", "summary": "blues",
+                                             "local_key": None}],
+                               "modulates": False}}
+        return source, core.build_annotation(
+            source, "oldsha", score_tune(source), llm)
+
+    def test_source_fields_flow_through_annotation_reused(self):
+        source, old = self._annotated()
+        # An edit made in 04_verified — a new source field and a changed one.
+        edited = dict(source)
+        edited["form"] = "12 BLUES"
+        edited["section_labels"] = {"A": "BLUES"}
+
+        carried = core.carry_annotation(edited, old, "newsha")
+
+        # edited source content wins
+        self.assertEqual(carried["form"], "12 BLUES")
+        self.assertEqual(carried["section_labels"], {"A": "BLUES"})
+        # key decision carried verbatim, only the hash advances
+        self.assertEqual(carried["key"], old["key"])
+        self.assertEqual(carried["harmonic_fingerprint"],
+                         old["harmonic_fingerprint"])
+        self.assertEqual(carried["key_annotation"]["scorer"],
+                         old["key_annotation"]["scorer"])
+        self.assertEqual(carried["key_annotation"]["llm"],
+                         old["key_annotation"]["llm"])
+        self.assertEqual(carried["key_annotation"]["status"],
+                         old["key_annotation"]["status"])
+        self.assertEqual(carried["key_annotation"]["source_sha256"], "newsha")
+
+    def test_carried_file_is_no_longer_pending(self):
+        import tempfile
+        source, old = self._annotated()
+        with tempfile.TemporaryDirectory() as td:
+            src = Path(td) / "23_04_AU_PRIVAVE.json"
+            core.write_annotated(src, source)  # stand-in for 04_verified
+            ann_path = Path(td) / "ann.json"
+            carried = core.carry_annotation(
+                source, old, core.source_sha256(src))
+            core.write_annotated(ann_path, carried)
+            self.assertFalse(core.is_pending(src, ann_path))
+
+
 if __name__ == "__main__":
     unittest.main()
