@@ -1018,12 +1018,23 @@
   }
   const titleWord = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
 
-  /* Grid-view badge: a strain-prefixed section reads "Impro A" / "Verse A";
-     a plain chorus letter stays just its label ("A", "A'", "B"). */
-  function sectionBadgeOf(tune, name) {
-    const label = sectionLabelOf(tune, name);
+  /* Display name of a section's strain when it carries a prefix ("impro_A" ->
+     "Impro", "verse_A" -> "Verse"); null for a plain chorus letter or a bare
+     connector, which then show just their section label. Kept SEPARATE from the
+     section label so the grid can print the strain and the letter as two texts. */
+  function strainNameOf(name) {
     const m = /^([a-z][a-z0-9]*)_/.exec(name);
-    return m ? `${titleWord(m[1])} ${label}` : label;
+    return m ? titleWord(m[1]) : null;
+  }
+
+  /* The per-strain form label from `form_strains` ("16 A A", "32 A A B A'"),
+     keyed by the strain (intro/thema/impro/chorus/verse); null for an aux
+     connector strain (coda/interlude) that has no form entry. */
+  function strainFormLabel(tune, strain) {
+    const fs = tune && tune.form_strains && tune.form_strains[strain];
+    if (!fs) return null;
+    const labels = Array.isArray(fs.labels) ? fs.labels.join(" ") : "";
+    return labels ? `${fs.bars} ${labels}` : String(fs.bars);
   }
 
   /* A bar is a fixed grid of `beats` equal columns (one per beat). Each chord is
@@ -1098,21 +1109,32 @@
     return frag;
   }
 
-  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer, form, label) {
+  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer, form, label, strainName) {
     const sec = el("div", "section");
     sec.style.setProperty("--bxhue", sectionTint(name)); // section shading
     const badge = el("div", "sec-label");
     badge.textContent = label != null ? label : displaySectionName(name);
+    // Left cluster: an optional strain name ("Impro", "Verse") kept as a
+    // separate text ahead of the section-letter badge, so the strain reads as
+    // context and the letter as the part. Plain chorus letters show just the badge.
+    let left = badge;
+    if (strainName) {
+      left = el("div", "sec-labels");
+      const sn = el("span", "sec-strain");
+      sn.textContent = strainName;
+      left.appendChild(sn);
+      left.appendChild(badge);
+    }
     if (form) {
-      // First section: section letter left, form badge right, on one row.
+      // First section of a strain: label cluster left, form badge right, one row.
       const head = el("div", "sec-head");
-      head.appendChild(badge);
+      head.appendChild(left);
       const formBadge = el("div", "grid-form");
       formBadge.textContent = form;
       head.appendChild(formBadge);
       sec.appendChild(head);
     } else {
-      sec.appendChild(badge);
+      sec.appendChild(left);
     }
     sec.appendChild(renderGrid(bars, beats,
       { double: true, timesig: isFirst ? ts : null, overrides, renderChord: renderer }));
@@ -1273,13 +1295,6 @@
   function renderBoxGrid(tune, overrides) {
     const wrap = el("div", "boxgrid");
     const beats = beatsPerBar(tune);
-    if (tune.form) {
-      const formRow = el("div", "bx-formrow");
-      const badge = el("div", "bx-form");
-      badge.textContent = tune.form;
-      formRow.appendChild(badge);
-      wrap.appendChild(formRow);
-    }
     let sectionNames = Object.keys(tune.sections || {});
     if (!state.showVerses) sectionNames = sectionNames.filter((n) => !VERSE_SECTION.test(n));
     const hasVerse = sectionNames.some((n) => VERSE_SECTION.test(n));
@@ -1299,10 +1314,22 @@
         ? (hasVerse ? "Chorus" : null)   // name the chorus only against a verse
         : blk.strain === "verse" ? "Verse"
         : titleWord(blk.strain);         // Intro, Impro, Thema, Coda, …
-      if (caption) {
-        const cap = el("div", "bx-caption");
-        cap.textContent = caption;
-        wrap.appendChild(cap);
+      /* Strain head: caption left, this strain's form label ("16 A A") right —
+         one per strain, replacing the single whole-chart badge. */
+      const formLabel = strainFormLabel(tune, blk.strain);
+      if (caption || formLabel) {
+        const head = el("div", "bx-blockhead");
+        if (caption) {
+          const cap = el("div", "bx-caption");
+          cap.textContent = caption;
+          head.appendChild(cap);
+        }
+        if (formLabel) {
+          const fb = el("div", "bx-form");
+          fb.textContent = formLabel;
+          head.appendChild(fb);
+        }
+        wrap.appendChild(head);
       }
       const rows = [];
       blk.sections.forEach((name) => {
@@ -2561,7 +2588,7 @@
       }
       const secEl = renderSection(sec, bars, beats,
         first, tune.time_signature, null, renderer, undefined,
-        sectionBadgeOf(tune, sec));
+        sectionLabelOf(tune, sec), strainNameOf(sec));
       /* Comparisons never use section shading (it would fight the accent
          highlight on the matched bars, PR #24); clear the hue so every bar
          sits on the plain background and only .sim-hl is tinted. */
@@ -2741,14 +2768,18 @@
         }
         let sectionNames = Object.keys(tune.sections || {});
         if (!state.showVerses) sectionNames = sectionNames.filter((n) => !VERSE_SECTION.test(n));
+        let prevStrain = null;
         sectionNames.forEach((name, i) => {
-          /* Form badge ("32 A A B A") rides on the first section's label row,
-             top-right — same style as the book layout's badge. It lives inside
-             .grid so it inherits the grid's fitted font and hides in book/scan
-             view. */
+          /* Each strain's first section carries that strain's form label
+             ("16 A A", "32 A A B A'") top-right — same style as the book
+             layout's badge, inside .grid so it scales with the fitted font and
+             hides in book/scan view. */
+          const strain = strainOf(name);
+          const form = strain !== prevStrain ? strainFormLabel(tune, strain) : null;
+          prevStrain = strain;
           grid.appendChild(renderSection(name, tune.sections[name], beats,
             i === 0, tune.time_signature, overrides[name], undefined,
-            i === 0 ? tune.form : null, sectionBadgeOf(tune, name)));
+            form, sectionLabelOf(tune, name), strainNameOf(name)));
         });
         panel.appendChild(grid);
         panel.appendChild(renderBoxGrid(tune, overrides)); // book layout (hidden unless chosen)
