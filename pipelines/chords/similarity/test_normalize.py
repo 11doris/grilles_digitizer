@@ -67,7 +67,7 @@ class TestExpansion(unittest.TestCase):
         # bar 3 has a single chord: it fills both slots
         self.assertEqual([s.chord.symbol for s in slots[4:6]], ["F", "F"])
         # bar 1 keeps beat-1 and beat-3 chords
-        self.assertEqual([s.chord.symbol for s in slots[0:2]], ["F", "D(b9)"])
+        self.assertEqual([s.chord.symbol for s in slots[0:2]], ["F", "D7b9"])
 
     def test_continuation_bar_repeats_previous_chord(self):
         # An empty-beats bar carries the previous bar's chord into BOTH slots.
@@ -228,7 +228,7 @@ class TestStrainPolicy(unittest.TestCase):
         self.assertEqual(NAMED_STRAINS,
                          frozenset({"verse", "intro", "thema", "impro",
                                     "interlude", "coda",
-                                    "part1", "part2", "s1", "s2"}))
+                                    "part1", "part2", "s1", "s2", "blues"}))
 
 
 class TestFormStrains(unittest.TestCase):
@@ -356,10 +356,7 @@ class TestSectionLabels(unittest.TestCase):
 # Tunes whose printed form genuinely disagrees with their stored sections
 # (missing/duplicated rows, unstored strain repeats). Pinned so no NEW tune
 # regresses into a hard form mismatch; shrink this set as the data is fixed.
-KNOWN_FORM_DEFECTS = {
-    "394_03_STRUT_MISS_LIZZIE", "425_01_THOU_SWELL",
-    "457_03_WHEN_THE_SAINTS_GO_MARCHING_IN",
-}
+KNOWN_FORM_DEFECTS: set[str] = set()
 
 
 class TestCorpusFormIntegrity(unittest.TestCase):

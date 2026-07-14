@@ -410,7 +410,7 @@ def _strain_of_key(key: str) -> str | None:
 # together to introduce a new strain. NOT enforced in the digitizer pipeline
 # (spec §8.5 lets raw output name arbitrary strains); this is a display policy.
 NAMED_STRAINS = frozenset({"verse", "intro", "thema", "impro", "interlude",
-                           "coda", "part1", "part2", "s1", "s2"})
+                           "coda", "part1", "part2", "s1", "s2", "blues"})
 # Any leading token before an underscore, however cased — for reporting the
 # offending strain of a non-canonical key (Part1_A -> "Part1", s1_A -> "s1").
 _ANY_PREFIX = re.compile(r"^([A-Za-z][A-Za-z0-9]*)_")

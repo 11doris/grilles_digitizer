@@ -596,7 +596,7 @@ function strainOfKey(name) {
 // NAMED_STRAINS / the displayers' STRAIN_TINT). Section keys may use only these
 // or a plain chorus letter; extend all three together to add a strain.
 const NAMED_STRAINS = ['verse', 'intro', 'thema', 'impro', 'interlude', 'coda',
-                       'part1', 'part2', 's1', 's2'];
+                       'part1', 'part2', 's1', 's2', 'blues'];
 // The disallowed strain a section key carries, or '' when allowed. Plain chorus
 // cells (A, B1, T) pass; a named strain (prefix `verse_A` or bare `coda`) must
 // be in NAMED_STRAINS.
