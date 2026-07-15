@@ -2449,7 +2449,9 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 .lane-arrow.to_minor::after,
 .lane-arrow.cont-right::after { border-left-color: transparent; }
 
-/* Building blocks: a labelled tinted span. */
+/* Building blocks: a labelled tinted span. Bottom margin keeps the pill
+   clear of the next row of bars. */
+.lane.lane-blocks { margin-bottom: 0.3em; }
 .lane-block {
   margin-top: 0.1em;
   min-width: 0;
