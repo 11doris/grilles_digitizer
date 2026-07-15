@@ -16,11 +16,11 @@
     }
   },
   "section_labels": {
-    "coda": "Coda",
     "A": "A",
     "A1": "A",
     "B": "B",
-    "A2": "A'"
+    "A2": "A'",
+    "coda": "Coda"
   },
   "time_signature": "4/4",
   "variants": [
@@ -46,6 +46,13 @@
   "title": "THANKS FOR THE MEMORY",
   "page": 413,
   "source": "Anthologie des grilles de jazz",
+  "coda_jump": {
+    "caption": "CODA Bar 30 :",
+    "from": {
+      "section": "A2",
+      "bar": 6
+    }
+  },
   "recordings": [
     "Mil.Bailey 38- B.Goodman 37- T.Mendello 37",
     "S.Chaloff 56- L.Feather 44- E.Fitzgerald 55.65",
@@ -341,7 +348,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "26a9fe6752b77e8a257f10cda5136c8a290230f1ab215ada29b0d3a05f99ecd7",
+    "source_sha256": "614e3ea5e321080b99137ade11ca6d4b767143afe3e7cd5cf24eecf69cd06ff6",
     "scorer": {
       "tonic": "F",
       "mode": "major",

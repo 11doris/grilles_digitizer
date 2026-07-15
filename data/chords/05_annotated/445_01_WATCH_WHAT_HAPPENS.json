@@ -33,6 +33,13 @@
     "A2": "A",
     "coda": "Coda"
   },
+  "coda_jump": {
+    "caption": "CODA Bar 31",
+    "from": {
+      "section": "A2",
+      "bar": 7
+    }
+  },
   "recordings": [
     "M.Legrand 68- B.Shank 69- S.Vaughan 74- B.Henderson 75",
     "O.Peterson 82- E.Davis 76- J.Raney 76- B.Kessel 68",
@@ -351,7 +358,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "79fac066c18978ab70c042273296788455364e06e2c8451def05da7004edd89f",
+    "source_sha256": "bc8b3626db4a6617da9b9867ebf6f8f2b4dca65a7434cbca595ecda3bcc4642a",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",

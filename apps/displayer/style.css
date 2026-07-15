@@ -1151,6 +1151,40 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 .bar.empty::before,
 .bar.empty::after { content: none; }
 
+/* Coda jump-off sign (spec §13 coda_jump): a small, subtle glyph at the start
+   of the anchored bar, tucked just outside it in the inter-row gap — below the
+   bar (.coda-below) when it sits in its section's last row, above (.coda-above)
+   otherwise, as space allows. Shared by the grid (.bar) and book (.bx) layouts;
+   both cells are already position:relative. `--muted` carries the subtle tone
+   across light and dark themes. Display-only, no interaction. */
+.coda-sign {
+  position: absolute;
+  font-size: 1em; /* the em basis the drawn sign scales with */
+  color: var(--muted);
+  opacity: 0.75;
+  pointer-events: none;
+}
+/* Jump-off mark: at the start of the bar, just outside it vertically. */
+.coda-sign.coda-below,
+.coda-sign.coda-above { left: 0.1em; }
+.coda-sign.coda-below { top: calc(100% + 0.05em); }
+.coda-sign.coda-above { bottom: calc(100% + 0.05em); }
+/* Landing mark: just before (left of) the first coda bar, vertically centred. */
+.coda-sign.coda-before {
+  right: calc(100% + 0.1em);
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* Drawn coda sign: circle + two crossing lines, colour via currentColor. */
+.coda-sign .coda-glyph {
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
 .slot {
   min-width: 0;
   overflow: visible;

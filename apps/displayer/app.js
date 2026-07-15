@@ -1074,10 +1074,26 @@
     return box;
   }
 
+  /* The printed coda sign (spec §13 `coda_jump`), drawn rather than the ⊕ glyph
+     — a circle crossed by two perpendicular lines that run past it — so the
+     strokes stay crisp as the grid font shrinks; it inherits its colour via
+     currentColor (stroke in CSS). It marks two spots: the jump-off bar, at its
+     start just outside it ("below" when that bar is in the section's last row,
+     the roomier gap, "above" otherwise), and the coda section's first bar,
+     "before" it (the landing mark). `place` picks the positioning class. */
+  function codaSignEl(place) {
+    const s = el("span", "coda-sign coda-" + place);
+    s.innerHTML = '<svg class="coda-glyph" viewBox="0 0 24 24" aria-hidden="true">'
+      + '<circle cx="12" cy="12" r="6.5"/>'
+      + '<line x1="12" y1="1.5" x2="12" y2="22.5"/>'
+      + '<line x1="1.5" y1="12" x2="22.5" y2="12"/></svg>';
+    return s;
+  }
+
   /*
    * Rows of exactly 4 bar slots (spec §6.1). Trailing slots of an incomplete
    * last row are empty: no chords, no barlines.
-   * opts: { double: bool, timesig: string|null }
+   * opts: { double: bool, timesig: string|null, coda: {idx, place}|null }
    */
   function renderGrid(bars, beats, opts) {
     const double = opts && opts.double !== undefined ? opts.double : true;
@@ -1099,6 +1115,9 @@
           if (ov) cell.classList.add("variant-swap");
           fillBar(cell, ov ? { bar: bar.bar, beats: ov.beats } : bar, beats,
             opts && opts.renderChord);
+          if (opts && opts.coda && opts.coda.idx === idx) {
+            cell.appendChild(codaSignEl(opts.coda.place));
+          }
         } else {
           cell.classList.add("empty");
         }
@@ -1109,7 +1128,7 @@
     return frag;
   }
 
-  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer, form, label, strainName) {
+  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer, form, label, strainName, codaJump) {
     const sec = el("div", "section");
     sec.style.setProperty("--bxhue", sectionTint(name)); // section shading
     const badge = el("div", "sec-label");
@@ -1136,8 +1155,19 @@
     } else {
       sec.appendChild(left);
     }
+    // The coda sign renders on the jump-off bar of its section (from.bar
+    // 1-indexed; below when it's in the section's last 4-bar row, else above)
+    // and before the coda section's own first bar (the landing mark).
+    let coda = null;
+    if (codaJump && codaJump.from && codaJump.from.section === name) {
+      const idx = codaJump.from.bar - 1;
+      coda = { idx, place: Math.floor(idx / 4) === Math.floor((bars.length - 1) / 4)
+        ? "below" : "above" };
+    } else if (codaJump && strainOf(name) === "coda") {
+      coda = { idx: 0, place: "before" };
+    }
     sec.appendChild(renderGrid(bars, beats,
-      { double: true, timesig: isFirst ? ts : null, overrides, renderChord: renderer }));
+      { double: true, timesig: isFirst ? ts : null, overrides, renderChord: renderer, coda }));
     return sec;
   }
 
@@ -1297,6 +1327,7 @@
         if (row.tint) cell.style.setProperty("--bxhue", row.tint);
         if (bar.swap) cell.classList.add("variant-swap");
         fillBox(cell, bar, row.beats);
+        if (bar.codaPlace) cell.appendChild(codaSignEl(bar.codaPlace));
         rowEl.appendChild(cell);
       });
       block.appendChild(rowEl);
@@ -1314,6 +1345,7 @@
   function renderBoxGrid(tune, overrides) {
     const wrap = el("div", "boxgrid");
     const beats = beatsPerBar(tune);
+    const cj = tune.coda_jump;
     let sectionNames = Object.keys(tune.sections || {});
     if (!state.showVerses) sectionNames = sectionNames.filter((n) => !VERSE_SECTION.test(n));
     const hasVerse = sectionNames.some((n) => VERSE_SECTION.test(n));
@@ -1359,6 +1391,18 @@
         if (secOv) {
           bars = bars.map((bar, idx) => (secOv[idx]
             ? { bar: bar.bar, beats: secOv[idx].beats, swap: true } : bar));
+        }
+        // Tag the coda sign's box — the jump-off bar (below when it's in the
+        // section's last lattice row, else above) and the coda section's first
+        // box (before it, the landing mark). Shallow-copy just that box so the
+        // shared tune data is untouched, like the swap flag above.
+        if (cj && cj.from && cj.from.section === name) {
+          const ci = cj.from.bar - 1;
+          const place = Math.floor(ci / BOXES_PER_ROW)
+            === Math.floor((bars.length - 1) / BOXES_PER_ROW) ? "below" : "above";
+          bars = bars.map((bar, idx) => (idx === ci ? { ...bar, codaPlace: place } : bar));
+        } else if (cj && strainOf(name) === "coda") {
+          bars = bars.map((bar, idx) => (idx === 0 ? { ...bar, codaPlace: "before" } : bar));
         }
         // Every section's first lattice row carries its printed label (primes
         // kept); the strain caption above supplies the verse/impro/… context.
@@ -2798,7 +2842,7 @@
           prevStrain = strain;
           grid.appendChild(renderSection(name, tune.sections[name], beats,
             i === 0, tune.time_signature, overrides[name], undefined,
-            form, sectionLabelOf(tune, name), strainNameOf(name)));
+            form, sectionLabelOf(tune, name), strainNameOf(name), tune.coda_jump));
         });
         panel.appendChild(grid);
         panel.appendChild(renderBoxGrid(tune, overrides)); // book layout (hidden unless chosen)
