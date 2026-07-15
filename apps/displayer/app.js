@@ -1074,13 +1074,18 @@
     return box;
   }
 
-  /* The printed coda jump-off sign (spec §13 `coda_jump`): a small glyph at the
+  /* The printed coda jump-off sign (spec §13 `coda_jump`): a small mark at the
      start of the bar carrying it, tucked just outside it — `below` the bar when
      it sits in the last row of its section (the roomier inter-section gap),
-     above otherwise. `marker` is the verbatim printed symbol. */
-  function codaSignEl(marker, below) {
+     above otherwise. Drawn rather than the ⊕ glyph — a circle crossed by two
+     perpendicular lines that run past it — so the strokes stay crisp as the
+     grid font shrinks; it inherits its colour via currentColor (stroke in CSS). */
+  function codaSignEl(below) {
     const s = el("span", "coda-sign " + (below ? "coda-below" : "coda-above"));
-    s.textContent = marker || "⊕";
+    s.innerHTML = '<svg class="coda-glyph" viewBox="0 0 24 24" aria-hidden="true">'
+      + '<circle cx="12" cy="12" r="6.5"/>'
+      + '<line x1="12" y1="1.5" x2="12" y2="22.5"/>'
+      + '<line x1="1.5" y1="12" x2="22.5" y2="12"/></svg>';
     return s;
   }
 
@@ -1110,7 +1115,7 @@
           fillBar(cell, ov ? { bar: bar.bar, beats: ov.beats } : bar, beats,
             opts && opts.renderChord);
           if (opts && opts.coda && opts.coda.idx === idx) {
-            cell.appendChild(codaSignEl(opts.coda.marker, opts.coda.below));
+            cell.appendChild(codaSignEl(opts.coda.below));
           }
         } else {
           cell.classList.add("empty");
@@ -1154,7 +1159,7 @@
     const codaIdx = codaJump && codaJump.from && codaJump.from.section === name
       ? codaJump.from.bar - 1 : null;
     const coda = codaIdx != null
-      ? { idx: codaIdx, marker: codaJump.marker,
+      ? { idx: codaIdx,
           below: Math.floor(codaIdx / 4) === Math.floor((bars.length - 1) / 4) }
       : null;
     sec.appendChild(renderGrid(bars, beats,
@@ -1318,7 +1323,7 @@
         if (row.tint) cell.style.setProperty("--bxhue", row.tint);
         if (bar.swap) cell.classList.add("variant-swap");
         fillBox(cell, bar, row.beats);
-        if (bar.coda) cell.appendChild(codaSignEl(bar.coda, bar.codaBelow));
+        if (bar.coda) cell.appendChild(codaSignEl(bar.codaBelow));
         rowEl.appendChild(cell);
       });
       block.appendChild(rowEl);
@@ -1392,7 +1397,7 @@
           const below = Math.floor(ci / BOXES_PER_ROW)
             === Math.floor((bars.length - 1) / BOXES_PER_ROW);
           bars = bars.map((bar, idx) => (idx === ci
-            ? { ...bar, coda: cj.marker, codaBelow: below } : bar));
+            ? { ...bar, coda: true, codaBelow: below } : bar));
         }
         // Every section's first lattice row carries its printed label (primes
         // kept); the strain caption above supplies the verse/impro/… context.

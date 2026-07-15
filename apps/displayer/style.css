@@ -1160,14 +1160,22 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 .coda-sign {
   position: absolute;
   left: 0.1em; /* the beginning of the bar */
-  font-size: 0.72em;
-  line-height: 1;
+  font-size: 1em; /* the em basis the drawn sign scales with */
   color: var(--muted);
   opacity: 0.75;
   pointer-events: none;
 }
 .coda-sign.coda-below { top: calc(100% + 0.05em); }
 .coda-sign.coda-above { bottom: calc(100% + 0.05em); }
+/* Drawn coda sign: circle + two crossing lines, colour via currentColor. */
+.coda-sign .coda-glyph {
+  display: block;
+  width: 1.2em;
+  height: 1.2em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
 
 .slot {
   min-width: 0;
