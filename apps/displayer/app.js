@@ -4,7 +4,7 @@
 
 (function () {
   const { renderChordHTML, escapeHtml, transposeChordSymbol, pitchClass,
-    chordDegree, FLAT_SPELL, SHARP_SPELL } = window.GrillesChords;
+    chordDegree, formatNumeralHTML, FLAT_SPELL, SHARP_SPELL } = window.GrillesChords;
   const PL = window.GrillesPlaylists;
   const TUNES = window.TUNES || [];
   /* Per-tune similarity suggestions (spec §8), bundled by build_data.py from
@@ -30,6 +30,195 @@
   function renderChord(sym) {
     const tr = state.transpose;
     return renderChordHTML(tr ? transposeChordSymbol(sym, tr.shift, tr.spell) : sym);
+  }
+
+  /* ------------------------------- harmonic analysis (roman numerals etc.)
+   *
+   * `tune.harmonic_analysis` (docs/specs/harmonic_analysis_spec.md §3) is
+   * precomputed by the pipeline: per part id, a numeral per printed chord,
+   * the arrows & brackets links, key regions and building blocks. Numerals
+   * are key-relative, so they survive the transpose control unchanged.
+   */
+  function partAnalysis(tune, partId) {
+    const a = tune.harmonic_analysis;
+    return (a && a.parts && a.parts[partId]) || null;
+  }
+
+  /* Lazy {"bar:beat" -> chords entry} index, cached on the part analysis. */
+  function numeralIndex(pa) {
+    if (!pa._idx) {
+      pa._idx = new Map();
+      (pa.chords || []).forEach((c) => pa._idx.set(c.bar + ":" + c.beat, c));
+    }
+    return pa._idx;
+  }
+
+  /* Key label for region prefixes and pivot stacks: uppercase letter for a
+     major key, lowercase for minor (the book's colon notation, e.g. "F:"
+     vs "g:"). */
+  function regionKeyLabel(tonic, mode) {
+    const g = noteGlyph(tonic);
+    return (mode === "minor" ? g.toLowerCase() : g) + ":";
+  }
+
+  /* The numeral (single, or a stacked dual reading on a pivot chord) as
+     HTML. `pa` supplies the region lookup for the pivot's new-key label. */
+  function numeralHTML(entry, pa) {
+    const main = formatNumeralHTML(entry.numeral);
+    if (!entry.pivot) return `<span class="deg-line">${main}</span>`;
+    const reg = (pa.regions || []).find((r) =>
+      r.from[0] === entry.bar && r.from[1] === entry.beat);
+    const oldLabel = regionKeyLabel(entry.pivot.key, entry.pivot.mode);
+    const newLabel = reg ? regionKeyLabel(reg.tonic, reg.mode) : "";
+    return `<span class="deg-line pivot-old">${escapeHtml(oldLabel)} `
+      + `${formatNumeralHTML(entry.pivot.numeral)}</span>`
+      + `<span class="deg-line">${escapeHtml(newLabel)} ${main}</span>`;
+  }
+
+  /* Position-aware chord renderer for the current spelling mode: "hyb"
+     stacks the numeral under the printed chord, "rom" replaces it. Returns
+     null when the default absolute renderer should be used (no analysis
+     for this part, or spelling "abs"). Slots without a numeral (N.C.,
+     variant-swapped bars) fall back to the absolute symbol. */
+  function spellingRenderer(tune, partId) {
+    if (state.spelling === "abs") return null;
+    const pa = partAnalysis(tune, partId);
+    if (!pa) return null;
+    const idx = numeralIndex(pa);
+    return (sym, bar, beat) => {
+      const entry = idx.get(bar + ":" + beat);
+      if (!entry) return renderChord(sym);
+      if (state.spelling === "rom") {
+        return `<span class="chord numeral">${numeralHTML(entry, pa)}</span>`;
+      }
+      return `<span class="chstack">${renderChord(sym)}`
+        + `<span class="deg-sub">${numeralHTML(entry, pa)}</span></span>`;
+    };
+  }
+
+  /* ------------------------------------- analysis lanes (overlay, spec §4)
+   *
+   * The functional overlay renders as thin "lanes" under each visual row of
+   * bars: key-region prefixes, the ii–V brackets, the resolution arrows and
+   * the building-block spans, each in its own band so they never collide.
+   * A lane is a grid child spanning all of its row's columns (it lands on
+   * an implicit grid row below the bars) with its own beat-resolution
+   * column grid, so segments align with the chords above them.
+   */
+  const LANE_BANDS = ["regions", "brackets", "arrows", "blocks"];
+
+  /* Split one part's analysis into per-row lane segments. `locate` maps a
+     [bar, beat] position to {row, col} in the view's geometry (beat-level
+     columns); `colsPerRow` bounds a row-crossing item's tail segment. */
+  function lanePieces(pa, locate, colsPerRow) {
+    const bands = { regions: [], brackets: [], arrows: [], blocks: [] };
+    const push = (band, from, to, cls, label) => {
+      const a = locate(from), b = locate(to);
+      if (!a || !b) return;
+      for (let r = a.row; r <= b.row; r++) {
+        bands[band].push({
+          row: r,
+          s: r === a.row ? a.col : 0,
+          e: r === b.row ? b.col : colsPerRow - 1,
+          cls: cls + (r === a.row ? "" : " cont-left")
+            + (r === b.row ? "" : " cont-right"),
+          /* a wrapped block stays identified: continuation rows repeat the
+             name behind an ellipsis instead of collapsing to a bare sliver */
+          label: r === a.row ? label
+            : band === "blocks" && label ? "… " + label : null,
+        });
+      }
+    };
+    (pa.regions || []).forEach((rg) => push("regions", rg.from, rg.to,
+      "lane-region" + (rg.kind === "section" ? " rg-section" : ""),
+      regionKeyLabel(rg.tonic, rg.mode)));
+    (pa.links || []).forEach((l) => {
+      if (l.type === "iiV" || l.type === "iiV_sub") {
+        push("brackets", l.from, l.to,
+          "lane-bracket" + (l.type === "iiV_sub" ? " dotted" : ""));
+      } else {
+        push("arrows", l.from, l.to, "lane-arrow " + l.type);
+      }
+    });
+    (pa.blocks || []).forEach((b) =>
+      push("blocks", b.from, b.to, "lane-block", b.name));
+    return bands;
+  }
+
+  /* One band's lane element for one visual row. `template` is the row's
+     beat-resolution grid-template-columns; `toTrack` maps a column index to
+     its 1-based grid line (the boxes view skips its mid-row gap track). */
+  function laneElement(band, segs, template, toTrack) {
+    const lane = el("div", "lane lane-" + band);
+    lane.style.gridTemplateColumns = template;
+    lane.style.gridColumn = "1 / -1";
+    segs.forEach((p) => {
+      const seg = el("div", p.cls);
+      seg.style.gridColumn = `${toTrack(p.s)} / ${toTrack(p.e) + 1}`;
+      if (p.label) {
+        const t = el("span", "lane-label");
+        t.textContent = p.label;
+        seg.appendChild(t);
+      }
+      lane.appendChild(seg);
+    });
+    return lane;
+  }
+
+  /* Attach the overlay lanes to a grid-view section (rows of 4 bars). */
+  function attachGridLanes(secEl, tune, part, beats) {
+    const pa = state.showAnalysis ? partAnalysis(tune, part.id) : null;
+    if (!pa) return;
+    const colsPerRow = 4 * beats;
+    const colByBar = new Map();
+    part.bars.forEach((b, i) => colByBar.set(b.bar != null ? b.bar : i + 1, i));
+    const locate = (pos) => {
+      const bi = colByBar.get(pos[0]);
+      if (bi === undefined) return null;
+      const g = bi * beats + Math.min(pos[1] - 1, beats - 1);
+      return { row: Math.floor(g / colsPerRow), col: g % colsPerRow };
+    };
+    const bands = lanePieces(pa, locate, colsPerRow);
+    const template = `repeat(${colsPerRow}, 1fr)`;
+    secEl.querySelectorAll(".row").forEach((rowEl, r) => {
+      LANE_BANDS.forEach((band) => {
+        const segs = bands[band].filter((p) => p.row === r);
+        if (segs.length) {
+          rowEl.appendChild(laneElement(band, segs, template, (c) => c + 1));
+        }
+      });
+    });
+  }
+
+  /* Legend for the overlay symbols, at the bottom of the chords panel while
+     the overlay is on. Samples reuse the lane classes so they always match
+     what the lanes actually draw. */
+  function renderAnalysisLegend() {
+    const legend = el("div", "lane-legend");
+    [
+      ['<div class="lane-bracket"></div>', "ii–V"],
+      ['<div class="lane-bracket dotted"></div>',
+        "ii–V with a tritone substitute (ii–subV, subii–V)"],
+      ['<div class="lane-arrow"></div>', "dominant resolves down a fifth"],
+      ['<div class="lane-arrow half"></div>',
+        "tritone substitute resolves down a half step"],
+      ['<div class="lane-arrow to_minor"></div>',
+        "chord turns minor over the same root"],
+      ['<div class="lane-region"><span class="lane-label">F:</span></div>',
+        "temporary key (lowercase = minor; solid line = section key)"],
+      ['<div class="lane-block">&nbsp;</div>',
+        "building block (turnaround, cadence, ii–V chain, …)"],
+    ].forEach(([sample, text]) => {
+      const item = el("div", "lg-item");
+      const s = el("div", "lg-sample");
+      s.innerHTML = sample;
+      const t = el("span", "lg-text");
+      t.textContent = text;
+      item.appendChild(s);
+      item.appendChild(t);
+      legend.appendChild(item);
+    });
+    return legend;
   }
 
   const searchEl = document.getElementById("search");
@@ -93,6 +282,8 @@
     transpose: null, // {shift, spell, targetPc, mode} or null (original key); per-tune
     activeVariants: new Set(), // indices of variants swapped into the grid (independent, but exclusive among variants sharing a bar); per-tune
     chordView: "boxes", // chords panel default: "boxes" (book layout) | "grid" (4 bars/row) | "scan" (persisted)
+    spelling: "abs", // chord spelling: "abs" | "hyb" (chord + numeral) | "rom" (numerals only); persisted
+    showAnalysis: false, // functional overlay: brackets/arrows/regions/blocks lanes (persisted)
     boxTint: true, // book layout: section shading on/off (persisted)
     chordsOnly: false, // list filter: only tunes with digitized chords (persisted)
     startsOn: "", // list filter: opening degree ("" = any, "unknown", "other", or a degree; §8.2a)
@@ -784,6 +975,12 @@
     '<svg viewBox="0 0 16 16" aria-hidden="true">' +
     '<path d="M1.2 4.4h13.6M1.2 8h13.6M1.2 11.6h13.6M1.2 4.4v7.2M4.6 4.4v7.2M8 4.4v7.2M11.4 4.4v7.2M14.8 4.4v7.2" ' +
     'fill="none" stroke="currentColor" stroke-width="1.1"/></svg>';
+  /* Resolution arc + ii–V bracket, for the harmonic-analysis overlay toggle. */
+  const ICON_ANALYSIS =
+    '<svg viewBox="0 0 16 16" aria-hidden="true">' +
+    '<path d="M8.5 6.5q3.2-4.4 6.4 0" fill="none" stroke="currentColor" stroke-width="1.3"/>' +
+    '<path d="M14.2 4.6l.8 2.1-2.2-.4z"/>' +
+    '<path d="M1.6 9.5v3h5.8v-3" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>';
 
   function iconCluster(t) {
     const chord = hasChordAsset(t)
@@ -1166,7 +1363,7 @@
       const slot = el("div", "slot");
       slot.style.gridColumn = `${beat} / ${next}`;
       slot.dataset.span = String(next - beat);
-      slot.innerHTML = rc(chord);
+      slot.innerHTML = rc(chord, barObj.bar, beat);
       cell.appendChild(slot);
     });
   }
@@ -1217,8 +1414,10 @@
           // number, so barlines/section marks are unchanged) and flags it.
           const ov = opts && opts.overrides && opts.overrides[idx];
           if (ov) cell.classList.add("variant-swap");
+          // Variant-swapped bars always render absolute: the harmonic
+          // analysis describes the main text, not the substituted chords.
           fillBar(cell, ov ? { bar: bar.bar, beats: ov.beats } : bar, beats,
-            opts && opts.renderChord);
+            ov ? null : opts && opts.renderChord);
           if (opts && opts.coda && opts.coda.idx === idx) {
             cell.appendChild(codaSignEl(opts.coda.place));
           }
@@ -1360,14 +1559,15 @@
        four chords make the 2×2 quadrants).
      Positions encode the beats, so a small superscript digit only marks a
      chord that sits off its position's implied beat. */
-  function fillBox(cell, barObj, beats) {
+  function fillBox(cell, barObj, beats, chordRenderer) {
+    const rc = chordRenderer || renderChord;
     const entries = Object.entries(barObj.beats || {})
       .map(([k, v]) => [parseInt(k, 10), v])
       .filter(([k]) => Number.isFinite(k) && k >= 1 && k <= beats)
       .sort((a, b) => a[0] - b[0]);
     const chordHtml = ([beat, chord], expected) =>
       (beat !== expected ? `<sup class="bx-beat">${beat}</sup>` : "") +
-      renderChord(chord);
+      rc(chord, barObj.bar, beat);
     if (!entries.length) return;
     const mid = Math.floor(beats / 2) + 1; // first beat of the bar's second half
     if (entries.length === 1) {
@@ -1437,10 +1637,19 @@
         if (i > 0 && col !== 5) cell.classList.add("merge-left");
         if (row.tint) cell.style.setProperty("--bxhue", row.tint);
         if (bar.swap) cell.classList.add("variant-swap");
-        fillBox(cell, bar, row.beats);
+        fillBox(cell, bar, row.beats, bar.swap ? null : row.rc);
         if (bar.codaPlace) cell.appendChild(codaSignEl(bar.codaPlace));
         rowEl.appendChild(cell);
       });
+      /* Overlay lanes below the row's boxes (beat-resolution columns with
+         the same mid-row gap track, so segments align with the boxes). */
+      if (row.lanes && row.lanes.length) {
+        const half = 4 * row.beats;
+        const template = `repeat(${half}, 1fr) 0.18em repeat(${half}, 1fr)`;
+        const toTrack = (c) => c + (c >= half ? 2 : 1);
+        row.lanes.forEach(({ band, segs }) =>
+          rowEl.appendChild(laneElement(band, segs, template, toTrack)));
+      }
       block.appendChild(rowEl);
     });
     return block;
@@ -1514,11 +1723,35 @@
         // stays unlabeled so the name isn't printed twice.
         const secRows = boxRowsOf(null, bars);
         if (secRows.length && part.label !== caption) secRows[0].label = part.label;
+        const rc = spellingRenderer(tune, part.id);
         secRows.forEach((r) => {
           r.beats = beats;
           r.tint = sectionTint(part);
+          r.rc = rc;
           rows.push(r);
         });
+        /* Overlay lanes, mapped into the 8-box lattice geometry (a trailing
+           partial row is right-aligned, hence the per-row start offset). */
+        const pa = state.showAnalysis ? partAnalysis(tune, part.id) : null;
+        if (pa) {
+          const colByBar = new Map();
+          bars.forEach((b, i) => colByBar.set(b.bar != null ? b.bar : i + 1, i));
+          const locate = (pos) => {
+            const bi = colByBar.get(pos[0]);
+            if (bi === undefined) return null;
+            const r = Math.floor(bi / BOXES_PER_ROW);
+            const boxCol = secRows[r].start + (bi % BOXES_PER_ROW); // 1-based
+            return { row: r,
+              col: (boxCol - 1) * beats + Math.min(pos[1] - 1, beats - 1) };
+          };
+          const bands = lanePieces(pa, locate, BOXES_PER_ROW * beats);
+          secRows.forEach((r, ri) => {
+            r.lanes = LANE_BANDS
+              .map((band) => ({ band,
+                segs: bands[band].filter((p) => p.row === ri) }))
+              .filter((x) => x.segs.length);
+          });
+        }
       });
       wrap.appendChild(renderBoxBlock(rows));
     });
@@ -2202,6 +2435,55 @@
     /* A persisted "scan" on a scan-less tune renders as the grid. */
     apply(buttons.has(state.chordView) ? state.chordView : "grid");
     tools.appendChild(seg);
+
+    /* Harmonic-analysis controls (spec §4), only for analyzed tunes: the
+       3-way chord-spelling switch (absolute / hybrid / roman) and the
+       independent overlay toggle (brackets, arrows, regions, blocks).
+       Both re-render the tune in place, preserving zoom and scroll. */
+    if (t.has_chord_json && meta(t).harmonic_analysis) {
+      const rerender = () => {
+        const scroll = detailPaneEl.scrollTop;
+        renderTune(state.currentId);
+        detailPaneEl.scrollTop = scroll;
+      };
+      const spell = el("div", "view-seg spell-seg");
+      [["abs", "C", "Absolute chord symbols"],
+       ["hyb", "C⁄ii", "Chords with roman numerals"],
+       ["rom", "ii", "Roman numerals only"]].forEach(([mode, text, title]) => {
+        const btn = el("button", "scan-toggle spell-btn");
+        btn.type = "button";
+        btn.textContent = text;
+        btn.title = title;
+        btn.setAttribute("aria-label", title);
+        btn.classList.toggle("on", state.spelling === mode);
+        btn.setAttribute("aria-pressed", String(state.spelling === mode));
+        btn.addEventListener("click", () => {
+          if (state.spelling === mode) return;
+          state.spelling = mode;
+          try {
+            localStorage.setItem("grilles.spelling", mode);
+          } catch (e) { /* ignore */ }
+          rerender();
+        });
+        spell.appendChild(btn);
+      });
+      tools.appendChild(spell);
+
+      const ovBtn = el("button", "scan-toggle analysis-toggle");
+      ovBtn.type = "button";
+      ovBtn.innerHTML = ICON_ANALYSIS;
+      const ovTitle = "Harmonic analysis overlay (brackets, arrows, blocks)";
+      ovBtn.title = ovTitle;
+      ovBtn.setAttribute("aria-label", ovTitle);
+      ovBtn.classList.toggle("on", state.showAnalysis);
+      ovBtn.setAttribute("aria-pressed", String(state.showAnalysis));
+      ovBtn.addEventListener("click", () => {
+        state.showAnalysis = !state.showAnalysis;
+        saveSwitch("grilles.showAnalysis", state.showAnalysis);
+        rerender();
+      });
+      tools.appendChild(ovBtn);
+    }
     panel.prepend(tools);
   }
 
@@ -2939,8 +3221,11 @@
                layout's badge, inside .grid so it scales with the fitted font
                and hides in book/scan view. */
             const form = part.partIndex === 0 ? strainFormLabel(strain) : null;
-            grid.appendChild(renderSection(tune, part, beats,
-              first, tune.time_signature, overrides[part.id], undefined, form));
+            const secEl = renderSection(tune, part, beats,
+              first, tune.time_signature, overrides[part.id],
+              spellingRenderer(tune, part.id) || undefined, form);
+            attachGridLanes(secEl, tune, part, beats);
+            grid.appendChild(secEl);
             first = false;
           });
         });
@@ -2951,6 +3236,9 @@
         if (variants) panel.appendChild(variants);
         const extras = renderExtras(tune, beats);
         if (extras) panel.appendChild(extras);
+        if (state.showAnalysis && tune.harmonic_analysis) {
+          panel.appendChild(renderAnalysisLegend());
+        }
         addChordViewSwitch(panel, t, `${t.title || id} — original chord scan`);
       } else {
         panel.appendChild(scanImg(t.chord_image, `${t.title || id} — chord scan`));
@@ -3274,6 +3562,9 @@
     state.showVerses = v === null ? true : v === "1";
     const cv = localStorage.getItem("grilles.chordView");
     if (cv === "grid" || cv === "boxes" || cv === "scan") state.chordView = cv;
+    const sp = localStorage.getItem("grilles.spelling");
+    if (sp === "abs" || sp === "hyb" || sp === "rom") state.spelling = sp;
+    state.showAnalysis = localStorage.getItem("grilles.showAnalysis") === "1";
     state.boxTint = localStorage.getItem("grilles.boxTint") !== "0";
     applyTintToggle();
     applyVersesToggle();

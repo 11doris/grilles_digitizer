@@ -318,8 +318,8 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "turnaround-ending",
-      "ii-V-chains"
+      "tritone-sub",
+      "passing-diminished"
     ],
     "sections": {
       "A": "I alternating with IV7, then I-#Io7-ii7-V7-I",
@@ -328,5 +328,380 @@
       "A2": "I alternating with IV7, then I-#Io7-ii7-V7-I"
     },
     "modulates": false
+  },
+  "harmonic_analysis": {
+    "version": 1,
+    "parts": {
+      "A": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "IV7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "IV7"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 5,
+            "beat": 3,
+            "numeral": "#io7",
+            "role": "dim_passing"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 6,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "I"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              3
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "turnaround_dim",
+            "name": "Turnaround I–♯Io–ii–V",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
+          }
+        ]
+      },
+      "A1": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "IV7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "IV7"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 5,
+            "beat": 3,
+            "numeral": "#io7",
+            "role": "dim_passing"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 6,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "I"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              3
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "turnaround_dim",
+            "name": "Turnaround I–♯Io–ii–V",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
+          }
+        ]
+      },
+      "B": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "IV"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "IV"
+          },
+          {
+            "bar": 2,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "V7/IV",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "IV"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "IV"
+          },
+          {
+            "bar": 6,
+            "beat": 3,
+            "numeral": "subV7/V",
+            "role": "sub_v"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "V7"
+          }
+        ],
+        "links": [
+          {
+            "type": "fifth",
+            "from": [
+              2,
+              3
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
+            "type": "half",
+            "from": [
+              6,
+              3
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ]
+      },
+      "A2": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "IV7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "IV7"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 5,
+            "beat": 3,
+            "numeral": "#io7",
+            "role": "dim_passing"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 6,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "I"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              3
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "turnaround_dim",
+            "name": "Turnaround I–♯Io–ii–V",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
+          }
+        ]
+      }
+    }
   }
 }

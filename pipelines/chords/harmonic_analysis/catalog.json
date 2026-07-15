@@ -1,0 +1,70 @@
+[
+  {
+    "id": "turnaround_1625",
+    "name": "Turnaround I–vi–ii–V",
+    "pattern": "I:maj vi:min ii:min V:dom",
+    "max_bars": 4
+  },
+  {
+    "id": "turnaround_1_vi7",
+    "name": "Turnaround I–VI7–ii–V",
+    "pattern": "I:maj VI:dom ii:min V:dom",
+    "max_bars": 4
+  },
+  {
+    "id": "turnaround_3625",
+    "name": "Turnaround iii–vi–ii–V",
+    "pattern": "iii:min vi:min ii:min V:dom",
+    "max_bars": 4
+  },
+  {
+    "id": "turnaround_36_dom",
+    "name": "Turnaround III7–VI7–II7–V7",
+    "pattern": "III:dom VI:dom II:dom V:dom",
+    "max_bars": 4
+  },
+  {
+    "id": "turnaround_dim",
+    "name": "Turnaround I–♯Io–ii–V",
+    "pattern": "I:maj bII:dim ii:min V:dom",
+    "max_bars": 4
+  },
+  {
+    "id": "rhythm_bridge",
+    "name": "Dominant bridge III7–VI7–II7–V7",
+    "pattern": "III:dom VI:dom II:dom V:dom",
+    "max_bars": 8
+  },
+  {
+    "id": "backdoor",
+    "name": "Backdoor cadence iv–♭VII7–I",
+    "pattern": "iv:min bVII:dom I:maj",
+    "max_bars": 4
+  },
+  {
+    "id": "plagal_iv_iv",
+    "name": "IV–iv–I",
+    "pattern": "IV:maj iv:min I:maj",
+    "max_bars": 4
+  },
+  {
+    "id": "blues_tail",
+    "name": "Blues cadence V–IV–I",
+    "pattern": "V:dom IV:dom I:any",
+    "max_bars": 4
+  },
+  {
+    "id": "cadence_251",
+    "name": "ii–V–I",
+    "pattern": "ii:min V:dom I:maj",
+    "max_bars": 4,
+    "generic": true
+  },
+  {
+    "id": "cadence_251_minor",
+    "name": "iiø–V–i",
+    "pattern": "ii:m7b5 V:dom I:min",
+    "max_bars": 4,
+    "generic": true
+  }
+]

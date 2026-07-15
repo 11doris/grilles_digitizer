@@ -322,8 +322,8 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "turnaround-ending",
-      "ii-V-chains"
+      "circle-of-fifths",
+      "iv-minor-cadence"
     ],
     "sections": {
       "A": "I-Imaj7-I7 to IV-iv, then I with V/V-V-I cadence",
@@ -332,5 +332,483 @@
       "A2": "Final A: I to IV-iv, II7-V-I resolving home"
     },
     "modulates": false
+  },
+  "harmonic_analysis": {
+    "version": 1,
+    "parts": {
+      "A": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 2,
+            "beat": 3,
+            "numeral": "V7/IV",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "IV"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "iv"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7/V",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "I"
+          }
+        ],
+        "links": [
+          {
+            "type": "fifth",
+            "from": [
+              2,
+              3
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "type": "to_minor",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "plagal_iv_iv",
+            "name": "IV–iv–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          }
+        ]
+      },
+      "A1": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 2,
+            "beat": 3,
+            "numeral": "V7/IV",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "IV"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "iv"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7/V",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "I"
+          }
+        ],
+        "links": [
+          {
+            "type": "fifth",
+            "from": [
+              2,
+              3
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "type": "to_minor",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "plagal_iv_iv",
+            "name": "IV–iv–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          }
+        ]
+      },
+      "B": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 1,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "ii6"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "V7/III",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "iii"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "ii7/V",
+            "role": "sec_ii"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "V7/V",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 8,
+            "beat": 3,
+            "numeral": "V7#5"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              1,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              1,
+              3
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
+          }
+        ]
+      },
+      "A2": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 2,
+            "beat": 3,
+            "numeral": "V7/IV",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "IV"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "iv"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7/V",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "I"
+          }
+        ],
+        "links": [
+          {
+            "type": "fifth",
+            "from": [
+              2,
+              3
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "type": "to_minor",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "plagal_iv_iv",
+            "name": "IV–iv–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          }
+        ]
+      }
+    }
   }
 }

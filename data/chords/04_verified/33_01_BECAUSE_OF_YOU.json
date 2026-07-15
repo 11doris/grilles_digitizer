@@ -1,0 +1,251 @@
+{
+  "composer": "Dudley WILKINSON – Arthur HAMMERSTEIN",
+  "year": "1940",
+  "style": "S.ANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "title": "BECAUSE OF YOU",
+  "page": 33,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "U.Green 68- B.Hackett 66- D.Byas 51",
+    "Teb Smith 51- E.Butterfield 41",
+    "S.Stitt55- E.Bostic 58- S.Bechet 52",
+    "L.Armstrong 51- L.Clinton 40",
+    "E.Hawkins 38"
+  ],
+  "notation_notes": {
+    "style_label": "Upper-left genre label prints 'S.ANDARD' (a mis-lettering of STANDARD); transcribed as printed.",
+    "verse": "Header prints 'B VERSE'."
+  },
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Bb7/5"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb",
+                "3": "Eo7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Gm7b5"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Fm",
+                "3": "C7b9"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Fm"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F9"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F7b9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Fm7",
+                "3": "Fm7b5"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Bb7",
+                "3": "Eo7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Bb7/5"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Gm7b5"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Fm",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Fm"
+              }
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "D7/5"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Cm"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F9"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb",
+                "3": "Ab"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

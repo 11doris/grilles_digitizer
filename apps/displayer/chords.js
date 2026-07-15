@@ -310,9 +310,25 @@
     return c ? degreeName(c.rootPc, tonicPc, c.quality) : null;
   }
 
+  /* ------------------------------------------------------ roman numerals
+   *
+   * `harmonic_analysis` numerals arrive with ASCII accidentals ("bIII7",
+   * "#ivø7", "V7b9/II", "subV7/IV"); this renders them with music glyphs.
+   * A "b" converts only where it is an accidental — ahead of a roman letter
+   * at the start or after a slash, or ahead of an alteration digit — so the
+   * "b" of "subV7" survives. Flats get the same enlarging span as chords.
+   */
+  function formatNumeralHTML(raw) {
+    let s = escapeHtml(String(raw));
+    s = s.replace(/(^|\/)b(?=[IViv])/g, "$1" + FLAT);
+    s = s.replace(/b(?=\d)/g, FLAT);
+    s = s.replace(/#/g, SHARP);
+    return s.split(FLAT).join(`<span class="fl">${FLAT}</span>`);
+  }
+
   const api = { parseChord, displayQuality, splitQuality, renderChordHTML, escapeHtml,
     pitchClass, transposeChordSymbol, FLAT_SPELL, SHARP_SPELL,
-    chordClass, degreeName, chordDegree };
+    chordClass, degreeName, chordDegree, formatNumeralHTML };
   global.GrillesChords = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

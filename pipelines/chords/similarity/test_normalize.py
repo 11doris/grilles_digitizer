@@ -115,6 +115,24 @@ class TestDegrees(unittest.TestCase):
             self.assertEqual(opening["degree"], degree, stem)
             self.assertEqual(opening["chord"], chord, stem)
 
+    def test_opening_skips_verse_and_intro(self):
+        """`opening` names what the form proper starts on (owner rule
+        2026-07-15): verse and aux strains never supply it."""
+        def strain(name, role, chord):
+            return {"name": name, "role": role, "parts": [
+                {"label": "A", "bars": [{"bar": 1, "beats": {"1": chord}}]}]}
+        tune = {"strains": [strain("intro", "aux", "C7"),
+                            strain("verse", "verse", "Am7"),
+                            strain("chorus", "chorus", "F6")]}
+        opening = compute_opening(tune, "F", "major")
+        self.assertEqual((opening["degree"], opening["chord"]), ("I", "F6"))
+
+    def test_opening_falls_back_when_every_strain_is_skipped(self):
+        tune = {"strains": [
+            {"name": "verse", "role": "verse", "parts": [
+                {"label": "A", "bars": [{"bar": 1, "beats": {"1": "C7"}}]}]}]}
+        self.assertEqual(compute_opening(tune, "F", "major")["chord"], "C7")
+
 
 class TestTonicRelative(unittest.TestCase):
     def test_reference_pc_shared_pitch_space(self):

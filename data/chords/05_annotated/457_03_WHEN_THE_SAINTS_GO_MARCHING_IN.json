@@ -281,13 +281,295 @@
   },
   "harmonic_fingerprint": {
     "family": "16-bar traditional (AB) tune",
-    "tags": [
-      "turnaround-ending"
-    ],
+    "tags": [],
     "sections": {
       "A": "Tonic I held for six bars then V7 (C7) for two bars",
       "B": "I-I7 to IV-iv (Bb-Bbm) then I-vi-ii-V-I turnaround resolving to tonic"
     },
     "modulates": false
+  },
+  "harmonic_analysis": {
+    "version": 1,
+    "parts": {
+      "part1_A": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "V7"
+          }
+        ]
+      },
+      "part1_B": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "V7/IV",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "IV"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "iv"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 5,
+            "beat": 3,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 6,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "I"
+          }
+        ],
+        "links": [
+          {
+            "type": "fifth",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "type": "to_minor",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              3
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "turnaround_1625",
+            "name": "Turnaround I–vi–ii–V",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
+          }
+        ]
+      },
+      "part2_A": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "i"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "i"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "i"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "i"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "i"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "i"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "V7"
+          }
+        ]
+      },
+      "part2_B": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "i"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "i"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "iv"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "iv"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "i"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "i"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "i"
+          }
+        ],
+        "links": [
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "regions": [
+          {
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ],
+            "tonic": "F",
+            "mode": "minor",
+            "kind": "tonicization",
+            "confidence": 1.0
+          }
+        ]
+      }
+    },
+    "flags": [
+      "part part2_B: reads entirely in F minor — candidate section key"
+    ]
   }
 }

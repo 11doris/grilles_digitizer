@@ -533,8 +533,10 @@
   "harmonic_fingerprint": {
     "family": "64-bar AABA standard",
     "tags": [
+      "modulates",
+      "turnaround-ending",
       "ii-V-chains",
-      "turnaround-ending"
+      "passing-diminished"
     ],
     "sections": {
       "A": "I-vi-ii-V then iv-related Cm7-F7 to bVI (Bb6), settling into repeated I-vi ii-V loops",
@@ -545,5 +547,1199 @@
     },
     "modulates": true,
     "modulation_note": "bridge (B) moves to Ab major before returning via ii-V to F"
+  },
+  "harmonic_analysis": {
+    "version": 1,
+    "parts": {
+      "A": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "iiø7/II",
+            "role": "sec_ii"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7/II",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 9,
+            "beat": 1,
+            "numeral": "ii7/IV",
+            "role": "sec_ii"
+          },
+          {
+            "bar": 10,
+            "beat": 1,
+            "numeral": "V7/IV",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 11,
+            "beat": 1,
+            "numeral": "IV6"
+          },
+          {
+            "bar": 11,
+            "beat": 3,
+            "numeral": "V7/II",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 12,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 12,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 13,
+            "beat": 1,
+            "numeral": "I6"
+          },
+          {
+            "bar": 13,
+            "beat": 3,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 14,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 14,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 15,
+            "beat": 1,
+            "numeral": "I6"
+          },
+          {
+            "bar": 15,
+            "beat": 3,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 16,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 16,
+            "beat": 3,
+            "numeral": "V7"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
+          },
+          {
+            "type": "to_minor",
+            "from": [
+              8,
+              1
+            ],
+            "to": [
+              9,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              9,
+              1
+            ],
+            "to": [
+              10,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              10,
+              1
+            ],
+            "to": [
+              11,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              11,
+              3
+            ],
+            "to": [
+              12,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              12,
+              1
+            ],
+            "to": [
+              12,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              12,
+              3
+            ],
+            "to": [
+              13,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              14,
+              1
+            ],
+            "to": [
+              14,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              14,
+              3
+            ],
+            "to": [
+              15,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              16,
+              1
+            ],
+            "to": [
+              16,
+              3
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "iiv_chain",
+            "name": "ii–V chain",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              10,
+              1
+            ]
+          },
+          {
+            "id": "turnaround_1625",
+            "name": "Turnaround I–vi–ii–V",
+            "from": [
+              13,
+              1
+            ],
+            "to": [
+              14,
+              3
+            ]
+          },
+          {
+            "id": "turnaround_1625",
+            "name": "Turnaround I–vi–ii–V",
+            "from": [
+              15,
+              1
+            ],
+            "to": [
+              16,
+              3
+            ]
+          }
+        ]
+      },
+      "A1": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "iiø7/II",
+            "role": "sec_ii"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7/II",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 9,
+            "beat": 1,
+            "numeral": "ii7/IV",
+            "role": "sec_ii"
+          },
+          {
+            "bar": 10,
+            "beat": 1,
+            "numeral": "V7/IV",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 11,
+            "beat": 1,
+            "numeral": "IV6"
+          },
+          {
+            "bar": 11,
+            "beat": 3,
+            "numeral": "V7/II",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 12,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 12,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 13,
+            "beat": 1,
+            "numeral": "I6"
+          },
+          {
+            "bar": 13,
+            "beat": 3,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 14,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 14,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 15,
+            "beat": 1,
+            "numeral": "I6"
+          },
+          {
+            "bar": 15,
+            "beat": 3,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 16,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 16,
+            "beat": 3,
+            "numeral": "V7"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
+          },
+          {
+            "type": "to_minor",
+            "from": [
+              8,
+              1
+            ],
+            "to": [
+              9,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              9,
+              1
+            ],
+            "to": [
+              10,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              10,
+              1
+            ],
+            "to": [
+              11,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              11,
+              3
+            ],
+            "to": [
+              12,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              12,
+              1
+            ],
+            "to": [
+              12,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              12,
+              3
+            ],
+            "to": [
+              13,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              14,
+              1
+            ],
+            "to": [
+              14,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              14,
+              3
+            ],
+            "to": [
+              15,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              16,
+              1
+            ],
+            "to": [
+              16,
+              3
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "iiv_chain",
+            "name": "ii–V chain",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              10,
+              1
+            ]
+          },
+          {
+            "id": "turnaround_1625",
+            "name": "Turnaround I–vi–ii–V",
+            "from": [
+              13,
+              1
+            ],
+            "to": [
+              14,
+              3
+            ]
+          },
+          {
+            "id": "turnaround_1625",
+            "name": "Turnaround I–vi–ii–V",
+            "from": [
+              15,
+              1
+            ],
+            "to": [
+              16,
+              3
+            ]
+          }
+        ]
+      },
+      "B": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "#io7",
+            "role": "dim_passing"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "iii7"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "biiio7",
+            "role": "dim_passing"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 9,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 10,
+            "beat": 1,
+            "numeral": "#io7",
+            "role": "dim_passing"
+          },
+          {
+            "bar": 11,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 12,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 13,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 14,
+            "beat": 1,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 15,
+            "beat": 1,
+            "numeral": "ii7/VI",
+            "role": "sec_ii"
+          },
+          {
+            "bar": 16,
+            "beat": 1,
+            "numeral": "V7/VI",
+            "role": "sec_dom"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              8,
+              1
+            ],
+            "to": [
+              9,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              11,
+              1
+            ],
+            "to": [
+              12,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              12,
+              1
+            ],
+            "to": [
+              13,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              15,
+              1
+            ],
+            "to": [
+              16,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "turnaround_dim",
+            "name": "Turnaround I–♯Io–ii–V",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "id": "turnaround_dim",
+            "name": "Turnaround I–♯Io–ii–V",
+            "from": [
+              9,
+              1
+            ],
+            "to": [
+              12,
+              1
+            ]
+          }
+        ],
+        "regions": [
+          {
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              16,
+              1
+            ],
+            "tonic": "Ab",
+            "mode": "major",
+            "kind": "section",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "A2": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "iiø7/II",
+            "role": "sec_ii"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7/II",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 9,
+            "beat": 1,
+            "numeral": "ii7/IV",
+            "role": "sec_ii"
+          },
+          {
+            "bar": 10,
+            "beat": 1,
+            "numeral": "V7/IV",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 11,
+            "beat": 1,
+            "numeral": "IV6"
+          },
+          {
+            "bar": 11,
+            "beat": 3,
+            "numeral": "V7/II",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 12,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 12,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 13,
+            "beat": 1,
+            "numeral": "I6"
+          },
+          {
+            "bar": 13,
+            "beat": 3,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 14,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 14,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 15,
+            "beat": 1,
+            "numeral": "I6"
+          },
+          {
+            "bar": 15,
+            "beat": 3,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 16,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 16,
+            "beat": 3,
+            "numeral": "V7"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
+          },
+          {
+            "type": "to_minor",
+            "from": [
+              8,
+              1
+            ],
+            "to": [
+              9,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              9,
+              1
+            ],
+            "to": [
+              10,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              10,
+              1
+            ],
+            "to": [
+              11,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              11,
+              3
+            ],
+            "to": [
+              12,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              12,
+              1
+            ],
+            "to": [
+              12,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              12,
+              3
+            ],
+            "to": [
+              13,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              14,
+              1
+            ],
+            "to": [
+              14,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              14,
+              3
+            ],
+            "to": [
+              15,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              16,
+              1
+            ],
+            "to": [
+              16,
+              3
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "iiv_chain",
+            "name": "ii–V chain",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              10,
+              1
+            ]
+          },
+          {
+            "id": "turnaround_1625",
+            "name": "Turnaround I–vi–ii–V",
+            "from": [
+              13,
+              1
+            ],
+            "to": [
+              14,
+              3
+            ]
+          },
+          {
+            "id": "turnaround_1625",
+            "name": "Turnaround I–vi–ii–V",
+            "from": [
+              15,
+              1
+            ],
+            "to": [
+              16,
+              3
+            ]
+          }
+        ]
+      },
+      "coda": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "IV6"
+          },
+          {
+            "bar": 1,
+            "beat": 3,
+            "numeral": "V7/II",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 2,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "I6"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "I6"
+          }
+        ],
+        "links": [
+          {
+            "type": "fifth",
+            "from": [
+              1,
+              3
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              2,
+              3
+            ],
+            "to": [
+              3,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          }
+        ]
+      }
+    }
   }
 }

@@ -259,8 +259,7 @@
     "family": "28-bar AABA standard",
     "tags": [
       "chromatic-descent",
-      "ii-V-chains",
-      "turnaround-ending"
+      "passing-diminished"
     ],
     "sections": {
       "A": "Chromatic descending line iv#m7b5-dimo-iii-bIIIo-ii-V7-I resolving to G",
@@ -269,5 +268,321 @@
       "A2": "Chromatic descent to ii-V-I in G"
     },
     "modulates": false
+  },
+  "harmonic_analysis": {
+    "version": 1,
+    "parts": {
+      "A": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "#ivø7"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "ivo7",
+            "role": "dim_passing"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "iii7"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "biiio7",
+            "role": "dim_passing"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "I"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          }
+        ]
+      },
+      "A1": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "#ivø7"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "ivo7",
+            "role": "dim_passing"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "iii7"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "biiio7",
+            "role": "dim_passing"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "I"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          }
+        ]
+      },
+      "B": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "bII"
+          },
+          {
+            "bar": 1,
+            "beat": 3,
+            "numeral": "bVI7"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "bII"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "II"
+          },
+          {
+            "bar": 3,
+            "beat": 3,
+            "numeral": "V7/II",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "II"
+          }
+        ],
+        "links": [
+          {
+            "type": "fifth",
+            "from": [
+              1,
+              3
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              3,
+              3
+            ],
+            "to": [
+              4,
+              1
+            ]
+          }
+        ]
+      },
+      "A2": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "#ivø7"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "ivo7",
+            "role": "dim_passing"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "iii7"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "biiio7",
+            "role": "dim_passing"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "I"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          }
+        ]
+      }
+    }
   }
 }

@@ -119,7 +119,9 @@ def api_verify(tune_id: str):
 
     Body (all fields optional): {"tonic": ..., "mode": ...,
     "section_keys": {name: {tonic, mode}, ...} | null,
-    "fingerprint": {family?, tags?, sections?, modulates?, modulation_note?}}
+    "fingerprint": {family?, sections?, modulates?, modulation_note?}}
+    A posted `tags` is ignored — tags are derived from the building blocks
+    by the update routine.
     """
     if not _safe_id(tune_id):
         abort(400)

@@ -299,7 +299,7 @@ async function verifyCurrent() {
     section_keys: state.edit.sectionKeys,
     fingerprint: {
       family: $("#fp-family").value.trim(),
-      tags: $("#fp-tags").value.split(",").map((s) => s.trim()).filter(Boolean),
+      // tags are not sent: derived from the building blocks server-side
       sections: fp.sections,
       modulates: $("#fp-modulates").checked,
       modulation_note: $("#fp-modnote").value.trim(),

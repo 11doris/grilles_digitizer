@@ -114,7 +114,10 @@ class TestAdjudicationAndUpdate(unittest.TestCase):
         ann = self._annotate_au_privave(LLMVoteError("boom"))
         self.assertEqual(ann["key_annotation"]["status"], "needs_review")
         self.assertEqual(ann["key_annotation"]["llm"], {"error": "boom"})
-        self.assertNotIn("harmonic_fingerprint", ann)
+        # No LLM prose without a vote — but the derived tags still exist
+        # (the displayer filters on them, LLM or not).
+        self.assertEqual(list(ann["harmonic_fingerprint"]), ["tags"])
+        self.assertIn("blues-form", ann["harmonic_fingerprint"]["tags"])
 
     def test_update_corrects_key_and_recomputes_opening(self):
         ann = self._annotate_au_privave(self._fake_llm())
@@ -135,6 +138,14 @@ class TestAdjudicationAndUpdate(unittest.TestCase):
         core.update_annotation(ann)
         self.assertEqual(ann["key_annotation"]["human"]["corrected"], False)
         self.assertEqual(ann["key_annotation"]["status"], "verified")
+
+    def test_tags_are_derived_never_typed(self):
+        ann = self._annotate_au_privave(self._fake_llm())
+        self.assertIn("ii-V-chains", ann["harmonic_fingerprint"]["tags"])
+        core.update_annotation(ann, fingerprint={"tags": ["hand-typed"]})
+        tags = ann["harmonic_fingerprint"]["tags"]
+        self.assertNotIn("hand-typed", tags)
+        self.assertIn("blues-form", tags)
 
     def test_update_drops_section_key_equal_to_new_global(self):
         ann = self._annotate_au_privave(self._fake_llm())
