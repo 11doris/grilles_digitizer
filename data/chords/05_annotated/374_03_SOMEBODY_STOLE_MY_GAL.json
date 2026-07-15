@@ -1,0 +1,372 @@
+{
+  "composer": "Leo WOOD",
+  "year": "1918",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "40 A B A' C D",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 33",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 4,
+          "bar": 1
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Eb",
+            "3": "Ebmaj7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Cm",
+            "3": "Cm7"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "F7/3"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "SOMEBODY STOLE MY GAL",
+  "page": 374,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '24 VERSE'."
+  },
+  "recordings": [
+    "Alabama Jug Band 24- C.Basie 40- B.Beiderbecke 28",
+    "C.Galloway 41- B.Goodman 40.54- F.Henderson 24.37",
+    "B.Be",
+    "C.m"
+  ],
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Eb/3",
+                "3": "Gbo7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bb7/5"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Bb7/5"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb7/5"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7",
+                "3": "Bb7#5"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Bb7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Eb/3",
+                "3": "Gbo7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bb7/5"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Bb7/5"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb7/5"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7",
+                "3": "Ab7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "G7",
+                "3": "Bb7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Abm"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Abm"
+              }
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Eb"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "81410f4ee7b3c4df73eb4daf409a10d99a5dcdf07489dca2cf72568ebf926b5b",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.7765
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "40-bar multi-section standard (A B A' C D)",
+    "tags": [
+      "circle-of-fifths",
+      "dominant-cycle-bridge",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "A": "I with passing #io7, dwelling on V7 (Bb7) then resolving back to I",
+      "B": "Dominant cycle C7-F7-Bb7 (V/V/V - V/V - V), circle of fifths toward I",
+      "A1": "Same as A but ends with Ab7/G7/Bb7 turnaround setup",
+      "C": "I moving to I7 (V/IV) then IV and iv (Ab to Abm minor plagal color)",
+      "D": "I - II7 (F7, V/V) - V7 - I cadence"
+    },
+    "modulates": false
+  }
+}

@@ -1,0 +1,359 @@
+{
+  "composer": "Earl BIGH – Billy WHITE – Jack OWENS",
+  "year": "1942",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A' B A'",
+  "time_signature": "4/4",
+  "title": "CYNTHIA'S IN LOVE",
+  "page": 88,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "B.Laffitte 54- F.Brookmeyer 47",
+    "B.Hallberg 52- D.Byas 45",
+    "C.Adderley 55"
+  ],
+  "notation_notes": {
+    "verse": "Header prints 'VERSE'; the verse grid is printed and transcribed in verse_ sections.",
+    "dash_expansion": "Rows 2 and 4 are leading-arrow rows copying the same-letter row above positionally; empty/dash boxes take the same-position bar, trailing dash after explicit box copies preceding bar.",
+    "omission": "Footer prints 'OMISSION Page 79 :'."
+  },
+  "strains": [
+    {
+      "name": "verse",
+      "role": "verse",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Fm7",
+                "3": "B7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ebmaj7",
+                "3": "Eb6"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Gm7b5",
+                "3": "C7b9"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Fm",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Cm",
+                "3": "Cmaj7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Cm7",
+                "3": "Am7b5"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Cm7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Fm7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb",
+                "4": "Abm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Gm7",
+                "3": "Gbo7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Fm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb",
+                "3": "D9#5"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Db7b9",
+                "3": "C9"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Fm7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb",
+                "4": "Abm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Gm7",
+                "3": "Gbo7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Fm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb7#5"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Fm"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "B7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Db7b9",
+                "3": "C9"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Fm7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb",
+                "4": "Abm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Gm7",
+                "3": "Gbo7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Fm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "key": {
+    "tonic": "Eb",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "ii",
+    "quality": "min",
+    "chord": "Fm7"
+  },
+  "key_annotation": {
+    "status": "agreed",
+    "source_sha256": "22918c6fb6289e170efc23d8a6bb2a1607375728eb3a7bbcd0f88c526c2a517e",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.6855
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": null
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "ii-V-chains",
+      "turnaround-ending",
+      "verse-present"
+    ],
+    "sections": {
+      "verse_A": "ii-V motion into I (Ebmaj7/Eb6), with iiø-V7b9 and secondary dominants leading back to the ii-V of Eb",
+      "A": "ii-V-I in Eb (Fm7-Bb7-Eb) with diminished passing chords and chromatic dominants (Db7b9-C9) as turnaround",
+      "A1": "ii-V-I in Eb ending on Eb7#5 pivoting to the bridge",
+      "B": "IV-V-I (Ab-Bb7-Eb) then ii-V and Fm-B7 motion back to Fm7-Bb7 ii-V with Db7b9-C9 turnaround",
+      "A2": "final ii-V-I in Eb resolving to tonic"
+    },
+    "modulates": false
+  }
+}
