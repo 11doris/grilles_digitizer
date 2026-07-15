@@ -7,9 +7,9 @@ import copy
 import unittest
 
 from pipelines.chords.similarity.normalize import (
-    derived_form_strains, expand_tune, is_compared, iter_parts, part_ids,
-    resolve_anchor, resolve_part_ref, sections_view, strain_bars_total,
-    strain_label_seq, validate_strains,
+    AUX_CONNECTORS, NAMED_STRAINS, derived_form_strains, expand_tune,
+    is_compared, iter_parts, part_ids, resolve_anchor, resolve_part_ref,
+    sections_view, strain_bars_total, strain_label_seq, validate_strains,
 )
 
 
@@ -147,6 +147,20 @@ class TestAnchors(unittest.TestCase):
         # bare strain name works for single-part strains
         self.assertEqual(resolve_part_ref(t, "coda"), (t["strains"][1], 0))
         self.assertIsNone(resolve_part_ref(t, "nope"))
+
+
+class TestVocabulary(unittest.TestCase):
+    def test_named_strains_match_displayer_palette(self):
+        # Mirror of the displayers' STRAIN_TINT keys — extend both together.
+        self.assertEqual(NAMED_STRAINS,
+                         frozenset({"verse", "intro", "thema", "impro",
+                                    "interlude", "coda",
+                                    "part1", "part2", "s1", "s2", "blues"}))
+
+    def test_aux_connectors(self):
+        self.assertEqual(AUX_CONNECTORS,
+                         frozenset({"intro", "coda", "interlude",
+                                    "transition", "tag", "vamp"}))
 
 
 class TestValidator(unittest.TestCase):
