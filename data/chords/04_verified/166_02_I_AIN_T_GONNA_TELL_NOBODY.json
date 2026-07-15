@@ -4,28 +4,6 @@
   "style": "NEW ORLEANS",
   "tempo": "MEDIUM FAST",
   "form": "16 A A | 20 A A'",
-  "form_strains": {
-    "intro": {
-      "bars": 16,
-      "labels": [
-        "A",
-        "A"
-      ]
-    },
-    "chorus": {
-      "bars": 20,
-      "labels": [
-        "A",
-        "A'"
-      ]
-    }
-  },
-  "section_labels": {
-    "intro_A": "A",
-    "intro_A1": "A",
-    "A": "A",
-    "A1": "A'"
-  },
   "time_signature": "4/4",
   "variants": [
     {
@@ -42,11 +20,13 @@
       ],
       "targets": [
         {
-          "section": "A1",
+          "strain": "chorus",
+          "part": 1,
           "bar": 6
         },
         {
-          "section": "A1",
+          "strain": "chorus",
+          "part": 1,
           "bar": 8
         }
       ]
@@ -64,234 +44,258 @@
     "double_tag": "Below the grid: 'DOUBLE TAG ENDING.'",
     "two_strain": "Top strain labelled '16 A A' and second strain '20 A A''."
   },
-  "sections": {
-    "intro_A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "C"
+  "strains": [
+    {
+      "name": "intro",
+      "role": "strain",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "A7",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "G7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "A7",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "G7"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "G7"
+      ]
+    },
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "C",
+                "3": "Ebo7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "G7/5"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G7/5"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "G7/5"
+              }
+            },
+            {
+              "bar": 9,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 10,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 11,
+              "beats": {
+                "1": "D7",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 12,
+              "beats": {
+                "1": "C"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "G"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "A7",
-          "3": "D7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "G7"
-        }
-      }
-    ],
-    "intro_A1": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "G"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "A7",
-          "3": "D7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "G7"
-        }
-      }
-    ],
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "A7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "D7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "D7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "C",
-          "3": "Ebo7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "G7/5"
-        }
-      }
-    ],
-    "A1": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "A7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "D7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "D7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "G7/5"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "G7/5"
-        }
-      },
-      {
-        "bar": 9,
-        "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 10,
-        "beats": {
-          "1": "A7"
-        }
-      },
-      {
-        "bar": 11,
-        "beats": {
-          "1": "D7",
-          "3": "G7"
-        }
-      },
-      {
-        "bar": 12,
-        "beats": {
-          "1": "C"
-        }
-      }
-    ]
-  }
+      ]
+    }
+  ]
 }

@@ -4,21 +4,10 @@
   "style": "BE BOP (INSTRUMENTAL)",
   "tempo": "MEDIUM",
   "form": "12 BLUES",
-  "form_strains": {
-    "chorus": {
-      "bars": 12,
-      "labels": [
-        "BLUES"
-      ]
-    }
-  },
   "time_signature": "4/4",
   "title": "AU PRIVAVE",
   "page": 23,
   "source": "Anthologie des grilles de jazz",
-  "section_labels": {
-    "A": "BLUES"
-  },
   "recordings": [
     ".Woods 57- C.Parker 51",
     "Xpressens Ellitor-",
@@ -32,88 +21,97 @@
     "year_uncertain": "Header prints 'Charlie PARKER 1951 ?'.",
     "form_note": "Header prints '12 BLUES'."
   },
-  "sections": {
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "F",
-          "3": "D7b9"
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "BLUES",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F",
+                "3": "D7b9"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Cm7",
+                "3": "F7#5"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Fmaj7",
+                "3": "Gm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Am7",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 9,
+              "beats": {
+                "1": "Gm7"
+              }
+            },
+            {
+              "bar": 10,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 11,
+              "beats": {
+                "1": "F",
+                "3": "D7b9"
+              }
+            },
+            {
+              "bar": 12,
+              "beats": {
+                "1": "Gm7"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Gm7",
-          "3": "C7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Cm7",
-          "3": "F7#5"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Bb7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Bb7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Fmaj7",
-          "3": "Gm7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Am7",
-          "3": "D7"
-        }
-      },
-      {
-        "bar": 9,
-        "beats": {
-          "1": "Gm7"
-        }
-      },
-      {
-        "bar": 10,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 11,
-        "beats": {
-          "1": "F",
-          "3": "D7b9"
-        }
-      },
-      {
-        "bar": 12,
-        "beats": {
-          "1": "Gm7"
-        }
-      }
-    ]
-  },
+      ]
+    }
+  ],
   "key": {
     "tonic": "F",
     "mode": "major"
@@ -125,7 +123,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "2f5c7bbcecf955e867be7103bdc7ffcc7be23616cb5079965a9db2d7931f398b",
+    "source_sha256": "8e637e85c00e992b7db262512cffc9e0fd3d8305703ab1d0501d420a87701c1f",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -151,7 +149,7 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "F blues: I with V/ii, ii-V in bar 2, IV(Bb7) at bars 5-6, then ii-V turnaround (Gm7-C7) with V/ii chords"
+      "BLUES": "F blues: I with V/ii, ii-V in bar 2, IV(Bb7) at bars 5-6, then ii-V turnaround (Gm7-C7) with V/ii chords"
     },
     "modulates": false
   }

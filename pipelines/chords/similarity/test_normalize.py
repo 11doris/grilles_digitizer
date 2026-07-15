@@ -8,8 +8,8 @@ from pathlib import Path
 from pipelines.chords.similarity.normalize import (
     Chord, HARD, NAMED_STRAINS, compute_opening, degree_name, derive_labels,
     expand_tune, flatten, form_hard_warnings, form_warnings, parse_chord,
-    parse_form, pitch_class, reference_pc, section_groups, tonic_relative,
-    unknown_strain,
+    parse_form, pitch_class, reference_pc, section_groups, sections_view,
+    tonic_relative, unknown_strain, validate_strains,
 )
 
 _REPO = Path(__file__).resolve().parents[3]
@@ -52,7 +52,7 @@ class TestParseChord(unittest.TestCase):
         """Every chord symbol in 04_verified parses (spec §4.4 / §10)."""
         for path in sorted(_VERIFIED.glob("*.json")):
             tune = json.loads(path.read_text("utf-8"))
-            for sec, bars in (tune.get("sections") or {}).items():
+            for sec, bars in sections_view(tune).items():
                 for bar in bars:
                     for symbol in (bar.get("beats") or {}).values():
                         ch = parse_chord(symbol)  # raises on failure
@@ -356,25 +356,18 @@ class TestSectionLabels(unittest.TestCase):
 # Tunes whose printed form genuinely disagrees with their stored sections
 # (missing/duplicated rows, unstored strain repeats). Pinned so no NEW tune
 # regresses into a hard form mismatch; shrink this set as the data is fixed.
-KNOWN_FORM_DEFECTS: set[str] = set()
-
-
-class TestCorpusFormIntegrity(unittest.TestCase):
-    def test_no_new_hard_form_mismatch(self):
-        """Every verified tune outside KNOWN_FORM_DEFECTS aligns cleanly; every
-        pinned defect still mismatches (so the set stays honest and shrinks)."""
-        offenders, stale = set(), set()
+class TestCorpusStrainIntegrity(unittest.TestCase):
+    def test_corpus_validates(self):
+        """Every verified tune carries a clean strains model: role/name
+        vocabulary, unique part ids, anchors and section_keys all resolve.
+        Replaces the old form-string cross-check (and KNOWN_FORM_DEFECTS):
+        the structure is authoritative now, so there is nothing to align."""
         for path in sorted(_VERIFIED.glob("*.json")):
             if path.stem in {"verification_state", "run_report", "run_state"}:
                 continue
             tune = json.loads(path.read_text("utf-8"))
-            has_hard = bool(form_hard_warnings(tune))
-            if has_hard and path.stem not in KNOWN_FORM_DEFECTS:
-                offenders.add(path.stem)
-            if not has_hard and path.stem in KNOWN_FORM_DEFECTS:
-                stale.add(path.stem)
-        self.assertFalse(offenders, f"new hard form mismatches: {offenders}")
-        self.assertFalse(stale, f"fixed — drop from KNOWN_FORM_DEFECTS: {stale}")
+            self.assertIn("strains", tune, path.name)
+            self.assertEqual(validate_strains(tune), [], path.name)
 
 
 if __name__ == "__main__":

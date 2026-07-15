@@ -4,17 +4,6 @@
   "style": "TRADITIONAL",
   "tempo": "MEDIUM",
   "form": "8 BLUES",
-  "form_strains": {
-    "chorus": {
-      "bars": 8,
-      "labels": [
-        "BLUES"
-      ]
-    }
-  },
-  "section_labels": {
-    "A": "BLUES"
-  },
   "time_signature": "4/4",
   "title": "HOW LONG, HOW LONG BLUES",
   "page": 162,
@@ -39,59 +28,68 @@
     "recordings_partial": "Right and lower margins hold vertically-printed performer/year credits that are heavily cropped and hard to read; transcribed as best possible.",
     "composer_header": "Header prints '(Leroy CARR - L.C. 1928)'."
   },
-  "sections": {
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "C"
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "BLUES",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Fm"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "C",
+                "3": "F"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "C"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Fm"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "C",
-          "3": "F"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "C"
-        }
-      }
-    ]
-  },
+      ]
+    }
+  ],
   "key": {
     "tonic": "C",
     "mode": "major"
@@ -103,7 +101,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "e556bb165c3db7b25fc95ab229c2ac82ef975c650748e3f693ef6372a4d5ffcf",
+    "source_sha256": "b92cf3cba479d94491088c6abfceb782144b60ad69adb9ac8bdc4e4481ad21ed",
     "scorer": {
       "tonic": "C",
       "mode": "major",
@@ -122,7 +120,7 @@
       "blues-form"
     ],
     "sections": {
-      "A": "I to I7, IV to iv (minor-IV), back to I, V7, then I-IV-I cadence"
+      "BLUES": "I to I7, IV to iv (minor-IV), back to I, V7, then I-IV-I cadence"
     },
     "modulates": false
   }

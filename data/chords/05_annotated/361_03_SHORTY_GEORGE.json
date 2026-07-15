@@ -4,23 +4,6 @@
   "style": "SWING",
   "tempo": "MEDIUM FAST",
   "form": "32 A A B A",
-  "form_strains": {
-    "chorus": {
-      "bars": 32,
-      "labels": [
-        "A",
-        "A",
-        "B",
-        "A"
-      ]
-    }
-  },
-  "section_labels": {
-    "A": "A",
-    "A1": "A",
-    "B": "B",
-    "A2": "A"
-  },
   "time_signature": "4/4",
   "title": "SHORTY GEORGE",
   "page": 361,
@@ -34,224 +17,242 @@
     "other_text": "Below the grid prints 'Another different \"Shorty George\" by Jerome Kern - Johnny Mercer 1942'.",
     "A1_expansion": "Second printed row (A1) is a leading-arrow row copying section A positionally; empty/dash boxes take the same-position bar from A, explicit boxes override."
   },
-  "sections": {
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Db6/3",
-          "3": "Eo7"
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Db6/3",
+                "3": "Eo7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ebm7",
+                "3": "Ab7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Db6/3"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Db6"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Db",
+                "3": "Db7/3"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Gb",
+                "3": "Gbm"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "A7",
+                "3": "Ab7b9"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Db69"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Db6/3",
+                "3": "Eo7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ebm7",
+                "3": "Ab7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Db6/3"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Db6"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Db",
+                "3": "Db7/3"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Gb",
+                "3": "Gbm"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "A7",
+                "3": "Ab7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Db6"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "A13"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "D9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Db69"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Db9"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "A13"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "D9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Db",
+                "3": "A9"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Ab9"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Db6/3",
+                "3": "Eo7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ebm7",
+                "3": "Ab7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Db6/3"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Db6"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Db",
+                "3": "Db7/3"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Gb",
+                "3": "Gbm"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "A7",
+                "3": "Ab7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Db6"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Ebm7",
-          "3": "Ab7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Db6/3"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Db6"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Db",
-          "3": "Db7/3"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Gb",
-          "3": "Gbm"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "A7",
-          "3": "Ab7b9"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Db69"
-        }
-      }
-    ],
-    "A1": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Db6/3",
-          "3": "Eo7"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Ebm7",
-          "3": "Ab7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Db6/3"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Db6"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Db",
-          "3": "Db7/3"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Gb",
-          "3": "Gbm"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "A7",
-          "3": "Ab7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Db6"
-        }
-      }
-    ],
-    "B": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "A13"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "D9"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Db69"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Db9"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "A13"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "D9"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Db",
-          "3": "A9"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Ab9"
-        }
-      }
-    ],
-    "A2": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Db6/3",
-          "3": "Eo7"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Ebm7",
-          "3": "Ab7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Db6/3"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Db6"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Db",
-          "3": "Db7/3"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Gb",
-          "3": "Gbm"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "A7",
-          "3": "Ab7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Db6"
-        }
-      }
-    ]
-  },
+      ]
+    }
+  ],
   "key": {
     "tonic": "Db",
     "mode": "major"
@@ -263,7 +264,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "cb9ed5a34344f6390d5ba1f87722099267de12a881a1b16d5ed00f12e2b440ab",
+    "source_sha256": "53fd3dce382b0ae0c4c82402e95676f8b054765eb0f9ec8a139fe6c8a61f3e44",
     "scorer": {
       "tonic": "Db",
       "mode": "major",

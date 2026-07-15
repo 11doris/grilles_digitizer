@@ -70,7 +70,7 @@ class TestSectionPass(unittest.TestCase):
 
 
 class TestAdjudicationAndUpdate(unittest.TestCase):
-    def _fake_llm(self, tonic="F", mode="major", sections=("A",), local=None):
+    def _fake_llm(self, tonic="F", mode="major", sections=("BLUES",), local=None):
         return {
             "tonic": tonic, "mode": mode, "confidence": "high",
             "modulation_note": None,
@@ -95,7 +95,7 @@ class TestAdjudicationAndUpdate(unittest.TestCase):
         self.assertEqual(ann["opening"]["degree"], "I")
         self.assertNotIn("section_keys", ann)
         self.assertEqual(ann["harmonic_fingerprint"]["sections"],
-                         {"A": "blues chorus"})
+                         {"BLUES": "blues chorus"})
 
     def test_disagreement_goes_to_review(self):
         ann = self._annotate_au_privave(self._fake_llm(tonic="Bb"))
@@ -104,10 +104,10 @@ class TestAdjudicationAndUpdate(unittest.TestCase):
                             ann["key_annotation"]["review_reasons"]))
 
     def test_section_key_disagreement_goes_to_review(self):
-        llm = self._fake_llm(local={"A": {"tonic": "Bb", "mode": "major"}})
+        llm = self._fake_llm(local={"BLUES": {"tonic": "Bb", "mode": "major"}})
         ann = self._annotate_au_privave(llm)
         self.assertEqual(ann["key_annotation"]["status"], "needs_review")
-        self.assertTrue(any("section 'A'" in r for r in
+        self.assertTrue(any("section 'BLUES'" in r for r in
                             ann["key_annotation"]["review_reasons"]))
 
     def test_llm_failure_goes_to_review(self):
@@ -139,7 +139,7 @@ class TestAdjudicationAndUpdate(unittest.TestCase):
     def test_update_drops_section_key_equal_to_new_global(self):
         ann = self._annotate_au_privave(self._fake_llm())
         core.update_annotation(
-            ann, section_keys={"A": {"tonic": "F", "mode": "major"}})
+            ann, section_keys={"BLUES": {"tonic": "F", "mode": "major"}})
         self.assertNotIn("section_keys", ann)  # equal to global key -> dropped
 
     # --- §3.5 staleness handling -------------------------------------------
@@ -159,7 +159,7 @@ class TestAdjudicationAndUpdate(unittest.TestCase):
         core.update_annotation(
             ann, tonic="Bb", mode="major",
             fingerprint={"family": "12-bar blues", "tags": ["blues-form"],
-                         "sections": {"A": "Bb blues chorus"}})
+                         "sections": {"BLUES": "Bb blues chorus"}})
         self.assertNotIn("stale", ann["harmonic_fingerprint"])
 
     def test_key_change_proposes_rescanned_section_keys(self):
@@ -168,8 +168,8 @@ class TestAdjudicationAndUpdate(unittest.TestCase):
         ann = self._annotate_au_privave(self._fake_llm())
         core.update_annotation(ann, tonic="B", mode="major")
         proposals = ann["key_annotation"]["section_key_proposals"]
-        self.assertEqual(proposals["A"]["tonic"], "F")
-        self.assertEqual(proposals["A"]["mode"], "major")
+        self.assertEqual(proposals["BLUES"]["tonic"], "F")
+        self.assertEqual(proposals["BLUES"]["mode"], "major")
         self.assertNotIn("section_keys", ann)
 
     def test_next_save_clears_pending_proposals(self):
@@ -183,8 +183,8 @@ class TestAdjudicationAndUpdate(unittest.TestCase):
         ann = self._annotate_au_privave(self._fake_llm())
         core.update_annotation(ann, tonic="B", mode="major")
         core.update_annotation(
-            ann, section_keys={"A": {"tonic": "F", "mode": "major"}})
-        self.assertEqual(ann["section_keys"]["A"],
+            ann, section_keys={"BLUES": {"tonic": "F", "mode": "major"}})
+        self.assertEqual(ann["section_keys"]["BLUES"],
                          {"tonic": "F", "mode": "major"})
         self.assertNotIn("section_key_proposals", ann["key_annotation"])
 

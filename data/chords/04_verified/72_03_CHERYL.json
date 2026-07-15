@@ -4,21 +4,10 @@
   "style": "BE BOP (INSTRUMENTAL)",
   "tempo": "MEDIUM FAST",
   "form": "12 BLUES",
-  "form_strains": {
-    "chorus": {
-      "bars": 12,
-      "labels": [
-        "BLUES"
-      ]
-    }
-  },
   "time_signature": "4/4",
   "title": "CHERYL",
   "page": 72,
   "source": "Anthologie des grilles de jazz",
-  "section_labels": {
-    "A": "BLUES"
-  },
   "recordings": [
     "P.Newborn 61",
     "Ch.Baker 59",
@@ -32,85 +21,94 @@
     "choruses": "Below the grid: 'CHORUSES : BLUES in C (Type A')'.",
     "form_label": "Grid marked '12 BLUES'."
   },
-  "sections": {
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "C"
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "BLUES",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Dm7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Cmaj7",
+                "3": "Dm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Em7b5",
+                "3": "A7"
+              }
+            },
+            {
+              "bar": 9,
+              "beats": {
+                "1": "Dm7"
+              }
+            },
+            {
+              "bar": 10,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 11,
+              "beats": {
+                "1": "Cmaj7",
+                "3": "Dm7"
+              }
+            },
+            {
+              "bar": 12,
+              "beats": {
+                "1": "Em7",
+                "3": "Dm7"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Dm7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "C"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Gm7",
-          "3": "C7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Cmaj7",
-          "3": "Dm7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Em7b5",
-          "3": "A7"
-        }
-      },
-      {
-        "bar": 9,
-        "beats": {
-          "1": "Dm7"
-        }
-      },
-      {
-        "bar": 10,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 11,
-        "beats": {
-          "1": "Cmaj7",
-          "3": "Dm7"
-        }
-      },
-      {
-        "bar": 12,
-        "beats": {
-          "1": "Em7",
-          "3": "Dm7"
-        }
-      }
-    ]
-  }
+      ]
+    }
+  ]
 }

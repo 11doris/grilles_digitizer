@@ -4,17 +4,6 @@
   "style": "SWING",
   "tempo": "MEDIUM",
   "form": "12 BLUES",
-  "form_strains": {
-    "chorus": {
-      "bars": 12,
-      "labels": [
-        "BLUES"
-      ]
-    }
-  },
-  "section_labels": {
-    "A": "BLUES"
-  },
   "time_signature": "4/4",
   "title": "HEY LAWDY MAMA",
   "page": 156,
@@ -27,85 +16,94 @@
     "C.Basie 39- C.Cole",
     "A.Kirk 42- S.Price 40"
   ],
-  "sections": {
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "F"
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "BLUES",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 9,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 10,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 11,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 12,
+              "beats": {
+                "1": "F"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Gm7",
-          "3": "C7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Bb7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Bb7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 9,
-        "beats": {
-          "1": "Gm7",
-          "3": "C7"
-        }
-      },
-      {
-        "bar": 10,
-        "beats": {
-          "1": "Gm7",
-          "3": "C7"
-        }
-      },
-      {
-        "bar": 11,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 12,
-        "beats": {
-          "1": "F"
-        }
-      }
-    ]
-  },
+      ]
+    }
+  ],
   "key": {
     "tonic": "F",
     "mode": "major"
@@ -117,7 +115,7 @@
   },
   "key_annotation": {
     "status": "agreed",
-    "source_sha256": "61b4b69061ca92dad5499cfc3004da56797ee335b7ce707e9d34bfb98fa5240a",
+    "source_sha256": "731237d46e3b267c8c8db5dbbda00ae86f52819c0556c69930fde14c9946e916",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -137,7 +135,7 @@
       "ii-V-chains"
     ],
     "sections": {
-      "A": "Standard F blues: I with ii-V in bar 2, I7 to IV in bars 4-5, ii-V turnaround in bars 9-10 back to I"
+      "BLUES": "Standard F blues: I with ii-V in bar 2, I7 to IV in bars 4-5, ii-V turnaround in bars 9-10 back to I"
     },
     "modulates": false
   }
