@@ -1,5 +1,21 @@
 # Grilles Displayer — Implementation Spec
 
+> **Phase C (2026-07-15, strains model)** — supersedes this spec wherever they
+> disagree (see `strain_model_phase_c_plan.md`):
+> - Bundled tunes carry an ordered **`strains`** list (`name`, `role`,
+>   `parts[]` with printed `label`, optional `plays`, `bars`) instead of a
+>   `sections` map; `app.js` renders through a `tuneView()` adapter over it
+>   (a legacy-bundle fallback keeps old shapes rendering).
+> - Section identity is a field, never parsed from a key: captions come from
+>   part labels (primes kept), tints from `role`/strain name (chorus parts by
+>   label letter), grouping from the strains themselves. `section_keys`,
+>   similarity `section` refs and fingerprint prose are keyed by **generated
+>   part ids** (chorus `A`/`A1`, prefixed `verse_A`, bare aux `coda`).
+> - Variant `targets` and `coda_jump.from` are `{strain, part, bar}` anchors.
+> - The per-strain form badge ("16 A A") is **derived** from the structure
+>   (stored bars × plays + expanded labels); `form_strains`/`section_labels`
+>   no longer exist. The whole printed `form` string is retained verbatim.
+
 ## 1. Overview
 
 A fully static web app that browses the whole AGJ tune corpus — **one entry per

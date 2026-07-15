@@ -244,6 +244,16 @@ Each unit emits **one JSON file** containing a **single bare object** (not wrapp
 
 `title`, `page`, and `source` are written by the runner (§5); the model supplies the rest.
 
+> **Phase C note (2026-07-15):** this shape — a `sections` map keyed by
+> mechanical section keys — is the **raw digitizer output** (`02_raw`) and is
+> unchanged. Downstream tiers (`03_wip`/`04_verified`/`05_annotated`) store the
+> **strains model** instead (`strains[].parts[]` with explicit `name`/`role`/
+> `label`/`plays`; variant `targets` and `coda_jump.from` as `{strain, part,
+> bar}` anchors); the verifier converts a raw tune on first load via
+> `pipelines/chords/tools/migrate_to_strains.tune_to_strains`, and the few-shot
+> examples are down-converted back to this raw shape by `build_examples.py`.
+> See `strain_model_phase_c_plan.md`.
+
 ### 6.2 Field rules
 | Field | Rule |
 |---|---|

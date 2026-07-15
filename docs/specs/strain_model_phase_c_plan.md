@@ -1,6 +1,25 @@
 # Strain Model — Phase C Plan (explicit strains in the tune JSON)
 
-Status: **planned, not implemented.** This document is the concrete design and
+Status: **implemented 2026-07-15** (branch `strain-model-phase-c`; corpus
+migrated, all consumers switched, legacy machinery quarantined in
+`pipelines/chords/tools/migrate_to_strains.py`). Implementation notes vs this
+plan:
+- Map-keyed per-part fields (`section_keys`, similarity output, fingerprint
+  prose) use **generated part ids** (chorus parts as classic letters `A`/`A1`,
+  other strains `name_X`, single-part aux bare `name`) rather than raw
+  `{strain, part}` objects — generated from the structure, never parsed. 15
+  ids differ from the historical keys where labels contradicted them (8 blues
+  tunes' single chorus is `BLUES`, `A3`→`A2` renumberings, Ballin' the Jack's
+  `B`→`A1`).
+- The §7 `named_strains.js` export was skipped: the displayer reads explicit
+  roles from the data, and the verifier receives the vocabulary via its API.
+- The displayer's per-strain form badge is now derived from the structure, so
+  on charts whose printed bar total disagrees with the stored music
+  (Chattanooga's `50` over 49 stored bars) the badge shows the stored truth.
+- O5: no form-string fast path in the editor — the ingest conversion already
+  aligns the printed form; the editor is a manual per-part editor.
+
+This document was the concrete design and
 migration plan for making *strains* a first-class part of the tune JSON, so the
 strain / label / role of every section stops being encoded in — and re-parsed
 out of — the section-key string.
