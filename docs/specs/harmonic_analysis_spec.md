@@ -1,6 +1,7 @@
 # Harmonic Analysis Spec — functional symbolism for the displayer
 
-Status: **draft, agreed 2026-07-15** (owner decisions in §0)
+Status: **implemented 2026-07-15** (owner decisions in §0; implementation
+notes in §9)
 Depends on: strain model (Phase C), key annotation (05_annotated), displayer.
 
 The goal is memorization support: let a player read a tune as functions and
@@ -222,3 +223,33 @@ to the same file; the matcher does not change.
    "tunes containing block X" filter in the list pane.
 4. **QA (optional)** — LLM voter over flagged tunes only; surfacing in the
    run report.
+
+## 9. Implementation notes (2026-07-15, phases 1–3 shipped together)
+
+Decisions made during implementation, where they refine the sections above:
+
+- **Region confidence gate** (§2.3): a candidate region below confidence
+  0.7 (strictly-diatonic share) is not applied at all — a dominant cycle
+  "works toward" many keys without being in any of them (the I Got Rhythm
+  bridge must stay a dominant cycle, not a G-major region). Applied regions
+  below 0.8 are flagged. Growth rules: backward over chords functional in
+  the candidate key that have *left* the outer key, plus one pivot chord
+  diatonic in both; forward over chords the outer key cannot explain, plus
+  direct re-cadences onto the candidate tonic; the 4-bar minimum is
+  measured on the core (pivot excluded).
+- **Cross-part resolution** (§2.1): a part-final dominant may resolve into
+  the next part's first chord (the last part wraps to the first part of
+  its own strain), naming the dominant (V7/x) without drawing an arrow.
+- **Ascending passing diminished** spells sharp (`#io7`, not `biio7`).
+- **Slash targets are uppercase degrees** (`V7/II`, `subV7/IV`) whatever
+  chord sits on the target — matching the book's pages.
+- **Blocks carry no key field**; renderers don't need it.
+- **catalog.json format**: `{id, name, pattern, max_bars}` with pattern
+  tokens `<degree>:<quality-class|any>` (e.g. `"ii:min V:dom I:maj"`);
+  ii–V chains and dominant cycles are code-detected, not catalog entries.
+- **Overlay lanes ship in both chord views** (4-bar grid and book layout);
+  the comparison view keeps its own switch and gets no lanes. Toolbar:
+  the spelling switch and overlay toggle appear only on analyzed tunes.
+- `annotate_keys.py` recomputes analyses by *value comparison* (write on
+  change), so analyzer/catalog edits propagate without a version bump;
+  `version` stays in the JSON for readers.
