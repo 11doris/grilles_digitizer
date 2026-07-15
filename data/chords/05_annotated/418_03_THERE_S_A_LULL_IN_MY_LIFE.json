@@ -440,7 +440,7 @@
   "opening": {
     "degree": "I",
     "quality": "maj",
-    "chord": "F"
+    "chord": "Fmaj7"
   },
   "key_annotation": {
     "status": "verified",
@@ -478,10 +478,12 @@
   "harmonic_fingerprint": {
     "family": "AABA standard with verse",
     "tags": [
-      "ii-V-chains",
-      "chromatic-descent",
+      "verse-present",
+      "modulates",
       "turnaround-ending",
-      "verse-present"
+      "ii-V-chains",
+      "tritone-sub",
+      "passing-diminished"
     ],
     "sections": {
       "verse_A": "I with oscillating IV/I and V motion, cadencing on I",

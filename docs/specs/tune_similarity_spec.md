@@ -143,8 +143,10 @@ level (source fields are never altered):
   tune key:
   scorer (per-section pass, §3.2) and LLM (`local_key` in the fingerprint sections, §3.3) must
   agree, otherwise the tune goes to `needs_review` with the section named.
-* **`opening` — what the tune starts on.** The first chord of the tune (beat-1 chord of bar 1 of
-  the first section of the flattened form) expressed relative to the resolved `key`: `degree` is
+* **`opening` — what the tune starts on.** The first printed chord of the *form proper* — verse,
+  intro and other aux strains are skipped (2026-07-15 owner rule), so the field names what the
+  chorus (or the first main strain of a multi-strain tune) starts on — expressed relative to the
+  resolved `key`: `degree` is
   a roman numeral relative to the tune's own tonic (uppercase for `maj`/`dom`/`aug` quality
   classes, lowercase for `min`/`m7b5`/`dim`; accidental prefix for non-diatonic roots, e.g.
   `bIII`, and a minor tune starting on its tonic reads `i`), `quality` is the §4.1 quality class,

@@ -438,9 +438,9 @@
     "mode": "major"
   },
   "opening": {
-    "degree": "I",
-    "quality": "maj",
-    "chord": "F"
+    "degree": "vi",
+    "quality": "min",
+    "chord": "Dm7"
   },
   "key_annotation": {
     "status": "verified",
@@ -465,10 +465,9 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard with verse",
     "tags": [
-      "ii-V-chains",
       "verse-present",
-      "chromatic-descent",
-      "turnaround-ending"
+      "ii-V-chains",
+      "passing-diminished"
     ],
     "sections": {
       "verse_A": "I oscillating with v-ish Cm7, colored by Db diminished passing chord, all over F",

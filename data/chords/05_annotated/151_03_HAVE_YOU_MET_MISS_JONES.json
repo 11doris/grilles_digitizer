@@ -381,8 +381,8 @@
     "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "chromatic-third-cycle",
-      "turnaround-ending"
+      "circle-of-fifths",
+      "passing-diminished"
     ],
     "sections": {
       "A": "I with #i diminished passing chord, ii-V into vi-ii-V, then ii-V (Gm7-C7) back to I",
@@ -732,6 +732,20 @@
             "from": [
               6,
               3
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              4,
+              1
             ],
             "to": [
               7,

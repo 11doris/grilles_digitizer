@@ -334,9 +334,8 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",
     "tags": [
-      "borrowed-chords",
       "ii-V-chains",
-      "turnaround-ending"
+      "circle-of-fifths"
     ],
     "sections": {
       "A": "I-Imaj7 with bVI (Eb) and iv (Cm7) borrowed color, vi-V/... Am7-D7 back to I, ending ii-V turnaround",
@@ -582,22 +581,10 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
               1,
-              1
-            ],
-            "to": [
-              3,
-              1
-            ]
-          },
-          {
-            "id": "cadence_251",
-            "name": "ii–V–I",
-            "from": [
-              5,
               1
             ],
             "to": [

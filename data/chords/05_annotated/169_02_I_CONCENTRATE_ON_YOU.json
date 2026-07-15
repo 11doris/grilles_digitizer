@@ -539,10 +539,10 @@
   "harmonic_fingerprint": {
     "family": "64-bar AA'BC standard",
     "tags": [
+      "modulates",
       "ii-V-chains",
       "circle-of-fifths",
-      "turnaround-ending",
-      "chromatic-descent"
+      "tritone-sub"
     ],
     "sections": {
       "A": "Imaj7 to IV9#11, then iv minor (Ebm6/m7) and bVIIm (Abm) coloring, ii-V (Fm7b5-Bb7) with tritone-sub approach (B9-Bb7) resolving to I, ending on ii-V",
@@ -1204,14 +1204,14 @@
             ]
           },
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
-              10,
+              7,
               1
             ],
             "to": [
-              11,
+              15,
               1
             ]
           }

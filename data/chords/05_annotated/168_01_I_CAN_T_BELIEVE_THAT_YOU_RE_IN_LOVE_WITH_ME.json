@@ -277,8 +277,8 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "dominant-cycle-bridge",
-      "circle-of-fifths"
+      "circle-of-fifths",
+      "iv-minor-cadence"
     ],
     "sections": {
       "A": "IV-iv-I with V/V (D7) to V (G7) resolving to I",
@@ -581,6 +581,20 @@
             "type": "iiV",
             "from": [
               8,
+              1
+            ],
+            "to": [
+              8,
+              3
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              2,
               1
             ],
             "to": [

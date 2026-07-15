@@ -303,7 +303,7 @@
     "tags": [
       "ii-V-chains",
       "chromatic-descent",
-      "turnaround-ending"
+      "passing-diminished"
     ],
     "sections": {
       "A": "Opens on D9 (V/V) through Ab°7 to Gm7-Gbmaj7-Fmaj7, settling on IV with an F7#5 pivot",
@@ -374,6 +374,20 @@
             "bar": 8,
             "beat": 3,
             "numeral": "IV7#5"
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
           }
         ]
       },
@@ -508,6 +522,20 @@
             "bar": 8,
             "beat": 3,
             "numeral": "IV7#5"
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
           }
         ]
       },

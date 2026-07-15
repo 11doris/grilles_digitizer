@@ -357,9 +357,9 @@
     "mode": "major"
   },
   "opening": {
-    "degree": "vi",
-    "quality": "min",
-    "chord": "Cm"
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Eb"
   },
   "key_annotation": {
     "status": "verified",
@@ -391,9 +391,8 @@
   "harmonic_fingerprint": {
     "family": "16-bar verse + 32-bar AABA chorus",
     "tags": [
-      "turnaround-ending",
-      "relative-minor-opening",
-      "diminished-passing-chord"
+      "verse-present",
+      "tritone-sub"
     ],
     "sections": {
       "verse_A": "i-V in C minor (Cm-G7) for 4 bars, then I-V-I-V/vi in Eb (Eb-Bb7-Eb-G7)",

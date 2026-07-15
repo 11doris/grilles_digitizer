@@ -364,9 +364,9 @@
     "mode": "major"
   },
   "opening": {
-    "degree": "III",
+    "degree": "I",
     "quality": "maj",
-    "chord": "Gmaj9"
+    "chord": "Ebmaj7"
   },
   "key_annotation": {
     "status": "verified",
@@ -403,9 +403,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard with verse and coda",
     "tags": [
-      "ii-V-chains",
-      "chromatic-descent",
-      "turnaround-ending"
+      "verse-present"
     ],
     "sections": {
       "verse_A": "Descending ii-V chain: Gmaj-Gm7-C7 (ii-V into F), Fmaj-Fm7-Bb7 (ii-V into Eb)",

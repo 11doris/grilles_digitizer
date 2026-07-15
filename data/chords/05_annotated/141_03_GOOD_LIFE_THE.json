@@ -300,7 +300,7 @@
     "family": "32-bar ABAB' standard",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending"
+      "circle-of-fifths"
     ],
     "sections": {
       "A": "I(maj7/6) then ii-V/ii into iv (Fm) with line-cliché, ending on chained ii-V turnarounds (Dm7b5-G7 to Cm-F7)",
@@ -830,10 +830,10 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
-              6,
+              4,
               1
             ],
             "to": [

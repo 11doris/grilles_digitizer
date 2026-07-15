@@ -469,7 +469,7 @@
   "opening": {
     "degree": "I",
     "quality": "maj",
-    "chord": "G6"
+    "chord": "G"
   },
   "key_annotation": {
     "status": "verified",
@@ -505,7 +505,9 @@
       "ii-V-chains",
       "circle-of-fifths",
       "chromatic-descent",
-      "turnaround-ending"
+      "dominant-cycle",
+      "tritone-sub",
+      "passing-diminished"
     ],
     "sections": {
       "verse_A": "I with E7b9 secondary dominants tilting toward vi (Em), ending on ii-V (Am7-D7)",
@@ -911,6 +913,20 @@
             ],
             "to": [
               8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              7,
               1
             ]
           }
@@ -1501,6 +1517,32 @@
             "type": "half",
             "from": [
               8,
+              1
+            ],
+            "to": [
+              8,
+              3
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
+          },
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              7,
               1
             ],
             "to": [

@@ -291,9 +291,10 @@
   "harmonic_fingerprint": {
     "family": "34-bar AAB standard",
     "tags": [
+      "minor-key",
       "ii-V-chains",
       "chromatic-descent",
-      "turnaround-ending"
+      "tritone-sub"
     ],
     "sections": {
       "A": "i in Dm, moves to IV-area ii-V (Gm7-C13), chromatic descending dominants (Ab7-G7), cadences via Em7b5-Eb9",
@@ -492,6 +493,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              9,
+              1
+            ],
+            "to": [
+              10,
+              3
+            ]
+          }
         ]
       },
       "A1": {
@@ -679,6 +694,20 @@
             "to": [
               12,
               1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              9,
+              1
+            ],
+            "to": [
+              10,
+              3
             ]
           }
         ]

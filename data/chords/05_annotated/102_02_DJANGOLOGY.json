@@ -259,8 +259,7 @@
     "family": "28-bar AABA standard",
     "tags": [
       "chromatic-descent",
-      "ii-V-chains",
-      "turnaround-ending"
+      "passing-diminished"
     ],
     "sections": {
       "A": "Chromatic descending line iv#m7b5-dimo-iii-bIIIo-ii-V7-I resolving to G",
@@ -344,14 +343,14 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
             "from": [
-              5,
+              1,
               1
             ],
             "to": [
-              7,
+              5,
               1
             ]
           }
@@ -428,14 +427,14 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
             "from": [
-              5,
+              1,
               1
             ],
             "to": [
-              7,
+              5,
               1
             ]
           }
@@ -571,14 +570,14 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
             "from": [
-              5,
+              1,
               1
             ],
             "to": [
-              7,
+              5,
               1
             ]
           }

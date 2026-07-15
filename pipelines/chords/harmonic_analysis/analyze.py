@@ -458,10 +458,13 @@ def _parse_pattern_token(token: str) -> tuple[int, str]:
 def _match_blocks(events: list[Event], numerals: dict[int, str], ctx_at,
                   catalog: list[dict], links: list[dict]) -> list[dict]:
     """Catalog patterns matched over consecutive chords sharing one key
-    context, plus the code-detected ii–V chains and dominant cycles.
-    Overlaps: longest span wins, earlier catalog entry breaks ties (§2.4).
+    context, plus the code-detected ii–V chains, dominant cycles and
+    root-motion runs. Overlaps (§2.4): named blocks first (longest span
+    wins, earlier catalog entry breaks ties), then the runs clipped into
+    the gaps, then the generic plain cadences into whatever space is left.
     """
     candidates: list[tuple[int, int, int, dict]] = []  # (first,last,prio,block)
+    generic: list[tuple[int, int, int, dict]] = []
 
     for prio, entry in enumerate(catalog):
         tokens = entry["_tokens"]
@@ -477,7 +480,8 @@ def _match_blocks(events: list[Event], numerals: dict[int, str], ctx_at,
                      and (quality == "any" or e.chord.quality == quality)
                      for e, (pc, quality) in zip(window, tokens))
             if ok:
-                candidates.append((start, start + len(tokens) - 1, prio, {
+                pool = generic if entry.get("generic") else candidates
+                pool.append((start, start + len(tokens) - 1, prio, {
                     "id": entry["id"], "name": entry["name"],
                     "from": window[0].pos, "to": window[-1].pos}))
 
@@ -513,14 +517,101 @@ def _match_blocks(events: list[Event], numerals: dict[int, str], ctx_at,
                     "from": events[cycle_start].pos, "to": events[i].pos}))
             cycle_start = None
 
+    def fits(first: int, last: int) -> bool:
+        return all(last < c[0] or c[1] < first for c in chosen)
+
+    # Named blocks: longest span wins, earlier catalog entry breaks ties.
     candidates.sort(key=lambda c: (-(c[1] - c[0]), c[2], c[0]))
     chosen: list[tuple[int, int, int, dict]] = []
     for cand in candidates:
-        if any(not (cand[1] < c[0] or c[1] < cand[0]) for c in chosen):
-            continue
-        chosen.append(cand)
+        if fits(cand[0], cand[1]):
+            chosen.append(cand)
+
+    # Root-motion runs (chromatic descent, circle of fifths) are clipped
+    # into the gaps — a turnaround, chain or cycle keeps the book's name
+    # even when a longer run of falling roots passes through it — and
+    # survive when enough distinct roots remain.
+    for first, last, min_roots, block_id, name in _root_runs(events):
+        first, last = _clip(first, last, chosen)
+        if (first <= last and
+                len({e.chord.root_pc for e in events[first:last + 1]})
+                >= min_roots):
+            chosen.append((first, last, 0, {
+                "id": block_id, "name": name,
+                "from": events[first].pos, "to": events[last].pos}))
+
+    # The generic plain cadences take whatever space is left: inside a
+    # detected run the run is the better name for the same chords.
+    generic.sort(key=lambda c: (-(c[1] - c[0]), c[2], c[0]))
+    for cand in generic:
+        if fits(cand[0], cand[1]):
+            chosen.append(cand)
+
     chosen.sort(key=lambda c: c[0])
     return [c[3] for c in chosen]
+
+
+# Root-motion run kinds (§2.4): (min distinct roots, id, name, step rule).
+# The step rule maps (semitones down to the next root, non-primary steps
+# already taken) -> (allowed, counts as non-primary). The circle of fifths
+# allows one diminished-fifth step for the diatonic circle's IV–vii seam.
+_RUN_KINDS = (
+    (4, "chromatic_descent", "Chromatic descent",
+     lambda rel, used: (rel == 1, 0)),
+    (5, "circle_of_fifths", "Circle of fifths",
+     lambda rel, used: (rel == 7 or (rel == 6 and used == 0),
+                        1 if rel == 6 else 0)),
+)
+
+
+def _root_runs(events: list[Event]):
+    """Maximal root-motion stretches, per _RUN_KINDS kind. Same-root
+    reprints stay inside a run; a run of >= the kind's distinct-root minimum
+    yields (first, last, min_roots, id, name) trimmed to the motion — the
+    leading root's last print through the landing root's first print."""
+    for min_roots, block_id, name, step_ok in _RUN_KINDS:
+        i = 0
+        while i < len(events):
+            j, roots, used = i, 1, 0
+            while j + 1 < len(events):
+                rel = (events[j].chord.root_pc
+                       - events[j + 1].chord.root_pc) % 12
+                if rel == 0:
+                    j += 1
+                    continue
+                ok, secondary = step_ok(rel, used)
+                if not ok:
+                    break
+                used += secondary
+                roots += 1
+                j += 1
+            if roots >= min_roots:
+                first, last = i, j
+                while events[first + 1].chord.root_pc == events[first].chord.root_pc:
+                    first += 1
+                while events[last - 1].chord.root_pc == events[last].chord.root_pc:
+                    last -= 1
+                yield first, last, min_roots, block_id, name
+            i = j + 1
+
+
+def _clip(first: int, last: int, chosen: list[tuple]) -> tuple[int, int]:
+    """Clip the run [first, last] out of the chosen blocks' spans. A block
+    strictly inside the run empties it — runs are never split in two."""
+    spans = sorted((c[0], c[1]) for c in chosen)
+    changed = True
+    while changed and first <= last:
+        changed = False
+        for ci, cj in spans:
+            if cj < first or ci > last:
+                continue
+            if ci <= first:
+                first, changed = cj + 1, True
+            elif cj >= last:
+                last, changed = ci - 1, True
+            else:
+                return 1, 0  # a chosen block splits the run: drop it
+    return first, last
 
 
 def _pos_index(events: list[Event], pos: list) -> int:

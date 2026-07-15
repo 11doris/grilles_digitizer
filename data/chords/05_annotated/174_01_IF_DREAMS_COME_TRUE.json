@@ -325,7 +325,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABAB' standard",
     "tags": [
-      "ii-V-chains"
+      "circle-of-fifths"
     ],
     "sections": {
       "A": "ii-V-I loop (Gm-C7-F) repeated twice, ending on F7 as V7/IV",
@@ -770,6 +770,20 @@
             "from": [
               6,
               1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              2,
+              3
             ],
             "to": [
               7,

@@ -414,9 +414,9 @@
     }
   },
   "opening": {
-    "degree": "vi",
-    "quality": "min",
-    "chord": "Gm"
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bb"
   },
   "key_annotation": {
     "status": "verified",
@@ -459,9 +459,9 @@
     "family": "16-bar verse + 32-bar chorus (multi-strain)",
     "tags": [
       "verse-present",
-      "circle-of-fifths",
-      "tritone-sub",
-      "relative-minor-verse"
+      "modulates",
+      "iv-minor-cadence",
+      "tritone-sub"
     ],
     "sections": {
       "verse_A": "i with bVI7-V (Gm/Eb7/D7) for four bars, then A7-D (V/V to the dominant) as a half-cadence gesture",

@@ -121,6 +121,32 @@ marks:
 sequence of a key context (§5). Overlapping matches: longest span wins, ties
 broken by catalog order.
 
+Beyond the catalog patterns and the code-detected ii–V chains / dominant
+cycles, two **root-motion runs** are detected (2026-07-15, sourced from the
+recurring LLM tag vocabulary): a *chromatic descent* (≥ 4 distinct roots
+falling in half steps) and a *circle of fifths* (≥ 5 distinct roots falling
+in fifths; one diminished-fifth step allowed for the diatonic circle's
+IV–vii seam). Selection happens in three passes: **named blocks first**
+(catalog + chains + cycles, longest span wins as above), then the runs are
+**clipped into the gaps** — a turnaround, chain or cycle keeps the book's
+name even when a longer run of falling roots passes through it — and
+finally the **generic** plain cadences (`"generic": true` in catalog.json:
+`cadence_251`, `cadence_251_minor`) take whatever space is left, so a
+cadence that merely ends a detected run does not break the run up.
+
+**Tags** (`harmonic_fingerprint.tags`) are derived from this analysis, not
+from the LLM: the displayer's tag filter menu is built from these strings,
+so each one must mean the same thing on every tune. Vocabulary
+(`harmonic_analysis/tags.py`): `blues-form` / `minor-blues` (form says
+BLUES), `minor-key`, `verse-present`, `modulates` (section keys or a
+modulation region), `turnaround-ending` (turnaround block in a part's last
+two bars), `ii-V-chains`, `circle-of-fifths`, `chromatic-descent`,
+`dominant-cycle` / `dominant-cycle-bridge` (cycle in a B part),
+`rhythm-changes-bridge`, `backdoor-cadence`, `iv-minor-cadence`,
+`tritone-sub`, `passing-diminished`. Plain ii–V–I cadences are deliberately
+untagged (they would tag nearly the whole corpus). Tags are recomputed
+wherever the analysis is — LLM- or human-typed tags never survive.
+
 ## 3. JSON shape (in 05_annotated)
 
 ```json
@@ -192,7 +218,11 @@ to the same file; the matcher does not change.
 
 - `annotate_keys.py`: after key resolution, compute `harmonic_analysis`
   (fresh runs, `--reuse-annotation`, `--set-key`, and a version-bump sweep).
-  `--status` counts files with an outdated analysis version.
+  The sweep (`refresh_derived_fields`) covers all deterministic derived
+  fields — `harmonic_analysis`, `opening`, and the block-derived
+  `harmonic_fingerprint.tags` (§2.4) — so a rule change re-materializes the
+  corpus on the next run. `--status` counts files whose derived fields are
+  outdated.
 - `key_annotation/core.py`: `build_annotation`, `carry_annotation`, and
   `update_annotation` all call the analyzer — the key verifier therefore
   **needs no new invalidation logic**; a key correction regenerates the

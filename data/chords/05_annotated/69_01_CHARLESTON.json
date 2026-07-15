@@ -370,9 +370,9 @@
     }
   },
   "opening": {
-    "degree": "vi",
-    "quality": "min",
-    "chord": "Gm7"
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bb"
   },
   "key_annotation": {
     "status": "verified",
@@ -404,9 +404,10 @@
     "family": "verse-and-chorus standard (16-bar verse + 32-bar ABAC chorus)",
     "tags": [
       "verse-present",
-      "ii-V-chains",
-      "turnaround-ending",
-      "circle-of-fifths"
+      "modulates",
+      "dominant-cycle",
+      "iv-minor-cadence",
+      "passing-diminished"
     ],
     "sections": {
       "verse_A": "Gm7-Em7b5-Eb-D7 to Gm, dwelling on the relative minor with its own V7 (D7)",

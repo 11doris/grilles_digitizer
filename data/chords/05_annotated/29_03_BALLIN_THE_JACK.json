@@ -272,8 +272,8 @@
   },
   "opening": {
     "degree": "VI",
-    "quality": "maj",
-    "chord": "G"
+    "quality": "dom",
+    "chord": "G7"
   },
   "key_annotation": {
     "status": "verified",
@@ -308,10 +308,10 @@
   "harmonic_fingerprint": {
     "family": "16-bar verse + 16-bar chorus (AA / AA')",
     "tags": [
-      "dominant-cycle-bridge",
-      "circle-of-fifths",
-      "chromatic-descent",
-      "turnaround-ending"
+      "verse-present",
+      "modulates",
+      "tritone-sub",
+      "passing-diminished"
     ],
     "sections": {
       "verse_A": "Opens on I of G with chromatic dominants (A7-D7, Eb7, C7-F7, Gb7, Eb7) closing on D7, the V of G",

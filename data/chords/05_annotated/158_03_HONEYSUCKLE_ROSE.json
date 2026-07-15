@@ -411,9 +411,9 @@
     "mode": "major"
   },
   "opening": {
-    "degree": "I",
-    "quality": "maj",
-    "chord": "F"
+    "degree": "ii",
+    "quality": "min",
+    "chord": "Gm7"
   },
   "key_annotation": {
     "status": "verified",
@@ -445,10 +445,9 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
+      "verse-present",
       "ii-V-chains",
-      "dominant-cycle-bridge",
-      "turnaround-ending",
-      "verse-present"
+      "circle-of-fifths"
     ],
     "sections": {
       "verse_A": "I with secondary dominants, moving through vi/D7 and repeated ii-V (Gm7-C7) back toward I, diminished passing chord",
@@ -1182,6 +1181,18 @@
               4,
               3
             ]
+          },
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              5,
+              3
+            ],
+            "to": [
+              7,
+              3
+            ]
           }
         ]
       },
@@ -1452,6 +1463,18 @@
             ],
             "to": [
               4,
+              3
+            ]
+          },
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              5,
+              3
+            ],
+            "to": [
+              7,
               3
             ]
           }

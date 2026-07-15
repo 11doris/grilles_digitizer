@@ -376,9 +376,9 @@
     }
   },
   "opening": {
-    "degree": "vi",
-    "quality": "min",
-    "chord": "Am"
+    "degree": "I",
+    "quality": "maj",
+    "chord": "C"
   },
   "key_annotation": {
     "status": "verified",
@@ -414,9 +414,10 @@
     "family": "32-bar ABAC standard with 16-bar verse",
     "tags": [
       "verse-present",
-      "dominant-cycle-bridge",
-      "turnaround-ending",
-      "ii-V-chains"
+      "modulates",
+      "circle-of-fifths",
+      "dominant-cycle",
+      "iv-minor-cadence"
     ],
     "sections": {
       "verse_A": "i-V/V-V-i in A minor, then D7-G7-C tonicizing the relative major, ending on E7 (V of A minor)",
@@ -528,6 +529,20 @@
             "type": "fifth",
             "from": [
               6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              2,
               1
             ],
             "to": [
@@ -654,6 +669,20 @@
             ],
             "to": [
               8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              6,
               1
             ]
           }

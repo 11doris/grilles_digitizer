@@ -364,9 +364,11 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "ii-V-chains",
+      "modulates",
       "chromatic-descent",
-      "turnaround-ending"
+      "dominant-cycle",
+      "tritone-sub",
+      "passing-diminished"
     ],
     "sections": {
       "A": "I with V/ii, ii-V, chromatic inner-voice descent (Am-F#m7b5-Fm6-Em7-Ebo7-Dm7-G7) ending on V",
@@ -554,6 +556,18 @@
             "to": [
               2,
               3
+            ]
+          },
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              6,
+              1
             ]
           }
         ]
@@ -754,6 +768,18 @@
             "to": [
               2,
               3
+            ]
+          },
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              6,
+              1
             ]
           },
           {

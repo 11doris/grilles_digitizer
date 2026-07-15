@@ -369,8 +369,8 @@
   },
   "opening": {
     "degree": "I",
-    "quality": "dom",
-    "chord": "F7"
+    "quality": "maj",
+    "chord": "F"
   },
   "key_annotation": {
     "status": "verified",
@@ -395,9 +395,10 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard with 16-bar verse",
     "tags": [
+      "verse-present",
       "chromatic-descent",
-      "turnaround-ending",
-      "ii-V-chains"
+      "dominant-cycle",
+      "tritone-sub"
     ],
     "sections": {
       "verse_A": "Chromatic descent F7-E7#5-Eb7-D7 to V(G7)-V7(C7)-I, ending on ii-V setup",
@@ -624,6 +625,18 @@
             "to": [
               4,
               1
+            ]
+          },
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
             ]
           }
         ]

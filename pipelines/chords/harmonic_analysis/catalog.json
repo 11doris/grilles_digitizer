@@ -57,12 +57,14 @@
     "id": "cadence_251",
     "name": "ii–V–I",
     "pattern": "ii:min V:dom I:maj",
-    "max_bars": 4
+    "max_bars": 4,
+    "generic": true
   },
   {
     "id": "cadence_251_minor",
     "name": "iiø–V–i",
     "pattern": "ii:m7b5 V:dom I:min",
-    "max_bars": 4
+    "max_bars": 4,
+    "generic": true
   }
 ]

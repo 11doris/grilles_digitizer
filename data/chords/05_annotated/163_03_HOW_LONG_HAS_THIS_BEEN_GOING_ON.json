@@ -372,8 +372,8 @@
     "family": "32-bar AABA standard",
     "tags": [
       "chromatic-descent",
-      "ii-V-chains",
-      "turnaround-ending"
+      "tritone-sub",
+      "passing-diminished"
     ],
     "sections": {
       "A": "V7/G with chromatic diminished passing motion, descending ii-chords (Bm7-Am7) with chromatic diminished, resolving to I (G)",
@@ -525,6 +525,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              4,
+              3
+            ],
+            "to": [
+              6,
+              3
+            ]
+          }
         ]
       },
       "A1": {
@@ -664,6 +678,20 @@
             "to": [
               8,
               1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              4,
+              3
+            ],
+            "to": [
+              6,
+              3
             ]
           }
         ]
@@ -1027,6 +1055,20 @@
             "to": [
               8,
               1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              4,
+              3
+            ],
+            "to": [
+              6,
+              3
             ]
           }
         ]

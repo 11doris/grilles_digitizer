@@ -361,9 +361,9 @@
     "mode": "major"
   },
   "opening": {
-    "degree": "I",
-    "quality": "maj",
-    "chord": "Bb"
+    "degree": "VI",
+    "quality": "dom",
+    "chord": "G7"
   },
   "key_annotation": {
     "status": "verified",
@@ -388,10 +388,7 @@
   "harmonic_fingerprint": {
     "family": "16-bar verse + 32-bar AB refrain",
     "tags": [
-      "circle-of-fifths",
-      "ii-V-chains",
-      "verse-present",
-      "turnaround-ending"
+      "verse-present"
     ],
     "sections": {
       "verse_A": "I with V7 stabs (bars 1,5), moving to I7 (V7/IV) in bars 7-8",

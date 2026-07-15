@@ -375,9 +375,9 @@
     }
   },
   "opening": {
-    "degree": "IV",
-    "quality": "dom",
-    "chord": "Eb7"
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Bb"
   },
   "key_annotation": {
     "status": "verified",
@@ -425,9 +425,7 @@
     "family": "multi-section standard with verse",
     "tags": [
       "verse-present",
-      "turnaround-ending",
-      "ii-V-chains",
-      "diminished-passing"
+      "modulates"
     ],
     "sections": {
       "verse_A": "Eb7 to I, then V7-I in the local key (D7-G)",

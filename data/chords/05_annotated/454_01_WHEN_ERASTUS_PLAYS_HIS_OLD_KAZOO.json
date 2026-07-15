@@ -458,9 +458,9 @@
     }
   },
   "opening": {
-    "degree": "vi",
-    "quality": "min",
-    "chord": "Fm"
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Ab"
   },
   "key_annotation": {
     "status": "verified",
@@ -507,10 +507,10 @@
   "harmonic_fingerprint": {
     "family": "Verse plus 32-bar AABA chorus",
     "tags": [
-      "dominant-cycle-bridge",
-      "circle-of-fifths",
-      "turnaround-ending",
-      "verse-present"
+      "verse-present",
+      "modulates",
+      "chromatic-descent",
+      "tritone-sub"
     ],
     "sections": {
       "verse_A": "i-bVI7 alternation with V7 (C7) tonicizing i, closing ii( b5)-V into F minor",
@@ -740,6 +740,20 @@
             "from": [
               8,
               3
+            ],
+            "to": [
+              8,
+              4
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              8,
+              1
             ],
             "to": [
               8,

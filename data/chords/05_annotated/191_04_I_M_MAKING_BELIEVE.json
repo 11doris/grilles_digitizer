@@ -235,8 +235,8 @@
     "family": "20-bar AA' standard",
     "tags": [
       "ii-V-chains",
-      "chromatic-descent",
-      "turnaround-ending"
+      "circle-of-fifths",
+      "passing-diminished"
     ],
     "sections": {
       "A": "I with V7/ii and V7/iii flourishes, ii (Cm) line-cliché, then F7 to I; closes on ii7b5-V7 back to Bb",
@@ -707,6 +707,18 @@
             "to": [
               8,
               3
+            ]
+          },
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              9,
+              1
+            ],
+            "to": [
+              12,
+              1
             ]
           }
         ]

@@ -312,7 +312,7 @@
     "tags": [
       "ii-V-chains",
       "chromatic-descent",
-      "turnaround-ending"
+      "tritone-sub"
     ],
     "sections": {
       "A": "Chain of descending ii-V cells resolving to Db (I), with #11 dominants and chromatic descent, ending on a turnaround of dominants",
@@ -642,6 +642,18 @@
             "to": [
               7,
               3
+            ]
+          },
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              8,
+              1
+            ],
+            "to": [
+              8,
+              4
             ]
           }
         ]

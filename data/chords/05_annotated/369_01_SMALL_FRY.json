@@ -390,9 +390,10 @@
   "harmonic_fingerprint": {
     "family": "36-bar AABA-variant standard",
     "tags": [
+      "verse-present",
       "ii-V-chains",
-      "turnaround-ending",
-      "circle-of-fifths"
+      "circle-of-fifths",
+      "dominant-cycle"
     ],
     "sections": {
       "verse_A": "I with repeated V/V–V (D7b9-G7), I-I7 to IV with Ab7 chromatic, back to I and D9-G7",
@@ -1133,14 +1134,14 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
-              3,
+              2,
               1
             ],
             "to": [
-              4,
+              5,
               1
             ]
           },
@@ -1456,10 +1457,10 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
-              3,
+              2,
               1
             ],
             "to": [

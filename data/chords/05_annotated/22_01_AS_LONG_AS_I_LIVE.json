@@ -306,10 +306,10 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
+      "turnaround-ending",
       "circle-of-fifths",
-      "dominant-cycle-bridge",
-      "ii-V-chains",
-      "turnaround-ending"
+      "dominant-cycle",
+      "passing-diminished"
     ],
     "sections": {
       "A": "I then dominant cycle iii-VI7-II7-V7-V/IV(C7) resolving to I, ending Gm7-C7 (ii-V)",
@@ -453,6 +453,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
           {
             "id": "turnaround_1625",
             "name": "Turnaround I–vi–ii–V",

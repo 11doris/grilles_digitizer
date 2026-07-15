@@ -311,9 +311,8 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "dominant-cycle-bridge",
       "circle-of-fifths",
-      "ii-V-chains"
+      "passing-diminished"
     ],
     "sections": {
       "A": "I with secondary dominants (V/vi G7, V/ii C7b9), Fm7b5, Imaj7-C7-Fm7-Db7-F7-Bb7 back to I",
@@ -665,6 +664,20 @@
             ],
             "to": [
               8,
+              3
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              7,
               3
             ]
           }

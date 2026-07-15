@@ -287,9 +287,9 @@
     "mode": "major"
   },
   "opening": {
-    "degree": "I",
+    "degree": "IV",
     "quality": "maj",
-    "chord": "Bb"
+    "chord": "Eb"
   },
   "key_annotation": {
     "status": "verified",
@@ -321,10 +321,9 @@
   "harmonic_fingerprint": {
     "family": "verse-and-chorus standard",
     "tags": [
-      "ii-V-chains",
-      "turnaround-ending",
-      "chromatic-descent",
-      "verse-present"
+      "verse-present",
+      "dominant-cycle",
+      "iv-minor-cadence"
     ],
     "sections": {
       "verse_A": "I with V/V-V (C7-F7) motion, all resolving to I in Bb",

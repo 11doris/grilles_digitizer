@@ -433,7 +433,7 @@
   "opening": {
     "degree": "I",
     "quality": "maj",
-    "chord": "C"
+    "chord": "Cmaj7"
   },
   "key_annotation": {
     "status": "verified",
@@ -458,10 +458,12 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard with verse",
     "tags": [
-      "ii-V-chains",
       "verse-present",
-      "turnaround-ending",
-      "circle-of-fifths"
+      "ii-V-chains",
+      "circle-of-fifths",
+      "dominant-cycle",
+      "tritone-sub",
+      "passing-diminished"
     ],
     "sections": {
       "verse_A": "I with I-#Io7 chromatic, ii-V motion, descending dominants Bbm7b5-A7-Ab7-G7 back to V",
@@ -1517,11 +1519,11 @@
             ]
           },
           {
-            "id": "cadence_251_minor",
-            "name": "iiø–V–i",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
-              5,
-              1
+              2,
+              3
             ],
             "to": [
               6,

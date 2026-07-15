@@ -374,7 +374,8 @@
     "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending"
+      "circle-of-fifths",
+      "passing-diminished"
     ],
     "sections": {
       "A": "ii-V (Fm7-Bb7) to I (Eb) in bar 3, then V/V (F7) and G7#5-C9 turnaround, ending Fm7-Eo7",
@@ -770,15 +771,15 @@
             ]
           },
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
-              6,
+              4,
               1
             ],
             "to": [
               7,
-              1
+              3
             ]
           }
         ]

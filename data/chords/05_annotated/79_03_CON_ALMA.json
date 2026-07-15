@@ -366,8 +366,8 @@
     "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "major-thirds-cycle",
-      "tonic-pedal"
+      "chromatic-descent",
+      "tritone-sub"
     ],
     "sections": {
       "A": "Starts on I (Emaj7) then tonicizes descending major-third centers: bVII (Eb) in bar 4, bVI (Db) in bar 5, and V-area (C) in bar 8, each approached by its own ii-V, ending with a ii-V (F#m7-B7) back to I",
@@ -592,6 +592,20 @@
               4
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              3,
+              3
+            ],
+            "to": [
+              5,
+              1
+            ]
+          }
         ]
       },
       "A1": {
@@ -781,6 +795,20 @@
             ],
             "to": [
               8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              3,
+              3
+            ],
+            "to": [
+              5,
               1
             ]
           }
@@ -1077,6 +1105,20 @@
             ],
             "to": [
               8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              3,
+              3
+            ],
+            "to": [
+              5,
               1
             ]
           }

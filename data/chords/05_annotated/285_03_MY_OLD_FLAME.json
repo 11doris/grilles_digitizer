@@ -440,8 +440,8 @@
     "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending",
-      "chromatic-descent"
+      "circle-of-fifths",
+      "tritone-sub"
     ],
     "sections": {
       "A": "I with bVI chromatic passing, iii-VI to ii, then ii-V and back to I with chromatic ii-V motion, ending on V7",
@@ -622,6 +622,20 @@
               3
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              4,
+              4
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
         ]
       },
       "A1": {
@@ -795,6 +809,20 @@
             "to": [
               8,
               4
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              4,
+              4
+            ],
+            "to": [
+              7,
+              1
             ]
           }
         ]
@@ -1236,11 +1264,11 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
-              7,
-              1
+              4,
+              4
             ],
             "to": [
               8,

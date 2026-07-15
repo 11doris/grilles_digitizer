@@ -384,9 +384,9 @@
     }
   },
   "opening": {
-    "degree": "ii",
-    "quality": "min",
-    "chord": "Fm7"
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Ebmaj7"
   },
   "key_annotation": {
     "status": "verified",
@@ -424,9 +424,12 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard with verse",
     "tags": [
+      "verse-present",
+      "modulates",
       "ii-V-chains",
-      "turnaround-ending",
-      "verse-present"
+      "circle-of-fifths",
+      "dominant-cycle",
+      "tritone-sub"
     ],
     "sections": {
       "verse_A": "ii-V to I in Eb, then ii-Vs and minor chords ending on V (Bb7) as turnaround",
@@ -607,6 +610,18 @@
             ],
             "to": [
               2,
+              1
+            ]
+          },
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              8,
               1
             ]
           }

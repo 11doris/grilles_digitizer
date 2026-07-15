@@ -429,8 +429,11 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard (expanded)",
     "tags": [
-      "turnaround-ending",
-      "chromatic-descent"
+      "modulates",
+      "ii-V-chains",
+      "chromatic-descent",
+      "tritone-sub",
+      "passing-diminished"
     ],
     "sections": {
       "A": "I with I dim passing, V7, ii-V motion, ends on V7 turnaround",
@@ -935,6 +938,20 @@
             ],
             "to": [
               15,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              9,
+              1
+            ],
+            "to": [
+              12,
               1
             ]
           }

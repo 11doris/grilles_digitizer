@@ -434,9 +434,12 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "ii-V-chains",
+      "verse-present",
       "turnaround-ending",
-      "verse-present"
+      "circle-of-fifths",
+      "dominant-cycle",
+      "iv-minor-cadence",
+      "passing-diminished"
     ],
     "sections": {
       "verse_A": "I with V/ii, V/V, ii-V motion cycling back to I, ending on altered dominant",
@@ -624,6 +627,18 @@
             ],
             "to": [
               5,
+              1
+            ]
+          },
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              5,
+              3
+            ],
+            "to": [
+              8,
               1
             ]
           }

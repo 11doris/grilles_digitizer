@@ -313,9 +313,11 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
+      "modulates",
       "ii-V-chains",
-      "turnaround-ending",
-      "chromatic-descent"
+      "chromatic-descent",
+      "tritone-sub",
+      "passing-diminished"
     ],
     "sections": {
       "A": "I with V7#5 vamp, then G7-Gb7-F9 chromatic descent to V/V, ii-V back to I with turnaround",
@@ -511,6 +513,20 @@
               3
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          }
         ]
       },
       "A1": {
@@ -675,6 +691,20 @@
             ],
             "to": [
               7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
               1
             ]
           }
@@ -1024,6 +1054,20 @@
             ],
             "to": [
               7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "chromatic_descent",
+            "name": "Chromatic descent",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
               1
             ]
           }

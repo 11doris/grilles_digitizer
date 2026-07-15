@@ -366,9 +366,9 @@
     "mode": "major"
   },
   "opening": {
-    "degree": "I",
-    "quality": "maj",
-    "chord": "F"
+    "degree": "II",
+    "quality": "dom",
+    "chord": "G7"
   },
   "key_annotation": {
     "status": "verified",
@@ -394,9 +394,7 @@
     "family": "16-bar verse + 32-bar AABA chorus",
     "tags": [
       "verse-present",
-      "ii-V-chains",
-      "turnaround-ending",
-      "circle-of-fifths"
+      "tritone-sub"
     ],
     "sections": {
       "verse_A": "I alternating with V7 (F to C7), G7-C7 (V/V-V) into I",

@@ -508,8 +508,7 @@
     "tags": [
       "ii-V-chains",
       "circle-of-fifths",
-      "dominant-cycle-bridge",
-      "turnaround-ending"
+      "passing-diminished"
     ],
     "sections": {
       "A": "I with V/ii, then ii-V into IV (Ebmaj7) shifting to iv (Ebm) minor plagal, back to I, then II7 (C7) as V/V and ii-V turnaround ending on V (F7#5)",
@@ -1139,38 +1138,14 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
               1,
               1
             ],
             "to": [
-              3,
-              1
-            ]
-          },
-          {
-            "id": "cadence_251",
-            "name": "ii–V–I",
-            "from": [
-              5,
-              1
-            ],
-            "to": [
-              7,
-              1
-            ]
-          },
-          {
-            "id": "cadence_251",
-            "name": "ii–V–I",
-            "from": [
-              9,
-              1
-            ],
-            "to": [
-              11,
+              12,
               1
             ]
           },

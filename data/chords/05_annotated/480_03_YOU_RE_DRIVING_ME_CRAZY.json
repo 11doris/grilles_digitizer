@@ -380,9 +380,9 @@
     }
   },
   "opening": {
-    "degree": "VII",
-    "quality": "dom",
-    "chord": "D7"
+    "degree": "I",
+    "quality": "maj",
+    "chord": "Eb"
   },
   "key_annotation": {
     "status": "verified",
@@ -421,9 +421,9 @@
     "family": "32-bar AABA standard with verse",
     "tags": [
       "verse-present",
-      "ii-V-chains",
-      "circle-of-fifths",
-      "turnaround-ending"
+      "modulates",
+      "turnaround-ending",
+      "passing-diminished"
     ],
     "sections": {
       "verse_A": "Circle-of-fifths chain D7-Gm-C7-Fm then Eb, ending on V7 (Bb7)",

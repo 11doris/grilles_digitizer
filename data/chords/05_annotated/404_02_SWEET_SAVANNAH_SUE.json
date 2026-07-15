@@ -389,11 +389,12 @@
   "harmonic_fingerprint": {
     "family": "verse-and-chorus standard (16 + 32 bar)",
     "tags": [
-      "dominant-cycle-bridge",
-      "circle-of-fifths",
-      "ii-V-chains",
       "verse-present",
-      "turnaround-ending"
+      "ii-V-chains",
+      "dominant-cycle",
+      "iv-minor-cadence",
+      "tritone-sub",
+      "passing-diminished"
     ],
     "sections": {
       "verse_A": "I-V7-I then dwells on vi (Gm) with its V7/vi (D7), ending on bVI7 (Gb7)",

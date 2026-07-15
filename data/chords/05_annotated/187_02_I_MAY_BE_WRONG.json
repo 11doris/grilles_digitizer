@@ -322,8 +322,8 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "turnaround-ending",
-      "ii-V-chains"
+      "circle-of-fifths",
+      "iv-minor-cadence"
     ],
     "sections": {
       "A": "I-Imaj7-I7 to IV-iv, then I with V/V-V-I cadence",
@@ -681,6 +681,18 @@
             ],
             "to": [
               2,
+              1
+            ]
+          },
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              8,
               1
             ]
           }

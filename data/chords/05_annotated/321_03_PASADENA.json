@@ -398,9 +398,9 @@
     }
   },
   "opening": {
-    "degree": "bIII",
+    "degree": "I",
     "quality": "maj",
-    "chord": "Eb"
+    "chord": "C"
   },
   "key_annotation": {
     "status": "verified",
@@ -448,8 +448,9 @@
     "family": "verse-and-chorus standard (20-bar verse + 32-bar ABAC chorus)",
     "tags": [
       "verse-present",
-      "circle-of-fifths",
-      "turnaround-ending"
+      "modulates",
+      "dominant-cycle",
+      "tritone-sub"
     ],
     "sections": {
       "verse_A": "I with V7 (Bb7) motion, iii (Gm), ends with B7-Bb7 chromatic dominant approach",

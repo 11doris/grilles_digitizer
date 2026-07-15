@@ -287,8 +287,8 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABCD standard",
     "tags": [
-      "ii-V-chains",
-      "turnaround-ending"
+      "circle-of-fifths",
+      "tritone-sub"
     ],
     "sections": {
       "A": "ii-V-I in Ab (Bbm7-Eb7b9-Abmaj7) with repeated ii-V loops, ending on I to diminished passing chord",
@@ -464,10 +464,10 @@
             ]
           },
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
-              6,
+              4,
               1
             ],
             "to": [

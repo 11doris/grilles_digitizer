@@ -300,9 +300,8 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "ii-V-chains",
-      "chromatic-descent",
-      "turnaround-ending"
+      "circle-of-fifths",
+      "tritone-sub"
     ],
     "sections": {
       "A": "I with chromatic altered-dominant motion, iv (Bbm6) borrowed, ends on ii-V (Gm7-C7)",
@@ -859,11 +858,11 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
-              5,
-              1
+              3,
+              3
             ],
             "to": [
               6,

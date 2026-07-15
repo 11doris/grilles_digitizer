@@ -376,9 +376,9 @@
     }
   },
   "opening": {
-    "degree": "I",
-    "quality": "maj",
-    "chord": "F"
+    "degree": "V",
+    "quality": "dom",
+    "chord": "C7"
   },
   "key_annotation": {
     "status": "verified",
@@ -409,8 +409,9 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard with 16-bar verse",
     "tags": [
-      "turnaround-ending",
-      "circle-of-fifths"
+      "verse-present",
+      "modulates",
+      "passing-diminished"
     ],
     "sections": {
       "verse_A": "I-IV7-I with a Db dim passing chord into V7, cadencing on I",

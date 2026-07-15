@@ -564,17 +564,51 @@ def degree_name(root_pc: int, tonic_pc: int, quality: str) -> str:
     return name
 
 
+# Strains that precede or frame the form proper. `opening` skips them: it
+# names the chord the chorus (or the first main strain) starts on, not the
+# verse's or intro's first chord.
+_OPENING_SKIP_ROLES = frozenset({"verse", "aux"})
+_OPENING_SKIP_NAMES = frozenset({"verse", "intro", "coda", "interlude",
+                                 "transition"})
+
+
 def compute_opening(tune: dict, tonic: str, mode: str) -> dict | None:
-    """The `opening` field: first sounding chord of the flattened form,
-    expressed relative to the resolved key. Purely computed — no voter, no
-    LLM. Returns None when the tune has no sounding chord at all.
+    """The `opening` field: the first printed chord of the form proper —
+    verse, intro and other aux strains are skipped, so the field names what
+    the chorus (or the first main strain) starts on — expressed relative to
+    the resolved key. Purely computed — no voter, no LLM. Falls back to the
+    first sounding chord of the flattened form when the skip leaves nothing;
+    returns None when the tune has no sounding chord at all.
     """
+    strain_by_pid = ({pid: strain for pid, strain, _part in iter_parts(tune)}
+                     if "strains" in tune else {})
+
+    def skipped(pid: str) -> bool:
+        strain = strain_by_pid.get(pid)
+        if strain is not None:
+            return (strain.get("role") in _OPENING_SKIP_ROLES
+                    or strain.get("name") in _OPENING_SKIP_NAMES)
+        # Legacy `sections` map: the strain name prefixes the section key.
+        return pid.split("_")[0].lower() in _OPENING_SKIP_NAMES
+
+    def as_opening(ch: Chord) -> dict:
+        return {
+            "degree": degree_name(ch.root_pc, pitch_class(tonic), ch.quality),
+            "quality": ch.quality,
+            "chord": ch.symbol,
+        }
+
+    for pid, bars in sections_view(tune).items():
+        if skipped(pid):
+            continue
+        for bar in bars:
+            beats = bar.get("beats") or {}
+            for _beat, symbol in sorted((int(k), v) for k, v in beats.items()):
+                ch = parse_chord(symbol)
+                if ch.is_sounding:
+                    return as_opening(ch)
+
     for slot in flatten(expand_tune(tune)):
-        ch = slot.chord
-        if ch.is_sounding:
-            return {
-                "degree": degree_name(ch.root_pc, pitch_class(tonic), ch.quality),
-                "quality": ch.quality,
-                "chord": ch.symbol,
-            }
+        if slot.chord.is_sounding:
+            return as_opening(slot.chord)
     return None

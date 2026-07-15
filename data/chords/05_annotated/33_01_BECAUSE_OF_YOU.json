@@ -287,8 +287,8 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABA'C standard",
     "tags": [
-      "ii-V-chains",
-      "turnaround-ending"
+      "modulates",
+      "circle-of-fifths"
     ],
     "sections": {
       "A": "V7-ii-V-I in Eb with a passing E diminished; standard Eb tonic phrase",
@@ -818,6 +818,20 @@
             "to": [
               7,
               1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              7,
+              3
             ]
           }
         ]

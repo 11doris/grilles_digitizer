@@ -455,9 +455,9 @@
     "mode": "minor"
   },
   "opening": {
-    "degree": "i",
+    "degree": "iv",
     "quality": "min",
-    "chord": "Gm"
+    "chord": "Cm7"
   },
   "key_annotation": {
     "status": "verified",
@@ -482,10 +482,10 @@
   "harmonic_fingerprint": {
     "family": "Autumn Leaves (24+32 verse-chorus standard)",
     "tags": [
-      "ii-V-chains",
+      "minor-key",
+      "verse-present",
       "circle-of-fifths",
-      "turnaround-ending",
-      "verse-present"
+      "tritone-sub"
     ],
     "sections": {
       "verse_A": "i (Gm) with bVI7/V7 motion, iv (Cm), V/iv (G7b9) to Cm, ends on V7 (D7)",
@@ -965,10 +965,10 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251_minor",
-            "name": "iiø–V–i",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
-              5,
+              1,
               1
             ],
             "to": [
@@ -1071,10 +1071,10 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251_minor",
-            "name": "iiø–V–i",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
-              5,
+              1,
               1
             ],
             "to": [
@@ -1160,6 +1160,20 @@
             ],
             "to": [
               7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              8,
               1
             ]
           }

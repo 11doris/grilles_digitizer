@@ -376,7 +376,7 @@
   "opening": {
     "degree": "I",
     "quality": "maj",
-    "chord": "G"
+    "chord": "G6"
   },
   "key_annotation": {
     "status": "verified",
@@ -403,8 +403,8 @@
     "tags": [
       "verse-present",
       "ii-V-chains",
-      "dominant-cycle-bridge",
-      "turnaround-ending"
+      "tritone-sub",
+      "passing-diminished"
     ],
     "sections": {
       "verse_A": "I with V/vi to vi, then V/V-based motion resolving to I, ending on V",

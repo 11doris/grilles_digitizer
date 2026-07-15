@@ -9,6 +9,7 @@ import unittest
 from pipelines.chords.harmonic_analysis.analyze import (
     ANALYSIS_VERSION, analyze_tune, load_catalog,
 )
+from pipelines.chords.harmonic_analysis.tags import derive_tags
 
 
 def tune_of(*parts: tuple[str, list[str]], key=("C", "major"),
@@ -175,6 +176,72 @@ class TestBlocks(unittest.TestCase):
         entries = load_catalog()
         self.assertTrue(entries)
         self.assertTrue(all("_tokens" in e for e in entries))
+
+    def test_chromatic_descent_run(self):
+        # Djangology-style falling chromatic roots in G; the generic ii–V–I
+        # at the end yields to the run (its ii is the run's landing).
+        part = tune_of(("A", ["C#m7b5 Co7", "Bm7 Bbo7", "Am7 D7", "G"]),
+                       key=("G", "major"))["parts"]["A"]
+        self.assertEqual(block_ids(part), ["chromatic_descent"])
+        block = part["blocks"][0]
+        self.assertEqual((block["from"], block["to"]), ([1, 1], [3, 1]))
+
+    def test_circle_of_fifths_run(self):
+        # Gone-with-the-Wind-style diatonic circle in Eb, crossing the one
+        # allowed diminished-fifth step (Eb -> A) and trimming the trailing
+        # G reprint.
+        part = tune_of(("A", ["Cm7 Fm7", "Bb7 Ebmaj7", "Am7 D7", "G", "G"]),
+                       key=("Eb", "major"))["parts"]["A"]
+        self.assertEqual(block_ids(part), ["circle_of_fifths"])
+        block = part["blocks"][0]
+        self.assertEqual((block["from"], block["to"]), ([1, 1], [4, 1]))
+
+    def test_named_blocks_protected_from_runs(self):
+        # iii–vi–ii–V + resolution is also a 5-root fifths run, but the
+        # turnaround is the book's name for it — the clipped run remainder
+        # (the lone C) dies.
+        part = tune_of(("A", ["Em7 Am7", "Dm7 G7", "C", "C"]))["parts"]["A"]
+        self.assertEqual(block_ids(part), ["turnaround_3625"])
+
+
+class TestDerivedTags(unittest.TestCase):
+    def _annotated(self, bars: list[str], key=("C", "major"),
+                   extra_strains=(), **fields) -> dict:
+        built = [{"bar": i + 1,
+                  "beats": {str(1 + 2 * j): s for j, s in enumerate(t.split())}}
+                 for i, t in enumerate(bars)]
+        doc = {"strains": [*extra_strains,
+                           {"name": "chorus", "role": "chorus",
+                            "parts": [{"label": "A", "bars": built}]}],
+               "key": {"tonic": key[0], "mode": key[1]}, **fields}
+        doc["harmonic_analysis"] = analyze_tune(
+            doc, doc["key"], section_keys=doc.get("section_keys"))
+        return doc
+
+    def test_block_tags(self):
+        doc = self._annotated(["C", "Em7 A7", "Dm7 G7", "C Am7", "Dm7 G7"])
+        tags = derive_tags(doc)
+        self.assertIn("ii-V-chains", tags)          # bars 2-3
+        self.assertIn("turnaround-ending", tags)    # bars 4-5 hit the end
+        self.assertNotIn("minor-key", tags)
+
+    def test_structure_tags(self):
+        verse = {"name": "verse", "role": "verse", "parts": [
+            {"label": "A", "bars": [{"bar": 1, "beats": {"1": "G7"}}]}]}
+        doc = self._annotated(["Cm", "Fm7", "G7", "Cm"], key=("C", "minor"),
+                              extra_strains=(verse,), form="12 BLUES",
+                              section_keys={"A": {"tonic": "Eb",
+                                                  "mode": "major"}})
+        tags = derive_tags(doc)
+        for tag in ("blues-form", "minor-blues", "minor-key",
+                    "verse-present", "modulates"):
+            self.assertIn(tag, tags)
+
+    def test_device_tags(self):
+        doc = self._annotated(["C C#o7", "Dm7 Db7", "C"])
+        tags = derive_tags(doc)
+        self.assertIn("passing-diminished", tags)
+        self.assertIn("tritone-sub", tags)
 
 
 class TestRobustness(unittest.TestCase):

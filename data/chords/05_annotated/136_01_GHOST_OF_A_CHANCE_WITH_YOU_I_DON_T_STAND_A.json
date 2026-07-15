@@ -295,7 +295,8 @@
     "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "turnaround-ending"
+      "circle-of-fifths",
+      "dominant-cycle-bridge"
     ],
     "sections": {
       "A": "I with V7#5, then chromatic ii-V motion (iii-VI, ii-V) leading back with turnaround ending on ii-V",
@@ -604,6 +605,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
         ]
       },
       "B": {
@@ -887,6 +902,20 @@
             "from": [
               6,
               3
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              5,
+              1
             ],
             "to": [
               7,

@@ -296,9 +296,10 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",
     "tags": [
-      "ii-V-chains",
+      "circle-of-fifths",
+      "backdoor-cadence",
       "tritone-sub",
-      "turnaround-ending"
+      "passing-diminished"
     ],
     "sections": {
       "A": "ii-V-I in Eb (Fm7-B7/Bb7-Eb) with diminished passing chords",
@@ -876,10 +877,10 @@
             ]
           },
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
             "from": [
-              6,
+              4,
               1
             ],
             "to": [
