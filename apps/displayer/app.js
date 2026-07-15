@@ -1074,10 +1074,12 @@
     return box;
   }
 
-  /* The printed coda jump-off sign (spec §13 `coda_jump`): a small glyph in a
-     corner of the bar carrying it. `marker` is the verbatim printed symbol. */
-  function codaSignEl(marker) {
-    const s = el("span", "coda-sign");
+  /* The printed coda jump-off sign (spec §13 `coda_jump`): a small glyph at the
+     start of the bar carrying it, tucked just outside it — `below` the bar when
+     it sits in the last row of its section (the roomier inter-section gap),
+     above otherwise. `marker` is the verbatim printed symbol. */
+  function codaSignEl(marker, below) {
+    const s = el("span", "coda-sign " + (below ? "coda-below" : "coda-above"));
     s.textContent = marker || "⊕";
     return s;
   }
@@ -1108,7 +1110,7 @@
           fillBar(cell, ov ? { bar: bar.bar, beats: ov.beats } : bar, beats,
             opts && opts.renderChord);
           if (opts && opts.coda && opts.coda.idx === idx) {
-            cell.appendChild(codaSignEl(opts.coda.marker));
+            cell.appendChild(codaSignEl(opts.coda.marker, opts.coda.below));
           }
         } else {
           cell.classList.add("empty");
@@ -1147,9 +1149,14 @@
     } else {
       sec.appendChild(left);
     }
-    // The coda sign sits on the anchored bar of its section (from.bar 1-indexed).
-    const coda = codaJump && codaJump.from && codaJump.from.section === name
-      ? { idx: codaJump.from.bar - 1, marker: codaJump.marker } : null;
+    // The coda sign sits on the anchored bar of its section (from.bar 1-indexed);
+    // it drops below when that bar is in the section's last (4-bar) row.
+    const codaIdx = codaJump && codaJump.from && codaJump.from.section === name
+      ? codaJump.from.bar - 1 : null;
+    const coda = codaIdx != null
+      ? { idx: codaIdx, marker: codaJump.marker,
+          below: Math.floor(codaIdx / 4) === Math.floor((bars.length - 1) / 4) }
+      : null;
     sec.appendChild(renderGrid(bars, beats,
       { double: true, timesig: isFirst ? ts : null, overrides, renderChord: renderer, coda }));
     return sec;
@@ -1311,7 +1318,7 @@
         if (row.tint) cell.style.setProperty("--bxhue", row.tint);
         if (bar.swap) cell.classList.add("variant-swap");
         fillBox(cell, bar, row.beats);
-        if (bar.coda) cell.appendChild(codaSignEl(bar.coda));
+        if (bar.coda) cell.appendChild(codaSignEl(bar.coda, bar.codaBelow));
         rowEl.appendChild(cell);
       });
       block.appendChild(rowEl);
@@ -1381,7 +1388,11 @@
         // untouched, like the swap flag above.
         if (cj && cj.from && cj.from.section === name) {
           const ci = cj.from.bar - 1;
-          bars = bars.map((bar, idx) => (idx === ci ? { ...bar, coda: cj.marker } : bar));
+          // Below when the anchored box is in the section's last lattice row.
+          const below = Math.floor(ci / BOXES_PER_ROW)
+            === Math.floor((bars.length - 1) / BOXES_PER_ROW);
+          bars = bars.map((bar, idx) => (idx === ci
+            ? { ...bar, coda: cj.marker, codaBelow: below } : bar));
         }
         // Every section's first lattice row carries its printed label (primes
         // kept); the strain caption above supplies the verse/impro/… context.
