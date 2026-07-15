@@ -431,9 +431,9 @@ function collectMeta() {
   });
 
   // Extra fields (preserve JSON types via JSON.parse round-trip). `sections`,
-  // `variants` and the derived form fields have their own editors, so they
-  // never appear here.
-  const knownSet = new Set([...KNOWN_META, ...DERIVED_META, 'sections', 'variants']);
+  // `variants`, `coda_jump` and the derived form fields have their own editors,
+  // so they never appear here.
+  const knownSet = new Set([...KNOWN_META, ...DERIVED_META, 'sections', 'variants', 'coda_jump']);
   const oldExtras = Object.keys(S.data).filter(k => !knownSet.has(k));
   const newExtras = {};
   qsa('[data-extra-key]').forEach(el => {
@@ -507,6 +507,7 @@ function collectVariants() {
 function collectFromDOM() {
   collectMeta();
   collectSectionLabels();
+  collectCodaJump();
   collectSections();
   collectVariants();
 }
@@ -528,6 +529,7 @@ function buildSavePayload() {
     if (k === 'variants' && (!Array.isArray(S.data[k]) || !S.data[k].length)) return;
     if (k === 'form_strains') return;  // derived: recomputed server-side on save
     if (k === 'section_labels' && !Object.keys(S.data[k] || {}).length) return;
+    if (k === 'coda_jump' && !S.data[k]?.from?.section) return; // empty anchor: drop
     out[k] = S.data[k];
   });
   out.sections = sectionsToObject(S.data.sections);
@@ -551,8 +553,8 @@ function renderMeta() {
     `;
   }).join('');
 
-  // Extra fields (sections, variants and derived form fields have dedicated editors)
-  const knownSet  = new Set([...KNOWN_META, ...DERIVED_META, 'sections', 'variants']);
+  // Extra fields (sections, variants, coda_jump and derived form fields have dedicated editors)
+  const knownSet  = new Set([...KNOWN_META, ...DERIVED_META, 'sections', 'variants', 'coda_jump']);
   const extraKeys = Object.keys(S.data).filter(k => !knownSet.has(k));
 
   if (extraKeys.length) {
@@ -726,6 +728,82 @@ async function autofillSectionLabels() {
   } catch (err) {
     toast(`Auto-fill failed: ${err.message}`, 'error');
   }
+}
+
+// ─── Coda jump (the printed coda sign anchor) ─────────────────────────────────
+// `coda_jump.from = {section, bar}` (bar 1-indexed within its section) is the
+// grid bar carrying the printed coda sign; `caption` is the verbatim printed
+// text. The displayers DRAW the sign themselves (CSS), so no glyph is stored.
+// Edited here as structured fields, mirroring a variant's target anchor.
+function renderCodaJump() {
+  const area = qs('#coda-jump-area');
+  if (!area) return;
+  const cj = S.data.coda_jump;
+  if (!cj) {
+    area.innerHTML =
+      `<div class="area-label">Coda jump</div>` +
+      `<button type="button" id="add-coda-jump" class="btn btn-sm btn-outline">+ Add coda jump</button>`;
+    return;
+  }
+  const from     = cj.from || {};
+  const secNames = (S.data.sections || []).map(s => s.name);
+  const opts     = secNames.slice();
+  if (from.section && !opts.includes(from.section)) opts.push(from.section); // keep unknown
+  const missing  = from.section && !secNames.includes(from.section);
+  const optHtml  = opts.map(n =>
+    `<option value="${esc(n)}"${n === from.section ? ' selected' : ''}>${esc(n)}</option>`
+  ).join('');
+  area.innerHTML = `
+    <div class="area-label">Coda jump
+      <button type="button" class="btn-icon danger" id="del-coda-jump" title="Remove coda jump">×</button>
+    </div>
+    <div class="coda-jump-card">
+      <div class="coda-field">
+        <span class="coda-field-label">caption</span>
+        <input id="coda-caption" class="coda-caption-inp" type="text"
+               value="${esc(cj.caption || '')}" placeholder="printed text, e.g. CODA Bar 30 :" />
+      </div>
+      <div class="target-row coda-field${missing ? ' target-missing' : ''}">
+        <span class="coda-field-label"
+              title="The grid bar carrying the printed coda sign (1-indexed within its section)">from</span>
+        <select id="coda-from-sec" class="target-sec" title="Section">
+          <option value=""${from.section ? '' : ' selected'}>—</option>
+          ${optHtml}
+        </select>
+        <span class="target-at">bar</span>
+        <input id="coda-from-bar" class="target-bar" type="number" min="1" step="1"
+               value="${esc(from.bar != null ? from.bar : '')}"
+               title="Bar within that section (1-indexed)" />
+      </div>
+    </div>`;
+}
+
+// Reads the coda-jump inputs back into S.data.coda_jump (rebuilt from scratch,
+// so a stale `marker` is dropped). A no-op when the section shows the +Add
+// button, so a removed coda_jump is never resurrected.
+function collectCodaJump() {
+  if (!qs('#coda-jump-area') || !qs('#coda-caption')) return;
+  const caption = qs('#coda-caption').value.trim();
+  const section = qs('#coda-from-sec')?.value.trim() || '';
+  const bar     = parseInt(qs('#coda-from-bar')?.value, 10);
+  const cj = {};
+  if (caption) cj.caption = caption;
+  cj.from = { section };
+  if (Number.isFinite(bar)) cj.from.bar = bar;
+  S.data.coda_jump = cj;
+}
+
+function addCodaJump() {
+  S.data.coda_jump = { caption: '', from: { section: S.data.sections[0]?.name || '', bar: 1 } };
+  renderCodaJump();
+  qs('#coda-caption')?.focus();
+  setDirty();
+}
+
+function deleteCodaJump() {
+  delete S.data.coda_jump;
+  renderCodaJump();
+  setDirty();
 }
 
 // ─── Render sections ─────────────────────────────────────────────────────────
@@ -1374,6 +1452,7 @@ function renderEditor() {
   // section_labels with the outgoing tune's stale DOM values.
   qs('#section-labels-area').innerHTML = '';
   renderSections();
+  renderCodaJump();
   renderVariants();
   updateActionButtons();
   clearDirty();
@@ -1440,6 +1519,14 @@ function wireEvents() {
   qs('#section-labels-area').addEventListener('input', () => setDirty());
   qs('#section-labels-area').addEventListener('click', e => {
     if (e.target.closest('#autofill-labels')) autofillSectionLabels();
+  });
+
+  // ── Coda jump: dirty on input/change, add/remove buttons
+  qs('#coda-jump-area').addEventListener('input',  () => setDirty());
+  qs('#coda-jump-area').addEventListener('change', () => setDirty());
+  qs('#coda-jump-area').addEventListener('click', e => {
+    if (e.target.closest('#add-coda-jump'))      { collectFromDOM(); addCodaJump(); }
+    else if (e.target.closest('#del-coda-jump')) { deleteCodaJump(); }
   });
 
   // ── Meta: delete field button

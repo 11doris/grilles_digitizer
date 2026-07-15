@@ -845,6 +845,42 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
 
 #btn-add-variant { margin-top: 4px; }
 
+/* Coda jump editor (the printed coda sign anchor: caption + section/bar) */
+#coda-jump-area { margin-bottom: 18px; }
+#coda-jump-area .area-label { display: flex; align-items: center; gap: 6px; }
+.coda-jump-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--warning);
+  border-radius: 4px;
+  background: var(--surface);
+}
+.coda-field { display: flex; align-items: center; gap: 8px; }
+.coda-field-label {
+  width: 52px;
+  flex: none;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+}
+.coda-caption-inp {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  background: var(--surface);
+  color: var(--text);
+}
+.coda-caption-inp:focus { outline: none; border-color: var(--accent); }
+.coda-field.target-missing .target-sec { border-color: var(--warning); background: #fffbeb; }
+
 /* ═══════════════════════════════════════════════════════════════════════════
    Zoom overlay
    ══════════════════════════════════════════════════════════════════════════ */
