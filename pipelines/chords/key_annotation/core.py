@@ -1,10 +1,10 @@
 """Adjudication, annotated-file I/O and the shared update routine (spec §3.1/§3.5).
 
 `05_annotated` files are verbatim copies of their `04_verified` source with
-`key`, `section_keys`, `opening`, `key_annotation` and `harmonic_fingerprint`
-added; source fields are never altered. Files must never be edited by hand —
-every correction goes through `update_annotation`, which recomputes the
-derived fields.
+`key`, `section_keys`, `opening`, `key_annotation`, `harmonic_fingerprint`
+and `harmonic_analysis` added; source fields are never altered. Files must
+never be edited by hand — every correction goes through `update_annotation`,
+which recomputes the derived fields.
 """
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ import hashlib
 import json
 from pathlib import Path
 
+from pipelines.chords.harmonic_analysis import analyze_annotated
 from pipelines.chords.similarity.normalize import PC_NAME, compute_opening, pitch_class
 from .llm import LLMVoteError
 from .scorer import TUNE_MARGIN_THRESHOLD, KeyVote, section_local_keys
@@ -21,7 +22,7 @@ STATUS_NEEDS_REVIEW = "needs_review"
 STATUS_VERIFIED = "verified"
 
 _ANNOTATION_FIELDS = ("key", "section_keys", "opening", "key_annotation",
-                      "harmonic_fingerprint")
+                      "harmonic_fingerprint", "harmonic_analysis")
 
 
 def source_sha256(path: Path) -> str:
@@ -151,6 +152,7 @@ def build_annotation(source: dict, sha256: str, scorer: KeyVote,
     annotated["key_annotation"] = annotation
     if not isinstance(llm, LLMVoteError):
         annotated["harmonic_fingerprint"] = fingerprint_json(llm)
+    annotated["harmonic_analysis"] = analyze_annotated(annotated)
     return annotated
 
 
@@ -179,6 +181,8 @@ def carry_annotation(source: dict, old_annotated: dict, sha256: str) -> dict:
     fingerprint = old_annotated.get("harmonic_fingerprint")
     if fingerprint is not None:
         annotated["harmonic_fingerprint"] = fingerprint
+    # Deterministic, so recomputed (not carried) — source edits flow through.
+    annotated["harmonic_analysis"] = analyze_annotated(annotated)
     return annotated
 
 
@@ -272,6 +276,10 @@ def update_annotation(annotated: dict, *, tonic: str | None = None,
     annotation["human"] = {"tonic": key["tonic"], "mode": key["mode"],
                            "corrected": corrected}
     annotation.pop("review_reasons", None)
+    # The functional analysis is a pure function of (chords, key,
+    # section_keys): recomputing it here IS the invalidation story — a key
+    # correction can never leave a stale analysis behind (spec §1/§6).
+    annotated["harmonic_analysis"] = analyze_annotated(annotated)
     return annotated
 
 

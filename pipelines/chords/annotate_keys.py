@@ -69,6 +69,30 @@ def sweep_orphans(verified_dir: Path, annotated_dir: Path) -> int:
     return len(orphans)
 
 
+def refresh_harmonic_analyses(annotated_dir: Path) -> int:
+    """Deterministic sweep (harmonic_analysis_spec §6): recompute every
+    annotated file's `harmonic_analysis` and write the ones that changed —
+    files predating the field, an analyzer/catalog change, or a version
+    bump. Free (no LLM), so it simply runs on every annotate invocation.
+    """
+    if not annotated_dir.exists():
+        return 0
+    from pipelines.chords.harmonic_analysis import analyze_annotated
+    refreshed = 0
+    for path in _tune_paths(annotated_dir):
+        annotated = core.read_json(path)
+        if "key" not in annotated:
+            continue
+        analysis = analyze_annotated(annotated)
+        if analysis != annotated.get("harmonic_analysis"):
+            annotated["harmonic_analysis"] = analysis
+            core.write_annotated(path, annotated)
+            refreshed += 1
+    if refreshed:
+        print(f"{refreshed} harmonic analysis(es) refreshed")
+    return refreshed
+
+
 def _stale_fingerprint_paths(annotated_dir: Path) -> list[Path]:
     """Annotated files flagged for the key-pinned fingerprint refresh (§3.5)."""
     out = []
@@ -103,6 +127,26 @@ def cmd_status(verified_dir: Path, annotated_dir: Path) -> int:
         print(f"{len(orphans)} orphan annotation(s) (source deleted; the next "
               "annotate run removes them): "
               + ", ".join(p.stem for p in orphans))
+    if annotated_dir.exists():
+        # Harmonic-analysis health (spec §6): outdated files (analyzer or
+        # catalog changed since they were written) and the spot-check flags.
+        from pipelines.chords.harmonic_analysis import analyze_annotated
+        outdated, flags = 0, []
+        for path in _tune_paths(annotated_dir):
+            annotated = core.read_json(path)
+            if "key" not in annotated:
+                continue
+            analysis = analyze_annotated(annotated)
+            if analysis != annotated.get("harmonic_analysis"):
+                outdated += 1
+            flags += [f"{path.stem}: {f}" for f in analysis.get("flags", [])]
+        if outdated:
+            print(f"{outdated} outdated harmonic analysis(es); the next "
+                  "annotate run refreshes them")
+        if flags:
+            print(f"{len(flags)} harmonic-analysis spot-check flag(s):")
+            for f in flags:
+                print(f"  {f}")
     state_path = _batch_state_path(annotated_dir)
     if state_path.exists():
         batch_id = core.read_json(state_path).get("batch_id")
@@ -179,6 +223,7 @@ def cmd_annotate(verified_dir: Path, annotated_dir: Path, *,
     if limit is not None:
         pending = pending[:limit]
     print(f"{len(paths)} tunes in {verified_dir.name}; {len(pending)} pending")
+    refresh_harmonic_analyses(annotated_dir)
     if not pending:
         if not scorer_only:
             refresh_stale_fingerprints(annotated_dir)
@@ -214,6 +259,7 @@ def cmd_reuse(verified_dir: Path, annotated_dir: Path, *,
     paths = _tune_paths(verified_dir)
     pending = [p for p in paths if core.is_pending(p, annotated_dir / p.name)]
     print(f"{len(paths)} tunes in {verified_dir.name}; {len(pending)} out of date")
+    refresh_harmonic_analyses(annotated_dir)
     reused = skipped = 0
     for path in pending:
         if limit is not None and reused >= limit:
