@@ -3,7 +3,7 @@
 `title`, `page`, and `source` are injected by the runner before validation (spec §5),
 so they are always present here. Validation has two tiers:
 
-* `validate()` raises `ValidationError` on **structural** problems (checks 1, 4-13) —
+* `validate()` raises `ValidationError` on **structural** problems (checks 1, 4-14) —
   the runner retries those.
 * `review_flags()` reports non-fatal conditions a human should look at (spec §4.9):
   a missing always-present field (§17 check 2) and a `no_chord_grid` note. A tune with
@@ -135,6 +135,48 @@ def _check_section_keys(sections: dict) -> None:
         )
 
 
+def _check_variant_targets(obj: dict) -> None:
+    """Every variant target names an existing section key (spec §17 check 14).
+
+    The model sometimes writes the bare printed label ("A") instead of the
+    verbatim sections key ("s1_A1") on multi-strain pieces, which leaves the
+    target dangling and unresolvable downstream.
+    """
+    sections = obj.get("sections")
+    variants = obj.get("variants")
+    if not isinstance(sections, dict) or not isinstance(variants, list):
+        return
+    for variant in variants:
+        if not isinstance(variant, dict):
+            raise ValidationError("a variant is not an object")
+        targets = variant.get("targets")
+        if not isinstance(targets, list) or not targets:
+            raise ValidationError("a variant has no targets list")
+        boxes = variant.get("bars")
+        n_boxes = len(boxes) if isinstance(boxes, list) else 0
+        for target in targets:
+            if not isinstance(target, dict):
+                raise ValidationError("a variant target is not an object")
+            key = target.get("section")
+            if key not in sections:
+                raise ValidationError(
+                    f"variant target section {key!r} is not a sections key "
+                    f"(keys: {', '.join(sections)})"
+                )
+            bar = target.get("bar")
+            n_bars = len(sections[key])
+            if not isinstance(bar, int) or not 1 <= bar <= n_bars:
+                raise ValidationError(
+                    f"variant target bar {bar!r} outside section {key!r} "
+                    f"(1..{n_bars})"
+                )
+            if n_boxes and bar + n_boxes - 1 > n_bars:
+                raise ValidationError(
+                    f"variant with {n_boxes} boxes at {key!r} bar {bar} spills "
+                    f"past the section's {n_bars} bars"
+                )
+
+
 def validate(obj: dict, unit: WorkUnit) -> dict:
     """Structural self-check (spec §17). Returns the object; raises on failure.
 
@@ -174,6 +216,8 @@ def validate(obj: dict, unit: WorkUnit) -> dict:
 
         for chord in _iter_chords(sections):
             _check_chord(chord)
+
+        _check_variant_targets(obj)
 
     return obj
 
