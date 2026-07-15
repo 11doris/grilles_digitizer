@@ -1151,6 +1151,21 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 .bar.empty::before,
 .bar.empty::after { content: none; }
 
+/* Coda jump-off sign (spec §13 coda_jump): a small, subtle glyph tucked into
+   the top-right corner of the anchored bar, shared by the grid (.bar) and book
+   (.bx) layouts — both cells are already position:relative. `--muted` carries
+   the subtle tone across light and dark themes. Display-only, no interaction. */
+.coda-sign {
+  position: absolute;
+  top: 0.1em;
+  right: 0.18em;
+  font-size: 0.72em;
+  line-height: 1;
+  color: var(--muted);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
 .slot {
   min-width: 0;
   overflow: visible;
