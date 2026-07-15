@@ -323,7 +323,7 @@
     "chord": "Fm7"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "b1041153107131e3e63a5788935e937ae43deb158be28d7c0c9fb8e678af5c5c",
     "scorer": {
       "tonic": "Eb",
@@ -335,6 +335,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

@@ -216,7 +216,7 @@
     "chord": "Gm9"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "5c411321e5941344890d997640f9c069903dc24ce5531832e6a60dcb83e02ea7",
     "scorer": {
       "tonic": "F",
@@ -228,6 +228,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

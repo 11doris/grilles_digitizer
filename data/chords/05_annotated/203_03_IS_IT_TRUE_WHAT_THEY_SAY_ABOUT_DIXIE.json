@@ -270,7 +270,7 @@
     "chord": "G"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "952d606547abfa0ef89e71d2f424d073fd3d58cbc96129a24cc7d520956359a2",
     "scorer": {
       "tonic": "G",
@@ -282,6 +282,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "G",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

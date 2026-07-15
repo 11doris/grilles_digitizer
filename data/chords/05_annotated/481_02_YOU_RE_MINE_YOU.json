@@ -309,7 +309,7 @@
     "chord": "Bbm7"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "73cd6cd0af694a215e08ae1a390328391db5f5c7d5252947eec677871dcc619e",
     "scorer": {
       "tonic": "Ab",
@@ -321,6 +321,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Ab",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

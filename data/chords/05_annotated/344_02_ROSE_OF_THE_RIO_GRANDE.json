@@ -252,7 +252,7 @@
     "chord": "A7"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "59b9e7d0a58bb8893ef5f206f90d0f65be8f8cbac89896d35e5d3f17ad859a8f",
     "scorer": {
       "tonic": "C",
@@ -264,6 +264,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

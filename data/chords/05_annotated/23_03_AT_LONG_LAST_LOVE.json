@@ -259,7 +259,7 @@
     "chord": "C6"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "b19dac60e86a702996841108f5ce51cea3f223a6b5e3022e2c6f743e682b44ea",
     "scorer": {
       "tonic": "C",
@@ -271,6 +271,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

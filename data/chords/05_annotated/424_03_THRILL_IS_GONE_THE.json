@@ -269,7 +269,7 @@
     "chord": "Dm"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "47d725243e5bb60f67fa106f34bd2220ad3ebcc26f74e5c52189b8227ac43c3c",
     "scorer": {
       "tonic": "D",
@@ -281,6 +281,11 @@
       "mode": "minor",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "D",
+      "mode": "minor",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

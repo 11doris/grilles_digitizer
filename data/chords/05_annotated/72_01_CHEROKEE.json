@@ -507,19 +507,16 @@
     "family": "64-bar AABA standard",
     "tags": [
       "ii-V-chains",
+      "circle-of-fifths",
       "dominant-cycle-bridge",
-      "circle-of-fifths"
+      "turnaround-ending"
     ],
     "sections": {
-      "A": "I with V/ii (F7#5) to ii-V of IV, landing on IVmaj7 then IVm6 (Ebmaj7/Ebm)",
-      "A1": "I to Imaj7, then II7/passing dim to ii-V (Cm7-F7#5) turnaround",
-      "A2": "Repeat of A: I, V/ii, ii-V to IVmaj7 then IVm6",
-      "A3": "I, then II7 to ii-V-I (Cm7-F7-Bb) resolving home",
-      "B": "ii-V-I in B major (C#m7-F#7-Bmaj7) then ii-V-I in A major (Bm7-E7-Amaj7)",
-      "B1": "ii-V-I in G major (Am7-D7-Gmaj7) then ii-V of C leading to Bb's ii-V (Cm7-F7#5)"
+      "A": "I with V/ii, then ii-V into IV (Ebmaj7) shifting to iv (Ebm) minor plagal, back to I, then II7 (C7) as V/V and ii-V turnaround ending on V (F7#5)",
+      "A1": "Same as A but resolves: I, V/ii, ii-V to IV then iv, back to I, C7 (V/V), ii-V (Cm7-F7) landing on I",
+      "B": "Descending sequence of ii-V-I units: C#m7-F#7-Bmaj7, Bm7-E7-Amaj7, Am7-D7-Gmaj7, then Gm7-C7 and Cm7-F7#5 leading back to home V",
+      "A2": "Same as A1: I with secondary dominants, ii-V to IV/iv, C7 as V/V, ii-V resolving to I"
     },
-    "modulates": true,
-    "modulation_note": "Bridge modulates away from Bb, descending through B major, A major and G major via a chain of ii-V-I cadences before returning to Bb for the final A section.",
-    "stale": true
+    "modulates": false
   }
 }

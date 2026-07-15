@@ -343,7 +343,7 @@
     "chord": "Emaj7"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "8d5030d05a3d50cc15281e8b014dc17488f0dc6609d0f2e1e39144a0e5ac544d",
     "scorer": {
       "tonic": "E",
@@ -355,6 +355,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "E",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

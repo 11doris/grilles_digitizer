@@ -248,7 +248,7 @@
     "chord": "Fm(maj7)"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "69746ad2701e76380babd194f108d0418806fdd5883f70da301b0b5520acb256",
     "scorer": {
       "tonic": "F",
@@ -260,6 +260,11 @@
       "mode": "minor",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "minor",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

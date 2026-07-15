@@ -412,7 +412,7 @@
     "chord": "F"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "a5a2fbdfa59c567b48e16a59bc990ed43ce30c8849dbce2e7035de2c9420bbac",
     "scorer": {
       "tonic": "F",
@@ -424,6 +424,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

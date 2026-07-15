@@ -463,7 +463,7 @@
     "chord": "Fm"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "218a3d61a9b57eb1313d5e29ae6216eae281a100f0cad0717c3338f15523ff65",
     "scorer": {
       "tonic": "Ab",
@@ -497,6 +497,11 @@
           "mode": "minor"
         }
       }
+    },
+    "human": {
+      "tonic": "Ab",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

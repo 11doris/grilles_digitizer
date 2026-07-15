@@ -302,7 +302,7 @@
     "chord": "Bb6"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "02b8ee4e20eb86f375175b343ed3e21e0de29dda980493a661abcd85d7a1e217",
     "scorer": {
       "tonic": "Bb",
@@ -327,6 +327,11 @@
           "mode": "minor"
         }
       }
+    },
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

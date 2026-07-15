@@ -321,7 +321,7 @@
     "chord": "B7#5"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "e2b928d6a73757f145294b3f85d3e746aa4a6c5c341638317354ff01c42f7012",
     "scorer": {
       "tonic": "G",
@@ -333,6 +333,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "G",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

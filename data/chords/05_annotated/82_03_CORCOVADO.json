@@ -279,7 +279,7 @@
     "chord": "D9/5"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "b3c13c978ae4d99833cde6adcbf77bd8233b759b36d352d457c1187d2344b2e0",
     "scorer": {
       "tonic": "C",
@@ -291,6 +291,11 @@
       "mode": "major",
       "confidence": "medium",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "C",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

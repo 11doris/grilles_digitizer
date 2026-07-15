@@ -250,7 +250,7 @@
     "chord": "Gm7b5"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "539f7a650014075f2c92d883439eeb5dbeacdc0b7fe8ead2bb7bb2a412ffd9cc",
     "scorer": {
       "tonic": "Db",
@@ -262,6 +262,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": "bridge tonicizes Gb major (ii-V-I) then returns via Ab7 (V) to Db"
+    },
+    "human": {
+      "tonic": "Db",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

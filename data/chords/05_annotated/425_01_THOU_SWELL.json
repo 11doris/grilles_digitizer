@@ -273,7 +273,7 @@
     "chord": "Bb7"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "2a5eb16007353de127bd2d48634dc2674a5af83febe49f7640ed3b61edefb161",
     "scorer": {
       "tonic": "Eb",
@@ -285,6 +285,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

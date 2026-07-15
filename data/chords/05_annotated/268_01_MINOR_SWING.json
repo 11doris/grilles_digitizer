@@ -263,7 +263,7 @@
     "chord": "Am"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "bfa57705b18f431639c0ce02652a49aa4b3a7d432aaaf23914de98add4dbdea0",
     "scorer": {
       "tonic": "A",
@@ -275,6 +275,11 @@
       "mode": "minor",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "A",
+      "mode": "minor",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

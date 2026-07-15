@@ -297,7 +297,7 @@
     "chord": "Abmaj7"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "a7f46275945566e40af3a9d132644d983cd26d2fffae348ef6e178910b9249a2",
     "scorer": {
       "tonic": "Ab",
@@ -309,6 +309,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Ab",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

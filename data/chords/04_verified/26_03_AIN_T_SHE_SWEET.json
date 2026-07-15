@@ -1,20 +1,23 @@
 {
-  "style": "TRADITIONAL",
+  "composer": "Milton AGER – Jack YELLEN",
+  "year": "1927",
+  "style": "TRADITIONAL (CHARLESTON)",
   "tempo": "MEDIUM",
-  "form": "16 A A' | 32 A A B A",
+  "form": "16 A B | 32 A A B A",
   "time_signature": "4/4",
-  "title": "BABY",
-  "page": 27,
+  "title": "AIN'T SHE SWEET",
+  "page": 26,
   "source": "Anthologie des grilles de jazz",
   "recordings": [
-    "Mills Musical Clowns 28- N.O.R.K.25- P.Lee 44",
-    "J.Peltzer 61- C.Barber 55- Cl.Brown 53",
-    "E.Fitzgerald 54- M.Album 58- J.Mc Hugh 28",
-    "L.O.Christian 28- B.Ellington 33- A.Kahn 32",
-    "S.Grappelly 39- Ad.Mall 28.33"
+    "Sy Oliver 50- J.Lunceford 39- T.Wallace 27",
+    "Varsity Eight 27- B.Addison 61- J.Turner 76",
+    "R.Allen 57- B.Clayton 55- T.Dorsey 53",
+    "E.Garner 51- J.Hamilton 50- M.Lux Lewis 55",
+    "Jim.Smith 62- B.Berigan 39- F.Henderson 27",
+    "J.Pettis 27- C.Bolling 56- B.Carter 58"
   ],
   "notation_notes": {
-    "strain_note": "Top strain is a 16-bar verse-style section (labelled '16 A A''); bottom strain is the 32-bar chorus '32 A A B A'. Both printed only partially and expanded per their form labels."
+    "A_bars_3_4": "Section A bars 3-4 shown as a two-bar repeat sign (dots straddling barline), restating bars 1-2 (Eb/Em6 and Bb7/5)."
   },
   "strains": [
     {
@@ -27,114 +30,103 @@
             {
               "bar": 1,
               "beats": {
-                "1": "Bb",
-                "3": "Bbmaj7"
+                "1": "Eb"
               }
             },
             {
               "bar": 2,
               "beats": {
-                "1": "Bb7",
-                "3": "Eb6"
+                "1": "Bb7"
               }
             },
             {
               "bar": 3,
               "beats": {
-                "1": "Bb/3",
-                "3": "Dbo7"
+                "1": "Eb"
               }
             },
             {
               "bar": 4,
               "beats": {
-                "1": "Cm7",
-                "3": "F7"
+                "1": "Eb"
               }
             },
             {
               "bar": 5,
               "beats": {
-                "1": "Bb"
+                "1": "Cm"
               }
             },
             {
               "bar": 6,
               "beats": {
-                "1": "Cm7",
-                "3": "F7"
+                "1": "G7"
               }
             },
             {
               "bar": 7,
               "beats": {
-                "1": "Bb",
-                "3": "Ab7"
+                "1": "Cm"
               }
             },
             {
               "bar": 8,
               "beats": {
-                "1": "F7",
-                "3": "F7#5"
+                "1": "Cm"
               }
             }
           ]
         },
         {
-          "label": "A'",
+          "label": "B",
           "bars": [
             {
               "bar": 1,
               "beats": {
-                "1": "Bb",
-                "3": "Bbmaj7"
+                "1": "Bb7"
               }
             },
             {
               "bar": 2,
               "beats": {
-                "1": "Bb7",
-                "3": "Eb6"
+                "1": "Bb7"
               }
             },
             {
               "bar": 3,
               "beats": {
-                "1": "Bb/3",
-                "3": "Dbo7"
+                "1": "Eb"
               }
             },
             {
               "bar": 4,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb/5"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Gm"
+              }
+            },
+            {
+              "bar": 7,
               "beats": {
                 "1": "Cm7",
                 "3": "F7"
               }
             },
             {
-              "bar": 5,
-              "beats": {
-                "1": "Bb"
-              }
-            },
-            {
-              "bar": 6,
-              "beats": {
-                "1": "C7"
-              }
-            },
-            {
-              "bar": 7,
-              "beats": {
-                "1": "C7",
-                "3": "C7b5"
-              }
-            },
-            {
               "bar": 8,
               "beats": {
-                "1": "F7"
+                "1": "Bb7"
               }
             }
           ]
@@ -151,56 +143,53 @@
             {
               "bar": 1,
               "beats": {
-                "1": "Bb"
+                "1": "Eb",
+                "3": "Em6"
               }
             },
             {
               "bar": 2,
               "beats": {
-                "1": "Eb",
-                "3": "Ebm"
+                "1": "Bb7/5"
               }
             },
             {
               "bar": 3,
               "beats": {
-                "1": "Bb",
-                "3": "D7"
+                "1": "Eb",
+                "3": "Em6"
               }
             },
             {
               "bar": 4,
               "beats": {
-                "1": "Eb",
-                "3": "Eo7"
+                "1": "Bb7/5"
               }
             },
             {
               "bar": 5,
               "beats": {
-                "1": "Bb/5",
+                "1": "Eb",
                 "3": "G7"
               }
             },
             {
               "bar": 6,
               "beats": {
-                "1": "C7",
-                "3": "F7"
+                "1": "C7"
               }
             },
             {
               "bar": 7,
               "beats": {
-                "1": "Bb",
-                "3": "Gm"
+                "1": "F7",
+                "3": "Bb7"
               }
             },
             {
               "bar": 8,
               "beats": {
-                "1": "C7",
-                "3": "F7"
+                "1": "Eb"
               }
             }
           ]
@@ -211,55 +200,53 @@
             {
               "bar": 1,
               "beats": {
-                "1": "Bb"
+                "1": "Eb",
+                "3": "Em6"
               }
             },
             {
               "bar": 2,
               "beats": {
-                "1": "Eb",
-                "3": "Ebm"
+                "1": "Bb7/5"
               }
             },
             {
               "bar": 3,
               "beats": {
-                "1": "Bb",
-                "3": "D7"
+                "1": "Eb",
+                "3": "Em6"
               }
             },
             {
               "bar": 4,
               "beats": {
-                "1": "Eb",
-                "3": "Eo7"
+                "1": "Bb7/5"
               }
             },
             {
               "bar": 5,
               "beats": {
-                "1": "Bb/5",
+                "1": "Eb",
                 "3": "G7"
               }
             },
             {
               "bar": 6,
               "beats": {
-                "1": "C7",
-                "3": "F7"
+                "1": "C7"
               }
             },
             {
               "bar": 7,
               "beats": {
-                "1": "Bb"
+                "1": "F7",
+                "3": "Bb7"
               }
             },
             {
               "bar": 8,
               "beats": {
-                "1": "C7",
-                "3": "F7"
+                "1": "Eb"
               }
             }
           ]
@@ -270,49 +257,50 @@
             {
               "bar": 1,
               "beats": {
-                "1": "D7"
+                "1": "Ab7"
               }
             },
             {
               "bar": 2,
               "beats": {
-                "1": "D7"
+                "1": "Ab7"
               }
             },
             {
               "bar": 3,
               "beats": {
-                "1": "G7"
+                "1": "Eb"
               }
             },
             {
               "bar": 4,
               "beats": {
-                "1": "G7"
+                "1": "Eb7"
               }
             },
             {
               "bar": 5,
               "beats": {
-                "1": "C7"
+                "1": "Ab7"
               }
             },
             {
               "bar": 6,
               "beats": {
-                "1": "C7"
+                "1": "Ab7"
               }
             },
             {
               "bar": 7,
               "beats": {
-                "1": "Cm7b5"
+                "1": "Eb"
               }
             },
             {
               "bar": 8,
               "beats": {
-                "1": "F7"
+                "1": "Fm7",
+                "3": "Bb7"
               }
             }
           ]
@@ -323,108 +311,58 @@
             {
               "bar": 1,
               "beats": {
-                "1": "Bb"
+                "1": "Eb",
+                "3": "Em6"
               }
             },
             {
               "bar": 2,
               "beats": {
-                "1": "Eb",
-                "3": "Ebm"
+                "1": "Bb7/5"
               }
             },
             {
               "bar": 3,
               "beats": {
-                "1": "Bb",
-                "3": "D7"
+                "1": "Eb",
+                "3": "Em6"
               }
             },
             {
               "bar": 4,
               "beats": {
-                "1": "Eb",
-                "3": "Eo7"
+                "1": "Bb7/5"
               }
             },
             {
               "bar": 5,
               "beats": {
-                "1": "Bb/5",
+                "1": "Eb",
                 "3": "G7"
               }
             },
             {
               "bar": 6,
               "beats": {
-                "1": "C7",
-                "3": "F7"
+                "1": "C7"
               }
             },
             {
               "bar": 7,
               "beats": {
-                "1": "Bb"
+                "1": "F7",
+                "3": "Bb7"
               }
             },
             {
               "bar": 8,
               "beats": {
-                "1": "Bb",
-                "3": "Bb"
+                "1": "Eb"
               }
             }
           ]
         }
       ]
     }
-  ],
-  "key": {
-    "tonic": "Bb",
-    "mode": "major"
-  },
-  "opening": {
-    "degree": "I",
-    "quality": "maj",
-    "chord": "Bb"
-  },
-  "key_annotation": {
-    "status": "verified",
-    "source_sha256": "51a46c9a141f7d982df05a63b43afffb8c1e4860b97bf1de395c90946cb657f0",
-    "scorer": {
-      "tonic": "Bb",
-      "mode": "major",
-      "margin": 0.7833
-    },
-    "llm": {
-      "tonic": "Bb",
-      "mode": "major",
-      "confidence": "high",
-      "modulation_note": null
-    },
-    "human": {
-      "tonic": "Bb",
-      "mode": "major",
-      "corrected": false
-    }
-  },
-  "harmonic_fingerprint": {
-    "family": "32-bar AABA standard with 16-bar verse",
-    "tags": [
-      "verse-present",
-      "dominant-cycle-bridge",
-      "ii-V-chains",
-      "turnaround-ending",
-      "circle-of-fifths"
-    ],
-    "sections": {
-      "verse_A": "I with maj7, I7-IV6, I/3-#iio7, ii-V, then I with ii-V and V/V-V motion",
-      "verse_A1": "Same opening; ends via II7-V7 (C7-F7) turnaround back to I",
-      "A": "I-IV-iv, I-V/ii, IV-#io7, I-V/ii, ii-V (C7-F7) tonic returns",
-      "A1": "Same A material with I held then C7-F7 turnaround",
-      "B": "Dominant cycle III7-VI7-II7 then ii7b5-V7 back to I",
-      "A2": "Final A ending firmly on tonic I"
-    },
-    "modulates": false
-  }
+  ]
 }

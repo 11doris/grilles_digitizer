@@ -1,0 +1,843 @@
+{
+  "style": "TRADITIONAL JAZZ",
+  "tempo": "MEDIUM FAST",
+  "form": "16 A A' | 16 A A | 16 A A' | 16 A B | 16 A A",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 13",
+      "targets": [
+        {
+          "strain": "s1",
+          "part": 0,
+          "bar": 5
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "C7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Fm",
+            "3": "F#o7"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "Eb",
+            "3": "Bb7"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "PANAMA",
+  "page": 319,
+  "source": "Anthologie des grilles de jazz",
+  "coda_jump": {
+    "caption": "Theme 4, Bar 15",
+    "from": {
+      "strain": "s4",
+      "part": 1,
+      "bar": 7
+    }
+  },
+  "recordings": [
+    "...llus ?- Little Ramblers 25- J.Sullivan 45- L.Armstrong 48.49?.50.59- X.Rena 40",
+    "P.Barbarin 51.54- C.Barber 54.56.59- L.Watters 46- K.Ory 44.45.56- V.L.Osman 1900 ?",
+    "All Star N.O. Band 44- S.Bechet 49.55- O.Celestin 50- E.De Paris 51- J.R.Morton 38.40",
+    "L.Hampton 56- A.Nicholas 56- J.Miller 28- N.O.R.K. 22.34- L.Russel 30- L.Bacon 39",
+    "Bob Crosby 77- J.DeDroit 24- T.Dorsey 38- W.C.Handy 23- F.Henderson 25"
+  ],
+  "notation_notes": {
+    "introduction": "An 'INTRODUCTION' row is printed above the first strain: Eb | Ao7 | (Bb7/Db7 upper, Fm/Db7 lower) | Bb7. Bar 3 is a four-square box with corner degree digits (5 lower-left, 3 upper-right).",
+    "additional_theme": "Strain 5 header prints 'ADDITIONAL THEME  RARELY PLAYED'.",
+    "strain5_bar7": "Strain 5 bar 7 (Eb) and bar 8 are drawn with diagonal slashes; bar 8 taken as a repeat (Eb)."
+  },
+  "strains": [
+    {
+      "name": "intro",
+      "role": "aux",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ao7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bb7",
+                "2": "Db7",
+                "3": "Fm",
+                "4": "Db7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Bb7/3"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "s1",
+      "role": "strain",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ab",
+                "3": "Ao7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Eb/5",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "F7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "s2",
+      "role": "strain",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ao7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ao7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb",
+                "3": "Ab"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "s3",
+      "role": "strain",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ab(#5)"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Db"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Db"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Ab"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ab(#5)"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Ab6"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Ab7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Cm"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Cm/5"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb7"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "s4",
+      "role": "strain",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Ab"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ab7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Db"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Do7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Ab"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "s5",
+      "role": "strain",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "coda",
+      "role": "aux",
+      "parts": [
+        {
+          "label": "Coda",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Ab"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "key": {
+    "tonic": "Ab",
+    "mode": "major"
+  },
+  "opening": {
+    "degree": "V",
+    "quality": "maj",
+    "chord": "Eb"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "c2b5c9ccc2b90b2a9305062f77843d243349b5a5ea8dd349df6b50f01cdc4d94",
+    "scorer": {
+      "tonic": "Eb",
+      "mode": "major",
+      "margin": 0.3115,
+      "section_keys": {
+        "s3_A": {
+          "tonic": "Ab",
+          "mode": "major",
+          "margin": 0.9107
+        },
+        "s4_A": {
+          "tonic": "Ab",
+          "mode": "major",
+          "margin": 0.8361
+        },
+        "s4_B": {
+          "tonic": "Ab",
+          "mode": "major",
+          "margin": 0.9606
+        },
+        "coda": {
+          "tonic": "Ab",
+          "mode": "major",
+          "margin": 0.9194
+        }
+      }
+    },
+    "llm": {
+      "tonic": "Eb",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "Opens in Eb; the trio strains (s3-s4) modulate to the subdominant Ab, then s5 returns to Eb and the coda cadences in Ab.",
+      "section_keys": {
+        "s3_A": {
+          "tonic": "Ab",
+          "mode": "major"
+        },
+        "s3_A1": {
+          "tonic": "Ab",
+          "mode": "major"
+        },
+        "s4_A": {
+          "tonic": "Ab",
+          "mode": "major"
+        },
+        "s4_B": {
+          "tonic": "Ab",
+          "mode": "major"
+        },
+        "coda": {
+          "tonic": "Ab",
+          "mode": "major"
+        }
+      }
+    },
+    "section_key_proposals": {
+      "s1_A": {
+        "tonic": "Eb",
+        "mode": "major",
+        "margin": 1.0
+      },
+      "s1_A1": {
+        "tonic": "Eb",
+        "mode": "major",
+        "margin": 0.966
+      },
+      "s2_A": {
+        "tonic": "Eb",
+        "mode": "major",
+        "margin": 0.6438
+      },
+      "s2_A1": {
+        "tonic": "Eb",
+        "mode": "major",
+        "margin": 0.6593
+      },
+      "s5_A": {
+        "tonic": "Eb",
+        "mode": "major",
+        "margin": 0.6604
+      },
+      "s5_A1": {
+        "tonic": "Eb",
+        "mode": "major",
+        "margin": 0.6604
+      }
+    },
+    "human": {
+      "tonic": "Ab",
+      "mode": "major",
+      "corrected": true
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "multi-strain march/rag",
+    "tags": [
+      "circle-of-fifths",
+      "turnaround-ending"
+    ],
+    "sections": {
+      "intro": "I - dim - V7 with chromatic Db7 approach in Eb",
+      "s1_A": "I-V7-I alternation in Eb",
+      "s1_A1": "I-V-I then IV-#ivo7-I with V/ii(C7)-V/V(F7)-V7-I in Eb",
+      "s2_A": "IV-#ivo7-I, C7-F7-Bb7 circle back to I, ending on Eb7 toward IV",
+      "s2_A1": "same as s2_A, IV-#ivo7-I with circle-of-fifths cadence in Eb",
+      "s3_A": "I-I(#5)-IV-V7-I in Ab (trio)",
+      "s3_A1": "I to I7, then iii-VI(G7)-iii, ending Eb7 as V/IV in Ab",
+      "s4_A": "I to V7 vamp resolving to I in Ab",
+      "s4_B": "I-I7-IV-#ivo7-I-V7-I in Ab",
+      "s5_A": "IV-I-V7-I cadence back in Eb",
+      "s5_A1": "IV-I-V7-I in Eb, same as s5_A",
+      "coda": "I-V7 alternation cadencing on I in Ab"
+    },
+    "modulates": true,
+    "modulation_note": "Opens in Eb; the trio strains (s3-s4) modulate to the subdominant Ab, then s5 returns to Eb and the coda cadences in Ab.",
+    "stale": true
+  }
+}
