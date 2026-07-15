@@ -509,44 +509,8 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
   cursor: pointer;
 }
 .extra-section-label .btn-mini:hover { border-color: var(--accent); }
-.seclabel-strain {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--text-muted);
-  margin: 8px 0 3px;
-}
-.seclabel-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-.seclabel-key {
-  min-width: 120px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-muted);
-  font-family: "Courier New", monospace;
-}
-.seclabel-inp {
-  width: 90px;
-  padding: 4px 8px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  font-size: 13px;
-  font-family: "Courier New", monospace;
-  background: var(--surface);
-  color: var(--text);
-}
-.seclabel-inp:focus { outline: none; border-color: var(--accent); }
-.seclabel-warn { margin: 6px 0 2px; font-size: 11px; }
-.seclabel-warn-hard { color: #f87171; }
-.seclabel-warn-soft { color: var(--text-muted); }
-
 /* ═══════════════════════════════════════════════════════════════════════════
-   Sections
+   Parts (strains model)
    ══════════════════════════════════════════════════════════════════════════ */
 #sections-area { }
 
@@ -577,7 +541,9 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
   flex-shrink: 0;
 }
 
-.sec-name {
+/* Part identity fields in the card header: strain name, role, printed label
+   (primes kept) and plays count. */
+.part-strain, .part-label {
   font-size: 14px;
   font-weight: 700;
   border: 1px solid transparent;
@@ -588,13 +554,38 @@ body { background: var(--bg); height: 100vh; overflow: hidden; }
   width: 100px;
   transition: border-color 0.12s, background 0.12s;
 }
-.sec-name:focus {
+.part-label { width: 70px; }
+.part-strain:focus, .part-label:focus {
   outline: none;
   border-color: var(--accent);
   background: var(--surface);
 }
+.part-role {
+  font-size: 12px;
+  padding: 2px 4px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text-muted);
+}
+.part-plays {
+  width: 48px;
+  font-size: 13px;
+  padding: 2px 4px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+}
+.part-field-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
 
-.sec-card.has-dup .sec-name {
+.sec-card.has-dup .part-strain {
   border-color: var(--warning);
   background: #fffbeb;
 }
