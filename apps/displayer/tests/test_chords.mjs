@@ -33,8 +33,27 @@ for (const e of fixture.cases) {
     `${e.symbol}: +7 sharp ${chords.transposeChordSymbol(e.symbol, 7, chords.SHARP_SPELL)} != ${e.up7_sharp}`);
 }
 
+/* formatNumeralHTML: accidentals become glyphs exactly where they are
+   accidentals — the "b" of "subV7" and of "subii7" must survive. */
+const strip = (s) => s.replace(/<[^>]*>/g, "");
+const numeralCases = [
+  ["ii7", "ii7"],
+  ["bIII7", "♭III7"],
+  ["#ivø7", "♯ivø7"],
+  ["V7b9/II", "V7♭9/II"],
+  ["subV7/IV", "subV7/IV"],
+  ["subii7/bVI", "subii7/♭VI"],
+  ["biiio7", "♭iiio7"],
+  ["IΔ", "IΔ"],
+];
+for (const [raw, want] of numeralCases) {
+  const got = strip(chords.formatNumeralHTML(raw));
+  check(got === want, `formatNumeralHTML(${raw}): ${got} != ${want}`);
+}
+
 if (failures) {
   console.error(`${failures} failure(s) over ${fixture.cases.length} symbols`);
   process.exit(1);
 }
-console.log(`OK: ${fixture.cases.length} symbols × 4 assertions match the Python library`);
+console.log(`OK: ${fixture.cases.length} symbols × 4 assertions match the Python library`
+  + ` + ${numeralCases.length} numeral formats`);

@@ -2322,3 +2322,128 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 
 /* Roman-degree cells in the comparison's Degrees mode. */
 .chord.degree { font-weight: 400; letter-spacing: 0.02em; font-size: 2.1em;}
+
+/* ================= harmonic analysis: numerals + overlay lanes (spec §4) */
+
+/* Spelling switch (C / C⁄ii / ii) in the chords panel tools row: text pills
+   sharing the scan-toggle chrome, sized by their label. */
+.panel .scan-toggle.spell-btn {
+  width: auto;
+  min-width: 2.1rem;
+  padding: 0 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Hybrid spelling: the numeral in a small line under the printed chord,
+   left-aligned with it so the beat anchoring still reads. */
+.chstack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  vertical-align: top;
+}
+.deg-sub {
+  font-size: 0.72em;
+  line-height: 1.15;
+  color: var(--accent-ink);
+  white-space: nowrap;
+  margin-top: 0.1em;
+}
+.deg-sub .deg-line { display: block; }
+/* Roman-only spelling: the numeral replaces the chord, near the comparison
+   view's degree size but scaled down for stacked pivot readings. */
+.chord.numeral { font-weight: 400; letter-spacing: 0.02em; font-size: 1.7em; }
+.chord.numeral .deg-line { display: block; line-height: 1.1; }
+/* Pivot chords stack the outgoing key's reading (muted) over the new one. */
+.pivot-old { color: var(--muted); font-size: 0.82em; }
+
+/* Overlay lanes: one thin band per feature class under each row of bars,
+   aligned to the bars via a beat-resolution column grid. */
+.lane {
+  display: grid;
+  grid-column: 1 / -1;
+  min-width: 0;
+  font-size: 0.68em;
+  line-height: 1.1;
+  margin-top: 0.12em;
+  pointer-events: none;
+}
+
+/* Key-region band: a dotted extent line with the "F:" prefix at its start
+   (lowercase for minor keys, like the book's colon notation). */
+.lane-region { margin-top: 0.05em; }
+.lane-region > div {
+  border-top: 0.14em dotted var(--muted);
+  padding-top: 0.05em;
+  min-width: 0;
+}
+.lane-region > div.rg-section { border-top-style: solid; }
+.lane-region .lane-label {
+  color: var(--accent-ink);
+  font-weight: 700;
+  padding-left: 0.15em;
+  white-space: nowrap;
+}
+
+/* ii–V brackets: the book's under-bracket |____| ; dotted for ii–subV /
+   subii–V pairs. Row-crossing pieces drop the open side's tick. */
+.lane-bracket {
+  height: 0.55em;
+  margin: 0 0.3em;
+  border: 0.13em solid var(--fg);
+  border-top: none;
+  opacity: 0.75;
+}
+.lane-bracket.dotted { border-style: dashed; border-top: none; }
+.lane-bracket.cont-right { border-right: none; }
+.lane-bracket.cont-left { border-left: none; }
+
+/* Resolution arrows: a line with a right-pointing head — solid for the
+   down-a-fifth resolution, dashed for the half-step (subV) one, headless
+   for the to-minor move. Drawn just below the bracket band. */
+.lane-arrow {
+  position: relative;
+  height: 0.8em;
+  min-width: 0;
+}
+.lane-arrow::before {
+  content: "";
+  position: absolute;
+  left: 0.35em;
+  right: 0.5em;
+  top: 45%;
+  border-top: 0.14em solid var(--fg);
+  opacity: 0.75;
+}
+.lane-arrow.half::before { border-top-style: dashed; }
+.lane-arrow::after {
+  content: "";
+  position: absolute;
+  right: 0.15em;
+  top: 45%;
+  transform: translateY(-50%);
+  border-left: 0.45em solid var(--fg);
+  border-top: 0.28em solid transparent;
+  border-bottom: 0.28em solid transparent;
+  opacity: 0.8;
+}
+.lane-arrow.to_minor::after,
+.lane-arrow.cont-right::after { border-left-color: transparent; }
+
+/* Building blocks: a labelled tinted span. */
+.lane-block {
+  margin-top: 0.1em;
+  min-width: 0;
+  background: color-mix(in srgb, var(--accent) 26%, transparent);
+  border-radius: 0.5em;
+  padding: 0.08em 0.4em;
+  color: var(--fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.lane-block.cont-right { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.lane-block.cont-left { border-top-left-radius: 0; border-bottom-left-radius: 0; }
