@@ -20,7 +20,9 @@ const S = {
   tunes:     [],              // [{id, title, verified, deferred, status, has_image}]
   filter:    'needs_review',  // active sidebar tab: needs_review | deferred | all
   currentId: null,            // ID of open tune
-  data:      null,            // tune data; sections is [{name, bars}] (array form)
+  data:      null,            // tune data; parts is the flat editing view of strains
+  config:    { roles: ['chorus', 'verse', 'strain', 'aux'],
+               named_strains: [], aux_connectors: [] }, // from /api/tunes
   dirty:     false,
 };
 
@@ -40,10 +42,8 @@ const KNOWN_META = [
   'tempo', 'form', 'time_signature', 'page', 'source',
 ];
 
-// `form_strains` is fully derived server-side from `section_labels` + the
-// section grouping on every save; it is never shown or hand-edited here.
-// `section_labels` IS hand-editable, but through its own dedicated editor
-// (renderSectionLabels) rather than the raw-JSON extras list.
+// Legacy derived fields (pre-Phase C); dropped from any older WIP file on
+// save and never shown — the structure itself carries labels and repeats now.
 const DERIVED_META = ['form_strains', 'section_labels'];
 
 // ─── Beat count ───────────────────────────────────────────────────────────────
@@ -292,7 +292,7 @@ function normalizeBeatInput(el) {
   }
 }
 
-/** All invalid chords in a save payload (sections + variants), as readable strings. */
+/** All invalid chords in a save payload (strains + variants), as readable strings. */
 function invalidChordList(payload) {
   const out = [];
   const walk = (bars, where) => (bars || []).forEach(b => {
@@ -300,24 +300,27 @@ function invalidChordList(payload) {
       if (chordErrors(ch).length) out.push(`${where} bar ${b.bar} beat ${beat}: "${ch}"`);
     });
   });
-  Object.entries(payload.sections || {}).forEach(([name, bars]) => walk(bars, name));
+  (payload.strains || []).forEach(s => (s.parts || []).forEach((p, i) =>
+    walk(p.bars, `${s.name} ${p.label || `part ${i + 1}`}`)));
   (Array.isArray(payload.variants) ? payload.variants : [])
     .forEach((v, i) => walk(v?.bars, `variant ${i + 1}`));
   return out;
 }
 
-/** Variant targets that name a missing section or run past its end. */
+/** Variant targets that name a missing strain/part or run past the part's end. */
 function invalidTargetList(payload) {
   const out = [];
-  const counts = {};
-  Object.entries(payload.sections || {}).forEach(([n, bars]) => { counts[n] = (bars || []).length; });
+  const byName = {};
+  (payload.strains || []).forEach(s => { byName[s.name] = s.parts || []; });
   (Array.isArray(payload.variants) ? payload.variants : []).forEach((v, i) => {
     const nb = (v.bars || []).length;
     (Array.isArray(v.targets) ? v.targets : []).forEach(tg => {
-      if (!(tg.section in counts)) {
-        out.push(`variant ${i + 1}: unknown section "${tg.section}"`);
-      } else if (tg.bar < 1 || (tg.bar - 1 + nb) > counts[tg.section]) {
-        out.push(`variant ${i + 1}: ${tg.section}/${tg.bar} + ${nb} bars runs past section end`);
+      const parts = byName[tg.strain];
+      const part  = parts && parts[tg.part];
+      if (!part) {
+        out.push(`variant ${i + 1}: unknown anchor ${tg.strain}/${tg.part}`);
+      } else if (tg.bar < 1 || (tg.bar - 1 + nb) > (part.bars || []).length) {
+        out.push(`variant ${i + 1}: ${tg.strain}[${tg.part}] bar ${tg.bar} + ${nb} bars runs past the part`);
       }
     });
   });
@@ -392,28 +395,106 @@ function afterStatusChange() {
   updateActionButtons();
 }
 
-// ─── Data conversion ──────────────────────────────────────────────────────────
-/** Convert sections object {A:[bars]} → array [{name,bars}] */
-function sectionsToArray(obj) {
-  return Object.entries(obj || {}).map(([name, bars]) => ({
-    name,
-    bars: (bars || []).map(b => ({
+// ─── Data conversion (strains ⇄ flat parts) ──────────────────────────────────
+/* The editor works on a FLAT list of parts — one card per part, exactly like
+   the old one-card-per-section editor — each carrying its strain name, role,
+   printed label (primes kept) and plays count. Consecutive cards sharing a
+   strain name regroup into one strain on save (strains never interleave). */
+
+/** strains [{name, role, parts:[{label, plays, bars}]}] → flat parts. */
+function strainsToParts(strains) {
+  const parts = [];
+  (strains || []).forEach(s => (s.parts || []).forEach(p => parts.push({
+    strain: s.name,
+    role:   s.role,
+    label:  p.label != null ? String(p.label) : '',
+    plays:  p.plays || 1,
+    bars:   (p.bars || []).map(b => ({
       bar:   b.bar,
       beats: Object.assign({}, b.beats || {}),
     })),
-  }));
+  })));
+  return parts;
 }
 
-/** Convert sections array [{name,bars}] → object {A:[bars]}, bars renumbered */
-function sectionsToObject(arr) {
-  const obj = {};
-  (arr || []).forEach(sec => {
-    obj[sec.name] = sec.bars.map((bar, i) => ({
-      bar:   i + 1,
-      beats: bar.beats,
-    }));
+/** Flat parts → strains, consecutive same-name cards merged; bars renumbered.
+    The run's role comes from its first card. */
+function partsToStrains(parts) {
+  const strains = [];
+  (parts || []).forEach(p => {
+    let last = strains[strains.length - 1];
+    if (!last || last.name !== p.strain) {
+      last = { name: p.strain, role: p.role, parts: [] };
+      strains.push(last);
+    }
+    const part = { label: p.label };
+    if (p.plays > 1) part.plays = p.plays;
+    part.bars = p.bars.map((bar, i) => ({ bar: i + 1, beats: bar.beats }));
+    last.parts.push(part);
   });
-  return obj;
+  return strains;
+}
+
+/** Consecutive same-strain runs over S.data.parts: [{name, role, start, parts}]. */
+function partRuns(parts) {
+  const runs = [];
+  (parts || []).forEach(p => {
+    const last = runs[runs.length - 1];
+    if (!last || last.name !== p.strain) {
+      runs.push({ name: p.strain, role: p.role, start: runs.length
+        ? runs[runs.length - 1].start + runs[runs.length - 1].parts.length : 0,
+        parts: [] });
+    }
+    runs[runs.length - 1].parts.push(p);
+  });
+  return runs;
+}
+
+/** A part id fragment from a printed label (mirror of normalize._label_base). */
+function labelBase(label) {
+  return String(label ?? '').trim().replace(/['’]+$/, '').replace(/\s+/g, '') || 'P';
+}
+
+/** Generated part ids for the flat list (mirror of normalize.part_ids):
+    chorus parts read as letters ("A", "A1"), other strains prefix their name,
+    a single-part aux connector is its bare name. */
+function partIdList(parts) {
+  const out = [];
+  partRuns(parts).forEach(run => {
+    if (run.role === 'aux' && run.parts.length === 1) { out.push(run.name); return; }
+    const counts = {};
+    run.parts.forEach(p => {
+      const base = labelBase(p.label);
+      const n = counts[base] || 0;
+      counts[base] = n + 1;
+      const suffix = n === 0 ? base : base + n;
+      out.push(run.role === 'chorus' ? suffix : `${run.name}_${suffix}`);
+    });
+  });
+  return out;
+}
+
+/** {strain, part} anchor → flat part index, or -1 when it dangles. */
+function anchorToPi(anchor) {
+  if (!anchor || anchor.strain == null) return -1;
+  const run = partRuns(S.data.parts).find(r => r.name === anchor.strain);
+  if (!run || !(anchor.part >= 0 && anchor.part < run.parts.length)) return -1;
+  return run.start + anchor.part;
+}
+
+/** Flat part index → {strain, part} anchor (part 0-based within its strain). */
+function piToAnchor(pi) {
+  const run = partRuns(S.data.parts)
+    .find(r => pi >= r.start && pi < r.start + r.parts.length);
+  return run ? { strain: run.name, part: pi - run.start } : null;
+}
+
+/** <option> list for an anchor picker: one entry per part, by generated id. */
+function partOptionsHTML(selectedPi) {
+  const ids = partIdList(S.data.parts);
+  return ids.map((id, pi) =>
+    `<option value="${pi}"${pi === selectedPi ? ' selected' : ''}>${esc(id)}</option>`
+  ).join('');
 }
 
 // ─── Collect data from DOM → S.data ──────────────────────────────────────────
@@ -430,10 +511,11 @@ function collectMeta() {
     }
   });
 
-  // Extra fields (preserve JSON types via JSON.parse round-trip). `sections`,
-  // `variants`, `coda_jump` and the derived form fields have their own editors,
+  // Extra fields (preserve JSON types via JSON.parse round-trip). `strains`,
+  // `variants`, `coda_jump` and the editing view have their own editors,
   // so they never appear here.
-  const knownSet = new Set([...KNOWN_META, ...DERIVED_META, 'sections', 'variants', 'coda_jump']);
+  const knownSet = new Set([...KNOWN_META, ...DERIVED_META,
+                            'strains', 'parts', 'variants', 'coda_jump']);
   const oldExtras = Object.keys(S.data).filter(k => !knownSet.has(k));
   const newExtras = {};
   qsa('[data-extra-key]').forEach(el => {
@@ -446,20 +528,29 @@ function collectMeta() {
   Object.assign(S.data, newExtras);
 }
 
-function collectSections() {
-  // Section names (scoped: variant cards reuse .sec-card but not .sec-name)
-  qsa('#sections-container .sec-name').forEach(el => {
-    const si = +el.dataset.si;
-    if (S.data.sections[si]) S.data.sections[si].name = el.value.trim() || S.data.sections[si].name;
+function collectParts() {
+  // Per-card strain identity fields
+  qsa('#sections-container .sec-card').forEach(card => {
+    const si = +card.dataset.si;
+    const part = S.data.parts[si];
+    if (!part) return;
+    const strain = qs('.part-strain', card)?.value.trim();
+    const role   = qs('.part-role', card)?.value;
+    const label  = qs('.part-label', card)?.value.trim();
+    const plays  = parseInt(qs('.part-plays', card)?.value, 10);
+    if (strain) part.strain = strain;
+    if (role)   part.role = role;
+    part.label = label || part.label;
+    part.plays = Number.isFinite(plays) && plays >= 1 ? plays : 1;
   });
 
   // Reset all beats then repopulate from inputs
-  S.data.sections.forEach(sec => sec.bars.forEach(bar => { bar.beats = {}; }));
+  S.data.parts.forEach(p => p.bars.forEach(bar => { bar.beats = {}; }));
   qsa('#sections-container .beat-inp').forEach(el => {
     const si = +el.dataset.si, bi = +el.dataset.bi, beat = el.dataset.beat;
     const v  = normalizeChord(el.value);
-    if (v && S.data.sections[si]?.bars[bi]) {
-      S.data.sections[si].bars[bi].beats[beat] = v;
+    if (v && S.data.parts[si]?.bars[bi]) {
+      S.data.parts[si].bars[bi].beats[beat] = v;
     }
   });
 }
@@ -489,14 +580,15 @@ function collectVariants() {
   // Renumber bars sequentially within each variant
   S.data.variants.forEach(vr => (vr.bars || []).forEach((bar, i) => { bar.bar = i + 1; }));
 
-  // Targets: rebuild each variant's {section, bar} anchors from its rows.
+  // Targets: rebuild each variant's {strain, part, bar} anchors from its rows.
   const collected = S.data.variants.map(() => []);
   qsa('#variants-container .target-row').forEach(row => {
     const vi = +row.dataset.vi;
     if (!collected[vi]) return;
-    const sec = qs('.target-sec', row)?.value.trim();
+    const pi  = parseInt(qs('.target-sec', row)?.value, 10);
     const bar = parseInt(qs('.target-bar', row)?.value, 10);
-    if (sec && Number.isFinite(bar)) collected[vi].push({ section: sec, bar });
+    const anchor = Number.isFinite(pi) ? piToAnchor(pi) : null;
+    if (anchor && Number.isFinite(bar)) collected[vi].push({ ...anchor, bar });
   });
   S.data.variants.forEach((vr, vi) => {
     if (collected[vi].length) vr.targets = collected[vi];
@@ -506,9 +598,8 @@ function collectVariants() {
 
 function collectFromDOM() {
   collectMeta();
-  collectSectionLabels();
+  collectParts();   // parts first: anchor pickers resolve against them
   collectCodaJump();
-  collectSections();
   collectVariants();
 }
 
@@ -516,23 +607,26 @@ function collectFromDOM() {
 function buildSavePayload() {
   collectFromDOM();
 
-  // Check duplicate section names (warn, but proceed)
-  const names = S.data.sections.map(s => s.name);
-  const dups  = names.filter((n, i) => names.indexOf(n) !== i);
-  if (dups.length) toast(`Warning: duplicate section names: ${dups.join(', ')}`, 'warn');
+  // A strain name reappearing NON-consecutively would split into duplicate
+  // strains (the server rejects that loudly) — warn early.
+  const runNames = partRuns(S.data.parts).map(r => r.name);
+  const dups = runNames.filter((n, i) => runNames.indexOf(n) !== i);
+  if (dups.length) {
+    toast(`Warning: strain(s) split by another strain: ${[...new Set(dups)].join(', ')} — reorder the parts`, 'warn');
+  }
 
-  // Rebuild object: preserve original key order, sections last. `variants` is
-  // kept as-is (already collected/renumbered); an emptied-out list is dropped.
+  // Rebuild object: preserve original key order, strains last. `variants` is
+  // kept as-is (already collected/renumbered); an emptied-out list is dropped;
+  // legacy derived fields from old WIP files are dropped for good.
   const out = {};
   Object.keys(S.data).forEach(k => {
-    if (k === 'sections' || S.data[k] === undefined) return;
+    if (k === 'strains' || k === 'parts' || S.data[k] === undefined) return;
     if (k === 'variants' && (!Array.isArray(S.data[k]) || !S.data[k].length)) return;
-    if (k === 'form_strains') return;  // derived: recomputed server-side on save
-    if (k === 'section_labels' && !Object.keys(S.data[k] || {}).length) return;
-    if (k === 'coda_jump' && !S.data[k]?.from?.section) return; // empty anchor: drop
+    if (DERIVED_META.includes(k)) return;
+    if (k === 'coda_jump' && !S.data[k]?.from?.strain) return; // empty anchor: drop
     out[k] = S.data[k];
   });
-  out.sections = sectionsToObject(S.data.sections);
+  out.strains = partsToStrains(S.data.parts);
   return out;
 }
 
@@ -553,8 +647,9 @@ function renderMeta() {
     `;
   }).join('');
 
-  // Extra fields (sections, variants, coda_jump and derived form fields have dedicated editors)
-  const knownSet  = new Set([...KNOWN_META, ...DERIVED_META, 'sections', 'variants', 'coda_jump']);
+  // Extra fields (strains/parts, variants and coda_jump have dedicated editors)
+  const knownSet  = new Set([...KNOWN_META, ...DERIVED_META,
+                             'strains', 'parts', 'variants', 'coda_jump']);
   const extraKeys = Object.keys(S.data).filter(k => !knownSet.has(k));
 
   if (extraKeys.length) {
@@ -583,158 +678,12 @@ function renderMeta() {
   }
 }
 
-// ─── Section labels (printed labels per section, primes kept) ─────────────────
-// The section KEY (A, A1, verse_A) is a mechanical id; its printed LABEL (A, A',
-// …) is what the book shows and what the displayer renders. Edit them here;
-// `form_strains` is recomputed from them server-side on save.
-function strainOfKey(name) {
-  const m = /^(s\d+|[a-z][a-z0-9]*)_/.exec(name);
-  if (m) return m[1];
-  if (/^[A-Z]\d*$/.test(name)) return 'chorus';
-  return 'aux';
-}
-
-// Named strains the displayers colour consistently (mirror of normalize.py's
-// NAMED_STRAINS / the displayers' STRAIN_TINT). Section keys may use only these
-// or a plain chorus letter; extend all three together to add a strain.
-const NAMED_STRAINS = ['verse', 'intro', 'thema', 'impro', 'interlude', 'coda',
-                       'part1', 'part2', 's1', 's2', 'blues'];
-// The disallowed strain a section key carries, or '' when allowed. Plain chorus
-// cells (A, B1, T) pass; a named strain (prefix `verse_A` or bare `coda`) must
-// be in NAMED_STRAINS.
-function unknownStrain(name) {
-  const key = String(name || '').trim();
-  if (/^[A-Z]\d*$/.test(key)) return '';
-  const m = /^([A-Za-z][A-Za-z0-9]*)_/.exec(key);
-  const strain = m ? m[1] : key;
-  return NAMED_STRAINS.includes(strain) ? '' : strain;
-}
-// A save-blocking message when any section key uses a disallowed strain, else ''.
-function strainPolicyError(sectionNames) {
-  const bad = {};
-  sectionNames.forEach(n => {
-    const s = unknownStrain(n);
-    if (s) (bad[s] ||= []).push(n);
-  });
-  const strains = Object.keys(bad);
-  if (!strains.length) return '';
-  const detail = strains.map(s => `${s} (${bad[s].join(', ')})`).join('; ');
-  return `Unknown strain(s): ${detail}. Allowed: ${NAMED_STRAINS.join(', ')} `
-    + `— or a plain chorus letter (A, B, …). Rename the section, or add the `
-    + `strain in code.`;
-}
-function labelPlaceholder(name) {
-  const m = /^([A-Z])\d*$/.exec(name.replace(/^(s\d+|[a-z][a-z0-9]*)_/, ''));
-  return m ? m[1] : name;
-}
-
-function labelRowHTML(name, val, orphan) {
-  return `
-    <div class="seclabel-row${orphan ? ' orphan' : ''}">
-      <span class="seclabel-key">${esc(name)}</span>
-      <input class="seclabel-inp" data-section="${esc(name)}"
-             value="${esc(val)}" placeholder="${esc(labelPlaceholder(name))}" />
-      <button class="btn-icon danger" data-label-del="${esc(name)}"
-              title="Remove label">×</button>
-    </div>`;
-}
-
-function renderSectionLabels() {
-  const area = qs('#section-labels-area');
-  if (!area) return;
-  const secs = S.data.sections || [];
-  const labels = S.data.section_labels || {};
-  const named = new Set(secs.map(s => s.name));
-  const rows = [];
-  // One row per labelled section, in section order, grouped by strain.
-  let lastStrain = null;
-  secs.forEach(sec => {
-    const name = sec.name;
-    if (!(name in labels)) return;
-    const strain = strainOfKey(name);
-    if (strain !== lastStrain) {
-      rows.push(`<div class="seclabel-strain">${esc(strain)}</div>`);
-      lastStrain = strain;
-    }
-    rows.push(labelRowHTML(name, String(labels[name] ?? '')));
-  });
-  // Orphan labels (key no longer matches a section) so they can be cleaned up.
-  const orphans = Object.keys(labels).filter(k => !named.has(k));
-  if (orphans.length) {
-    rows.push('<div class="seclabel-strain">unmatched</div>');
-    orphans.forEach(k => rows.push(labelRowHTML(k, String(labels[k] ?? ''), true)));
-  }
-  const canAdd = secs.some(s => !(s.name in labels));
-  area.innerHTML = `
-    <div class="extra-section-label">Section labels
-      <button type="button" id="autofill-labels" class="btn-mini"
-              title="Align the form string against the sections">Auto-fill from form</button>
-    </div>
-    <div id="section-labels-container">${rows.join('')}</div>
-    <div id="section-labels-warn" class="seclabel-warn"></div>
-    <button type="button" id="add-label" class="btn btn-sm btn-outline"
-            ${canAdd ? '' : 'disabled'}>+ Add label</button>`;
-}
-
-// Reads the label inputs into S.data.section_labels. Empty values are KEPT
-// (so a freshly added, not-yet-typed row survives a re-render); they are
-// stripped when the save payload is built.
-function collectSectionLabels() {
-  if (!qs('#section-labels-container')) return;
-  const map = {};
-  qsa('#section-labels-container .seclabel-inp').forEach(el => {
-    map[el.dataset.section] = el.value.trim();
-  });
-  S.data.section_labels = map;
-}
-
-// + Add label: bring the next unlabelled section into the editor.
-function addSectionLabel() {
-  collectSectionLabels();
-  const labels = (S.data.section_labels ||= {});
-  const next = (S.data.sections || []).map(s => s.name).find(n => !(n in labels));
-  if (!next) { toast('All sections already have a label', 'info'); return; }
-  labels[next] = '';
-  renderSectionLabels();
-  qs(`#section-labels-container .seclabel-inp[data-section="${cssEsc(next)}"]`)?.focus();
-  setDirty();
-}
-
-function deleteSectionLabel(name) {
-  collectSectionLabels();
-  delete S.data.section_labels[name];
-  renderSectionLabels();
-  setDirty();
-}
-
-async function autofillSectionLabels() {
-  collectFromDOM();
-  const payload = buildSavePayload();
-  try {
-    const resp = await apiFetch('/api/derive', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    S.data.section_labels = resp.section_labels || {};
-    renderSectionLabels();
-    const warn = qs('#section-labels-warn');
-    if (warn) {
-      warn.innerHTML = (resp.warnings || []).map(w =>
-        `<div class="seclabel-warn-${w.level}">${esc(w.message)}</div>`).join('');
-    }
-    setDirty();
-    toast(resp.hard ? 'Auto-filled — form/sections mismatch, check flags' : 'Auto-filled labels', resp.hard ? 'warn' : 'ok');
-  } catch (err) {
-    toast(`Auto-fill failed: ${err.message}`, 'error');
-  }
-}
-
 // ─── Coda jump (the printed coda sign anchor) ─────────────────────────────────
-// `coda_jump.from = {section, bar}` (bar 1-indexed within its section) is the
-// grid bar carrying the printed coda sign; `caption` is the verbatim printed
-// text. The displayers DRAW the sign themselves (CSS), so no glyph is stored.
-// Edited here as structured fields, mirroring a variant's target anchor.
+// `coda_jump.from = {strain, part, bar}` (part 0-based within its strain, bar
+// 1-indexed within that part) is the grid bar carrying the printed coda sign;
+// `caption` is the verbatim printed text. The displayers DRAW the sign
+// themselves (CSS), so no glyph is stored. Edited here as structured fields,
+// mirroring a variant's target anchor (the picker lists generated part ids).
 function renderCodaJump() {
   const area = qs('#coda-jump-area');
   if (!area) return;
@@ -745,14 +694,9 @@ function renderCodaJump() {
       `<button type="button" id="add-coda-jump" class="btn btn-sm btn-outline">+ Add coda jump</button>`;
     return;
   }
-  const from     = cj.from || {};
-  const secNames = (S.data.sections || []).map(s => s.name);
-  const opts     = secNames.slice();
-  if (from.section && !opts.includes(from.section)) opts.push(from.section); // keep unknown
-  const missing  = from.section && !secNames.includes(from.section);
-  const optHtml  = opts.map(n =>
-    `<option value="${esc(n)}"${n === from.section ? ' selected' : ''}>${esc(n)}</option>`
-  ).join('');
+  const from    = cj.from || {};
+  const pi      = anchorToPi(from);
+  const missing = from.strain != null && pi < 0;
   area.innerHTML = `
     <div class="area-label">Coda jump
       <button type="button" class="btn-icon danger" id="del-coda-jump" title="Remove coda jump">×</button>
@@ -765,36 +709,37 @@ function renderCodaJump() {
       </div>
       <div class="target-row coda-field${missing ? ' target-missing' : ''}">
         <span class="coda-field-label"
-              title="The grid bar carrying the printed coda sign (1-indexed within its section)">from</span>
-        <select id="coda-from-sec" class="target-sec" title="Section">
-          <option value=""${from.section ? '' : ' selected'}>—</option>
-          ${optHtml}
+              title="The grid bar carrying the printed coda sign (1-indexed within its part)">from</span>
+        <select id="coda-from-sec" class="target-sec" title="Part">
+          <option value=""${pi >= 0 ? '' : ' selected'}>—</option>
+          ${partOptionsHTML(pi)}
         </select>
         <span class="target-at">bar</span>
         <input id="coda-from-bar" class="target-bar" type="number" min="1" step="1"
                value="${esc(from.bar != null ? from.bar : '')}"
-               title="Bar within that section (1-indexed)" />
+               title="Bar within that part (1-indexed)" />
       </div>
     </div>`;
 }
 
-// Reads the coda-jump inputs back into S.data.coda_jump (rebuilt from scratch,
-// so a stale `marker` is dropped). A no-op when the section shows the +Add
-// button, so a removed coda_jump is never resurrected.
+// Reads the coda-jump inputs back into S.data.coda_jump (rebuilt from
+// scratch). A no-op when the area shows the +Add button, so a removed
+// coda_jump is never resurrected.
 function collectCodaJump() {
   if (!qs('#coda-jump-area') || !qs('#coda-caption')) return;
   const caption = qs('#coda-caption').value.trim();
-  const section = qs('#coda-from-sec')?.value.trim() || '';
+  const pi      = parseInt(qs('#coda-from-sec')?.value, 10);
   const bar     = parseInt(qs('#coda-from-bar')?.value, 10);
+  const anchor  = Number.isFinite(pi) ? piToAnchor(pi) : null;
   const cj = {};
   if (caption) cj.caption = caption;
-  cj.from = { section };
-  if (Number.isFinite(bar)) cj.from.bar = bar;
+  cj.from = anchor || {};
+  if (anchor && Number.isFinite(bar)) cj.from.bar = bar;
   S.data.coda_jump = cj;
 }
 
 function addCodaJump() {
-  S.data.coda_jump = { caption: '', from: { section: S.data.sections[0]?.name || '', bar: 1 } };
+  S.data.coda_jump = { caption: '', from: { ...(piToAnchor(0) || {}), bar: 1 } };
   renderCodaJump();
   qs('#coda-caption')?.focus();
   setDirty();
@@ -806,59 +751,88 @@ function deleteCodaJump() {
   setDirty();
 }
 
-// ─── Render sections ─────────────────────────────────────────────────────────
+// ─── Render parts ─────────────────────────────────────────────────────────────
+/* One card per part. The card header edits the part's strain identity
+   (strain name + role), its printed label (primes kept) and its plays count
+   ("identical parts stored once" — 16 A A stored as one grid with plays 2).
+   Consecutive cards sharing a strain name merge into one strain on save. */
 function renderSections() {
   const bc        = getBeatCount();
-  const total     = S.data.sections.length;
+  const total     = S.data.parts.length;
   const container = qs('#sections-container');
+  const ids       = partIdList(S.data.parts);
 
-  container.innerHTML = S.data.sections.map((sec, si) =>
-    renderSectionHTML(sec, si, total, bc)
+  const strains = [...new Set(['chorus', 'verse',
+    ...(S.config.named_strains || []), ...(S.config.aux_connectors || [])])];
+  const datalist = `<datalist id="strain-names">
+    ${strains.map(n => `<option value="${esc(n)}"></option>`).join('')}
+  </datalist>`;
+
+  container.innerHTML = datalist + S.data.parts.map((part, si) =>
+    renderPartHTML(part, ids[si], si, total, bc)
   ).join('');
 
   refreshDuplicateFlags();
   validateAllChords();
-  // Keep the section-labels editor in step with the current section set,
-  // preserving any labels already typed.
-  collectSectionLabels();
-  renderSectionLabels();
 }
 
-/** Flag section cards whose (live) name collides with another section's. */
+/** Flag cards whose strain reappears non-consecutively (would split into
+    duplicate strains on save) — the strain-model equivalent of the old
+    duplicate-section-name warning. */
 function refreshDuplicateFlags() {
-  const cards  = qsa('#sections-container .sec-card');
-  const names  = Array.from(cards, c => qs('.sec-name', c).value.trim());
-  const counts = {};
-  names.forEach(n => { if (n) counts[n] = (counts[n] || 0) + 1; });
-
+  const cards = qsa('#sections-container .sec-card');
+  const strains = Array.from(cards, c => qs('.part-strain', c)?.value.trim() || '');
+  const runNames = [];
+  strains.forEach(n => {
+    if (!runNames.length || runNames[runNames.length - 1].name !== n) {
+      runNames.push({ name: n, count: 0 });
+    }
+  });
+  const runCounts = {};
+  runNames.forEach(r => { runCounts[r.name] = (runCounts[r.name] || 0) + 1; });
   cards.forEach((card, i) => {
-    const dup = names[i] !== '' && counts[names[i]] > 1;
+    const dup = strains[i] !== '' && runCounts[strains[i]] > 1;
     card.classList.toggle('has-dup', dup);
     qs('.sec-dup-badge', card)?.classList.toggle('hidden', !dup);
   });
 }
 
-function renderSectionHTML(sec, si, totalSections, bc) {
-  const rows    = buildRows(sec.bars, 'si', si, bc);
+function roleOptionsHTML(selected) {
+  return (S.config.roles || []).map(r =>
+    `<option value="${esc(r)}"${r === selected ? ' selected' : ''}>${esc(r)}</option>`
+  ).join('');
+}
+
+function renderPartHTML(part, partId, si, totalParts, bc) {
+  const rows    = buildRows(part.bars, 'si', si, bc);
   const canUp   = si > 0;
-  const canDown = si < totalSections - 1;
+  const canDown = si < totalParts - 1;
 
   return `
     <div class="sec-card" data-si="${si}">
       <div class="sec-header">
-        <span class="sec-label">Section</span>
-        <input class="sec-name" type="text" value="${esc(sec.name)}" data-si="${si}"
-               title="Section name" />
-        <span class="sec-dup-badge hidden" title="Another section has this name — they will be merged on save">⚠ duplicate name</span>
+        <span class="sec-label" title="Generated part id (from strain + label)">${esc(partId)}</span>
+        <input class="part-strain" type="text" value="${esc(part.strain)}" data-si="${si}"
+               list="strain-names" title="Strain name (chorus, verse, impro, coda, …)" />
+        <select class="part-role" data-si="${si}" title="Strain role">
+          ${roleOptionsHTML(part.role)}
+        </select>
+        <span class="part-field-label">label</span>
+        <input class="part-label" type="text" value="${esc(part.label)}" data-si="${si}"
+               title="Printed label, primes kept (A, A', B, BLUES, Coda)" />
+        <span class="part-field-label">×</span>
+        <input class="part-plays" type="number" min="1" step="1" value="${esc(part.plays || 1)}"
+               data-si="${si}" title="Times played in a row (stored once)" />
+        <span class="sec-dup-badge hidden" title="This strain reappears non-consecutively — reorder the parts">⚠ split strain</span>
         <div class="sec-header-btns">
           <button class="btn-icon" data-action="sec-up"   data-si="${si}"
-                  ${canUp   ? '' : 'disabled'} title="Move section up">↑</button>
+                  ${canUp   ? '' : 'disabled'} title="Move part up">↑</button>
           <button class="btn-icon" data-action="sec-down" data-si="${si}"
-                  ${canDown ? '' : 'disabled'} title="Move section down">↓</button>
+                  ${canDown ? '' : 'disabled'} title="Move part down">↓</button>
           <button class="btn-icon" data-action="sec-copy" data-si="${si}"
-                  title="Duplicate section">⧉</button>
+                  title="Duplicate part">⧉</button>
           <button class="btn-icon danger" data-action="sec-del" data-si="${si}"
-                  title="Delete section">×</button>
+                  title="Delete part">×</button>
         </div>
       </div>
       <div class="sec-body">
@@ -931,7 +905,7 @@ function renderBarHTML(bar, idxAttr, idx, bi, bc) {
 
 // ─── Structural operations ────────────────────────────────────────────────────
 function moveSectionUp(si) {
-  const s = S.data.sections;
+  const s = S.data.parts;
   [s[si - 1], s[si]] = [s[si], s[si - 1]];
   renderSections();
 }
@@ -940,42 +914,37 @@ function moveSectionDown(si) {
   moveSectionUp(si + 1);
 }
 
-/** Derive a section name not already used, so copies don't collide on save. */
-function uniqueSectionName(base) {
-  const existing = new Set(S.data.sections.map(s => s.name));
-  if (!existing.has(base)) return base;
-  let i = 2;
-  while (existing.has(`${base} (${i})`)) i++;
-  return `${base} (${i})`;
-}
-
 function copySection(si) {
-  const src   = S.data.sections[si];
+  const src   = S.data.parts[si];
   const clone = {
-    name: uniqueSectionName(src.name),
+    strain: src.strain,
+    role:   src.role,
+    label:  src.label,
+    plays:  1,
     bars: src.bars.map(bar => ({
       bar:   bar.bar,
       beats: Object.assign({}, bar.beats),
     })),
   };
-  S.data.sections.splice(si + 1, 0, clone);
+  S.data.parts.splice(si + 1, 0, clone);
   renderSections();
 }
 
 function deleteSection(si) {
-  const name = S.data.sections[si]?.name || si;
-  if (!confirm(`Delete section "${name}" and all its bars?`)) return;
-  S.data.sections.splice(si, 1);
+  const part = S.data.parts[si];
+  const name = part ? `${part.strain} ${part.label}` : si;
+  if (!confirm(`Delete part "${name}" and all its bars?`)) return;
+  S.data.parts.splice(si, 1);
   renderSections();
 }
 
 function moveRowUp(si, ri) {
-  const bars  = S.data.sections[si].bars;
+  const bars  = S.data.parts[si].bars;
   const pStart = (ri - 1) * 4;
   const tStart = ri * 4;
   const prev   = bars.slice(pStart, tStart);
   const curr   = bars.slice(tStart, tStart + 4);
-  S.data.sections[si].bars = [
+  S.data.parts[si].bars = [
     ...bars.slice(0, pStart),
     ...curr,
     ...prev,
@@ -989,8 +958,8 @@ function moveRowDown(si, ri) {
 }
 
 function deleteRow(si, ri) {
-  const bars = S.data.sections[si].bars;
-  S.data.sections[si].bars = [
+  const bars = S.data.parts[si].bars;
+  S.data.parts[si].bars = [
     ...bars.slice(0, ri * 4),
     ...bars.slice(ri * 4 + 4),
   ];
@@ -998,68 +967,73 @@ function deleteRow(si, ri) {
 }
 
 function deleteBar(si, bi) {
-  S.data.sections[si].bars.splice(bi, 1);
+  S.data.parts[si].bars.splice(bi, 1);
   renderSections();
 }
 
 function addRow(si) {
   const empty = Array.from({ length: 4 }, () => ({ bar: 0, beats: {} }));
-  S.data.sections[si].bars.push(...empty);
+  S.data.parts[si].bars.push(...empty);
   renderSections();
   setDirty();
 }
 
 function addBar(si) {
-  S.data.sections[si].bars.push({ bar: 0, beats: {} });
+  S.data.parts[si].bars.push({ bar: 0, beats: {} });
   renderSections();
   setDirty();
 }
 
+/** Next unused chorus letter, for a sensible new-part default. */
+function nextChorusLabel() {
+  const used = new Set(S.data.parts.filter(p => p.role === 'chorus')
+    .map(p => labelBase(p.label)));
+  for (const ch of 'ABCDEFGH') if (!used.has(ch)) return ch;
+  return 'A';
+}
+
 function addSection() {
-  const name = prompt('New section name:', 'C');
-  if (name === null) return;
-  const bad = unknownStrain(name.trim() || 'C');
-  if (bad) {
-    toast(`Strain "${bad}" not allowed. Use a plain letter (A, B, …) or a `
-      + `${NAMED_STRAINS.join('/')} strain (e.g. verse_A).`, 'error');
-    return;
-  }
   collectFromDOM();
-  S.data.sections.push({
-    name:  name.trim() || 'C',
-    bars:  Array.from({ length: 4 }, () => ({ bar: 0, beats: {} })),
+  const last = S.data.parts[S.data.parts.length - 1];
+  S.data.parts.push({
+    strain: last ? last.strain : 'chorus',
+    role:   last ? last.role : 'chorus',
+    label:  nextChorusLabel(),
+    plays:  1,
+    bars:   Array.from({ length: 4 }, () => ({ bar: 0, beats: {} })),
   });
   renderSections();
   setDirty();
-  // Scroll to new section
+  // Scroll to new part
   setTimeout(() => {
-    const cards = qsa('.sec-card');
+    const cards = qsa('#sections-container .sec-card');
     cards[cards.length - 1]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 50);
 }
 
-// ─── Variant targets (structured section+bar anchors) ─────────────────────────
-/* A variant's `targets` map it onto the grid: one {section, bar} per occurrence,
-   pointing at the grid bar (1-indexed within its section) where the variant's
-   FIRST bar lands; the rest follow consecutively in the same section. The
-   free-text `applies_to` caption is kept for display only. */
+// ─── Variant targets (structured strain+part+bar anchors) ─────────────────────
+/* A variant's `targets` map it onto the grid: one {strain, part, bar} per
+   occurrence, pointing at the grid bar (1-indexed within its part) where the
+   variant's FIRST bar lands; the rest follow consecutively in the same part.
+   The free-text `applies_to` caption is kept for display only. */
 
-// Sections that don't count toward the "chorus" frame the captions use.
-const AUX_SECTION_RE = /^(verse|intro|interlude|coda|transition)/i;
+// Strains that don't count toward the "chorus" frame the captions use.
+const AUX_FRAME_RE = /^(intro|interlude|transition)$/;
 
-/** Chorus bars in printed order as {name, bar} (1-indexed), auxiliary sections
+/** Chorus bars in printed order as {pi, bar} (1-indexed), auxiliary parts
     skipped — the frame a legacy `applies_to` caption's numbers count over. */
 function chorusFlat() {
   const flat = [];
-  (S.data.sections || []).forEach(sec => {
-    if (AUX_SECTION_RE.test(sec.name)) return;
-    (sec.bars || []).forEach((_bar, i) => flat.push({ name: sec.name, bar: i + 1 }));
+  (S.data.parts || []).forEach((part, pi) => {
+    if (part.role === 'verse' || part.role === 'aux'
+        || AUX_FRAME_RE.test(part.strain)) return;
+    (part.bars || []).forEach((_bar, i) => flat.push({ pi, bar: i + 1 }));
   });
   return flat;
 }
 
 /** Derive `targets` from a variant's caption over the chorus frame (same rule as
-    the backfill): one anchor per caption number whose run stays in one section. */
+    the backfill): one anchor per caption number whose run stays in one part. */
 function deriveTargets(variant) {
   const starts = (String(variant.applies_to || '').match(/\d+/g) || []).map(Number);
   const nb = (variant.bars || []).length;
@@ -1069,8 +1043,8 @@ function deriveTargets(variant) {
   starts.forEach(s => {
     if (s < 1 || s + nb - 1 > flat.length) return;   // out of range
     const run = flat.slice(s - 1, s - 1 + nb);
-    if (new Set(run.map(r => r.name)).size > 1) return; // straddles sections
-    out.push({ section: run[0].name, bar: run[0].bar });
+    if (new Set(run.map(r => r.pi)).size > 1) return; // straddles parts
+    out.push({ ...piToAnchor(run[0].pi), bar: run[0].bar });
   });
   return out;
 }
@@ -1125,32 +1099,28 @@ function renderVariantHTML(variant, vi, totalVariants, bc) {
   `;
 }
 
-/* The targets editor: one row per {section, bar} anchor. The section dropdown is
-   populated from the live section names; a stored-but-missing section is kept as
-   an option so it is never silently dropped and is flagged. "Auto from caption"
-   fills the rows from `applies_to` over the chorus frame. */
+/* The targets editor: one row per {strain, part, bar} anchor. The part
+   dropdown lists the generated part ids; a stored-but-dangling anchor is
+   flagged (never silently dropped — fix it or remove the row). "Auto from
+   caption" fills the rows from `applies_to` over the chorus frame. */
 function renderVariantTargetsHTML(variant, vi) {
-  const targets  = Array.isArray(variant.targets) ? variant.targets : [];
-  const secNames = (S.data.sections || []).map(s => s.name);
+  const targets = Array.isArray(variant.targets) ? variant.targets : [];
 
   const rows = targets.map((tg, ti) => {
-    const opts = secNames.slice();
-    if (tg.section && !opts.includes(tg.section)) opts.push(tg.section); // keep unknown
-    const missing = tg.section && !secNames.includes(tg.section);
-    const optHtml = opts.map(n =>
-      `<option value="${esc(n)}"${n === tg.section ? ' selected' : ''}>${esc(n)}</option>`
-    ).join('');
+    const pi = anchorToPi(tg);
+    const missing = tg.strain != null && pi < 0;
     return `
       <div class="target-row${missing ? ' target-missing' : ''}" data-vi="${vi}" data-ti="${ti}">
-        <select class="target-sec" data-vi="${vi}" data-ti="${ti}" title="Section">
-          <option value=""${tg.section ? '' : ' selected'}>—</option>
-          ${optHtml}
+        <select class="target-sec" data-vi="${vi}" data-ti="${ti}"
+                title="Part${missing ? ` — stored anchor ${esc(tg.strain)}[${esc(tg.part)}] no longer resolves` : ''}">
+          <option value=""${pi >= 0 ? '' : ' selected'}>${missing ? `⚠ ${esc(tg.strain)}[${esc(tg.part)}]` : '—'}</option>
+          ${partOptionsHTML(pi)}
         </select>
         <span class="target-at">bar</span>
         <input class="target-bar" type="number" min="1" step="1"
                data-vi="${vi}" data-ti="${ti}"
                value="${esc(tg.bar != null ? tg.bar : '')}"
-               title="Bar within that section (1-indexed) where the variant's first bar lands" />
+               title="Bar within that part (1-indexed) where the variant's first bar lands" />
         <button class="btn-icon danger btn-xs" data-action="target-del"
                 data-vi="${vi}" data-ti="${ti}" title="Remove target">×</button>
       </div>`;
@@ -1176,7 +1146,7 @@ function addVariantTarget(vi) {
   const v = S.data.variants[vi];
   if (!v) return;
   if (!Array.isArray(v.targets)) v.targets = [];
-  v.targets.push({ section: S.data.sections[0]?.name || '', bar: 1 });
+  v.targets.push({ ...(piToAnchor(0) || {}), bar: 1 });
   renderVariants();
   setDirty();
 }
@@ -1217,7 +1187,7 @@ function copyVariant(vi) {
   const clone = {
     ...(src.applies_to ? { applies_to: src.applies_to } : {}),
     ...(Array.isArray(src.targets) && src.targets.length
-      ? { targets: src.targets.map(t => ({ section: t.section, bar: t.bar })) }
+      ? { targets: src.targets.map(t => ({ ...t })) }
       : {}),
     bars: (src.bars || []).map(bar => ({
       bar:   bar.bar,
@@ -1301,8 +1271,6 @@ async function doSave() {
   if (!S.currentId) return;
   try {
     const payload = buildSavePayload();
-    const strainErr = strainPolicyError(Object.keys(payload.sections || {}));
-    if (strainErr) { toast(strainErr, 'error'); return; }
     await apiFetch(`/api/tunes/${encodeURIComponent(S.currentId)}`, {
       method:  'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -1421,7 +1389,10 @@ async function openTune(id) {
     const raw    = result.data;
 
     S.currentId = id;
-    S.data      = { ...raw, sections: sectionsToArray(raw.sections) };
+    // The server always sends the strains model (raw sources are converted
+    // on load); the editor works on the flat per-part view.
+    S.data      = { ...raw, parts: strainsToParts(raw.strains) };
+    delete S.data.strains;
     S.dirty     = false;
 
     // Sync review state from server response
@@ -1447,10 +1418,6 @@ function renderEditor() {
   qs('#editor-title').textContent = S.data?.title || S.currentId;
 
   renderMeta();
-  // Clear the previous tune's label inputs BEFORE renderSections runs, so the
-  // collect-then-render inside it can't clobber this tune's loaded
-  // section_labels with the outgoing tune's stale DOM values.
-  qs('#section-labels-area').innerHTML = '';
   renderSections();
   renderCodaJump();
   renderVariants();
@@ -1514,12 +1481,6 @@ function wireEvents() {
   // ── Meta: dirty on input
   qs('#meta-grid').addEventListener('input', () => setDirty());
   qs('#extra-fields').addEventListener('input', () => setDirty());
-
-  // ── Section labels: dirty on input, auto-fill button
-  qs('#section-labels-area').addEventListener('input', () => setDirty());
-  qs('#section-labels-area').addEventListener('click', e => {
-    if (e.target.closest('#autofill-labels')) autofillSectionLabels();
-  });
 
   // ── Coda jump: dirty on input/change, add/remove buttons
   qs('#coda-jump-area').addEventListener('input',  () => setDirty());
@@ -1597,12 +1558,28 @@ function wireEvents() {
     }
   });
 
-  // ── Sections: dirty on any input; re-flag duplicates when a name changes;
-  //    live-check chord syntax while typing
+  // ── Parts: dirty on any input; re-flag split strains when a strain name
+  //    changes; live-check chord syntax while typing. The generated part id
+  //    in a card header refreshes on the next structural re-render.
   qs('#sections-container').addEventListener('input', e => {
     setDirty();
-    if (e.target.classList.contains('sec-name')) refreshDuplicateFlags();
+    if (e.target.classList.contains('part-strain')) refreshDuplicateFlags();
     if (e.target.classList.contains('beat-inp')) validateChordInput(e.target, true);
+  });
+
+  // Role selects fire 'change', not 'input'; a role change can affect the
+  // generated ids and the run grouping, so re-render the cards.
+  qs('#sections-container').addEventListener('change', e => {
+    if (e.target.classList.contains('part-role')
+        || e.target.classList.contains('part-strain')
+        || e.target.classList.contains('part-label')
+        || e.target.classList.contains('part-plays')) {
+      setDirty();
+      collectFromDOM();
+      renderSections();
+      renderCodaJump();
+      renderVariants();
+    }
   });
 
   // ── Variants: structural actions (delegated). Bar/row/add actions are shared
@@ -1690,6 +1667,7 @@ async function init() {
   try {
     const result = await apiFetch('/api/tunes');
     S.tunes = result.tunes;
+    if (result.config) S.config = result.config;
     // Start on the "needs review" queue, but fall through to "all" once it's
     // empty so the list is never blank on first load.
     if (!visibleTunes().length) setFilter('all');

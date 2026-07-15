@@ -1,0 +1,13 @@
+{
+  "total": 1,
+  "succeeded": 1,
+  "skipped": 0,
+  "failed": 0,
+  "elapsed_s": 32.5,
+  "model": "claude-opus-4-8",
+  "flagged": {
+    "missing_required_field": [],
+    "no_chord_grid": [],
+    "errors": []
+  }
+}

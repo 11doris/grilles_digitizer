@@ -42,7 +42,7 @@ from pipelines.chords.similarity.align import (  # noqa: E402
     TokenTable, sw_score_batch, sw_traceback,
 )
 from pipelines.chords.similarity.normalize import (  # noqa: E402
-    TuneSequences, form_warnings, tonic_relative,
+    TuneSequences, part_roles, tonic_relative, validate_strains,
 )
 
 ENGINE_VERSION = "1.0"
@@ -60,10 +60,16 @@ METER_PENALTY = 0.95          # multiplicative, small (spec §6.3)
 MODE_PENALTY = 0.9            # a nudge, not a wall (spec §6.3)
 
 
-def _is_verse(name: str) -> bool:
-    """Verse sections are prologue material, not the form: they never enter
-    comparisons at either level (owner decision 2026-07-10)."""
-    return name.lower().startswith("verse")
+def _verse_names(doc: dict) -> set[str]:
+    """Part ids of the tune's verse parts — verses are prologue material, not
+    the form: they never enter comparisons at either level (owner decision
+    2026-07-10). Strains-model tunes answer from the explicit `role`; a
+    legacy tune falls back to the old name-prefix convention."""
+    if "strains" in doc:
+        return {pid for pid, role in part_roles(doc).items()
+                if role == "verse"}
+    return {name for name in doc.get("sections") or {}
+            if name.lower().startswith("verse")}
 
 
 def _section_base(name: str) -> str:
@@ -210,15 +216,17 @@ def build_entries(docs: dict[str, dict]
     tunes: list[Entry] = []
     sections: list[Entry] = []
     for stem, doc in docs.items():
-        for warning in form_warnings(doc):
-            print(f"  form warning: {stem}: {warning}")
+        if "strains" in doc:
+            for error in validate_strains(doc):
+                print(f"  strain validation: {stem}: {error}")
+        verses = _verse_names(doc)
         seqs: TuneSequences = tonic_relative(doc)
         meter = seqs.meter
         # tune-level comparison sequence: the form without verses; slot_map
         # points each comparison slot back at its full-chart slot so bar
         # mappings stay chart-accurate
         chart_slots = [i for name, sec in seqs.section_seqs.items()
-                       if not _is_verse(name)
+                       if name not in verses
                        for i in range(sec.start, sec.start + len(sec.tokens))]
         full = tuple(seqs.full_seq[i] for i in chart_slots)
         enc = table.encode(full)
@@ -226,7 +234,7 @@ def build_entries(docs: dict[str, dict]
                            seqs.mode, meter,
                            slot_map=np.asarray(chart_slots, dtype=np.int32)))
         for name, sec in seqs.section_seqs.items():
-            if _is_verse(name) or len(sec.tokens) < MIN_SECTION_SLOTS:
+            if name in verses or len(sec.tokens) < MIN_SECTION_SLOTS:
                 continue
             enc = table.encode(sec.tokens)
             mode = sec.local_key["mode"] if sec.local_key else seqs.mode

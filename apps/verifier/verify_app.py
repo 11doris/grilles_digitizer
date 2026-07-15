@@ -19,7 +19,6 @@ from __future__ import annotations
 import argparse
 import json
 import re
-import shutil
 import sys
 import threading
 import time
@@ -35,10 +34,12 @@ _REPO = Path(__file__).resolve().parents[2]  # repo root
 sys.path.insert(0, str(_REPO))
 
 from pipelines.chords.digitizer.validation import (  # noqa: E402
-    ValidationError, _check_chord, _check_section_keys, _iter_chords)
+    ValidationError, _check_chord, _iter_chords)
 from pipelines.chords.similarity.normalize import (  # noqa: E402
-    ChordParseError, HARD, NAMED_STRAINS, derive_labels, expand_tune,
-    unknown_strain)
+    AUX_CONNECTORS, ChordParseError, NAMED_STRAINS, ROLES, expand_tune,
+    sections_view, validate_strains)
+from pipelines.chords.tools.migrate_to_strains import (  # noqa: E402
+    tune_to_strains)
 TUNES_DIR = (_REPO / "data" / "chords" / "02_raw").resolve()
 CROPS_DIR = (_REPO / "data" / "chords" / "01_crops").resolve()
 VERIFIED_DIR = (_REPO / "data" / "chords" / "04_verified").resolve()
@@ -91,42 +92,24 @@ def _is_tune(p: Path) -> bool:
     )
 
 
-def _strain_policy_error(sections: dict) -> str | None:
-    """Verifier policy: section keys may use only the named strains the
-    displayers colour consistently (normalize.NAMED_STRAINS) or a plain chorus
-    letter — so section shading/labels stay consistent. Returns a message
-    naming the offending keys, or None. To add a strain, extend NAMED_STRAINS
-    and the displayers' STRAIN_TINT together."""
-    if not isinstance(sections, dict):
-        return None
-    bad: dict[str, list[str]] = {}
-    for key in sections:
-        strain = unknown_strain(key)
-        if strain:
-            bad.setdefault(strain, []).append(key)
-    if not bad:
-        return None
-    detail = "; ".join(f"{s} ({', '.join(keys)})" for s, keys in bad.items())
-    allowed = ", ".join(sorted(NAMED_STRAINS))
-    return (f"unknown strain(s): {detail}. Allowed: {allowed} — or a plain "
-            f"chorus letter (A, B, …). Rename the section, or add the strain "
-            f"in code (NAMED_STRAINS + the displayers' STRAIN_TINT).")
-
-
 def _validate_tune(data: dict) -> str | None:
     """Why this tune would break downstream builds, or None if it is clean.
 
-    Runs the digitizer's structural checks plus the similarity engine's chord
-    parser, so a bad edit fails here — in front of the reviewer — instead of
-    aborting a later similarity/displayer build (tune_similarity_spec §10).
+    Structural strain-model validation (normalize.validate_strains — loud on
+    role/name vocabulary, anchors, part ids) plus the digitizer's chord
+    checks and the similarity engine's chord parser, so a bad edit fails
+    here — in front of the reviewer — instead of aborting a later
+    similarity/displayer build (tune_similarity_spec §10).
     """
-    sections = data.get("sections")
-    if not isinstance(sections, dict):
-        return "sections must be an object"
+    if "strains" not in data:
+        return "tune must carry the strains model (raw sections are " \
+               "converted on load)"
+    errors = validate_strains(data)
+    if errors:
+        return "; ".join(errors)
     try:
-        for chord in _iter_chords(sections):
+        for chord in _iter_chords(sections_view(data)):
             _check_chord(chord)
-        _check_section_keys(sections)
         expand_tune(data)
     except (ValidationError, ChordParseError) as exc:
         return str(exc)
@@ -252,6 +235,12 @@ def api_list():
     return jsonify({
         "tunes": tunes,
         "total": len(tunes),
+        # Strain vocabulary for the editor (single-sourced from normalize).
+        "config": {
+            "roles": list(ROLES),
+            "named_strains": sorted(NAMED_STRAINS - {"verse"}),
+            "aux_connectors": sorted(AUX_CONNECTORS),
+        },
         "counts": counts,
         "verified": counts["verified"],
         "deferred": counts["deferred"],
@@ -270,56 +259,25 @@ def api_get(tune_id: str):
         abort(404)
     state = _load_state()
     data = json.loads(src.read_text("utf-8"))
+    # Ingest conversion (Phase C): 02_raw keeps the legacy section-map shape
+    # forever, so a tune that has never been edited is reshaped to the
+    # strains model on load. The reshape reuses the migration's alignment of
+    # the printed form (labels, plays, anchors). Saving writes the strains
+    # shape to 03_wip; the raw source is never touched.
+    if "strains" not in data and "sections" in data:
+        try:
+            data = tune_to_strains(data)
+        except Exception as exc:  # e.g. a variant target naming a missing key
+            return jsonify({"error": (
+                f"Cannot convert raw tune to the strains model: "
+                f"{type(exc).__name__}: {exc}. Fix the transcription (or a "
+                f"corrected copy in 03_wip) — the raw source stays untouched."
+            )}), 422
     return jsonify({
         "id": tune_id,
         "verified": tune_id in state.get("verified", []),
         "deferred": tune_id in state.get("deferred", []),
         "data": data,
-    })
-
-
-def _with_form_strains(body: dict) -> dict:
-    """Return `body` with a freshly derived `form_strains` placed right after
-    `form`; `section_labels` is kept as submitted (hand-editable). Key order is
-    otherwise preserved.
-
-    form_strains comes from aligning the `form` STRING against the sections, so
-    it mirrors the printed arrangement — including shortened identical repeats
-    like "16 A A" (which strains_from_labels, working from the single stored
-    row, could not reconstruct)."""
-    strains, _labels, _warn = derive_labels(body)
-    strains.pop("printed", None)
-    out: dict = {}
-    for key, val in body.items():
-        if key == "form_strains":
-            continue  # re-inserted after `form` below
-        out[key] = val
-        if key == "form":
-            out["form_strains"] = strains
-    if "form" not in body:
-        out["form_strains"] = strains
-    return out
-
-
-@app.route("/api/derive", methods=["POST"])
-def api_derive():
-    """Suggest section_labels + form_strains for the posted tune by aligning its
-    `form` string against its sections (the auto-fill the verifier offers). Also
-    returns the hard/soft warnings so the editor can surface mismatches."""
-    body = request.get_json(silent=True)
-    if not isinstance(body, dict):
-        return jsonify({"error": "Invalid JSON body"}), 400
-    structured, labels, warnings = derive_labels(body)
-    structured.pop("printed", None)
-    warnings = list(warnings)
-    strain_error = _strain_policy_error(body.get("sections"))
-    if strain_error:
-        warnings.append((HARD, strain_error))
-    return jsonify({
-        "section_labels": labels,
-        "form_strains": structured,
-        "warnings": [{"level": lv, "message": m} for lv, m in warnings],
-        "hard": any(lv == HARD for lv, _ in warnings),
     })
 
 
@@ -337,10 +295,6 @@ def api_save(tune_id: str):
     error = _validate_tune(body)
     if error:
         return jsonify({"error": f"Validation failed: {error}"}), 400
-    strain_error = _strain_policy_error(body.get("sections"))
-    if strain_error:
-        return jsonify({"error": f"Validation failed: {strain_error}"}), 400
-    body = _with_form_strains(body)
     WIP_DIR.mkdir(exist_ok=True)
     _wip_path(tune_id).write_text(
         json.dumps(body, indent=2, ensure_ascii=False), "utf-8"
@@ -360,16 +314,20 @@ def api_verify(tune_id: str):
     if src is None:
         abort(404)
     # Promotion gate: 04_verified is ground truth for every downstream stage,
-    # so nothing unparseable may ever land there.
+    # so nothing unparseable may ever land there — and it is uniformly
+    # strains-shaped, so a never-edited raw source is converted on the way.
     try:
         data = json.loads(src.read_text("utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         return jsonify({"error": f"Cannot read tune: {exc}"}), 400
+    if "strains" not in data and "sections" in data:
+        data = tune_to_strains(data)
     error = _validate_tune(data)
     if error:
         return jsonify({"error": f"Not verified — fix first: {error}"}), 400
     VERIFIED_DIR.mkdir(exist_ok=True)
-    shutil.copy2(src, VERIFIED_DIR / f"{tune_id}.json")
+    (VERIFIED_DIR / f"{tune_id}.json").write_text(
+        json.dumps(data, indent=2, ensure_ascii=False), "utf-8")
     s = _load_state()
     verified = s.get("verified", [])
     if tune_id not in verified:

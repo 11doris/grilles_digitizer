@@ -27,6 +27,7 @@ _REPO = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(_REPO))
 
 from pipelines.chords.similarity import corpus  # noqa: E402
+from pipelines.chords.similarity import normalize  # noqa: E402
 from pipelines.chords.similarity.normalize import tonic_relative  # noqa: E402
 
 GROUNDTRUTH = corpus.EVAL_DIR / "similarity_groundtruth.json"
@@ -161,7 +162,7 @@ def seed_fingerprint_groups(gt: dict, docs: dict[str, dict]) -> int:
         level, section = DISTINCTIVE_TAGS[tag]
         if level == "section":
             mem = [{"tune": s, "section": section} for s in sorted(members)
-                   if section in (docs[s].get("sections") or {})]
+                   if section in normalize.sections_view(docs[s])]
         else:
             mem = sorted(members)
         if len(mem) >= 2:

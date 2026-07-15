@@ -1,6 +1,25 @@
 # Strain Model — Phase C Plan (explicit strains in the tune JSON)
 
-Status: **planned, not implemented.** This document is the concrete design and
+Status: **implemented 2026-07-15** (branch `strain-model-phase-c`; corpus
+migrated, all consumers switched, legacy machinery quarantined in
+`pipelines/chords/tools/migrate_to_strains.py`). Implementation notes vs this
+plan:
+- Map-keyed per-part fields (`section_keys`, similarity output, fingerprint
+  prose) use **generated part ids** (chorus parts as classic letters `A`/`A1`,
+  other strains `name_X`, single-part aux bare `name`) rather than raw
+  `{strain, part}` objects — generated from the structure, never parsed. 15
+  ids differ from the historical keys where labels contradicted them (8 blues
+  tunes' single chorus is `BLUES`, `A3`→`A2` renumberings, Ballin' the Jack's
+  `B`→`A1`).
+- The §7 `named_strains.js` export was skipped: the displayer reads explicit
+  roles from the data, and the verifier receives the vocabulary via its API.
+- The displayer's per-strain form badge is now derived from the structure, so
+  on charts whose printed bar total disagrees with the stored music
+  (Chattanooga's `50` over 49 stored bars) the badge shows the stored truth.
+- O5: no form-string fast path in the editor — the ingest conversion already
+  aligns the printed form; the editor is a manual per-part editor.
+
+This document was the concrete design and
 migration plan for making *strains* a first-class part of the tune JSON, so the
 strain / label / role of every section stops being encoded in — and re-parsed
 out of — the section-key string.
@@ -24,6 +43,11 @@ mutually consistent by hand and by an alignment cross-check:
 | `section_labels` (map) | recovers printed primes (`A'`) the keys throw away | denormalised; editable, so must persist |
 | `form_strains` (map) | per-strain `{bars, labels}` | purely derived, yet stored in every file → staleness + `source_sha256` churn |
 | `sections` (map) | chord data, keyed `impro_B` etc. | strain + label baked into the key string; classified by regex in **three** places (`normalize._strain_of_key`, displayer `strainOf`, verifier `unknownStrain`), which disagree on edge cases; capitalisation silently decides aux-vs-strain (the Chattanooga `Transition_T` footgun) |
+
+In addition, two stored fields *address into* the section map by key string —
+`variants[].targets[].section` and `coda_jump.from.section` (PR #35) — so every
+consumer that resolves them (displayer grid + book renderers, verifier anchor
+editors) re-parses section keys too.
 
 The cross-check between `form` and `sections` is the source of the HARD/SOFT
 warnings and the `KNOWN_FORM_DEFECTS` churn. Phase C makes the structure
@@ -131,17 +155,34 @@ more verbose and nothing needs it yet (similarity compares chords, not labels).
 If needed later, add derived `letter`/`prime` at build time without touching the
 stored files.
 
-### 3.3 Variants
+### 3.3 Anchors: variants and `coda_jump`
 
-Tune `variants` currently name a section key in `applies_to`. Under Phase C a
-variant references a strain + part position instead:
+Two stored fields anchor into the chart by **section key + 1-indexed bar**, and
+both must be re-addressed when section keys disappear:
+
+- `variants[].targets[]` — `{ "section": "B", "bar": 8 }` (`applies_to` is a
+  display caption like `"Bar 24"`, not an address — it is untouched);
+- `coda_jump.from` — `{ "section": "A2", "bar": 6 }` (added by PR #35; the
+  printed coda sign's jump-off bar. `caption` is display-only, untouched).
+
+Under Phase C both use one shared **anchor** shape:
 
 ```json
-"variants": [ { "applies_to": { "strain": "chorus", "part": 3 }, "bars": ["…"] } ]
+{ "strain": "chorus", "part": 3, "bar": 6 }
 ```
 
-(`part` is the 0-based index into that strain's `parts`.) The variant `bars`
-payload is unchanged.
+- `strain` = the strain's `name`; `part` = 0-based index into its `parts`;
+  `bar` = 1-indexed within the part (unchanged convention).
+- The variant `bars` payload and the `coda_jump` `caption` are unchanged.
+- Anchor resolution/validation is one helper in the §7 read layer
+  (`resolve_anchor(tune, anchor)`), used by migration, validator, and exported
+  logic — not re-derived per client.
+
+Anchors always reference a *stored* part. Today an anchor's section key is a
+stored key, and migration only collapses to `plays: N` when a strain stores one
+key for N identical plays — so migrated anchors stay unambiguous. If an anchor
+into a specific play of a `plays > 1` part is ever needed, add an optional
+`play` index then (see O6).
 
 ---
 
@@ -209,7 +250,9 @@ then reshape its output into `strains`.
    - `bars` = the stored key's bars, unchanged.
 3. Aux sections (not in any group) → single-part `aux` strains, `label` from
    `labels[key]`, `plays: 1`.
-4. Rewrite `variants[].applies_to` from a key to `{strain, part}`.
+4. Rewrite every anchor (§3.3) from `{section, bar}` to `{strain, part, bar}`:
+   `variants[].targets[]` and `coda_jump.from`. `applies_to` and
+   `coda_jump.caption` are display strings and pass through verbatim.
 5. Drop `form_strains` and `section_labels`; keep `form`.
 
 **Properties**
@@ -224,9 +267,11 @@ after migration) or whether the migration is treated as shape-only and excluded
 from the hash. Recommended: recompute once, since the source genuinely changed.
 
 **Equivalence gate.** Before/after, assert for every tune that (a) the flattened
-similarity slots from `expand_tune` are identical, and (b) the derived per-strain
-labels + bar totals match today's `form_strains`. This is the safety net; the
-migration is not accepted until it is byte-identical on both.
+similarity slots from `expand_tune` are identical, (b) the derived per-strain
+labels + bar totals match today's `form_strains`, and (c) every anchor
+(`variants[].targets[]`, `coda_jump.from`) resolves to the same global bar as
+before migration. This is the safety net; the migration is not accepted until
+it is byte-identical on all three.
 
 ---
 
@@ -242,6 +287,9 @@ migration is not accepted until it is byte-identical on both.
   the verses-excluded rule becomes `role != "verse"` (plus O3 for aux).
 - Keep `NAMED_STRAINS` + add `AUX_CONNECTORS`; add `validate_strains(tune)`
   returning loud errors for unknown `name`/`role`.
+- Add `resolve_anchor(tune, anchor)` (§3.3) and validate all anchors
+  (`variants[].targets[]`, `coda_jump.from`) in `validate_strains` — a dangling
+  strain/part/bar is a loud error at edit time.
 
 **`apps/displayer/build_data.py`**
 - No more injecting `form_strains`; the bundle carries `strains` directly.
@@ -253,6 +301,11 @@ migration is not accepted until it is byte-identical on both.
   `strains`. `renderBoxGrid` and the grid loop iterate `strains[].parts[]`;
   `plays` replaces the "identical parts stored once" special-case. `sectionTint`
   keys off `role`/`name` (chorus → per-letter, else per-name), unchanged visuals.
+- Anchor resolution (PR #35 coda-sign placement + variant target overrides) in
+  both render paths (`renderSection`/`renderGrid` grid, `renderBoxGrid` book)
+  switches from section-key lookup to `{strain, part, bar}`; the coda *landing*
+  sign keys off the `coda` aux strain (`role: "aux"`, `name: "coda"`) instead of
+  the `sections.coda` key. Same drawn output.
 
 **`apps/verifier/verify_app.py` + `static/app.js`** (the bulk of the build cost)
 - Editor edits the nested model: add/remove strains, reorder, set `role`,
@@ -265,6 +318,11 @@ migration is not accepted until it is byte-identical on both.
   stays quick even though the stored artifact is the explicit structure.
 - Drop the `NAMED_STRAINS` array + `unknownStrain` regex; use the generated
   constant.
+- **Anchor editors:** the variants target-anchor UI and the `coda_jump`
+  structured editor (PR #35) both currently offer a *section* dropdown from live
+  section names; both move to one shared strain + part picker emitting the §3.3
+  anchor shape (`collectCodaJump` / target collection updated together — they
+  already share the `.target-*` UI classes).
 
 **Similarity corpus (`similarity/corpus.py`, `align.py`, slot_map)**
 - Slot map keyed off section names moves to `(strain, part, index)` addressing.
@@ -285,7 +343,8 @@ migration is not accepted until it is byte-identical on both.
 **Specs**
 - Update `docs/specs/jazz_chord_digitization_spec.md`,
   `verification_app_spec.md`, `displayer_app_spec.md`, `tune_similarity_spec.md`
-  to the `strains` shape; note `02_raw` keeps the legacy map.
+  to the `strains` shape; note `02_raw` keeps the legacy map. Document the
+  §3.3 anchor shape where `coda_jump` / variant targets are described.
 
 **Tests**
 - Rewrite `test_normalize.py` form/strain tests against `strains`; drop the
@@ -302,8 +361,9 @@ migration is not accepted until it is byte-identical on both.
 2. **Migration script** + §6 equivalence gate. Run on a copy; prove byte-identical
    slots and labels across the whole corpus. Do not commit migrated data yet.
 3. **Similarity + build_data + displayer** switched to `strains`; rebuild bundle;
-   visual diff Minor Swing / Tailgate / Fly Me / Chattanooga in both layouts;
-   similarity outputs unchanged.
+   visual diff Minor Swing / Tailgate / Fly Me / Chattanooga — plus the coda
+   tunes 413 Thanks For The Memory / 445 Watch What Happens (sign anchoring,
+   PR #35) — in both layouts; similarity outputs unchanged.
 4. **Verifier** editor + ingest conversion + fast-path shortcut; manual pass on a
    handful of tunes (a chorus-only, a multi-strain, a verse, an aux/transition).
 5. **Commit the migrated corpus** (`03_wip` + `04_verified` + `05_annotated`),
@@ -330,4 +390,9 @@ equivalence gate green; displayer visually unchanged.
 - **O5 — verifier fast-path scope:** how much of the old form-string parsing to
   keep purely as an entry shortcut (nice-to-have) vs a fully manual strain editor
   (simplest to build). Affects §7 verifier effort.
+- **O6 — anchors into repeated plays:** anchors (§3.3) reference a stored part;
+  a part with `plays: N` cannot express "on the Nth play only". No current tune
+  needs it (coda jump-offs land on distinctly-stored parts, e.g. 413's `A2` =
+  the `A'` part). If one ever does, add an optional `play` index to the anchor
+  rather than un-collapsing `plays`.
 ```

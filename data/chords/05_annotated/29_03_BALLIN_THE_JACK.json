@@ -4,28 +4,6 @@
   "style": "TRADITIONAL",
   "tempo": "MEDIUM",
   "form": "16 A A | 16 A A'",
-  "form_strains": {
-    "verse": {
-      "bars": 16,
-      "labels": [
-        "A",
-        "A"
-      ]
-    },
-    "chorus": {
-      "bars": 16,
-      "labels": [
-        "A",
-        "A'"
-      ]
-    }
-  },
-  "section_labels": {
-    "verse_A": "A",
-    "verse_A1": "A",
-    "A": "A",
-    "B": "A'"
-  },
   "time_signature": "4/4",
   "title": "BALLIN' THE JACK",
   "page": 29,
@@ -42,218 +20,242 @@
   "notation_notes": {
     "verse": "Header prints 'VERSE' over the first strain."
   },
-  "sections": {
-    "verse_A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "G"
+  "strains": [
+    {
+      "name": "verse",
+      "role": "verse",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "G"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "A7",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "C7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Gb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Gb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "D7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "G"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "A7",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "C7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Gb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Gb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "D7"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "A7",
-          "3": "D7"
+      ]
+    },
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bb",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb7",
+                "3": "D7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Gb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb/5",
+                "2": "F#o7",
+                "3": "Gm"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Cm",
+                "3": "Ebm"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "F7",
+                "3": "Bb"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Eb7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "C7",
-          "3": "F7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Gb7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Gb7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Eb7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "D7"
-        }
-      }
-    ],
-    "verse_A1": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "G"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "A7",
-          "3": "D7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Eb7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "C7",
-          "3": "F7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Gb7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Gb7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Eb7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "D7"
-        }
-      }
-    ],
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Bb",
-          "3": "D7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Eb7",
-          "3": "D7"
-        }
-      }
-    ],
-    "B": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Gb7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Bb/5",
-          "2": "F#o7",
-          "3": "Gm"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Cm",
-          "3": "Ebm"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "F7",
-          "3": "Bb"
-        }
-      }
-    ]
-  },
+      ]
+    }
+  ],
   "key": {
     "tonic": "Bb",
     "mode": "major"
@@ -275,7 +277,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "dbf77fa19611f81f521dbe2ce6d55c8a1d711b66553a98f6deee7e467ac27612",
+    "source_sha256": "752f43269f7970ca3af280efa83df6278e312bd5703ccb42abcac10ced5d594f",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",
@@ -315,7 +317,7 @@
       "verse_A": "Opens on I of G with chromatic dominants (A7-D7, Eb7, C7-F7, Gb7, Eb7) closing on D7, the V of G",
       "verse_A1": "Repeat of verse: G tonic with chromatic dominant chain ending on D7 (V of G)",
       "A": "Dominant cycle VI7-II7-V7 (G7-C7-F7) resolving to I (Bb), with Eb7-D7 turnaround",
-      "B": "Same dominant cycle then Gb7 to Bb/F#o7/Gm, ii-based Cm-Ebm and F7-Bb final cadence (V-I)"
+      "A1": "Same dominant cycle then Gb7 to Bb/F#o7/Gm, ii-based Cm-Ebm and F7-Bb final cadence (V-I)"
     },
     "modulates": true,
     "modulation_note": "verse centered on G (chromatic dominants cadencing to D7, the V of G) before the chorus settles in Bb"

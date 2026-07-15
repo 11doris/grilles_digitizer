@@ -144,6 +144,248 @@ def parse_chord(symbol: str) -> Chord:
 
 
 # ---------------------------------------------------------------------------
+# Strain model read layer (strain_model_phase_c_plan §3/§4/§7)
+# ---------------------------------------------------------------------------
+#
+# A Phase C tune stores an ordered `strains` list instead of the legacy
+# `sections` map. Each strain has an explicit `name` and `role`, and ordered
+# `parts` each carrying a printed `label` (primes kept), an optional `plays`
+# repeat count and its `bars` (the chord payload, unchanged). Nothing here is
+# ever parsed back out of a key string.
+#
+# Per-part addressing:
+#   * structured anchors (`variants[].targets[]`, `coda_jump.from`) use the
+#     object form {"strain": name, "part": 0-based index, "bar": 1-based};
+#   * map-keyed fields (`section_keys`, similarity output) use the generated
+#     part id — chorus parts read as classic letters ("A", "A1", "B"), other
+#     strains prefix their name ("verse_A", "impro_B"), a single-part aux
+#     connector is just its name ("coda"). Ids are GENERATED from the
+#     structure (labels), never parsed; `resolve_part_ref` maps one back.
+
+ROLES = ("chorus", "verse", "strain", "aux")
+
+# Auxiliary connector vocabulary (case-insensitive on input, stored lowercase).
+# A connector name outside this set is a loud validation error, so a
+# capitalised or misspelled connector can never silently misgroup.
+AUX_CONNECTORS = frozenset({"intro", "coda", "interlude", "transition",
+                            "tag", "vamp"})
+
+
+def _label_base(label) -> str:
+    """A part id fragment from a printed label: primes and whitespace
+    dropped ("A'" -> "A", "BLUES" -> "BLUES")."""
+    s = re.sub(r"['’]+$", "", str(label or "").strip())
+    s = re.sub(r"\s+", "", s)
+    return s or "P"
+
+
+def part_ids(strain: dict) -> list[str]:
+    """Generated ids of a strain's parts, in order (see module comment)."""
+    parts = strain.get("parts") or []
+    name, role = strain.get("name"), strain.get("role")
+    if role == "aux" and len(parts) == 1:
+        return [str(name)]
+    ids: list[str] = []
+    counts: dict[str, int] = {}
+    for part in parts:
+        base = _label_base(part.get("label"))
+        n = counts.get(base, 0)
+        counts[base] = n + 1
+        suffix = base if n == 0 else f"{base}{n}"
+        ids.append(suffix if role == "chorus" else f"{name}_{suffix}")
+    return ids
+
+
+def iter_parts(tune: dict):
+    """Yield (part_id, strain, part) over a strains-model tune, in document
+    (= printed / played) order."""
+    for strain in tune.get("strains") or []:
+        for pid, part in zip(part_ids(strain), strain.get("parts") or []):
+            yield pid, strain, part
+
+
+def sections_view(tune: dict) -> dict:
+    """The tune's playable units as an ordered {part_id: bars} map.
+
+    For a strains-model tune the ids are generated (`part_ids`); a legacy
+    tune (raw digitizer output, still a `sections` map) passes through
+    unchanged. Every expansion consumer (similarity, scorer, LLM payload)
+    reads this view, so both shapes stay expandable.
+    """
+    if "strains" in tune:
+        return {pid: part.get("bars") or []
+                for pid, _strain, part in iter_parts(tune)}
+    return tune.get("sections") or {}
+
+
+def part_roles(tune: dict) -> dict[str, str]:
+    """{part_id: role} for a strains-model tune; {} for a legacy tune."""
+    return {pid: strain.get("role")
+            for pid, strain, _part in iter_parts(tune)}
+
+
+def strain_label_seq(strain: dict) -> list[str]:
+    """The strain's printed label sequence, repeats expanded: a part with
+    `plays: N` contributes its label N times (the old form_strains labels)."""
+    out: list[str] = []
+    for part in strain.get("parts") or []:
+        out.extend([part.get("label")] * int(part.get("plays") or 1))
+    return out
+
+
+def strain_bars_total(strain: dict) -> int:
+    """Total printed bars of a strain: stored bars times plays, summed."""
+    return sum(len(part.get("bars") or []) * int(part.get("plays") or 1)
+               for part in strain.get("parts") or [])
+
+
+def derived_form_strains(tune: dict) -> dict:
+    """The legacy `form_strains` shape ({name: {bars, labels}}), computed on
+    the fly from `strains` — derived, never stored (Phase C §5)."""
+    return {s["name"]: {"bars": strain_bars_total(s),
+                        "labels": strain_label_seq(s)}
+            for s in tune.get("strains") or []}
+
+
+def is_compared(strain: dict) -> bool:
+    """Whether a strain's parts enter similarity comparisons — verses never
+    do (owner decision 2026-07-10); everything else keeps today's behaviour."""
+    return strain.get("role") != "verse"
+
+
+def resolve_part_ref(tune: dict, ref: str) -> tuple[dict, int] | None:
+    """Resolve a part id (or a bare strain name, unique-part strains only)
+    to (strain, part_index); None when it matches nothing."""
+    for strain in tune.get("strains") or []:
+        ids = part_ids(strain)
+        for i, pid in enumerate(ids):
+            if pid == ref:
+                return strain, i
+        if strain.get("name") == ref and len(ids) == 1:
+            return strain, 0
+    return None
+
+
+def resolve_anchor(tune: dict, anchor: dict) -> tuple[dict, dict, str]:
+    """Resolve a {strain, part[, bar]} anchor (§3.3) to (strain, part,
+    part_id). Raises ValueError with a loud message when it dangles."""
+    name = (anchor or {}).get("strain")
+    idx = (anchor or {}).get("part")
+    strain = next((s for s in tune.get("strains") or []
+                   if s.get("name") == name), None)
+    if strain is None:
+        raise ValueError(f"anchor names unknown strain {name!r}")
+    parts = strain.get("parts") or []
+    if not isinstance(idx, int) or not 0 <= idx < len(parts):
+        raise ValueError(
+            f"anchor part {idx!r} out of range for strain {name!r} "
+            f"({len(parts)} parts)")
+    part = parts[idx]
+    bar = anchor.get("bar")
+    if bar is not None and not (isinstance(bar, int)
+                                and 1 <= bar <= len(part.get("bars") or [])):
+        raise ValueError(
+            f"anchor bar {bar!r} out of range for {name!r} part {idx} "
+            f"({len(part.get('bars') or [])} bars)")
+    return strain, part, part_ids(strain)[idx]
+
+
+_STRAIN_NAME = re.compile(r"^[a-z][a-z0-9]*$")
+# Numbered strains of a multi-strain rag/march (s1, s2, s3, …) are always a
+# valid role-"strain" name — the book prints up to five per tune.
+_NUMBERED_STRAIN = re.compile(r"^s\d+$")
+
+
+def validate_strains(tune: dict) -> list[str]:
+    """Structural validation of a strains-model tune (loud at edit time,
+    Phase C §4/§7). Returns a list of error messages, empty when clean.
+    Chord syntax is NOT checked here — expansion / the chord checker owns
+    that; this guards the strain/part/anchor structure."""
+    errors: list[str] = []
+    strains = tune.get("strains")
+    if not isinstance(strains, list) or not strains:
+        return ["strains must be a non-empty list"]
+
+    seen_names: set = set()
+    for si, strain in enumerate(strains):
+        if not isinstance(strain, dict):
+            errors.append(f"strains[{si}] is not an object")
+            continue
+        name, role = strain.get("name"), strain.get("role")
+        where = f"strain {name!r}" if name else f"strains[{si}]"
+        if not isinstance(name, str) or not _STRAIN_NAME.match(name):
+            errors.append(f"{where}: name must be lowercase "
+                          f"([a-z][a-z0-9]*), got {name!r}")
+        elif name in seen_names:
+            errors.append(f"{where}: duplicate strain name")
+        else:
+            seen_names.add(name)
+        if role not in ROLES:
+            errors.append(f"{where}: role must be one of {ROLES}, got {role!r}")
+        elif role == "chorus" and name != "chorus":
+            errors.append(f"{where}: role 'chorus' requires name 'chorus'")
+        elif role == "verse" and name != "verse":
+            errors.append(f"{where}: role 'verse' requires name 'verse'")
+        elif (role == "strain" and name not in NAMED_STRAINS - {"verse"}
+                and not _NUMBERED_STRAIN.match(name)):
+            errors.append(
+                f"{where}: unknown named strain — allowed: "
+                f"{', '.join(sorted(NAMED_STRAINS - {'verse'}))}, or a "
+                "numbered strain s1, s2, s3, …. Rename the strain, or add "
+                "it in code (NAMED_STRAINS + the displayers' STRAIN_TINT).")
+        elif role == "aux" and name not in AUX_CONNECTORS:
+            errors.append(
+                f"{where}: unknown aux connector — allowed: "
+                f"{', '.join(sorted(AUX_CONNECTORS))}")
+        parts = strain.get("parts")
+        if not isinstance(parts, list) or not parts:
+            errors.append(f"{where}: parts must be a non-empty list")
+            continue
+        for pi, part in enumerate(parts):
+            pwhere = f"{where} part {pi}"
+            if not isinstance(part, dict):
+                errors.append(f"{pwhere}: not an object")
+                continue
+            label = part.get("label")
+            if not isinstance(label, str) or not label.strip():
+                errors.append(f"{pwhere}: label must be a non-empty string")
+            plays = part.get("plays", 1)
+            if not isinstance(plays, int) or plays < 1:
+                errors.append(f"{pwhere}: plays must be an int >= 1, "
+                              f"got {plays!r}")
+            bars = part.get("bars")
+            if not isinstance(bars, list) or not bars:
+                errors.append(f"{pwhere}: bars must be a non-empty list")
+            elif not all(isinstance(b, dict) for b in bars):
+                errors.append(f"{pwhere}: every bar must be an object")
+
+    # Part ids must be unique tune-wide (map-keyed fields depend on it).
+    ids = [pid for pid, _s, _p in iter_parts(tune)]
+    for dup in sorted({i for i in ids if ids.count(i) > 1}):
+        errors.append(f"duplicate part id {dup!r} — relabel one of the parts")
+
+    # Anchors (§3.3) must resolve: variant targets and the coda jump-off.
+    for vi, variant in enumerate(tune.get("variants") or []):
+        for ti, target in enumerate(variant.get("targets") or []):
+            try:
+                resolve_anchor(tune, target)
+            except ValueError as exc:
+                errors.append(f"variants[{vi}].targets[{ti}]: {exc}")
+    cj = tune.get("coda_jump")
+    if cj:
+        try:
+            resolve_anchor(tune, cj.get("from") or {})
+        except ValueError as exc:
+            errors.append(f"coda_jump.from: {exc}")
+
+    # Map-keyed per-part fields must reference real parts.
+    for ref in (tune.get("section_keys") or {}):
+        if resolve_part_ref(tune, ref) is None:
+            errors.append(f"section_keys[{ref!r}] matches no part id")
+    return errors
+
+
+# ---------------------------------------------------------------------------
 # Grid expansion and form flattening (spec §4.2)
 # ---------------------------------------------------------------------------
 
@@ -191,15 +433,20 @@ def expand_section(name: str, bars: list[dict], prev: Chord | None = None
 
 
 def expand_tune(tune: dict) -> dict[str, list[Slot]]:
-    """Expand every section of a tune dict, in document (= printed form) order.
+    """Expand every playable unit of a tune, in document (= printed) order.
+
+    Strains-model tunes expand one entry per part, keyed by the generated
+    part id; legacy tunes (a `sections` map) expand per section key. A part
+    with `plays: N` still expands once — the stored grid is the comparison
+    and display unit, exactly as the old "identical parts stored once" rule.
 
     Variants are ignored (main text only). The carried chord flows across
-    section boundaries in form order, so a continuation bar at the top of a
-    section repeats the previous section's last chord.
+    part boundaries in form order, so a continuation bar at the top of a
+    part repeats the previous part's last chord.
     """
     out: dict[str, list[Slot]] = {}
     prev: Chord | None = None
-    for name, bars in (tune.get("sections") or {}).items():
+    for name, bars in sections_view(tune).items():
         slots, prev = expand_section(name, bars, prev)
         out[name] = slots
     return out
@@ -285,298 +532,13 @@ def tonic_relative(annotated: dict) -> TuneSequences:
                          annotated.get("form"), len(full_seq) // 2)
 
 
-# ---------------------------------------------------------------------------
-# Form parsing, strain splitting and per-section labels (spec §4.2 / §4.4)
-# ---------------------------------------------------------------------------
-#
-# The printed `form` string carries prime information the mechanical section
-# keys throw away: "32 A A' B A" means theme / variation-of-theme / bridge /
-# exact-repeat, but the keys are just A, A1, B, A2. We recover the printed
-# label for each key by aligning the form's per-strain token sequences against
-# the section groups (verse_* keys ↔ the verse strain, sN_* ↔ strain sN, plain
-# letters ↔ the chorus). The result is `section_labels` (key -> printed label,
-# primes kept) plus a structured, split-per-strain `form` object.
-
-# Section names that are auxiliary connectors, not counted by any form strain.
-_UNCOUNTED_SECTIONS = ("intro", "coda", "interlude")
-# Form-string words that are auxiliary too (e.g. a "+ Coda" tail).
-_UNCOUNTED_FORM_WORDS = {"coda", "intro", "interlude"}
-
-_STRAIN_PREFIX = re.compile(r"^(?P<prefix>s\d+|[a-z][a-z0-9]*)_(?P<sid>.+)$")
-_LETTER_LABEL = re.compile(r"[A-Z]'*")
-# A plain chorus key is a single capital letter with an optional counter (A, B1).
-_CHORUS_KEY = re.compile(r"^[A-Z]\d*$")
-# Strains are separated by "|" OR a spaced hyphen ("16 A B - 12 BLUES").
-_STRAIN_SEP = re.compile(r"\s*\|\s*|\s+-\s+")
-# In a verse note, a bar count that may be followed by single-letter labels.
-_PROSE_NUM = re.compile(r"(\d+)\s+(.*)")
-
-
-def form_printed(form) -> str:
-    """The verbatim printed form string, whether `form` is the raw string or
-    the structured object (which keeps it under "printed")."""
-    if isinstance(form, dict):
-        return (form.get("printed") or "").strip()
-    return (form or "").strip()
-
-
-def _segment_labels(segment: str) -> tuple[int | None, list[str]]:
-    """One form segment ("32 A A B A'") -> (bar count, ordered printed labels).
-
-    A leading integer is the bar count. Letter tokens (with primes, possibly
-    jammed like "A'C") each yield one label; an all-letters word (BLUES,
-    PATTER, VERSE) is one label; "+" and auxiliary words (Coda) are skipped.
-    """
-    bars: int | None = None
-    labels: list[str] = []
-    for tok in segment.split():
-        if tok == "+":
-            continue
-        if tok.isdigit():
-            if bars is None:
-                bars = int(tok)
-            continue
-        if re.fullmatch(r"[A-Za-z]{2,}", tok):  # a spelled-out word
-            if tok.lower() not in _UNCOUNTED_FORM_WORDS:
-                labels.append(tok)
-            continue
-        labels.extend(_LETTER_LABEL.findall(tok))
-    return bars, labels
-
-
-def parse_form(form) -> list[dict]:
-    """Split a printed form string into its strains, in printed order.
-
-    Returns one dict per strain: {"bars", "labels"}. Strains are separated by
-    "|" or a spaced hyphen. The strain's role (verse/chorus/sN) is not decided
-    here — that needs the section keys and is resolved in `derive_labels`.
-    """
-    printed = form_printed(form)
-    if not printed:
-        return []
-    strains = []
-    for segment in _STRAIN_SEP.split(printed):
-        bars, labels = _segment_labels(segment)
-        if bars is None and not labels:
-            continue
-        strains.append({"bars": bars, "labels": labels})
-    return strains
-
-
-def _verse_form_from_notes(tune: dict) -> dict | None:
-    """Recover a verse strain {"bars", "labels"} from the free-text
-    notation_notes.verse (e.g. "…a 16 A A grid above the chorus…" -> 16 [A, A]).
-    Returns None when the note carries no parseable letter sequence."""
-    notes = tune.get("notation_notes") or {}
-    text = notes.get("verse") if isinstance(notes, dict) else None
-    if not text:
-        return None
-    for m in _PROSE_NUM.finditer(text):
-        labels = []
-        for tok in m.group(2).split():
-            # Strip surrounding quotes/punctuation, then keep only a *whole*
-            # single-letter label (so "VERSE'" and "grid" end the run, but the
-            # closing quote on "A''" — a prime plus quote — is tolerated).
-            clean = re.sub(r"^[^A-Za-z]+|[^A-Za-z']+$", "", tok)
-            if _LETTER_LABEL.fullmatch(clean):
-                labels.append(clean)
-            else:
-                break
-        if labels:
-            # Verse notes usually quote the form ('16 A A'), so a trailing
-            # apostrophe on the last label is the closing quote, not a prime.
-            if ("'" in text[:m.start()] or "’" in text[:m.start()]) \
-                    and labels[-1].endswith("'"):
-                labels[-1] = labels[-1][:-1]
-            return {"bars": int(m.group(1)), "labels": labels,
-                    "source": "notation_notes"}
-    return None
-
-
-def _strain_of_key(key: str) -> str | None:
-    """The strain a section key belongs to: "verse", "sN", a named prefix, or
-    "chorus" for a plain letter key. Auxiliary sections (intro/coda/interlude,
-    and capitalised named keys like "Transition") return None."""
-    m = _STRAIN_PREFIX.match(key)
-    if m:
-        return m.group("prefix")
-    if _CHORUS_KEY.match(key):
-        return "chorus"
-    return None  # intro/coda/interlude/Transition/… — an aux connector
-
 
 # Named strains the displayers colour consistently (mirror of the displayer's
-# STRAIN_TINT keys). The verifier restricts section keys to these — extend both
-# together to introduce a new strain. NOT enforced in the digitizer pipeline
-# (spec §8.5 lets raw output name arbitrary strains); this is a display policy.
+# STRAIN_TINT keys). validate_strains restricts a role-"strain" name to these
+# — extend both together to introduce a new strain. NOT enforced in the
+# digitizer pipeline (raw output may name arbitrary strains); display policy.
 NAMED_STRAINS = frozenset({"verse", "intro", "thema", "impro", "interlude",
                            "coda", "part1", "part2", "s1", "s2", "blues"})
-# Any leading token before an underscore, however cased — for reporting the
-# offending strain of a non-canonical key (Part1_A -> "Part1", s1_A -> "s1").
-_ANY_PREFIX = re.compile(r"^([A-Za-z][A-Za-z0-9]*)_")
-
-
-def unknown_strain(key: str) -> str | None:
-    """The disallowed strain a section key carries, or None when it is allowed.
-    Plain chorus cells (A, B1, T) pass; a named strain — whether a prefix
-    ("verse_A") or a bare connector ("coda") — must be in NAMED_STRAINS."""
-    if _CHORUS_KEY.match(key):
-        return None
-    m = _ANY_PREFIX.match(key)
-    strain = m.group(1) if m else key
-    return None if strain in NAMED_STRAINS else strain
-
-
-def section_groups(sections: dict) -> "OrderedDict[str, list[str]]":
-    """Group section keys by strain, in document (= printed) order. Auxiliary
-    sections (intro/coda/interlude/named connectors) are excluded."""
-    from collections import OrderedDict
-    groups: "OrderedDict[str, list[str]]" = OrderedDict()
-    for key in sections:
-        strain = _strain_of_key(key)
-        if strain is None:
-            continue
-        groups.setdefault(strain, []).append(key)
-    return groups
-
-
-def _key_fallback_label(key: str) -> str:
-    """Printed label recovered from the key alone (no prime info): strip a
-    strain prefix and the trailing counter — verse_A1 -> A, B1 -> B."""
-    m = _STRAIN_PREFIX.match(key)
-    sid = m.group("sid") if m else key
-    return re.sub(r"\d+$", "", sid) or sid
-
-
-# Warning severity: HARD failures should block (real count mismatches,
-# unstored repeats, missing strains); SOFT ones are review notes (a verse form
-# only recoverable from prose, or not recoverable at all).
-HARD, SOFT = "hard", "soft"
-
-
-def derive_labels(tune: dict) -> tuple[dict, dict, list[tuple[str, str]]]:
-    """Align the printed form against the section groups.
-
-    Returns (structured_form, section_labels, warnings):
-      * structured_form: {"printed", <strain>: {"bars", "labels"[, "source"]}}
-      * section_labels: {section_key: printed label} for every section
-      * warnings: (level, message) pairs; level is HARD or SOFT, empty when clean
-    """
-    sections = tune.get("sections") or {}
-    printed = form_printed(tune.get("form"))
-    groups = section_groups(sections)
-    strains = parse_form(printed)
-
-    warnings: list[tuple[str, str]] = []
-    labels: dict[str, str] = {}
-    # Auxiliary sections carry a title-cased label straight from their key.
-    for key in sections:
-        if _strain_of_key(key) is None:
-            labels[key] = key[:1].upper() + key[1:]
-
-    group_items = list(groups.items())
-    structured: dict = {"printed": printed} if printed else {}
-
-    if not printed:
-        warnings.append((HARD, f"no form string ({len(sections)} sections)"))
-
-    # Verse is dropped from the form when only the chorus is printed, so pair
-    # the LAST strains with the LAST groups; a leading unmatched group (verse)
-    # is recovered from prose or key-derived, a leading unmatched strain (an
-    # unstored repeat) is flagged.
-    def _assign(strain_id: str, keys: list[str], strain: dict) -> None:
-        toks = strain["labels"]
-        structured[strain_id] = {"bars": strain["bars"], "labels": toks}
-        if len(toks) == len(keys):
-            for key, tok in zip(keys, toks):
-                labels[key] = tok
-        elif len(keys) == 1 and len(set(toks)) == 1:
-            # A strain of identical parts stored once — the repeat is shortened
-            # in the grid (e.g. "16 A A" kept in the form, one A row stored).
-            # form_strains still carries the full repeated labels above.
-            labels[keys[0]] = toks[0]
-        else:
-            warnings.append((HARD,
-                f"strain {strain_id}: form declares {len(toks)} labels "
-                f"{toks}, section group has {len(keys)}: {', '.join(keys)}"))
-            for key in keys:
-                labels[key] = _key_fallback_label(key)
-
-    n = min(len(strains), len(group_items))
-    matched_strains = strains[len(strains) - n:]
-    matched_groups = group_items[len(group_items) - n:]
-
-    # Leading form strains beyond the lettered groups: a multi-strain piece can
-    # name single-row strains as bare sections (Minor Swing's intro / thema).
-    # Promote the leading bare-named (auxiliary) sections, in document order, to
-    # absorb them; anything still left over is a genuinely unstored strain. A
-    # bare section is only promoted when the form actually has a spare strain
-    # for it, so a real intro/coda connector (no extra strain) stays auxiliary.
-    leading = strains[:len(strains) - n]
-    aux_keys = [k for k in sections if _strain_of_key(k) is None]
-    if leading and len(aux_keys) >= len(leading):
-        for aux_key, strain in zip(aux_keys, leading):
-            _assign(aux_key, [aux_key], strain)
-    else:
-        for strain in leading:
-            seq = " ".join(strain["labels"])
-            warnings.append((HARD, f"form strain '{seq}' has no matching section "
-                                   "group (repeated strain not stored as sections?)"))
-
-    for (strain_id, keys), strain in zip(matched_groups, matched_strains):
-        _assign(strain_id, keys, strain)
-
-    for strain_id, keys in group_items[:len(group_items) - n]:
-        # Group with no form strain. For a verse, try prose recovery first.
-        recovered = _verse_form_from_notes(tune) if strain_id == "verse" else None
-        if recovered and len(recovered["labels"]) == len(keys):
-            structured[strain_id] = recovered
-            for key, tok in zip(keys, recovered["labels"]):
-                labels[key] = tok
-            warnings.append((SOFT, "verse form recovered from notation_notes "
-                                   f"prose ({recovered['bars']} "
-                                   f"{' '.join(recovered['labels'])}) — review"))
-            continue
-        for key in keys:
-            labels[key] = _key_fallback_label(key)
-        if strain_id == "verse":
-            warnings.append((SOFT, "verse sections present but no verse form in "
-                                   "the form string or notation_notes (labels "
-                                   "derived from keys)"))
-        else:
-            warnings.append((HARD, f"section group {strain_id} "
-                             f"({', '.join(keys)}) has no matching form strain"))
-
-    return structured, labels, warnings
-
-
-def strains_from_labels(tune: dict) -> dict:
-    """Build `form_strains` from a tune's (possibly hand-edited) section_labels
-    and its section grouping — the inverse view of section_labels, grouped per
-    strain with an actual bar count. Deterministic; independent of the printed
-    `form` string, so it honours manual label edits made in the verifier.
-    """
-    sections = tune.get("sections") or {}
-    labels = tune.get("section_labels") or {}
-    out: dict = {}
-    for strain_id, keys in section_groups(sections).items():
-        out[strain_id] = {
-            "bars": sum(len(sections.get(k) or []) for k in keys),
-            "labels": [labels.get(k) or _key_fallback_label(k) for k in keys],
-        }
-    return out
-
-
-def form_warnings(tune: dict) -> list[str]:
-    """All form cross-check messages (hard and soft), empty when clean."""
-    return [msg for _level, msg in derive_labels(tune)[2]]
-
-
-def form_hard_warnings(tune: dict) -> list[str]:
-    """Only the blocking form problems — real count mismatches, unstored
-    repeats and missing strains (excludes soft verse-form review notes)."""
-    return [msg for level, msg in derive_labels(tune)[2] if level == HARD]
-
 
 # ---------------------------------------------------------------------------
 # Scale-degree naming (used for the `opening` field, spec §3.1)

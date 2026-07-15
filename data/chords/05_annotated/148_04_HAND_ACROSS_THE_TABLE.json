@@ -4,19 +4,6 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "16 A A'",
-  "form_strains": {
-    "chorus": {
-      "bars": 16,
-      "labels": [
-        "A",
-        "A'"
-      ]
-    }
-  },
-  "section_labels": {
-    "A": "A",
-    "A1": "A'"
-  },
   "time_signature": "4/4",
   "title": "HAND ACROSS THE TABLE",
   "page": 148,
@@ -32,115 +19,127 @@
     "F.Domino 58- C.Hawkins 35",
     "B.Vaughan 60- H.D'Amico 57"
   ],
-  "sections": {
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Eb",
-          "3": "Ebmaj7"
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb",
+                "3": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Abm"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Eb",
+                "3": "Gm"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Cm",
+                "3": "Cm7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Bb7#5"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb",
+                "3": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Abm"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Eb",
+                "3": "Gm7",
+                "4": "Cm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Eb7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Ab"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Abm"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Eb",
-          "3": "Gm"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Cm",
-          "3": "Cm7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Bb7#5"
-        }
-      }
-    ],
-    "A1": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Eb",
-          "3": "Ebmaj7"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Eb7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Ab"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Abm"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Eb",
-          "3": "Gm7",
-          "4": "Cm7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Fm7",
-          "3": "Bb7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Eb"
-        }
-      }
-    ]
-  },
+      ]
+    }
+  ],
   "key": {
     "tonic": "Eb",
     "mode": "major"
@@ -152,7 +151,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "5b93c8fb1679bc60ae394d366271204abfaac71b4941e3c2930e727dcfda66b9",
+    "source_sha256": "754d9a6970fbc238cd3b333fe4060904454f6d29c7542b8685aa1a8065037b62",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",

@@ -12,6 +12,8 @@ from pathlib import Path
 
 import anthropic
 
+from pipelines.chords.similarity.normalize import sections_view
+
 MODEL = "claude-opus-4-8"
 # The spec budgets 4000 output tokens for the JSON reply; adaptive thinking
 # tokens also count against max_tokens, so give generous headroom — a
@@ -150,8 +152,15 @@ _INPUT_FIELDS = ("title", "composer", "form", "time_signature", "sections")
 
 
 def user_payload(tune: dict) -> str:
-    """The tune JSON, trimmed to the fields that inform the key (spec §3.3)."""
-    return json.dumps({k: tune[k] for k in _INPUT_FIELDS if k in tune},
+    """The tune JSON, trimmed to the fields that inform the key (spec §3.3).
+
+    A strains-model tune presents its parts as the classic `sections` map
+    (part id -> bars, via normalize.sections_view), so the prompt shape —
+    and the section names the model must echo back — are unchanged.
+    """
+    doc = dict(tune)
+    doc["sections"] = sections_view(tune)
+    return json.dumps({k: doc[k] for k in _INPUT_FIELDS if k in doc},
                       ensure_ascii=False, indent=1)
 
 

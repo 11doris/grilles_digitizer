@@ -1,5 +1,24 @@
 # Tune Verification App — Implementation Spec
 
+> **Phase C (2026-07-15, strains model)** — supersedes this spec wherever they
+> disagree (see `strain_model_phase_c_plan.md`):
+> - Edited/verified tunes store an ordered **`strains`** list (`name`, `role`,
+>   `parts[]` with printed `label`, optional `plays`, `bars`) instead of the
+>   legacy `sections` map. `02_raw` keeps the legacy map; the server converts
+>   it to strains **on load** (`tools/migrate_to_strains.tune_to_strains`) and
+>   on promotion, so `03_wip`/`04_verified` are uniformly strains-shaped.
+> - The editor shows **one card per part** (strain name + role + label +
+>   plays + the bar grid); consecutive same-strain cards regroup into one
+>   strain on save. There is no section-labels editor and no
+>   `/api/derive` — labels and repeats live on the parts themselves.
+> - Variant `targets` and `coda_jump.from` are `{strain, part, bar}` anchors
+>   edited via a picker of generated part ids; a dangling anchor is flagged,
+>   never dropped.
+> - Save/verify validation = `normalize.validate_strains` (role/name
+>   vocabulary from `NAMED_STRAINS`/`AUX_CONNECTORS`, unique part ids,
+>   anchors + `section_keys` must resolve) + the chord checks; there is no
+>   separate strain-key policy and no derived `form_strains`/`section_labels`.
+
 ## 1. Overview
 
 A Flask web application for manually reviewing and editing the digitized tune JSON files in `data/chords/02_raw/`. The user can inspect, correct, and approve each tune one at a time. Verified tunes are copied to `data/chords/04_verified/`. A persistent state file tracks progress so sessions can be interrupted and resumed.

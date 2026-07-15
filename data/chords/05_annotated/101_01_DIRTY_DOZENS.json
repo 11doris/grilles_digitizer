@@ -3,21 +3,10 @@
   "style": "BOOGIE WOOGIE",
   "tempo": "MEDIUM",
   "form": "16 BLUES",
-  "form_strains": {
-    "chorus": {
-      "bars": 16,
-      "labels": [
-        "BLUES"
-      ]
-    }
-  },
   "time_signature": "4/4",
   "title": "DIRTY DOZENS",
   "page": 101,
   "source": "Anthologie des grilles de jazz",
-  "section_labels": {
-    "A": "BLUES"
-  },
   "recordings": [
     "S.Price",
     "C.Berley",
@@ -27,107 +16,116 @@
     "L.Carr",
     "J.Davenport 29"
   ],
-  "sections": {
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "F"
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "BLUES",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 9,
+              "beats": {
+                "1": "Bb"
+              }
+            },
+            {
+              "bar": 10,
+              "beats": {
+                "1": "Bb"
+              }
+            },
+            {
+              "bar": 11,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 12,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 13,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 14,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 15,
+              "beats": {
+                "1": "F",
+                "3": "Bb"
+              }
+            },
+            {
+              "bar": 16,
+              "beats": {
+                "1": "F"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 9,
-        "beats": {
-          "1": "Bb"
-        }
-      },
-      {
-        "bar": 10,
-        "beats": {
-          "1": "Bb"
-        }
-      },
-      {
-        "bar": 11,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 12,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 13,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 14,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 15,
-        "beats": {
-          "1": "F",
-          "3": "Bb"
-        }
-      },
-      {
-        "bar": 16,
-        "beats": {
-          "1": "F"
-        }
-      }
-    ]
-  },
+      ]
+    }
+  ],
   "key": {
     "tonic": "F",
     "mode": "major"
@@ -139,7 +137,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "0d108eef0cb2a940719e534991e3cbb8379ed2dadfd8241e6384451af2b67ef5",
+    "source_sha256": "c99f9d6037f4c8250217d41e17cab239f0bb3e6d898a15a84579afa2d7095b83",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -164,7 +162,7 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "Static I (F) for 7 bars, turning to I7 (F7) in bar 8 to lead to IV",
+      "BLUES": "Static I (F) for 7 bars, turning to I7 (F7) in bar 8 to lead to IV",
       "B": "IV-I-V7-I with IV-I amen turnaround at the end"
     },
     "modulates": false

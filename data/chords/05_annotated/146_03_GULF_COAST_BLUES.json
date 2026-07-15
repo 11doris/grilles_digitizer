@@ -4,26 +4,6 @@
   "style": "TRADITIONAL",
   "tempo": "SLOW",
   "form": "16 A B | 12 BLUES",
-  "form_strains": {
-    "verse": {
-      "bars": 16,
-      "labels": [
-        "A",
-        "B"
-      ]
-    },
-    "chorus": {
-      "bars": 12,
-      "labels": [
-        "BLUES"
-      ]
-    }
-  },
-  "section_labels": {
-    "verse_A": "A",
-    "verse_B": "B",
-    "A": "BLUES"
-  },
   "time_signature": "4/4",
   "title": "GULF COAST BLUES",
   "page": 146,
@@ -42,193 +22,214 @@
     "H.C.Handy 23- F.Henderson 23",
     "J.Hall 58- B.Scott 23"
   ],
-  "sections": {
-    "verse_A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Eb",
-          "3": "Gbo7"
+  "strains": [
+    {
+      "name": "verse",
+      "role": "verse",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb",
+                "3": "Gbo7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bb7/5"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Eb",
+                "3": "Gb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "C7",
+                "4": "F7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Bb7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb",
+                "3": "Gbo7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Cm"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "C7",
+                "4": "F7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Bb7"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Bb7/5"
+      ]
+    },
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "BLUES",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Eb",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Eb",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 9,
+              "beats": {
+                "1": "Bb7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 10,
+              "beats": {
+                "1": "F7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 11,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 12,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Bb7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Eb"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Eb",
-          "3": "Gb7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Bb",
-          "3": "G7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "C7",
-          "4": "F7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Bb7"
-        }
-      }
-    ],
-    "verse_B": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Eb",
-          "3": "Gbo7"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Bb7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Cm"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Bb",
-          "3": "D7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "G7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "C7",
-          "4": "F7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Bb7"
-        }
-      }
-    ],
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Eb"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Eb",
-          "3": "Bb7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Eb"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Eb7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Ab"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Eb",
-          "3": "Bb7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Eb"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Eb"
-        }
-      },
-      {
-        "bar": 9,
-        "beats": {
-          "1": "Bb7",
-          "3": "C7"
-        }
-      },
-      {
-        "bar": 10,
-        "beats": {
-          "1": "F7",
-          "3": "Bb7"
-        }
-      },
-      {
-        "bar": 11,
-        "beats": {
-          "1": "Eb"
-        }
-      },
-      {
-        "bar": 12,
-        "beats": {
-          "1": "Eb"
-        }
-      }
-    ]
-  },
+      ]
+    }
+  ],
   "key": {
     "tonic": "Eb",
     "mode": "major"
@@ -239,8 +240,8 @@
     "chord": "Eb"
   },
   "key_annotation": {
-    "status": "agreed",
-    "source_sha256": "7dbe26170c9a9cdd0dcb60c2b9d78390b540392dbb3025e8153da404d32b0a76",
+    "status": "verified",
+    "source_sha256": "1169ac5e9ae50122d668178ddbee2d0b4db782747514665f8a281c6b238c5a96",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -251,6 +252,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -263,7 +269,7 @@
     "sections": {
       "verse_A": "I with #io7, V7 back to I; then chromatic passing dominants (V/V, V/ii) leading to a V7 turnaround",
       "verse_B": "I-#io7-V7, V/vi to vi, then V/V, V/ii to F7-V7 turnaround ending on V",
-      "A": "12-bar blues in I: I with I7 to IV, back to I, then V7-C7-F7-V7 blues turnaround"
+      "BLUES": "12-bar blues in I: I with I7 to IV, back to I, then V7-C7-F7-V7 blues turnaround"
     },
     "modulates": false
   }

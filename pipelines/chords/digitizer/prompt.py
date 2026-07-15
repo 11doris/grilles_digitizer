@@ -355,7 +355,12 @@ bars the alternate applies to, but do NOT output the symbol itself. Transcribe t
   where the alternate's FIRST box lands: {{ "section": "<section id>", "bar": <n> }} with
   "bar" 1-indexed WITHIN that section (NOT a global count). Read each straight off the
   grid — find the marker (or the referenced bar) in the grid, and record the section it
-  sits in and its position within that section. The alternate's remaining boxes follow
+  sits in and its position within that section.
+- "section" must be copied VERBATIM from the keys of your "sections" object — every
+  target's section value MUST also appear as a "sections" key. On a multi-strain piece
+  that includes the strain prefix: a marker on strain 1's second section is
+  {{ "section": "s1_A1", "bar": 5 }}, NEVER the bare letter {{ "section": "A1", ... }} or
+  {{ "section": "A", ... }}. Likewise a verse target uses its verse_ key. The alternate's remaining boxes follow
   consecutively in the SAME section (box 2 → bar+1, box 3 → bar+2, …); they never spill
   past the section's end. Emit one target per printed occurrence, in printed order.
 - The "applies_to" caption's numbers count the CHORUS (the main strain: sections A, A1,
@@ -517,7 +522,15 @@ TUNE_TOOL = {
                             "items": {
                                 "type": "object",
                                 "properties": {
-                                    "section": {"type": "string"},
+                                    "section": {
+                                        "type": "string",
+                                        "description": (
+                                            "EXACT key of the target section as it "
+                                            "appears in this tune's 'sections' object, "
+                                            "verbatim — including any sN_ strain prefix "
+                                            "or verse_ prefix (e.g. 's1_A1', not 'A1')."
+                                        ),
+                                    },
                                     "bar": {"type": "integer"},
                                 },
                                 "required": ["section", "bar"],

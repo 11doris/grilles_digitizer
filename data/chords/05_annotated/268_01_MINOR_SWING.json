@@ -4,35 +4,6 @@
   "style": "SWING (INSTRUMENTAL)",
   "tempo": "MEDIUM FAST",
   "form": "16 A A | 16 A A | 16 A B",
-  "form_strains": {
-    "intro": {
-      "bars": 16,
-      "labels": [
-        "A",
-        "A"
-      ]
-    },
-    "thema": {
-      "bars": 16,
-      "labels": [
-        "A",
-        "A"
-      ]
-    },
-    "impro": {
-      "bars": 16,
-      "labels": [
-        "A",
-        "B"
-      ]
-    }
-  },
-  "section_labels": {
-    "intro_A": "A",
-    "thema_A": "A",
-    "impro_A": "A",
-    "impro_B": "B"
-  },
   "time_signature": "4/4",
   "title": "MINOR SWING",
   "page": 268,
@@ -48,208 +19,240 @@
     "improvisation": "Third and fourth printed rows are labelled 'Chord Changes for IMPROVISATION :'.",
     "B_bar5": "B bar 5 shows E7 with a parenthesised optional (Bb7); kept as printed."
   },
-  "sections": {
-    "intro_A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Am"
+  "strains": [
+    {
+      "name": "intro",
+      "role": "strain",
+      "parts": [
+        {
+          "label": "A",
+          "plays": 2,
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Am"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Dm"
+      ]
+    },
+    {
+      "name": "thema",
+      "role": "strain",
+      "parts": [
+        {
+          "label": "A",
+          "plays": 2,
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "E7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "E7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Am"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Am"
+      ]
+    },
+    {
+      "name": "impro",
+      "role": "strain",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "E7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "E7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Am"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "E7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "(Bb7)"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Am"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Dm"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Am"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Dm"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Am"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Am"
-        }
-      }
-    ],
-    "thema_A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Am"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Am"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Dm"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Dm"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "E7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "E7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Am"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Am"
-        }
-      }
-    ],
-    "impro_A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Am"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Am"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Dm"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Dm"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "E7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "E7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Am"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Am"
-        }
-      }
-    ],
-    "impro_B": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Dm"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Dm"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Am"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Am"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "E7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "(Bb7)"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Am"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Am"
-        }
-      }
-    ]
-  },
+      ]
+    }
+  ],
   "key": {
     "tonic": "A",
     "mode": "minor"
@@ -260,8 +263,8 @@
     "chord": "Am"
   },
   "key_annotation": {
-    "status": "agreed",
-    "source_sha256": "fa63869b9b2bf7d78e5c1086469a445edb00be783c7707b3d1a8130630f24413",
+    "status": "verified",
+    "source_sha256": "bfa57705b18f431639c0ce02652a49aa4b3a7d432aaaf23914de98add4dbdea0",
     "scorer": {
       "tonic": "A",
       "mode": "minor",
@@ -272,6 +275,11 @@
       "mode": "minor",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "A",
+      "mode": "minor",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

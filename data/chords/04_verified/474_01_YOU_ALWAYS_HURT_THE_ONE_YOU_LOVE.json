@@ -1,0 +1,245 @@
+{
+  "composer": "Doris FISHER – Allan ROBERTS",
+  "year": "1944",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A B C A'",
+  "time_signature": "4/4",
+  "title": "YOU ALWAYS HURT THE ONE YOU LOVE",
+  "page": 474,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "corner_digit_A_bar7": "Section A bar 8 shows a small corner digit 5 by G7 -> slash chord G7/5.",
+    "truncated_recordings": "Right-margin recording credits are largely illegible due to scan quality; transcribed as best readable."
+  },
+  "recordings": [
+    "F.Sinatra 51- L.Armstrong 55",
+    "B.Crosby/Mills Bros. 44- J.Dorsey 44",
+    "D.Reinhardt 47- Mills Bros. 44",
+    "R.Charles 62",
+    "Spike Jones"
+  ],
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Bb"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bbmaj7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bbmaj7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Bb6"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Dbo7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "G7/5"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Cm"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F7#5"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bb",
+                "3": "Bo7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Cm7",
+                "3": "F7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Bb"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "F7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Bb"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bb"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Bb"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -4,23 +4,6 @@
   "style": "SWING",
   "tempo": "MEDIUM SLOW",
   "form": "32 A B A C",
-  "form_strains": {
-    "chorus": {
-      "bars": 32,
-      "labels": [
-        "A",
-        "B",
-        "A",
-        "C"
-      ]
-    }
-  },
-  "section_labels": {
-    "A": "A",
-    "B": "B",
-    "A1": "A",
-    "C": "C"
-  },
   "time_signature": "4/4",
   "variants": [
     {
@@ -71,7 +54,8 @@
       ],
       "targets": [
         {
-          "section": "C",
+          "strain": "chorus",
+          "part": 3,
           "bar": 1
         }
       ]
@@ -95,7 +79,8 @@
       ],
       "targets": [
         {
-          "section": "B",
+          "strain": "chorus",
+          "part": 1,
           "bar": 7
         }
       ]
@@ -116,220 +101,238 @@
     "also_played": "Below the grid prints 'ALSO PLAYED IN D NATURAL'.",
     "instrumental": "Header prints '(INSTRUMENTAL)'."
   },
-  "sections": {
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Ebmaj7"
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ebmaj7",
+                "3": "Bb13b9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb69"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb69",
+                "3": "Bb13b9"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Ebmaj7",
+                "3": "Bb13b9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bbm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb9",
+                "4": "Ab7#5"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab69"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ab69",
+                "3": "Bb9#5"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb69"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb69"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bm7",
+                "3": "E9"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "E9",
+                "3": "Bb13b9"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ebmaj7",
+                "3": "Bb13b9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb69"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb69",
+                "3": "Bb13b9"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Ebmaj7",
+                "3": "Bb13b9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bbm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb9",
+                "4": "Ab7#5"
+              }
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Abmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Abmaj7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "B9"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "B9",
+                "3": "Bb13b9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb6"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb6"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Ebmaj7",
-          "3": "Bb13b9"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Eb69"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Eb69",
-          "3": "Bb13b9"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Ebmaj7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Ebmaj7",
-          "3": "Bb13b9"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Bbm7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Eb9",
-          "4": "Ab7#5"
-        }
-      }
-    ],
-    "B": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Ab69"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Ab69",
-          "3": "Bb9#5"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Eb69"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Eb69"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Cm7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Bm7",
-          "3": "E9"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "E9",
-          "3": "Bb13b9"
-        }
-      }
-    ],
-    "A1": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Ebmaj7"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Ebmaj7",
-          "3": "Bb13b9"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Eb69"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Eb69",
-          "3": "Bb13b9"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Ebmaj7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Ebmaj7",
-          "3": "Bb13b9"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Bbm7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Eb9",
-          "4": "Ab7#5"
-        }
-      }
-    ],
-    "C": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Abmaj7"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Abmaj7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Cm7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "B9"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "B9",
-          "3": "Bb13b9"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Eb6"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Eb6"
-        }
-      }
-    ]
-  },
+      ]
+    }
+  ],
   "key": {
     "tonic": "Eb",
     "mode": "major"
@@ -340,8 +343,8 @@
     "chord": "Ebmaj7"
   },
   "key_annotation": {
-    "status": "agreed",
-    "source_sha256": "ef9992c64070991f05a9df108c8618e975ca7ff71f41f0331452fc307bbb8475",
+    "status": "verified",
+    "source_sha256": "9528a4342360b8bc9b12e2876b21a265ff42f3397cfa68dd3022b135ad641f86",
     "scorer": {
       "tonic": "Eb",
       "mode": "major",
@@ -352,6 +355,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

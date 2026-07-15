@@ -4,25 +4,6 @@
   "style": "STANDARD",
   "tempo": "MEDIUM",
   "form": "40 A A B A' C",
-  "form_strains": {
-    "chorus": {
-      "bars": 40,
-      "labels": [
-        "A",
-        "A",
-        "B",
-        "A'",
-        "C"
-      ]
-    }
-  },
-  "section_labels": {
-    "A": "A",
-    "A1": "A",
-    "B": "B",
-    "A2": "A'",
-    "C": "C"
-  },
   "time_signature": "4/4",
   "variants": [
     {
@@ -46,7 +27,8 @@
       ],
       "targets": [
         {
-          "section": "C",
+          "strain": "chorus",
+          "part": 4,
           "bar": 5
         }
       ]
@@ -66,7 +48,8 @@
       ],
       "targets": [
         {
-          "section": "B",
+          "strain": "chorus",
+          "part": 2,
           "bar": 7
         }
       ]
@@ -83,288 +66,309 @@
   "notation_notes": {
     "verse": "Header prints '12 VERSE'."
   },
-  "sections": {
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Bbmaj7",
-          "3": "G7b9"
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Bbmaj7",
+                "3": "G7b9"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Cm7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bbmaj7",
+                "3": "Bo7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Cm7b5",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb7",
+                "3": "E9"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Ebmaj7",
+                "3": "Eb6"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Dm7",
+                "3": "Gm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Cm7",
+                "3": "F7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Bbmaj7",
+                "3": "G7b9"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Cm7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bbmaj7",
+                "3": "Bo7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Cm7b5",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb7",
+                "3": "E9"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Ebmaj7",
+                "3": "Eb6"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Dm7",
+                "3": "Gm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Cm7",
+                "3": "F7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Bb7",
+                "3": "Eo7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Fm7",
+                "3": "F#o7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Fm7",
+                "3": "Eo7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Fm7b5",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Am7b5",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "F7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Bbmaj7",
+                "3": "G7b9"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Cm7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bbmaj7",
+                "3": "Bo7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Cm7b5",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb6",
+                "2": "Bb7#5"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Ebmaj7",
+                "3": "Ebm6"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Dm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "G7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "D9#5",
+                "3": "Ab13"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "G7b9"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "C7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bb6"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Bb6"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Cm7",
-          "3": "F7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Bbmaj7",
-          "3": "Bo7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Cm7b5",
-          "3": "F7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Bb7",
-          "3": "E9"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Ebmaj7",
-          "3": "Eb6"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Dm7",
-          "3": "Gm7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Cm7",
-          "3": "F7"
-        }
-      }
-    ],
-    "A1": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Bbmaj7",
-          "3": "G7b9"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Cm7",
-          "3": "F7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Bbmaj7",
-          "3": "Bo7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Cm7b5",
-          "3": "F7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Bb7",
-          "3": "E9"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Ebmaj7",
-          "3": "Eb6"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Dm7",
-          "3": "Gm7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Cm7",
-          "3": "F7"
-        }
-      }
-    ],
-    "B": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Bb7",
-          "3": "Eo7"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Fm7",
-          "3": "F#o7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Fm7",
-          "3": "Eo7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Fm7b5",
-          "3": "Bb7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Am7b5",
-          "3": "D7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Gm7",
-          "3": "C7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Cm7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "F7"
-        }
-      }
-    ],
-    "A2": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Bbmaj7",
-          "3": "G7b9"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Cm7",
-          "3": "F7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "Bbmaj7",
-          "3": "Bo7"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Cm7b5",
-          "3": "F7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Bb6",
-          "2": "Bb7#5"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Ebmaj7",
-          "3": "Ebm6"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Dm7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "G7"
-        }
-      }
-    ],
-    "C": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "Cm7"
-        }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "D9#5",
-          "3": "Ab13"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "G7b9"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Cm7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "C7",
-          "3": "F7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Bb6"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Bb6"
-        }
-      }
-    ]
-  },
+      ]
+    }
+  ],
   "key": {
     "tonic": "Bb",
     "mode": "major"
@@ -375,8 +379,8 @@
     "chord": "Bbmaj7"
   },
   "key_annotation": {
-    "status": "agreed",
-    "source_sha256": "bcc819d77faa2cc350664ac95e2fc2d57c43dd7d0c10d6564964f8be4d6826da",
+    "status": "verified",
+    "source_sha256": "6d3987fd193af1598a69fd856c6bd2fd6c83f6c374cef62508188c80f63c770d",
     "scorer": {
       "tonic": "Bb",
       "mode": "major",
@@ -387,6 +391,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Bb",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

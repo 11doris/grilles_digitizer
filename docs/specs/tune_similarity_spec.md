@@ -11,6 +11,17 @@ continuously as tunes are verified).
 This document is the single source of truth for this feature. Where it conflicts with earlier
 discussion notes, this document wins.
 
+> **Phase C (2026-07-15, strains model)** — supersedes this spec wherever they
+> disagree (see `strain_model_phase_c_plan.md`): verified/annotated tunes store
+> an ordered `strains` list instead of a `sections` map. Everything here that
+> reads "section" operates on the **parts** of that list via
+> `normalize.sections_view` (an ordered `{part_id: bars}` view; ids generated
+> from the structure — chorus `A`/`A1`, prefixed `verse_A`, bare aux `coda` —
+> never parsed). Verse exclusion keys off the explicit `role == "verse"`;
+> `section_keys` and the engine's `section` refs use the generated part ids;
+> the `form`↔`sections` cross-check (HARD/SOFT warnings) is replaced by
+> `normalize.validate_strains`, loud at edit time.
+
 **Status (2026-07-10):**
 
 * **Phase 0 is complete and owner-verified** (2026-07-09): all tunes in `05_annotated`, scorer

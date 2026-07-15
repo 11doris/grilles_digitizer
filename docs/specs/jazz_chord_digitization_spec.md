@@ -244,6 +244,16 @@ Each unit emits **one JSON file** containing a **single bare object** (not wrapp
 
 `title`, `page`, and `source` are written by the runner (§5); the model supplies the rest.
 
+> **Phase C note (2026-07-15):** this shape — a `sections` map keyed by
+> mechanical section keys — is the **raw digitizer output** (`02_raw`) and is
+> unchanged. Downstream tiers (`03_wip`/`04_verified`/`05_annotated`) store the
+> **strains model** instead (`strains[].parts[]` with explicit `name`/`role`/
+> `label`/`plays`; variant `targets` and `coda_jump.from` as `{strain, part,
+> bar}` anchors); the verifier converts a raw tune on first load via
+> `pipelines/chords/tools/migrate_to_strains.tune_to_strains`, and the few-shot
+> examples are down-converted back to this raw shape by `build_examples.py`.
+> See `strain_model_phase_c_plan.md`.
+
 ### 6.2 Field rules
 | Field | Rule |
 |---|---|
@@ -665,6 +675,9 @@ A unit is **accepted** only if it parses as JSON and passes every check below; o
 13. Multi-strain pieces (§8.5) are well-formed: every strain-prefixed key is `<prefix>_<section-id>`
     with a non-empty section id and no prime; numbered strains run `s1, s2, …` contiguously from `s1`;
     and the `form` string joins the per-strain labels with `" | "`.
+14. Every variant target's `section` is a **verbatim key of `sections`** (on a multi-strain piece
+    that includes the strain prefix, e.g. `s1_A1`, never the bare letter `A1`), its `bar` lies within
+    that section, and the variant's boxes do not spill past the section's end.
 
 A unit that fails validation after all retries is written as an `.error.json` stub and listed in
 `run_report.json` — it does not stop the batch.

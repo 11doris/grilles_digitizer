@@ -38,6 +38,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))  # repo root
+from pipelines.chords.similarity.normalize import sections_view  # noqa: E402
+
 IGNORED_STEMS = {"verification_state", "run_report", "run_state"}
 
 ROOT = r"[A-G](?:#|b)?"
@@ -154,7 +157,9 @@ def main() -> int:
                 continue
             d = json.loads(p.read_text("utf-8"))
             n_files += 1
-            for sec, bars in (d.get("sections") or {}).items():
+            # sections_view walks strains[].parts[] (part-id keyed) on the
+            # Phase C shape and passes a legacy sections map through.
+            for sec, bars in sections_view(d).items():
                 walk(bars, sec, p.name, out)
             for v in d.get("variants") or []:
                 walk(v.get("bars") or [], f"variant[{v.get('applies_to', '')}]", p.name, out)

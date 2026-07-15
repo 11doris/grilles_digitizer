@@ -3,21 +3,10 @@
   "style": "BOOGIE WOOGIE",
   "tempo": "MEDIUM",
   "form": "16 BLUES",
-  "form_strains": {
-    "chorus": {
-      "bars": 16,
-      "labels": [
-        "BLUES"
-      ]
-    }
-  },
   "time_signature": "4/4",
   "title": "DIRTY DOZENS",
   "page": 101,
   "source": "Anthologie des grilles de jazz",
-  "section_labels": {
-    "A": "BLUES"
-  },
   "recordings": [
     "S.Price",
     "C.Berley",
@@ -27,105 +16,114 @@
     "L.Carr",
     "J.Davenport 29"
   ],
-  "sections": {
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "F"
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "BLUES",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 9,
+              "beats": {
+                "1": "Bb"
+              }
+            },
+            {
+              "bar": 10,
+              "beats": {
+                "1": "Bb"
+              }
+            },
+            {
+              "bar": 11,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 12,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 13,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 14,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 15,
+              "beats": {
+                "1": "F",
+                "3": "Bb"
+              }
+            },
+            {
+              "bar": 16,
+              "beats": {
+                "1": "F"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "F7"
-        }
-      },
-      {
-        "bar": 9,
-        "beats": {
-          "1": "Bb"
-        }
-      },
-      {
-        "bar": 10,
-        "beats": {
-          "1": "Bb"
-        }
-      },
-      {
-        "bar": 11,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 12,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 13,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 14,
-        "beats": {
-          "1": "C7"
-        }
-      },
-      {
-        "bar": 15,
-        "beats": {
-          "1": "F",
-          "3": "Bb"
-        }
-      },
-      {
-        "bar": 16,
-        "beats": {
-          "1": "F"
-        }
-      }
-    ]
-  }
+      ]
+    }
+  ]
 }

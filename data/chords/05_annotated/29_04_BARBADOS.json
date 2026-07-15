@@ -4,17 +4,6 @@
   "style": "BE BOP (INSTRUMENTAL)",
   "tempo": "MEDIUM",
   "form": "12 BLUES",
-  "form_strains": {
-    "chorus": {
-      "bars": 12,
-      "labels": [
-        "BLUES"
-      ]
-    }
-  },
-  "section_labels": {
-    "A": "BLUES"
-  },
   "time_signature": "4/4",
   "title": "BARBADOS",
   "page": 29,
@@ -30,86 +19,95 @@
   "notation_notes": {
     "C_bar12": "Section A bar 12 is printed parenthesised '(C7)', an optional/passing chord; kept as printed."
   },
-  "sections": {
-    "A": [
-      {
-        "bar": 1,
-        "beats": {
-          "1": "F"
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "BLUES",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7b9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Cm7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Fmaj7",
+                "3": "Gm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Am7",
+                "3": "D7b9"
+              }
+            },
+            {
+              "bar": 9,
+              "beats": {
+                "1": "Gm7"
+              }
+            },
+            {
+              "bar": 10,
+              "beats": {
+                "1": "C7b9"
+              }
+            },
+            {
+              "bar": 11,
+              "beats": {
+                "1": "Fmaj7"
+              }
+            },
+            {
+              "bar": 12,
+              "beats": {
+                "1": "(C7)"
+              }
+            }
+          ]
         }
-      },
-      {
-        "bar": 2,
-        "beats": {
-          "1": "Gm7",
-          "3": "C7b9"
-        }
-      },
-      {
-        "bar": 3,
-        "beats": {
-          "1": "F"
-        }
-      },
-      {
-        "bar": 4,
-        "beats": {
-          "1": "Cm7",
-          "3": "F7"
-        }
-      },
-      {
-        "bar": 5,
-        "beats": {
-          "1": "Bb7"
-        }
-      },
-      {
-        "bar": 6,
-        "beats": {
-          "1": "Bb7"
-        }
-      },
-      {
-        "bar": 7,
-        "beats": {
-          "1": "Fmaj7",
-          "3": "Gm7"
-        }
-      },
-      {
-        "bar": 8,
-        "beats": {
-          "1": "Am7",
-          "3": "D7b9"
-        }
-      },
-      {
-        "bar": 9,
-        "beats": {
-          "1": "Gm7"
-        }
-      },
-      {
-        "bar": 10,
-        "beats": {
-          "1": "C7b9"
-        }
-      },
-      {
-        "bar": 11,
-        "beats": {
-          "1": "Fmaj7"
-        }
-      },
-      {
-        "bar": 12,
-        "beats": {
-          "1": "(C7)"
-        }
-      }
-    ]
-  },
+      ]
+    }
+  ],
   "key": {
     "tonic": "F",
     "mode": "major"
@@ -120,8 +118,8 @@
     "chord": "F"
   },
   "key_annotation": {
-    "status": "agreed",
-    "source_sha256": "8816150320bb712b71fa69bcaf04340459833b34b0a4cef887beecb3ef397892",
+    "status": "verified",
+    "source_sha256": "0665fcdab663379bed51adb4e83ad47a98b51169256de4edd2e7efd8fcb74731",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -132,6 +130,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -142,7 +145,7 @@
       "turnaround-ending"
     ],
     "sections": {
-      "A": "F blues: I with ii-V in bar 2, IV in bar 5-6, ii-V turnarounds leading to I, ending on V7 turnaround"
+      "BLUES": "F blues: I with ii-V in bar 2, IV in bar 5-6, ii-V turnarounds leading to I, ending on V7 turnaround"
     },
     "modulates": false
   }

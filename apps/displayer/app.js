@@ -131,7 +131,7 @@
   const VERSE_SECTION = /^verse/i;
 
   function hasVerseSection(t) {
-    return Object.keys(meta(t).sections || {}).some((n) => VERSE_SECTION.test(n));
+    return tuneView(meta(t)).parts.some((p) => p.role === "verse");
   }
 
   /* All melody sheets of a tune; melody_images exists when there are several. */
@@ -997,44 +997,148 @@
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
-  /* The printed section label (primes kept) from the tune's derived
-     `section_labels` — so an A' repeat reads "A'" and an exact repeat reads
-     "A", instead of the bare-letter collapse. Falls back to the letter when a
-     tune predates the label backfill. */
-  function sectionLabelOf(tune, name) {
-    const labels = tune && tune.section_labels;
-    return (labels && labels[name] != null) ? labels[name] : displaySectionName(name);
-  }
-
-  /* The strain a section belongs to, for grouping and captions: "verse", a
-     lowercase prefix (impro, intro, thema, s1, …), "chorus" for a plain letter
-     key, or the bare name itself for a named connector (coda, interlude). */
-  function strainOf(name) {
-    if (VERSE_SECTION.test(name)) return "verse";
-    const m = /^([a-z][a-z0-9]*)_/.exec(name);
-    if (m) return m[1];
-    if (/^[A-Z]\d*$/.test(name)) return "chorus";
-    return name;
-  }
   const titleWord = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
 
-  /* Display name of a section's strain when it carries a prefix ("impro_A" ->
-     "Impro", "verse_A" -> "Verse"); null for a plain chorus letter or a bare
-     connector, which then show just their section label. Kept SEPARATE from the
-     section label so the grid can print the strain and the letter as two texts. */
-  function strainNameOf(name) {
-    const m = /^([a-z][a-z0-9]*)_/.exec(name);
-    return m ? titleWord(m[1]) : null;
+  /* ------------------------------------------ strain-model view (Phase C) */
+
+  /* A part id fragment from a printed label: primes and whitespace dropped
+     ("A'" -> "A", "BLUES" -> "BLUES"). Mirrors normalize._label_base. */
+  function labelBase(label) {
+    return String(label == null ? "" : label).trim()
+      .replace(/['’]+$/, "").replace(/\s+/g, "") || "P";
   }
 
-  /* The per-strain form label from `form_strains` ("16 A A", "32 A A B A'"),
-     keyed by the strain (intro/thema/impro/chorus/verse); null for an aux
-     connector strain (coda/interlude) that has no form entry. */
-  function strainFormLabel(tune, strain) {
-    const fs = tune && tune.form_strains && tune.form_strains[strain];
-    if (!fs) return null;
-    const labels = Array.isArray(fs.labels) ? fs.labels.join(" ") : "";
-    return labels ? `${fs.bars} ${labels}` : String(fs.bars);
+  /* Generated part ids of one strain — chorus parts read as classic letters
+     ("A", "A1", "B"), other strains prefix their name ("verse_A"), a
+     single-part aux connector is just its name. Mirrors normalize.part_ids:
+     ids are GENERATED from the structure, never parsed. */
+  function partIdsOf(strain) {
+    const parts = strain.parts || [];
+    if (strain.role === "aux" && parts.length === 1) return [strain.name];
+    const counts = Object.create(null);
+    return parts.map((part) => {
+      const base = labelBase(part.label);
+      const n = counts[base] || 0;
+      counts[base] = n + 1;
+      const suffix = n === 0 ? base : base + n;
+      return strain.role === "chorus" ? suffix : `${strain.name}_${suffix}`;
+    });
+  }
+
+  /* Ordered view over a tune's strains[].parts[] — every renderer reads
+     parts from here, so strain identity is a field, never re-parsed from a
+     key. A legacy tune (raw `sections` map, e.g. an old bundle) is adapted
+     with the historical key conventions as a fallback. Memoized per tune
+     object (tunes are static once bundled). */
+  const VIEW_CACHE = new WeakMap();
+
+  function tuneView(tune) {
+    if (!tune || typeof tune !== "object") return { parts: [], strains: [], byId: Object.create(null) };
+    let view = VIEW_CACHE.get(tune);
+    if (!view) {
+      view = buildTuneView(tune);
+      VIEW_CACHE.set(tune, view);
+    }
+    return view;
+  }
+
+  function buildTuneView(tune) {
+    const parts = [];
+    const strains = [];
+    const add = (strain, label, bars, plays, id, partIndex, siblings) => {
+      const part = {
+        id, label, bars: bars || [], plays: plays || 1,
+        strain: strain.name, role: strain.role, partIndex, siblings,
+      };
+      parts.push(part);
+      siblings.push(part);
+      return part;
+    };
+    if (Array.isArray(tune.strains)) {
+      tune.strains.forEach((strain) => {
+        const ids = partIdsOf(strain);
+        const siblings = [];
+        (strain.parts || []).forEach((part, i) =>
+          add(strain, part.label, part.bars, part.plays, ids[i], i, siblings));
+        strains.push({ name: strain.name, role: strain.role, parts: siblings });
+      });
+    } else {
+      /* Legacy fallback: derive strain/role/label from the section key the
+         old way (regexes + section_labels), one single-part "strain" per
+         consecutive key run. */
+      const legacyStrainOf = (name) => {
+        if (VERSE_SECTION.test(name)) return "verse";
+        const m = /^([a-z][a-z0-9]*)_/.exec(name);
+        if (m) return m[1];
+        if (/^[A-Z]\d*$/.test(name)) return "chorus";
+        return name;
+      };
+      const labels = tune.section_labels || {};
+      Object.keys(tune.sections || {}).forEach((name) => {
+        const sname = legacyStrainOf(name);
+        const role = sname === "chorus" ? "chorus"
+          : sname === "verse" ? "verse"
+          : sname === name ? "aux" : "strain";
+        let strain = strains[strains.length - 1];
+        if (!strain || strain.name !== sname) {
+          strain = { name: sname, role, parts: [] };
+          strains.push(strain);
+        }
+        add(strain, labels[name] != null ? labels[name] : displaySectionName(name),
+          tune.sections[name], 1, name, strain.parts.length, strain.parts);
+      });
+    }
+    const byId = Object.create(null);
+    parts.forEach((p) => { byId[p.id] = p; });
+    return { parts, strains, byId };
+  }
+
+  /* Resolve a part reference — a part id, or a bare strain name for a
+     single-part strain (the section_keys convention) — to a view part. */
+  function partByRef(tune, ref) {
+    const view = tuneView(tune);
+    if (view.byId[ref]) return view.byId[ref];
+    const strain = view.strains.find((s) => s.name === ref && s.parts.length === 1);
+    return strain ? strain.parts[0] : null;
+  }
+
+  /* Resolve a {strain, part} anchor (variant targets, coda_jump.from) to a
+     view part; tolerates the legacy {section} shape from old bundles. */
+  function partByAnchor(tune, anchor) {
+    if (!anchor) return null;
+    if (anchor.section != null) return partByRef(tune, anchor.section);
+    const strain = tuneView(tune).strains.find((s) => s.name === anchor.strain);
+    return (strain && strain.parts[anchor.part]) || null;
+  }
+
+  /* The printed label of a referenced part (primes kept) — for section_keys
+     chips and fingerprint section names; falls back to the raw reference for
+     keys that no longer resolve (drifted fingerprint prose). */
+  function partLabel(tune, ref) {
+    const part = partByRef(tune, ref);
+    return part ? part.label : displaySectionName(ref);
+  }
+
+  /* Display title of a part's strain ("Impro", "Verse") — context printed
+     ahead of the part-label badge; null for the chorus and for aux
+     connectors (their label already names them). */
+  function strainTitleOf(part) {
+    return part.role === "chorus" || part.role === "aux"
+      ? null : titleWord(part.strain);
+  }
+
+  /* The per-strain form label ("16 A A", "32 A A B A'"): total printed bars
+     (stored bars x plays) + the label sequence with repeats expanded —
+     derived from the structure, replacing the stored `form_strains`. */
+  function strainFormLabel(strain) {
+    if (!strain || strain.role === "aux") return null;
+    let bars = 0;
+    const labels = [];
+    strain.parts.forEach((p) => {
+      bars += (p.bars || []).length * (p.plays || 1);
+      for (let i = 0; i < (p.plays || 1); i++) labels.push(p.label);
+    });
+    return labels.length ? `${bars} ${labels.join(" ")}` : String(bars);
   }
 
   /* A bar is a fixed grid of `beats` equal columns (one per beat). Each chord is
@@ -1128,14 +1232,16 @@
     return frag;
   }
 
-  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer, form, label, strainName, codaJump) {
+  function renderSection(tune, part, beats, isFirst, ts, overrides, renderer, form) {
+    const bars = part.bars;
     const sec = el("div", "section");
-    sec.style.setProperty("--bxhue", sectionTint(name)); // section shading
+    sec.style.setProperty("--bxhue", sectionTint(part)); // section shading
     const badge = el("div", "sec-label");
-    badge.textContent = label != null ? label : displaySectionName(name);
+    badge.textContent = part.label;
     // Left cluster: an optional strain name ("Impro", "Verse") kept as a
-    // separate text ahead of the section-letter badge, so the strain reads as
+    // separate text ahead of the part-label badge, so the strain reads as
     // context and the letter as the part. Plain chorus letters show just the badge.
+    const strainName = strainTitleOf(part);
     let left = badge;
     if (strainName) {
       left = el("div", "sec-labels");
@@ -1145,7 +1251,7 @@
       left.appendChild(badge);
     }
     if (form) {
-      // First section of a strain: label cluster left, form badge right, one row.
+      // First part of a strain: label cluster left, form badge right, one row.
       const head = el("div", "sec-head");
       head.appendChild(left);
       const formBadge = el("div", "grid-form");
@@ -1155,15 +1261,16 @@
     } else {
       sec.appendChild(left);
     }
-    // The coda sign renders on the jump-off bar of its section (from.bar
-    // 1-indexed; below when it's in the section's last 4-bar row, else above)
-    // and before the coda section's own first bar (the landing mark).
+    // The coda sign renders on the jump-off bar of its part (from.bar
+    // 1-indexed; below when it's in the part's last 4-bar row, else above)
+    // and before the coda strain's own first bar (the landing mark).
+    const codaJump = tune.coda_jump;
     let coda = null;
-    if (codaJump && codaJump.from && codaJump.from.section === name) {
-      const idx = codaJump.from.bar - 1;
+    if (codaJump && codaJump.from && partByAnchor(tune, codaJump.from) === part) {
+      const idx = (codaJump.from.bar || 1) - 1;
       coda = { idx, place: Math.floor(idx / 4) === Math.floor((bars.length - 1) / 4)
         ? "below" : "above" };
-    } else if (codaJump && strainOf(name) === "coda") {
+    } else if (codaJump && part.strain === "coda" && part.partIndex === 0) {
       coda = { idx: 0, place: "before" };
     }
     sec.appendChild(renderGrid(bars, beats,
@@ -1215,6 +1322,7 @@
     verse: "#a3869a", intro: "#96a36b", thema: "#7da3a0",
     impro: "#b08a5e", interlude: "#8a8fa3", coda: "#7f8fc4",
     part1: "#7b9e8a", part2: "#9e7b8f", s1: "#7b8fb0", s2: "#b09a7b",
+    s3: "#8aa37b", s4: "#a37b8f", s5: "#7ba3a3",
     blues: "#5b8dd6",  // same shade as chorus section A
   };
   const TINT_POOL = ["#8a8fa3", "#b08a5e", "#7da3a0", "#a3869a", "#96a36b", "#7f8fc4"];
@@ -1223,16 +1331,19 @@
     TINT_POOL[[...key].reduce((s, c) => (s * 31 + c.charCodeAt(0)) >>> 0, 0)
       % TINT_POOL.length];
 
-  /* Returns the section's hue; the CSS mixes it into the theme background
+  /* Returns the part's hue; the CSS mixes it into the theme background
      (--bxtint), stronger in dark mode where a light wash wouldn't show. */
-  function sectionTint(name) {
-    const strain = strainOf(name);
-    // Non-chorus strains take one uniform colour across all their sections,
-    // keyed by the strain (a fixed hue for the known names, else hashed).
-    if (strain !== "chorus") return STRAIN_TINT[strain] || hashHue(strain);
-    // The chorus keeps its per-letter hue (A1 → A) so its A B A B reads.
-    const key = String(name || "").replace(/\d+$/, "");
-    return TINT_TABLE[key] || hashHue(key);
+  function sectionTint(part) {
+    // Non-chorus strains take one uniform colour across all their parts,
+    // keyed by the strain name (a fixed hue for the known names, else hashed).
+    if (part.role !== "chorus") return STRAIN_TINT[part.strain] || hashHue(part.strain);
+    // The chorus keeps its per-letter hue (A' → A) so its A B A B reads.
+    const key = labelBase(part.label);
+    if (TINT_TABLE[key]) return TINT_TABLE[key];
+    // A word-labelled single chorus (a blues' one "BLUES" grid) reads as the
+    // whole tune's single strain — same shade as section A.
+    if (part.siblings.length === 1) return TINT_TABLE.A;
+    return hashHue(key);
   }
 
   /* One box, following the book's conventions:
@@ -1346,28 +1457,21 @@
     const wrap = el("div", "boxgrid");
     const beats = beatsPerBar(tune);
     const cj = tune.coda_jump;
-    let sectionNames = Object.keys(tune.sections || {});
-    if (!state.showVerses) sectionNames = sectionNames.filter((n) => !VERSE_SECTION.test(n));
-    const hasVerse = sectionNames.some((n) => VERSE_SECTION.test(n));
-    /* Group into blocks by strain, in document order: consecutive sections of
-       the same strain share one lattice (the chorus, one VERSE grille, one
-       IMPRO grille, …). Each non-chorus strain is captioned by its name; the
-       chorus is captioned only when a verse is also shown. */
-    const blocks = [];
-    sectionNames.forEach((name) => {
-      const strain = strainOf(name);
-      const last = blocks[blocks.length - 1];
-      if (!last || last.strain !== strain) blocks.push({ strain, sections: [name] });
-      else last.sections.push(name);
-    });
-    blocks.forEach((blk) => {
-      const caption = blk.strain === "chorus"
+    const view = tuneView(tune);
+    const hasVerse = state.showVerses && view.parts.some((p) => p.role === "verse");
+    /* One block per strain, in document order: a strain's parts share one
+       lattice (the chorus, one VERSE grille, one IMPRO grille, …). Each
+       non-chorus strain is captioned by its name; the chorus is captioned
+       only when a verse is also shown. */
+    view.strains.forEach((strain) => {
+      if (!state.showVerses && strain.role === "verse") return;
+      const caption = strain.role === "chorus"
         ? (hasVerse ? "Chorus" : null)   // name the chorus only against a verse
-        : blk.strain === "verse" ? "Verse"
-        : titleWord(blk.strain);         // Intro, Impro, Thema, Coda, …
+        : strain.role === "verse" ? "Verse"
+        : titleWord(strain.name);        // Intro, Impro, Thema, Coda, …
       /* Strain head: caption left, this strain's form label ("16 A A") right —
          one per strain, replacing the single whole-chart badge. */
-      const formLabel = strainFormLabel(tune, blk.strain);
+      const formLabel = strainFormLabel(strain);
       if (caption || formLabel) {
         const head = el("div", "bx-blockhead");
         if (caption) {
@@ -1383,9 +1487,9 @@
         wrap.appendChild(head);
       }
       const rows = [];
-      blk.sections.forEach((name) => {
-        const secOv = overrides && overrides[name];
-        let bars = tune.sections[name] || [];
+      strain.parts.forEach((part) => {
+        const secOv = overrides && overrides[part.id];
+        let bars = part.bars;
         // An active variant swaps its beats into the matching bar, like the
         // grid view; `swap` flags the box (.variant-swap hook, no styling).
         if (secOv) {
@@ -1393,27 +1497,26 @@
             ? { bar: bar.bar, beats: secOv[idx].beats, swap: true } : bar));
         }
         // Tag the coda sign's box — the jump-off bar (below when it's in the
-        // section's last lattice row, else above) and the coda section's first
+        // part's last lattice row, else above) and the coda strain's first
         // box (before it, the landing mark). Shallow-copy just that box so the
         // shared tune data is untouched, like the swap flag above.
-        if (cj && cj.from && cj.from.section === name) {
-          const ci = cj.from.bar - 1;
+        if (cj && cj.from && partByAnchor(tune, cj.from) === part) {
+          const ci = (cj.from.bar || 1) - 1;
           const place = Math.floor(ci / BOXES_PER_ROW)
             === Math.floor((bars.length - 1) / BOXES_PER_ROW) ? "below" : "above";
           bars = bars.map((bar, idx) => (idx === ci ? { ...bar, codaPlace: place } : bar));
-        } else if (cj && strainOf(name) === "coda") {
+        } else if (cj && part.strain === "coda" && part.partIndex === 0) {
           bars = bars.map((bar, idx) => (idx === 0 ? { ...bar, codaPlace: "before" } : bar));
         }
-        // Every section's first lattice row carries its printed label (primes
+        // Every part's first lattice row carries its printed label (primes
         // kept); the strain caption above supplies the verse/impro/… context.
-        // A bare named section (interlude/coda) whose label equals the caption
+        // A bare connector (interlude/coda) whose label equals the caption
         // stays unlabeled so the name isn't printed twice.
-        const rowLabel = sectionLabelOf(tune, name);
         const secRows = boxRowsOf(null, bars);
-        if (secRows.length && rowLabel !== caption) secRows[0].label = rowLabel;
+        if (secRows.length && part.label !== caption) secRows[0].label = part.label;
         secRows.forEach((r) => {
           r.beats = beats;
-          r.tint = sectionTint(name);
+          r.tint = sectionTint(part);
           rows.push(r);
         });
       });
@@ -1510,7 +1613,7 @@
     Object.keys(sectionKeys).forEach((name) => {
       const label = displayKey(sectionKeys[name]);
       if (!label) return;
-      const shown = sectionLabelOf(tune, name);
+      const shown = partLabel(tune, name);
       const dedupeKey = shown + "\u0000" + label;
       if (seenSection.has(dedupeKey)) return;
       seenSection.add(dedupeKey);
@@ -1652,57 +1755,54 @@
     return details;
   }
 
-  /* Sections that don't count toward the "chorus" bar frame the legacy captions
-     use (verse/intro/… are auxiliary). Mirrors the backfill tool. */
-  const AUX_SECTION = /^(verse|intro|interlude|coda|transition)/i;
+  /* Chorus bars in printed order as {part, idx}, EXCLUDING auxiliary strains
+     (verse/intro/… don't count toward the frame an old "applies_to" caption's
+     bar numbers count over). Only used as a fallback for variants that predate
+     the explicit `targets` anchors. */
+  const AUX_FRAME = /^(intro|interlude|transition)$/;
 
-  /* Chorus bars in printed order as {name, idx}, EXCLUDING auxiliary sections —
-     the frame an old "applies_to" caption's bar numbers count over. Only used as
-     a fallback for variants that predate the explicit `targets` anchors. */
   function chorusFlatBarsOf(tune) {
     const flat = [];
-    Object.keys(tune.sections || {}).forEach((name) => {
-      if (AUX_SECTION.test(name)) return;
-      (tune.sections[name] || []).forEach((_bar, idx) => flat.push({ name, idx }));
+    tuneView(tune).parts.forEach((part) => {
+      if (part.role === "verse" || part.role === "aux" || AUX_FRAME.test(part.strain)) return;
+      part.bars.forEach((_bar, idx) => flat.push({ part, idx }));
     });
     return flat;
   }
 
   /* Resolve which main-grid bars a variant swaps in. Prefers the explicit
-     `targets` anchors — one {section, bar} per occurrence, placing the variant's
-     FIRST bar at that (1-indexed) grid bar with the rest following consecutively
-     within the same section. Falls back to parsing the free-text "applies_to"
-     over the chorus frame for un-migrated data. Returns
-     { bySection: {name: {idx: variantBar}}, count } so both the grid substitution
-     and the clickability check share one mapping. */
+     `targets` anchors — one {strain, part, bar} per occurrence (the legacy
+     {section, bar} shape still resolves), placing the variant's FIRST bar at
+     that (1-indexed) grid bar with the rest following consecutively within the
+     same part. Falls back to parsing the free-text "applies_to" over the
+     chorus frame for un-migrated data. Returns
+     { bySection: {partId: {idx: variantBar}}, count } so both the grid
+     substitution and the clickability check share one mapping. */
   function variantOverrides(tune, variant) {
     const bySection = {};
     let count = 0;
     const bars = (variant && variant.bars) || [];
     if (!bars.length) return { bySection, count };
 
-    const place = (name, startIdx) => {
-      const secBars = (tune.sections || {})[name];
-      if (!secBars) return;
+    const place = (part, startIdx) => {
+      if (!part) return;
       bars.forEach((vb, i) => {
         const idx = startIdx + i;
-        if (idx < 0 || idx >= secBars.length) return; // never spill past a section
-        (bySection[name] || (bySection[name] = {}))[idx] = vb;
+        if (idx < 0 || idx >= part.bars.length) return; // never spill past a part
+        (bySection[part.id] || (bySection[part.id] = {}))[idx] = vb;
         count++;
       });
     };
 
     const targets = Array.isArray(variant.targets) ? variant.targets : null;
     if (targets && targets.length) {
-      targets.forEach((tg) => {
-        if (tg && tg.section) place(tg.section, (tg.bar || 1) - 1);
-      });
+      targets.forEach((tg) => place(partByAnchor(tune, tg), ((tg && tg.bar) || 1) - 1));
     } else {
       const starts = (String(variant.applies_to || "").match(/\d+/g) || []).map(Number);
       const flat = chorusFlatBarsOf(tune);
       starts.forEach((start) => {
         const loc = flat[start - 1];
-        if (loc) place(loc.name, loc.idx);
+        if (loc) place(loc.part, loc.idx);
       });
     }
     return { bySection, count };
@@ -1851,7 +1951,7 @@
         const dl = el("dl", "harm-sections");
         for (const [name, desc] of Object.entries(fp.sections)) {
           const dt = el("dt");
-          dt.textContent = sectionLabelOf(tune, name);
+          dt.textContent = partLabel(tune, name);
           const dd = el("dd");
           dd.textContent = desc;
           dl.append(dt, dd);
@@ -2492,13 +2592,14 @@
     return d && (d.similar || []).length + (d.sections || []).length ? d : null;
   }
 
-  /* Flattened 1-based bar offset of a section inside a tune's full form —
-     mirrors the engine's §4.2 flattening (all sections in document order). */
-  function sectionBarOffset(tune, sectionName) {
+  /* Flattened 1-based bar offset of a part inside a tune's full form —
+     mirrors the engine's §4.2 flattening (all parts in document order). */
+  function sectionBarOffset(tune, ref) {
+    const target = partByRef(tune, ref);
     let off = 0;
-    for (const [name, bars] of Object.entries(tune.sections || {})) {
-      if (name === sectionName) return off;
-      off += (bars || []).length;
+    for (const part of tuneView(tune).parts) {
+      if (part === target) return off;
+      off += part.bars.length;
     }
     return 0;
   }
@@ -2583,7 +2684,7 @@
         row.innerHTML =
           scoreBadge(m.score) +
           `<span class="sim-title">${escapeHtml(
-            `${sectionLabelOf(meta(t), m.section)} ≈ ${sectionLabelOf(meta(other), m.other_section)}` +
+            `${partLabel(meta(t), m.section)} ≈ ${partLabel(meta(other), m.other_section)}` +
             ` of ${other.title || m.other}`)}</span>` +
           (local ? `<span class="sim-family">${escapeHtml(local)}</span>` : "");
         row.title = "open side-by-side comparison";
@@ -2643,15 +2744,14 @@
     let fbar = 0;
     let first = true;
     let skippedVerse = false;
-    Object.entries(tune.sections || {}).forEach(([sec, bars]) => {
-      if (/^verse/i.test(sec)) {
-        fbar += (bars || []).length;
+    tuneView(tune).parts.forEach((part) => {
+      if (part.role === "verse") {
+        fbar += part.bars.length;
         skippedVerse = true;
         return;
       }
-      const secEl = renderSection(sec, bars, beats,
-        first, tune.time_signature, null, renderer, undefined,
-        sectionLabelOf(tune, sec), strainNameOf(sec));
+      const secEl = renderSection(tune, part, beats,
+        first, tune.time_signature, null, renderer, null);
       /* Comparisons never use section shading (it would fight the accent
          highlight on the matched bars, PR #24); clear the hue so every bar
          sits on the plain background and only .sim-hl is tinted. */
@@ -2829,20 +2929,20 @@
             });
           });
         }
-        let sectionNames = Object.keys(tune.sections || {});
-        if (!state.showVerses) sectionNames = sectionNames.filter((n) => !VERSE_SECTION.test(n));
-        let prevStrain = null;
-        sectionNames.forEach((name, i) => {
-          /* Each strain's first section carries that strain's form label
-             ("16 A A", "32 A A B A'") top-right — same style as the book
-             layout's badge, inside .grid so it scales with the fitted font and
-             hides in book/scan view. */
-          const strain = strainOf(name);
-          const form = strain !== prevStrain ? strainFormLabel(tune, strain) : null;
-          prevStrain = strain;
-          grid.appendChild(renderSection(name, tune.sections[name], beats,
-            i === 0, tune.time_signature, overrides[name], undefined,
-            form, sectionLabelOf(tune, name), strainNameOf(name), tune.coda_jump));
+        const view = tuneView(tune);
+        let first = true;
+        view.strains.forEach((strain) => {
+          if (!state.showVerses && strain.role === "verse") return;
+          strain.parts.forEach((part) => {
+            /* Each strain's first part carries that strain's form label
+               ("16 A A", "32 A A B A'") top-right — same style as the book
+               layout's badge, inside .grid so it scales with the fitted font
+               and hides in book/scan view. */
+            const form = part.partIndex === 0 ? strainFormLabel(strain) : null;
+            grid.appendChild(renderSection(tune, part, beats,
+              first, tune.time_signature, overrides[part.id], undefined, form));
+            first = false;
+          });
         });
         panel.appendChild(grid);
         panel.appendChild(renderBoxGrid(tune, overrides)); // book layout (hidden unless chosen)
