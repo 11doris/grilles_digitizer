@@ -2365,7 +2365,7 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   display: grid;
   grid-column: 1 / -1;
   min-width: 0;
-  font-size: 0.78em;
+  font-size: 1.0em;
   line-height: 1.1;
   margin-top: 0.12em;
   pointer-events: none;
@@ -2474,7 +2474,7 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 1.6rem;
-  font-size: 0.74rem;
+  font-size: 1.0rem;
   color: var(--muted);
 }
 .lane-legend .lg-item { display: flex; align-items: center; gap: 0.55em; min-width: 0; }
