@@ -57,7 +57,6 @@
     "coda": "A CODA is printed after bar 30 with the label 'CODA Bar 30 :'."
   },
   "coda_jump": {
-    "marker": "⊕",
     "caption": "CODA Bar 30 :",
     "from": {
       "section": "A2",
@@ -349,7 +348,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "15859f764fea3211c54275c309dbf49ddf3d948d5e1d89019a901974931845e7",
+    "source_sha256": "8e9839a2c2c1a68cf9a021c6d36938b37202f432227947125ef68ac9d2edccbe",
     "scorer": {
       "tonic": "F",
       "mode": "major",
