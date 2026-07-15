@@ -1159,14 +1159,22 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
    across light and dark themes. Display-only, no interaction. */
 .coda-sign {
   position: absolute;
-  left: 0.1em; /* the beginning of the bar */
   font-size: 1em; /* the em basis the drawn sign scales with */
   color: var(--muted);
   opacity: 0.75;
   pointer-events: none;
 }
+/* Jump-off mark: at the start of the bar, just outside it vertically. */
+.coda-sign.coda-below,
+.coda-sign.coda-above { left: 0.1em; }
 .coda-sign.coda-below { top: calc(100% + 0.05em); }
 .coda-sign.coda-above { bottom: calc(100% + 0.05em); }
+/* Landing mark: just before (left of) the first coda bar, vertically centred. */
+.coda-sign.coda-before {
+  right: calc(100% + 0.1em);
+  top: 50%;
+  transform: translateY(-50%);
+}
 /* Drawn coda sign: circle + two crossing lines, colour via currentColor. */
 .coda-sign .coda-glyph {
   display: block;
