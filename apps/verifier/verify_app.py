@@ -265,7 +265,14 @@ def api_get(tune_id: str):
     # the printed form (labels, plays, anchors). Saving writes the strains
     # shape to 03_wip; the raw source is never touched.
     if "strains" not in data and "sections" in data:
-        data = tune_to_strains(data)
+        try:
+            data = tune_to_strains(data)
+        except Exception as exc:  # e.g. a variant target naming a missing key
+            return jsonify({"error": (
+                f"Cannot convert raw tune to the strains model: "
+                f"{type(exc).__name__}: {exc}. Fix the transcription (or a "
+                f"corrected copy in 03_wip) — the raw source stays untouched."
+            )}), 422
     return jsonify({
         "id": tune_id,
         "verified": tune_id in state.get("verified", []),

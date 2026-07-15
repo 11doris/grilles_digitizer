@@ -291,6 +291,9 @@ def resolve_anchor(tune: dict, anchor: dict) -> tuple[dict, dict, str]:
 
 
 _STRAIN_NAME = re.compile(r"^[a-z][a-z0-9]*$")
+# Numbered strains of a multi-strain rag/march (s1, s2, s3, …) are always a
+# valid role-"strain" name — the book prints up to five per tune.
+_NUMBERED_STRAIN = re.compile(r"^s\d+$")
 
 
 def validate_strains(tune: dict) -> list[str]:
@@ -323,12 +326,13 @@ def validate_strains(tune: dict) -> list[str]:
             errors.append(f"{where}: role 'chorus' requires name 'chorus'")
         elif role == "verse" and name != "verse":
             errors.append(f"{where}: role 'verse' requires name 'verse'")
-        elif role == "strain" and name not in NAMED_STRAINS - {"verse"}:
+        elif (role == "strain" and name not in NAMED_STRAINS - {"verse"}
+                and not _NUMBERED_STRAIN.match(name)):
             errors.append(
                 f"{where}: unknown named strain — allowed: "
-                f"{', '.join(sorted(NAMED_STRAINS - {'verse'}))}. Rename the "
-                "strain, or add it in code (NAMED_STRAINS + the displayers' "
-                "STRAIN_TINT).")
+                f"{', '.join(sorted(NAMED_STRAINS - {'verse'}))}, or a "
+                "numbered strain s1, s2, s3, …. Rename the strain, or add "
+                "it in code (NAMED_STRAINS + the displayers' STRAIN_TINT).")
         elif role == "aux" and name not in AUX_CONNECTORS:
             errors.append(
                 f"{where}: unknown aux connector — allowed: "

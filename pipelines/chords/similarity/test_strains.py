@@ -157,6 +157,19 @@ class TestVocabulary(unittest.TestCase):
                                     "interlude", "coda",
                                     "part1", "part2", "s1", "s2", "blues"}))
 
+    def test_numbered_strains_beyond_s2_validate(self):
+        # Any sN is a valid role-"strain" name (PANAMA has five strains);
+        # the displayer pins fixed tints for s1..s5 and hashes beyond.
+        tune = copy.deepcopy(aaba())
+        tune["strains"].insert(0, {
+            "name": "s5", "role": "strain",
+            "parts": [{"label": "A",
+                       "bars": [{"bar": 1, "beats": {"1": "C7"}}]}]})
+        self.assertEqual(validate_strains(tune), [])
+        tune["strains"][0]["name"] = "s5x"
+        self.assertIn("unknown named strain",
+                      "\n".join(validate_strains(tune)))
+
     def test_aux_connectors(self):
         self.assertEqual(AUX_CONNECTORS,
                          frozenset({"intro", "coda", "interlude",

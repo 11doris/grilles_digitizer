@@ -1322,6 +1322,7 @@
     verse: "#a3869a", intro: "#96a36b", thema: "#7da3a0",
     impro: "#b08a5e", interlude: "#8a8fa3", coda: "#7f8fc4",
     part1: "#7b9e8a", part2: "#9e7b8f", s1: "#7b8fb0", s2: "#b09a7b",
+    s3: "#8aa37b", s4: "#a37b8f", s5: "#7ba3a3",
     blues: "#5b8dd6",  // same shade as chorus section A
   };
   const TINT_POOL = ["#8a8fa3", "#b08a5e", "#7da3a0", "#a3869a", "#96a36b", "#7f8fc4"];
