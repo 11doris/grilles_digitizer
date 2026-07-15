@@ -122,7 +122,10 @@
           e: r === b.row ? b.col : colsPerRow - 1,
           cls: cls + (r === a.row ? "" : " cont-left")
             + (r === b.row ? "" : " cont-right"),
-          label: r === a.row ? label : null,
+          /* a wrapped block stays identified: continuation rows repeat the
+             name behind an ellipsis instead of collapsing to a bare sliver */
+          label: r === a.row ? label
+            : band === "blocks" && label ? "… " + label : null,
         });
       }
     };

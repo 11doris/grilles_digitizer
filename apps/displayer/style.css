@@ -2417,7 +2417,7 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
    for the to-minor move. Drawn just below the bracket band. */
 .lane-arrow {
   position: relative;
-  height: 0.8em;
+  height: 0.5em; /* also the stacking pitch when arrows overlap in a row */
   min-width: 0;
 }
 .lane-arrow::before {
