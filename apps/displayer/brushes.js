@@ -223,7 +223,12 @@
      (e.g. scan view). 0 = free-run (loop nothing, just keep the groove). */
   function metaBarCount() {
     const tune = currentTune();
-    if (!tune || !tune.sections) return 0;
+    if (!tune) return 0;
+    if (Array.isArray(tune.strains)) {
+      return tune.strains.reduce((n, strain) =>
+        n + (strain.parts || []).reduce((m, p) => m + (p.bars || []).length, 0), 0);
+    }
+    if (!tune.sections) return 0;
     return Object.values(tune.sections).reduce((n, bars) => n + bars.length, 0);
   }
 

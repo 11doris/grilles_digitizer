@@ -20,7 +20,7 @@ from pathlib import Path
 _REPO = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(_REPO))
 
-from pipelines.chords.similarity import corpus  # noqa: E402
+from pipelines.chords.similarity import corpus, normalize  # noqa: E402
 from pipelines.chords.similarity.normalize import (  # noqa: E402
     degree_name, parse_chord, pitch_class,
 )
@@ -54,7 +54,7 @@ def transpose_symbol(raw: str, shift: int, spell: list[str]) -> str:
 def corpus_symbols() -> list[str]:
     symbols: set[str] = set()
     for doc in corpus.load_corpus().values():
-        for bars in (doc.get("sections") or {}).values():
+        for bars in normalize.sections_view(doc).values():
             for bar in bars:
                 symbols.update((bar.get("beats") or {}).values())
         for variant in doc.get("variants") or []:

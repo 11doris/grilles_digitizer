@@ -84,6 +84,9 @@ async function selectTune(id) {
   const data = await (await fetch(`/api/tunes/${id}`)).json();
   state.currentId = id;
   state.doc = data.data;
+  // Part ids in document order, generated server-side (strains model);
+  // legacy docs fall back to their sections map's keys.
+  state.sectionIds = data.section_ids || Object.keys(state.doc.sections || {});
   const fp = state.doc.harmonic_fingerprint || {};
   // §3.5 re-detected local keys: proposals from the last key correction,
   // shown for accept/dismiss; any Verify save clears them server-side.
@@ -161,7 +164,7 @@ function renderKey() {
 function renderSectionKeys() {
   const holder = $("#section-keys");
   holder.innerHTML = "";
-  const sections = Object.keys(state.doc.sections || {});
+  const sections = state.sectionIds || [];
   for (const name of sections) {
     const local = state.edit.sectionKeys[name];
     const row = document.createElement("div");
@@ -273,7 +276,7 @@ function renderFingerprint() {
   $("#fp-modnote").value = fp.modulation_note;
   const holder = $("#fp-sections");
   holder.innerHTML = "";
-  for (const name of Object.keys(state.doc.sections || {})) {
+  for (const name of state.sectionIds || []) {
     const label = document.createElement("label");
     label.append(`section ${name}`);
     const ta = document.createElement("textarea");

@@ -31,6 +31,7 @@ _REPO = Path(__file__).resolve().parents[2]  # repo root
 sys.path.insert(0, str(_REPO))
 
 from pipelines.chords.key_annotation import core  # noqa: E402
+from pipelines.chords.similarity.normalize import sections_view  # noqa: E402
 
 # Mutable globals — overridden by CLI args before app.run()
 ANNOTATED_DIR = (_REPO / "data" / "chords" / "05_annotated").resolve()
@@ -104,7 +105,12 @@ def api_get(tune_id: str):
     path = ANNOTATED_DIR / f"{tune_id}.json"
     if not path.exists():
         abort(404)
-    return jsonify({"id": tune_id, "data": core.read_json(path)})
+    doc = core.read_json(path)
+    # Part ids in document order (strains model) — the client keys its
+    # section-keys editor and fingerprint text areas off these, so the id
+    # generation stays single-sourced in normalize.sections_view.
+    return jsonify({"id": tune_id, "data": doc,
+                    "section_ids": list(sections_view(doc))})
 
 
 @app.route("/api/tunes/<tune_id>/verify", methods=["POST"])

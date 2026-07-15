@@ -18,9 +18,15 @@ Usage:  python pipelines/chords/tools/build_examples.py
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]  # repo root
+sys.path.insert(0, str(ROOT))
+
+from pipelines.chords.tools.migrate_to_strains import (  # noqa: E402
+    strains_to_sections,
+)
 VERIFIED = ROOT / "data" / "chords" / "04_verified"
 OUT = ROOT / "pipelines" / "chords" / "digitizer" / "examples.py"
 
@@ -107,6 +113,10 @@ def main() -> None:
         if not path.exists():
             raise SystemExit(f"verified tune not found: {path}")
         tune = json.loads(path.read_text(encoding="utf-8"))
+        # The verified corpus stores the Phase C `strains` model; the model's
+        # raw output shape is still the legacy `sections` map (02_raw never
+        # changes shape), so down-convert for the few-shot.
+        tune = strains_to_sections(tune)
         title = tune.get("title", stem)
         for key in RUNNER_FIELDS + DERIVED_FIELDS:
             tune.pop(key, None)
