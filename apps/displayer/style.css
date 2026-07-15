@@ -2345,7 +2345,7 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   vertical-align: top;
 }
 .deg-sub {
-  font-size: 0.72em;
+  font-size: 0.8em;
   line-height: 1.15;
   color: var(--accent-ink);
   white-space: nowrap;
@@ -2365,21 +2365,26 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   display: grid;
   grid-column: 1 / -1;
   min-width: 0;
-  font-size: 0.68em;
+  font-size: 0.78em;
   line-height: 1.1;
   margin-top: 0.12em;
   pointer-events: none;
 }
 
-/* Key-region band: a dotted extent line with the "F:" prefix at its start
-   (lowercase for minor keys, like the book's colon notation). */
-.lane-region { margin-top: 0.05em; }
-.lane-region > div {
-  border-top: 0.14em dotted var(--muted);
-  padding-top: 0.05em;
+/* Key-region band: a dashed extent line with the "F:" prefix at its start
+   (lowercase for minor keys, like the book's colon notation). The dashes are
+   a gradient, not a dashed border, so the dash/gap sizes stay legible. */
+.lane.lane-regions { margin-top: 0.05em; }
+.lane-region {
+  padding-top: 0.2em;
   min-width: 0;
+  background: repeating-linear-gradient(to right,
+      var(--muted) 0 0.5em, transparent 0.5em 0.95em)
+    left top / 100% 0.14em no-repeat;
 }
-.lane-region > div.rg-section { border-top-style: solid; }
+.lane-region.rg-section {
+  background-image: linear-gradient(var(--muted), var(--muted));
+}
 .lane-region .lane-label {
   color: var(--accent-ink);
   font-weight: 700;
@@ -2396,7 +2401,14 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   border-top: none;
   opacity: 0.75;
 }
-.lane-bracket.dotted { border-style: dashed; border-top: none; }
+.lane-bracket.dotted {
+  /* wide-gap dashes on the horizontal (gradient — border dashes are too
+     fine to tell from solid at lane size); the short ticks stay solid */
+  border-bottom: none;
+  background: repeating-linear-gradient(to right,
+      var(--fg) 0 0.5em, transparent 0.5em 0.95em)
+    left bottom / 100% 0.13em no-repeat;
+}
 .lane-bracket.cont-right { border-right: none; }
 .lane-bracket.cont-left { border-left: none; }
 
@@ -2417,7 +2429,12 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   border-top: 0.14em solid var(--fg);
   opacity: 0.75;
 }
-.lane-arrow.half::before { border-top-style: dashed; }
+.lane-arrow.half::before {
+  border-top: none;
+  height: 0.14em;
+  background: repeating-linear-gradient(to right,
+      var(--fg) 0 0.5em, transparent 0.5em 0.95em);
+}
 .lane-arrow::after {
   content: "";
   position: absolute;
@@ -2447,3 +2464,21 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 }
 .lane-block.cont-right { border-top-right-radius: 0; border-bottom-right-radius: 0; }
 .lane-block.cont-left { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+
+/* Legend for the overlay symbols, at the bottom of the chords panel while
+   the overlay is on. Sample glyphs reuse the lane classes above. */
+.lane-legend {
+  margin-top: 1.4rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+.lane-legend .lg-item { display: flex; align-items: center; gap: 0.55em; min-width: 0; }
+.lane-legend .lg-sample { width: 3em; flex: none; font-size: 1.2em; }
+.lane-legend .lg-sample > div { margin: 0; }
+.lane-legend .lane-region { padding-top: 0.05em; }
+.panel.chords.show-scan .lane-legend { display: none; }

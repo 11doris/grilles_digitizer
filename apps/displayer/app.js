@@ -187,6 +187,37 @@
     });
   }
 
+  /* Legend for the overlay symbols, at the bottom of the chords panel while
+     the overlay is on. Samples reuse the lane classes so they always match
+     what the lanes actually draw. */
+  function renderAnalysisLegend() {
+    const legend = el("div", "lane-legend");
+    [
+      ['<div class="lane-bracket"></div>', "ii–V"],
+      ['<div class="lane-bracket dotted"></div>',
+        "ii–V with a tritone substitute (ii–subV, subii–V)"],
+      ['<div class="lane-arrow"></div>', "dominant resolves down a fifth"],
+      ['<div class="lane-arrow half"></div>',
+        "tritone substitute resolves down a half step"],
+      ['<div class="lane-arrow to_minor"></div>',
+        "chord turns minor over the same root"],
+      ['<div class="lane-region"><span class="lane-label">F:</span></div>',
+        "temporary key (lowercase = minor; solid line = section key)"],
+      ['<div class="lane-block">&nbsp;</div>',
+        "building block (turnaround, cadence, ii–V chain, …)"],
+    ].forEach(([sample, text]) => {
+      const item = el("div", "lg-item");
+      const s = el("div", "lg-sample");
+      s.innerHTML = sample;
+      const t = el("span", "lg-text");
+      t.textContent = text;
+      item.appendChild(s);
+      item.appendChild(t);
+      legend.appendChild(item);
+    });
+    return legend;
+  }
+
   const searchEl = document.getElementById("search");
   const chordFilterBtn = document.getElementById("chordFilter");
   const listEl = document.getElementById("tuneList");
@@ -3202,6 +3233,9 @@
         if (variants) panel.appendChild(variants);
         const extras = renderExtras(tune, beats);
         if (extras) panel.appendChild(extras);
+        if (state.showAnalysis && tune.harmonic_analysis) {
+          panel.appendChild(renderAnalysisLegend());
+        }
         addChordViewSwitch(panel, t, `${t.title || id} — original chord scan`);
       } else {
         panel.appendChild(scanImg(t.chord_image, `${t.title || id} — chord scan`));
