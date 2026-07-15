@@ -1,0 +1,16 @@
+{
+  "total": 20,
+  "succeeded": 20,
+  "skipped": 0,
+  "failed": 0,
+  "elapsed_s": 342.3,
+  "model": "claude-opus-4-8",
+  "flagged": {
+    "missing_required_field": [],
+    "no_chord_grid": [
+      "199_01_IN_THE_EVENING.png",
+      "437_04_TWO_NINETEEN.png"
+    ],
+    "errors": []
+  }
+}
