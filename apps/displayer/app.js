@@ -1074,10 +1074,18 @@
     return box;
   }
 
+  /* The printed coda jump-off sign (spec §13 `coda_jump`): a small glyph in a
+     corner of the bar carrying it. `marker` is the verbatim printed symbol. */
+  function codaSignEl(marker) {
+    const s = el("span", "coda-sign");
+    s.textContent = marker || "⊕";
+    return s;
+  }
+
   /*
    * Rows of exactly 4 bar slots (spec §6.1). Trailing slots of an incomplete
    * last row are empty: no chords, no barlines.
-   * opts: { double: bool, timesig: string|null }
+   * opts: { double: bool, timesig: string|null, coda: {idx, marker}|null }
    */
   function renderGrid(bars, beats, opts) {
     const double = opts && opts.double !== undefined ? opts.double : true;
@@ -1099,6 +1107,9 @@
           if (ov) cell.classList.add("variant-swap");
           fillBar(cell, ov ? { bar: bar.bar, beats: ov.beats } : bar, beats,
             opts && opts.renderChord);
+          if (opts && opts.coda && opts.coda.idx === idx) {
+            cell.appendChild(codaSignEl(opts.coda.marker));
+          }
         } else {
           cell.classList.add("empty");
         }
@@ -1109,7 +1120,7 @@
     return frag;
   }
 
-  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer, form, label, strainName) {
+  function renderSection(name, bars, beats, isFirst, ts, overrides, renderer, form, label, strainName, codaJump) {
     const sec = el("div", "section");
     sec.style.setProperty("--bxhue", sectionTint(name)); // section shading
     const badge = el("div", "sec-label");
@@ -1136,8 +1147,11 @@
     } else {
       sec.appendChild(left);
     }
+    // The coda sign sits on the anchored bar of its section (from.bar 1-indexed).
+    const coda = codaJump && codaJump.from && codaJump.from.section === name
+      ? { idx: codaJump.from.bar - 1, marker: codaJump.marker } : null;
     sec.appendChild(renderGrid(bars, beats,
-      { double: true, timesig: isFirst ? ts : null, overrides, renderChord: renderer }));
+      { double: true, timesig: isFirst ? ts : null, overrides, renderChord: renderer, coda }));
     return sec;
   }
 
@@ -1297,6 +1311,7 @@
         if (row.tint) cell.style.setProperty("--bxhue", row.tint);
         if (bar.swap) cell.classList.add("variant-swap");
         fillBox(cell, bar, row.beats);
+        if (bar.coda) cell.appendChild(codaSignEl(bar.coda));
         rowEl.appendChild(cell);
       });
       block.appendChild(rowEl);
@@ -1314,6 +1329,7 @@
   function renderBoxGrid(tune, overrides) {
     const wrap = el("div", "boxgrid");
     const beats = beatsPerBar(tune);
+    const cj = tune.coda_jump;
     let sectionNames = Object.keys(tune.sections || {});
     if (!state.showVerses) sectionNames = sectionNames.filter((n) => !VERSE_SECTION.test(n));
     const hasVerse = sectionNames.some((n) => VERSE_SECTION.test(n));
@@ -1359,6 +1375,13 @@
         if (secOv) {
           bars = bars.map((bar, idx) => (secOv[idx]
             ? { bar: bar.bar, beats: secOv[idx].beats, swap: true } : bar));
+        }
+        // Tag the coda sign's anchored bar (from.bar 1-indexed within its
+        // section); shallow-copy just that box so the shared tune data is
+        // untouched, like the swap flag above.
+        if (cj && cj.from && cj.from.section === name) {
+          const ci = cj.from.bar - 1;
+          bars = bars.map((bar, idx) => (idx === ci ? { ...bar, coda: cj.marker } : bar));
         }
         // Every section's first lattice row carries its printed label (primes
         // kept); the strain caption above supplies the verse/impro/… context.
@@ -2798,7 +2821,7 @@
           prevStrain = strain;
           grid.appendChild(renderSection(name, tune.sections[name], beats,
             i === 0, tune.time_signature, overrides[name], undefined,
-            form, sectionLabelOf(tune, name), strainNameOf(name)));
+            form, sectionLabelOf(tune, name), strainNameOf(name), tune.coda_jump));
         });
         panel.appendChild(grid);
         panel.appendChild(renderBoxGrid(tune, overrides)); // book layout (hidden unless chosen)
