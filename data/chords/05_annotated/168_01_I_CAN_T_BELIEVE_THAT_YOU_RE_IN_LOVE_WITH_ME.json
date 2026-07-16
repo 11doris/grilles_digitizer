@@ -277,7 +277,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
-      "circle-of-fifths",
+      "rhythm-changes-bridge",
       "iv-minor-cadence"
     ],
     "sections": {
@@ -382,6 +382,18 @@
               3,
               1
             ]
+          },
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
           }
         ]
       },
@@ -474,6 +486,18 @@
             ],
             "to": [
               3,
+              1
+            ]
+          },
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              7,
               1
             ]
           }
@@ -591,15 +615,15 @@
         ],
         "blocks": [
           {
-            "id": "circle_of_fifths",
-            "name": "Circle of fifths",
+            "id": "rhythm_bridge",
+            "name": "Dominant bridge III7–VI7–II7–V7",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
-              8,
-              3
+              7,
+              1
             ]
           }
         ]
@@ -693,6 +717,18 @@
             ],
             "to": [
               3,
+              1
+            ]
+          },
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              7,
               1
             ]
           }

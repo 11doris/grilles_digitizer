@@ -4,7 +4,10 @@ Run: python -m unittest pipelines.chords.harmonic_analysis.test_analyze
 """
 from __future__ import annotations
 
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
 from pipelines.chords.harmonic_analysis.analyze import (
     ANALYSIS_VERSION, analyze_tune, load_catalog,
@@ -161,8 +164,10 @@ class TestRegions(unittest.TestCase):
 
 class TestBlocks(unittest.TestCase):
     def test_turnaround_beats_overlapping_cadence(self):
+        # The turnaround holds its full span; the leading I–IV–I only
+        # dovetails on the shared C, it cannot eat into the turnaround.
         part = tune_of(("A", ["C", "F", "C Am7", "Dm7 G7"]))["parts"]["A"]
-        self.assertEqual(block_ids(part), ["turnaround_1625"])
+        self.assertEqual(block_ids(part), ["i_iv_i", "turnaround_1625"])
 
     def test_dominant_cycle_block(self):
         part = tune_of(("A", ["E7", "A7", "D7", "G7", "C"]))["parts"]["A"]
@@ -175,16 +180,79 @@ class TestBlocks(unittest.TestCase):
     def test_catalog_loads_and_patterns_parse(self):
         entries = load_catalog()
         self.assertTrue(entries)
-        self.assertTrue(all("_tokens" in e for e in entries))
+        self.assertTrue(all(e["_variants"] for e in entries))
+
+    def test_optional_tokens_expand_to_variants(self):
+        # A parenthesized token is optional: the loader expands both
+        # readings, longest first, so the matcher tries the full spelling
+        # before the elided one.
+        entries = [{"id": "x", "name": "X", "pattern": "ii:min (V:dom) I:maj"}]
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "catalog.json"
+            path.write_text(json.dumps(entries), "utf-8")
+            cat = load_catalog(path)
+        self.assertEqual(cat[0]["_variants"],
+                         [((2, "min"), (7, "dom"), (0, "maj")),
+                          ((2, "min"), (0, "maj"))])
+
+    def test_reprints_collapse_for_matching(self):
+        # Sustained chords are reprinted bar over bar in the charts;
+        # building blocks are duration-agnostic (the book's % cells), so
+        # reprints collapse before matching.
+        part = tune_of(("A", ["Dm7", "G7", "G7", "Cmaj7"]))["parts"]["A"]
+        self.assertEqual(block_ids(part), ["cadence_251"])
+
+    def test_rhythm_bridge_across_sustained_bars(self):
+        # The I Got Rhythm bridge: two bars per dominant. The reprints
+        # collapse and the 8-bar bridge matches (the tied dominant cycle
+        # loses to the catalog name).
+        part = tune_of(("B", ["D7", "D7", "G7", "G7", "C7", "C7", "F7",
+                              "F7"]), key=("Bb", "major"))["parts"]["B"]
+        self.assertEqual(block_ids(part), ["rhythm_bridge"])
+
+    def test_rhythm_bridge_with_sub_approach_to_v(self):
+        # The corpus chart's ending: the plain V–V bars replaced by the
+        # substitute-dominant approach ♭VI7–V7; the optional (bVI:dom)
+        # token keeps it a bridge.
+        part = tune_of(("B", ["D7", "D7", "G7", "G7", "C7", "C7", "Gb7b5",
+                              "F7"]), key=("Bb", "major"))["parts"]["B"]
+        self.assertEqual(block_ids(part), ["rhythm_bridge"])
+
+    def test_relative_tonic_blocks(self):
+        # The catalog spells blocks from the major tonic, so a minor tune
+        # reads its relative-major blocks (Autumn Leaves opening in Gm is
+        # the Bb-spelled ii–V–I) ...
+        part = tune_of(("A", ["Cm7 F7", "Bbmaj7"]),
+                       key=("G", "minor"))["parts"]["A"]
+        self.assertEqual(block_ids(part), ["cadence_251"])
+        # ... and a major tune its vi-landing minor cadence.
+        part = tune_of(("A", ["Am7b5 D7", "Gm"]),
+                       key=("Bb", "major"))["parts"]["A"]
+        self.assertEqual(block_ids(part), ["cadence_251_minor"])
+
+    def test_blocks_dovetail_on_shared_chord(self):
+        # A cadence into I, and the same I opens a turnaround: neighbouring
+        # blocks share the joint chord.
+        part = tune_of(("A", ["Dm7 G7", "C A7", "Dm7 G7"]))["parts"]["A"]
+        self.assertEqual(block_ids(part),
+                         ["cadence_251", "turnaround_1_vi7"])
 
     def test_chromatic_descent_run(self):
-        # Djangology-style falling chromatic roots in G; the generic ii–V–I
-        # at the end yields to the run (its ii is the run's landing).
-        part = tune_of(("A", ["C#m7b5 Co7", "Bm7 Bbo7", "Am7 D7", "G"]),
+        # Djangology-style falling chromatic roots in G, landing on the ii
+        # without cadencing — only the run names it.
+        part = tune_of(("A", ["C#m7b5 Co7", "Bm7 Bbo7", "Am7"]),
                        key=("G", "major"))["parts"]["A"]
         self.assertEqual(block_ids(part), ["chromatic_descent"])
         block = part["blocks"][0]
         self.assertEqual((block["from"], block["to"]), ([1, 1], [3, 1]))
+
+    def test_generic_cadence_dovetails_run_landing(self):
+        # With the V7–I resolution the closing ii–V–I dovetails on the
+        # run's landing chord instead of yielding to the run entirely.
+        part = tune_of(("A", ["C#m7b5 Co7", "Bm7 Bbo7", "Am7 D7", "G"]),
+                       key=("G", "major"))["parts"]["A"]
+        self.assertEqual(block_ids(part),
+                         ["chromatic_descent", "cadence_251"])
 
     def test_circle_of_fifths_run(self):
         # Gone-with-the-Wind-style diatonic circle in Eb, crossing the one
@@ -206,13 +274,13 @@ class TestBlocks(unittest.TestCase):
 
 class TestDerivedTags(unittest.TestCase):
     def _annotated(self, bars: list[str], key=("C", "major"),
-                   extra_strains=(), **fields) -> dict:
+                   extra_strains=(), label="A", **fields) -> dict:
         built = [{"bar": i + 1,
                   "beats": {str(1 + 2 * j): s for j, s in enumerate(t.split())}}
                  for i, t in enumerate(bars)]
         doc = {"strains": [*extra_strains,
                            {"name": "chorus", "role": "chorus",
-                            "parts": [{"label": "A", "bars": built}]}],
+                            "parts": [{"label": label, "bars": built}]}],
                "key": {"tonic": key[0], "mode": key[1]}, **fields}
         doc["harmonic_analysis"] = analyze_tune(
             doc, doc["key"], section_keys=doc.get("section_keys"))
@@ -224,6 +292,23 @@ class TestDerivedTags(unittest.TestCase):
         self.assertIn("ii-V-chains", tags)          # bars 2-3
         self.assertIn("turnaround-ending", tags)    # bars 4-5 hit the end
         self.assertNotIn("minor-key", tags)
+
+    def test_cycle_turnaround_keeps_both_tags(self):
+        # The named I–VI7–II7–V7 outranks the code-detected dominant_cycle
+        # on the same chords, so it carries the cycle tag (bridge-aware) —
+        # and at the part's end it is still a turnaround ending.
+        doc = self._annotated(["C", "A7", "D7", "G7"], label="B")
+        tags = derive_tags(doc)
+        self.assertIn("dominant-cycle-bridge", tags)
+        self.assertIn("turnaround-ending", tags)
+        doc = self._annotated(["C", "A7", "D7", "G7"])
+        self.assertIn("dominant-cycle", derive_tags(doc))
+
+    def test_iv_minor_tag_survives_superset_block(self):
+        # i_i7_iv_ivm_i outranks plagal_iv_iv by span; the IV–iv–I motion
+        # inside it still means iv-minor-cadence.
+        doc = self._annotated(["C", "C7", "F", "Fm", "C"])
+        self.assertIn("iv-minor-cadence", derive_tags(doc))
 
     def test_structure_tags(self):
         verse = {"name": "verse", "role": "verse", "parts": [

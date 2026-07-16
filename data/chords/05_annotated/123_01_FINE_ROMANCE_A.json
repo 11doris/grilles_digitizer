@@ -458,14 +458,14 @@
         ],
         "blocks": [
           {
-            "id": "iiv_chain",
-            "name": "ii–V chain",
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
-              3,
+              1,
               1
             ],
             "to": [
-              6,
+              4,
               1
             ]
           }
@@ -687,6 +687,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
           {
             "id": "iiv_chain",
             "name": "ii–V chain",

@@ -401,6 +401,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          }
         ]
       },
       "B": {
@@ -662,6 +676,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
           {
             "id": "dominant_cycle",
             "name": "Dominant cycle",

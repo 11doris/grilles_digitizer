@@ -341,6 +341,44 @@
             "beat": 1,
             "numeral": "i"
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
         ]
       },
       "thema_A": {

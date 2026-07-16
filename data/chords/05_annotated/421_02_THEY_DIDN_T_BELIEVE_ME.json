@@ -634,6 +634,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          }
         ]
       },
       "C": {
@@ -744,6 +758,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
           {
             "id": "turnaround_1625",
             "name": "Turnaround I–vi–ii–V",
@@ -884,6 +910,18 @@
             ],
             "to": [
               3,
+              1
+            ]
+          },
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              7,
               1
             ]
           }

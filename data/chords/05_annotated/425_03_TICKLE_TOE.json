@@ -411,6 +411,44 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              3
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              5,
+              3
+            ],
+            "to": [
+              6,
+              3
+            ]
+          }
         ]
       },
       "B": {
@@ -649,6 +687,44 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              3
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              5,
+              3
+            ],
+            "to": [
+              6,
+              3
+            ]
+          }
         ]
       },
       "C": {
@@ -733,14 +809,26 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "iv_sivo_i",
+            "name": "IV–♯IVo–I",
             "from": [
-              4,
+              1,
               1
             ],
             "to": [
-              7,
+              3,
+              1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              6,
               1
             ]
           }

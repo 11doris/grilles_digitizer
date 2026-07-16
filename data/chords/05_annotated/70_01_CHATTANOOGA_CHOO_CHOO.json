@@ -823,6 +823,32 @@
             ]
           }
         ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          }
+        ],
         "regions": [
           {
             "from": [
@@ -1008,6 +1034,32 @@
             "to": [
               8,
               3
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              6,
+              1
             ]
           }
         ],
@@ -1244,6 +1296,32 @@
             "to": [
               6,
               1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              5,
+              3
             ]
           }
         ]

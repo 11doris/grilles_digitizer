@@ -500,10 +500,10 @@
         ],
         "blocks": [
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
@@ -512,15 +512,27 @@
             ]
           },
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              4,
+              3,
               1
             ],
             "to": [
               5,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
             ]
           }
         ]
@@ -683,10 +695,10 @@
         ],
         "blocks": [
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
@@ -695,15 +707,27 @@
             ]
           },
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              4,
+              3,
               1
             ],
             "to": [
               5,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
             ]
           }
         ]
@@ -821,15 +845,15 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
-              3,
-              1
+              2,
+              3
             ]
           }
         ],
@@ -1008,10 +1032,10 @@
         ],
         "blocks": [
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
@@ -1020,15 +1044,27 @@
             ]
           },
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              4,
+              3,
               1
             ],
             "to": [
               5,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
             ]
           }
         ]

@@ -272,7 +272,10 @@
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABA'C standard",
-    "tags": [],
+    "tags": [
+      "ii-V-chains",
+      "dominant-cycle"
+    ],
     "sections": {
       "A": "I - VI7 - II7 - V7 - I circle-of-fifths descent resolving to tonic",
       "B": "I held, then vi - V7/V (C7) - ii7-V7 ending on the dominant",
@@ -363,6 +366,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "dominant_cycle",
+            "name": "Dominant cycle",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
         ]
       },
       "B": {
@@ -435,6 +452,20 @@
             "type": "iiV",
             "from": [
               7,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "iiv_chain",
+            "name": "ii–V chain",
+            "from": [
+              4,
               1
             ],
             "to": [
@@ -640,6 +671,20 @@
             "mode": "minor",
             "kind": "tonicization",
             "confidence": 0.71
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
           }
         ]
       }

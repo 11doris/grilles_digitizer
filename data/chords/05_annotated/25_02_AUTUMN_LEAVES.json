@@ -859,6 +859,18 @@
         ],
         "blocks": [
           {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
             "id": "cadence_251_minor",
             "name": "iiø–V–i",
             "from": [
@@ -1169,7 +1181,7 @@
             "id": "circle_of_fifths",
             "name": "Circle of fifths",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [

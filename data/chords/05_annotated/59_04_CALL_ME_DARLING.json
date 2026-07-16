@@ -417,6 +417,18 @@
               3,
               1
             ]
+          },
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
           }
         ]
       },
@@ -744,14 +756,14 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
-              4,
+              3,
               1
             ],
             "to": [
-              7,
+              6,
               1
             ]
           }

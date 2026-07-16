@@ -294,6 +294,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
+      "turnaround-ending",
       "passing-diminished"
     ],
     "sections": {
@@ -474,6 +475,18 @@
             ]
           },
           {
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
             "id": "turnaround_1625",
             "name": "Turnaround I–vi–ii–V",
             "from": [
@@ -482,6 +495,18 @@
             ],
             "to": [
               6,
+              3
+            ]
+          },
+          {
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
               3
             ]
           }
@@ -643,6 +668,18 @@
             ]
           },
           {
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
             "id": "turnaround_1625",
             "name": "Turnaround I–vi–ii–V",
             "from": [
@@ -652,6 +689,18 @@
             "to": [
               6,
               3
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              1
             ]
           }
         ]
@@ -867,6 +916,18 @@
             "to": [
               2,
               3
+            ]
+          },
+          {
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
             ]
           },
           {

@@ -15,8 +15,7 @@ prefixes, stacked pivot-chord modulations).
 
 ## 0. Owner decisions (2026-07-15)
 
-1. **Block catalog**: start with a standard core set (§5.1); data-driven file
-   so the owner's own list / Insights-in-Jazz bricks can extend it later.
+1. **Block catalog**: start with a standard core set (§5.1); data-driven file.
 2. **Chord view**: per-tune 3-way toggle Absolute / Hybrid / Roman, persisted
    per browser. Hybrid = small numeral under the printed chord in the same box.
 3. **Overlay** (brackets, arrows, key prefixes, block labels): its own on/off
@@ -119,7 +118,16 @@ marks:
 
 `{name, catalog_id, start, end, key}` — catalog matches over the numeral
 sequence of a key context (§5). Overlapping matches: longest span wins, ties
-broken by catalog order.
+broken by catalog order. Neighbouring blocks may **dovetail on exactly one
+shared chord** (2026-07-16): the book joins building blocks on the cadential
+tonic — the `I` that closes a cadence opens the next turnaround. **Reprints
+collapse** before matching (same root + quality printed again — the chart's
+sustained bars): blocks, chains, cycles and runs are duration-agnostic like
+the book's `%` cells; `max_bars` remains the only spread guard. Patterns are
+tried against the part's tonic **and its relative major/minor tonic**: the
+catalog spells blocks from the major tonic, so a minor tune reads its
+relative-major blocks (Autumn Leaves opening in Gm is the Bb spelling) and a
+major tune its vi-landing minor blocks.
 
 Beyond the catalog patterns and the code-detected ii–V chains / dominant
 cycles, two **root-motion runs** are detected (2026-07-15, sourced from the
@@ -211,9 +219,6 @@ kept simple: degree+quality-class tokens, `*` duration).
 - blues cadence core `I7 IV7 I7 V7 I7`
 - montgomery-ward / honeysuckle-style bridge patterns (`I7/IV` then `V7/V ii V`)
 
-Extension path: the owner's curated list and/or Elliott's bricks get appended
-to the same file; the matcher does not change.
-
 ## 6. Pipeline & invalidation changes
 
 - `annotate_keys.py`: after key resolution, compute `harmonic_analysis`
@@ -276,6 +281,8 @@ Decisions made during implementation, where they refine the sections above:
 - **Blocks carry no key field**; renderers don't need it.
 - **catalog.json format**: `{id, name, pattern, max_bars}` with pattern
   tokens `<degree>:<quality-class|any>` (e.g. `"ii:min V:dom I:maj"`);
+  a parenthesized token `(V:dom)` is optional (the book's parenthesized
+  chords) — the loader expands every combination into concrete variants.
   ii–V chains and dominant cycles are code-detected, not catalog entries.
 - **Overlay lanes ship in both chord views** (4-bar grid and book layout);
   the comparison view keeps its own switch and gets no lanes. Toolbar:

@@ -459,6 +459,7 @@
     "family": "32-bar AABA standard with verse",
     "tags": [
       "verse-present",
+      "turnaround-ending",
       "ii-V-chains",
       "circle-of-fifths",
       "dominant-cycle",
@@ -1112,7 +1113,7 @@
             "id": "iiv_chain",
             "name": "ii–V chain",
             "from": [
-              7,
+              6,
               1
             ],
             "to": [
@@ -1285,15 +1286,15 @@
             ]
           },
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "turnaround_iii_biiio_ii_v",
+            "name": "Turnaround iii–♭IIIo–ii–V",
             "from": [
-              7,
+              5,
               1
             ],
             "to": [
-              8,
-              1
+              7,
+              3
             ]
           }
         ]
@@ -1707,15 +1708,15 @@
             ]
           },
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "turnaround_iii_biiio_ii_v",
+            "name": "Turnaround iii–♭IIIo–ii–V",
             "from": [
-              7,
+              5,
               1
             ],
             "to": [
-              8,
-              1
+              7,
+              3
             ]
           }
         ]

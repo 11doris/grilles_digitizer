@@ -372,6 +372,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          }
         ]
       },
       "A": {
@@ -457,6 +471,32 @@
             "type": "fifth",
             "from": [
               6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              5,
               1
             ],
             "to": [
@@ -615,6 +655,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          }
         ]
       },
       "C": {
@@ -699,14 +753,26 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "iv_sivo_i",
+            "name": "IV–♯IVo–I",
             "from": [
-              4,
+              1,
               1
             ],
             "to": [
-              7,
+              3,
+              1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              6,
               1
             ]
           }

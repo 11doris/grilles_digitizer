@@ -364,6 +364,7 @@
     "family": "32-bar AABA standard",
     "tags": [
       "modulates",
+      "turnaround-ending",
       "ii-V-chains",
       "passing-diminished"
     ],
@@ -519,6 +520,18 @@
             "to": [
               6,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              3
             ]
           }
         ]
@@ -844,6 +857,18 @@
             ],
             "to": [
               2,
+              3
+            ]
+          },
+          {
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
               3
             ]
           },

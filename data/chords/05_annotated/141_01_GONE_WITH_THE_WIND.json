@@ -346,6 +346,7 @@
     "family": "32-bar ABAC standard",
     "tags": [
       "modulates",
+      "turnaround-ending",
       "ii-V-chains",
       "passing-diminished"
     ],
@@ -531,6 +532,18 @@
         ],
         "blocks": [
           {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
             "id": "turnaround_1625",
             "name": "Turnaround I–vi–ii–V",
             "from": [
@@ -552,6 +565,18 @@
             "to": [
               6,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              3
             ]
           }
         ]
@@ -671,14 +696,14 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "turnaround_iii_biiio_ii_v",
+            "name": "Turnaround iii–♭IIIo–ii–V",
             "from": [
-              3,
+              1,
               1
             ],
             "to": [
-              5,
+              4,
               1
             ]
           },
@@ -867,6 +892,18 @@
         ],
         "blocks": [
           {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
             "id": "turnaround_1625",
             "name": "Turnaround I–vi–ii–V",
             "from": [
@@ -888,6 +925,18 @@
             "to": [
               6,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              3
             ]
           }
         ]
@@ -1021,6 +1070,18 @@
             "to": [
               4,
               3
+            ]
+          },
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
             ]
           }
         ]

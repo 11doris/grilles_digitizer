@@ -596,6 +596,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_bvi7_v7_i",
+            "name": "Cadence ♭VI7–V7–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          }
         ]
       },
       "verse_B": {
@@ -740,6 +754,44 @@
             ]
           }
         ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              3
+            ]
+          },
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              3
+            ]
+          }
+        ],
         "regions": [
           {
             "from": [
@@ -842,7 +894,7 @@
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
-              4,
+              3,
               1
             ],
             "to": [
@@ -1065,7 +1117,7 @@
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
-              4,
+              3,
               1
             ],
             "to": [

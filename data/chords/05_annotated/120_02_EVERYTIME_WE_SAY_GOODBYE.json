@@ -355,6 +355,7 @@
     "family": "32-bar ABAC standard",
     "tags": [
       "ii-V-chains",
+      "dominant-cycle",
       "tritone-sub",
       "passing-diminished"
     ],
@@ -531,6 +532,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "cadence_bvi7_v7_i",
+            "name": "Cadence ♭VI7–V7–I",
+            "from": [
+              4,
+              3
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
           {
             "id": "iiv_chain",
             "name": "ii–V chain",
@@ -713,15 +726,15 @@
         ],
         "blocks": [
           {
-            "id": "iiv_chain",
-            "name": "ii–V chain",
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
-              3,
-              3
+              2,
+              2
             ]
           }
         ]
@@ -888,6 +901,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "cadence_bvi7_v7_i",
+            "name": "Cadence ♭VI7–V7–I",
+            "from": [
+              4,
+              3
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
           {
             "id": "iiv_chain",
             "name": "ii–V chain",
@@ -1100,14 +1125,14 @@
         ],
         "blocks": [
           {
-            "id": "iiv_chain",
-            "name": "ii–V chain",
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
-              3,
+              2,
               2
             ]
           },
@@ -1121,6 +1146,18 @@
             "to": [
               5,
               3
+            ]
+          },
+          {
+            "id": "dominant_cycle",
+            "name": "Dominant cycle",
+            "from": [
+              5,
+              3
+            ],
+            "to": [
+              7,
+              1
             ]
           }
         ]

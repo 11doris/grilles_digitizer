@@ -427,6 +427,18 @@
               3,
               1
             ]
+          },
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
           }
         ]
       },
@@ -536,6 +548,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
           {
             "id": "turnaround_1625",
             "name": "Turnaround I–vi–ii–V",

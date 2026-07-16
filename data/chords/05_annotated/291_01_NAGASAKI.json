@@ -295,6 +295,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
+      "turnaround-ending",
       "iv-minor-cadence"
     ],
     "sections": {
@@ -693,15 +694,27 @@
             ]
           },
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              5,
+              3,
               1
             ],
             "to": [
               7,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              3
             ]
           }
         ]

@@ -284,7 +284,9 @@
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABCD standard",
-    "tags": [],
+    "tags": [
+      "iv-minor-cadence"
+    ],
     "sections": {
       "A": "I with V7 motion (C7/C7#5) resolving back to I in F",
       "B": "ii-V-i into Dm (vi), then A-E7-Am tonicizing iii, ending on C7 (V)",
@@ -359,6 +361,20 @@
             ],
             "to": [
               7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              6,
               1
             ]
           }
@@ -441,6 +457,20 @@
             ],
             "to": [
               7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_251_minor",
+            "name": "iiø–V–i",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
               1
             ]
           }
@@ -617,6 +647,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
           {
             "id": "turnaround_1625",
             "name": "Turnaround I–vi–ii–V",

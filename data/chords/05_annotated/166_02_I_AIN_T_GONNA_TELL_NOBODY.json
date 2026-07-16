@@ -330,6 +330,7 @@
   "harmonic_fingerprint": {
     "family": "16-bar / 20-bar AABA-type standard",
     "tags": [
+      "turnaround-ending",
       "dominant-cycle"
     ],
     "sections": {
@@ -438,6 +439,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          }
         ]
       },
       "intro_A1": {
@@ -535,6 +550,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          }
         ]
       },
       "A": {
@@ -614,6 +643,20 @@
             "type": "fifth",
             "from": [
               6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "dominant_cycle",
+            "name": "Dominant cycle",
+            "from": [
+              2,
               1
             ],
             "to": [
@@ -764,15 +807,27 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
             "from": [
-              10,
+              5,
               1
             ],
             "to": [
-              12,
+              8,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              9,
+              1
+            ],
+            "to": [
+              11,
+              3
             ]
           }
         ]

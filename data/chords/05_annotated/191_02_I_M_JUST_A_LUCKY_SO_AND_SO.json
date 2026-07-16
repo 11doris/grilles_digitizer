@@ -426,6 +426,30 @@
         ],
         "blocks": [
           {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
             "id": "turnaround_dim",
             "name": "Turnaround I–♯Io–ii–V",
             "from": [
@@ -563,6 +587,18 @@
         ],
         "blocks": [
           {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
             "id": "cadence_251",
             "name": "ii–V–I",
             "from": [
@@ -686,6 +722,44 @@
               3
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "id": "cadence_251_minor",
+            "name": "iiø–V–i",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
+            "id": "ii7_ii_v",
+            "name": "II7–ii–V",
+            "from": [
+              7,
+              3
+            ],
+            "to": [
+              8,
+              3
+            ]
+          }
         ]
       },
       "A2": {
@@ -789,6 +863,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
           {
             "id": "cadence_251",
             "name": "ii–V–I",

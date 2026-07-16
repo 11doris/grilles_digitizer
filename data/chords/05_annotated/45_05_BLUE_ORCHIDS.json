@@ -281,6 +281,7 @@
   "harmonic_fingerprint": {
     "family": "24-bar ABA' standard",
     "tags": [
+      "turnaround-ending",
       "ii-V-chains",
       "tritone-sub",
       "passing-diminished"
@@ -540,15 +541,15 @@
             ]
           },
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
-              3,
+              2,
               1
             ],
             "to": [
-              4,
-              1
+              3,
+              3
             ]
           },
           {
@@ -790,6 +791,18 @@
               5,
               3
             ]
+          },
+          {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
           }
         ]
       },
@@ -988,6 +1001,18 @@
             "to": [
               2,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              3,
+              3
             ]
           },
           {

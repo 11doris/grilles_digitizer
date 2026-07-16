@@ -283,6 +283,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
+      "turnaround-ending",
       "dominant-cycle-bridge",
       "passing-diminished"
     ],
@@ -609,15 +610,27 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "iv_sivo_i",
+            "name": "IV–♯IVo–I",
             "from": [
-              6,
-              3
+              5,
+              1
             ],
             "to": [
-              8,
+              6,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              4
             ]
           }
         ]

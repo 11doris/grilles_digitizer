@@ -392,6 +392,30 @@
         ],
         "blocks": [
           {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
             "id": "cadence_251",
             "name": "ii–V–I",
             "from": [
@@ -478,6 +502,30 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
           {
             "id": "cadence_251",
             "name": "ii–V–I",
@@ -611,6 +659,32 @@
             ]
           }
         ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
         "regions": [
           {
             "from": [
@@ -701,6 +775,30 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
           {
             "id": "cadence_251",
             "name": "ii–V–I",

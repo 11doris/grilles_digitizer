@@ -328,6 +328,7 @@
   "harmonic_fingerprint": {
     "family": "40-bar multi-section standard",
     "tags": [
+      "turnaround-ending",
       "passing-diminished"
     ],
     "sections": {
@@ -527,7 +528,7 @@
             "id": "turnaround_dim",
             "name": "Turnaround I–♯Io–ii–V",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
@@ -545,6 +546,18 @@
             "to": [
               7,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              3
             ]
           }
         ]

@@ -412,6 +412,7 @@
     "family": "32-bar AABA standard with 16-bar verse",
     "tags": [
       "verse-present",
+      "turnaround-ending",
       "dominant-cycle",
       "iv-minor-cadence",
       "passing-diminished"
@@ -568,15 +569,27 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
             "from": [
-              4,
+              1,
               1
             ],
             "to": [
-              5,
+              2,
+              3
+            ]
+          },
+          {
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
+            "from": [
+              3,
               1
+            ],
+            "to": [
+              4,
+              3
             ]
           },
           {
@@ -712,15 +725,27 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
             "from": [
-              4,
+              1,
               1
             ],
             "to": [
-              5,
+              2,
+              3
+            ]
+          },
+          {
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
+            "from": [
+              3,
               1
+            ],
+            "to": [
+              4,
+              3
             ]
           }
         ]
@@ -889,15 +914,39 @@
             ]
           },
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "iv_sivo_i",
+            "name": "IV–♯IVo–I",
             "from": [
-              5,
-              3
+              4,
+              1
             ],
             "to": [
+              5,
+              1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
+          },
+          {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
               7,
               1
+            ],
+            "to": [
+              8,
+              3
             ]
           }
         ]
@@ -1049,15 +1098,27 @@
             ]
           },
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "iv_sivo_i",
+            "name": "IV–♯IVo–I",
             "from": [
-              5,
-              3
+              4,
+              1
             ],
             "to": [
-              7,
+              5,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
             ]
           }
         ]
@@ -1289,15 +1350,27 @@
             ]
           },
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "iv_sivo_i",
+            "name": "IV–♯IVo–I",
             "from": [
-              5,
-              3
+              4,
+              1
             ],
             "to": [
-              7,
+              5,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
             ]
           }
         ]

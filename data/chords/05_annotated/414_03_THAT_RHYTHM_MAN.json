@@ -412,6 +412,30 @@
         ],
         "blocks": [
           {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
             "id": "turnaround_dim",
             "name": "Turnaround I–♯Io–ii–V",
             "from": [
@@ -504,6 +528,30 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
           {
             "id": "turnaround_dim",
             "name": "Turnaround I–♯Io–ii–V",
@@ -607,6 +655,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          }
         ]
       },
       "A2": {
@@ -688,6 +750,30 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
           {
             "id": "turnaround_dim",
             "name": "Turnaround I–♯Io–ii–V",

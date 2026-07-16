@@ -436,6 +436,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          }
         ]
       },
       "verse_B": {
@@ -568,6 +582,20 @@
               4
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              4
+            ]
+          }
         ]
       },
       "A": {
@@ -687,14 +715,14 @@
             ]
           },
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
-              4,
+              3,
               1
             ],
             "to": [
-              7,
+              6,
               1
             ]
           }
@@ -888,6 +916,30 @@
             "to": [
               3,
               1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
+              9,
+              1
+            ],
+            "to": [
+              10,
+              3
             ]
           }
         ]

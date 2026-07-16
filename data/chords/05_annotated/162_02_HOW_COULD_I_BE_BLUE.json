@@ -360,6 +360,7 @@
     "family": "32-bar ABAB' standard",
     "tags": [
       "verse-present",
+      "turnaround-ending",
       "dominant-cycle",
       "dominant-cycle-bridge",
       "passing-diminished"
@@ -527,6 +528,18 @@
         ],
         "blocks": [
           {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
@@ -676,6 +689,18 @@
             "to": [
               7,
               1
+            ]
+          },
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              3
             ]
           }
         ]
@@ -887,6 +912,18 @@
               7,
               1
             ]
+          },
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              3
+            ]
           }
         ]
       },
@@ -1025,15 +1062,15 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
               6,
-              3
+              1
             ],
             "to": [
-              8,
-              1
+              7,
+              3
             ]
           }
         ]

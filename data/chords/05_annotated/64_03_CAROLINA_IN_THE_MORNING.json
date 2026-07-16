@@ -286,6 +286,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",
     "tags": [
+      "turnaround-ending",
       "passing-diminished"
     ],
     "sections": {
@@ -381,7 +382,7 @@
             "id": "turnaround_dim",
             "name": "Turnaround I–♯Io–ii–V",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
@@ -522,6 +523,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          }
         ]
       },
       "A1": {
@@ -607,7 +622,7 @@
             "id": "turnaround_dim",
             "name": "Turnaround I–♯Io–ii–V",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
@@ -760,6 +775,44 @@
             "to": [
               8,
               1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              3
             ]
           }
         ]

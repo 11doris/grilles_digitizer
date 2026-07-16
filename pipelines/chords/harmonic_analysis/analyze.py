@@ -435,16 +435,22 @@ _ROMAN_PC = {"I": 0, "II": 2, "III": 4, "IV": 5, "V": 7, "VI": 9, "VII": 11}
 
 
 def load_catalog(path: Path = _CATALOG_PATH) -> list[dict]:
-    """Catalog entries with their patterns parsed to (pc, quality) tokens."""
+    """Catalog entries with their patterns expanded to concrete
+    (pc, quality) token sequences — one variant per combination of the
+    pattern's optional "(deg:quality)" tokens, longest first."""
     entries = json.loads(path.read_text("utf-8"))
     for entry in entries:
-        entry["_tokens"] = [_parse_pattern_token(t)
-                            for t in entry["pattern"].split()]
+        tokens = [_parse_pattern_token(t) for t in entry["pattern"].split()]
+        entry["_variants"] = _expand_variants(tokens)
     return entries
 
 
-def _parse_pattern_token(token: str) -> tuple[int, str]:
-    """"bII:dim" -> (1, "dim"); quality "any" matches every class."""
+def _parse_pattern_token(token: str) -> tuple[int, str, bool]:
+    """"bII:dim" -> (1, "dim", False); "(V:dom)" is optional (the book's
+    parenthesized chords); quality "any" matches every class."""
+    optional = token.startswith("(") and token.endswith(")")
+    if optional:
+        token = token[1:-1]
     deg, _, quality = token.partition(":")
     m = re.match(r"^([b#]*)([ivIV]+)$", deg)
     if not m or m.group(2).upper() not in _ROMAN_PC:
@@ -452,58 +458,88 @@ def _parse_pattern_token(token: str) -> tuple[int, str]:
     pc = _ROMAN_PC[m.group(2).upper()]
     for acc in m.group(1):
         pc += 1 if acc == "#" else -1
-    return pc % 12, quality or "any"
+    return pc % 12, quality or "any", optional
+
+
+def _expand_variants(tokens: list[tuple[int, str, bool]]
+                     ) -> list[tuple[tuple[int, str], ...]]:
+    variants: list[tuple] = [()]
+    for pc, quality, optional in tokens:
+        grown = [v + ((pc, quality),) for v in variants]
+        variants = variants + grown if optional else grown
+    return sorted({v for v in variants if v}, key=len, reverse=True)
 
 
 def _match_blocks(events: list[Event], numerals: dict[int, str], ctx_at,
                   catalog: list[dict], links: list[dict]) -> list[dict]:
-    """Catalog patterns matched over consecutive chords sharing one key
-    context, plus the code-detected ii–V chains, dominant cycles and
-    root-motion runs. Overlaps (§2.4): named blocks first (longest span
-    wins, earlier catalog entry breaks ties), then the runs clipped into
-    the gaps, then the generic plain cadences into whatever space is left.
+    """Catalog patterns (every optional-token variant) matched over
+    consecutive chords sharing one key context, plus the code-detected
+    ii–V chains, dominant cycles and root-motion runs. Reprints of a chord
+    (the chart's sustained/%-bars) collapse first: building blocks are
+    duration-agnostic. Overlaps (§2.4): named blocks first (longest span
+    wins, earlier catalog entry breaks ties; neighbours may dovetail on
+    one shared chord), then the runs clipped into the gaps, then the
+    generic plain cadences into whatever space is left.
     """
+    comp: list[Event] = []       # one event per chord change
+    rep_of: dict[int, int] = {}  # raw event idx -> its index in comp
+    for e in events:
+        if (comp and e.chord.root_pc == comp[-1].chord.root_pc
+                and e.chord.quality == comp[-1].chord.quality):
+            rep_of[e.idx] = len(comp) - 1
+            continue
+        rep_of[e.idx] = len(comp)
+        comp.append(e)
+
     candidates: list[tuple[int, int, int, dict]] = []  # (first,last,prio,block)
     generic: list[tuple[int, int, int, dict]] = []
 
     for prio, entry in enumerate(catalog):
-        tokens = entry["_tokens"]
         max_bars = entry.get("max_bars", 8)
-        for start in range(len(events) - len(tokens) + 1):
-            window = events[start:start + len(tokens)]
-            ctx = ctx_at(window[0].idx)
-            if any(not ctx_at(e.idx).same(ctx) for e in window[1:]):
-                continue
-            if window[-1].bar - window[0].bar + 1 > max_bars:
-                continue
-            ok = all((e.chord.root_pc - ctx.tonic_pc) % 12 == pc
-                     and (quality == "any" or e.chord.quality == quality)
-                     for e, (pc, quality) in zip(window, tokens))
-            if ok:
-                pool = generic if entry.get("generic") else candidates
-                pool.append((start, start + len(tokens) - 1, prio, {
-                    "id": entry["id"], "name": entry["name"],
-                    "from": window[0].pos, "to": window[-1].pos}))
+        for tokens in entry["_variants"]:
+            for start in range(len(comp) - len(tokens) + 1):
+                window = comp[start:start + len(tokens)]
+                ctx = ctx_at(window[0].idx)
+                if any(not ctx_at(e.idx).same(ctx) for e in window[1:]):
+                    continue
+                if window[-1].bar - window[0].bar + 1 > max_bars:
+                    continue
+                # The catalog spells blocks from the major tonic; a minor
+                # part reads its relative-major blocks (Autumn Leaves
+                # opening in Gm is the Bb spelling) and a major part its
+                # vi-landing minor blocks.
+                rel = 3 if ctx.mode == "minor" else -3
+                for tonic_pc in (ctx.tonic_pc, (ctx.tonic_pc + rel) % 12):
+                    ok = all((e.chord.root_pc - tonic_pc) % 12 == pc
+                             and (quality == "any" or e.chord.quality == quality)
+                             for e, (pc, quality) in zip(window, tokens))
+                    if ok:
+                        pool = generic if entry.get("generic") else candidates
+                        pool.append((start, start + len(tokens) - 1, prio, {
+                            "id": entry["id"], "name": entry["name"],
+                            "from": window[0].pos, "to": window[-1].pos}))
+                        break
 
     n_catalog = len(catalog)
     # ii–V chains: >= 2 back-to-back bracket pairs (the second ii follows
-    # the first V immediately).
-    pairs = sorted((_pos_index(events, l["from"]), _pos_index(events, l["to"]))
-                   for l in links if l["type"] in ("iiV", "iiV_sub"))
+    # the first V, reprints aside).
+    pairs = sorted({(rep_of[_pos_index(events, l["from"])],
+                     rep_of[_pos_index(events, l["to"])])
+                    for l in links if l["type"] in ("iiV", "iiV_sub")})
     run: list[tuple[int, int]] = []
-    for pair in pairs + [(len(events) + 9, 0)]:  # sentinel flushes the run
+    for pair in pairs + [(len(comp) + 9, 0)]:  # sentinel flushes the run
         if run and pair[0] == run[-1][1] + 1:
             run.append(pair)
             continue
         if len(run) >= 2:
             candidates.append((run[0][0], run[-1][1], n_catalog, {
                 "id": "iiv_chain", "name": "ii–V chain",
-                "from": events[run[0][0]].pos, "to": events[run[-1][1]].pos}))
+                "from": comp[run[0][0]].pos, "to": comp[run[-1][1]].pos}))
         run = [pair]
     # Dominant cycles: >= 3 dominants each resolving down a fifth.
     cycle_start = None
-    for i, e in enumerate(events):
-        nxt = events[i + 1] if i + 1 < len(events) else None
+    for i, e in enumerate(comp):
+        nxt = comp[i + 1] if i + 1 < len(comp) else None
         chains = (nxt is not None and e.chord.quality == "dom"
                   and (e.chord.root_pc - nxt.chord.root_pc) % 12 == 7)
         if chains and cycle_start is None:
@@ -514,11 +550,14 @@ def _match_blocks(events: list[Event], numerals: dict[int, str], ctx_at,
             if i - cycle_start >= 3:
                 candidates.append((cycle_start, i, n_catalog + 1, {
                     "id": "dominant_cycle", "name": "Dominant cycle",
-                    "from": events[cycle_start].pos, "to": events[i].pos}))
+                    "from": comp[cycle_start].pos, "to": comp[i].pos}))
             cycle_start = None
 
     def fits(first: int, last: int) -> bool:
-        return all(last < c[0] or c[1] < first for c in chosen)
+        # Adjacent blocks may share exactly their boundary chord (the
+        # book's dovetailing: the I that closes a cadence opens the next
+        # block).
+        return all(last <= c[0] or c[1] <= first for c in chosen)
 
     # Named blocks: longest span wins, earlier catalog entry breaks ties.
     candidates.sort(key=lambda c: (-(c[1] - c[0]), c[2], c[0]))
@@ -531,14 +570,14 @@ def _match_blocks(events: list[Event], numerals: dict[int, str], ctx_at,
     # into the gaps — a turnaround, chain or cycle keeps the book's name
     # even when a longer run of falling roots passes through it — and
     # survive when enough distinct roots remain.
-    for first, last, min_roots, block_id, name in _root_runs(events):
+    for first, last, min_roots, block_id, name in _root_runs(comp):
         first, last = _clip(first, last, chosen)
         if (first <= last and
-                len({e.chord.root_pc for e in events[first:last + 1]})
+                len({e.chord.root_pc for e in comp[first:last + 1]})
                 >= min_roots):
             chosen.append((first, last, 0, {
                 "id": block_id, "name": name,
-                "from": events[first].pos, "to": events[last].pos}))
+                "from": comp[first].pos, "to": comp[last].pos}))
 
     # The generic plain cadences take whatever space is left: inside a
     # detected run the run is the better name for the same chords.

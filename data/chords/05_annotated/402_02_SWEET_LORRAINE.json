@@ -503,7 +503,6 @@
     "tags": [
       "verse-present",
       "ii-V-chains",
-      "circle-of-fifths",
       "chromatic-descent",
       "dominant-cycle",
       "tritone-sub",
@@ -717,6 +716,18 @@
         ],
         "blocks": [
           {
+            "id": "iiv_chain",
+            "name": "ii–V chain",
+            "from": [
+              2,
+              3
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
             "id": "cadence_251",
             "name": "ii–V–I",
             "from": [
@@ -919,14 +930,26 @@
         ],
         "blocks": [
           {
-            "id": "circle_of_fifths",
-            "name": "Circle of fifths",
+            "id": "cadence_251_minor",
+            "name": "iiø–V–i",
+            "from": [
+              2,
+              3
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "iiv_chain",
+            "name": "ii–V chain",
             "from": [
               4,
               1
             ],
             "to": [
-              7,
+              6,
               1
             ]
           }
@@ -1115,6 +1138,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
           {
             "id": "turnaround_36_dom",
             "name": "Turnaround III7–VI7–II7–V7",
@@ -1308,6 +1343,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
           {
             "id": "dominant_cycle",
             "name": "Dominant cycle",
@@ -1707,6 +1754,18 @@
         ],
         "blocks": [
           {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
@@ -1715,6 +1774,18 @@
             ],
             "to": [
               7,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
               1
             ]
           }
