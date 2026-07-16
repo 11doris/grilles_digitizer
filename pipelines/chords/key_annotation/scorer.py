@@ -31,10 +31,12 @@ W_DURATION = 4.0     # x fraction of slots spent on a compatible tonic chord
 W_FINAL = 1.8        # final sounding chord is a compatible tonic
 W_FIRST = 0.8        # tonic (compatible quality) in the first bar
 
-# Dominant resolutions into a *minor* target are damped: V/ii -> ii and
-# V/vi -> vi are everyday major-key moves (Au Privave's D7 -> Gm7), so a bare
-# dominant landing on a minor chord is weak evidence for a minor key.
-MINOR_RESOLUTION_DAMP = 0.6
+# Resolutions into a *minor* target are damped: V/ii -> ii and V/vi -> vi
+# are everyday major-key moves (Au Privave's D7 -> Gm7), and the same goes
+# for the full iiø-V-i shape (Cheryl's Em7b5 A7 -> Dm7 tonicizes the ii of
+# C, it does not put the tune in D minor) — so a dominant or ii-V landing
+# on a minor chord is weak evidence for a minor key.
+MINOR_RESOLUTION_DAMP = 0.5
 
 # How strongly a chord of a given quality class on the tonic root "is" the
 # tonic, per mode. Dominant quality on the major tonic gets half credit so
@@ -116,7 +118,8 @@ def _cadences(slots: list[Slot], tonic_pc: int, mode: str
         if mode == "major" and a.quality in ("min", "m7b5"):
             s251 += W_251 * resolved * (1.0 if a.quality == "min" else 0.6)
         elif mode == "minor" and a.quality in ("m7b5", "min"):
-            s251 += W_251 * resolved * (1.0 if a.quality == "m7b5" else 0.6)
+            s251 += (W_251 * resolved * damp
+                     * (1.0 if a.quality == "m7b5" else 0.6))
 
     return s251, sv1, full_arrivals
 
