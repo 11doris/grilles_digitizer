@@ -210,6 +210,14 @@ class TestBlocks(unittest.TestCase):
                               "F7"]), key=("Bb", "major"))["parts"]["B"]
         self.assertEqual(block_ids(part), ["rhythm_bridge"])
 
+    def test_rhythm_bridge_with_sub_approach_to_v(self):
+        # The corpus chart's ending: the plain V–V bars replaced by the
+        # substitute-dominant approach ♭VI7–V7; the optional (bVI:dom)
+        # token keeps it a bridge.
+        part = tune_of(("B", ["D7", "D7", "G7", "G7", "C7", "C7", "Gb7b5",
+                              "F7"]), key=("Bb", "major"))["parts"]["B"]
+        self.assertEqual(block_ids(part), ["rhythm_bridge"])
+
     def test_relative_tonic_blocks(self):
         # The catalog spells blocks from the major tonic, so a minor tune
         # reads its relative-major blocks (Autumn Leaves opening in Gm is
