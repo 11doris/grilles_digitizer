@@ -299,10 +299,7 @@
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABA'C standard",
-    "tags": [
-      "dominant-cycle",
-      "iv-minor-cadence"
-    ],
+    "tags": [],
     "sections": {
       "A": "I held for six bars then V7 (Bb7) for two",
       "B": "Dominant cycle: V/vi (G7) - vi (Cm) - V/V (F7) - V (Bb7)",
@@ -590,26 +587,14 @@
         ],
         "blocks": [
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
-              1,
-              1
-            ],
-            "to": [
               3,
               1
-            ]
-          },
-          {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
-            "from": [
-              4,
-              1
             ],
             "to": [
-              7,
+              6,
               1
             ]
           }

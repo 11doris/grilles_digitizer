@@ -504,14 +504,26 @@
         ],
         "blocks": [
           {
-            "id": "iiv_chain",
-            "name": "ii–V chain",
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
-              3,
+              1,
               1
             ],
             "to": [
-              6,
+              4,
+              1
+            ]
+          },
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              7,
               1
             ]
           }
@@ -625,6 +637,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
           {
             "id": "iiv_chain",
             "name": "ii–V chain",

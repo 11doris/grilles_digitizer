@@ -172,8 +172,7 @@
   "harmonic_fingerprint": {
     "family": "16-bar AA' tune",
     "tags": [
-      "ii-V-chains",
-      "iv-minor-cadence"
+      "ii-V-chains"
     ],
     "sections": {
       "A": "I-Imaj7-I7 to IV-iv, then I-iii-ii-V7 ending on V7#5 turnaround",
@@ -293,11 +292,11 @@
         ],
         "blocks": [
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              3,
-              1
+              1,
+              3
             ],
             "to": [
               5,
@@ -440,11 +439,11 @@
         ],
         "blocks": [
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              3,
-              1
+              1,
+              3
             ],
             "to": [
               5,

@@ -449,7 +449,6 @@
     "tags": [
       "verse-present",
       "modulates",
-      "dominant-cycle",
       "tritone-sub"
     ],
     "sections": {
@@ -1051,14 +1050,14 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
-              4,
+              3,
               1
             ],
             "to": [
-              7,
+              6,
               1
             ]
           }

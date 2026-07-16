@@ -296,10 +296,7 @@
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
-    "tags": [
-      "turnaround-ending",
-      "iv-minor-cadence"
-    ],
+    "tags": [],
     "sections": {
       "A": "I-IV with #ivo7, then iii-vi-ii-V turnaround, ending on ii-V",
       "A1": "Same I-IV progression resolving via C7-F7-Bb to tonic",
@@ -466,27 +463,27 @@
         ],
         "blocks": [
           {
-            "id": "turnaround_1625",
-            "name": "Turnaround I–vi–ii–V",
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
             "from": [
-              3,
+              1,
               1
             ],
             "to": [
-              4,
-              3
+              3,
+              1
             ]
           },
           {
-            "id": "turnaround_1625",
-            "name": "Turnaround I–vi–ii–V",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              7,
+              5,
               1
             ],
             "to": [
-              8,
-              3
+              7,
+              1
             ]
           }
         ]
@@ -675,27 +672,39 @@
         ],
         "blocks": [
           {
-            "id": "turnaround_1625",
-            "name": "Turnaround I–vi–ii–V",
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
             "from": [
-              3,
+              1,
               1
             ],
             "to": [
-              4,
-              3
+              3,
+              1
             ]
           },
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              6,
+              5,
               1
             ],
             "to": [
               7,
               1
+            ]
+          },
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              8,
+              1
+            ],
+            "to": [
+              8,
+              3
             ]
           }
         ]
@@ -966,27 +975,39 @@
         ],
         "blocks": [
           {
-            "id": "turnaround_1625",
-            "name": "Turnaround I–vi–ii–V",
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
             "from": [
-              3,
+              1,
               1
             ],
             "to": [
-              4,
-              3
+              3,
+              1
             ]
           },
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              6,
+              5,
               1
             ],
             "to": [
               7,
               1
+            ]
+          },
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              8,
+              1
+            ],
+            "to": [
+              8,
+              3
             ]
           }
         ]

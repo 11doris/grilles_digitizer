@@ -314,6 +314,7 @@
     "family": "32-bar AABA standard",
     "tags": [
       "modulates",
+      "turnaround-ending",
       "ii-V-chains",
       "chromatic-descent",
       "tritone-sub",
@@ -516,6 +517,18 @@
         ],
         "blocks": [
           {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
             "id": "chromatic_descent",
             "name": "Chromatic descent",
             "from": [
@@ -525,6 +538,18 @@
             "to": [
               4,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              3
             ]
           }
         ]
@@ -697,6 +722,18 @@
         ],
         "blocks": [
           {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
             "id": "chromatic_descent",
             "name": "Chromatic descent",
             "from": [
@@ -705,6 +742,18 @@
             ],
             "to": [
               4,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
               1
             ]
           }
@@ -1060,6 +1109,18 @@
         ],
         "blocks": [
           {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
             "id": "chromatic_descent",
             "name": "Chromatic descent",
             "from": [
@@ -1068,6 +1129,18 @@
             ],
             "to": [
               4,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
               1
             ]
           }

@@ -322,7 +322,6 @@
     "family": "verse-and-chorus standard",
     "tags": [
       "verse-present",
-      "dominant-cycle",
       "iv-minor-cadence"
     ],
     "sections": {
@@ -433,6 +432,20 @@
             ],
             "to": [
               8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
               1
             ]
           }
@@ -568,6 +581,20 @@
               4
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              7,
+              3
+            ],
+            "to": [
+              8,
+              4
+            ]
+          }
         ]
       },
       "A": {
@@ -675,26 +702,14 @@
         ],
         "blocks": [
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
-              1,
-              1
-            ],
-            "to": [
               3,
               1
-            ]
-          },
-          {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
-            "from": [
-              4,
-              1
             ],
             "to": [
-              7,
+              6,
               1
             ]
           }
@@ -888,6 +903,18 @@
             "to": [
               3,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
+              9,
+              1
+            ],
+            "to": [
+              10,
+              3
             ]
           }
         ]

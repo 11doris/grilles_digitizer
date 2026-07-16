@@ -54,6 +54,48 @@
     "max_bars": 4
   },
   {
+    "id": "turnaround_i_vi7_ii7_v7",
+    "name": "Turnaround I–VI7–II7–V7",
+    "pattern": "I:maj VI:dom II:dom V:dom",
+    "max_bars": 4
+  },
+  {
+    "id": "turnaround_i_vi_ii7_v7",
+    "name": "Turnaround I–vi–II7–V7",
+    "pattern": "I:maj vi:min II:dom V:dom",
+    "max_bars": 4
+  },
+  {
+    "id": "turnaround_i_biiio_ii_v",
+    "name": "Turnaround I–♭IIIo–ii–V",
+    "pattern": "I:maj bIII:dim ii:min V:dom",
+    "max_bars": 4
+  },
+  {
+    "id": "i_i7_iv_ivm_i",
+    "name": "I–I7–IV–iv–I",
+    "pattern": "I:maj I:dom IV:maj iv:min I:maj",
+    "max_bars": 6
+  },
+  {
+    "id": "i_i7_iv_sivo_i",
+    "name": "I–I7–IV–♯IVo–I",
+    "pattern": "I:maj I:dom IV:maj #IV:dim I:maj",
+    "max_bars": 6
+  },
+  {
+    "id": "iv_sivo_i",
+    "name": "IV–♯IVo–I",
+    "pattern": "IV:maj #IV:dim I:maj",
+    "max_bars": 4
+  },
+  {
+    "id": "cadence_bvi7_v7_i",
+    "name": "Cadence ♭VI7–V7–I",
+    "pattern": "bVI:dom V:dom I:maj",
+    "max_bars": 4
+  },
+  {
     "id": "cadence_251",
     "name": "ii–V–I",
     "pattern": "ii:min V:dom I:maj",
@@ -65,6 +107,48 @@
     "name": "iiø–V–i",
     "pattern": "ii:m7b5 V:dom I:min",
     "max_bars": 4,
+    "generic": true
+  },
+  {
+    "id": "turnaround_iii_biiio_ii_v",
+    "name": "Turnaround iii–♭IIIo–ii–V",
+    "pattern": "iii:min bIII:dim ii:min V:dom",
+    "max_bars": 4,
+    "generic": true
+  },
+  {
+    "id": "i_i7_iv",
+    "name": "I–I7–IV",
+    "pattern": "I:maj I:dom IV:maj",
+    "max_bars": 4,
+    "generic": true
+  },
+  {
+    "id": "cadence_ii7_v7_i",
+    "name": "Cadence II7–V7–I",
+    "pattern": "II:dom V:dom I:any",
+    "max_bars": 4,
+    "generic": true
+  },
+  {
+    "id": "ii7_ii_v",
+    "name": "II7–ii–V",
+    "pattern": "II:dom ii:min V:dom",
+    "max_bars": 4,
+    "generic": true
+  },
+  {
+    "id": "i_iv_i",
+    "name": "I–IV–I",
+    "pattern": "I:any IV:any I:any",
+    "max_bars": 4,
+    "generic": true
+  },
+  {
+    "id": "i_v7_i_v7",
+    "name": "I–V7–I–V7",
+    "pattern": "I:any V:dom I:any V:dom",
+    "max_bars": 8,
     "generic": true
   }
 ]

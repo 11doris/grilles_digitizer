@@ -301,9 +301,7 @@
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
-    "tags": [
-      "iv-minor-cadence"
-    ],
+    "tags": [],
     "sections": {
       "A": "I with #io7 passing to V, then I-V/IV(F-Fm)-I with V+ turnaround to I",
       "A1": "Repeat of A: I-#io7-V, I7 to IV-iv, V+7 back to I",
@@ -443,10 +441,10 @@
         ],
         "blocks": [
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              6,
+              5,
               1
             ],
             "to": [
@@ -584,10 +582,10 @@
         ],
         "blocks": [
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              6,
+              5,
               1
             ],
             "to": [
@@ -761,6 +759,20 @@
             "kind": "tonicization",
             "confidence": 1.0
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              7,
+              3
+            ]
+          }
         ]
       },
       "A2": {
@@ -891,10 +903,10 @@
         ],
         "blocks": [
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              6,
+              5,
               1
             ],
             "to": [

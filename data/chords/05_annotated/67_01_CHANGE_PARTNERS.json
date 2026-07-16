@@ -430,7 +430,6 @@
     "family": "32-bar AABA standard (expanded)",
     "tags": [
       "modulates",
-      "ii-V-chains",
       "chromatic-descent",
       "tritone-sub",
       "passing-diminished"
@@ -569,14 +568,26 @@
         ],
         "blocks": [
           {
-            "id": "iiv_chain",
-            "name": "ii–V chain",
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
-              11,
+              9,
               1
             ],
             "to": [
-              14,
+              12,
+              1
+            ]
+          },
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              13,
+              1
+            ],
+            "to": [
+              15,
               1
             ]
           }
@@ -704,14 +715,26 @@
         ],
         "blocks": [
           {
-            "id": "iiv_chain",
-            "name": "ii–V chain",
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
-              11,
+              9,
               1
             ],
             "to": [
-              14,
+              12,
+              1
+            ]
+          },
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              13,
+              1
+            ],
+            "to": [
+              15,
               1
             ]
           }

@@ -305,10 +305,7 @@
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
-    "tags": [
-      "turnaround-ending",
-      "iv-minor-cadence"
-    ],
+    "tags": [],
     "sections": {
       "A": "I with I7/3 to IV and V7 alternating, with #IVo7 passing chord in bar 6 resolving to I",
       "A1": "Same as A: I-IV-V7 alternation with #IVo7 passing to I",
@@ -468,6 +465,44 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
         ]
       },
       "A1": {
@@ -618,6 +653,44 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
         ]
       },
       "B": {
@@ -722,27 +795,15 @@
         ],
         "blocks": [
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              1,
-              1
-            ],
-            "to": [
               3,
               1
-            ]
-          },
-          {
-            "id": "turnaround_1625",
-            "name": "Turnaround I–vi–ii–V",
-            "from": [
-              7,
-              1
             ],
             "to": [
-              8,
-              3
+              7,
+              1
             ]
           }
         ]
@@ -892,6 +953,44 @@
             ],
             "to": [
               8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              7,
               1
             ]
           }

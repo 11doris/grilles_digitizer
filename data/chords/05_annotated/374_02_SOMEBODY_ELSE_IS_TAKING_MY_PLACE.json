@@ -267,9 +267,7 @@
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABAB' standard",
-    "tags": [
-      "dominant-cycle-bridge"
-    ],
+    "tags": [],
     "sections": {
       "A": "I - VI7 - II7 - II7 - V7 - V7 - I - I, extended dominant chain of fifths resolving to tonic",
       "B": "IV - IV - I - VI7 - II7 - II7 - V7, moving to subdominant then circling back through dominants",
@@ -595,14 +593,14 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
-              4,
+              3,
               1
             ],
             "to": [
-              7,
+              6,
               1
             ]
           }

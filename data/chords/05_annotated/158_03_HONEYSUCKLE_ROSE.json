@@ -446,8 +446,7 @@
     "family": "32-bar AABA standard",
     "tags": [
       "verse-present",
-      "ii-V-chains",
-      "circle-of-fifths"
+      "ii-V-chains"
     ],
     "sections": {
       "verse_A": "I with secondary dominants, moving through vi/D7 and repeated ii-V (Gm7-C7) back toward I, diminished passing chord",
@@ -996,6 +995,18 @@
               4,
               3
             ]
+          },
+          {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
           }
         ]
       },
@@ -1183,15 +1194,27 @@
             ]
           },
           {
-            "id": "circle_of_fifths",
-            "name": "Circle of fifths",
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
             "from": [
               5,
-              3
+              1
             ],
             "to": [
-              7,
+              6,
               3
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              1
             ]
           }
         ]
@@ -1467,15 +1490,27 @@
             ]
           },
           {
-            "id": "circle_of_fifths",
-            "name": "Circle of fifths",
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
             "from": [
               5,
-              3
+              1
             ],
             "to": [
-              7,
+              6,
               3
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              1
             ]
           }
         ]

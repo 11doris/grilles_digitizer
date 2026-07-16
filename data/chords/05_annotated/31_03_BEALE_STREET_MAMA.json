@@ -404,6 +404,7 @@
     "family": "32-bar ABAC standard with verse",
     "tags": [
       "verse-present",
+      "turnaround-ending",
       "dominant-cycle",
       "passing-diminished"
     ],
@@ -509,6 +510,32 @@
             "type": "fifth",
             "from": [
               7,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              6,
               1
             ],
             "to": [
@@ -632,6 +659,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          }
         ]
       },
       "A": {
@@ -683,6 +724,20 @@
             "type": "fifth",
             "from": [
               4,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              3,
               1
             ],
             "to": [
@@ -842,6 +897,20 @@
             "type": "fifth",
             "from": [
               4,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              3,
               1
             ],
             "to": [

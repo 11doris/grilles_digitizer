@@ -442,6 +442,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "ii7_ii_v",
+            "name": "II7–ii–V",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
+          }
         ]
       },
       "A1": {
@@ -640,6 +654,20 @@
             "mode": "minor",
             "kind": "tonicization",
             "confidence": 0.71
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
           }
         ]
       }

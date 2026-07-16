@@ -440,14 +440,38 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
-              3,
+              2,
+              3
+            ]
+          },
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
+            "id": "cadence_bvi7_v7_i",
+            "name": "Cadence ♭VI7–V7–I",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
               1
             ]
           }
@@ -594,14 +618,38 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
-              3,
+              2,
+              3
+            ]
+          },
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
+            "id": "cadence_bvi7_v7_i",
+            "name": "Cadence ♭VI7–V7–I",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
               1
             ]
           }
@@ -857,14 +905,38 @@
         ],
         "blocks": [
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
-              3,
+              2,
+              3
+            ]
+          },
+          {
+            "id": "i_i7_iv",
+            "name": "I–I7–IV",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
+            "id": "cadence_bvi7_v7_i",
+            "name": "Cadence ♭VI7–V7–I",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
               1
             ]
           }

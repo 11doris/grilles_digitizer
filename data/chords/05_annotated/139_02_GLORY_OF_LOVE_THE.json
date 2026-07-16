@@ -294,6 +294,8 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
+      "turnaround-ending",
+      "circle-of-fifths",
       "passing-diminished"
     ],
     "sections": {
@@ -474,14 +476,26 @@
             ]
           },
           {
-            "id": "turnaround_1625",
-            "name": "Turnaround I–vi–ii–V",
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
             "from": [
-              5,
+              3,
               1
             ],
             "to": [
-              6,
+              5,
+              1
+            ]
+          },
+          {
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
               3
             ]
           }
@@ -643,14 +657,26 @@
             ]
           },
           {
-            "id": "turnaround_1625",
-            "name": "Turnaround I–vi–ii–V",
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
             "from": [
-              5,
+              3,
               1
             ],
             "to": [
-              6,
+              5,
+              1
+            ]
+          },
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              5,
+              3
+            ],
+            "to": [
+              7,
               3
             ]
           }
@@ -870,15 +896,27 @@
             ]
           },
           {
-            "id": "turnaround_1625",
-            "name": "Turnaround I–vi–ii–V",
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
             "from": [
-              5,
+              3,
               1
             ],
             "to": [
+              5,
+              1
+            ]
+          },
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
               6,
-              3
+              1
+            ],
+            "to": [
+              7,
+              1
             ]
           }
         ]

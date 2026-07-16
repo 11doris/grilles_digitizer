@@ -358,8 +358,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABA'C standard with verse",
     "tags": [
-      "verse-present",
-      "dominant-cycle"
+      "verse-present"
     ],
     "sections": {
       "verse_A": "I prolonged with augmented color, V/ii (A7) to ii and passing diminished, V7 (C7) back to I",
@@ -723,14 +722,14 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
-              4,
+              3,
               1
             ],
             "to": [
-              7,
+              6,
               1
             ]
           }

@@ -441,6 +441,7 @@
     "tags": [
       "verse-present",
       "modulates",
+      "turnaround-ending",
       "dominant-cycle"
     ],
     "sections": {
@@ -1049,6 +1050,20 @@
             ]
           }
         ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          }
+        ],
         "regions": [
           {
             "from": [
@@ -1226,15 +1241,15 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
               6,
-              3
+              1
             ],
             "to": [
-              8,
-              1
+              7,
+              3
             ]
           }
         ]

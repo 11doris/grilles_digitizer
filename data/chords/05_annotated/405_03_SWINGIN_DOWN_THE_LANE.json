@@ -706,6 +706,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
         ]
       },
       "B": {
@@ -915,6 +929,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
         ]
       },
       "C": {
@@ -1039,6 +1067,18 @@
             "to": [
               2,
               3
+            ]
+          },
+          {
+            "id": "cadence_bvi7_v7_i",
+            "name": "Cadence ♭VI7–V7–I",
+            "from": [
+              5,
+              3
+            ],
+            "to": [
+              7,
+              1
             ]
           }
         ]

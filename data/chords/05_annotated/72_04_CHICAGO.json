@@ -394,6 +394,7 @@
     "family": "32-bar multi-section standard (A B A' C)",
     "tags": [
       "verse-present",
+      "turnaround-ending",
       "iv-minor-cadence",
       "passing-diminished"
     ],
@@ -635,6 +636,20 @@
             "type": "fifth",
             "from": [
               8,
+              1
+            ],
+            "to": [
+              8,
+              3
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
+              7,
               1
             ],
             "to": [

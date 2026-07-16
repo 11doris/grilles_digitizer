@@ -390,6 +390,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
     "tags": [
+      "turnaround-ending",
       "dominant-cycle"
     ],
     "sections": {
@@ -589,6 +590,18 @@
         ],
         "blocks": [
           {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              1,
+              3
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
@@ -601,15 +614,15 @@
             ]
           },
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
               6,
-              3
+              1
             ],
             "to": [
-              8,
-              1
+              7,
+              3
             ]
           }
         ]
@@ -800,6 +813,18 @@
         ],
         "blocks": [
           {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              1,
+              3
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
@@ -812,15 +837,15 @@
             ]
           },
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
               6,
-              3
+              1
             ],
             "to": [
-              8,
-              1
+              7,
+              3
             ]
           }
         ]
@@ -940,6 +965,32 @@
             "type": "fifth",
             "from": [
               7,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              6,
               1
             ],
             "to": [
@@ -1135,6 +1186,18 @@
         ],
         "blocks": [
           {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              1,
+              3
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
@@ -1147,15 +1210,15 @@
             ]
           },
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
               6,
-              3
+              1
             ],
             "to": [
-              8,
-              1
+              7,
+              3
             ]
           }
         ]

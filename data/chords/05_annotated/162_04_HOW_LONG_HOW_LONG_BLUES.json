@@ -122,8 +122,7 @@
   "harmonic_fingerprint": {
     "family": "8-bar blues",
     "tags": [
-      "blues-form",
-      "iv-minor-cadence"
+      "blues-form"
     ],
     "sections": {
       "BLUES": "I to I7, IV to iv (minor-IV), back to I, V7, then I-IV-I cadence"
@@ -219,14 +218,26 @@
         ],
         "blocks": [
           {
-            "id": "plagal_iv_iv",
-            "name": "IV–iv–I",
+            "id": "i_i7_iv_ivm_i",
+            "name": "I–I7–IV–iv–I",
             "from": [
-              3,
+              1,
               1
             ],
             "to": [
               5,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
               1
             ]
           }

@@ -186,7 +186,7 @@
   "harmonic_fingerprint": {
     "family": "16-bar AA' tune",
     "tags": [
-      "dominant-cycle"
+      "turnaround-ending"
     ],
     "sections": {
       "A": "I with #ii°7 passing chord, IV and #iv°7, secondary dominants (V/V, D7-G7) driving to a half cadence on V (C7)",
@@ -355,6 +355,32 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "id": "iv_sivo_i",
+            "name": "IV–♯IVo–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          }
         ]
       },
       "A1": {
@@ -514,15 +540,27 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
             "from": [
-              6,
-              3
+              2,
+              1
             ],
             "to": [
-              8,
+              4,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              3
             ]
           }
         ]

@@ -1116,6 +1116,18 @@
         ],
         "blocks": [
           {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
             "id": "turnaround_36_dom",
             "name": "Turnaround III7–VI7–II7–V7",
             "from": [
@@ -1308,6 +1320,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
           {
             "id": "dominant_cycle",
             "name": "Dominant cycle",
@@ -1706,6 +1730,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
           {
             "id": "dominant_cycle",
             "name": "Dominant cycle",

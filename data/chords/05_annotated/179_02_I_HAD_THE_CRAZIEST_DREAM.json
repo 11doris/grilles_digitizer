@@ -241,6 +241,7 @@
   "harmonic_fingerprint": {
     "family": "24-bar ABA' standard",
     "tags": [
+      "turnaround-ending",
       "ii-V-chains",
       "tritone-sub",
       "passing-diminished"
@@ -413,6 +414,20 @@
             "mode": "minor",
             "kind": "tonicization",
             "confidence": 0.71
+          }
+        ],
+        "blocks": [
+          {
+            "id": "turnaround_iii_biiio_ii_v",
+            "name": "Turnaround iii–♭IIIo–ii–V",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              3
+            ]
           }
         ]
       },
@@ -612,6 +627,18 @@
             ],
             "to": [
               6,
+              3
+            ]
+          },
+          {
+            "id": "turnaround_iii_biiio_ii_v",
+            "name": "Turnaround iii–♭IIIo–ii–V",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
               3
             ]
           }

@@ -285,9 +285,7 @@
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",
-    "tags": [
-      "dominant-cycle"
-    ],
+    "tags": [],
     "sections": {
       "A": "vi (Bbm) with its V, then ii (Ebm) with its V — chords built on vi and ii of the home key",
       "B": "ii-V-I into Db, then a chain of dominants (Bb7-Eb7-Ab7) ending on iiø-V7",
@@ -733,14 +731,14 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
-              4,
+              3,
               1
             ],
             "to": [
-              7,
+              6,
               1
             ]
           }

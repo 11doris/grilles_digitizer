@@ -310,9 +310,7 @@
   },
   "harmonic_fingerprint": {
     "family": "multi-strain 32-bar stomp (A B A' C)",
-    "tags": [
-      "dominant-cycle"
-    ],
+    "tags": [],
     "sections": {
       "intro": "V/V-V-I into Bb (C7-F7-Bb)",
       "A": "Repeated C7-F7-Bb: V/V - V - I",
@@ -365,6 +363,20 @@
             "type": "fifth",
             "from": [
               2,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              1,
               1
             ],
             "to": [
@@ -457,6 +469,32 @@
             "type": "fifth",
             "from": [
               6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              5,
               1
             ],
             "to": [
@@ -615,6 +653,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          }
         ]
       },
       "C": {
@@ -699,14 +751,14 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
-              4,
+              3,
               1
             ],
             "to": [
-              7,
+              6,
               1
             ]
           }

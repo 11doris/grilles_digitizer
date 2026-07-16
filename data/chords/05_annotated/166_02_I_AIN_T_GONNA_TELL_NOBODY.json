@@ -330,7 +330,7 @@
   "harmonic_fingerprint": {
     "family": "16-bar / 20-bar AABA-type standard",
     "tags": [
-      "dominant-cycle"
+      "turnaround-ending"
     ],
     "sections": {
       "intro_A": "I-V7 alternations then V/V cycle A7-D7 to G7 (V)",
@@ -438,6 +438,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          }
         ]
       },
       "intro_A1": {
@@ -532,6 +546,20 @@
             ],
             "to": [
               8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              4,
               1
             ]
           }
@@ -764,15 +792,27 @@
         ],
         "blocks": [
           {
-            "id": "dominant_cycle",
-            "name": "Dominant cycle",
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
             "from": [
-              10,
+              5,
               1
             ],
             "to": [
-              12,
+              8,
               1
+            ]
+          },
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              9,
+              1
+            ],
+            "to": [
+              11,
+              3
             ]
           }
         ]
