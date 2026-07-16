@@ -4,7 +4,10 @@ Run: python -m unittest pipelines.chords.harmonic_analysis.test_analyze
 """
 from __future__ import annotations
 
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
 from pipelines.chords.harmonic_analysis.analyze import (
     ANALYSIS_VERSION, analyze_tune, load_catalog,
@@ -161,8 +164,10 @@ class TestRegions(unittest.TestCase):
 
 class TestBlocks(unittest.TestCase):
     def test_turnaround_beats_overlapping_cadence(self):
+        # The turnaround holds its full span; the leading I–IV–I only
+        # dovetails on the shared C, it cannot eat into the turnaround.
         part = tune_of(("A", ["C", "F", "C Am7", "Dm7 G7"]))["parts"]["A"]
-        self.assertEqual(block_ids(part), ["turnaround_1625"])
+        self.assertEqual(block_ids(part), ["i_iv_i", "turnaround_1625"])
 
     def test_dominant_cycle_block(self):
         part = tune_of(("A", ["E7", "A7", "D7", "G7", "C"]))["parts"]["A"]
@@ -175,16 +180,71 @@ class TestBlocks(unittest.TestCase):
     def test_catalog_loads_and_patterns_parse(self):
         entries = load_catalog()
         self.assertTrue(entries)
-        self.assertTrue(all("_tokens" in e for e in entries))
+        self.assertTrue(all(e["_variants"] for e in entries))
+
+    def test_optional_tokens_expand_to_variants(self):
+        # A parenthesized token is optional: the loader expands both
+        # readings, longest first, so the matcher tries the full spelling
+        # before the elided one.
+        entries = [{"id": "x", "name": "X", "pattern": "ii:min (V:dom) I:maj"}]
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "catalog.json"
+            path.write_text(json.dumps(entries), "utf-8")
+            cat = load_catalog(path)
+        self.assertEqual(cat[0]["_variants"],
+                         [((2, "min"), (7, "dom"), (0, "maj")),
+                          ((2, "min"), (0, "maj"))])
+
+    def test_reprints_collapse_for_matching(self):
+        # Sustained chords are reprinted bar over bar in the charts;
+        # building blocks are duration-agnostic (the book's % cells), so
+        # reprints collapse before matching.
+        part = tune_of(("A", ["Dm7", "G7", "G7", "Cmaj7"]))["parts"]["A"]
+        self.assertEqual(block_ids(part), ["cadence_251"])
+
+    def test_rhythm_bridge_across_sustained_bars(self):
+        # The I Got Rhythm bridge: two bars per dominant. The reprints
+        # collapse and the 8-bar bridge matches (the tied dominant cycle
+        # loses to the catalog name).
+        part = tune_of(("B", ["D7", "D7", "G7", "G7", "C7", "C7", "F7",
+                              "F7"]), key=("Bb", "major"))["parts"]["B"]
+        self.assertEqual(block_ids(part), ["rhythm_bridge"])
+
+    def test_relative_tonic_blocks(self):
+        # The catalog spells blocks from the major tonic, so a minor tune
+        # reads its relative-major blocks (Autumn Leaves opening in Gm is
+        # the Bb-spelled ii–V–I) ...
+        part = tune_of(("A", ["Cm7 F7", "Bbmaj7"]),
+                       key=("G", "minor"))["parts"]["A"]
+        self.assertEqual(block_ids(part), ["cadence_251"])
+        # ... and a major tune its vi-landing minor cadence.
+        part = tune_of(("A", ["Am7b5 D7", "Gm"]),
+                       key=("Bb", "major"))["parts"]["A"]
+        self.assertEqual(block_ids(part), ["cadence_251_minor"])
+
+    def test_blocks_dovetail_on_shared_chord(self):
+        # A cadence into I, and the same I opens a turnaround: neighbouring
+        # blocks share the joint chord.
+        part = tune_of(("A", ["Dm7 G7", "C A7", "Dm7 G7"]))["parts"]["A"]
+        self.assertEqual(block_ids(part),
+                         ["cadence_251", "turnaround_1_vi7"])
 
     def test_chromatic_descent_run(self):
-        # Djangology-style falling chromatic roots in G; the generic ii–V–I
-        # at the end yields to the run (its ii is the run's landing).
-        part = tune_of(("A", ["C#m7b5 Co7", "Bm7 Bbo7", "Am7 D7", "G"]),
+        # Djangology-style falling chromatic roots in G, landing on the ii
+        # without cadencing — only the run names it.
+        part = tune_of(("A", ["C#m7b5 Co7", "Bm7 Bbo7", "Am7"]),
                        key=("G", "major"))["parts"]["A"]
         self.assertEqual(block_ids(part), ["chromatic_descent"])
         block = part["blocks"][0]
         self.assertEqual((block["from"], block["to"]), ([1, 1], [3, 1]))
+
+    def test_generic_cadence_dovetails_run_landing(self):
+        # With the V7–I resolution the closing ii–V–I dovetails on the
+        # run's landing chord instead of yielding to the run entirely.
+        part = tune_of(("A", ["C#m7b5 Co7", "Bm7 Bbo7", "Am7 D7", "G"]),
+                       key=("G", "major"))["parts"]["A"]
+        self.assertEqual(block_ids(part),
+                         ["chromatic_descent", "cadence_251"])
 
     def test_circle_of_fifths_run(self):
         # Gone-with-the-Wind-style diatonic circle in Eb, crossing the one

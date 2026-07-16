@@ -108,7 +108,8 @@ def _seq_matches(tokens, entry_tokens) -> bool:
 
 
 def in_catalog(tokens, catalog: list[dict]) -> bool:
-    return any(_seq_matches(tokens, e["_tokens"]) for e in catalog)
+    return any(_seq_matches(tokens, v)
+               for e in catalog for v in e["_variants"])
 
 
 def is_seam(tokens, catalog: list[dict]) -> bool:
@@ -119,15 +120,15 @@ def is_seam(tokens, catalog: list[dict]) -> bool:
     if tokens[0] == (7, "dom") and tokens[1][0] == 0:
         return True
     for entry in catalog:
-        etoks = entry["_tokens"]
-        if len(etoks) == len(tokens) - 1 and (
-                _seq_matches(tokens[1:], etoks)
-                or _seq_matches(tokens[:-1], etoks)):
-            return True
-        if len(etoks) > len(tokens) and any(
-                _seq_matches(tokens, etoks[i:i + len(tokens)])
-                for i in range(len(etoks) - len(tokens) + 1)):
-            return True
+        for etoks in entry["_variants"]:
+            if len(etoks) == len(tokens) - 1 and (
+                    _seq_matches(tokens[1:], etoks)
+                    or _seq_matches(tokens[:-1], etoks)):
+                return True
+            if len(etoks) > len(tokens) and any(
+                    _seq_matches(tokens, etoks[i:i + len(tokens)])
+                    for i in range(len(etoks) - len(tokens) + 1)):
+                return True
     return False
 
 
