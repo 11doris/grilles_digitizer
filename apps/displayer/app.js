@@ -291,6 +291,7 @@
     formFilter: "", // list filter: fingerprint family ("" = any, "unknown", "other", or a family; §8.2b)
     styleFilter: "", // list filter: grouped style bucket ("" = any, "unknown", or a bucket key)
     yearFilter: "", // list filter: decade bucket ("" = any, "unknown", or "1930" etc.)
+    blockFilter: "", // list filter: harmonic building block ("" = any, "none", or a block id)
     tagFilter: new Set(), // list filter: fingerprint tags — a tune must carry every checked tag (§8.2b)
     showSuggest: null, // open suggestions group: null | "tunes" | "sections"; per-tune
     compare: null, // {otherId, mode: original|transposed|roman, bars} — comparison view (§8.3); per-tune
@@ -511,7 +512,8 @@
   function updateFilterBadge() {
     const n = (state.chordsOnly ? 1 : 0) + (state.startsOn ? 1 : 0) +
       (state.keyFilter ? 1 : 0) + (state.formFilter ? 1 : 0) +
-      (state.styleFilter ? 1 : 0) + (state.yearFilter ? 1 : 0) + state.tagFilter.size;
+      (state.styleFilter ? 1 : 0) + (state.yearFilter ? 1 : 0) +
+      (state.blockFilter ? 1 : 0) + state.tagFilter.size;
     filterBadge.textContent = String(n);
     filterBadge.hidden = n === 0;
     filtersBtn.classList.toggle("on", n > 0);
@@ -615,6 +617,14 @@
         return state.yearFilter === "unknown" ? d === null : String(d) === state.yearFilter;
       });
     }
+    if (state.blockFilter) {
+      /* "none" means digitized but block-free — non-digitized tunes have no
+         analysis at all and would drown the list, so they never match. */
+      list = list.filter((t) => {
+        if (state.blockFilter === "none") return t.has_chord_json && blocksOf(t).size === 0;
+        return blocksOf(t).has(state.blockFilter);
+      });
+    }
     if (state.tagFilter.size) {
       list = list.filter((t) => {
         const tags = (meta(t).harmonic_fingerprint || {}).tags || [];
@@ -692,6 +702,7 @@
   const formFilterEl = document.getElementById("formFilter");
   const styleFilterEl = document.getElementById("styleFilter");
   const yearFilterEl = document.getElementById("yearFilter");
+  const blockFilterEl = document.getElementById("blockFilter");
   const tagFilterBtn = document.getElementById("tagFilterBtn");
   const tagFilterMenu = document.getElementById("tagFilterMenu");
 
@@ -863,6 +874,52 @@
       state.yearFilter = yearFilterEl.value;
       yearFilterEl.classList.toggle("on", Boolean(state.yearFilter));
       refilterList(Boolean(state.yearFilter));
+    });
+  }
+
+  /* Block filter: the harmonic building blocks (catalog matches + the
+     code-detected chains, cycles and runs) found anywhere in a tune's
+     harmonic analysis, ordered by tune count. */
+
+  /* Set of block ids appearing in any part of the tune, cached on the row. */
+  function blocksOf(t) {
+    if (!t._blocks) {
+      t._blocks = new Set();
+      const parts = (meta(t).harmonic_analysis || {}).parts || {};
+      Object.values(parts).forEach((pa) =>
+        (pa.blocks || []).forEach((b) => t._blocks.add(b.id)));
+    }
+    return t._blocks;
+  }
+
+  function initBlockFilter() {
+    if (!blockFilterEl) return;
+    const counts = new Map(); // block id -> number of tunes carrying it
+    const names = new Map();  // block id -> display name (from the analysis)
+    let blockless = 0;        // digitized tunes where no block matched
+    TUNES.forEach((t) => {
+      const ids = blocksOf(t);
+      ids.forEach((id) => counts.set(id, (counts.get(id) || 0) + 1));
+      if (t.has_chord_json && !ids.size) blockless++;
+      const parts = (meta(t).harmonic_analysis || {}).parts || {};
+      Object.values(parts).forEach((pa) =>
+        (pa.blocks || []).forEach((b) => b.name && names.set(b.id, b.name)));
+    });
+    if (!counts.size) { blockFilterEl.hidden = true; return; }
+    const ids = [...counts.keys()].sort((a, b) =>
+      counts.get(b) - counts.get(a) ||
+      (names.get(a) || a).localeCompare(names.get(b) || b));
+    const opts = ['<option value="">Block…</option>'];
+    ids.forEach((id) => {
+      const label = names.get(id) || id;
+      opts.push(`<option value="${escapeHtml(id)}">${escapeHtml(label)} (${counts.get(id)})</option>`);
+    });
+    if (blockless) opts.push(`<option value="none">none (${blockless})</option>`);
+    blockFilterEl.innerHTML = opts.join("");
+    blockFilterEl.addEventListener("change", () => {
+      state.blockFilter = blockFilterEl.value;
+      blockFilterEl.classList.toggle("on", Boolean(state.blockFilter));
+      refilterList(Boolean(state.blockFilter));
     });
   }
 
@@ -3582,6 +3639,7 @@
   initFormFilter();
   initStyleFilter();
   initYearFilter();
+  initBlockFilter();
   initTagFilter();
   state.filtered = filterTunes("");
   renderList();
