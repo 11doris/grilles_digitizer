@@ -305,7 +305,9 @@
   },
   "harmonic_fingerprint": {
     "family": "32-bar AABA standard",
-    "tags": [],
+    "tags": [
+      "iv-minor-cadence"
+    ],
     "sections": {
       "A": "I with I7/3 to IV and V7 alternating, with #IVo7 passing chord in bar 6 resolving to I",
       "A1": "Same as A: I-IV-V7 alternation with #IVo7 passing to I",

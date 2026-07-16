@@ -299,7 +299,9 @@
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABA'C standard",
-    "tags": [],
+    "tags": [
+      "dominant-cycle"
+    ],
     "sections": {
       "A": "I held for six bars then V7 (Bb7) for two",
       "B": "Dominant cycle: V/vi (G7) - vi (Cm) - V/V (F7) - V (Bb7)",

@@ -29,8 +29,12 @@ _BLOCK_TAGS = {
     "rhythm_bridge": "rhythm-changes-bridge",
     "backdoor": "backdoor-cadence",
     "plagal_iv_iv": "iv-minor-cadence",
+    "i_i7_iv_ivm_i": "iv-minor-cadence",  # superset outranks plagal_iv_iv
 }
 _ROLE_TAGS = {"sub_v": "tritone-sub", "dim_passing": "passing-diminished"}
+# Named blocks whose chords are a run of dominants in fifths: they outrank
+# the code-detected dominant_cycle on the same span, so they carry its tag.
+_CYCLE_BLOCKS = {"dominant_cycle", "turnaround_i_vi7_ii7_v7"}
 
 
 def derive_tags(annotated: dict) -> list[str]:
@@ -55,12 +59,14 @@ def derive_tags(annotated: dict) -> list[str]:
         bars = part_bars.get(pid) or []
         last_bar = bars[-1].get("bar", len(bars)) if bars else 0
         for block in part.get("blocks") or []:
+            # Independent checks: turnaround_i_vi7_ii7_v7 at a part's end
+            # is a turnaround-ending AND a dominant cycle.
             if block["id"] in _BLOCK_TAGS:
                 found.add(_BLOCK_TAGS[block["id"]])
-            elif block["id"].startswith("turnaround"):
-                if block["to"][0] >= last_bar - 1:
-                    found.add("turnaround-ending")
-            elif block["id"] == "dominant_cycle":
+            if (block["id"].startswith("turnaround")
+                    and block["to"][0] >= last_bar - 1):
+                found.add("turnaround-ending")
+            if block["id"] in _CYCLE_BLOCKS:
                 found.add("dominant-cycle-bridge" if pid.startswith("B")
                           else "dominant-cycle")
         for chord in part.get("chords") or []:

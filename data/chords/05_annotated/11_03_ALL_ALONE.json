@@ -284,7 +284,9 @@
   },
   "harmonic_fingerprint": {
     "family": "32-bar ABCD standard",
-    "tags": [],
+    "tags": [
+      "iv-minor-cadence"
+    ],
     "sections": {
       "A": "I with V7 motion (C7/C7#5) resolving back to I in F",
       "B": "ii-V-i into Dm (vi), then A-E7-Am tonicizing iii, ending on C7 (V)",

@@ -206,13 +206,13 @@ class TestBlocks(unittest.TestCase):
 
 class TestDerivedTags(unittest.TestCase):
     def _annotated(self, bars: list[str], key=("C", "major"),
-                   extra_strains=(), **fields) -> dict:
+                   extra_strains=(), label="A", **fields) -> dict:
         built = [{"bar": i + 1,
                   "beats": {str(1 + 2 * j): s for j, s in enumerate(t.split())}}
                  for i, t in enumerate(bars)]
         doc = {"strains": [*extra_strains,
                            {"name": "chorus", "role": "chorus",
-                            "parts": [{"label": "A", "bars": built}]}],
+                            "parts": [{"label": label, "bars": built}]}],
                "key": {"tonic": key[0], "mode": key[1]}, **fields}
         doc["harmonic_analysis"] = analyze_tune(
             doc, doc["key"], section_keys=doc.get("section_keys"))
@@ -224,6 +224,23 @@ class TestDerivedTags(unittest.TestCase):
         self.assertIn("ii-V-chains", tags)          # bars 2-3
         self.assertIn("turnaround-ending", tags)    # bars 4-5 hit the end
         self.assertNotIn("minor-key", tags)
+
+    def test_cycle_turnaround_keeps_both_tags(self):
+        # The named I–VI7–II7–V7 outranks the code-detected dominant_cycle
+        # on the same chords, so it carries the cycle tag (bridge-aware) —
+        # and at the part's end it is still a turnaround ending.
+        doc = self._annotated(["C", "A7", "D7", "G7"], label="B")
+        tags = derive_tags(doc)
+        self.assertIn("dominant-cycle-bridge", tags)
+        self.assertIn("turnaround-ending", tags)
+        doc = self._annotated(["C", "A7", "D7", "G7"])
+        self.assertIn("dominant-cycle", derive_tags(doc))
+
+    def test_iv_minor_tag_survives_superset_block(self):
+        # i_i7_iv_ivm_i outranks plagal_iv_iv by span; the IV–iv–I motion
+        # inside it still means iv-minor-cadence.
+        doc = self._annotated(["C", "C7", "F", "Fm", "C"])
+        self.assertIn("iv-minor-cadence", derive_tags(doc))
 
     def test_structure_tags(self):
         verse = {"name": "verse", "role": "verse", "parts": [

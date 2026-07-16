@@ -281,7 +281,9 @@
   },
   "harmonic_fingerprint": {
     "family": "16-bar traditional (AB) tune",
-    "tags": [],
+    "tags": [
+      "iv-minor-cadence"
+    ],
     "sections": {
       "A": "Tonic I held for six bars then V7 (C7) for two bars",
       "B": "I-I7 to IV-iv (Bb-Bbm) then I-vi-ii-V-I turnaround resolving to tonic"

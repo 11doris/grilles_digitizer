@@ -310,7 +310,9 @@
   },
   "harmonic_fingerprint": {
     "family": "multi-strain 32-bar stomp (A B A' C)",
-    "tags": [],
+    "tags": [
+      "dominant-cycle"
+    ],
     "sections": {
       "intro": "V/V-V-I into Bb (C7-F7-Bb)",
       "A": "Repeated C7-F7-Bb: V/V - V - I",
