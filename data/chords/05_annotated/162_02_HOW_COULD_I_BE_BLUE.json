@@ -528,6 +528,18 @@
         ],
         "blocks": [
           {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
@@ -667,6 +679,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
           {
             "id": "i_v7_i_v7",
             "name": "I–V7–I–V7",
@@ -877,6 +901,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
           {
             "id": "i_v7_i_v7",
             "name": "I–V7–I–V7",

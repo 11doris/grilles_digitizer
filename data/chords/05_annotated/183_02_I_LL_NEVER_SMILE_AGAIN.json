@@ -296,7 +296,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",
     "tags": [
-      "circle-of-fifths",
+      "ii-V-chains",
       "backdoor-cadence",
       "tritone-sub",
       "passing-diminished"
@@ -931,15 +931,15 @@
             ]
           },
           {
-            "id": "circle_of_fifths",
-            "name": "Circle of fifths",
+            "id": "iiv_chain",
+            "name": "ii–V chain",
             "from": [
               4,
               1
             ],
             "to": [
-              7,
-              1
+              6,
+              3
             ]
           }
         ]

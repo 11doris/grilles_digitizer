@@ -268,6 +268,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABAB' standard",
     "tags": [
+      "dominant-cycle",
       "dominant-cycle-bridge"
     ],
     "sections": {
@@ -353,6 +354,20 @@
             "type": "fifth",
             "from": [
               6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "dominant_cycle",
+            "name": "Dominant cycle",
+            "from": [
+              2,
               1
             ],
             "to": [
@@ -504,6 +519,20 @@
             "type": "fifth",
             "from": [
               6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "dominant_cycle",
+            "name": "Dominant cycle",
+            "from": [
+              2,
               1
             ],
             "to": [

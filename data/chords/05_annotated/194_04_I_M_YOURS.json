@@ -302,7 +302,6 @@
     "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "circle-of-fifths",
       "passing-diminished"
     ],
     "sections": {
@@ -846,6 +845,18 @@
         ],
         "blocks": [
           {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
             "id": "turnaround_i_biiio_ii_v",
             "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
@@ -858,14 +869,14 @@
             ]
           },
           {
-            "id": "circle_of_fifths",
-            "name": "Circle of fifths",
+            "id": "iiv_chain",
+            "name": "ii–V chain",
             "from": [
               5,
               3
             ],
             "to": [
-              8,
+              7,
               1
             ]
           }

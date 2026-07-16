@@ -295,7 +295,6 @@
     "family": "32-bar AABA standard",
     "tags": [
       "turnaround-ending",
-      "circle-of-fifths",
       "passing-diminished"
     ],
     "sections": {
@@ -488,6 +487,18 @@
             ]
           },
           {
+            "id": "turnaround_1625",
+            "name": "Turnaround I–vi–ii–V",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
+          },
+          {
             "id": "turnaround_i_biiio_ii_v",
             "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
@@ -669,15 +680,27 @@
             ]
           },
           {
-            "id": "circle_of_fifths",
-            "name": "Circle of fifths",
+            "id": "turnaround_1625",
+            "name": "Turnaround I–vi–ii–V",
             "from": [
               5,
-              3
+              1
             ],
             "to": [
-              7,
+              6,
               3
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
+              1
             ]
           }
         ]
@@ -908,15 +931,15 @@
             ]
           },
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "turnaround_1625",
+            "name": "Turnaround I–vi–ii–V",
             "from": [
-              6,
+              5,
               1
             ],
             "to": [
-              7,
-              1
+              6,
+              3
             ]
           }
         ]

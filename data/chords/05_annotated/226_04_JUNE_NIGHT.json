@@ -416,7 +416,8 @@
       "verse-present",
       "modulates",
       "circle-of-fifths",
-      "dominant-cycle"
+      "dominant-cycle",
+      "iv-minor-cadence"
     ],
     "sections": {
       "verse_A": "i-V/V-V-i in A minor, then D7-G7-C tonicizing the relative major, ending on E7 (V of A minor)",
@@ -1091,6 +1092,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "plagal_iv_iv",
+            "name": "IV–iv–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
           {
             "id": "turnaround_i_vi7_ii7_v7",
             "name": "Turnaround I–VI7–II7–V7",

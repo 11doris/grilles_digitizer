@@ -767,6 +767,18 @@
         ],
         "blocks": [
           {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              1,
+              3
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
@@ -948,6 +960,18 @@
         ],
         "blocks": [
           {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              1,
+              3
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
@@ -957,6 +981,18 @@
             "to": [
               5,
               1
+            ]
+          },
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              6,
+              3
+            ],
+            "to": [
+              8,
+              3
             ]
           }
         ]
@@ -1240,6 +1276,42 @@
           }
         ],
         "blocks": [
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              1,
+              3
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "cadence_ii7_v7_i",
+            "name": "Cadence II7–V7–I",
+            "from": [
+              3,
+              3
+            ],
+            "to": [
+              4,
+              3
+            ]
+          },
+          {
+            "id": "iv_sivo_i",
+            "name": "IV–♯IVo–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
           {
             "id": "turnaround_i_vi7_ii7_v7",
             "name": "Turnaround I–VI7–II7–V7",

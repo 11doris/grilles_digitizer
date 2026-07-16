@@ -589,7 +589,7 @@
             "name": "Cadence II7–V7–I",
             "from": [
               7,
-              3
+              1
             ],
             "to": [
               8,
@@ -702,6 +702,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "plagal_iv_iv",
+            "name": "IV–iv–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
           {
             "id": "turnaround_i_vi7_ii7_v7",
             "name": "Turnaround I–VI7–II7–V7",
@@ -903,6 +915,18 @@
             ],
             "to": [
               3,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
               1
             ]
           },

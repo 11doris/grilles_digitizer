@@ -325,7 +325,9 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABAB' standard",
     "tags": [
-      "circle-of-fifths"
+      "ii-V-chains",
+      "circle-of-fifths",
+      "dominant-cycle"
     ],
     "sections": {
       "A": "ii-V-I loop (Gm-C7-F) repeated twice, ending on F7 as V7/IV",
@@ -462,7 +464,7 @@
             "id": "cadence_ii7_v7_i",
             "name": "Cadence II7–V7–I",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
@@ -471,15 +473,15 @@
             ]
           },
           {
-            "id": "cadence_ii7_v7_i",
-            "name": "Cadence II7–V7–I",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
-              6,
+              3,
               1
             ],
             "to": [
-              7,
-              1
+              6,
+              3
             ]
           }
         ]
@@ -587,10 +589,10 @@
         ],
         "blocks": [
           {
-            "id": "ii7_ii_v",
-            "name": "II7–ii–V",
+            "id": "iiv_chain",
+            "name": "ii–V chain",
             "from": [
-              6,
+              3,
               1
             ],
             "to": [
@@ -724,7 +726,7 @@
             "id": "cadence_ii7_v7_i",
             "name": "Cadence II7–V7–I",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
@@ -733,15 +735,15 @@
             ]
           },
           {
-            "id": "cadence_ii7_v7_i",
-            "name": "Cadence II7–V7–I",
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
             "from": [
-              6,
+              3,
               1
             ],
             "to": [
-              7,
-              1
+              6,
+              3
             ]
           }
         ]

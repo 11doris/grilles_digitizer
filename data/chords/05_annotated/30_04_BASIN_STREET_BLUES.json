@@ -669,7 +669,7 @@
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
-              4,
+              2,
               1
             ],
             "to": [
@@ -781,11 +781,23 @@
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
-              4,
+              2,
               1
             ],
             "to": [
               7,
+              1
+            ]
+          },
+          {
+            "id": "i_iv_i",
+            "name": "I–IV–I",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              8,
               1
             ]
           }

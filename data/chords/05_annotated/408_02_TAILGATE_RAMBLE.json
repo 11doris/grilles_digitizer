@@ -280,7 +280,9 @@
   },
   "harmonic_fingerprint": {
     "family": "16-bar AABA-style riff tune",
-    "tags": [],
+    "tags": [
+      "dominant-cycle"
+    ],
     "sections": {
       "s1_A": "V7-I alternation (Bb7 to Eb) throughout",
       "s1_A1": "V7-I then C7 (V/ii)-Fm(ii)-F7(V/V)-Bb7(V)-Eb(I)",
@@ -550,6 +552,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "dominant_cycle",
+            "name": "Dominant cycle",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
         ]
       },
       "part2_A1": {
@@ -624,6 +640,20 @@
             "type": "fifth",
             "from": [
               6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "dominant_cycle",
+            "name": "Dominant cycle",
+            "from": [
+              1,
               1
             ],
             "to": [

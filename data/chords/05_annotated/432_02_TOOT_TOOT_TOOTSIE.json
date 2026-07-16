@@ -528,11 +528,23 @@
             "id": "turnaround_dim",
             "name": "Turnaround I–♯Io–ii–V",
             "from": [
-              2,
+              1,
               1
             ],
             "to": [
               4,
+              1
+            ]
+          },
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
               1
             ]
           },

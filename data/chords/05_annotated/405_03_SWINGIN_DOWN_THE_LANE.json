@@ -709,6 +709,18 @@
         ],
         "blocks": [
           {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
             "id": "cadence_ii7_v7_i",
             "name": "Cadence II7–V7–I",
             "from": [
@@ -931,6 +943,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "turnaround_i_vi_ii7_v7",
+            "name": "Turnaround I–vi–II7–V7",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
           {
             "id": "cadence_ii7_v7_i",
             "name": "Cadence II7–V7–I",

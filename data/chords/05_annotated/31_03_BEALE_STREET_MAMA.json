@@ -734,14 +734,14 @@
         ],
         "blocks": [
           {
-            "id": "i_i7_iv",
-            "name": "I–I7–IV",
+            "id": "i_iv_i",
+            "name": "I–IV–I",
             "from": [
-              3,
+              4,
               1
             ],
             "to": [
-              5,
+              7,
               1
             ]
           }
@@ -897,20 +897,6 @@
             "type": "fifth",
             "from": [
               4,
-              1
-            ],
-            "to": [
-              5,
-              1
-            ]
-          }
-        ],
-        "blocks": [
-          {
-            "id": "i_i7_iv",
-            "name": "I–I7–IV",
-            "from": [
-              3,
               1
             ],
             "to": [

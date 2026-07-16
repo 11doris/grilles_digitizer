@@ -650,6 +650,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "dominant_cycle",
+            "name": "Dominant cycle",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
         ]
       },
       "A1": {

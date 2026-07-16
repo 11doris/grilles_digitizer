@@ -310,6 +310,7 @@
     "tags": [
       "verse-present",
       "modulates",
+      "dominant-cycle",
       "tritone-sub",
       "passing-diminished"
     ],
@@ -639,6 +640,20 @@
             "to": [
               8,
               3
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "dominant_cycle",
+            "name": "Dominant cycle",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              7,
+              1
             ]
           }
         ]

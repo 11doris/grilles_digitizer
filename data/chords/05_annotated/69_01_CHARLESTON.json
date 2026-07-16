@@ -752,7 +752,7 @@
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
-              4,
+              2,
               1
             ],
             "to": [
@@ -934,7 +934,7 @@
             "id": "dominant_cycle",
             "name": "Dominant cycle",
             "from": [
-              4,
+              2,
               1
             ],
             "to": [
@@ -1059,15 +1059,15 @@
             ]
           },
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "turnaround_i_biiio_ii_v",
+            "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
-              6,
+              5,
               1
             ],
             "to": [
-              7,
-              1
+              6,
+              3
             ]
           }
         ]

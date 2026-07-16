@@ -286,7 +286,8 @@
     "family": "32-bar AABA standard",
     "tags": [
       "ii-V-chains",
-      "dominant-cycle"
+      "dominant-cycle",
+      "iv-minor-cadence"
     ],
     "sections": {
       "A": "I then a cycle-of-fifths chain (vii/V-B7-E7-A7-D7-G7) resolving through I7-IV-iv back to I",
@@ -465,6 +466,18 @@
               7,
               3
             ]
+          },
+          {
+            "id": "plagal_iv_iv",
+            "name": "IV–iv–I",
+            "from": [
+              7,
+              3
+            ],
+            "to": [
+              8,
+              1
+            ]
           }
         ]
       },
@@ -633,6 +646,18 @@
             "to": [
               7,
               3
+            ]
+          },
+          {
+            "id": "plagal_iv_iv",
+            "name": "IV–iv–I",
+            "from": [
+              7,
+              3
+            ],
+            "to": [
+              8,
+              1
             ]
           }
         ]
@@ -970,6 +995,18 @@
             "to": [
               7,
               3
+            ]
+          },
+          {
+            "id": "plagal_iv_iv",
+            "name": "IV–iv–I",
+            "from": [
+              7,
+              3
+            ],
+            "to": [
+              8,
+              1
             ]
           }
         ]

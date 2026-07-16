@@ -529,6 +529,18 @@
         ],
         "blocks": [
           {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
             "id": "turnaround_i_biiio_ii_v",
             "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
@@ -979,6 +991,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
           {
             "id": "turnaround_i_biiio_ii_v",
             "name": "Turnaround I–♭IIIo–ii–V",

@@ -364,6 +364,20 @@
               1
             ]
           }
+        ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          }
         ]
       },
       "B": {
@@ -443,6 +457,20 @@
             ],
             "to": [
               7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_251_minor",
+            "name": "iiø–V–i",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
               1
             ]
           }
@@ -632,15 +660,15 @@
             ]
           },
           {
-            "id": "cadence_251",
-            "name": "ii–V–I",
+            "id": "turnaround_1625",
+            "name": "Turnaround I–vi–ii–V",
             "from": [
-              6,
+              5,
               1
             ],
             "to": [
-              7,
-              1
+              6,
+              3
             ]
           }
         ]

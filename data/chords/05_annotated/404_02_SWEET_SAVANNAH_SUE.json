@@ -393,6 +393,8 @@
       "turnaround-ending",
       "ii-V-chains",
       "dominant-cycle",
+      "rhythm-changes-bridge",
+      "iv-minor-cadence",
       "tritone-sub",
       "passing-diminished"
     ],
@@ -503,6 +505,20 @@
             ],
             "to": [
               8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "i_v7_i_v7",
+            "name": "I–V7–I–V7",
+            "from": [
+              3,
+              3
+            ],
+            "to": [
+              6,
               1
             ]
           }
@@ -754,6 +770,18 @@
         ],
         "blocks": [
           {
+            "id": "dominant_cycle",
+            "name": "Dominant cycle",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
             "id": "turnaround_i_biiio_ii_v",
             "name": "Turnaround I–♭IIIo–ii–V",
             "from": [
@@ -840,6 +868,20 @@
             "type": "fifth",
             "from": [
               6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "rhythm_bridge",
+            "name": "Dominant bridge III7–VI7–II7–V7",
+            "from": [
+              1,
               1
             ],
             "to": [
@@ -1099,6 +1141,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "plagal_iv_iv",
+            "name": "IV–iv–I",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
           {
             "id": "turnaround_i_biiio_ii_v",
             "name": "Turnaround I–♭IIIo–ii–V",

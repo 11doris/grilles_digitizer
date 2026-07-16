@@ -392,7 +392,8 @@
     "tags": [
       "turnaround-ending",
       "dominant-cycle",
-      "dominant-cycle-bridge"
+      "dominant-cycle-bridge",
+      "iv-minor-cadence"
     ],
     "sections": {
       "A": "I with V/V-V oscillation, then IV-iv minor-plagal, vi/V7-ii-V back to I",
@@ -611,6 +612,18 @@
             ],
             "to": [
               5,
+              1
+            ]
+          },
+          {
+            "id": "plagal_iv_iv",
+            "name": "IV–iv–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
               1
             ]
           },
@@ -838,6 +851,18 @@
             ]
           },
           {
+            "id": "plagal_iv_iv",
+            "name": "IV–iv–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
             "id": "turnaround_i_vi7_ii7_v7",
             "name": "Turnaround I–VI7–II7–V7",
             "from": [
@@ -976,6 +1001,18 @@
         ],
         "blocks": [
           {
+            "id": "iv_sivo_i",
+            "name": "IV–♯IVo–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
             "id": "i_i7_iv_sivo_i",
             "name": "I–I7–IV–♯IVo–I",
             "from": [
@@ -984,6 +1021,18 @@
             ],
             "to": [
               4,
+              1
+            ]
+          },
+          {
+            "id": "i_i7_iv_sivo_i",
+            "name": "I–I7–IV–♯IVo–I",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              6,
               1
             ]
           },
@@ -1207,6 +1256,18 @@
             ],
             "to": [
               5,
+              1
+            ]
+          },
+          {
+            "id": "plagal_iv_iv",
+            "name": "IV–iv–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
               1
             ]
           },

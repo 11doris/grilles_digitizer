@@ -273,6 +273,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",
     "tags": [
+      "iv-minor-cadence",
       "tritone-sub"
     ],
     "sections": {
@@ -628,6 +629,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "plagal_iv_iv",
+            "name": "IV–iv–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
           {
             "id": "turnaround_1_vi7",
             "name": "Turnaround I–VI7–ii–V",

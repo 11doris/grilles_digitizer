@@ -299,8 +299,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABAB' standard",
     "tags": [
-      "ii-V-chains",
-      "circle-of-fifths"
+      "ii-V-chains"
     ],
     "sections": {
       "A": "I(maj7/6) then ii-V/ii into iv (Fm) with line-cliché, ending on chained ii-V turnarounds (Dm7b5-G7 to Cm-F7)",
@@ -570,7 +569,7 @@
             "id": "iiv_chain",
             "name": "ii–V chain",
             "from": [
-              6,
+              5,
               1
             ],
             "to": [
@@ -830,15 +829,15 @@
         ],
         "blocks": [
           {
-            "id": "circle_of_fifths",
-            "name": "Circle of fifths",
+            "id": "iiv_chain",
+            "name": "ii–V chain",
             "from": [
               4,
               1
             ],
             "to": [
-              7,
-              1
+              6,
+              3
             ]
           }
         ]

@@ -355,6 +355,7 @@
     "family": "32-bar ABAC standard",
     "tags": [
       "ii-V-chains",
+      "dominant-cycle",
       "tritone-sub",
       "passing-diminished"
     ],
@@ -1148,11 +1149,11 @@
             ]
           },
           {
-            "id": "cadence_ii7_v7_i",
-            "name": "Cadence II7–V7–I",
+            "id": "dominant_cycle",
+            "name": "Dominant cycle",
             "from": [
-              6,
-              1
+              5,
+              3
             ],
             "to": [
               7,

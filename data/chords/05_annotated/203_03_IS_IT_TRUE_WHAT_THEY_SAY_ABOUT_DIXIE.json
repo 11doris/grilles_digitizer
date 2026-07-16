@@ -292,6 +292,7 @@
   "harmonic_fingerprint": {
     "family": "32-bar ABAC standard",
     "tags": [
+      "ii-V-chains",
       "dominant-cycle",
       "tritone-sub",
       "passing-diminished"
@@ -490,10 +491,10 @@
         ],
         "blocks": [
           {
-            "id": "ii7_ii_v",
-            "name": "II7–ii–V",
+            "id": "iiv_chain",
+            "name": "ii–V chain",
             "from": [
-              6,
+              4,
               1
             ],
             "to": [
