@@ -190,9 +190,9 @@
     });
   }
 
-  /* Legend for the overlay symbols, at the bottom of the chords panel while
-     the overlay is on. Samples reuse the lane classes so they always match
-     what the lanes actually draw. */
+  /* Legend for the overlay symbols, shown below the variants (above the
+     collapsible Details/Tags block) while the overlay is on. Samples reuse the
+     lane classes so they always match what the lanes actually draw. */
   function renderAnalysisLegend() {
     const legend = el("div", "lane-legend");
     [
@@ -3292,11 +3292,13 @@
         if (head) { panel.appendChild(head); headPlaced = true; } // info below the grid
         const variants = renderVariants(tune, beats);
         if (variants) panel.appendChild(variants);
-        const extras = renderExtras(tune, beats);
-        if (extras) panel.appendChild(extras);
+        /* Overlay legend sits below the variants and above the collapsible
+           Details/Tags block. */
         if (state.showAnalysis && tune.harmonic_analysis) {
           panel.appendChild(renderAnalysisLegend());
         }
+        const extras = renderExtras(tune, beats);
+        if (extras) panel.appendChild(extras);
         addChordViewSwitch(panel, t, `${t.title || id} — original chord scan`);
       } else {
         panel.appendChild(scanImg(t.chord_image, `${t.title || id} — chord scan`));
