@@ -2493,6 +2493,8 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   color: var(--muted);
 }
 .lane-legend .lg-item { display: flex; align-items: center; gap: 0.55em; min-width: 0; }
+/* The ii–V bracket entries each occupy a full row of their own. */
+.lane-legend .lg-item.lg-break { flex-basis: 100%; }
 .lane-legend .lg-sample { width: 3em; flex: none; font-size: 1.2em; }
 .lane-legend .lg-sample > div { margin: 0; }
 .lane-legend .lane-region { padding-top: 0.05em; }

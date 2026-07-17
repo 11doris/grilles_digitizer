@@ -196,9 +196,10 @@
   function renderAnalysisLegend() {
     const legend = el("div", "lane-legend");
     [
-      ['<div class="lane-bracket"></div>', "ii–V"],
+      /* The two ii–V bracket entries each take their own line (lg-break). */
+      ['<div class="lane-bracket"></div>', "ii–V", true],
       ['<div class="lane-bracket dotted"></div>',
-        "ii–V with a tritone substitute (ii–subV, subii–V)"],
+        "ii–V with a tritone substitute (ii–subV, subii–V)", true],
       ['<div class="lane-arrow"></div>', "dominant resolves down a fifth"],
       ['<div class="lane-arrow half"></div>',
         "tritone substitute resolves down a half step"],
@@ -208,8 +209,8 @@
         "temporary key (lowercase = minor; solid line = section key)"],
       ['<div class="lane-block">&nbsp;</div>',
         "building block (turnaround, cadence, ii–V chain, …)"],
-    ].forEach(([sample, text]) => {
-      const item = el("div", "lg-item");
+    ].forEach(([sample, text, ownLine]) => {
+      const item = el("div", "lg-item" + (ownLine ? " lg-break" : ""));
       const s = el("div", "lg-sample");
       s.innerHTML = sample;
       const t = el("span", "lg-text");
