@@ -650,6 +650,9 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
      the full pane (the lattice itself caps at 58em and centres). */
   .panels:not(.dual) .panel.chords { width: 50%; align-self: center; }
   .panels:not(.dual) .panel.chords.show-boxes:not(.show-scan) { width: 100%; }
+  /* Melody hidden + the user zoomed in: let the lone chords grid spread to the
+     full pane width instead of the readable half-column (set in JS by fitAll). */
+  .panels:not(.dual) .panel.chords.zoom-wide { width: 100%; }
 }
 
 .panel img.scan {
@@ -2479,6 +2482,28 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 }
 .lane-block.cont-right { border-top-right-radius: 0; border-bottom-right-radius: 0; }
 .lane-block.cont-left { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+/* Blocks are tappable (the lane itself is click-through) to reveal the full,
+   possibly-truncated, name in the popover below. */
+.lane-block[data-full] { pointer-events: auto; cursor: pointer; }
+
+/* Tap-to-reveal popover for a truncated building-block label. Viewport-fixed
+   and positioned in JS; dismissed on the next tap, scroll or resize. */
+.block-popover {
+  position: fixed;
+  z-index: 70;
+  max-width: min(80vw, 22rem);
+  background: var(--panel);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  padding: 0.32rem 0.55rem;
+  font-size: 0.85rem;
+  line-height: 1.25;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+.block-popover[hidden] { display: none; }
 
 /* Legend for the overlay symbols, at the bottom of the chords panel while
    the overlay is on. Sample glyphs reuse the lane classes above. */
