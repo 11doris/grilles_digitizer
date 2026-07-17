@@ -728,6 +728,19 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 /* Segmented view switch (grid / book layout / scan) in the panel tools row. */
 .view-seg { display: inline-flex; gap: 0.25rem; }
 
+/* Harmonic-analysis controls (spelling switch + overlay toggle) sit on the LEFT
+   of the tools row, aligned with the grid/book-layout content — margin-right:auto
+   pushes them left while the view switch stays right. The spelling pills (C · C⁄ii
+   · ii) are a one-hot group, kept close together; a gap sets the independent
+   overlay (_¬) toggle apart. Hidden in scan view — they don't apply to the photo. */
+.analysis-tools {
+  display: inline-flex;
+  align-items: center;
+  margin-right: auto;
+}
+.analysis-tools .analysis-toggle { margin-left: 0.6rem; }
+.panel.show-scan .analysis-tools { display: none; }
+
 /* Desktop melody show/hide toggle (renderTune): a small pill in a panel's tools
    row. Hidden on phones — the Chords/Melody tabs handle switching there. The
    "hide" button rides on the melody panel (top-right, over the sheet/png); the
@@ -2475,11 +2488,13 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
   border-top: 1px solid var(--border);
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 1.6rem;
+  gap: 0.65rem 1.6rem;
   font-size: 1.0rem;
   color: var(--muted);
 }
 .lane-legend .lg-item { display: flex; align-items: center; gap: 0.55em; min-width: 0; }
+/* The ii–V bracket entries each occupy a full row of their own. */
+.lane-legend .lg-item.lg-break { flex-basis: 100%; }
 .lane-legend .lg-sample { width: 3em; flex: none; font-size: 1.2em; }
 .lane-legend .lg-sample > div { margin: 0; }
 .lane-legend .lane-region { padding-top: 0.05em; }

@@ -190,15 +190,16 @@
     });
   }
 
-  /* Legend for the overlay symbols, at the bottom of the chords panel while
-     the overlay is on. Samples reuse the lane classes so they always match
-     what the lanes actually draw. */
+  /* Legend for the overlay symbols, shown below the variants (above the
+     collapsible Details/Tags block) while the overlay is on. Samples reuse the
+     lane classes so they always match what the lanes actually draw. */
   function renderAnalysisLegend() {
     const legend = el("div", "lane-legend");
     [
-      ['<div class="lane-bracket"></div>', "ii–V"],
+      /* The two ii–V bracket entries each take their own line (lg-break). */
+      ['<div class="lane-bracket"></div>', "ii–V", true],
       ['<div class="lane-bracket dotted"></div>',
-        "ii–V with a tritone substitute (ii–subV, subii–V)"],
+        "ii–V with a tritone substitute (ii–subV, subii–V)", true],
       ['<div class="lane-arrow"></div>', "dominant resolves down a fifth"],
       ['<div class="lane-arrow half"></div>',
         "tritone substitute resolves down a half step"],
@@ -208,8 +209,8 @@
         "temporary key (lowercase = minor; solid line = section key)"],
       ['<div class="lane-block">&nbsp;</div>',
         "building block (turnaround, cadence, ii–V chain, …)"],
-    ].forEach(([sample, text]) => {
-      const item = el("div", "lg-item");
+    ].forEach(([sample, text, ownLine]) => {
+      const item = el("div", "lg-item" + (ownLine ? " lg-break" : ""));
       const s = el("div", "lg-sample");
       s.innerHTML = sample;
       const t = el("span", "lg-text");
@@ -789,8 +790,8 @@
     });
   }
 
-  /* Fingerprint families are free text with a long tail — families carried by
-     a single tune collapse into an "other" bucket to keep the dropdown short. */
+  /* Fingerprint families are free text with a long tail. Every family gets its
+     own entry (no "other" bucket) so the dropdown lists all forms. */
   function initFormFilter() {
     if (!formFilterEl) return;
     const counts = new Map();
@@ -806,15 +807,11 @@
     }
     const families = [...counts.keys()].sort((a, b) =>
       counts.get(b) - counts.get(a) || a.localeCompare(b));
-    rareFamilies = new Set(families.filter((f) => counts.get(f) < 2));
+    rareFamilies = new Set();
     const opts = ['<option value="">Form…</option>'];
-    families.filter((f) => !rareFamilies.has(f)).forEach((f) => {
+    families.forEach((f) => {
       opts.push(`<option value="${escapeHtml(f)}">${escapeHtml(f)} (${counts.get(f)})</option>`);
     });
-    if (rareFamilies.size) {
-      const n = [...rareFamilies].reduce((s, f) => s + counts.get(f), 0);
-      opts.push(`<option value="other">other (${n})</option>`);
-    }
     if (unknown) opts.push(`<option value="unknown">unknown (${unknown})</option>`);
     formFilterEl.innerHTML = opts.join("");
     formFilterEl.addEventListener("change", () => {
@@ -2491,13 +2488,16 @@
     });
     /* A persisted "scan" on a scan-less tune renders as the grid. */
     apply(buttons.has(state.chordView) ? state.chordView : "grid");
-    tools.appendChild(seg);
 
     /* Harmonic-analysis controls (spec §4), only for analyzed tunes: the
        3-way chord-spelling switch (absolute / hybrid / roman) and the
        independent overlay toggle (brackets, arrows, regions, blocks).
+       These sit on the LEFT of the tools row (.analysis-tools, pushed left by
+       margin-right:auto) so they align with the grid/book-layout content, and
+       are hidden in scan view (they don't apply to the original photo).
        Both re-render the tune in place, preserving zoom and scroll. */
     if (t.has_chord_json && meta(t).harmonic_analysis) {
+      const analysisTools = el("div", "analysis-tools");
       const rerender = () => {
         const scroll = detailPaneEl.scrollTop;
         renderTune(state.currentId);
@@ -2524,7 +2524,7 @@
         });
         spell.appendChild(btn);
       });
-      tools.appendChild(spell);
+      analysisTools.appendChild(spell);
 
       const ovBtn = el("button", "scan-toggle analysis-toggle");
       ovBtn.type = "button";
@@ -2539,8 +2539,10 @@
         saveSwitch("grilles.showAnalysis", state.showAnalysis);
         rerender();
       });
-      tools.appendChild(ovBtn);
+      analysisTools.appendChild(ovBtn);
+      tools.appendChild(analysisTools);
     }
+    tools.appendChild(seg);
     panel.prepend(tools);
   }
 
@@ -3291,11 +3293,13 @@
         if (head) { panel.appendChild(head); headPlaced = true; } // info below the grid
         const variants = renderVariants(tune, beats);
         if (variants) panel.appendChild(variants);
-        const extras = renderExtras(tune, beats);
-        if (extras) panel.appendChild(extras);
+        /* Overlay legend sits below the variants and above the collapsible
+           Details/Tags block. */
         if (state.showAnalysis && tune.harmonic_analysis) {
           panel.appendChild(renderAnalysisLegend());
         }
+        const extras = renderExtras(tune, beats);
+        if (extras) panel.appendChild(extras);
         addChordViewSwitch(panel, t, `${t.title || id} — original chord scan`);
       } else {
         panel.appendChild(scanImg(t.chord_image, `${t.title || id} — chord scan`));
