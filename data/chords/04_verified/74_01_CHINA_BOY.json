@@ -1,0 +1,269 @@
+{
+  "style": "TRADITIONAL",
+  "tempo": "FAST",
+  "form": "32 A B C D",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 27",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 3,
+          "bar": 3
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "G7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Bbm"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "CHINA BOY",
+  "page": 74,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "H.Large 29- J.Mc Partland 39- B.Hardman 38- Is.Jones 34- P.Whiteman 29",
+    "B.Wilson 33- L.Hampton 54- D.Polo 39",
+    "Jazz et Tom Hall 46- 0.Peterson 45",
+    "F.Trumbauer 34.46- T.Wilson 39.41.45",
+    "B.Grappelli 35- B.Goodman 36.46.55",
+    "R.McKenzie/E.Condon 27- T.Hill 37",
+    "C.Pierce 29- R.Nichols 30-",
+    "S.Bechet 40.50- B.Freeman 39"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '12 VERSE'."
+  },
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "D7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bbm"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Gm7b5",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "F"
+              }
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "C7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Fo7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Fo7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "F"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,390 @@
+{
+  "composer": "Shelton BROOKS",
+  "year": "1910",
+  "style": "DIXIELAND STANDARD",
+  "tempo": "FAST",
+  "form": "16 A A' | 32 A B C D",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 25",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 3,
+          "bar": 1
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Bb"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Bo7"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "SOME OF THESE DAYS",
+  "page": 376,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "R.Allen",
+    "M.Bechet",
+    "B.Bunk",
+    "J.Dorsey",
+    "J.Vau",
+    "L.Ar",
+    "Bing"
+  ],
+  "notation_notes": {
+    "verse_bar5_C": "Verse row 1 bar 5 shows F with a small inset box marked 'Db9' (read as F to Db9).",
+    "recordings_cut": "Margin recording credits are heavily cropped on both sides; transcribed as best readable."
+  },
+  "strains": [
+    {
+      "name": "verse",
+      "role": "verse",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F",
+                "3": "F#(#5)"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F",
+                "4": "Dm7b5"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "C",
+                "3": "C#o7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Dm7",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "C7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F",
+                "3": "F#(#5)"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "E7",
+                "3": "E7b5"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "A7"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "A7/5"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "A7/5"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "A7/5"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "A7/5"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Dm"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "C7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bb"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Bb"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Gm"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Gm"
+              }
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Fo7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Fo7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "F"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

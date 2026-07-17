@@ -743,6 +743,42 @@
         ],
         "blocks": [
           {
+            "id": "i_iii7_vi",
+            "name": "I–III7–vi",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "iih_v7_i",
+            "name": "iiø–V7–I",
+            "from": [
+              8,
+              1
+            ],
+            "to": [
+              9,
+              1
+            ]
+          },
+          {
+            "id": "v_i7_iv",
+            "name": "v–I7–IV",
+            "from": [
+              10,
+              1
+            ],
+            "to": [
+              11,
+              1
+            ]
+          },
+          {
             "id": "iiv_chain",
             "name": "ii–V chain",
             "from": [
@@ -1002,6 +1038,42 @@
         ],
         "blocks": [
           {
+            "id": "i_iii7_vi",
+            "name": "I–III7–vi",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "iih_v7_i",
+            "name": "iiø–V7–I",
+            "from": [
+              8,
+              1
+            ],
+            "to": [
+              9,
+              1
+            ]
+          },
+          {
+            "id": "v_i7_iv",
+            "name": "v–I7–IV",
+            "from": [
+              10,
+              1
+            ],
+            "to": [
+              11,
+              1
+            ]
+          },
+          {
             "id": "iiv_chain",
             "name": "ii–V chain",
             "from": [
@@ -1164,6 +1236,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "ii_v7_iii",
+            "name": "ii–V7–iii",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
           {
             "id": "turnaround_3625",
             "name": "Turnaround iii–vi–ii–V",
@@ -1423,6 +1507,42 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_iii7_vi",
+            "name": "I–III7–vi",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "iih_v7_i",
+            "name": "iiø–V7–I",
+            "from": [
+              8,
+              1
+            ],
+            "to": [
+              9,
+              1
+            ]
+          },
+          {
+            "id": "v_i7_iv",
+            "name": "v–I7–IV",
+            "from": [
+              10,
+              1
+            ],
+            "to": [
+              11,
+              1
+            ]
+          },
           {
             "id": "iiv_chain",
             "name": "ii–V chain",

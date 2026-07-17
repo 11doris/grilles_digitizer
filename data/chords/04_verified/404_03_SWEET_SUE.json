@@ -1,0 +1,326 @@
+{
+  "composer": "Victor YOUNG – Will J. HARRIS",
+  "year": "1928",
+  "style": "TRADITIONAL JAZZ",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A A B A'",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 17",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 2,
+          "bar": 1
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "G7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Gb7"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "F7"
+          }
+        },
+        {
+          "bar": 4,
+          "beats": {
+            "1": "E7"
+          }
+        }
+      ]
+    },
+    {
+      "applies_to": "Bar 29",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 3,
+          "bar": 5
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "G",
+            "3": "G7/3"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "C6",
+            "3": "C#o7"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "G6/5"
+          }
+        },
+        {
+          "bar": 4,
+          "beats": {
+            "1": "G6"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "SWEET SUE",
+  "page": 404,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "recordings": [
+    "M.Barlcp 37- M.L.Page 51- L.Armstrong 33",
+    "S.Bechet 40- T.Dorsey 38- B.Goodman 36.38",
+    "S.Grappelli 41.72- S.Hague 33- W.Lewis 36",
+    "J.Lunceford 38- R.Braff 55- J.Noone 28-",
+    "Quintette HCF 35.40- D.Redman 37- D.Wells 37- E.Clarke 36",
+    "F.Waller 35.35.39- P.Whiteman 28- C.Basie 58- B.Clayton 5",
+    "M.Davis 56- E.Garner 53.54- E.Hines 65- W.the Lion Smith",
+    "Mills Brothers 31- B.Dodge 34- R.Weston55- E.Larkins 58",
+    "L.L.Williams 55- Ch.Webb 37- G.Auld 40- S.Amussen",
+    "A.Shaw 39- C.Barber 58.59- Gregor 29- G.Austin 39"
+  ],
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Am7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Am7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "G6"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G6",
+                "3": "D7b9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "G6"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "G6"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Am7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Am7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "G6"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G6",
+                "3": "D7b9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "G6"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "G6"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "G"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bm/5"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bm7b5/5"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "E7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Am",
+                "3": "Am(maj7)"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Am7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Am7b5"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "D7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Am7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Am7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "G6"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G6",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "G6"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "G6"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

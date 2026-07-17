@@ -1,0 +1,277 @@
+{
+  "composer": "Vincent YOUMANS – Billy ROSE – Edward ELISCU",
+  "year": "1929",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "32 A A' B A'",
+  "time_signature": "4/4",
+  "title": "MORE THAN YOU KNOW",
+  "page": 276,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "recordings": [
+    "Shearing 41- J.Rushing 70",
+    "McRae 75- O.Peterson 51.59",
+    "Rollins 54- P.Gonsalves 60",
+    "Garner 40- Mild.Bailey 36",
+    "Hawkins 61- E.Hawkins 55",
+    "on.Jones 61- M.Spanier 42",
+    "Newman 60- C.Basie 41",
+    "Goodman 36.40.58- B.Carter 39",
+    "Ryan 55.60- A.Tatum 55",
+    "Wilson 39- E.Fitzgerald 57"
+  ],
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb",
+                "3": "Bb7#5"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bbm7",
+                "3": "Eb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Ab",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Fm/3",
+                "3": "Abm"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb7",
+                "3": "F7/3"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Abmaj7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb",
+                "3": "Bb7#5"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bbm7",
+                "3": "Eb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Ab",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F7/5",
+                "3": "Abm6"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb",
+                "3": "Ab"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb",
+                "3": "D7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Gm",
+                "3": "(Em7b5)"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Am7b5",
+                "4": "D9#5"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Gm",
+                "3": "Gm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Em7b5",
+                "3": "Ebm6"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb/5",
+                "3": "Gm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "C7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7#5"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb",
+                "3": "Bb7#5"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bbm7",
+                "3": "Eb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Ab",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F7",
+                "3": "Abm6"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb",
+                "3": "Ab"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,818 @@
+{
+  "composer": "Miles DAVIS",
+  "style": "HARD BOP",
+  "tempo": "FAST",
+  "form": "32 A B A B'",
+  "time_signature": "4/4",
+  "title": "TUNE UP",
+  "page": 436,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "composer_note": "Header prints 'Miles DAVIS ? - supposed to be composed by Eddie Cleanhead VINSON (1937?)'.",
+    "dash_expansion": "Third printed row (A1) is a leading-arrow row copying section A positionally; empty/dash boxes take the same-position bar from A."
+  },
+  "recordings": [
+    "Davis 53.56- W.Montgomery 60",
+    "L.Jones 56- L.Levy 56- H.Roach 59",
+    "H.Levey 55- M.Solal 78- S.Stitt 59",
+    "k.Lean 57- M.Alexander 79",
+    "Collins 58- S.Getz 83- C.Baker 59",
+    "C.Johnson 56- R.Drrreger 57",
+    "..rvenntes 56- R.Fol 5?"
+  ],
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Em7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dmaj7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Dmaj7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Dm7b5"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Cmaj7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Cmaj7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bbmaj7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Gm7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Em7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bbmaj7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "A7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Em7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dmaj7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Dmaj7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Dm7b5"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Cmaj7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Cmaj7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bbmaj7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Gm7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Em7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Dmaj7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Dmaj7"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "key": {
+    "tonic": "D",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "Bb",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "ii",
+    "quality": "min",
+    "chord": "Em7"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "5e2014cffe45ff31e03197c41bc62b187df48ae31c4a73870a9c411819964953",
+    "scorer": {
+      "tonic": "D",
+      "mode": "major",
+      "margin": 0.3241,
+      "section_keys": {
+        "B": {
+          "tonic": "Bb",
+          "mode": "major",
+          "margin": 1.0
+        }
+      }
+    },
+    "llm": {
+      "tonic": "D",
+      "mode": "major",
+      "confidence": "high",
+      "modulation_note": "Descending whole-step ii-V-I sequence; A moves D→C, B centers on Bb before returning via A7 to D",
+      "section_keys": {
+        "B": {
+          "tonic": "Bb",
+          "mode": "major"
+        }
+      }
+    },
+    "human": {
+      "tonic": "D",
+      "mode": "major",
+      "corrected": false
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar ABAB' standard",
+    "tags": [
+      "modulates",
+      "circle-of-fifths"
+    ],
+    "sections": {
+      "A": "ii-V-I in D (Em7-A7-Dmaj7) then ii-V-I down a step to C (Dm7b5-G7-Cmaj7)",
+      "B": "ii-V-I in Bb (Cm7-F7-Bbmaj7), then sequence back toward Bb ending on A7 (V/D)",
+      "A1": "Repeat of A: ii-V-I in D then ii-V-I in C",
+      "B1": "ii-V-I in Bb then Gm7-Em7-A7 cadencing back to Dmaj7 (home)"
+    },
+    "modulates": true,
+    "modulation_note": "Descending whole-step ii-V-I sequence; A moves D→C, B centers on Bb before returning via A7 to D"
+  },
+  "harmonic_analysis": {
+    "version": 1,
+    "parts": {
+      "A": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "iiø7"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "IΔ"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "type": "to_minor",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "regions": [
+          {
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ],
+            "tonic": "C",
+            "mode": "major",
+            "kind": "modulation",
+            "confidence": 0.75
+          }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ]
+      },
+      "B": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "#iv7"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "VII7"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          }
+        ],
+        "regions": [
+          {
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ],
+            "tonic": "Bb",
+            "mode": "major",
+            "kind": "section",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "A1": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "iiø7"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "IΔ"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "type": "to_minor",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "regions": [
+          {
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ],
+            "tonic": "C",
+            "mode": "major",
+            "kind": "modulation",
+            "confidence": 0.75
+          }
+        ],
+        "blocks": [
+          {
+            "id": "circle_of_fifths",
+            "name": "Circle of fifths",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ]
+      },
+      "B1": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "IΔ"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ],
+        "regions": [
+          {
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ],
+            "tonic": "Bb",
+            "mode": "major",
+            "kind": "tonicization",
+            "confidence": 1.0
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "cadence_251",
+            "name": "ii–V–I",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          }
+        ]
+      }
+    },
+    "flags": [
+      "part A: low-confidence modulation to C major (confidence 0.75)",
+      "part A1: low-confidence modulation to C major (confidence 0.75)"
+    ]
+  }
+}

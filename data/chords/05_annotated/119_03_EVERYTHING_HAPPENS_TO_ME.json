@@ -536,6 +536,18 @@
         ],
         "blocks": [
           {
+            "id": "ii_v7_iii",
+            "name": "ii–V7–iii",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
             "id": "iiv_chain",
             "name": "ii–V chain",
             "from": [
@@ -736,6 +748,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "ii_v7_iii",
+            "name": "ii–V7–iii",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
           {
             "id": "iiv_chain",
             "name": "ii–V chain",
@@ -954,6 +978,30 @@
         ],
         "blocks": [
           {
+            "id": "v_i7_iv",
+            "name": "v–I7–IV",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
+            "id": "v_i7_iv",
+            "name": "v–I7–IV",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
             "id": "iiv_chain",
             "name": "ii–V chain",
             "from": [
@@ -1142,6 +1190,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "ii_v7_iii",
+            "name": "ii–V7–iii",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
           {
             "id": "iiv_chain",
             "name": "ii–V chain",

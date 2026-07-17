@@ -1,0 +1,292 @@
+{
+  "composer": "Jimmy VAN HEUSEN – Johnny BURKE",
+  "year": "1944",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A B A B'",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 15",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 1,
+          "bar": 7
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Gm7",
+            "3": "Am7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Bbmaj7",
+            "3": "C7"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "IT COULD HAPPEN TO YOU",
+  "page": 206,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "recordings": [
+    "S.Rollins 57.65- K.Dorham 61- E.Davis 61-",
+    "M.Alexander 76- U.Green 67- R.Garland 58",
+    "J.McLean 55- Sh.Scott 58- J.J.Johnson 57",
+    "O.Peterson 55- B.Powell 51- B.Goodman 58",
+    "W.Davis 52.56- B.Evans 61- M.Ferguson 60",
+    "E.Garner 50- C.Baker 58- B.Brookmeyer 59",
+    "M.K.Cole/S.Kenton 50- T.Akiyoshi 54",
+    "S.Clark 57- C.Perkins 55- A.Jamal 54.58",
+    "J.Ammons 61- H.Hawes 68"
+  ],
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Fmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Am7b5",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Gm"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Bm7b5",
+                "3": "E7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Am7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bbmaj7",
+                "3": "Bb6"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Am7b5",
+                "3": "D7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Gm9"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Eb9/5"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Am7",
+                "3": "Dm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Em7",
+                "3": "A7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Dm",
+                "3": "Dm(maj7)"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Dm7",
+                "3": "G9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Gm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Gm7/4",
+                "3": "Gb7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Fmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Am7b5",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Gm"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Bm7b5",
+                "3": "E7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Am7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bbmaj7",
+                "3": "Bb6"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Am7b5",
+                "3": "D7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Gm9"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Eb9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Fmaj7",
+                "3": "Bbmaj7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Am7b5",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Gm7",
+                "3": "Db7b9"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Gm7",
+                "3": "Cb7b9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "F"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

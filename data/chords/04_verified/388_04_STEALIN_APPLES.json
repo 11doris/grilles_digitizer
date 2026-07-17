@@ -1,0 +1,250 @@
+{
+  "composer": "Thomas Fats WALLER – Andy RAZAF",
+  "year": "1936",
+  "style": "SWING ERA",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "STEALIN' APPLES",
+  "page": 388,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '12 VERSE'."
+  },
+  "recordings": [
+    "H.James 54- F.Henderson 36.37",
+    "B.Goodman 48.62- B.Moten 36",
+    "C.Thornhill 42- A.Ervin",
+    "P.Hucko 60- A.Shaw 77",
+    "Jazz Club American Hot Band 45",
+    "R.Svensson 52"
+  ],
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "D"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "D"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "D",
+                "3": "B7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "E7",
+                "3": "A7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "G#7",
+                "3": "B7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "E7",
+                "3": "A7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "D"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "D"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "D",
+                "3": "B7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "E7",
+                "3": "A7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "D"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "D"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Gm7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Gm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "A7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "D"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "D"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "D",
+                "3": "B7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "E7",
+                "3": "A7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "D"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "D"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

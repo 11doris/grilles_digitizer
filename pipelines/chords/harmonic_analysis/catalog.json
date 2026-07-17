@@ -150,5 +150,117 @@
     "pattern": "I:any V:dom I:any V:dom",
     "max_bars": 8,
     "generic": true
+  },
+  {
+    "id": "i_ii_v7",
+    "name": "I–ii–V7",
+    "pattern": "I:maj ii:min V:dom",
+    "max_bars": 6,
+    "generic": true
+  },
+  {
+    "id": "i_ii_iii",
+    "name": "I–ii–iii",
+    "pattern": "I:maj ii:min iii:min",
+    "max_bars": 6,
+    "generic": true
+  },
+  {
+    "id": "ii_v7_iii",
+    "name": "ii–V7–iii",
+    "pattern": "ii:min V:dom iii:min",
+    "max_bars": 6,
+    "generic": true
+  },
+  {
+    "id": "iii7_vi_ii7",
+    "name": "III7–vi–II7",
+    "pattern": "III:dom vi:min II:dom",
+    "max_bars": 6,
+    "generic": true
+  },
+  {
+    "id": "ii_v7_ii_v7_i",
+    "name": "ii–V7–ii–V7–I",
+    "pattern": "ii:min V:dom ii:min V:dom I:maj",
+    "max_bars": 8,
+    "generic": true
+  },
+  {
+    "id": "i_ii7_v7",
+    "name": "I–II7–V7",
+    "pattern": "I:maj II:dom V:dom",
+    "max_bars": 6,
+    "generic": true
+  },
+  {
+    "id": "iii_vi7_ii_v7_i",
+    "name": "iii–VI7–ii–V7–I",
+    "pattern": "iii:min VI:dom ii:min V:dom I:maj",
+    "max_bars": 8,
+    "generic": true
+  },
+  {
+    "id": "i_iii7_vi",
+    "name": "I–III7–vi",
+    "pattern": "I:maj III:dom vi:min",
+    "max_bars": 6,
+    "generic": true
+  },
+  {
+    "id": "v_i7_iv",
+    "name": "v–I7–IV",
+    "pattern": "v:min I:dom IV:maj",
+    "max_bars": 6,
+    "generic": true
+  },
+  {
+    "id": "iih_v7_i",
+    "name": "iiø–V7–I",
+    "pattern": "ii:m7b5 V:dom I:maj",
+    "max_bars": 6,
+    "generic": true
+  },
+  {
+    "id": "v7_v_i7",
+    "name": "V7–v–I7",
+    "pattern": "V:dom v:min I:dom",
+    "max_bars": 6,
+    "generic": true
+  },
+  {
+    "id": "iiih_vi7_ii",
+    "name": "iiiø–VI7–ii",
+    "pattern": "iii:m7b5 VI:dom ii:min",
+    "max_bars": 6,
+    "generic": true
+  },
+  {
+    "id": "i_iii_vi7",
+    "name": "I–iii–VI7",
+    "pattern": "I:maj iii:min VI:dom",
+    "max_bars": 6,
+    "generic": true
+  },
+  {
+    "id": "v7_ii7_v7",
+    "name": "V7–II7–V7",
+    "pattern": "V:dom II:dom V:dom",
+    "max_bars": 6,
+    "generic": true
+  },
+  {
+    "id": "bvii7_vi7_ii7",
+    "name": "♭VII7–VI7–II7",
+    "pattern": "bVII:dom VI:dom II:dom",
+    "max_bars": 6,
+    "generic": true
+  },
+  {
+    "id": "iii_vi_ii7",
+    "name": "iii–vi–II7",
+    "pattern": "iii:min vi:min II:dom",
+    "max_bars": 6,
+    "generic": true
   }
 ]

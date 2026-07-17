@@ -126,6 +126,8 @@
              name behind an ellipsis instead of collapsing to a bare sliver */
           label: r === a.row ? label
             : band === "blocks" && label ? "… " + label : null,
+          /* clean name kept for the tap-to-reveal popover (blocks only) */
+          full: band === "blocks" ? label : null,
         });
       }
     };
@@ -160,6 +162,12 @@
         t.textContent = p.label;
         seg.appendChild(t);
       }
+      /* Block labels truncate to their column; carry the full name for the
+         tap-to-reveal popover and as a hover title on desktop. */
+      if (p.full) {
+        seg.dataset.full = p.full;
+        seg.title = p.full;
+      }
       lane.appendChild(seg);
     });
     return lane;
@@ -189,6 +197,47 @@
       });
     });
   }
+
+  /* Building-block labels are truncated to fit their lane column (an ellipsis on
+     mobile, where the grid is narrow and hover isn't available). A tap on a block
+     reveals its full name in a small popover, dismissed on the next tap, a scroll
+     or a resize. One shared popover element serves every block. */
+  let blockPopover = null;
+  function hideBlockPopover() {
+    if (blockPopover && !blockPopover.hidden) {
+      blockPopover.hidden = true;
+      blockPopover._for = null;
+    }
+  }
+  function showBlockPopover(seg) {
+    const full = seg.dataset.full;
+    if (!full) return;
+    if (!blockPopover) {
+      blockPopover = el("div", "block-popover");
+      blockPopover.hidden = true;
+      document.body.appendChild(blockPopover);
+    }
+    if (blockPopover._for === seg && !blockPopover.hidden) { // tap again to close
+      hideBlockPopover();
+      return;
+    }
+    blockPopover.textContent = full;
+    blockPopover.hidden = false;
+    blockPopover._for = seg;
+    const r = seg.getBoundingClientRect();
+    const pr = blockPopover.getBoundingClientRect(); // now that it's laid out
+    let left = r.left + r.width / 2 - pr.width / 2;
+    left = Math.max(6, Math.min(left, window.innerWidth - pr.width - 6));
+    let top = r.top - pr.height - 6; // above the block…
+    if (top < 6) top = r.bottom + 6; // …or below when there's no room
+    blockPopover.style.left = left.toFixed(1) + "px";
+    blockPopover.style.top = top.toFixed(1) + "px";
+  }
+  document.addEventListener("click", (e) => {
+    const seg = e.target.closest(".lane-block[data-full]");
+    if (seg) showBlockPopover(seg);
+    else if (!e.target.closest(".block-popover")) hideBlockPopover();
+  });
 
   /* Legend for the overlay symbols, shown below the variants (above the
      collapsible Details/Tags block) while the overlay is on. Samples reuse the
@@ -243,6 +292,7 @@
      header + tabs, persistent footer, and the three bottom/card sheets. */
   const filtersBtn = document.getElementById("filtersBtn");
   const settingsBtn = document.getElementById("settingsBtn");
+  const clearFiltersBtn = document.getElementById("clearFiltersBtn");
   const filterBadge = document.getElementById("filterBadge");
   const backBtn = document.getElementById("backBtn");
   const sidebarOpenBtn = document.getElementById("sidebarOpenBtn");
@@ -518,7 +568,35 @@
     filterBadge.textContent = String(n);
     filterBadge.hidden = n === 0;
     filtersBtn.classList.toggle("on", n > 0);
+    if (clearFiltersBtn) clearFiltersBtn.disabled = n === 0; // nothing to clear
   }
+
+  /* "Clear all filters" (Filters sheet): reset every list filter to its default
+     and resync each control, the badge and the list in one pass. Search text is
+     left alone — it's a separate control, not part of the filter set. */
+  function clearAllFilters() {
+    state.chordsOnly = false;
+    state.startsOn = "";
+    state.keyFilter = "";
+    state.formFilter = "";
+    state.styleFilter = "";
+    state.yearFilter = "";
+    state.blockFilter = "";
+    state.tagFilter.clear();
+    try {
+      localStorage.setItem("grilles.chordsOnly", "0"); // the one persisted filter
+    } catch (e) { /* ignore */ }
+    chordFilterBtn.classList.remove("on");
+    chordFilterBtn.setAttribute("aria-pressed", "false");
+    [startsOnEl, keyFilterEl, formFilterEl, styleFilterEl, yearFilterEl, blockFilterEl]
+      .forEach((sel) => { if (sel) { sel.value = ""; sel.classList.remove("on"); } });
+    tagFilterLabel(); // button text + on-state
+    if (tagFilterMenu && !tagFilterMenu.hidden) renderTagMenu(); // uncheck open menu
+    updateFilterBadge();
+    refilterList(true);
+  }
+
+  if (clearFiltersBtn) clearFiltersBtn.addEventListener("click", clearAllFilters);
 
   /* --------------------------------------------- fullscreen scan overlay */
 
@@ -3208,6 +3286,7 @@
   function renderTune(id) {
     const t = tuneById(id);
     if (!t) return;
+    hideBlockPopover(); // the block it pointed at is about to be replaced
     /* A genuine tune change resets the per-tune transposition, zoom and scroll;
        re-rendering the same tune (e.g. after picking a new key) preserves them. */
     const isNewTune = id !== state.currentId;
@@ -3582,7 +3661,24 @@
     });
   }
 
+  /* When no melody is shown, the lone chords panel normally keeps a readable
+     half-width column (CSS). Zooming the grid past its default size is the
+     user's signal to spread into the whole pane, so grant the panel full width
+     then — fitGridWidth below re-measures against the wider room. Runs first so
+     the width is settled before anything measures. */
+  function updateChordWidth() {
+    const panel = paneEl.querySelector(".panel.chords");
+    if (!panel) return;
+    const panels = paneEl.querySelector(".panels");
+    const dual = panels ? panels.classList.contains("dual") : false;
+    const gridView = !panel.classList.contains("show-boxes") &&
+      !panel.classList.contains("show-scan");
+    panel.classList.toggle("zoom-wide",
+      isWide() && !dual && gridView && state.gridZoom > 1);
+  }
+
   function fitAll() {
+    updateChordWidth();
     fitGrid();
     fitGridWidth();
     syncVariantGrids();
@@ -3591,9 +3687,13 @@
 
   let resizeTimer = null;
   window.addEventListener("resize", () => {
+    hideBlockPopover(); // its fixed position would otherwise go stale
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(fitAll, 150);
   });
+  /* The popover is viewport-fixed, so any scroll of the detail pane detaches it
+     from its block — dismiss it rather than let it float. */
+  detailPaneEl.addEventListener("scroll", hideBlockPopover, { passive: true });
 
   /* Crossing the 860px seam swaps the detail pane between tabbed (narrow) and
      side-by-side (wide) layouts, so re-apply the panels for the current tune. */
