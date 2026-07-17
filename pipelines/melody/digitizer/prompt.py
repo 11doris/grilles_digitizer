@@ -9,6 +9,7 @@ from .examples import EXAMPLE_ABC, EXAMPLE_INPUT_SUMMARY
 from .skeleton import Skeleton
 
 TOOL_NAME = "transcribe_melody"
+REPAIR_TOOL_NAME = "resolve_bars"
 
 
 def _body_after_key(abc: str) -> str:
@@ -53,6 +54,34 @@ TRANSCRIBE_TOOL = {
             },
         },
         "required": ["printed_key", "abc_body", "uncertain_bars"],
+    },
+}
+
+REPAIR_TOOL = {
+    "name": REPAIR_TOOL_NAME,
+    "description": "Return the resolved ABC for each flagged bar.",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "bars": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "bar": {"type": "integer",
+                                "description": "the flagged bar number"},
+                        "abc": {"type": "string",
+                                "description": "the corrected ABC for this bar "
+                                "only (no barlines, no label), summing to the "
+                                "meter"},
+                        "confident": {"type": "boolean",
+                                      "description": "false if still unsure"},
+                    },
+                    "required": ["bar", "abc", "confident"],
+                },
+            },
+        },
+        "required": ["bars"],
     },
 }
 
@@ -162,9 +191,7 @@ def _chord_anchor_lines(skeleton: Skeleton) -> str:
     return "\n".join(out)
 
 
-def build_user_content(skeleton: Skeleton, image_b64: str,
-                       media_type: str) -> list[dict]:
-    """The per-tune user message: image + identity + plan + chord anchors."""
+def _tune_context(skeleton: Skeleton) -> str:
     composer = skeleton.composer or "unknown"
     year = f", {skeleton.year}" if skeleton.year else ""
     plan_lines = "\n".join(
@@ -173,7 +200,7 @@ def build_user_content(skeleton: Skeleton, image_b64: str,
     if skeleton.needs_printed_key:
         key_hint += (" (analyzed key is minor; the page likely prints a reduced "
                      "signature — report what you see)")
-    text = f"""\
+    return f"""\
 This is "{skeleton.title}" ({composer}{year}), the jazz standard. Meter
 {skeleton.meter}, L:1/8. Analyzed key {skeleton.key_tonic} {skeleton.key_mode};
 printed key signature to confirm: {key_hint}.
@@ -183,13 +210,84 @@ Section plan (labels and bar counts — your abc_body MUST match these exactly):
 
 Per-bar chord anchors (for locating bars and as a harmonic tiebreak ONLY —
 never write chords into the melody):
-{_chord_anchor_lines(skeleton)}
+{_chord_anchor_lines(skeleton)}"""
+
+
+def build_user_content(skeleton: Skeleton, image_b64: str,
+                       media_type: str) -> list[dict]:
+    """Pass A message: the full-page crop + identity + plan + chord anchors."""
+    text = (_tune_context(skeleton) + f"""
 
 Transcribe the melody now. Reproduce the manuscript's beaming (adjacency),
 octaves (case), durations, ties/slurs, and rests. Include the pickup if the
-tune has one. Call {TOOL_NAME}."""
+tune has one. Call {TOOL_NAME}.""")
     return [
         {"type": "image",
          "source": {"type": "base64", "media_type": media_type, "data": image_b64}},
         {"type": "text", "text": text},
     ]
+
+
+def build_pass_b_content(skeleton: Skeleton,
+                         tiles: list[tuple[str, str, str]]) -> list[dict]:
+    """Pass B message: per-system overlay strips with the pitch ruler.
+
+    `tiles` = [(label, base64_png, media_type)] in reading order (top system
+    first, left half then right). The ruler legend tells the model how to read
+    pitch from the colored dashes — this is the decorrelated evidence that the
+    full-page Pass A lacks."""
+    from .strips import OVERLAY_LEGEND
+
+    content: list[dict] = [{"type": "text", "text": _tune_context(skeleton)}]
+    content.append({"type": "text", "text": OVERLAY_LEGEND})
+    for label, b64, media_type in tiles:
+        content.append({"type": "text", "text": f"--- {label} ---"})
+        content.append({"type": "image", "source": {
+            "type": "base64", "media_type": media_type, "data": b64}})
+    content.append({"type": "text", "text": f"""
+Read the melody from these ruler-annotated strips (they are the SAME tune, top
+system to bottom, left half then right half). Use the RED/GREEN/BLUE ruler to
+fix each notehead's pitch and octave precisely. Reproduce beaming (adjacency),
+durations, ties/slurs, rests; include the pickup if any. Your abc_body must
+match the section plan exactly. Call {TOOL_NAME}."""})
+    return content
+
+
+def build_repair_content(skeleton: Skeleton,
+                         items: list[dict],
+                         tiles_by_system: dict[int, tuple[str, str]]
+                         ) -> list[dict]:
+    """Repair message: for each flagged bar, the two candidate readings, the
+    calibrated head-centroid measurements, the chord, and the zoomed strip.
+
+    `items` = [{"bar", "system", "chord", "read_a", "read_b", "measure",
+                "reason"}]. `tiles_by_system` = {system_index: (b64, media)}.
+    Returns content that asks the model to decide each bar via the repair tool.
+    """
+    lines = [_tune_context(skeleton), "", "Resolve each flagged bar below. For "
+             "each, you are given two candidate readings (Pass A full-page, "
+             "Pass B ruler strips), a deterministic pixel measurement of the "
+             "noteheads, the bar's chord, and the meter constraint. Decide the "
+             "correct ABC for each bar (it MUST sum to the meter)."]
+    seen_systems: list[int] = []
+    for it in items:
+        lines.append(
+            f"\nBAR {it['bar']} (system {it['system']}, chord {it['chord']}): "
+            f"reason {it.get('reason','')}\n"
+            f"  Pass A: {it['read_a']}\n"
+            f"  Pass B: {it['read_b']}\n"
+            f"  pixel measurement: {it['measure']}")
+        if it["system"] not in seen_systems:
+            seen_systems.append(it["system"])
+    content: list[dict] = [{"type": "text", "text": "\n".join(lines)}]
+    for sysno in seen_systems:
+        tile = tiles_by_system.get(sysno)
+        if tile is None:
+            continue
+        b64, media = tile
+        content.append({"type": "text", "text": f"--- system {sysno} (ruler) ---"})
+        content.append({"type": "image", "source": {
+            "type": "base64", "media_type": media, "data": b64}})
+    content.append({"type": "text", "text":
+                    "Return the corrected bars. Call " + REPAIR_TOOL_NAME + "."})
+    return content

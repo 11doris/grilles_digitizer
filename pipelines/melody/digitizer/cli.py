@@ -113,9 +113,9 @@ def cmd_score(cfg: Config, wip: Path, verified: Path) -> int:
     return 0
 
 
-def cmd_read(cfg: Config, stems: list[str], render: bool) -> int:  # noqa: C901
-    """Phase-2 single-read E2E for one or more tunes (spends API budget)."""
-    from .runner import read_one
+def cmd_read(cfg: Config, stems: list[str], render: bool, dual: bool) -> int:  # noqa: C901
+    """Single- or dual-read E2E for one or more tunes (spends API budget)."""
+    from .runner import read_dual, read_one
     from .vlm import VLMClient
 
     units, _ = load_units(cfg)
@@ -129,11 +129,13 @@ def cmd_read(cfg: Config, stems: list[str], render: bool) -> int:  # noqa: C901
             print(f"{stem}: {exc}")
             worst = max(worst, 2)
             continue
-        out = read_one(cfg, client, unit)
+        out = read_dual(cfg, client, unit) if dual else read_one(cfg, client, unit)
         total_cost += out.cost
-        n_flags = len(out.flags)
-        print(f"\n=== {stem}  [{out.status}]  {out.attempts} call(s)  "
-              f"${out.cost:.3f}  key={out.printed_key}  flags={n_flags}")
+        calls = getattr(out, "calls", None) or getattr(out, "attempts", 0)
+        flags = getattr(out, "flagged", None) or getattr(out, "flags", [])
+        agree = getattr(out, "agreement", 0.0)
+        print(f"\n=== {stem}  [{out.status}]  {calls} call(s)  ${out.cost:.3f}  "
+              f"key={out.printed_key}  agree={agree:.0%}  flags={len(flags)}")
         if out.report is not None:
             for f in out.report.errors:
                 print("  ERROR", f)
@@ -150,6 +152,67 @@ def cmd_read(cfg: Config, stems: list[str], render: bool) -> int:  # noqa: C901
     print(f"\nTOTAL COST: ${total_cost:.3f} over {len(stems)} tune(s) "
           f"(avg ${total_cost / max(1, len(stems)):.3f}/tune)")
     return worst
+
+
+def cmd_benchmark(cfg: Config, stems: list[str] | None, dual: bool) -> int:
+    """Run the pipeline on the verified tunes and score the result (plan §6)."""
+    from .examples import EXAMPLE_STEM
+    from .runner import read_dual, read_one
+    from .score import score_pair
+    from .vlm import VLMClient
+
+    units, _ = load_units(cfg)
+    verified = {p.stem for p in cfg.verified_dir.glob("*.abc")}
+    targets = stems or sorted(verified - {EXAMPLE_STEM})
+    client = VLMClient(cfg)
+    rows = []
+    total_cost = 0.0
+    for stem in targets:
+        try:
+            unit = unit_for_stem(units, stem)
+        except KeyError:
+            print(f"{stem}: no processable unit, skipped")
+            continue
+        if dual:
+            out = read_dual(cfg, client, unit)
+            calls, agree = out.calls, out.agreement
+        else:
+            out = read_one(cfg, client, unit)
+            calls, agree = out.attempts, 0.0
+        total_cost += out.cost
+        ref_path = cfg.verified_dir / f"{stem}.abc"
+        s = None
+        if out.abc_text and ref_path.is_file():
+            try:
+                s = score_pair(out.abc_text, ref_path.read_text(encoding="utf-8"), stem)
+            except Exception as exc:
+                print(f"{stem}: score error {exc}")
+        rows.append((stem, out, s, calls, agree))
+        exact = f"{s.exact_bars}/{s.compared_bars} ({s.exact_rate:.0%})" if s else "n/a"
+        pitch = f"{s.pitch_acc:.0%}" if s else "n/a"
+        uw = len(s.unflagged_wrong) if s else "n/a"
+        print(f"{stem:45s} [{out.status:7s}] {calls} calls ${out.cost:.3f} "
+              f"agree {agree:.0%} exact {exact} pitch {pitch} unflagged-wrong {uw}")
+
+    scored = [s for _, _, s, _, _ in rows if s]
+    if scored:
+        cb = sum(s.compared_bars for s in scored)
+        eb = sum(s.exact_bars for s in scored)
+        rn = sum(s.ref_notes for s in scored)
+        pc = sum(s.pitch_correct for s in scored)
+        rc = sum(s.rhythm_correct for s in scored)
+        muw = sum(len(s.unflagged_wrong) for s in scored) / len(scored)
+        from collections import Counter
+        tax: Counter = Counter()
+        for s in scored:
+            tax.update(s.taxonomy)
+        print(f"\nAGGREGATE ({len(scored)} tunes)  exact {eb/cb:.1%}  "
+              f"pitch {pc/rn:.1%}  rhythm {rc/rn:.1%}  "
+              f"mean unflagged-wrong/tune {muw:.2f}")
+        print("taxonomy:", dict(tax.most_common()))
+    print(f"TOTAL COST ${total_cost:.2f} over {len(rows)} tune(s) "
+          f"(avg ${total_cost/max(1,len(rows)):.3f}/tune)")
+    return 0
 
 
 def cmd_check(cfg: Config) -> int:
@@ -212,6 +275,13 @@ def main(argv: list[str] | None = None) -> int:
     sp.add_argument("--render", action="store_true", help="also render a lead sheet")
     sp.add_argument("--retries", type=int, default=None,
                     help="hard-failure retries per tune (default from Config)")
+    sp.add_argument("--dual", action="store_true",
+                    help="dual-read (Pass A + Pass B strips) + merge + repair")
+    sp = sub.add_parser("benchmark")
+    sp.add_argument("stems", nargs="*", default=None,
+                    help="tunes to benchmark (default: 14 verified minus few-shot)")
+    sp.add_argument("--single", action="store_true",
+                    help="single-read instead of the dual-read ensemble")
     sub.add_parser("check")
     args = p.parse_args(argv)
 
@@ -232,7 +302,9 @@ def main(argv: list[str] | None = None) -> int:
         if args.retries is not None:
             import dataclasses
             cfg = dataclasses.replace(cfg, retries=max(1, args.retries))
-        return cmd_read(cfg, args.stems, args.render)
+        return cmd_read(cfg, args.stems, args.render, args.dual)
+    if args.cmd == "benchmark":
+        return cmd_benchmark(cfg, args.stems or None, dual=not args.single)
     if args.cmd == "check":
         return cmd_check(cfg)
     return 2

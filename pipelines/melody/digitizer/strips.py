@@ -9,6 +9,8 @@ reading tractable for the VLM's second pass (decorrelated evidence).
 
 from __future__ import annotations
 
+import base64
+import io
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -119,6 +121,31 @@ def build_tracks(png_path: Path) -> list[SystemTrack]:
             for i, band in enumerate(find_bands(ink), 1)]
 
 
+def _draw_ruler(img: Image.Image, ink: np.ndarray, track: SystemTrack,
+                w: int) -> np.ndarray:
+    """One system cropped to its strip with the RGB pitch ruler drawn on."""
+    strip = np.array(img.crop((0, track.top, w, track.bot)).convert("RGB"))
+    sh = strip.shape[0]
+    gap = track.gap
+    for j, x in enumerate(track.xs):
+        x1 = min(w, x + WINDOW_WIDTH)
+        center = track.centers[j]
+        for k in range(5):
+            yy = int(round(center + k * gap))
+            if 0 <= yy < sh:
+                strip[yy, x:x1] = RED
+        if j % 2 == 0:
+            for k in (-1, 1, 3, 5, 7, 9):
+                yy = int(round(center + k * gap / 2))
+                if 0 <= yy < sh:
+                    strip[yy, x:x1] = GREEN
+            for k in (-2, 10):
+                yy = int(round(center + k * gap / 2))
+                if 0 <= yy < sh:
+                    strip[yy, x:x1] = BLUE
+    return strip
+
+
 def render_overlays(png_path: Path, out_dir: Path) -> list[Path]:
     """Write ov<N>_full.png plus 2× L/R halves per system; return the paths."""
     img, ink = load_ink(png_path)
@@ -126,26 +153,8 @@ def render_overlays(png_path: Path, out_dir: Path) -> list[Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
     paths: list[Path] = []
     for track in build_tracks(png_path):
-        strip = np.array(img.crop((0, track.top, w, track.bot)).convert("RGB"))
-        sh = strip.shape[0]
-        gap = track.gap
-        for j, x in enumerate(track.xs):
-            x1 = min(w, x + WINDOW_WIDTH)
-            center = track.centers[j]
-            for k in range(5):
-                yy = int(round(center + k * gap))
-                if 0 <= yy < sh:
-                    strip[yy, x:x1] = RED
-            if j % 2 == 0:
-                for k in (-1, 1, 3, 5, 7, 9):
-                    yy = int(round(center + k * gap / 2))
-                    if 0 <= yy < sh:
-                        strip[yy, x:x1] = GREEN
-                for k in (-2, 10):
-                    yy = int(round(center + k * gap / 2))
-                    if 0 <= yy < sh:
-                        strip[yy, x:x1] = BLUE
-        out = Image.fromarray(strip)
+        out = Image.fromarray(_draw_ruler(img, ink, track, w))
+        sh = out.height
         full = out_dir / f"ov{track.index}_full.png"
         out.save(full)
         paths.append(full)
@@ -156,6 +165,48 @@ def render_overlays(png_path: Path, out_dir: Path) -> list[Path]:
             part.save(p)
             paths.append(p)
     return paths
+
+
+OVERLAY_LEGEND = (
+    "Each strip is one staff system with a colored pitch ruler drawn over the "
+    "hand-drawn staff:\n"
+    "- RED horizontal lines mark the five staff lines. Bottom to top they are "
+    "E4, G4, B4, D5, F5.\n"
+    "- GREEN dashes mark the spaces and one step beyond: bottom to top D4 "
+    "(below the staff), F4, A4, C5, E5, G5 (above the staff).\n"
+    "- BLUE dashes mark the first ledger positions: C4 (below the staff) and "
+    "A5 (above the staff).\n"
+    "A notehead centered ON a RED line takes that line's pitch; centered ON a "
+    "GREEN or BLUE dash takes that dash's pitch; between two, it is the one it "
+    "sits closest to. Use this ruler to read pitch and octave precisely."
+)
+
+
+def overlay_strips_b64(png_path: Path, out_dir: Path,
+                       scale: int = 2) -> list[tuple[str, str, str]]:
+    """Render overlays and return [(label, base64_png, media_type)] for each
+    system's left and right half (ruler drawn), top system first.
+
+    The labels tell the model which system/half each image is."""
+    img, ink = load_ink(png_path)
+    w = img.width
+    out_dir.mkdir(parents=True, exist_ok=True)
+    tiles: list[tuple[str, str, str]] = []
+    for track in build_tracks(png_path):
+        strip = _draw_ruler(img, ink, track, w)
+        out = Image.fromarray(strip)
+        out.save(out_dir / f"ov{track.index}_full.png")
+        sh = strip.shape[0]
+        for name, (xa, xb) in (("left", (0, w // 2 + 60)),
+                               ("right", (w // 2 - 60, w))):
+            part = out.crop((xa, 0, xb, sh))
+            part = part.resize((part.width * scale, part.height * scale),
+                               Image.LANCZOS)
+            buf = io.BytesIO()
+            part.save(buf, format="PNG")
+            b64 = base64.standard_b64encode(buf.getvalue()).decode("ascii")
+            tiles.append((f"system {track.index} ({name} half)", b64, "image/png"))
+    return tiles
 
 
 def zoom_crop(overlay_dir: Path, system: int, x0: int, x1: int,

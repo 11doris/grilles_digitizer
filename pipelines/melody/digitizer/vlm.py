@@ -8,7 +8,8 @@ import time
 import anthropic
 
 from .config import Config
-from .prompt import SYSTEM_PROMPT, TOOL_NAME, TRANSCRIBE_TOOL
+from .prompt import (REPAIR_TOOL, REPAIR_TOOL_NAME, SYSTEM_PROMPT, TOOL_NAME,
+                     TRANSCRIBE_TOOL)
 
 _TRANSIENT_BACKOFF = (1.0, 2.0, 4.0)
 _AUTH_RESOLVE_MARKER = "Could not resolve authentication"
@@ -28,7 +29,9 @@ class VLMTruncated(Exception):
 
 def build_request_kwargs(config: Config, user_content: list[dict], *,
                          extra_reminder: str = "",
-                         max_tokens: int | None = None) -> dict:
+                         max_tokens: int | None = None,
+                         tool: dict = TRANSCRIBE_TOOL,
+                         tool_name: str = TOOL_NAME) -> dict:
     """messages.create kwargs — shared by interactive and (future) batch mode.
     The system block stays byte-identical so it caches; per-retry reminders go
     in the user tail, never in the cached prefix."""
@@ -43,15 +46,15 @@ def build_request_kwargs(config: Config, user_content: list[dict], *,
              "cache_control": {"type": "ephemeral"}}
         ],
         "messages": [{"role": "user", "content": user_content}],
-        "tools": [TRANSCRIBE_TOOL],
-        "tool_choice": {"type": "tool", "name": TOOL_NAME},
+        "tools": [tool],
+        "tool_choice": {"type": "tool", "name": tool_name},
     }
     if config.supports_temperature:
         kwargs["temperature"] = 0
     return kwargs
 
 
-def extract_tool_input(response) -> dict:
+def extract_tool_input(response, tool_name: str = TOOL_NAME) -> dict:
     """The forced tool call's input dict."""
     if response.stop_reason == "refusal":
         raise VLMRefusal("model refused the request")
@@ -59,7 +62,7 @@ def extract_tool_input(response) -> dict:
         raise VLMTruncated(
             "output hit max_tokens before completing; raise max_output_tokens")
     for block in response.content:
-        if block.type == "tool_use" and block.name == TOOL_NAME:
+        if block.type == "tool_use" and block.name == tool_name:
             return dict(block.input)
     raise VLMRefusal("model did not return the expected tool call")
 
@@ -84,6 +87,17 @@ class VLMClient:
         if self.config.debug:
             self._log_cache_usage(response)
         return extract_tool_input(response)
+
+    def repair(self, user_content: list[dict], *,
+               max_tokens: int | None = None) -> dict:
+        kwargs = build_request_kwargs(self.config, user_content,
+                                      max_tokens=max_tokens,
+                                      tool=REPAIR_TOOL, tool_name=REPAIR_TOOL_NAME)
+        response = self._call_with_backoff(kwargs)
+        self.last_usage = getattr(response, "usage", None)
+        if self.config.debug:
+            self._log_cache_usage(response)
+        return extract_tool_input(response, tool_name=REPAIR_TOOL_NAME)
 
     @staticmethod
     def _log_cache_usage(response) -> None:
