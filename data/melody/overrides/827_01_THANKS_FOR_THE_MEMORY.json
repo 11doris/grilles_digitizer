@@ -1,0 +1,5 @@
+{
+  "note": "Chords JSON has a 5-bar coda strain absent from the melody manuscript; printed section labels are A A B A3 (last section printed as A3).",
+  "skip_strains": ["coda"],
+  "section_labels": ["A", "A", "B", "A3"]
+}

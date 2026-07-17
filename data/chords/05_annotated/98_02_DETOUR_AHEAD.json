@@ -301,6 +301,21 @@
               "beats": {
                 "1": "F9"
               }
+            },
+            {
+              "bar": 9,
+              "beats": {
+                "1": "Em7",
+                "2": "Am7",
+                "3": "Dm7",
+                "4": "Db9#5"
+              }
+            },
+            {
+              "bar": 10,
+              "beats": {
+                "1": "C6"
+              }
             }
           ]
         }
@@ -318,7 +333,7 @@
   },
   "key_annotation": {
     "status": "verified",
-    "source_sha256": "7f7d19351e35e7ce48fdf8fc5143fa6a17e76bd206bce5ecb7dffec12ac8fa97",
+    "source_sha256": "e37163e303286b07c7f49620aabb96e236c0ebbd3ef51c8fed9f78c953d10f28",
     "scorer": {
       "tonic": "F",
       "mode": "major",
@@ -993,7 +1008,34 @@
           {
             "bar": 8,
             "beat": 1,
-            "numeral": "IV9"
+            "numeral": "subV7/III",
+            "role": "sub_v"
+          },
+          {
+            "bar": 9,
+            "beat": 1,
+            "numeral": "iii7"
+          },
+          {
+            "bar": 9,
+            "beat": 2,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 9,
+            "beat": 3,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 9,
+            "beat": 4,
+            "numeral": "subV7",
+            "role": "sub_v"
+          },
+          {
+            "bar": 10,
+            "beat": 1,
+            "numeral": "I6"
           }
         ],
         "links": [
@@ -1083,6 +1125,39 @@
             "to": [
               6,
               3
+            ]
+          },
+          {
+            "type": "half",
+            "from": [
+              8,
+              1
+            ],
+            "to": [
+              9,
+              1
+            ]
+          },
+          {
+            "type": "iiV_sub",
+            "from": [
+              9,
+              3
+            ],
+            "to": [
+              9,
+              4
+            ]
+          },
+          {
+            "type": "half",
+            "from": [
+              9,
+              4
+            ],
+            "to": [
+              10,
+              1
             ]
           }
         ],
