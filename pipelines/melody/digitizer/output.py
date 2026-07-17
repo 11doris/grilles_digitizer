@@ -45,6 +45,44 @@ def assemble_abc(skeleton: Skeleton, result: ReadResult) -> str:
     return "\n".join(parts) + "\n"
 
 
+def build_scaffold(skeleton: Skeleton) -> str:
+    """A structure-only ABC template: correct headers + section labels + the
+    right number of empty bars (full-measure invisible rests), in house style.
+
+    The VLM read does not clear the accuracy bar (Phase-3 benchmark), so the
+    pipeline's product is the STRUCTURE: a reviewer opens this next to the
+    manuscript crop and fills in the notes. Every bar is a full-measure
+    invisible rest `x<meter>` so the file validates and renders as blank,
+    barlined, labeled staves — a fill-in template. One source line = 4 bars,
+    `||` at section ends, `|]` at the very end.
+    """
+    meter_units = int(skeleton.meter_units)
+    empty = f"x{meter_units}"
+    lines = list(skeleton.header_lines)
+    lines.append(
+        f"% MELODY SCAFFOLD — structure only (headers + sections + empty bars). "
+        f"Fill in notes from {skeleton.unit.melody_file}; the bars are "
+        f"placeholder whole-measure rests.")
+    if skeleton.needs_printed_key:
+        lines.append(f"% CONFIRM KEY: analyzed {skeleton.key_tonic} "
+                     f"{skeleton.key_mode}; set K: to the PRINTED signature.")
+    for note in skeleton.notes:
+        lines.append(f"% note: {note}")
+    n_sections = len(skeleton.sections)
+    for si, sec in enumerate(skeleton.sections):
+        terminal = "|]" if si == n_sections - 1 else "||"
+        bars = [empty] * sec.bars
+        head = f'"^{sec.label}" '
+        for row_start in range(0, len(bars), 4):
+            row = bars[row_start:row_start + 4]
+            is_last_row = row_start + 4 >= len(bars)
+            sep = " | ".join(row)
+            end = f" {terminal}" if is_last_row else " |"
+            lines.append(f"{head}{sep}{end}" if row_start == 0 else f"{sep}{end}")
+            head = ""
+    return "\n".join(lines) + "\n"
+
+
 def wip_path(cfg: Config, stem: str) -> Path:
     return cfg.wip_dir / f"{stem}.abc"
 

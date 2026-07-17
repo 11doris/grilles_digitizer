@@ -154,6 +154,52 @@ def cmd_read(cfg: Config, stems: list[str], render: bool, dual: bool) -> int:  #
     return worst
 
 
+def cmd_scaffold(cfg: Config, stems: list[str] | None, do_all: bool,
+                 force: bool) -> int:
+    """Write structure-only ABC scaffolds (zero API cost) to 03_wip.
+
+    The reviewer fills in notes from the manuscript crop. Existing files are
+    left untouched unless --force (never clobber reviewer edits)."""
+    from .output import build_scaffold, wip_path, write_tune
+
+    units, _ = load_units(cfg)
+    if do_all:
+        targets = units
+    else:
+        want = set(stems or [])
+        targets = [u for u in units if u.stem in want]
+        missing = want - {u.stem for u in targets}
+        for m in sorted(missing):
+            print(f"{m}: no processable unit (chords JSON missing?)")
+    written = skipped = failed = done = 0
+    for unit in targets:
+        if (cfg.verified_dir / f"{unit.stem}.abc").exists():
+            done += 1  # already owner-verified; nothing to scaffold
+            continue
+        path = wip_path(cfg, unit.stem)
+        if path.exists() and not force:
+            skipped += 1
+            continue
+        try:
+            sk = build_skeleton(unit, cfg)
+            abc = build_scaffold(sk)
+            _, rep = validate_tune(abc, plan=sk.plan)
+            if not rep.ok:
+                failed += 1
+                print(f"{unit.stem}: scaffold FAILED validation: "
+                      f"{'; '.join(str(e) for e in rep.errors)}")
+                continue
+            write_tune(cfg, unit.stem, abc)
+            written += 1
+        except Exception as exc:
+            failed += 1
+            print(f"{unit.stem}: {type(exc).__name__}: {exc}")
+    print(f"scaffolds: {written} written, {skipped} skipped (exist), "
+          f"{done} already verified, {failed} failed, out of {len(targets)} "
+          f"target(s) -> {cfg.wip_dir}")
+    return 1 if failed else 0
+
+
 def cmd_benchmark(cfg: Config, stems: list[str] | None, dual: bool) -> int:
     """Run the pipeline on the verified tunes and score the result (plan §6)."""
     from .examples import EXAMPLE_STEM
@@ -282,6 +328,11 @@ def main(argv: list[str] | None = None) -> int:
                     help="tunes to benchmark (default: 14 verified minus few-shot)")
     sp.add_argument("--single", action="store_true",
                     help="single-read instead of the dual-read ensemble")
+    sp = sub.add_parser("scaffold")
+    sp.add_argument("stems", nargs="*", default=None, help="melody stem(s)")
+    sp.add_argument("--all", action="store_true", help="all processable units")
+    sp.add_argument("--force", action="store_true",
+                    help="overwrite existing 03_wip files (default: skip)")
     sub.add_parser("check")
     args = p.parse_args(argv)
 
@@ -305,6 +356,8 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_read(cfg, args.stems, args.render, args.dual)
     if args.cmd == "benchmark":
         return cmd_benchmark(cfg, args.stems or None, dual=not args.single)
+    if args.cmd == "scaffold":
+        return cmd_scaffold(cfg, args.stems or None, args.all, args.force)
     if args.cmd == "check":
         return cmd_check(cfg)
     return 2

@@ -13,13 +13,38 @@ everything from the repo root.
 | 0 crop | `melody_cropper.py` | `sources/AGJ_Melody.pdf` + both index PDFs → `data/melody/01_crops/*.png` + `melody_manifest.json` |
 | 0b deskew (one-off) | `../deskew_crops.py` (shared) | `data/melody/01_crops/` fixed in place |
 | 1 straighten | `melody_straightener.py` | crops → `data/melody/debug/<id>/` (strips, overlays, `stage1.json` geometry) |
-| 2 symbols | *not yet implemented* | per-system symbol lists (barlines, noteheads, stems, rests, …) |
-| 3 bars | *not yet implemented* | bar assembly + rhythm solving against the chord JSON |
-| 4 adjudicate | *not yet implemented* | model API on flagged bars only → `data/melody/03_wip/<id>.abc` |
-| 5 validate | *not yet implemented* | validation suite; then human review promotes `wip/` → `verified/` |
+| v5 digitizer | `digitizer/` (see below) | crops + chords JSON → `data/melody/03_wip/<id>.abc` |
 
 The chord grille JSON (`data/chords/02_raw|verified/<id>.json`) is **ground truth**
 for form, bar counts, and chords — never modify it from this pipeline.
+
+## v5 digitizer (`digitizer/`) — structure scaffolds
+
+The spec's CV stages 2–4 and a VLM-first read were both tried and both missed
+the accuracy bar (see `docs/specs/melody_digitizer_v5_plan.md` and the Phase-3
+benchmark: 0 % exact bars, ~16 % pitch, ~28 unflagged-wrong bars/tune — a human
+would re-transcribe the whole tune). **The pipeline's product is therefore the
+STRUCTURE, not the notes:** correct headers, section labels, and empty barlined
+bars, generated deterministically from the chords JSON. A reviewer opens the
+scaffold next to the manuscript crop and fills in the notes.
+
+```sh
+# generate a fill-in scaffold for every processable tune (zero API cost)
+python -m pipelines.melody.digitizer.cli scaffold --all
+# or one/a few tunes; --force overwrites existing 03_wip files
+python -m pipelines.melody.digitizer.cli scaffold 318_02_HOW_HIGH_THE_MOON
+```
+
+A tune is processable when its crop, a `both` row in `data/title_index.csv`, and
+`data/chords/05_annotated/<chords-stem>.json` all exist (181 today; grows as
+chords digitization lands). Each scaffold's bars are placeholder whole-measure
+rests (`x8` / `x6`) so the file validates and renders as blank, labeled staves.
+
+Other subcommands (all deterministic except `read`/`benchmark`):
+`discover` (manifest stats), `skeleton <stem>` (headers+plan), `validate
+<file>`, `render <file> <stem>`, `check` (Phase-1 acceptance vs the 14 verified
+tunes), `score`, and `read <stem> [--dual]` / `benchmark [--single]` (the VLM
+read, kept for the record — it spends budget and does not clear the bar).
 
 ## Stage 0 — crop
 
