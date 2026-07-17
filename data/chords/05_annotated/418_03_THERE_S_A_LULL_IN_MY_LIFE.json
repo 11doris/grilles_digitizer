@@ -1036,6 +1036,30 @@
         ],
         "blocks": [
           {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              1,
+              4
+            ]
+          },
+          {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              5,
+              4
+            ]
+          },
+          {
             "id": "turnaround_dim",
             "name": "Turnaround I–♯Io–ii–V",
             "from": [
@@ -1152,6 +1176,32 @@
             "to": [
               7,
               1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              1,
+              4
+            ]
+          },
+          {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              5,
+              4
             ]
           }
         ]
@@ -1315,6 +1365,18 @@
             "to": [
               2,
               3
+            ]
+          },
+          {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
             ]
           }
         ],
@@ -1540,6 +1602,30 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              1,
+              4
+            ]
+          },
+          {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              5,
+              4
+            ]
+          },
           {
             "id": "turnaround_1_vi7",
             "name": "Turnaround I–VI7–ii–V",

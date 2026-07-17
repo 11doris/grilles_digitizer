@@ -1,0 +1,276 @@
+{
+  "composer": "Harry WARREN – Mack GORDON",
+  "year": "1942",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A B A B'",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 15",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 1,
+          "bar": 7
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "F#m7",
+            "3": "B7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Fm7",
+            "3": "Bb7"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "THERE WILL NEVER BE ANOTHER YOU",
+  "page": 420,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "recordings": [
+    "B.Berigan 42- L.Almeida 58- B.Brookmeyer 55",
+    "G.Auld 55- C.Baker 54- D.Byas 55",
+    "F.Hubbard 62- I.Jacquet 62- B.Kessel 57",
+    "J.Guarnieri 55- St.Kenton 55- L.Konitz 54",
+    "B.Powell 53- S.Rollins 58- Z.Sims 56",
+    "G.Shearing 55- B.De Franco 54- H.Merrill",
+    "A.Ross 59- S.Vaughan 58",
+    "B.Holiday 59"
+  ],
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bbm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Abmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Db9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Gm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Fm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Bb7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bbm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Abmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Db9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Am7b5",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Gm7",
+                "3": "Abmaj7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb6"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

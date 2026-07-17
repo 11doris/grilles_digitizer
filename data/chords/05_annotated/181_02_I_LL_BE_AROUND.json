@@ -440,6 +440,18 @@
         ],
         "blocks": [
           {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
+          {
             "id": "turnaround_1625",
             "name": "Turnaround I–vi–ii–V",
             "from": [
@@ -567,6 +579,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
           {
             "id": "turnaround_1625",
             "name": "Turnaround I–vi–ii–V",
@@ -773,6 +797,18 @@
             ]
           },
           {
+            "id": "ii_v7_iii",
+            "name": "ii–V7–iii",
+            "from": [
+              5,
+              3
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
             "id": "turnaround_3625",
             "name": "Turnaround iii–vi–ii–V",
             "from": [
@@ -897,6 +933,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
           {
             "id": "turnaround_3625",
             "name": "Turnaround iii–vi–ii–V",

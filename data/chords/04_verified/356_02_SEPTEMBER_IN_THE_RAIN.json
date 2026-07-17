@@ -1,0 +1,323 @@
+{
+  "composer": "Harry WARREN – Al DUBIN",
+  "year": "1937",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 1, 9, 25",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 0,
+          "bar": 1
+        },
+        {
+          "strain": "chorus",
+          "part": 1,
+          "bar": 1
+        },
+        {
+          "strain": "chorus",
+          "part": 3,
+          "bar": 1
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Ebmaj7",
+            "3": "Ab(#9)"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Gm7",
+            "3": "Gb13"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "Fm7",
+            "3": "Gm7"
+          }
+        },
+        {
+          "bar": 4,
+          "beats": {
+            "1": "Abmaj7"
+          }
+        },
+        {
+          "bar": 5,
+          "beats": {
+            "1": "Db9"
+          }
+        },
+        {
+          "bar": 6,
+          "beats": {
+            "1": "B9",
+            "3": "Bb9"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "SEPTEMBER IN THE RAIN",
+  "page": 356,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '12 VERSE'."
+  },
+  "recordings": [
+    "Kirk 38- L.Hampton 50.53.63",
+    "Edison 52- D.Ellington 45",
+    "Garner 59- D.Byas 45- A.Shaw 77",
+    "Young 59- O.Peterson 59",
+    "Brubeck 50- C.Shavers 59",
+    "Bartini 11- S.Torme 62",
+    "Corea 79- H.Jones 77",
+    "Smith 45- R.James 51"
+  ],
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb",
+                "3": "Gm"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Cm",
+                "3": "Gm"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Fm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Fm7",
+                "3": "Abmaj7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Db9"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7b9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Bbm7",
+                "3": "Eb7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bbm7",
+                "3": "Eb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Cm7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Cm7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bb7",
+                "3": "Fm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Bb7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ebmaj7",
+                "3": "Ab(#9)"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Gm7",
+                "3": "Gb13"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Fm7",
+                "3": "Gm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Abmaj7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Db9"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "B9",
+                "3": "Bb9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb",
+                "3": "Gm"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Cm",
+                "3": "Gm"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Fm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Fm7",
+                "3": "Abmaj7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Db9"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7b9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

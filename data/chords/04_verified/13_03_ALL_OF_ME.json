@@ -1,0 +1,247 @@
+{
+  "composer": "Gerald MARKS – Seymour SIMONS",
+  "year": "1931",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A B A C",
+  "time_signature": "4/4",
+  "title": "ALL OF ME",
+  "page": 13,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '12 VERSE'.",
+    "dash_expansion": "3rd printed row is a leading-arrow row copying section A positionally; empty/dash boxes take the same-position bar from A."
+  },
+  "recordings": [
+    "C.Berry(?) or E.Condon(?) on ..40",
+    "...ine.. Quinones (....).40",
+    "J.Hodges 54- I.Jacket 51",
+    "T.Buckner/B.Bechet 58-",
+    "S.Bechet 53.57.58- L.Young 56",
+    "T.Wilson 45- C.Basie 41.58.63",
+    "L.Armstrong 32.55.57- H.Lewis 36",
+    "D.Ellington 55- J.Dorsey 39",
+    "B.Holiday 41.46.49.51.54.59",
+    "B.Carter 40"
+  ],
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "E7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "E7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Dm"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "E7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "E7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "G7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "E7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "E7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Dm"
+              }
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Fm"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Dm7b5"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "C"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

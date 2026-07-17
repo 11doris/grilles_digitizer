@@ -339,7 +339,7 @@
     "chord": "Eb"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "81410f4ee7b3c4df73eb4daf409a10d99a5dcdf07489dca2cf72568ebf926b5b",
     "scorer": {
       "tonic": "Eb",
@@ -351,6 +351,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -713,6 +718,20 @@
             ],
             "to": [
               7,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "i_ii7_v7",
+            "name": "I–II7–V7",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              5,
               1
             ]
           }

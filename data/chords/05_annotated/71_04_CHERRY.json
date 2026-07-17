@@ -260,7 +260,7 @@
     "chord": "Eb"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "02d0610b3597fa0946dceb6fbda48abd72fa60dadc44f5d04db0640c9ee1f771",
     "scorer": {
       "tonic": "Eb",
@@ -272,6 +272,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "Eb",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {

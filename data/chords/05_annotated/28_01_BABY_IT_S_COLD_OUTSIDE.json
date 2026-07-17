@@ -286,7 +286,7 @@
     "chord": "Fmaj7"
   },
   "key_annotation": {
-    "status": "agreed",
+    "status": "verified",
     "source_sha256": "c76a8545ca6856e48825cac575650b21e7069fbdecf56937157cf67fd21c8ceb",
     "scorer": {
       "tonic": "F",
@@ -298,6 +298,11 @@
       "mode": "major",
       "confidence": "high",
       "modulation_note": null
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": false
     }
   },
   "harmonic_fingerprint": {
@@ -469,6 +474,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
           {
             "id": "turnaround_3625",
             "name": "Turnaround iii–vi–ii–V",
@@ -756,6 +773,18 @@
           }
         ],
         "blocks": [
+          {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              1
+            ]
+          },
           {
             "id": "turnaround_3625",
             "name": "Turnaround iii–vi–ii–V",

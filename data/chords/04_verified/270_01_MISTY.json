@@ -1,0 +1,290 @@
+{
+  "composer": "Erroll GARNER – Johnny BURKE",
+  "year": "1954",
+  "style": "MAINSTREAM",
+  "tempo": "SLOW",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar I, 9, 25",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 0,
+          "bar": 1
+        },
+        {
+          "strain": "chorus",
+          "part": 1,
+          "bar": 1
+        },
+        {
+          "strain": "chorus",
+          "part": 3,
+          "bar": 1
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Ebo7",
+            "3": "Ebmaj7"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "MISTY",
+  "page": 270,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "C.Legrand 75- O.Peterson 65- W.Montgomery 65",
+    "E.Garner 54.56.65- E.Hines 60- J.Rodgers 65",
+    "Jon.Jones 6I- E.Fitzgerald 60.65- A.Jamal 66",
+    "E.Fitzgerald/D.Ellington 66- R.Eldridge 60",
+    "B.Brookmeyer 64- E.Davis 60- M.Buckner 6I",
+    "D.Byas 62- G.Auld 55.60- C.Basie 59",
+    "R.Bryant 59"
+  ],
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bbm7",
+                "3": "Eb7b9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Abmaj7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Abm7",
+                "3": "Db9"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ebmaj7",
+                "3": "Cm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "G7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "F7",
+                "3": "Bb7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bbm7",
+                "3": "Eb7b9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Abmaj7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Abm7",
+                "3": "Db9"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ebmaj7",
+                "3": "Cm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb",
+                "3": "Db9"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Bbm7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Eb7b9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Abmaj7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Abmaj7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Am7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "D7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bb7",
+                "3": "Eo7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ebmaj7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Bbm7",
+                "3": "Eb7b9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Abmaj7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Abm7",
+                "3": "Db9"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ebmaj7",
+                "3": "Cm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Fm7",
+                "3": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb",
+                "3": "Db9"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

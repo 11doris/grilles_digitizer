@@ -1,0 +1,155 @@
+{
+  "composer": "Bob CARLETON",
+  "year": "1918",
+  "style": "TRADITIONAL JAZZ",
+  "tempo": "MEDIUM",
+  "form": "16 A A' B A",
+  "time_signature": "4/4",
+  "title": "JA-DA",
+  "page": 219,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "A.Gerner 51- Jazz-",
+    "T.Tatum 45.55- K.O.11 59",
+    "B.Brookmeyer 57- W.Bird-",
+    "ley 55- E.Condon 38.44",
+    "Bob Groby 40- T.Dorsey",
+    "56- B.Hackett 39",
+    "Original N.O.J.B. 19",
+    "T.Ladnier 38"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "same_chord_changes": "A lot of tunes have the same chord changes, but with a different bridge : among them : \"How'm I doin' hey hey\", \"Doxy\", \"Sugar babe\" and so on.",
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "G7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "C7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F",
+                "3": "Abo7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "F",
+                "3": "Abo7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "G7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

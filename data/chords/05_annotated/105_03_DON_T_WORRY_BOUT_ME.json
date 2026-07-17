@@ -450,6 +450,18 @@
             ]
           },
           {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
             "id": "iiv_chain",
             "name": "ii–V chain",
             "from": [
@@ -754,6 +766,32 @@
             ],
             "to": [
               8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "iih_v7_i",
+            "name": "iiø–V7–I",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "id": "i_ii_iii",
+            "name": "I–ii–iii",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
               1
             ]
           }

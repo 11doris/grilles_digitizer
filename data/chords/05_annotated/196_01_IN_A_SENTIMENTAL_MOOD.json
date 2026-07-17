@@ -1,0 +1,1078 @@
+{
+  "composer": "Duke ELLINGTON – Irving MILLS – Manny KURTZ",
+  "year": "1935",
+  "style": "ELLINGTONIA",
+  "tempo": "SLOW",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 1, 25",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 0,
+          "bar": 1
+        },
+        {
+          "strain": "chorus",
+          "part": 3,
+          "bar": 1
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Bbm7b5",
+            "3": "Bbm7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Am7",
+            "3": "Ab9"
+          }
+        }
+      ]
+    },
+    {
+      "applies_to": "Bar 6, 14, 30",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 0,
+          "bar": 6
+        },
+        {
+          "strain": "chorus",
+          "part": 1,
+          "bar": 6
+        },
+        {
+          "strain": "chorus",
+          "part": 3,
+          "bar": 6
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "D9",
+            "3": "Em7b5"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Fo7",
+            "3": "D7"
+          }
+        }
+      ]
+    },
+    {
+      "applies_to": "Bar 8, 30",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 0,
+          "bar": 8
+        },
+        {
+          "strain": "chorus",
+          "part": 3,
+          "bar": 8
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "A7",
+            "2": "Dm",
+            "3": "N.C."
+          }
+        }
+      ]
+    }
+  ],
+  "title": "IN A SENTIMENTAL MOOD",
+  "page": 196,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "D.Terry 57- D.Wellington 55",
+    "H.Mullin 60- N.Hoft 61- H.Foa",
+    "P.Adamson 76- R.E.Filbeck- H.Solal 58",
+    "T.Nelson 39.42.49?- H.Nelson 58",
+    "Ellington 35.40.44.49/D.Ellington 35",
+    "B.Rodgers 60/D.Ellington 38- Quintette",
+    "T.Nelson 60- T.Flanagan",
+    "J.Teagarden 63- S.Bechet 58- B.Boysham 38",
+    "D.Dickerson 58- J.Dorsey 38",
+    "Mills Blue Rhythm 36- D.McGarrough 38"
+  ],
+  "notation_notes": {
+    "statement_note": "The Bar 6,14,30 variant is captioned 'for statement of the melody'."
+  },
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Dm",
+                "3": "Dm(maj7)"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Dm7",
+                "3": "Bm7b5"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Gm",
+                "3": "Gm(maj7)"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Gm7",
+                "3": "Em7b5",
+                "4": "A7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "D9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Gm7",
+                "3": "Gb7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Fmaj9"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Dm",
+                "3": "Dm(maj7)"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Dm7",
+                "3": "Bm7b5"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Gm",
+                "3": "Gm(maj7)"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Gm7",
+                "3": "Em7b5",
+                "4": "A7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "D9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Gm7",
+                "3": "Gb7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "F"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Dbmaj7",
+                "3": "Bbm"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ebm7",
+                "3": "Ab7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dbmaj7",
+                "3": "Bb9#11"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb9",
+                "3": "Ab7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Db",
+                "3": "Bbm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Ebm7",
+                "3": "Ab7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Co7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "C7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Dm",
+                "3": "Dm(maj7)"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Dm7",
+                "3": "Bm7b5"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Gm",
+                "3": "Gm(maj7)"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Gm7",
+                "3": "Em7b5",
+                "4": "A7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Dm"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "D9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Gm7",
+                "3": "Gb7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "F",
+                "3": "Fmaj7"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "key": {
+    "tonic": "F",
+    "mode": "major"
+  },
+  "section_keys": {
+    "B": {
+      "tonic": "Db",
+      "mode": "major"
+    }
+  },
+  "opening": {
+    "degree": "vi",
+    "quality": "min",
+    "chord": "Dm"
+  },
+  "key_annotation": {
+    "status": "verified",
+    "source_sha256": "8c4ecea42153725364aca4f2d102e007ecbb32997369ab3e3842d103cf427309",
+    "scorer": {
+      "tonic": "Db",
+      "mode": "major",
+      "margin": 0.5826
+    },
+    "llm": {
+      "tonic": "D",
+      "mode": "minor",
+      "confidence": "high",
+      "modulation_note": "bridge (B) modulates to Db major",
+      "section_keys": {
+        "B": {
+          "tonic": "Db",
+          "mode": "major"
+        }
+      }
+    },
+    "human": {
+      "tonic": "F",
+      "mode": "major",
+      "corrected": true
+    }
+  },
+  "harmonic_fingerprint": {
+    "family": "32-bar AABA standard",
+    "tags": [
+      "modulates",
+      "dominant-cycle-bridge",
+      "tritone-sub"
+    ],
+    "sections": {
+      "A": "vi minor line-cliché (Dm–Dm(maj7)–Dm7–Bm7b5) then ii line-cliché (Gm–Gm(maj7)–Gm7), Em7b5–A7 and D9 as secondary dominants, Gm7–Gb7 tritone-sub into Fmaj9 (I)",
+      "A1": "same as A, resolving to F (I) via ii–bII7 tritone sub",
+      "B": "Dbmaj7 tonic with Ebm7–Ab7 (ii–V) in Db, Bb9#11 secondary dominant, ends on Cdim7–C7 acting as V7 back to F",
+      "A2": "same as A, ending on F–Fmaj7 (I)"
+    },
+    "modulates": true,
+    "modulation_note": "bridge (B) moves to Db major before returning via C7 (V) to F"
+  },
+  "harmonic_analysis": {
+    "version": 1,
+    "parts": {
+      "A": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "vi"
+          },
+          {
+            "bar": 1,
+            "beat": 3,
+            "numeral": "viΔ7"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 2,
+            "beat": 3,
+            "numeral": "#ivø7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "ii"
+          },
+          {
+            "bar": 3,
+            "beat": 3,
+            "numeral": "iiΔ7"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 4,
+            "beat": 3,
+            "numeral": "iiø7/VI",
+            "role": "sec_ii"
+          },
+          {
+            "bar": 4,
+            "beat": 4,
+            "numeral": "V7/VI",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "vi"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7/II",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 7,
+            "beat": 3,
+            "numeral": "subV7",
+            "role": "sub_v"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "IΔ9"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              4,
+              3
+            ],
+            "to": [
+              4,
+              4
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              4,
+              4
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
+            "type": "iiV_sub",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              7,
+              3
+            ]
+          },
+          {
+            "type": "half",
+            "from": [
+              7,
+              3
+            ],
+            "to": [
+              8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_251_minor",
+            "name": "iiø–V–i",
+            "from": [
+              4,
+              3
+            ],
+            "to": [
+              5,
+              1
+            ]
+          }
+        ]
+      },
+      "A1": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "vi"
+          },
+          {
+            "bar": 1,
+            "beat": 3,
+            "numeral": "viΔ7"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 2,
+            "beat": 3,
+            "numeral": "#ivø7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "ii"
+          },
+          {
+            "bar": 3,
+            "beat": 3,
+            "numeral": "iiΔ7"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 4,
+            "beat": 3,
+            "numeral": "iiø7/VI",
+            "role": "sec_ii"
+          },
+          {
+            "bar": 4,
+            "beat": 4,
+            "numeral": "V7/VI",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "vi"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7/II",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 7,
+            "beat": 3,
+            "numeral": "subV7",
+            "role": "sub_v"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "I"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              4,
+              3
+            ],
+            "to": [
+              4,
+              4
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              4,
+              4
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
+            "type": "iiV_sub",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              7,
+              3
+            ]
+          },
+          {
+            "type": "half",
+            "from": [
+              7,
+              3
+            ],
+            "to": [
+              8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_251_minor",
+            "name": "iiø–V–i",
+            "from": [
+              4,
+              3
+            ],
+            "to": [
+              5,
+              1
+            ]
+          }
+        ]
+      },
+      "B": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 1,
+            "beat": 3,
+            "numeral": "vi"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 2,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "IΔ"
+          },
+          {
+            "bar": 3,
+            "beat": 3,
+            "numeral": "V7/II",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "V7/V",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 4,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 5,
+            "beat": 3,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 6,
+            "beat": 3,
+            "numeral": "V7"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "viio7",
+            "role": "dim_aux"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "VII7"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              2,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              2,
+              3
+            ],
+            "to": [
+              3,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              3,
+              3
+            ],
+            "to": [
+              4,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              4,
+              1
+            ],
+            "to": [
+              4,
+              3
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              4,
+              3
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
+            "type": "iiV",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "turnaround_1625",
+            "name": "Turnaround I–vi–ii–V",
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              2,
+              3
+            ]
+          },
+          {
+            "id": "turnaround_i_vi7_ii7_v7",
+            "name": "Turnaround I–VI7–II7–V7",
+            "from": [
+              3,
+              1
+            ],
+            "to": [
+              4,
+              3
+            ]
+          },
+          {
+            "id": "turnaround_1625",
+            "name": "Turnaround I–vi–ii–V",
+            "from": [
+              5,
+              1
+            ],
+            "to": [
+              6,
+              3
+            ]
+          }
+        ],
+        "regions": [
+          {
+            "from": [
+              1,
+              1
+            ],
+            "to": [
+              8,
+              1
+            ],
+            "tonic": "Db",
+            "mode": "major",
+            "kind": "section",
+            "confidence": 1.0
+          }
+        ]
+      },
+      "A2": {
+        "chords": [
+          {
+            "bar": 1,
+            "beat": 1,
+            "numeral": "vi"
+          },
+          {
+            "bar": 1,
+            "beat": 3,
+            "numeral": "viΔ7"
+          },
+          {
+            "bar": 2,
+            "beat": 1,
+            "numeral": "vi7"
+          },
+          {
+            "bar": 2,
+            "beat": 3,
+            "numeral": "#ivø7"
+          },
+          {
+            "bar": 3,
+            "beat": 1,
+            "numeral": "ii"
+          },
+          {
+            "bar": 3,
+            "beat": 3,
+            "numeral": "iiΔ7"
+          },
+          {
+            "bar": 4,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 4,
+            "beat": 3,
+            "numeral": "iiø7/VI",
+            "role": "sec_ii"
+          },
+          {
+            "bar": 4,
+            "beat": 4,
+            "numeral": "V7/VI",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 5,
+            "beat": 1,
+            "numeral": "vi"
+          },
+          {
+            "bar": 6,
+            "beat": 1,
+            "numeral": "V7/II",
+            "role": "sec_dom"
+          },
+          {
+            "bar": 7,
+            "beat": 1,
+            "numeral": "ii7"
+          },
+          {
+            "bar": 7,
+            "beat": 3,
+            "numeral": "subV7",
+            "role": "sub_v"
+          },
+          {
+            "bar": 8,
+            "beat": 1,
+            "numeral": "I"
+          },
+          {
+            "bar": 8,
+            "beat": 3,
+            "numeral": "IΔ"
+          }
+        ],
+        "links": [
+          {
+            "type": "iiV",
+            "from": [
+              4,
+              3
+            ],
+            "to": [
+              4,
+              4
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              4,
+              4
+            ],
+            "to": [
+              5,
+              1
+            ]
+          },
+          {
+            "type": "fifth",
+            "from": [
+              6,
+              1
+            ],
+            "to": [
+              7,
+              1
+            ]
+          },
+          {
+            "type": "iiV_sub",
+            "from": [
+              7,
+              1
+            ],
+            "to": [
+              7,
+              3
+            ]
+          },
+          {
+            "type": "half",
+            "from": [
+              7,
+              3
+            ],
+            "to": [
+              8,
+              1
+            ]
+          }
+        ],
+        "blocks": [
+          {
+            "id": "cadence_251_minor",
+            "name": "iiø–V–i",
+            "from": [
+              4,
+              3
+            ],
+            "to": [
+              5,
+              1
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
