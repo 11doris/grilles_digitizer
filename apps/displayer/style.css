@@ -2018,6 +2018,21 @@ body.tint-off .section .bar:not(.empty) { --bxtint: var(--bg); }
 }
 #tagFilterBtn.on { border-color: var(--accent); color: var(--accent-ink); }
 
+/* "Clear all filters": a full-width reset at the bottom of the Filters sheet,
+   disabled (and dimmed) while no filter is engaged. */
+.clear-filters-btn {
+  width: 100%;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  color: var(--fg);
+  font-size: 0.9rem;
+  padding: 0.45rem;
+  cursor: pointer;
+}
+.clear-filters-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent-ink); }
+.clear-filters-btn:disabled { opacity: 0.45; cursor: default; }
+
 #tagFilterMenu {
   position: fixed;
   z-index: 60;

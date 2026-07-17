@@ -292,6 +292,7 @@
      header + tabs, persistent footer, and the three bottom/card sheets. */
   const filtersBtn = document.getElementById("filtersBtn");
   const settingsBtn = document.getElementById("settingsBtn");
+  const clearFiltersBtn = document.getElementById("clearFiltersBtn");
   const filterBadge = document.getElementById("filterBadge");
   const backBtn = document.getElementById("backBtn");
   const sidebarOpenBtn = document.getElementById("sidebarOpenBtn");
@@ -567,7 +568,35 @@
     filterBadge.textContent = String(n);
     filterBadge.hidden = n === 0;
     filtersBtn.classList.toggle("on", n > 0);
+    if (clearFiltersBtn) clearFiltersBtn.disabled = n === 0; // nothing to clear
   }
+
+  /* "Clear all filters" (Filters sheet): reset every list filter to its default
+     and resync each control, the badge and the list in one pass. Search text is
+     left alone — it's a separate control, not part of the filter set. */
+  function clearAllFilters() {
+    state.chordsOnly = false;
+    state.startsOn = "";
+    state.keyFilter = "";
+    state.formFilter = "";
+    state.styleFilter = "";
+    state.yearFilter = "";
+    state.blockFilter = "";
+    state.tagFilter.clear();
+    try {
+      localStorage.setItem("grilles.chordsOnly", "0"); // the one persisted filter
+    } catch (e) { /* ignore */ }
+    chordFilterBtn.classList.remove("on");
+    chordFilterBtn.setAttribute("aria-pressed", "false");
+    [startsOnEl, keyFilterEl, formFilterEl, styleFilterEl, yearFilterEl, blockFilterEl]
+      .forEach((sel) => { if (sel) { sel.value = ""; sel.classList.remove("on"); } });
+    tagFilterLabel(); // button text + on-state
+    if (tagFilterMenu && !tagFilterMenu.hidden) renderTagMenu(); // uncheck open menu
+    updateFilterBadge();
+    refilterList(true);
+  }
+
+  if (clearFiltersBtn) clearFiltersBtn.addEventListener("click", clearAllFilters);
 
   /* --------------------------------------------- fullscreen scan overlay */
 
