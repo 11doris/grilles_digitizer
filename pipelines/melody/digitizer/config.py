@@ -38,6 +38,11 @@ class Config:
     # Hard budget guard: < $0.20/tune. 2 reads + repair + 1 re-ask + 1 spare.
     max_calls_per_tune: int = 5
     max_output_tokens: int = 2500
+    # Melody crops are clean ~2274x2500 1-bit scans; pitch reading needs the
+    # detail, so keep the long edge near native (Opus 4.8 high-res vision) and
+    # do NOT thicken ink by default (dilation blurs line-vs-space).
+    max_long_edge: int = 2000
+    dilate: int = 0
     only: str | None = None  # restrict to one melody stem (debugging)
     interactive: bool = False
     debug: bool = False

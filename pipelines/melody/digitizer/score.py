@@ -212,10 +212,17 @@ class Aggregate:
         return sum(len(t.unflagged_wrong) for t in self.tunes) / len(self.tunes)
 
 
-def score_dirs(wip_dir: Path, verified_dir: Path) -> Aggregate:
-    """Score every wip .abc that has a verified counterpart."""
+def score_dirs(wip_dir: Path, verified_dir: Path,
+               exclude: set[str] | None = None) -> Aggregate:
+    """Score every wip .abc that has a verified counterpart.
+
+    `exclude` names stems to skip (e.g. the few-shot example, which would be
+    teaching to the test)."""
+    exclude = exclude or set()
     scores = []
     for hyp_path in sorted(wip_dir.glob("*.abc")):
+        if hyp_path.stem in exclude:
+            continue
         ref_path = verified_dir / hyp_path.name
         if not ref_path.is_file():
             continue

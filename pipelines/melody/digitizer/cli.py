@@ -97,7 +97,8 @@ def cmd_render(cfg: Config, path: Path, stem: str) -> int:
 
 
 def cmd_score(cfg: Config, wip: Path, verified: Path) -> int:
-    agg = score_dirs(wip, verified)
+    from .examples import EXAMPLE_STEM
+    agg = score_dirs(wip, verified, exclude={EXAMPLE_STEM})
     if not agg.tunes:
         print("no scored tunes (no wip .abc with a verified counterpart)")
         return 1
@@ -110,6 +111,45 @@ def cmd_score(cfg: Config, wip: Path, verified: Path) -> int:
           f"{agg.mean_unflagged_wrong:.2f}")
     print("taxonomy:", dict(agg.taxonomy.most_common()))
     return 0
+
+
+def cmd_read(cfg: Config, stems: list[str], render: bool) -> int:  # noqa: C901
+    """Phase-2 single-read E2E for one or more tunes (spends API budget)."""
+    from .runner import read_one
+    from .vlm import VLMClient
+
+    units, _ = load_units(cfg)
+    client = VLMClient(cfg)
+    total_cost = 0.0
+    worst = 0
+    for stem in stems:
+        try:
+            unit = unit_for_stem(units, stem)
+        except KeyError as exc:
+            print(f"{stem}: {exc}")
+            worst = max(worst, 2)
+            continue
+        out = read_one(cfg, client, unit)
+        total_cost += out.cost
+        n_flags = len(out.flags)
+        print(f"\n=== {stem}  [{out.status}]  {out.attempts} call(s)  "
+              f"${out.cost:.3f}  key={out.printed_key}  flags={n_flags}")
+        if out.report is not None:
+            for f in out.report.errors:
+                print("  ERROR", f)
+            for f in out.report.warnings:
+                print("  warn ", f)
+        if out.error:
+            print("  reason:", out.error[:300])
+        if out.status == "error":
+            worst = max(worst, 1)
+        if render and out.abc_text:
+            from .render import render_tune
+            _, png, ok, reason = render_tune(out.abc_text, stem, cfg)
+            print(f"  render: {'OK' if ok else 'FAIL'} — {reason}  ({png})")
+    print(f"\nTOTAL COST: ${total_cost:.3f} over {len(stems)} tune(s) "
+          f"(avg ${total_cost / max(1, len(stems)):.3f}/tune)")
+    return worst
 
 
 def cmd_check(cfg: Config) -> int:
@@ -167,6 +207,11 @@ def main(argv: list[str] | None = None) -> int:
     sp = sub.add_parser("score")
     sp.add_argument("--wip", type=Path, default=None)
     sp.add_argument("--verified", type=Path, default=None)
+    sp = sub.add_parser("read")
+    sp.add_argument("stems", nargs="+", help="melody stem(s) to read")
+    sp.add_argument("--render", action="store_true", help="also render a lead sheet")
+    sp.add_argument("--retries", type=int, default=None,
+                    help="hard-failure retries per tune (default from Config)")
     sub.add_parser("check")
     args = p.parse_args(argv)
 
@@ -183,6 +228,11 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_render(cfg, args.path, args.stem)
     if args.cmd == "score":
         return cmd_score(cfg, args.wip or cfg.wip_dir, args.verified or cfg.verified_dir)
+    if args.cmd == "read":
+        if args.retries is not None:
+            import dataclasses
+            cfg = dataclasses.replace(cfg, retries=max(1, args.retries))
+        return cmd_read(cfg, args.stems, args.render)
     if args.cmd == "check":
         return cmd_check(cfg)
     return 2

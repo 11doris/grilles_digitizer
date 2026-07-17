@@ -143,6 +143,12 @@ def parse_tune(text: str) -> Tune:
     body_lines: list[str] = []
     for raw in text.splitlines():
         line = raw.rstrip()
+        # `%` starts a comment to end of line (ABC v2.1); `%%` is a directive.
+        # Section labels are quoted ("^A") and never contain `%`, so cutting at
+        # the first `%` is safe for this dialect.
+        pct = line.find("%")
+        if pct != -1:
+            line = line[:pct].rstrip()
         if not line.strip():
             continue
         if _HEADER_RE.match(line) and not body_lines:
