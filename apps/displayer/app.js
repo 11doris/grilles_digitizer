@@ -789,8 +789,8 @@
     });
   }
 
-  /* Fingerprint families are free text with a long tail — families carried by
-     a single tune collapse into an "other" bucket to keep the dropdown short. */
+  /* Fingerprint families are free text with a long tail. Every family gets its
+     own entry (no "other" bucket) so the dropdown lists all forms. */
   function initFormFilter() {
     if (!formFilterEl) return;
     const counts = new Map();
@@ -806,15 +806,11 @@
     }
     const families = [...counts.keys()].sort((a, b) =>
       counts.get(b) - counts.get(a) || a.localeCompare(b));
-    rareFamilies = new Set(families.filter((f) => counts.get(f) < 2));
+    rareFamilies = new Set();
     const opts = ['<option value="">Form…</option>'];
-    families.filter((f) => !rareFamilies.has(f)).forEach((f) => {
+    families.forEach((f) => {
       opts.push(`<option value="${escapeHtml(f)}">${escapeHtml(f)} (${counts.get(f)})</option>`);
     });
-    if (rareFamilies.size) {
-      const n = [...rareFamilies].reduce((s, f) => s + counts.get(f), 0);
-      opts.push(`<option value="other">other (${n})</option>`);
-    }
     if (unknown) opts.push(`<option value="unknown">unknown (${unknown})</option>`);
     formFilterEl.innerHTML = opts.join("");
     formFilterEl.addEventListener("change", () => {
@@ -2491,13 +2487,16 @@
     });
     /* A persisted "scan" on a scan-less tune renders as the grid. */
     apply(buttons.has(state.chordView) ? state.chordView : "grid");
-    tools.appendChild(seg);
 
     /* Harmonic-analysis controls (spec §4), only for analyzed tunes: the
        3-way chord-spelling switch (absolute / hybrid / roman) and the
        independent overlay toggle (brackets, arrows, regions, blocks).
+       These sit on the LEFT of the tools row (.analysis-tools, pushed left by
+       margin-right:auto) so they align with the grid/book-layout content, and
+       are hidden in scan view (they don't apply to the original photo).
        Both re-render the tune in place, preserving zoom and scroll. */
     if (t.has_chord_json && meta(t).harmonic_analysis) {
+      const analysisTools = el("div", "analysis-tools");
       const rerender = () => {
         const scroll = detailPaneEl.scrollTop;
         renderTune(state.currentId);
@@ -2524,7 +2523,7 @@
         });
         spell.appendChild(btn);
       });
-      tools.appendChild(spell);
+      analysisTools.appendChild(spell);
 
       const ovBtn = el("button", "scan-toggle analysis-toggle");
       ovBtn.type = "button";
@@ -2539,8 +2538,10 @@
         saveSwitch("grilles.showAnalysis", state.showAnalysis);
         rerender();
       });
-      tools.appendChild(ovBtn);
+      analysisTools.appendChild(ovBtn);
+      tools.appendChild(analysisTools);
     }
+    tools.appendChild(seg);
     panel.prepend(tools);
   }
 

@@ -728,6 +728,19 @@ body.list-collapsed #sidebarOpenBtn { display: inline-flex; }
 /* Segmented view switch (grid / book layout / scan) in the panel tools row. */
 .view-seg { display: inline-flex; gap: 0.25rem; }
 
+/* Harmonic-analysis controls (spelling switch + overlay toggle) sit on the LEFT
+   of the tools row, aligned with the grid/book-layout content — margin-right:auto
+   pushes them left while the view switch stays right. The spelling pills (C · C⁄ii
+   · ii) are a one-hot group, kept close together; a gap sets the independent
+   overlay (_¬) toggle apart. Hidden in scan view — they don't apply to the photo. */
+.analysis-tools {
+  display: inline-flex;
+  align-items: center;
+  margin-right: auto;
+}
+.analysis-tools .analysis-toggle { margin-left: 0.6rem; }
+.panel.show-scan .analysis-tools { display: none; }
+
 /* Desktop melody show/hide toggle (renderTune): a small pill in a panel's tools
    row. Hidden on phones — the Chords/Melody tabs handle switching there. The
    "hide" button rides on the melody panel (top-right, over the sheet/png); the
