@@ -170,11 +170,61 @@ def _check_variant_targets(obj: dict) -> None:
                     f"variant target bar {bar!r} outside section {key!r} "
                     f"(1..{n_bars})"
                 )
-            if n_boxes and bar + n_boxes - 1 > n_bars:
+            # An alternate's boxes may run past its anchor section and continue
+            # into the following section(s) in grid reading order (real, rare —
+            # e.g. a turnaround straddling the C|D barline in 368_05_SMILES).
+            # Only a run past the END OF THE CHART is structurally impossible.
+            if n_boxes and n_boxes > _bars_from(sections, key, bar):
                 raise ValidationError(
                     f"variant with {n_boxes} boxes at {key!r} bar {bar} spills "
-                    f"past the section's {n_bars} bars"
+                    f"past the end of the chart"
                 )
+
+
+def _bars_from(sections: dict, key: str, bar: int) -> int:
+    """Bars remaining from `<key> bar <bar>` to the end of the chart, counting
+    every section that follows `key` in document order (the `sections` dict is
+    insertion-ordered = printed order)."""
+    names = list(sections)
+    rest = names[names.index(key) + 1:]
+    tail = sum(len(sections[s]) for s in rest if isinstance(sections[s], list))
+    return (len(sections[key]) - bar + 1) + tail
+
+
+def variant_spills(obj: dict) -> list[str]:
+    """Descriptions of every variant whose boxes run past their anchor section
+    into a later one. Structurally allowed (see `_check_variant_targets`), but
+    unusual enough that the runner spends one retry asking the model to
+    double-check the reading against the image before accepting it. Defensive
+    about structure — anything malformed is simply not reported here (the real
+    structural checks live in `validate`)."""
+    spills: list[str] = []
+    sections = obj.get("sections")
+    variants = obj.get("variants")
+    if not isinstance(sections, dict) or not isinstance(variants, list):
+        return spills
+    for variant in variants:
+        if not isinstance(variant, dict):
+            continue
+        boxes = variant.get("bars")
+        n_boxes = len(boxes) if isinstance(boxes, list) else 0
+        targets = variant.get("targets")
+        if not n_boxes or not isinstance(targets, list):
+            continue
+        for target in targets:
+            if not isinstance(target, dict):
+                continue
+            key = target.get("section")
+            bar = target.get("bar")
+            if key in sections and isinstance(sections[key], list) and isinstance(bar, int):
+                n_bars = len(sections[key])
+                if 1 <= bar <= n_bars and bar + n_boxes - 1 > n_bars:
+                    ref = variant.get("applies_to", "?")
+                    spills.append(
+                        f"{ref!r}: {n_boxes} boxes at {key} bar {bar} run past "
+                        f"this {n_bars}-bar section into the next"
+                    )
+    return spills
 
 
 def validate(obj: dict, unit: WorkUnit) -> dict:

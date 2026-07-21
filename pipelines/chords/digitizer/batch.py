@@ -6,10 +6,12 @@ Durability contract (mirrors key_annotation/llm.py): every batch id is
 persisted to `<out_dir>/batch_state.json` the moment the batch is created,
 and the file is deleted only after all results have been fetched, so an
 interrupted run never orphans a paid batch — simply re-running
-`transcribe.py` picks it up. Each fetched reply goes through the exact same
-acceptance path as interactive mode (`runner._accept`: parse, inject,
-canonicalize, validate, atomic write); a reply that fails is left for the
-interactive retry ladder, which the runner applies after the batch phase.
+`transcribe.py` picks it up. Each fetched reply goes through the same
+preparation as interactive mode (`runner._prepare`: parse, inject,
+canonicalize, validate) then an atomic write; a reply that fails validation —
+or one carrying a cross-section variant spill, which needs the interactive
+double-check the batch can't perform — is left for the interactive retry
+ladder, which the runner applies after the batch phase.
 """
 from __future__ import annotations
 
@@ -199,8 +201,19 @@ def run_batch(config: Config, api, pending: list[WorkUnit], log
                 continue
             try:
                 raw = extract_tool_json(item.result.message)
-                results[current_file] = runner._accept(config, unit, raw,
-                                                       attempts=1)
+                obj = runner._prepare(config, unit, raw)
+                spills = runner.variant_spills(obj)
+                if spills:
+                    # The double-check guard lives in the interactive ladder;
+                    # a batch can't re-prompt, so defer the spill there rather
+                    # than accept it unverified.
+                    log(f"  {current_file}: variant crosses a section border "
+                        f"({'; '.join(spills)}) — deferring to interactive "
+                        "double-check")
+                    failed += 1
+                    continue
+                results[current_file] = runner._write_accepted(
+                    config, unit, obj, attempts=1)
                 accepted += 1
             except (ValidationError, VLMRefusal, VLMTruncated) as exc:
                 log(f"  {current_file}: batch reply rejected "

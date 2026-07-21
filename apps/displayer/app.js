@@ -2149,13 +2149,25 @@
     const bars = (variant && variant.bars) || [];
     if (!bars.length) return { bySection, count };
 
+    const allParts = tuneView(tune).parts;
     const place = (part, startIdx) => {
       if (!part) return;
-      bars.forEach((vb, i) => {
-        const idx = startIdx + i;
-        if (idx < 0 || idx >= part.bars.length) return; // never spill past a part
-        (bySection[part.id] || (bySection[part.id] = {}))[idx] = vb;
+      let p = allParts.indexOf(part);
+      if (p < 0 || startIdx < 0) return;
+      let idx = startIdx;
+      bars.forEach((vb) => {
+        // An alternate whose boxes run past their anchor section continue into
+        // the following section(s) in grid reading order (e.g. SMILES' C|D
+        // turnaround). Advance across part boundaries; stop at the chart end.
+        while (p < allParts.length && idx >= allParts[p].bars.length) {
+          idx -= allParts[p].bars.length;
+          p++;
+        }
+        if (p >= allParts.length) return; // ran off the chart end
+        const tgt = allParts[p];
+        (bySection[tgt.id] || (bySection[tgt.id] = {}))[idx] = vb;
         count++;
+        idx++;
       });
     };
 

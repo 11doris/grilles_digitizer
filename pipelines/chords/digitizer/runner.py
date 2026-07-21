@@ -19,8 +19,9 @@ from . import output
 from .config import Config, SOURCE_CONSTANT
 from .images import prepare_crop
 from .manifest import WorkUnit, load_units
-from .prompt import STRICTER_REMINDER, build_user_content
-from .validation import ValidationError, parse_json, review_flags, validate
+from .prompt import SPILL_RECHECK_REMINDER, STRICTER_REMINDER, build_user_content
+from .validation import (
+    ValidationError, parse_json, review_flags, validate, variant_spills)
 from .vlm import MissingCredentials, VLMClient, VLMRefusal, VLMTruncated
 
 
@@ -114,19 +115,32 @@ def _already_valid(config: Config, unit: WorkUnit) -> bool:
         return False
 
 
-def _accept(config: Config, unit: WorkUnit, raw: str, attempts: int) -> UnitResult:
-    """Shared acceptance path for interactive and batch replies: parse,
+def _prepare(config: Config, unit: WorkUnit, raw: str) -> dict:
+    """Parse a reply into a validated tune object WITHOUT writing it: parse,
     inject the runner-owned fields (title/page/source, spec §5, so those
-    always-present fields can never be missing), canonicalize, validate,
-    write. Raises ValidationError when the reply doesn't hold up."""
+    always-present fields can never be missing), canonicalize, validate.
+    Raises ValidationError when the reply doesn't hold up. Splitting this out
+    from the write lets a caller inspect the object first (e.g. the batch phase
+    defers a cross-section variant spill to the interactive double-check)."""
     obj = parse_json(raw)
     obj["title"] = unit.title
     obj["page"] = unit.page
     obj["source"] = SOURCE_CONSTANT
     _canonicalize_chords(obj)
     validate(obj, unit)
+    return obj
+
+
+def _write_accepted(config: Config, unit: WorkUnit, obj: dict, attempts: int) -> UnitResult:
+    """Persist an already-validated object and build its ok result."""
     output.write_tune(config, unit, obj)
     return UnitResult(unit, "ok", attempts, review_flags(obj, unit))
+
+
+def _accept(config: Config, unit: WorkUnit, raw: str, attempts: int) -> UnitResult:
+    """Shared acceptance path for interactive and batch replies: `_prepare`
+    then write. Raises ValidationError when the reply doesn't hold up."""
+    return _write_accepted(config, unit, _prepare(config, unit, raw), attempts)
 
 
 def _transcribe_unit(config: Config, client: VLMClient, unit: WorkUnit) -> UnitResult:
@@ -140,13 +154,19 @@ def _transcribe_unit(config: Config, client: VLMClient, unit: WorkUnit) -> UnitR
     last_error = ""
     last_raw = ""
     max_tokens = config.max_output_tokens
+    recheck_spill = False   # ask the model to re-verify on the NEXT call
+    rechecked = False       # the one-shot double-check has already been spent
+    fallback: dict | None = None  # last validated obj, kept across the recheck call
     for attempt in range(1, config.retries + 1):
         reminder = STRICTER_REMINDER * (attempt - 1)  # progressively stricter
+        if recheck_spill:
+            reminder += SPILL_RECHECK_REMINDER
+            recheck_spill = False
         try:
             raw = client.transcribe(user_content, extra_reminder=reminder,
                                     max_tokens=max_tokens)
             last_raw = raw
-            return _accept(config, unit, raw, attempt)
+            obj = _prepare(config, unit, raw)
         except VLMTruncated as exc:
             # Dense multi-strain grids overflow the default cap. Retry at a
             # doubled cap (output is billed by use, not by the cap) instead
@@ -158,6 +178,25 @@ def _transcribe_unit(config: Config, client: VLMClient, unit: WorkUnit) -> UnitR
         except (ValidationError, VLMRefusal) as exc:
             last_error = f"{type(exc).__name__}: {exc}"
             continue
+
+        # Guard: a variant whose boxes cross a section border is legal but rare.
+        # Spend exactly one retry asking the model to double-check that reading
+        # against the image before accepting it; if it repeats (or attempts run
+        # out) we take the result as-is.
+        spills = variant_spills(obj)
+        if spills and not rechecked and attempt < config.retries:
+            rechecked = True
+            recheck_spill = True
+            fallback = obj  # keep in case the re-verify call fails to validate
+            last_error = "cross-section variant spill; re-verifying: " + "; ".join(spills)
+            continue
+        return _write_accepted(config, unit, obj, attempt)
+
+    # Retries exhausted. If the double-check call was the thing that failed, we
+    # still hold the earlier valid transcription — accept it rather than binning
+    # a good tune over an unconfirmed (but legal) spill.
+    if fallback is not None:
+        return _write_accepted(config, unit, fallback, config.retries)
 
     output.write_error_stub(
         config, unit, attempts=config.retries, last_error=last_error, raw_excerpt=last_raw

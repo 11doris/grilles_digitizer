@@ -558,8 +558,11 @@ Transcribe them into a top-level `variants` field — a list of objects, **one o
 * `targets` — the **structured mapping**: one `{ "section", "bar" }` anchor **per occurrence**
   the alternate applies to, giving the grid bar where the alternate's **first** box lands.
   `bar` is **1-indexed within its section** (not a global count); the alternate's remaining
-  boxes follow consecutively in the **same** section (box 2 → `bar+1`, …) and never spill past
-  the section's end. Read each anchor straight off the grid by locating the marker (or the
+  boxes follow consecutively from that anchor (box 2 → `bar+1`, …). They **usually** stay in
+  the **same** section, but an alternate that genuinely straddles a section boundary on the page
+  (its boxes divided by the same double barline that separates the two grid rows) **may continue
+  into the following section** in grid reading order — only a run past the **end of the chart** is
+  impossible. Read each anchor straight off the grid by locating the marker (or the
   referenced bar), not by counting.
   **Chorus frame:** the `applies_to` numbers count the **chorus** (the main strain — sections
   `A`, `A1`, `B`, …) and **skip** any auxiliary `verse_*`/`intro`/`interlude`/`coda`. So on a
@@ -677,7 +680,10 @@ A unit is **accepted** only if it parses as JSON and passes every check below; o
     and the `form` string joins the per-strain labels with `" | "`.
 14. Every variant target's `section` is a **verbatim key of `sections`** (on a multi-strain piece
     that includes the strain prefix, e.g. `s1_A1`, never the bare letter `A1`), its `bar` lies within
-    that section, and the variant's boxes do not spill past the section's end.
+    that section, and the variant's boxes do not spill past the **end of the chart** (they may cross a
+    section boundary and continue into the following section — see §13.2 — but not run off the end).
+    A cross-section spill is accepted only after a one-shot model re-verification (the transcriber's
+    double-check guard); it is not itself a validation failure.
 
 A unit that fails validation after all retries is written as an `.error.json` stub and listed in
 `run_report.json` — it does not stop the batch.

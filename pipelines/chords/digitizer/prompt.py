@@ -360,9 +360,14 @@ bars the alternate applies to, but do NOT output the symbol itself. Transcribe t
   target's section value MUST also appear as a "sections" key. On a multi-strain piece
   that includes the strain prefix: a marker on strain 1's second section is
   {{ "section": "s1_A1", "bar": 5 }}, NEVER the bare letter {{ "section": "A1", ... }} or
-  {{ "section": "A", ... }}. Likewise a verse target uses its verse_ key. The alternate's remaining boxes follow
-  consecutively in the SAME section (box 2 → bar+1, box 3 → bar+2, …); they never spill
-  past the section's end. Emit one target per printed occurrence, in printed order.
+  {{ "section": "A", ... }}. Likewise a verse target uses its verse_ key. The alternate's
+  remaining boxes follow consecutively from that anchor (box 2 → bar+1, box 3 → bar+2, …).
+  They USUALLY stay within the SAME section. Occasionally an alternate genuinely runs PAST
+  the end of its section and continues into the NEXT section — its boxes straddle the
+  double barline that divides the two rows on the page; that is allowed, and the extra
+  boxes simply carry on into the following section in grid reading order. Only do this when
+  the page truly shows it (double-check the marker and box count); otherwise keep every box
+  inside the one section. Emit one target per printed occurrence, in printed order.
 - The "applies_to" caption's numbers count the CHORUS (the main strain: sections A, A1,
   B, … ) and SKIP any verse/intro/interlude/coda — but you do NOT need to count: just
   locate the marker on the grid. E.g. on a "16 A A' | 32 A A B A" tune, "Bar 1" is bar 1
@@ -454,6 +459,22 @@ STRICTER_REMINDER = (
     " Return one bare JSON object only; no prose; no markdown fence; valid JSON."
 )
 
+# Appended to the user turn for ONE retry when a VARIANTE's replacement boxes ran
+# past the end of the section they start in and continued into the next section.
+# Such cross-section alternates are real but rare, so the model is asked to look
+# again before the answer is accepted (guard for e.g. 368_05_SMILES).
+SPILL_RECHECK_REMINDER = (
+    " DOUBLE-CHECK ONE THING: in your previous answer a VARIANTE's replacement "
+    "boxes ran past the end of the section they start in and continued into the "
+    "NEXT section. That is correct ONLY if the alternate genuinely straddles the "
+    "section boundary on the page (its boxes are divided by the same double "
+    "barline that separates the two grid rows/sections). Look again at the "
+    "VARIANTE row and its marker: re-count the boxes and re-locate where the "
+    "FIRST box lands. If it really does cross the border, keep it exactly; "
+    "otherwise fix the target anchor (section/bar) or the box count so it no "
+    "longer spills."
+)
+
 # Forced tool use guarantees structured JSON with no prose preamble, on every model
 # (current Claude models reject assistant-message prefill). The model is forced to
 # call this tool exactly once; its `input` IS the tune object. title/page/source are
@@ -514,10 +535,13 @@ TUNE_TOOL = {
                             "description": (
                                 "One anchor per occurrence the alternate applies "
                                 "to, giving the grid bar where its FIRST box lands. "
-                                "The remaining boxes follow consecutively in the "
-                                "same section. Bar numbers are 1-indexed WITHIN a "
-                                "section and count the chorus (verse/intro skipped). "
-                                "See the system instructions."
+                                "The remaining boxes follow consecutively from that "
+                                "anchor; they usually stay in the same section but "
+                                "may continue into the next section when the "
+                                "alternate genuinely straddles the section barline. "
+                                "Bar numbers are 1-indexed WITHIN a section and "
+                                "count the chorus (verse/intro skipped). See the "
+                                "system instructions."
                             ),
                             "items": {
                                 "type": "object",
