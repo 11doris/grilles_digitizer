@@ -35,6 +35,9 @@ class Config:
     page_range: tuple[int, int] | None = None
     delay: float = 0.0
     only: str | None = None  # restrict to a single current_file (debugging)
+    # Restrict to an explicit set of crops (stems or filenames, .png optional).
+    # None = no filter; empty tuple never occurs (falls back to None at parse).
+    files: tuple[str, ...] | None = None
     # Randomly pick at most `sample` crops whose tune is not yet decoded into
     # `out_dir` (i.e. still to do). None = no sampling (process all).
     sample: int | None = None
@@ -42,6 +45,9 @@ class Config:
     # Force per-call mode even at >= batch.BATCH_THRESHOLD pending crops
     # (batch mode is automatic otherwise: 50% price, results within hours).
     interactive: bool = False
+    # Force batch mode even below batch.BATCH_THRESHOLD pending crops (the
+    # Batches API is always 50% price; the threshold is only about latency).
+    force_batch: bool = False
     debug: bool = False
 
     @property

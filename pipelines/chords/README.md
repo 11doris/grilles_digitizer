@@ -94,9 +94,26 @@ want a handful of results right now.
 | `--page-range A:B` | — | Limit a session to tunes whose `page` is in `[A, B]` |
 | `--delay S` | `0` | Sleep between units |
 | `--only FILE` | — | Restrict to one `current_file` (debugging) |
+| `--files LIST` | — | Restrict to the crops named in `LIST`, a text file with one crop stem/filename per line (`.png` optional; blank lines and `#`-comments ignored) |
 | `--sample N` | — | Randomly pick at most `N` crops whose tune is not yet decoded into `--out` |
 | `--seed N` | — | RNG seed for `--sample` (reproducible selection) |
 | `--interactive` | off | Force per-call mode even at ≥ 50 pending crops (batch mode is automatic otherwise: 50% price, results within hours) |
+| `--batch` | off | Force batch mode even below 50 pending crops (ignored if `--interactive` is also set) |
+
+**Transcribing a specific list of tunes in batch mode.** Put the crop names in
+a text file (one per line, `.png` optional) and pass `--files`. Batch mode is
+only *automatic* at ≥ 50 pending crops, so add `--batch` to batch a shorter
+list:
+
+```sh
+python pipelines/chords/transcribe.py --files pipelines/chords/transcribe_list.txt --batch
+```
+
+The Batches API is a flat **50% discount per token with no minimum** — it is
+cheaper at *any* count; the 50-crop threshold is only about latency (a batch
+can take up to ~24 h, so small jobs default to interactive so you get results
+now). Use `--batch` when you'd rather pay half and wait; drop it (or add
+`--interactive`) to get a short list back immediately at full price.
 
 Run the book in slices with `--page-range`, or just stop and re-run — resume
 makes that free; no sharding is needed on a single machine.

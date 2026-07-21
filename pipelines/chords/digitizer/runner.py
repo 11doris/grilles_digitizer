@@ -77,6 +77,16 @@ def _canonicalize_chords(obj: dict) -> None:
 def _select(units: list[WorkUnit], config: Config) -> list[WorkUnit]:
     if config.only:
         units = [u for u in units if u.current_file == config.only]
+    if config.files is not None:
+        wanted = set(config.files)
+        units = [u for u in units if u.current_file in wanted]
+        missing = wanted - {u.current_file for u in units}
+        if missing:
+            print(
+                f"warning: {len(missing)} name(s) in --files not found in "
+                f"{config.crops_dir}: {', '.join(sorted(missing))}",
+                file=sys.stderr,
+            )
     if config.page_range:
         lo, hi = config.page_range
         units = [u for u in units if lo <= u.page <= hi]
@@ -259,9 +269,10 @@ def run(config: Config) -> dict:
         pending = [u for u in units
                    if u.current_file not in batch_attempted
                    and not _already_valid(config, u)]
+        below_threshold = len(pending) < batch_mod.BATCH_THRESHOLD
         if batch_mod.load_state(config) is None and (
                 config.interactive or not pending
-                or len(pending) < batch_mod.BATCH_THRESHOLD):
+                or (below_threshold and not config.force_batch)):
             break
         accepted, attempted = batch_mod.run_batch(
             config, client.api, pending, _log)
