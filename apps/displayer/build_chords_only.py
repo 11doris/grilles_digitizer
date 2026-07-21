@@ -13,8 +13,12 @@ This script copies a source displayer tree into an output tree and there:
   * rewrites data/tunes_data.js to strip every melody field
     (melody_image, melody_images, has_melody_abc, abc) and drop tunes that
     have no chord scan (melody-only rows would become empty cards),
-  * filters data/similar_data.js so no suggestion points at a dropped tune,
-  * removes the Melody tab button from index.html.
+  * filters data/similar_data.js so no suggestion points at a dropped tune.
+
+index.html is left untouched: the Melody tab is data-gated (updateTabs shows
+it only when a tune has melody), so with the melody data stripped it never
+appears. The #tabMelody button must stay in the DOM — app.js attaches a click
+listener to it unconditionally, so removing it throws at startup.
 
 The source tree (apps/displayer/) is never modified; Cloudflare keeps deploying
 it verbatim (full site). Only GitHub Pages consumes this output.
@@ -76,12 +80,6 @@ def strip_similar(js: str, kept: set[str]) -> str:
     return _emit("SIMILAR", out)
 
 
-def strip_index(html: str) -> str:
-    """Remove the Melody tab button (data-gated already, removed for good)."""
-    return re.sub(r'[ \t]*<button id="tabMelody".*?</button>\n', "", html,
-                  flags=re.DOTALL)
-
-
 def main() -> int:
     here = Path(__file__).resolve().parent
     parser = argparse.ArgumentParser(description=__doc__)
@@ -114,10 +112,6 @@ def main() -> int:
         similar_js.write_text(
             strip_similar(similar_js.read_text(encoding="utf-8"), kept),
             encoding="utf-8")
-
-    index_html = out / "index.html"
-    index_html.write_text(strip_index(index_html.read_text(encoding="utf-8")),
-                          encoding="utf-8")
 
     n_src = len(_unwrap((src / "data" / "tunes_data.js").read_text("utf-8"),
                         "TUNES"))
