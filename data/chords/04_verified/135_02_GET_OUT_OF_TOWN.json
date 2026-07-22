@@ -1,0 +1,257 @@
+{
+  "composer": "Cole PORTER",
+  "year": "1938",
+  "style": "STANDARD",
+  "tempo": "MEDIUM",
+  "form": "32 A B A' C",
+  "time_signature": "4/4",
+  "title": "GET OUT OF TOWN",
+  "page": 135,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'.",
+    "option": "Left of the grid prints 'OPTION'.",
+    "A_bars3_4": "Section A bars 3-4 carry a two-bar repeat sign, copying bars 1-2."
+  },
+  "recordings": [
+    "F.Hylton 39- E.Fitzgerald 56",
+    "B.Mulligan 62- J.J.Johnson 60",
+    "J.Raney 76- T.Glenn 62- H.Mann 57",
+    "JK.Clarke/F.Boland 63.68- R.Kirk 62",
+    "C.Taylor 59- R.Thomas 54",
+    "A.O'Day 59- A.Shaw 46- T.Wilson 55",
+    "L.Brown 38.40- Th.Jones",
+    "S.Kenton 56- R.Norvo 56"
+  ],
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Gm"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Am7",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Gm"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Am7",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Cm7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bbmaj7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Bb6"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Em7b5"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ebo7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Dbo7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Cm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "A7b9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "D",
+                "3": "Eb9"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "D7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A'",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Gm"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Am7",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Gm"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Am7",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Gm7",
+                "3": "C7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Cm7",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Dm7b5"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "G7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Cm"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ebm6"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Bbmaj7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Dm7b5",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Cm"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Cm7b5",
+                "3": "F7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bb"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Bb"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

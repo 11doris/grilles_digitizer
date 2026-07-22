@@ -1,0 +1,260 @@
+{
+  "composer": "Edgar SAMPSON – Chick WEBB – Benny GOODMAN – Andy RAZAF",
+  "year": "1934",
+  "style": "SWING STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "title": "STOMPIN' AT THE SAVOY",
+  "page": 391,
+  "source": "Anthologie des grilles de jazz",
+  "same_chord_changes": "\"Byas-a-drink (D.Byas)\", \"Relaxin' with Lee\" (C.Parker)",
+  "recordings": [
+    "Ch.Christian 41",
+    "B.Goodman 36.39.47.54",
+    "Ch.Webb 34",
+    "A.Tatum 41.54",
+    "D.Ellington 41.54",
+    "C.Hawkins 44.54",
+    "L.Armstrong 56",
+    "Sampson 56",
+    "J.Lewis 55.65- B.Ratow 67",
+    "R.Brown 59",
+    "C.Cox 55",
+    "J.Jamal 55"
+  ],
+  "notation_notes": {
+    "grid_layout": "Only two printed rows (A row and B row). Expanded per form '32 A A B A' into A, A1, B, A2.",
+    "A_bar8": "Section A row bar 8 is a dash (bar-repeat); copied from preceding bar Db."
+  },
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Db6"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Db6",
+                "3": "Ab13b9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Db6"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Db6",
+                "3": "Do7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ebm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Ab7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Db"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Db"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Db6"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Db6",
+                "3": "Ab13b9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Db6"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Db6",
+                "3": "Do7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ebm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Ab7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Db"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Db"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Gb9",
+                "3": "G9"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Gb9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "B13",
+                "3": "D13"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "B13"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "E9",
+                "3": "F9"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "E9"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "A13"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Ab13",
+                "3": "Ab7b9"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Db6"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Db6",
+                "3": "Ab13b9"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Db6"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Db6",
+                "3": "Do7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ebm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Ab7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Db"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Db"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

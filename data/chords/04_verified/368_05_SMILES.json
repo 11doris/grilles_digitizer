@@ -1,0 +1,284 @@
+{
+  "composer": "Lee S. ROBERTS – J. Will CALLAHAN",
+  "year": "1917",
+  "style": "STANDARD",
+  "tempo": "MEDIUM FAST",
+  "form": "32 A B C D",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 23",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 2,
+          "bar": 7
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "Db",
+            "3": "F7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Bbm"
+          }
+        },
+        {
+          "bar": 3,
+          "beats": {
+            "1": "Db"
+          }
+        },
+        {
+          "bar": 4,
+          "beats": {
+            "1": "Do7"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "SMILES",
+  "page": 368,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "L.Clinton 41- B.Goodman 37",
+    "C.Hawkins 29- C.Thornhill 42",
+    "R.Nichols 29- C.Barnet 42.47.58",
+    "W.Robison 28- J.Adolfson 51",
+    "F.Ambrose 41- O.Peterson 27",
+    "Versatile Three 19- H.James 24",
+    "G.Lewis 27- H.Melloe 55- C.Layre 35",
+    "S.Getz 57- O.Bell 54- R.Burke 48",
+    "P.Tomlin 38"
+  ],
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Ab"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "C7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Fm"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Fm"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Bb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Eb7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Ab7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Ab7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Ab7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Ab7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Db"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Db"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Db"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Db"
+              }
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Do7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Do7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "F7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bbm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Eb7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Ab"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Ab"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

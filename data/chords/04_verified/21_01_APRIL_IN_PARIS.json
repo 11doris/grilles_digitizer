@@ -1,0 +1,261 @@
+{
+  "composer": "Vernon DUKE – E.Y. HARBURG",
+  "year": "1932",
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "form": "32 A B C D",
+  "time_signature": "4/4",
+  "title": "APRIL IN PARIS",
+  "page": 21,
+  "source": "Anthologie des grilles de jazz",
+  "notation_notes": {
+    "verse": "Header prints '16 VERSE'."
+  },
+  "recordings": [
+    "C.Basie b5.65- E.Fitzgerald 57",
+    "B.Powell 50- E.Garner 55- R.Braff 59",
+    "B.Golson 59- B.Bailey 40- D.Byas 53.62",
+    "B.Goodman 67- L.Hampton 54- A.Shaw 40",
+    "B.Holiday 55- B.Coleman 56",
+    "W.B.Davis 53.62- T.Dorsey 43",
+    "L.Armstrong/E.Fitzgerald 56",
+    "G.Shearing 74"
+  ],
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Fm"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dm7b5"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "G7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Cmaj7",
+                "3": "Dm7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Em7",
+                "3": "Am7",
+                "4": "Ab7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Gm7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "C7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F/G"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "Fm"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Cmaj7",
+                "3": "Dm7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Em7",
+                "3": "Am7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "F#m7b5"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "B7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Bm7b5",
+                "3": "E7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Em7b5",
+                "3": "A7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F#m7b5",
+                "3": "Fo7"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "C/3",
+                "3": "Ebo7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dm7b5",
+                "3": "G7b9/4"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Bm7b5",
+                "3": "E7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Am",
+                "3": "Am7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "F#m7b5",
+                "3": "B7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "Emaj7",
+                "2": "C#m7",
+                "3": "Dm7",
+                "4": "G7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "Fm/G"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Em7b5"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Dm7b5",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "C"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "N.C."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
