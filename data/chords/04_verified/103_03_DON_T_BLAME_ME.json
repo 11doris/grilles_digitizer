@@ -1,0 +1,335 @@
+{
+  "style": "STANDARD",
+  "tempo": "MEDIUM SLOW",
+  "composer": "Jimmy Mc HUGH – Dorothy FIELDS",
+  "year": "1932",
+  "form": "32 A A B A",
+  "time_signature": "4/4",
+  "variants": [
+    {
+      "applies_to": "Bar 1, 8, 25",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 0,
+          "bar": 1
+        },
+        {
+          "strain": "chorus",
+          "part": 1,
+          "bar": 1
+        },
+        {
+          "strain": "chorus",
+          "part": 3,
+          "bar": 1
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "C",
+            "3": "Fm7"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Em7",
+            "3": "A7"
+          }
+        }
+      ]
+    },
+    {
+      "applies_to": "Bar 7",
+      "targets": [
+        {
+          "strain": "chorus",
+          "part": 0,
+          "bar": 7
+        }
+      ],
+      "bars": [
+        {
+          "bar": 1,
+          "beats": {
+            "1": "F#m7b5",
+            "3": "Fm7b5"
+          }
+        },
+        {
+          "bar": 2,
+          "beats": {
+            "1": "Em7",
+            "2": "Eb7",
+            "3": "Dm7",
+            "4": "Db7"
+          }
+        }
+      ]
+    }
+  ],
+  "title": "DON'T BLAME ME",
+  "page": 103,
+  "source": "Anthologie des grilles de jazz",
+  "recordings": [
+    "...gers ??- T.Wilson ??  Wet.K  C-le Jr.",
+    "..be  .6E  .K.C  .4.  jon.",
+    "..dlphy 61- R.Eldridge 53- P.Gonsalves 54",
+    "..rner 45- C.Hawkins 44- I.Jacquet 46",
+    "..dges 62- A.Tatum 49- C.Parker 47.52",
+    "..eterson 54.59- 0.Pettiford 44-",
+    "..iffer 58- B.Powell 57- D.Ellington 49?",
+    "..owell 45- J.Turner 78- A.Casey 60",
+    "..eering 51- D.Gillespie 46- A.Jamal 55",
+    "..s Ghum 52"
+  ],
+  "notation_notes": {
+    "A_bar3": "Dm7 carries a parenthesised superscript (b5); read as Dm7b5.",
+    "variant_bar7": "The second VARIANTE (Bar 7) is a 3-box alternate; its first box lands on bar 7 of section A and stays within section A (bars 7-8 plus the turnaround), not spilling into section B."
+  },
+  "strains": [
+    {
+      "name": "chorus",
+      "role": "chorus",
+      "parts": [
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "C",
+                "3": "Em7b5"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dm7b5",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Cmaj7",
+                "3": "Am7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Dm7b5",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Em7b5",
+                "3": "A7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "D7",
+                "3": "G7#5"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "C",
+                "3": "G7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "C",
+                "3": "Em7b5"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dm7b5",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Cmaj7",
+                "3": "Am7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Dm7b5",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Em7b5",
+                "3": "A7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "D7",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "C",
+                "3": "C7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "F"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "E7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "E7/A"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Am"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "D7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Am7",
+                "3": "D7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "Dm7",
+                "3": "Ab7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "G7"
+              }
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "bars": [
+            {
+              "bar": 1,
+              "beats": {
+                "1": "C",
+                "3": "Em7b5"
+              }
+            },
+            {
+              "bar": 2,
+              "beats": {
+                "1": "A7"
+              }
+            },
+            {
+              "bar": 3,
+              "beats": {
+                "1": "Dm7b5",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 4,
+              "beats": {
+                "1": "Cmaj7",
+                "3": "Am7"
+              }
+            },
+            {
+              "bar": 5,
+              "beats": {
+                "1": "Dm7b5",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 6,
+              "beats": {
+                "1": "Em7b5",
+                "3": "A7"
+              }
+            },
+            {
+              "bar": 7,
+              "beats": {
+                "1": "D7",
+                "3": "G7"
+              }
+            },
+            {
+              "bar": 8,
+              "beats": {
+                "1": "C"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

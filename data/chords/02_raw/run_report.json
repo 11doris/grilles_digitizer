@@ -1,13 +1,15 @@
 {
-  "total": 1,
-  "succeeded": 1,
+  "total": 3,
+  "succeeded": 2,
   "skipped": 0,
-  "failed": 0,
-  "elapsed_s": 15.5,
+  "failed": 1,
+  "elapsed_s": 158.3,
   "model": "claude-opus-4-8",
   "flagged": {
     "missing_required_field": [],
     "no_chord_grid": [],
-    "errors": []
+    "errors": [
+      "386_03_STARDUST.png"
+    ]
   }
 }

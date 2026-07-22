@@ -23,6 +23,33 @@ def _page_range(value: str) -> tuple[int, int]:
         raise argparse.ArgumentTypeError("page-range must be A:B (e.g. 7:120)") from exc
 
 
+def _normalize_crop_name(entry: str) -> str:
+    """A requested crop as a `current_file`: strip whitespace, drop a leading
+    `#` comment/blank (returns ""), and append `.png` if not already present."""
+    entry = entry.strip()
+    if not entry or entry.startswith("#"):
+        return ""
+    return entry if entry.lower().endswith(".png") else f"{entry}.png"
+
+
+def _load_file_list(path: Path) -> tuple[str, ...]:
+    """Read a newline-delimited list of crop stems/filenames (one per line;
+    blank lines and `#` comments ignored; `.png` optional), preserving order
+    and de-duplicating."""
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except OSError as exc:
+        raise argparse.ArgumentTypeError(f"cannot read --files list {path}: {exc}") from exc
+    seen: dict[str, None] = {}  # ordered set
+    for line in lines:
+        name = _normalize_crop_name(line)
+        if name:
+            seen.setdefault(name, None)
+    if not seen:
+        raise argparse.ArgumentTypeError(f"--files list {path} has no usable entries")
+    return tuple(seen)
+
+
 def _parse_args(argv: list[str] | None) -> Config:
     p = argparse.ArgumentParser(
         prog="transcribe",
@@ -47,6 +74,12 @@ def _parse_args(argv: list[str] | None) -> Config:
     p.add_argument("--delay", type=float, default=0.0, help="seconds to sleep between units")
     p.add_argument("--only", default=None, help="restrict to one current_file (debugging)")
     p.add_argument(
+        "--files", type=Path, default=None, metavar="LIST",
+        help="restrict to the crops named in LIST, a text file with one crop "
+             "stem/filename per line (.png optional; blank lines and #-comments "
+             "ignored). Pair with --batch to batch a list smaller than 50.",
+    )
+    p.add_argument(
         "--sample", type=int, default=None, metavar="N",
         help="randomly select at most N crops whose tune is not yet decoded into --out",
     )
@@ -56,10 +89,17 @@ def _parse_args(argv: list[str] | None) -> Config:
         help="force per-call mode even at >= 50 pending crops (batch mode is "
              "automatic otherwise: Batches API, 50%% price, results within hours)",
     )
+    p.add_argument(
+        "--batch", action="store_true",
+        help="force batch mode even below 50 pending crops (Batches API is "
+             "always 50%% price; the threshold is only about latency). Ignored "
+             "when --interactive is also set.",
+    )
     p.add_argument("--debug", action="store_true", help="verbose errors")
     args = p.parse_args(argv)
 
     manifest = args.manifest or (args.crops / "manifest.csv")
+    files = _load_file_list(args.files) if args.files is not None else None
     return Config(
         crops_dir=args.crops,
         manifest=manifest,
@@ -73,9 +113,11 @@ def _parse_args(argv: list[str] | None) -> Config:
         page_range=args.page_range,
         delay=max(0.0, args.delay),
         only=args.only,
+        files=files,
         sample=None if args.sample is None else max(0, args.sample),
         seed=args.seed,
         interactive=args.interactive,
+        force_batch=args.batch,
         debug=args.debug,
     )
 
